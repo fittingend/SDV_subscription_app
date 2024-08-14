@@ -1,0 +1,1881 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00049.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE UUID="c62f33cc-747f-4a84-a1f3-d41a82cc4785">
+      <SHORT-NAME>ServiceDeployment</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE UUID="c7fba68e-eb0f-4a60-958e-34b3b7cb6748">
+          <SHORT-NAME>Ipc</SHORT-NAME>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="4730edbc-ae32-4775-89f3-76b770c5292b">
+          <SHORT-NAME>Someip</SHORT-NAME>
+          <ELEMENTS>
+            <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="da179414-c2fe-4476-a151-07adea330989">
+              <SHORT-NAME>SoaDriverSeat</SHORT-NAME>
+              <FIELD-DEPLOYMENTS>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="57477e94-0e51-43e1-9c82-659fd787a10c">
+                  <SHORT-NAME>soaDrvSeatDeviceNormal</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/SoaDriverSeat/soaDrvSeatDeviceNormal</FIELD-REF>
+                  <GET UUID="baa8ec00-2a4b-466a-ba97-f0bdbab37d15">
+                    <SHORT-NAME>Get_soaDrvSeatDeviceNormal</SHORT-NAME>
+                    <METHOD-ID>1</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="c85c06f9-1675-4921-9c68-14458a7a7fbd">
+                    <SHORT-NAME>Notification_soaDrvSeatDeviceNormal</SHORT-NAME>
+                    <EVENT-ID>16385</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="5b8e73dc-2d31-4249-8bc7-11c987256bd0">
+                  <SHORT-NAME>soaDrvSeatMotorDirection</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/SoaDriverSeat/soaDrvSeatMotorDirection</FIELD-REF>
+                  <GET UUID="51dcf1a2-559b-40e3-b1a4-5e7093f732f0">
+                    <SHORT-NAME>Get_soaDrvSeatMotorDirection</SHORT-NAME>
+                    <METHOD-ID>2</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="58574517-732a-42bc-9478-4a4e37bbebea">
+                    <SHORT-NAME>Notify_soaDrvSeatMotorDirection</SHORT-NAME>
+                    <EVENT-ID>16386</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="54bd91ba-35f0-4fdd-8b58-b097a48202ea">
+                  <SHORT-NAME>soaDrvSeatMotorPosition</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/SoaDriverSeat/soaDrvSeatMotorPosition</FIELD-REF>
+                  <GET UUID="7849b5d4-96c3-4fcc-bc3e-04872353d005">
+                    <SHORT-NAME>Get_soaDrvSeatMotorPosition</SHORT-NAME>
+                    <METHOD-ID>3</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="ca60a2fa-434b-4621-98f0-02fa9a55e557">
+                    <SHORT-NAME>Notify_soaDrvSeatMotorPosition</SHORT-NAME>
+                    <EVENT-ID>16387</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+              </FIELD-DEPLOYMENTS>
+              <METHOD-DEPLOYMENTS>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="4ef3e752-2d4b-4d77-a929-70111137f778">
+                  <SHORT-NAME>RequestMoveDrvSeatHeight</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/SoaDriverSeat/RequestMoveDrvSeatHeight</METHOD-REF>
+                  <METHOD-ID>16387</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="3c665267-1223-4f13-a9c8-4ea441e06eed">
+                  <SHORT-NAME>RequestMoveDrvSeatRecline</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/SoaDriverSeat/RequestMoveDrvSeatRecline</METHOD-REF>
+                  <METHOD-ID>16386</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="d0a806b4-cde1-43fa-9a46-dcf86c9f2f1c">
+                  <SHORT-NAME>RequestMoveDrvSeatSlide</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/SoaDriverSeat/RequestMoveDrvSeatSlide</METHOD-REF>
+                  <METHOD-ID>16385</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="915cff60-7050-40ba-9229-bf6d1dd8bf7c">
+                  <SHORT-NAME>RequestMoveDrvSeatTilt</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/SoaDriverSeat/RequestMoveDrvSeatTilt</METHOD-REF>
+                  <METHOD-ID>16388</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+              </METHOD-DEPLOYMENTS>
+              <SERVICE-INTERFACE-REF DEST="SERVICE-INTERFACE">/ServiceInterface/SoaDriverSeat</SERVICE-INTERFACE-REF>
+              <EVENT-GROUPS>
+                <SOMEIP-EVENT-GROUP UUID="f41c8eb9-1692-4bda-810d-6229a8d9b633">
+                  <SHORT-NAME>Eventgroup_Notification_soaDrvSeatDeviceNormal</SHORT-NAME>
+                  <EVENT-GROUP-ID>8449</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaDriverSeat/soaDrvSeatDeviceNormal/Notification_soaDrvSeatDeviceNormal</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+                <SOMEIP-EVENT-GROUP UUID="bc4d66d2-eae9-4c3d-b4ed-2729399d245f">
+                  <SHORT-NAME>Eventgroup_Notification_soaDrvSeatMotorDirection</SHORT-NAME>
+                  <EVENT-GROUP-ID>8450</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaDriverSeat/soaDrvSeatMotorDirection/Notify_soaDrvSeatMotorDirection</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+                <SOMEIP-EVENT-GROUP UUID="7688ee0a-2056-4670-a8b4-3dc2816e101f">
+                  <SHORT-NAME>Eventgroup_Notification_soaDrvSeatMotorPosition</SHORT-NAME>
+                  <EVENT-GROUP-ID>8451</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaDriverSeat/soaDrvSeatMotorPosition/Notify_soaDrvSeatMotorPosition</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+              </EVENT-GROUPS>
+              <SERVICE-INTERFACE-ID>4946</SERVICE-INTERFACE-ID>
+              <SERVICE-INTERFACE-VERSION>
+                <MAJOR-VERSION>1</MAJOR-VERSION>
+                <MINOR-VERSION>0</MINOR-VERSION>
+              </SERVICE-INTERFACE-VERSION>
+            </SOMEIP-SERVICE-INTERFACE-DEPLOYMENT>
+            <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="b237d280-55f9-4df2-92e7-4f07f824508e">
+              <SHORT-NAME>SoaMlm</SHORT-NAME>
+              <FIELD-DEPLOYMENTS>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="1ffd5c9b-036b-4531-b5b8-f4c96b829e7b">
+                  <SHORT-NAME>soaMlmStatus</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/SoaMlm/soaMlmStatus</FIELD-REF>
+                  <GET UUID="b21dbe22-bce8-4a59-94c8-b20b5fbbb106">
+                    <SHORT-NAME>Get_soaMlmStatus</SHORT-NAME>
+                    <METHOD-ID>1</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="21e88881-989f-49ed-9b75-674f545fe041">
+                    <SHORT-NAME>Notification_soaMlmStatus</SHORT-NAME>
+                    <EVENT-ID>16385</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+              </FIELD-DEPLOYMENTS>
+              <METHOD-DEPLOYMENTS>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="0358d37e-3b50-42ee-8fc5-bf2fc4e2d9ec">
+                  <SHORT-NAME>RequestMlmSetBrightness</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/SoaMlm/RequestMlmSetBrightness</METHOD-REF>
+                  <METHOD-ID>16387</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="48684e52-343c-43fc-853f-1b12869eea77">
+                  <SHORT-NAME>RequestMlmSetMode</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/SoaMlm/RequestMlmSetMode</METHOD-REF>
+                  <METHOD-ID>16386</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="0bbdfa77-b8ca-4a9e-a907-d6452e02e94b">
+                  <SHORT-NAME>RequestMlmSetRgbColor</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/SoaMlm/RequestMlmSetRgbColor</METHOD-REF>
+                  <METHOD-ID>16385</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+              </METHOD-DEPLOYMENTS>
+              <SERVICE-INTERFACE-REF DEST="SERVICE-INTERFACE">/ServiceInterface/SoaMlm</SERVICE-INTERFACE-REF>
+              <EVENT-GROUPS>
+                <SOMEIP-EVENT-GROUP UUID="780fb0e6-ce8d-4b94-b39c-7ac1e533be00">
+                  <SHORT-NAME>Eventgroup_Notification_soaMlmStatus</SHORT-NAME>
+                  <EVENT-GROUP-ID>8449</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaMlm/soaMlmStatus/Notification_soaMlmStatus</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+              </EVENT-GROUPS>
+              <SERVICE-INTERFACE-ID>4945</SERVICE-INTERFACE-ID>
+              <SERVICE-INTERFACE-VERSION>
+                <MAJOR-VERSION>1</MAJOR-VERSION>
+                <MINOR-VERSION>0</MINOR-VERSION>
+              </SERVICE-INTERFACE-VERSION>
+            </SOMEIP-SERVICE-INTERFACE-DEPLOYMENT>
+            <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="9509823b-b9a5-4769-965a-f8150eae626c">
+              <SHORT-NAME>SoaPower</SHORT-NAME>
+              <FIELD-DEPLOYMENTS>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="ccd980b4-0ac3-4e60-a5f4-bb17ccffe710">
+                  <SHORT-NAME>soaPwrZone1Curr</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/SoaPower/soaPwrZone1Curr</FIELD-REF>
+                  <GET UUID="fca1128e-78a9-4506-b3fe-30cc583a2436">
+                    <SHORT-NAME>Get_soaPwrZone1Curr</SHORT-NAME>
+                    <METHOD-ID>2</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="7a65f0bc-0610-4dc2-8ef0-402bd145e8e8">
+                    <SHORT-NAME>Notification_soaPwrZone1Curr</SHORT-NAME>
+                    <EVENT-ID>16386</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="9645e037-348e-4297-9cc0-e905659164d8">
+                  <SHORT-NAME>soaPwrZone1Power</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/SoaPower/soaPwrZone1Power</FIELD-REF>
+                  <GET UUID="1be399d8-f51e-45a3-9d2e-0d74806edd5c">
+                    <SHORT-NAME>Get_soaPwrZone1Power</SHORT-NAME>
+                    <METHOD-ID>1</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="86565221-4c33-48fb-8f91-ff1a3f01040c">
+                    <SHORT-NAME>Notification_soaPwrZone1Power</SHORT-NAME>
+                    <EVENT-ID>16385</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="60759899-c88c-4864-9c01-811a5665aab3">
+                  <SHORT-NAME>soaPwrZone2Curr</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/SoaPower/soaPwrZone2Curr</FIELD-REF>
+                  <GET UUID="e16b4870-65b6-4f60-83bf-a19bcce27ca7">
+                    <SHORT-NAME>Get_soaPwrZone2Curr</SHORT-NAME>
+                    <METHOD-ID>4</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="4e4e0e8f-338e-4d49-b474-54a7950923bf">
+                    <SHORT-NAME>Notification_soaPwrZone2Curr</SHORT-NAME>
+                    <EVENT-ID>16388</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="542accd2-3160-4415-9c1f-b7903bad5458">
+                  <SHORT-NAME>soaPwrZone2Power</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/SoaPower/soaPwrZone2Power</FIELD-REF>
+                  <GET UUID="c52b2772-2e57-4234-bd59-0ff77abb83b9">
+                    <SHORT-NAME>Get_soaPwrZone2Power</SHORT-NAME>
+                    <METHOD-ID>3</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="3fe8c5dd-d626-4a2e-93f7-2049830c2af4">
+                    <SHORT-NAME>Notification_soaPwrZone2Power</SHORT-NAME>
+                    <EVENT-ID>16387</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="e63a53b6-d789-48df-a085-fdc0d966a47d">
+                  <SHORT-NAME>soaPwrZone3Curr</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/SoaPower/soaPwrZone3Curr</FIELD-REF>
+                  <GET UUID="65b51d53-9575-4165-bb59-e6e691afe834">
+                    <SHORT-NAME>Get_soaPwrZone3Curr</SHORT-NAME>
+                    <METHOD-ID>6</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="8217aa1a-f3ac-46ab-88ff-82a503d2f47a">
+                    <SHORT-NAME>Notification_soaPwrZone3Curr</SHORT-NAME>
+                    <EVENT-ID>16390</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="ed5ff3a6-d173-4dd5-bcc6-a741ee9d9284">
+                  <SHORT-NAME>soaPwrZone3Power</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/SoaPower/soaPwrZone3Power</FIELD-REF>
+                  <GET UUID="b535e5c8-cfa2-41a4-b323-840ea51b849a">
+                    <SHORT-NAME>Get_soaPwrZone3Power</SHORT-NAME>
+                    <METHOD-ID>5</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="0b8ab813-6c64-4e8e-bc9d-1756309f960f">
+                    <SHORT-NAME>Notification_soaPwrZone3Power</SHORT-NAME>
+                    <EVENT-ID>16389</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="6aced2a4-fe8e-4a12-a062-e38a1df73c16">
+                  <SHORT-NAME>soaPwrZone4Curr</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/SoaPower/soaPwrZone4Curr</FIELD-REF>
+                  <GET UUID="67d21bcd-c921-4848-9ec3-f6d029690a3d">
+                    <SHORT-NAME>Get_soaPwrZone4Curr</SHORT-NAME>
+                    <METHOD-ID>8</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="41ba3386-87c6-41ff-896e-3923c418d936">
+                    <SHORT-NAME>Notification_soaPwrZone4Curr</SHORT-NAME>
+                    <EVENT-ID>16392</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="8d1c6866-4abe-4424-9b4d-095f0a2a9235">
+                  <SHORT-NAME>soaPwrZone4Power</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/SoaPower/soaPwrZone4Power</FIELD-REF>
+                  <GET UUID="0e933a20-2f51-4a5e-bed2-17c1d2de2cba">
+                    <SHORT-NAME>Get_soaPwrZone4Power</SHORT-NAME>
+                    <METHOD-ID>7</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="8d17eaa0-db22-4775-b4d0-7d5f56bf97b3">
+                    <SHORT-NAME>Notification_soaPwrZone4Power</SHORT-NAME>
+                    <EVENT-ID>16391</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>TCP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+              </FIELD-DEPLOYMENTS>
+              <METHOD-DEPLOYMENTS>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="c5a5ef1d-6203-4ca6-a7df-91ae2ae27b9b">
+                  <SHORT-NAME>SetEnableDrvseat</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/SoaPower/SetEnableDrvseat</METHOD-REF>
+                  <METHOD-ID>16386</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="c5372ffa-22f0-42c5-99a4-859f60e7cb23">
+                  <SHORT-NAME>SetEnableFrontPdw</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/SoaPower/SetEnableFrontPdw</METHOD-REF>
+                  <METHOD-ID>16393</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="3019fdd4-fe0b-4878-9eab-0a4da2ac2bad">
+                  <SHORT-NAME>SetEnableMfsw</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/SoaPower/SetEnableMfsw</METHOD-REF>
+                  <METHOD-ID>16387</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="bbe84d3a-3878-4ac8-8cd4-7298918a1086">
+                  <SHORT-NAME>SetEnableMlm</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/SoaPower/SetEnableMlm</METHOD-REF>
+                  <METHOD-ID>16385</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="4717d9ff-5141-48fb-86c9-b7b9fb9e984b">
+                  <SHORT-NAME>SetEnableRainSensor</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/SoaPower/SetEnableRainSensor</METHOD-REF>
+                  <METHOD-ID>16389</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="0832dd08-af6b-4088-abc1-931528e478f2">
+                  <SHORT-NAME>SetEnableRearCurtain</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/SoaPower/SetEnableRearCurtain</METHOD-REF>
+                  <METHOD-ID>16390</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="5efa8e10-6632-44a4-8642-b99dd9354ee8">
+                  <SHORT-NAME>SetEnableRearPdw</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/SoaPower/SetEnableRearPdw</METHOD-REF>
+                  <METHOD-ID>16391</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="4e844130-eae5-4a42-a419-12b059356547">
+                  <SHORT-NAME>SetEnableRoa</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/SoaPower/SetEnableRoa</METHOD-REF>
+                  <METHOD-ID>16388</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="20a5c68c-c3be-4ac9-bdf0-98bba59867e9">
+                  <SHORT-NAME>SetEnableWiper</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/SoaPower/SetEnableWiper</METHOD-REF>
+                  <METHOD-ID>16392</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+              </METHOD-DEPLOYMENTS>
+              <SERVICE-INTERFACE-REF DEST="SERVICE-INTERFACE">/ServiceInterface/SoaPower</SERVICE-INTERFACE-REF>
+              <EVENT-GROUPS>
+                <SOMEIP-EVENT-GROUP UUID="a6045af2-610d-41d2-b622-0a7838407ac2">
+                  <SHORT-NAME>Eventgroup_Notification_soaPwrZone1Curr</SHORT-NAME>
+                  <EVENT-GROUP-ID>8194</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone1Curr/Notification_soaPwrZone1Curr</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+                <SOMEIP-EVENT-GROUP UUID="3fc7f59f-abcb-415e-9669-8430e4b41972">
+                  <SHORT-NAME>Eventgroup_Notification_soaPwrZone1Power</SHORT-NAME>
+                  <EVENT-GROUP-ID>8193</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone1Power/Notification_soaPwrZone1Power</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+                <SOMEIP-EVENT-GROUP UUID="1bb98b55-fe4b-4523-8005-b28bb7bf11d8">
+                  <SHORT-NAME>Eventgroup_Notification_soaPwrZone2Curr</SHORT-NAME>
+                  <EVENT-GROUP-ID>8196</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone2Curr/Notification_soaPwrZone2Curr</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+                <SOMEIP-EVENT-GROUP UUID="3f220b29-86cc-482c-9100-3b4f749cefaa">
+                  <SHORT-NAME>Eventgroup_Notification_soaPwrZone2Power</SHORT-NAME>
+                  <EVENT-GROUP-ID>8195</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone2Power/Notification_soaPwrZone2Power</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+                <SOMEIP-EVENT-GROUP UUID="5847cba7-24a2-4b30-a09a-1bfff5d62014">
+                  <SHORT-NAME>Eventgroup_Notification_soaPwrZone3Curr</SHORT-NAME>
+                  <EVENT-GROUP-ID>8198</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone3Curr/Notification_soaPwrZone3Curr</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+                <SOMEIP-EVENT-GROUP UUID="6d8ffcb0-9999-450d-a2b8-d006359863dc">
+                  <SHORT-NAME>Eventgroup_Notification_soaPwrZone3Power</SHORT-NAME>
+                  <EVENT-GROUP-ID>8197</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone3Power/Notification_soaPwrZone3Power</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+                <SOMEIP-EVENT-GROUP UUID="a6599bf5-b61f-41c3-b05f-1ba070333a56">
+                  <SHORT-NAME>Eventgroup_Notification_soaPwrZone4Curr</SHORT-NAME>
+                  <EVENT-GROUP-ID>8200</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone4Curr/Notification_soaPwrZone4Curr</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+                <SOMEIP-EVENT-GROUP UUID="a39a7b7d-deb7-4cfb-b71f-cac18a29f1e9">
+                  <SHORT-NAME>Eventgroup_Notification_soaPwrZone4Power</SHORT-NAME>
+                  <EVENT-GROUP-ID>8199</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone4Power/Notification_soaPwrZone4Power</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+              </EVENT-GROUPS>
+              <SERVICE-INTERFACE-ID>4944</SERVICE-INTERFACE-ID>
+              <SERVICE-INTERFACE-VERSION>
+                <MAJOR-VERSION>1</MAJOR-VERSION>
+                <MINOR-VERSION>0</MINOR-VERSION>
+              </SERVICE-INTERFACE-VERSION>
+            </SOMEIP-SERVICE-INTERFACE-DEPLOYMENT>
+            <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="1de3c58f-a9a1-4735-934b-baffd5949d8c">
+              <SHORT-NAME>SoaRcurtain</SHORT-NAME>
+              <FIELD-DEPLOYMENTS>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="a01f30ca-5f57-40d8-88a8-7ee38aeb2107">
+                  <SHORT-NAME>soaRctnStatus</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/SoaRcurtain/soaRctnStatus</FIELD-REF>
+                  <GET UUID="deb9841e-eba8-4790-8cfb-42e9d1d50f5f">
+                    <SHORT-NAME>Get_soaRctnStatus</SHORT-NAME>
+                    <METHOD-ID>1</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="5ec6764c-f1c8-4584-b304-2748c889e15e">
+                    <SHORT-NAME>Notification_soaRctnStatus</SHORT-NAME>
+                    <EVENT-ID>16385</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+              </FIELD-DEPLOYMENTS>
+              <METHOD-DEPLOYMENTS>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="f76df29e-c208-4be9-adf2-89cb3e2723c7">
+                  <SHORT-NAME>RequestRearCurtainOperation</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/SoaRcurtain/RequestRearCurtainOperation</METHOD-REF>
+                  <METHOD-ID>16385</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+              </METHOD-DEPLOYMENTS>
+              <SERVICE-INTERFACE-REF DEST="SERVICE-INTERFACE">/ServiceInterface/SoaRcurtain</SERVICE-INTERFACE-REF>
+              <EVENT-GROUPS>
+                <SOMEIP-EVENT-GROUP UUID="d50d85d4-646a-44c6-bb62-453738278668">
+                  <SHORT-NAME>Eventgroup_Notification_soaRctnStatus</SHORT-NAME>
+                  <EVENT-GROUP-ID>8449</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaRcurtain/soaRctnStatus/Notification_soaRctnStatus</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+              </EVENT-GROUPS>
+              <SERVICE-INTERFACE-ID>4948</SERVICE-INTERFACE-ID>
+              <SERVICE-INTERFACE-VERSION>
+                <MAJOR-VERSION>1</MAJOR-VERSION>
+                <MINOR-VERSION>0</MINOR-VERSION>
+              </SERVICE-INTERFACE-VERSION>
+            </SOMEIP-SERVICE-INTERFACE-DEPLOYMENT>
+            <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="80b719a7-4e7b-4b68-873d-6c3f86f21075">
+              <SHORT-NAME>SoaRoa</SHORT-NAME>
+              <FIELD-DEPLOYMENTS>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="2abcea9a-d652-4e2c-94f8-fb3ab766cbd3">
+                  <SHORT-NAME>soaRoaDetectCount</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/SoaRoa/soaRoaDetectCount</FIELD-REF>
+                  <GET UUID="8222a381-2909-4a5c-92fd-8e89596b0a24">
+                    <SHORT-NAME>Get_soaRoaDetectCount</SHORT-NAME>
+                    <METHOD-ID>5</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="4ca88b99-4bf9-4c45-b593-9908030a2ef5">
+                    <SHORT-NAME>Notify_soaRoaDetectCount</SHORT-NAME>
+                    <EVENT-ID>16389</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="d2d8ad56-a9e1-416e-ab1d-95ba207d9d3a">
+                  <SHORT-NAME>soaRoaDetectState</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/SoaRoa/soaRoaDetectState</FIELD-REF>
+                  <GET UUID="30be3a80-a612-4a08-ac18-b8a79a44ea7d">
+                    <SHORT-NAME>Get_soaRoaDetectState</SHORT-NAME>
+                    <METHOD-ID>4</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="773c5fba-2b16-4991-b480-ae5e77392ae7">
+                    <SHORT-NAME>Notify_soaRoaDetectState</SHORT-NAME>
+                    <EVENT-ID>16388</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="66f85dea-365b-4469-a2a9-c0dbc28cc587">
+                  <SHORT-NAME>soaRoaDeviceNormal</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/SoaRoa/soaRoaDeviceNormal</FIELD-REF>
+                  <GET UUID="2e30dd92-cf62-4473-8909-0ca0293845fd">
+                    <SHORT-NAME>Get_soaRoaDeviceNormal</SHORT-NAME>
+                    <METHOD-ID>1</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="3c5abcee-aa35-46f5-920e-fd4694b83aa8">
+                    <SHORT-NAME>Notify_soaRoaDeviceNormal</SHORT-NAME>
+                    <EVENT-ID>16385</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="805ac274-7240-4cfa-8ad1-e36eb7f3e99d">
+                  <SHORT-NAME>soaRoaMode</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/SoaRoa/soaRoaMode</FIELD-REF>
+                  <GET UUID="62baf155-cc39-4fbf-98c5-7c0d354a883c">
+                    <SHORT-NAME>Get_soaRoaMode</SHORT-NAME>
+                    <METHOD-ID>3</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="5e0a6d2a-c0db-4fcc-8c8a-062e531abc68">
+                    <SHORT-NAME>Notify_soaRoaMode</SHORT-NAME>
+                    <EVENT-ID>16387</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="a728ca73-4c88-4f52-9c0e-699b2882b7c4">
+                  <SHORT-NAME>soaRoaRunningState</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/SoaRoa/soaRoaRunningState</FIELD-REF>
+                  <GET UUID="2eac9cdb-8bb9-4a0c-93de-65a022b7a1ea">
+                    <SHORT-NAME>Get_soaRoaRunningState</SHORT-NAME>
+                    <METHOD-ID>2</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="15b4b634-2073-48b3-99b2-72eafe20d2d2">
+                    <SHORT-NAME>Notify_soaRoaRunningState</SHORT-NAME>
+                    <EVENT-ID>16386</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="586bb73c-2a71-45e2-b25c-028b771a3d88">
+                  <SHORT-NAME>soaRoaSensorError</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/SoaRoa/soaRoaSensorError</FIELD-REF>
+                  <GET UUID="021e233c-21c3-446b-a670-d3670295038a">
+                    <SHORT-NAME>Get_soaRoaSensorError</SHORT-NAME>
+                    <METHOD-ID>6</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="0711be8b-3ce0-40ec-8169-0fac64962ebb">
+                    <SHORT-NAME>Notify_soaRoaSensorError</SHORT-NAME>
+                    <EVENT-ID>16390</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+              </FIELD-DEPLOYMENTS>
+              <METHOD-DEPLOYMENTS>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="80e03267-0987-4568-b95c-7900c40d23e2">
+                  <SHORT-NAME>ResetRoaDetectInfo</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/SoaRoa/ResetRoaDetectInfo</METHOD-REF>
+                  <METHOD-ID>16387</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="521068e7-a90e-4b5a-8875-87faaf3fc784">
+                  <SHORT-NAME>SetRoaMode</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/SoaRoa/SetRoaMode</METHOD-REF>
+                  <METHOD-ID>16388</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="3e9b1413-c6df-4c79-a0e0-9891bb605f83">
+                  <SHORT-NAME>StartRoa</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/SoaRoa/StartRoa</METHOD-REF>
+                  <METHOD-ID>16385</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="cb23f450-3bd8-415f-86ed-ba12934690a6">
+                  <SHORT-NAME>StopRoa</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/SoaRoa/StopRoa</METHOD-REF>
+                  <METHOD-ID>16386</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+              </METHOD-DEPLOYMENTS>
+              <SERVICE-INTERFACE-REF DEST="SERVICE-INTERFACE">/ServiceInterface/SoaRoa</SERVICE-INTERFACE-REF>
+              <EVENT-GROUPS>
+                <SOMEIP-EVENT-GROUP UUID="92fed0e9-f0c3-4b5e-98ea-c97dcf9401b4">
+                  <SHORT-NAME>Eventgroup3_Notification_soaRoaDetectState</SHORT-NAME>
+                  <EVENT-GROUP-ID>8452</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaRoa/soaRoaDetectState/Notify_soaRoaDetectState</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+                <SOMEIP-EVENT-GROUP UUID="399ef9fb-b698-44a8-b047-f5463801c340">
+                  <SHORT-NAME>Eventgroup_Notification_soaRoaDetectCount</SHORT-NAME>
+                  <EVENT-GROUP-ID>8453</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaRoa/soaRoaDetectCount/Notify_soaRoaDetectCount</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+                <SOMEIP-EVENT-GROUP UUID="3b042b5e-b7fe-4425-b9d1-977e260f4357">
+                  <SHORT-NAME>Eventgroup_Notification_soaRoaDeviceNormal</SHORT-NAME>
+                  <EVENT-GROUP-ID>8449</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaRoa/soaRoaDeviceNormal/Notify_soaRoaDeviceNormal</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+                <SOMEIP-EVENT-GROUP UUID="dbbc4092-549b-42ff-a136-0fff4ac2b212">
+                  <SHORT-NAME>Eventgroup_Notification_soaRoaMode</SHORT-NAME>
+                  <EVENT-GROUP-ID>8451</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaRoa/soaRoaMode/Notify_soaRoaMode</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+                <SOMEIP-EVENT-GROUP UUID="4177cd8d-8569-4b4b-a6d2-40dd697fcc97">
+                  <SHORT-NAME>Eventgroup_Notification_soaRoaRunningState</SHORT-NAME>
+                  <EVENT-GROUP-ID>8450</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaRoa/soaRoaRunningState/Notify_soaRoaRunningState</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+                <SOMEIP-EVENT-GROUP UUID="6e9a4456-6e45-4b7d-aeb6-4f13236a7aa4">
+                  <SHORT-NAME>Eventgroup_Notification_soaRoaSensorError</SHORT-NAME>
+                  <EVENT-GROUP-ID>8454</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaRoa/soaRoaSensorError/Notify_soaRoaSensorError</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+              </EVENT-GROUPS>
+              <SERVICE-INTERFACE-ID>4947</SERVICE-INTERFACE-ID>
+              <SERVICE-INTERFACE-VERSION>
+                <MAJOR-VERSION>1</MAJOR-VERSION>
+                <MINOR-VERSION>0</MINOR-VERSION>
+              </SERVICE-INTERFACE-VERSION>
+            </SOMEIP-SERVICE-INTERFACE-DEPLOYMENT>
+            <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="02a55679-db9b-40e8-86cf-571fa6751458">
+              <SHORT-NAME>SoaWiper</SHORT-NAME>
+              <FIELD-DEPLOYMENTS>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="c6be0cb1-adb0-4139-a0db-160cae15a7a4">
+                  <SHORT-NAME>soaWiperDeviceNormal</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/SoaWiper/soaWiperDeviceNormal</FIELD-REF>
+                  <GET UUID="af9680ad-6747-4c82-b6b5-2297cb2292ea">
+                    <SHORT-NAME>Get_soaWiperDeviceNormal</SHORT-NAME>
+                    <METHOD-ID>1</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="c1d17854-2be6-4762-8b7a-d63e9a2422e3">
+                    <SHORT-NAME>Notify_soaWiperDeviceNormal</SHORT-NAME>
+                    <EVENT-ID>16385</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="86f5d663-dd56-40e5-a2fe-248052958751">
+                  <SHORT-NAME>soaWiperStatus</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/SoaWiper/soaWiperStatus</FIELD-REF>
+                  <GET UUID="b82fd108-1d12-4d79-9907-671b8bfa6bca">
+                    <SHORT-NAME>Get_soaWiperStatus</SHORT-NAME>
+                    <METHOD-ID>2</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="6e245868-3a8b-4b59-a441-cd4396ccadc4">
+                    <SHORT-NAME>Notify_soaWiperStatus</SHORT-NAME>
+                    <EVENT-ID>16386</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+              </FIELD-DEPLOYMENTS>
+              <METHOD-DEPLOYMENTS>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="4dd70c1b-5368-46b1-9363-d76b26f6ef80">
+                  <SHORT-NAME>RequestWiperOperation</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/SoaWiper/RequestWiperOperation</METHOD-REF>
+                  <METHOD-ID>16386</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="f7570a28-20af-4de2-9d0a-dc42082df5b2">
+                  <SHORT-NAME>SetWiperAutoSpeed</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/SoaWiper/SetWiperAutoSpeed</METHOD-REF>
+                  <METHOD-ID>16385</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+              </METHOD-DEPLOYMENTS>
+              <SERVICE-INTERFACE-REF DEST="SERVICE-INTERFACE">/ServiceInterface/SoaWiper</SERVICE-INTERFACE-REF>
+              <EVENT-GROUPS>
+                <SOMEIP-EVENT-GROUP UUID="c3552545-ab3f-46b3-b411-9796328bc224">
+                  <SHORT-NAME>Eventgroup_Notification_soaWiperDeviceNormal</SHORT-NAME>
+                  <EVENT-GROUP-ID>8449</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaWiper/soaWiperDeviceNormal/Notify_soaWiperDeviceNormal</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+                <SOMEIP-EVENT-GROUP UUID="d230f76e-18d8-445c-82b9-b254265602bc">
+                  <SHORT-NAME>Eventgroup_Notification_soaWiperStatus</SHORT-NAME>
+                  <EVENT-GROUP-ID>8450</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaWiper/soaWiperStatus/Notify_soaWiperStatus</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+              </EVENT-GROUPS>
+              <SERVICE-INTERFACE-ID>4949</SERVICE-INTERFACE-ID>
+              <SERVICE-INTERFACE-VERSION>
+                <MAJOR-VERSION>1</MAJOR-VERSION>
+                <MINOR-VERSION>0</MINOR-VERSION>
+              </SERVICE-INTERFACE-VERSION>
+            </SOMEIP-SERVICE-INTERFACE-DEPLOYMENT>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+    <AR-PACKAGE UUID="80c4a3bf-a4f6-4138-a4c6-6b70bedafe8d">
+      <SHORT-NAME>ServiceInstance</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE UUID="1f1c8c40-f955-4a7a-8ea8-a656ffba1f32">
+          <SHORT-NAME>Endpoint</SHORT-NAME>
+          <ELEMENTS>
+            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="72deb694-95c2-45b3-8b94-d044a8437c5d">
+              <SHORT-NAME>EEVP_SOA_DriverSeat_SomeIpConsumer</SHORT-NAME>
+              <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
+              <SERVICE-INSTANCE-REFS>
+                <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/Consumer_SoaDriverSeat</SERVICE-INSTANCE-REF>
+              </SERVICE-INSTANCE-REFS>
+              <TCP-PORT>37775</TCP-PORT>
+              <UDP-PORT>37775</UDP-PORT>
+            </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="c240da03-684c-4fe8-8c42-43c570e243e3">
+              <SHORT-NAME>EEVP_SOA_DriverSeat_SomeIpProvider</SHORT-NAME>
+              <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
+              <SERVICE-INSTANCE-REFS>
+                <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Provider/Provider_SoaDriverSeat</SERVICE-INSTANCE-REF>
+              </SERVICE-INSTANCE-REFS>
+              <TCP-PORT>37774</TCP-PORT>
+              <UDP-PORT>37774</UDP-PORT>
+            </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="f7337fff-f2a2-42da-a374-75f38edd1d18">
+              <SHORT-NAME>EEVP_SOA_MLM_SomeIpConsumer</SHORT-NAME>
+              <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
+              <SERVICE-INSTANCE-REFS>
+                <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/Consumer_SoaMlm</SERVICE-INSTANCE-REF>
+              </SERVICE-INSTANCE-REFS>
+              <TCP-PORT>37767</TCP-PORT>
+              <UDP-PORT>37767</UDP-PORT>
+            </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="f00700c8-cc3a-4d3a-9efe-e92a7d259208">
+              <SHORT-NAME>EEVP_SOA_MLM_SomeIpProvider</SHORT-NAME>
+              <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
+              <SERVICE-INSTANCE-REFS>
+                <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Provider/Provider_SoaMlm</SERVICE-INSTANCE-REF>
+              </SERVICE-INSTANCE-REFS>
+              <TCP-PORT>37766</TCP-PORT>
+              <UDP-PORT>37766</UDP-PORT>
+            </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="5b56b54f-5173-4bf4-8761-53918a729a2c">
+              <SHORT-NAME>EEVP_SOA_POWER_SomeIpConsumer</SHORT-NAME>
+              <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
+              <SERVICE-INSTANCE-REFS>
+                <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/Consumer_SoaPower</SERVICE-INSTANCE-REF>
+              </SERVICE-INSTANCE-REFS>
+              <TCP-PORT>37763</TCP-PORT>
+              <UDP-PORT>37763</UDP-PORT>
+            </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="a477b590-1053-4b49-b0cf-c0a872aa96eb">
+              <SHORT-NAME>EEVP_SOA_POWER_SomeIpProvider</SHORT-NAME>
+              <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
+              <SERVICE-INSTANCE-REFS>
+                <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Provider/Provider_SoaPower</SERVICE-INSTANCE-REF>
+              </SERVICE-INSTANCE-REFS>
+              <TCP-PORT>37762</TCP-PORT>
+              <UDP-PORT>37762</UDP-PORT>
+            </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="c8e1908f-cfac-4a86-9907-ad3eb7e04b3d">
+              <SHORT-NAME>EEVP_SOA_RCRTN_SomeIpConsumer</SHORT-NAME>
+              <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
+              <SERVICE-INSTANCE-REFS>
+                <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/Consumer_SoaRcurtain</SERVICE-INSTANCE-REF>
+              </SERVICE-INSTANCE-REFS>
+              <TCP-PORT>37765</TCP-PORT>
+              <UDP-PORT>37765</UDP-PORT>
+            </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="fe566144-44db-42f3-97fe-af0a0c7b0075">
+              <SHORT-NAME>EEVP_SOA_RCRTN_SomeIpProvider</SHORT-NAME>
+              <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
+              <SERVICE-INSTANCE-REFS>
+                <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Provider/Provider_SoaRcurtain</SERVICE-INSTANCE-REF>
+              </SERVICE-INSTANCE-REFS>
+              <TCP-PORT>37764</TCP-PORT>
+              <UDP-PORT>37764</UDP-PORT>
+            </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="8559d792-fffa-4ad3-b1b1-891c6353120f">
+              <SHORT-NAME>EEVP_SOA_ROA_SomeIpConsumer</SHORT-NAME>
+              <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
+              <SERVICE-INSTANCE-REFS>
+                <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/Consumer_SoaRoa</SERVICE-INSTANCE-REF>
+                <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_KATECH_Consumer_SoaRoa</SERVICE-INSTANCE-REF>
+              </SERVICE-INSTANCE-REFS>
+              <TCP-PORT>37769</TCP-PORT>
+              <UDP-PORT>37769</UDP-PORT>
+            </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="71bfec10-5f31-4696-83f1-c287de4577fe">
+              <SHORT-NAME>EEVP_SOA_ROA_SomeIpProvider</SHORT-NAME>
+              <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
+              <SERVICE-INSTANCE-REFS>
+                <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Provider/Provider_SoaRoa</SERVICE-INSTANCE-REF>
+              </SERVICE-INSTANCE-REFS>
+              <TCP-PORT>37768</TCP-PORT>
+              <UDP-PORT>37768</UDP-PORT>
+            </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="6b8f1d03-29e5-4bf3-9d11-da8e6a0f4ba0">
+              <SHORT-NAME>EEVP_SOA_Wiper_SomeIpConsumer</SHORT-NAME>
+              <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
+              <SERVICE-INSTANCE-REFS>
+                <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/Consumer_SoaWiper</SERVICE-INSTANCE-REF>
+              </SERVICE-INSTANCE-REFS>
+              <TCP-PORT>37773</TCP-PORT>
+              <UDP-PORT>37773</UDP-PORT>
+            </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="2617b7c8-a216-43f8-b168-66d5079a1652">
+              <SHORT-NAME>EEVP_SOA_Wiper_SomeIpProvider</SHORT-NAME>
+              <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
+              <SERVICE-INSTANCE-REFS>
+                <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Provider/Provider_SoaWiper</SERVICE-INSTANCE-REF>
+              </SERVICE-INSTANCE-REFS>
+              <TCP-PORT>37772</TCP-PORT>
+              <UDP-PORT>37772</UDP-PORT>
+            </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="505fa4de-86eb-4120-8390-e7645cff6d2e">
+          <SHORT-NAME>Ipc</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE UUID="43417451-e9e9-4247-b13a-3076c1db22cd">
+              <SHORT-NAME>Consumer</SHORT-NAME>
+            </AR-PACKAGE>
+            <AR-PACKAGE UUID="f8be8af6-7701-4bf8-a60e-7f10ef8660db">
+              <SHORT-NAME>Provider</SHORT-NAME>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="e2f4288c-4168-4b93-adf5-cd9974d2d033">
+          <SHORT-NAME>SdTimingConfig</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE UUID="815cf76b-c143-4cd0-a0e3-275c30ad821d">
+              <SHORT-NAME>Client</SHORT-NAME>
+              <ELEMENTS>
+                <SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG UUID="3918c0e9-e9a0-408f-beaa-5cba17f3995c">
+                  <SHORT-NAME>DefaultClientConfig</SHORT-NAME>
+                  <INITIAL-FIND-BEHAVIOR>
+                    <INITIAL-DELAY-MAX-VALUE>0.1</INITIAL-DELAY-MAX-VALUE>
+                    <INITIAL-DELAY-MIN-VALUE>0.1</INITIAL-DELAY-MIN-VALUE>
+                    <INITIAL-REPETITIONS-BASE-DELAY>0.1</INITIAL-REPETITIONS-BASE-DELAY>
+                    <INITIAL-REPETITIONS-MAX>3</INITIAL-REPETITIONS-MAX>
+                  </INITIAL-FIND-BEHAVIOR>
+                  <SERVICE-FIND-TIME-TO-LIVE>16777215</SERVICE-FIND-TIME-TO-LIVE>
+                </SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG>
+              </ELEMENTS>
+            </AR-PACKAGE>
+            <AR-PACKAGE UUID="f0e7b7ac-59dc-4c3b-a775-4240366d3f0c">
+              <SHORT-NAME>Server</SHORT-NAME>
+              <ELEMENTS>
+                <SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG UUID="162e61aa-07fe-4689-be7c-392d9618b464">
+                  <SHORT-NAME>DefaultSdServerConfig</SHORT-NAME>
+                  <INITIAL-OFFER-BEHAVIOR>
+                    <INITIAL-DELAY-MAX-VALUE>0.1</INITIAL-DELAY-MAX-VALUE>
+                    <INITIAL-DELAY-MIN-VALUE>0.1</INITIAL-DELAY-MIN-VALUE>
+                    <INITIAL-REPETITIONS-BASE-DELAY>0.1</INITIAL-REPETITIONS-BASE-DELAY>
+                    <INITIAL-REPETITIONS-MAX>2</INITIAL-REPETITIONS-MAX>
+                  </INITIAL-OFFER-BEHAVIOR>
+                  <OFFER-CYCLIC-DELAY>0.5</OFFER-CYCLIC-DELAY>
+                  <REQUEST-RESPONSE-DELAY>
+                    <MAX-VALUE>0.0</MAX-VALUE>
+                    <MIN-VALUE>0.0</MIN-VALUE>
+                  </REQUEST-RESPONSE-DELAY>
+                  <SERVICE-OFFER-TIME-TO-LIVE>16777215</SERVICE-OFFER-TIME-TO-LIVE>
+                </SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG>
+              </ELEMENTS>
+            </AR-PACKAGE>
+            <AR-PACKAGE UUID="516973fc-ffda-4ff6-a4a1-2fba41df2d92">
+              <SHORT-NAME>Subscription</SHORT-NAME>
+              <ELEMENTS>
+                <SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG UUID="bf4b2727-2f9e-4825-8ddb-0d5c7ed44cae">
+                  <SHORT-NAME>DefaultSdSubscribeConfig</SHORT-NAME>
+                  <REQUEST-RESPONSE-DELAY>
+                    <MAX-VALUE>0.0</MAX-VALUE>
+                    <MIN-VALUE>0.0</MIN-VALUE>
+                  </REQUEST-RESPONSE-DELAY>
+                  <SUBSCRIBE-EVENTGROUP-RETRY-DELAY>0.0</SUBSCRIBE-EVENTGROUP-RETRY-DELAY>
+                  <SUBSCRIBE-EVENTGROUP-RETRY-MAX>3</SUBSCRIBE-EVENTGROUP-RETRY-MAX>
+                  <TIME-TO-LIVE>16777215</TIME-TO-LIVE>
+                </SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG>
+              </ELEMENTS>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="9d35ed01-dcee-435d-8e84-bea00cb0a0be">
+          <SHORT-NAME>Someip</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE UUID="d7fd1a94-af27-46ba-a104-dc80e46e1bb6">
+              <SHORT-NAME>Consumer</SHORT-NAME>
+              <ELEMENTS>
+                <REQUIRED-SOMEIP-SERVICE-INSTANCE UUID="e2f4b2ef-6afc-438f-bcb8-935dd3c61b95">
+                  <SHORT-NAME>Consumer_SoaDriverSeat</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="PARA-SOMEIP-CONFIGURATION">
+                        <SD GID="CLIENT-ID">823</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/ServiceDeployment/Someip/SoaDriverSeat</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                  <REQUIRED-EVENT-GROUPS>
+                    <SOMEIP-REQUIRED-EVENT-GROUP>
+                      <SHORT-NAME>Eventgroup_Notification_isDeviceNormal</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaDriverSeat/Eventgroup_Notification_soaDrvSeatDeviceNormal</EVENT-GROUP-REF>
+                      <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-REQUIRED-EVENT-GROUP>
+                  </REQUIRED-EVENT-GROUPS>
+                  <REQUIRED-SERVICE-INSTANCE-ID>ANY</REQUIRED-SERVICE-INSTANCE-ID>
+                  <SD-CLIENT-CONFIG-REF DEST="SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Client/DefaultSdClientConfig</SD-CLIENT-CONFIG-REF>
+                </REQUIRED-SOMEIP-SERVICE-INSTANCE>
+                <REQUIRED-SOMEIP-SERVICE-INSTANCE UUID="f21db652-4881-4b73-adc4-5a26fc2fe502">
+                  <SHORT-NAME>Consumer_SoaMlm</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="PARA-SOMEIP-CONFIGURATION">
+                        <SD GID="CLIENT-ID">819</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/ServiceDeployment/Someip/SoaMlm</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                  <METHOD-REQUEST-PROPSS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaMlm/soaMlmStatus/Get_soaMlmStatus</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaMlm/RequestMlmSetRgbColor</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaMlm/RequestMlmSetMode</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaMlm/RequestMlmSetBrightness</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                  </METHOD-REQUEST-PROPSS>
+                  <REQUIRED-EVENT-GROUPS>
+                    <SOMEIP-REQUIRED-EVENT-GROUP>
+                      <SHORT-NAME>Eventgroup_Notification_soaMlmStatus</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaMlm/Eventgroup_Notification_soaMlmStatus</EVENT-GROUP-REF>
+                      <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-REQUIRED-EVENT-GROUP>
+                  </REQUIRED-EVENT-GROUPS>
+                  <REQUIRED-SERVICE-INSTANCE-ID>ANY</REQUIRED-SERVICE-INSTANCE-ID>
+                  <SD-CLIENT-CONFIG-REF DEST="SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Client/DefaultSdClientConfig</SD-CLIENT-CONFIG-REF>
+                </REQUIRED-SOMEIP-SERVICE-INSTANCE>
+                <REQUIRED-SOMEIP-SERVICE-INSTANCE UUID="a083dcaf-85ee-48c6-85a6-90adc1cf6d42">
+                  <SHORT-NAME>Consumer_SoaPower</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="PARA-SOMEIP-CONFIGURATION">
+                        <SD GID="CLIENT-ID">817</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                  <METHOD-REQUEST-PROPSS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone1Power/Get_soaPwrZone1Power</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone1Curr/Get_soaPwrZone1Curr</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone2Power/Get_soaPwrZone2Power</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone2Curr/Get_soaPwrZone2Curr</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone3Power/Get_soaPwrZone3Power</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone3Curr/Get_soaPwrZone3Curr</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone4Power/Get_soaPwrZone4Power</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone4Curr/Get_soaPwrZone4Curr</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/SetEnableMlm</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/SetEnableDrvseat</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/SetEnableMfsw</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/SetEnableRoa</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/SetEnableRainSensor</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/SetEnableRearCurtain</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/SetEnableRearPdw</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/SetEnableWiper</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/SetEnableFrontPdw</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                  </METHOD-REQUEST-PROPSS>
+                  <REQUIRED-EVENT-GROUPS>
+                    <SOMEIP-REQUIRED-EVENT-GROUP>
+                      <SHORT-NAME>Eventgroup_Notification_soaPwrZone1Curr</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaPower/Eventgroup_Notification_soaPwrZone1Curr</EVENT-GROUP-REF>
+                      <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-REQUIRED-EVENT-GROUP>
+                    <SOMEIP-REQUIRED-EVENT-GROUP>
+                      <SHORT-NAME>Eventgroup_Notification_soaPwrZone1Power</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaPower/Eventgroup_Notification_soaPwrZone1Power</EVENT-GROUP-REF>
+                      <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-REQUIRED-EVENT-GROUP>
+                    <SOMEIP-REQUIRED-EVENT-GROUP>
+                      <SHORT-NAME>Eventgroup_Notification_soaPwrZone2Curr</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaPower/Eventgroup_Notification_soaPwrZone2Curr</EVENT-GROUP-REF>
+                      <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-REQUIRED-EVENT-GROUP>
+                    <SOMEIP-REQUIRED-EVENT-GROUP>
+                      <SHORT-NAME>Eventgroup_Notification_soaPwrZone2Power</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaPower/Eventgroup_Notification_soaPwrZone2Power</EVENT-GROUP-REF>
+                      <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-REQUIRED-EVENT-GROUP>
+                    <SOMEIP-REQUIRED-EVENT-GROUP>
+                      <SHORT-NAME>Eventgroup_Notification_soaPwrZone3Curr</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaPower/Eventgroup_Notification_soaPwrZone3Curr</EVENT-GROUP-REF>
+                      <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-REQUIRED-EVENT-GROUP>
+                    <SOMEIP-REQUIRED-EVENT-GROUP>
+                      <SHORT-NAME>Eventgroup_Notification_soaPwrZone3Power</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaPower/Eventgroup_Notification_soaPwrZone3Power</EVENT-GROUP-REF>
+                      <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-REQUIRED-EVENT-GROUP>
+                    <SOMEIP-REQUIRED-EVENT-GROUP>
+                      <SHORT-NAME>Eventgroup_Notification_soaPwrZone4Curr</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaPower/Eventgroup_Notification_soaPwrZone4Curr</EVENT-GROUP-REF>
+                      <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-REQUIRED-EVENT-GROUP>
+                    <SOMEIP-REQUIRED-EVENT-GROUP>
+                      <SHORT-NAME>Eventgroup_Notification_soaPwrZone4Power</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaPower/Eventgroup_Notification_soaPwrZone4Power</EVENT-GROUP-REF>
+                      <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-REQUIRED-EVENT-GROUP>
+                  </REQUIRED-EVENT-GROUPS>
+                  <REQUIRED-SERVICE-INSTANCE-ID>ANY</REQUIRED-SERVICE-INSTANCE-ID>
+                  <SD-CLIENT-CONFIG-REF DEST="SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Client/DefaultSdClientConfig</SD-CLIENT-CONFIG-REF>
+                </REQUIRED-SOMEIP-SERVICE-INSTANCE>
+                <REQUIRED-SOMEIP-SERVICE-INSTANCE UUID="9634c11c-6055-43f9-af93-c686a96613ef">
+                  <SHORT-NAME>Consumer_SoaRcurtain</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="PARA-SOMEIP-CONFIGURATION">
+                        <SD GID="CLIENT-ID">818</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/ServiceDeployment/Someip/SoaRcurtain</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                  <METHOD-REQUEST-PROPSS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaRcurtain/soaRctnStatus/Get_soaRctnStatus</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaRcurtain/RequestRearCurtainOperation</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                  </METHOD-REQUEST-PROPSS>
+                  <REQUIRED-EVENT-GROUPS>
+                    <SOMEIP-REQUIRED-EVENT-GROUP>
+                      <SHORT-NAME>Eventgroup_Notification_soaRctnStatus</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaRcurtain/Eventgroup_Notification_soaRctnStatus</EVENT-GROUP-REF>
+                      <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-REQUIRED-EVENT-GROUP>
+                  </REQUIRED-EVENT-GROUPS>
+                  <REQUIRED-SERVICE-INSTANCE-ID>ANY</REQUIRED-SERVICE-INSTANCE-ID>
+                  <SD-CLIENT-CONFIG-REF DEST="SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Client/DefaultClientConfig</SD-CLIENT-CONFIG-REF>
+                </REQUIRED-SOMEIP-SERVICE-INSTANCE>
+                <REQUIRED-SOMEIP-SERVICE-INSTANCE UUID="2aed4a89-40bc-42d1-835e-53324db9459d">
+                  <SHORT-NAME>Consumer_SoaRoa</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="PARA-SOMEIP-CONFIGURATION">
+                        <SD GID="CLIENT-ID">820</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/ServiceDeployment/Someip/SoaRoa</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                  <REQUIRED-EVENT-GROUPS>
+                    <SOMEIP-REQUIRED-EVENT-GROUP>
+                      <SHORT-NAME>Eventgroup_Notification_isDeviceNormal</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaRoa/Eventgroup_Notification_soaRoaDeviceNormal</EVENT-GROUP-REF>
+                      <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-REQUIRED-EVENT-GROUP>
+                  </REQUIRED-EVENT-GROUPS>
+                  <REQUIRED-SERVICE-INSTANCE-ID>ANY</REQUIRED-SERVICE-INSTANCE-ID>
+                  <SD-CLIENT-CONFIG-REF DEST="SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Client/DefaultSdClientConfig</SD-CLIENT-CONFIG-REF>
+                </REQUIRED-SOMEIP-SERVICE-INSTANCE>
+                <REQUIRED-SOMEIP-SERVICE-INSTANCE UUID="795f1b85-f1df-4ec1-a6f1-511962cdc482">
+                  <SHORT-NAME>Consumer_SoaWiper</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="PARA-SOMEIP-CONFIGURATION">
+                        <SD GID="CLIENT-ID">822</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/ServiceDeployment/Someip/SoaWiper</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                  <REQUIRED-EVENT-GROUPS>
+                    <SOMEIP-REQUIRED-EVENT-GROUP>
+                      <SHORT-NAME>Eventgroup_Notification_isDeviceNormal</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaWiper/Eventgroup_Notification_soaWiperDeviceNormal</EVENT-GROUP-REF>
+                      <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-REQUIRED-EVENT-GROUP>
+                  </REQUIRED-EVENT-GROUPS>
+                  <REQUIRED-SERVICE-INSTANCE-ID>ANY</REQUIRED-SERVICE-INSTANCE-ID>
+                  <SD-CLIENT-CONFIG-REF DEST="SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Client/DefaultClientConfig</SD-CLIENT-CONFIG-REF>
+                </REQUIRED-SOMEIP-SERVICE-INSTANCE>
+              </ELEMENTS>
+            </AR-PACKAGE>
+            <AR-PACKAGE UUID="ba6bf8bd-2ba1-488a-8887-191220e900c5">
+              <SHORT-NAME>Provider</SHORT-NAME>
+              <ELEMENTS>
+                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="c084e1fd-d59d-4845-a550-91498d866fd8">
+                  <SHORT-NAME>Provider_SoaDriverSeat</SHORT-NAME>
+                  <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/ServiceDeployment/Someip/SoaDriverSeat</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                  <EVENT-PROPSS>
+                    <SOMEIP-EVENT-PROPS>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaDriverSeat/soaDrvSeatDeviceNormal/Notification_soaDrvSeatDeviceNormal</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
+                  </EVENT-PROPSS>
+                  <PROVIDED-EVENT-GROUPS>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="9538f26f-18e2-4604-9f63-73dd5738be70">
+                      <SHORT-NAME>Eventgroup_Notification_isDeviceNormal</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaDriverSeat/Eventgroup_Notification_soaDrvSeatDeviceNormal</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
+                  </PROVIDED-EVENT-GROUPS>
+                  <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/DefaultSdServerConfig</SD-SERVER-CONFIG-REF>
+                  <SERVICE-INSTANCE-ID>4962</SERVICE-INSTANCE-ID>
+                </PROVIDED-SOMEIP-SERVICE-INSTANCE>
+                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="a94a50c0-29af-48ba-b058-0b64710bd75b">
+                  <SHORT-NAME>Provider_SoaMlm</SHORT-NAME>
+                  <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/ServiceDeployment/Someip/SoaMlm</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                  <EVENT-PROPSS>
+                    <SOMEIP-EVENT-PROPS>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaMlm/soaMlmStatus/Notification_soaMlmStatus</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
+                  </EVENT-PROPSS>
+                  <METHOD-RESPONSE-PROPSS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaMlm/soaMlmStatus/Get_soaMlmStatus</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaMlm/RequestMlmSetRgbColor</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaMlm/RequestMlmSetMode</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaMlm/RequestMlmSetBrightness</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                  </METHOD-RESPONSE-PROPSS>
+                  <PROVIDED-EVENT-GROUPS>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="921c64a8-61a4-4f81-9a0e-b22b49a858f1">
+                      <SHORT-NAME>Eventgroup_Notification_soaMlmStatus</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaMlm/Eventgroup_Notification_soaMlmStatus</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
+                  </PROVIDED-EVENT-GROUPS>
+                  <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/DefaultSdServerConfig</SD-SERVER-CONFIG-REF>
+                  <SERVICE-INSTANCE-ID>4961</SERVICE-INSTANCE-ID>
+                </PROVIDED-SOMEIP-SERVICE-INSTANCE>
+                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="c88e6af9-948b-4908-a0b5-e651c1cdc057">
+                  <SHORT-NAME>Provider_SoaPower</SHORT-NAME>
+                  <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                  <EVENT-PROPSS>
+                    <SOMEIP-EVENT-PROPS>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone1Power/Notification_soaPwrZone1Power</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
+                    <SOMEIP-EVENT-PROPS>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone1Curr/Notification_soaPwrZone1Curr</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
+                    <SOMEIP-EVENT-PROPS>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone2Power/Notification_soaPwrZone2Power</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
+                    <SOMEIP-EVENT-PROPS>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone2Curr/Notification_soaPwrZone2Curr</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
+                    <SOMEIP-EVENT-PROPS>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone3Power/Notification_soaPwrZone3Power</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
+                    <SOMEIP-EVENT-PROPS>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone3Curr/Notification_soaPwrZone3Curr</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
+                    <SOMEIP-EVENT-PROPS>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone4Power/Notification_soaPwrZone4Power</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
+                    <SOMEIP-EVENT-PROPS>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone4Curr/Notification_soaPwrZone4Curr</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
+                  </EVENT-PROPSS>
+                  <METHOD-RESPONSE-PROPSS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone1Power/Get_soaPwrZone1Power</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone1Curr/Get_soaPwrZone1Curr</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone2Power/Get_soaPwrZone2Power</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone2Curr/Get_soaPwrZone2Curr</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone3Power/Get_soaPwrZone3Power</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone3Curr/Get_soaPwrZone3Curr</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone4Power/Get_soaPwrZone4Power</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/soaPwrZone4Curr/Get_soaPwrZone4Curr</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/SetEnableMlm</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/SetEnableDrvseat</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/SetEnableMfsw</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/SetEnableRoa</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/SetEnableRainSensor</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/SetEnableRearCurtain</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/SetEnableRearPdw</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/SetEnableWiper</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaPower/SetEnableFrontPdw</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                  </METHOD-RESPONSE-PROPSS>
+                  <PROVIDED-EVENT-GROUPS>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="68096bae-88c1-414a-a16e-60eeab2a9178">
+                      <SHORT-NAME>Eventgroup_Notification_soaPwrZone1Curr</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaPower/Eventgroup_Notification_soaPwrZone1Curr</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="f2c84e58-8e74-4289-ae3a-809278cee741">
+                      <SHORT-NAME>Eventgroup_Notification_soaPwrZone1Power</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaPower/Eventgroup_Notification_soaPwrZone1Power</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="80f4d181-c740-4e42-82ab-8f22fac1cfbb">
+                      <SHORT-NAME>Eventgroup_Notification_soaPwrZone2Curr</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaPower/Eventgroup_Notification_soaPwrZone2Curr</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="534672da-79dc-4389-b3c3-f1a9af0038b1">
+                      <SHORT-NAME>Eventgroup_Notification_soaPwrZone2Power</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaPower/Eventgroup_Notification_soaPwrZone2Power</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="5cead090-647b-452e-b8bf-9f5cbea61681">
+                      <SHORT-NAME>Eventgroup_Notification_soaPwrZone3Curr</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaPower/Eventgroup_Notification_soaPwrZone3Curr</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="05bbe024-b1f7-432e-ad8b-b933e9dcc0c4">
+                      <SHORT-NAME>Eventgroup_Notification_soaPwrZone3Power</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaPower/Eventgroup_Notification_soaPwrZone3Power</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="dd2707ed-7e8d-4913-9a10-70696e8a2ee8">
+                      <SHORT-NAME>Eventgroup_Notification_soaPwrZone4Curr</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaPower/Eventgroup_Notification_soaPwrZone4Curr</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="fa6bd5f3-870b-4ca3-b517-708ce8a6ddaf">
+                      <SHORT-NAME>Eventgroup_Notification_soaPwrZone4Power</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaPower/Eventgroup_Notification_soaPwrZone4Power</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
+                  </PROVIDED-EVENT-GROUPS>
+                  <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/DefaultSdServerConfig</SD-SERVER-CONFIG-REF>
+                  <SERVICE-INSTANCE-ID>4960</SERVICE-INSTANCE-ID>
+                </PROVIDED-SOMEIP-SERVICE-INSTANCE>
+                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="c2ccb0b6-f4db-4cb4-855c-e65c529bb3bb">
+                  <SHORT-NAME>Provider_SoaRcurtain</SHORT-NAME>
+                  <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/ServiceDeployment/Someip/SoaRcurtain</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                  <EVENT-PROPSS>
+                    <SOMEIP-EVENT-PROPS>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaRcurtain/soaRctnStatus/Notification_soaRctnStatus</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
+                  </EVENT-PROPSS>
+                  <METHOD-RESPONSE-PROPSS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaRcurtain/soaRctnStatus/Get_soaRctnStatus</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaRcurtain/RequestRearCurtainOperation</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                  </METHOD-RESPONSE-PROPSS>
+                  <PROVIDED-EVENT-GROUPS>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="ec4701cf-825a-4ac8-b530-d55861bdca1a">
+                      <SHORT-NAME>Eventgroup_Notification_soaRctnStatus</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaRcurtain/Eventgroup_Notification_soaRctnStatus</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
+                  </PROVIDED-EVENT-GROUPS>
+                  <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/DefaultSdServerConfig</SD-SERVER-CONFIG-REF>
+                  <SERVICE-INSTANCE-ID>4964</SERVICE-INSTANCE-ID>
+                </PROVIDED-SOMEIP-SERVICE-INSTANCE>
+                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="b43d8502-0b28-40e6-8256-957aa582bc25">
+                  <SHORT-NAME>Provider_SoaRoa</SHORT-NAME>
+                  <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/ServiceDeployment/Someip/SoaRoa</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                  <EVENT-PROPSS>
+                    <SOMEIP-EVENT-PROPS>
+                      <COLLECTION-PROPS/>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaRoa/soaRoaDeviceNormal/Notify_soaRoaDeviceNormal</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
+                  </EVENT-PROPSS>
+                  <PROVIDED-EVENT-GROUPS>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="7cf8babb-886e-4ff2-949c-444e18162995">
+                      <SHORT-NAME>Eventgroup_Notification_isDeviceNormal</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaRoa/Eventgroup_Notification_soaRoaDeviceNormal</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
+                  </PROVIDED-EVENT-GROUPS>
+                  <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/DefaultSdServerConfig</SD-SERVER-CONFIG-REF>
+                  <SERVICE-INSTANCE-ID>4963</SERVICE-INSTANCE-ID>
+                </PROVIDED-SOMEIP-SERVICE-INSTANCE>
+                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="c94ee434-05a7-4e0b-bc21-e9c786b1a463">
+                  <SHORT-NAME>Provider_SoaWiper</SHORT-NAME>
+                  <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/ServiceDeployment/Someip/SoaWiper</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                  <EVENT-PROPSS>
+                    <SOMEIP-EVENT-PROPS>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/SoaWiper/soaWiperDeviceNormal/Notify_soaWiperDeviceNormal</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
+                  </EVENT-PROPSS>
+                  <PROVIDED-EVENT-GROUPS>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="032550d7-6853-403f-8cd0-a9895f87a892">
+                      <SHORT-NAME>Eventgroup_Notification_isDeviceNormal</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/SoaWiper/Eventgroup_Notification_soaWiperDeviceNormal</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
+                  </PROVIDED-EVENT-GROUPS>
+                  <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/DefaultSdServerConfig</SD-SERVER-CONFIG-REF>
+                  <SERVICE-INSTANCE-ID>4965</SERVICE-INSTANCE-ID>
+                </PROVIDED-SOMEIP-SERVICE-INSTANCE>
+              </ELEMENTS>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+    <AR-PACKAGE UUID="ada7792a-06c0-49ac-ad74-652b05089e17">
+      <SHORT-NAME>ServiceInterface</SHORT-NAME>
+      <ELEMENTS>
+        <SERVICE-INTERFACE UUID="b5afa173-84b4-497d-9548-fb411f9e445e">
+          <SHORT-NAME>SoaDriverSeat</SHORT-NAME>
+          <CATEGORY>COMMUNICATION_GROUP</CATEGORY>
+          <NAMESPACES>
+            <SYMBOL-PROPS>
+              <SHORT-NAME>eevp</SHORT-NAME>
+              <SYMBOL>eevp</SYMBOL>
+            </SYMBOL-PROPS>
+            <SYMBOL-PROPS>
+              <SHORT-NAME>control</SHORT-NAME>
+              <SYMBOL>control</SYMBOL>
+            </SYMBOL-PROPS>
+          </NAMESPACES>
+          <MAJOR-VERSION>1</MAJOR-VERSION>
+          <MINOR-VERSION>0</MINOR-VERSION>
+          <FIELDS>
+            <FIELD UUID="c37fb508-c431-4147-99e5-3ee28a8fdd0f">
+              <SHORT-NAME>soaDrvSeatDeviceNormal</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaDeviceIsNormal</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+            <FIELD UUID="a9c527be-f8de-427e-99e0-e06f6b2d23e2">
+              <SHORT-NAME>soaDrvSeatMotorDirection</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaSeatMotorDirection</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+            <FIELD UUID="2a2166a2-b319-400b-8add-9c70b5b47f39">
+              <SHORT-NAME>soaDrvSeatMotorPosition</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaSeatMotorPosition</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+          </FIELDS>
+          <METHODS>
+            <CLIENT-SERVER-OPERATION UUID="d3927e71-5129-46f9-a2bf-93b6e2dfb9d4">
+              <SHORT-NAME>RequestMoveDrvSeatHeight</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="889c794b-a851-4a73-b30f-f96b5215dfa4">
+                  <SHORT-NAME>dir</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaSeatHeightDirection</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>true</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="c410b39e-e9ed-4a11-a1db-2caee33fa6ed">
+              <SHORT-NAME>RequestMoveDrvSeatRecline</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="346951a5-bd73-42b9-a2d6-e791202a8596">
+                  <SHORT-NAME>dir</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaSeatReclineDirection</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>true</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="85851eb4-1559-4393-ada9-d38f6f4bf528">
+              <SHORT-NAME>RequestMoveDrvSeatSlide</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="89546d86-9030-4491-8527-d275017f7d28">
+                  <SHORT-NAME>dir</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaSeatSlideDirection</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>true</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="ef56e9f5-8c47-423a-bd59-4155b8b57ef8">
+              <SHORT-NAME>RequestMoveDrvSeatTilt</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="99f27217-a678-403b-bf33-1006e1ea7725">
+                  <SHORT-NAME>dir</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaSeatTiltDirection</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>true</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+          </METHODS>
+        </SERVICE-INTERFACE>
+        <SERVICE-INTERFACE UUID="4c30e269-9771-46cc-bed7-1bdfb9395d2e">
+          <SHORT-NAME>SoaMlm</SHORT-NAME>
+          <CATEGORY>COMMUNICATION_GROUP</CATEGORY>
+          <NAMESPACES>
+            <SYMBOL-PROPS>
+              <SHORT-NAME>eevp</SHORT-NAME>
+              <SYMBOL>eevp</SYMBOL>
+            </SYMBOL-PROPS>
+            <SYMBOL-PROPS>
+              <SHORT-NAME>control</SHORT-NAME>
+              <SYMBOL>control</SYMBOL>
+            </SYMBOL-PROPS>
+          </NAMESPACES>
+          <MAJOR-VERSION>1</MAJOR-VERSION>
+          <MINOR-VERSION>0</MINOR-VERSION>
+          <FIELDS>
+            <FIELD UUID="c30a7204-70de-4406-aab1-1c360b5ba6ad">
+              <SHORT-NAME>soaMlmStatus</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaMlmStatus</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+          </FIELDS>
+          <METHODS>
+            <CLIENT-SERVER-OPERATION UUID="1de7efb2-0fa2-4024-bc2b-c11fd5555334">
+              <SHORT-NAME>RequestMlmSetBrightness</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="e2e6c087-69b0-4303-a453-3ac5ded71aba">
+                  <SHORT-NAME>brightness</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>true</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="b511163f-5dcc-4f04-a2df-bc8a9e6a66ee">
+              <SHORT-NAME>RequestMlmSetMode</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="bcf29a09-8fdc-48cf-8613-861bab1299ed">
+                  <SHORT-NAME>mood</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaMlmMoodMode</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>true</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="ff625b1c-5e51-4f1c-9001-8e3fbb8ab066">
+              <SHORT-NAME>RequestMlmSetRgbColor</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="afb7a17b-c4fd-491c-add6-c778a259ee5d">
+                  <SHORT-NAME>colorTableIndex</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>true</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+          </METHODS>
+        </SERVICE-INTERFACE>
+        <SERVICE-INTERFACE UUID="b0310923-90ae-4336-864e-7ba14e9d0c32">
+          <SHORT-NAME>SoaPower</SHORT-NAME>
+          <CATEGORY>COMMUNICATION_GROUP</CATEGORY>
+          <NAMESPACES>
+            <SYMBOL-PROPS>
+              <SHORT-NAME>eevp</SHORT-NAME>
+              <SYMBOL>eevp</SYMBOL>
+            </SYMBOL-PROPS>
+            <SYMBOL-PROPS>
+              <SHORT-NAME>control</SHORT-NAME>
+              <SYMBOL>control</SYMBOL>
+            </SYMBOL-PROPS>
+          </NAMESPACES>
+          <MAJOR-VERSION>1</MAJOR-VERSION>
+          <MINOR-VERSION>0</MINOR-VERSION>
+          <FIELDS>
+            <FIELD UUID="3056bb98-0e98-4027-9d02-18eab9ed4f00">
+              <SHORT-NAME>soaPwrZone1Curr</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaPwrZone1Curr</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+            <FIELD UUID="047c1921-5a94-4415-99ca-23e450459d8b">
+              <SHORT-NAME>soaPwrZone1Power</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaPwrZone1Power</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+            <FIELD UUID="fc7943e6-0496-4fad-a4b0-ccbcd3eb0add">
+              <SHORT-NAME>soaPwrZone2Curr</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaPwrZone2Curr</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+            <FIELD UUID="85287911-3adf-4330-b2b6-266a22b8bfca">
+              <SHORT-NAME>soaPwrZone2Power</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaPwrZone2Power</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+            <FIELD UUID="ce6efa41-5b74-42d7-8352-f831b63843e7">
+              <SHORT-NAME>soaPwrZone3Curr</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaPwrZone3Curr</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+            <FIELD UUID="e20aa8ec-e78c-4c74-bb99-e40ac34ee667">
+              <SHORT-NAME>soaPwrZone3Power</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaPwrZone3Power</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+            <FIELD UUID="d12025c7-f265-4e69-b8e3-7811c7cdff96">
+              <SHORT-NAME>soaPwrZone4Curr</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaPwrZone4Curr</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+            <FIELD UUID="aba809fc-bf0e-4070-b735-1d2e54e4bd4f">
+              <SHORT-NAME>soaPwrZone4Power</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaPwrZone4Power</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+          </FIELDS>
+          <METHODS>
+            <CLIENT-SERVER-OPERATION UUID="5fac2b32-446f-485a-aa4b-e9e6b2d70aa0">
+              <SHORT-NAME>SetEnableDrvseat</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="04f71da2-f4bd-4822-a3ff-55cad1bfacd2">
+                  <SHORT-NAME>mlmSoaPowerState</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+                <ARGUMENT-DATA-PROTOTYPE UUID="26a723d6-0e24-40eb-aca0-383ebc9ff23e">
+                  <SHORT-NAME>drvseatSoaPowerState</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+                <ARGUMENT-DATA-PROTOTYPE UUID="ed59ecea-9127-4681-916d-2bd21bc80882">
+                  <SHORT-NAME>mfswSoaPowerState</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>true</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="3d98a178-95ce-4060-a48b-4520d28731fc">
+              <SHORT-NAME>SetEnableFrontPdw</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="00de897c-362e-4ecd-afc5-6fd06c339ddb">
+                  <SHORT-NAME>rpdwTurnOn</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>true</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="8d250e29-af19-413a-845d-fbafd73512e1">
+              <SHORT-NAME>SetEnableMfsw</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="5331d171-a9ca-44e8-85d1-cb08811e3725">
+                  <SHORT-NAME>mfswTurnOn</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>true</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="2f65a560-7b0d-4003-a232-9ccc534a0e7f">
+              <SHORT-NAME>SetEnableMlm</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="ec2d6863-01f5-4585-81dd-73a2fbf0b98e">
+                  <SHORT-NAME>mlmTurnOn</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>true</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="20d9b962-ec8b-4714-b928-46606c3143e2">
+              <SHORT-NAME>SetEnableRainSensor</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="feda0c28-7e08-426b-9448-f5826adbc1d0">
+                  <SHORT-NAME>rainSnsrTurnOn</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>true</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="eb8c391e-7bc8-4e9b-8b96-62c035f99999">
+              <SHORT-NAME>SetEnableRearCurtain</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="053be2fe-d67e-4b1e-be7d-fc5f852219f1">
+                  <SHORT-NAME>rCurtTurnOn</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>true</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="04db14ab-ce58-4c5b-8760-89f15a7bf5d1">
+              <SHORT-NAME>SetEnableRearPdw</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="37a6fb1d-7d1d-4d1a-8674-5de0cfab2002">
+                  <SHORT-NAME>rpdwTurnOn</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>true</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="50ed46be-2b16-4634-a410-7720fbfc17d5">
+              <SHORT-NAME>SetEnableRoa</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="ac1180f4-2151-4db2-a165-bc82df0c7b16">
+                  <SHORT-NAME>roaTurnOn</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>true</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="c32fb6b2-8a5b-4aae-b740-b71e46a9fbb5">
+              <SHORT-NAME>SetEnableWiper</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="364ba836-fc9e-49d5-82a2-db9336b6e2f1">
+                  <SHORT-NAME>rCurtTurnOn</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>true</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+          </METHODS>
+        </SERVICE-INTERFACE>
+        <SERVICE-INTERFACE UUID="470b2c87-27c5-4f0a-9143-7e9d893e9071">
+          <SHORT-NAME>SoaRcurtain</SHORT-NAME>
+          <CATEGORY>COMMUNICATION_GROUP</CATEGORY>
+          <NAMESPACES>
+            <SYMBOL-PROPS>
+              <SHORT-NAME>eevp</SHORT-NAME>
+              <SYMBOL>eevp</SYMBOL>
+            </SYMBOL-PROPS>
+            <SYMBOL-PROPS>
+              <SHORT-NAME>control</SHORT-NAME>
+              <SYMBOL>control</SYMBOL>
+            </SYMBOL-PROPS>
+          </NAMESPACES>
+          <MAJOR-VERSION>1</MAJOR-VERSION>
+          <MINOR-VERSION>0</MINOR-VERSION>
+          <FIELDS>
+            <FIELD UUID="79059649-acb6-4cfa-8525-450cb4f29aca">
+              <SHORT-NAME>soaRctnStatus</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaRctnStatus</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+          </FIELDS>
+          <METHODS>
+            <CLIENT-SERVER-OPERATION UUID="2a19dd40-005a-4b37-b538-634f83acd8c4">
+              <SHORT-NAME>RequestRearCurtainOperation</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="81349248-34cc-40d9-abf0-73ae9093a7a4">
+                  <SHORT-NAME>motorDir</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaRctnMotorDir</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+                <ARGUMENT-DATA-PROTOTYPE UUID="5b31d630-0137-43eb-acf3-6f363e429eb4">
+                  <SHORT-NAME>err</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaErrorState</TYPE-TREF>
+                  <DIRECTION>OUT</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+          </METHODS>
+        </SERVICE-INTERFACE>
+        <SERVICE-INTERFACE UUID="bccf3efd-f575-4ff3-b2a3-b82a9afa6ae2">
+          <SHORT-NAME>SoaRoa</SHORT-NAME>
+          <CATEGORY>COMMUNICATION_GROUP</CATEGORY>
+          <NAMESPACES>
+            <SYMBOL-PROPS>
+              <SHORT-NAME>eevp</SHORT-NAME>
+              <SYMBOL>eevp</SYMBOL>
+            </SYMBOL-PROPS>
+            <SYMBOL-PROPS>
+              <SHORT-NAME>control</SHORT-NAME>
+              <SYMBOL>control</SYMBOL>
+            </SYMBOL-PROPS>
+          </NAMESPACES>
+          <MAJOR-VERSION>1</MAJOR-VERSION>
+          <MINOR-VERSION>0</MINOR-VERSION>
+          <FIELDS>
+            <FIELD UUID="e4bb746b-9814-4815-9df8-548417ff7ae8">
+              <SHORT-NAME>soaRoaDetectCount</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+            <FIELD UUID="6af2bd8c-a965-4cda-9769-f83d8cbd50d6">
+              <SHORT-NAME>soaRoaDetectState</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaRoaDetectState</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+            <FIELD UUID="bf96e058-805c-46be-ad5a-c5b5bb506a78">
+              <SHORT-NAME>soaRoaDeviceNormal</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaDeviceIsNormal</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+            <FIELD UUID="22a421ad-9b62-4043-9105-7840de7bd3b5">
+              <SHORT-NAME>soaRoaMode</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaRoaMode</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+            <FIELD UUID="ddc7d462-cbae-4a16-8564-65c415b7bde9">
+              <SHORT-NAME>soaRoaRunningState</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaRoaRunningState</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+            <FIELD UUID="8edd79c4-c1e3-48e4-91d9-b21bff29d947">
+              <SHORT-NAME>soaRoaSensorError</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaRoaSensorError</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+          </FIELDS>
+          <METHODS>
+            <CLIENT-SERVER-OPERATION UUID="51604dc9-2945-4603-a891-f0ecb403414c">
+              <SHORT-NAME>ResetRoaDetectInfo</SHORT-NAME>
+              <FIRE-AND-FORGET>true</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="7fbeee55-4350-4ff0-8409-12e0a05961cf">
+              <SHORT-NAME>SetRoaMode</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="4c817d4b-f9f2-4c29-908b-c1cecbcf7e2d">
+                  <SHORT-NAME>mode</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaRoaMode</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>true</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="cd18066b-e6ff-4133-9d76-ddd13bb42416">
+              <SHORT-NAME>StartRoa</SHORT-NAME>
+              <FIRE-AND-FORGET>true</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="2339e7bb-309a-46d9-bcad-b2fda3088e23">
+              <SHORT-NAME>StopRoa</SHORT-NAME>
+              <FIRE-AND-FORGET>true</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+          </METHODS>
+        </SERVICE-INTERFACE>
+        <SERVICE-INTERFACE UUID="0147ee22-16c9-41e6-a3b8-cf9902fd9ca1">
+          <SHORT-NAME>SoaWiper</SHORT-NAME>
+          <CATEGORY>COMMUNICATION_GROUP</CATEGORY>
+          <NAMESPACES>
+            <SYMBOL-PROPS>
+              <SHORT-NAME>eevp</SHORT-NAME>
+              <SYMBOL>eevp</SYMBOL>
+            </SYMBOL-PROPS>
+            <SYMBOL-PROPS>
+              <SHORT-NAME>control</SHORT-NAME>
+              <SYMBOL>control</SYMBOL>
+            </SYMBOL-PROPS>
+          </NAMESPACES>
+          <MAJOR-VERSION>1</MAJOR-VERSION>
+          <MINOR-VERSION>0</MINOR-VERSION>
+          <FIELDS>
+            <FIELD UUID="16d3205b-7f48-4a6b-8970-43680fe5f670">
+              <SHORT-NAME>soaWiperDeviceNormal</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaDeviceIsNormal</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+            <FIELD UUID="241dfdc7-f994-482b-ba77-71174a950441">
+              <SHORT-NAME>soaWiperStatus</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaWiperStatus</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+          </FIELDS>
+          <METHODS>
+            <CLIENT-SERVER-OPERATION UUID="d2fd7db6-7b08-49f6-a013-f5bdf491e012">
+              <SHORT-NAME>RequestWiperOperation</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="9c573705-5541-4752-a3df-953ef585beae">
+                  <SHORT-NAME>mode</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaWiperMode</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>true</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="ccb50d29-3d80-483f-93c7-5561a516b045">
+              <SHORT-NAME>SetWiperAutoSpeed</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="536db7d8-471f-42f4-8c49-f8915e9599a5">
+                  <SHORT-NAME>isAutoSpeed</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>true</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+          </METHODS>
+        </SERVICE-INTERFACE>
+      </ELEMENTS>
+      <AR-PACKAGES>
+        <AR-PACKAGE UUID="f6da1751-f5ad-4dbe-b2ba-1b5b6c6607ab">
+          <SHORT-NAME>ErrorDomain</SHORT-NAME>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

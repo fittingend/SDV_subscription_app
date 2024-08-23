@@ -1,0 +1,47 @@
+[
+{
+  "directory": "/home/popcornsar/src/eevp_main_machine/ap_otaclient/build",
+  "command": "/usr/bin/c++  -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/./include -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/./hawkbit/include -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/OTAClient/include -isystem /home/popcornsar/work/para-sdk/include -O3 -DNDEBUG -std=c++14 -o CMakeFiles/OTAClient.dir/src/main.cpp.o -c /home/popcornsar/src/eevp_main_machine/ap_otaclient/src/main.cpp",
+  "file": "/home/popcornsar/src/eevp_main_machine/ap_otaclient/src/main.cpp"
+},
+{
+  "directory": "/home/popcornsar/src/eevp_main_machine/ap_otaclient/build",
+  "command": "/usr/bin/c++  -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/./include -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/./hawkbit/include -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/OTAClient/include -isystem /home/popcornsar/work/para-sdk/include -O3 -DNDEBUG -std=c++14 -o CMakeFiles/OTAClient.dir/src/DataTransfer.cpp.o -c /home/popcornsar/src/eevp_main_machine/ap_otaclient/src/DataTransfer.cpp",
+  "file": "/home/popcornsar/src/eevp_main_machine/ap_otaclient/src/DataTransfer.cpp"
+},
+{
+  "directory": "/home/popcornsar/src/eevp_main_machine/ap_otaclient/build",
+  "command": "/usr/bin/c++  -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/./include -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/./hawkbit/include -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/OTAClient/include -isystem /home/popcornsar/work/para-sdk/include -O3 -DNDEBUG -std=c++14 -o CMakeFiles/OTAClient.dir/src/OtaClient.cpp.o -c /home/popcornsar/src/eevp_main_machine/ap_otaclient/src/OtaClient.cpp",
+  "file": "/home/popcornsar/src/eevp_main_machine/ap_otaclient/src/OtaClient.cpp"
+},
+{
+  "directory": "/home/popcornsar/src/eevp_main_machine/ap_otaclient/build",
+  "command": "/usr/bin/c++  -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/./include -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/./hawkbit/include -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/OTAClient/include -isystem /home/popcornsar/work/para-sdk/include -O3 -DNDEBUG -std=c++14 -o CMakeFiles/OTAClient.dir/src/OtaMonitoringSkeletonImpl.cpp.o -c /home/popcornsar/src/eevp_main_machine/ap_otaclient/src/OtaMonitoringSkeletonImpl.cpp",
+  "file": "/home/popcornsar/src/eevp_main_machine/ap_otaclient/src/OtaMonitoringSkeletonImpl.cpp"
+},
+{
+  "directory": "/home/popcornsar/src/eevp_main_machine/ap_otaclient/build",
+  "command": "/usr/bin/c++  -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/./include -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/./hawkbit/include -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/OTAClient/include -isystem /home/popcornsar/work/para-sdk/include -O3 -DNDEBUG -std=c++14 -o CMakeFiles/OTAClient.dir/src/OtaSubscriptionSkeletonImpl.cpp.o -c /home/popcornsar/src/eevp_main_machine/ap_otaclient/src/OtaSubscriptionSkeletonImpl.cpp",
+  "file": "/home/popcornsar/src/eevp_main_machine/ap_otaclient/src/OtaSubscriptionSkeletonImpl.cpp"
+},
+{
+  "directory": "/home/popcornsar/src/eevp_main_machine/ap_otaclient/build",
+  "command": "/usr/bin/c++  -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/./include -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/./hawkbit/include -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/OTAClient/include -isystem /home/popcornsar/work/para-sdk/include -O3 -DNDEBUG -std=c++14 -o CMakeFiles/OTAClient.dir/src/OtaUtils.cpp.o -c /home/popcornsar/src/eevp_main_machine/ap_otaclient/src/OtaUtils.cpp",
+  "file": "/home/popcornsar/src/eevp_main_machine/ap_otaclient/src/OtaUtils.cpp"
+},
+{
+  "directory": "/home/popcornsar/src/eevp_main_machine/ap_otaclient/build",
+  "command": "/usr/bin/c++  -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/./include -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/./hawkbit/include -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/OTAClient/include -isystem /home/popcornsar/work/para-sdk/include -O3 -DNDEBUG -std=c++14 -o CMakeFiles/OTAClient.dir/src/VehiclePackageManagementProxyImpl.cpp.o -c /home/popcornsar/src/eevp_main_machine/ap_otaclient/src/VehiclePackageManagementProxyImpl.cpp",
+  "file": "/home/popcornsar/src/eevp_main_machine/ap_otaclient/src/VehiclePackageManagementProxyImpl.cpp"
+},
+{
+  "directory": "/home/popcornsar/src/eevp_main_machine/ap_otaclient/build",
+  "command": "/usr/bin/c++  -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/./include -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/./hawkbit/include -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/OTAClient/include -isystem /home/popcornsar/work/para-sdk/include -O3 -DNDEBUG -std=c++14 -o CMakeFiles/OTAClient.dir/hawkbit/src/data_transfer.cpp.o -c /home/popcornsar/src/eevp_main_machine/ap_otaclient/hawkbit/src/data_transfer.cpp",
+  "file": "/home/popcornsar/src/eevp_main_machine/ap_otaclient/hawkbit/src/data_transfer.cpp"
+},
+{
+  "directory": "/home/popcornsar/src/eevp_main_machine/ap_otaclient/build",
+  "command": "/usr/bin/c++  -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/./include -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/./hawkbit/include -I/home/popcornsar/src/eevp_main_machine/ap_otaclient/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/OTAClient/include -isystem /home/popcornsar/work/para-sdk/include -O3 -DNDEBUG -std=c++14 -o CMakeFiles/OTAClient.dir/hawkbit/src/vpackage_management_app.cpp.o -c /home/popcornsar/src/eevp_main_machine/ap_otaclient/hawkbit/src/vpackage_management_app.cpp",
+  "file": "/home/popcornsar/src/eevp_main_machine/ap_otaclient/hawkbit/src/vpackage_management_app.cpp"
+}
+]

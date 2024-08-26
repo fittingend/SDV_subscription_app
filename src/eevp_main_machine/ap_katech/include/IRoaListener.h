@@ -10,13 +10,13 @@ namespace roa {
 class IRoaListener {
 public:
     virtual ~IRoaListener() {};
-    //virtual void notifySoaRctnStatus(const eevp::control::SoaRctnStatus& fieldValue) = 0;
+    virtual void notifyRoaDetectState(const eevp::control::SoaRoaDetectState& fieldValue) = 0;
 
     virtual void getSoaRoaDetectState() = 0;
 };
 
-} /// namespace rearcurtain
+} /// namespace roa
 } /// namespace control
 } /// namespace eevp
 
-#endif /* IREAR_CURTAIN_LISTENER_H */
+#endif /* IROA_LISTENER_H */

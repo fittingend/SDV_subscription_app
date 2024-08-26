@@ -24,6 +24,8 @@
 /// @uptrace{SWS_CM_01004}
 #include "soarcurtain_common.h"
 #include "para/com/proxy/proxy_interface.h"
+#include <ara/log/logger.h>
+
 /// @uptrace{SWS_CM_01005}
 namespace eevp
 {
@@ -345,16 +347,28 @@ public:
     /// @uptrace{SWS_CM_00623}
     static ara::core::Result<ara::com::FindServiceHandle> StartFindService(ara::com::FindServiceHandler<SoaRcurtainProxy::HandleType> handler, ara::core::InstanceSpecifier instanceSpec)
     {
+        ara::log::Logger& mLogger = ara::log::CreateLogger("MONM", "Default", ara::log::LogLevel::kInfo);
+
         ara::com::FindServiceHandle findHandle = para::com::ProxyInterface::GetFindServiceHandle(instanceSpec);
         auto findCallback = [&, handler, findHandle, instanceSpec](std::vector<para::com::ServiceHandle> services) {
             ara::com::ServiceHandleContainer<SoaRcurtainProxy::HandleType> handleContainer;
+            mLogger.LogInfo() << "시작";
+
             for (auto& service : services)
             {
                 handleContainer.emplace_back(instanceSpec, service);
+                mLogger.LogInfo() << "시작1";
+
             }
+            mLogger.LogInfo() << "시작2";
             handler(handleContainer, findHandle);
+            mLogger.LogInfo() << "시작3";
+
         };
+        mLogger.LogInfo() << "시작4";
         return para::com::ProxyInterface::StartFindService(instanceSpec, findCallback);
+
+
     }
     /// @brief Send "FindService" message to Communication Management at once
     /// @uptrace{SWS_CM_00622}

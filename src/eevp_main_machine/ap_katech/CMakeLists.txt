@@ -40,11 +40,7 @@ project(${PARA_APP_NAME}
         VERSION ${PARA_APP_VERSION}
         LANGUAGES CXX)
 
-INCLUDE_DIRECTORIES("./include/local")
-INCLUDE_DIRECTORIES("./include/local/debug")
-INCLUDE_DIRECTORIES("./include/local/api")
-INCLUDE_DIRECTORIES("./include/local/manager")
-INCLUDE_DIRECTORIES("./include/local/devices")
+INCLUDE_DIRECTORIES("./include")
 INCLUDE_DIRECTORIES(${PARA_APP_GEN_INCLUDE_DIR})
 INCLUDE_DIRECTORIES(${PARA_INC_DIR})
 

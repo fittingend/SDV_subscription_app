@@ -34,6 +34,7 @@ enum class SoaRoaDetectState : std::uint8_t
     kDETECTED_ONCE = 1U,
     kDETECTED_SEVERAL = 2U,
     kUNKNOWN = 3U
+    
 };
 } /// namespace control
 } /// namespace eevp

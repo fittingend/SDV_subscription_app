@@ -1,3 +1,5 @@
+#include "eevp/control/soaroa_proxy.h"
+
 #include <csignal>
 #include <thread>
 
@@ -30,18 +32,34 @@ public:
     /// @brief Terminate S/W Component
     void Terminate();
 
-    //void startThirtySecondTask();
-    //void stopThirtySecondTask();
-    //void thirtySecondTask();
+    void startRoutineTask();
+    void stopRoutineTask();
+    void routineTask();
 
     // IRearCurtainListener
-    //void notifySoaRctnStatus(const eevp::control::SoaRctnStatus& fieldValue);
+    void notifyRoaDetectState(const eevp::control::SoaRoaDetectState& fieldValue);
     void getSoaRoaDetectState();
 
 private:
     /// @brief Signal Handler
     static void SignalHandler(std::int32_t signal);
 
+    /// @brief Find handler
+    void StartFindCallback(ara::com::ServiceHandleContainer<eevp::control::proxy::SoaRoaProxy::HandleType> services, ara::com::FindServiceHandle handle);
+    /// @brief Current ProxyHandle
+    eevp::control::proxy::SoaRoaProxy::HandleType mProxyHandle;
+
+    /// @brief Service Proxy
+    std::unique_ptr<eevp::control::proxy::SoaRoaProxy> mRPort{nullptr};
+    /// @brief FindServiceHandle
+    ara::com::FindServiceHandle* mFindHandle{nullptr};
+    /// @brief Current ProxyHandle
+   /// @brief Subscribe Field
+    void SubscribeField();
+  /// @brief SubscriptionState handler
+    void StateChangeCallback(ara::core::String callsign, ara::com::SubscriptionState state) ;
+   /// @brief Process received field value 
+    void GetFieldValue();
     /// @brief set Running State
     bool setRunningState();
 
@@ -60,8 +78,8 @@ private:
     std::shared_ptr<eevp::control::roa::RoaProxyImpl> roaProxyImpl;
 
  
-    std::thread thrityThread;
-    std::atomic_bool thrityRunning;
+    std::thread routineThread;
+    std::atomic_bool routineTaskRunning;
 
     void eventProcessingThread();
     std::thread eventProcessingThreadHandle;

@@ -1,5 +1,5 @@
 #include "ara/core/initialization.h"
-#include "../include/eevp/control/katech.h"
+#include "katech.h"
 
 int main(void) {
     if (!ara::core::Initialize()) {

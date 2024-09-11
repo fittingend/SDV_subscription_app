@@ -28,7 +28,8 @@ public:
     void requestMlmSetBrightness(const std::int16_t& brightness);
 
     // field getter
-    bool getterSoaMlmStatus(eevp::control::SoaMlmStatus& soaMlmStatus);
+    bool getSoaMlmStatus(eevp::control::SoaMlmStatus& soaMlmStatus);
+    bool getSoaMlmSwVersion(std::uint8_t& soaMlmSwVersion);
 
 private:
     void FindServiceCallback(
@@ -38,7 +39,8 @@ private:
     /// @brief Subscribe Event
     void SubscribeEvent();
     /// @brief Subscribe Field
-    void SubscribeField();
+    void SubscribeSoaMlmStatus();
+    void SubscribeSoaMlmSwVersion();
 
     /// @brief Unsubscribe Event
     void UnsubscribeEvent();
@@ -47,6 +49,7 @@ private:
 
     // callback func
     void cbSoaMlmStatus();
+    void cbSoaMlmSwVersion();
 
     ara::log::Logger& mLogger;
     std::shared_ptr<eevp::control::moodlamp::IMoodLampListener> listener;

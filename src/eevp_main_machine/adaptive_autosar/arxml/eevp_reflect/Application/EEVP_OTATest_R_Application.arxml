@@ -106,7 +106,7 @@
               </UCMS>
             </VEHICLE-PACKAGE>
             <SOFTWARE-PACKAGE UUID="0045c83b-a3e5-41f4-b1c3-b836624a1e4f">
-              <SHORT-NAME>Main_OTATestR_RemoveSoftwarePackage_1_0_1</SHORT-NAME>
+              <SHORT-NAME>Main_OTATestR_RemoveSoftwarePackage_1_0_2</SHORT-NAME>
               <ACTION-TYPE>REMOVE</ACTION-TYPE>
               <COMPRESSED-SOFTWARE-PACKAGE-SIZE>0</COMPRESSED-SOFTWARE-PACKAGE-SIZE>
               <MAXIMUM-SUPPORTED-UCM-VERSION>1.0.0</MAXIMUM-SUPPORTED-UCM-VERSION>
@@ -121,7 +121,7 @@
                 </PRE-ACTIVATE-IREF>
               </PRE-ACTIVATE-IREFS>
               <PRE-ACTIVATION-REBOOT>false</PRE-ACTIVATION-REBOOT>
-              <SOFTWARE-CLUSTER-REF DEST="SOFTWARE-CLUSTER">/Application/Package/Main_OTATest_SoftwareCluster_1_0_1/Main_OTATestR_SoftwareCluster</SOFTWARE-CLUSTER-REF>
+              <SOFTWARE-CLUSTER-REF DEST="SOFTWARE-CLUSTER">/Application/Package/Main_OTATest_SoftwareCluster_1_0_2/Main_OTATestR_SoftwareCluster</SOFTWARE-CLUSTER-REF>
               <UNCOMPRESSED-SOFTWARE-CLUSTER-SIZE>0</UNCOMPRESSED-SOFTWARE-CLUSTER-SIZE>
               <VERIFY-IREFS>
                 <VERIFY-IREF>
@@ -131,7 +131,7 @@
               </VERIFY-IREFS>
             </SOFTWARE-PACKAGE>
             <VEHICLE-PACKAGE UUID="a471f10d-e171-4784-ad52-be2a8bbf2755">
-              <SHORT-NAME>Main_OTATestR_RemoveVehiclePackage_1_0_1</SHORT-NAME>
+              <SHORT-NAME>Main_OTATestR_RemoveVehiclePackage_1_0_2</SHORT-NAME>
               <PACKAGER-SIGNATURE-REF DEST="CRYPTO-SERVICE-CERTIFICATE">/System/CryptoService/ParaCertificate</PACKAGER-SIGNATURE-REF>
               <ROLLOUT-QUALIFICATIONS>
                 <VEHICLE-ROLLOUT-STEP UUID="4d158ef0-b8f0-45fc-92de-2114e863486e">
@@ -142,18 +142,18 @@
                       <SOFTWARE-PACKAGE-STEPS>
                         <SOFTWARE-PACKAGE-STEP UUID="3d3fdd16-012f-4fd2-9bc6-2b8d84ba4217">
                           <SHORT-NAME>SoftwarePackageStep0</SHORT-NAME>
-                          <PROCESS-REF DEST="SOFTWARE-PACKAGE">/Application/Package/Main_OTATestR_RemoveSoftwarePackage_1_0_1</PROCESS-REF>
+                          <PROCESS-REF DEST="SOFTWARE-PACKAGE">/Application/Package/Main_OTATestR_RemoveSoftwarePackage_1_0_2</PROCESS-REF>
                           <TRANSFERS>
                             <SOFTWARE-PACKAGE-STORING>
                               <STORING>UCM</STORING>
                               <TRANSFER-REFS>
-                                <TRANSFER-REF DEST="SOFTWARE-PACKAGE">/Application/Package/Main_OTATestR_RemoveSoftwarePackage_1_0_1</TRANSFER-REF>
+                                <TRANSFER-REF DEST="SOFTWARE-PACKAGE">/Application/Package/Main_OTATestR_RemoveSoftwarePackage_1_0_2</TRANSFER-REF>
                               </TRANSFER-REFS>
                             </SOFTWARE-PACKAGE-STORING>
                           </TRANSFERS>
                         </SOFTWARE-PACKAGE-STEP>
                       </SOFTWARE-PACKAGE-STEPS>
-                      <UCM-REF DEST="UCM-DESCRIPTION">/Application/Package/Main_OTATestR_RemoveVehiclePackage_1_0_1/EEVP_UCM</UCM-REF>
+                      <UCM-REF DEST="UCM-DESCRIPTION">/Application/Package/Main_OTATestR_RemoveVehiclePackage_1_0_2/EEVP_UCM</UCM-REF>
                     </UCM-STEP>
                   </UCM-PROCESSINGS>
                 </VEHICLE-ROLLOUT-STEP>
@@ -266,6 +266,27 @@
                   <VENDOR-ID>79</VENDOR-ID>
                   <VENDOR-SIGNATURE-REF DEST="CRYPTO-SERVICE-CERTIFICATE">/System/CryptoService/ParaCertificate</VENDOR-SIGNATURE-REF>
                   <VERSION>1.0.1</VERSION>
+                </SOFTWARE-CLUSTER>
+              </ELEMENTS>
+            </AR-PACKAGE>
+            <AR-PACKAGE>
+              <SHORT-NAME>Main_OTATest_SoftwareCluster_1_0_2</SHORT-NAME>
+              <ELEMENTS>
+                <SOFTWARE-CLUSTER UUID="37fe5243-08d7-4d9e-90bf-c64ac4f411c8">
+                  <SHORT-NAME>Main_OTATestR_SoftwareCluster</SHORT-NAME>
+                  <CATEGORY>APPLICATION_LAYER</CATEGORY>
+                  <CONTAINED-AR-ELEMENT-REFS>
+                    <CONTAINED-AR-ELEMENT-REF DEST="EXECUTABLE">/Application/Executable/OTATestR</CONTAINED-AR-ELEMENT-REF>
+                  </CONTAINED-AR-ELEMENT-REFS>
+                  <CONTAINED-PACKAGE-ELEMENT-REFS>
+                    <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/OTATestR_RootSwComponent_OTATestR</CONTAINED-PACKAGE-ELEMENT-REF>
+                  </CONTAINED-PACKAGE-ELEMENT-REFS>
+                  <CONTAINED-PROCESS-REFS>
+                    <CONTAINED-PROCESS-REF DEST="PROCESS">/Application/Process/OTATestR</CONTAINED-PROCESS-REF>
+                  </CONTAINED-PROCESS-REFS>
+                  <VENDOR-ID>79</VENDOR-ID>
+                  <VENDOR-SIGNATURE-REF DEST="CRYPTO-SERVICE-CERTIFICATE">/System/CryptoService/ParaCertificate</VENDOR-SIGNATURE-REF>
+                  <VERSION>1.0.2</VERSION>
                 </SOFTWARE-CLUSTER>
               </ELEMENTS>
             </AR-PACKAGE>

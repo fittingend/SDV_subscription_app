@@ -34,6 +34,11 @@ SET(SRC
     src/StateManagerProxyImpl.cpp
     src/MoodLampProxyImpl.cpp
     src/RearCurtainProxyImpl.cpp
+    src/WiperProxyImpl.cpp
+    src/PdwProxyImpl.cpp
+    src/DrvseatProxyImpl.cpp
+    src/RoaProxyImpl.cpp
+    src/PowerProxyImpl.cpp
 )
 
 ADD_EXECUTABLE(${PROJECT_NAME} ${SRC})

@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_soawiperstatus.h
 /// IMPLEMENTATION DATA TYPE NAME     : SoaWiperStatus
-/// GENERATED DATE                    : 2024-07-24 15:58:07
+/// GENERATED DATE                    : 2024-08-14 14:33:43
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

@@ -19,6 +19,8 @@ VehicleContext *VehicleContext::GetInstance()
     if (VehicleContext::mInst == nullptr)
     {
         VehicleContext::mInst = new VehicleContext();
+        LOG_INFO() << "count value is " << VehicleContext::mInst->mDetectCount;
+
     }
 
     return VehicleContext::mInst;
@@ -26,26 +28,23 @@ VehicleContext *VehicleContext::GetInstance()
 
 VehicleContext::VehicleContext()
 {
-    this->mSpeedValid = false;
-    this->mVehicleSpeed = 0;
-    this->mGearState = eGearState_P;
-    this->mRCPower = ePowerState_Off;
-    this->mRCSwitch = eRCtnSwitch_Unknown;
-    this->mRCState = eRCtnState_Unknown;
-    this->mRCLastUserSwitch = eRCtnSwitch_Unknown;
-    this->mMlmPower = ePowerState_Off;
-    this->mMlmColorIndex = 0;
-    this->mMlmBrightness = 0;
-    this->mMlmMoodMode = eMlmMoodMode_CareMood;
+    this->mIsNormal = eDeviceNormal_Ok;
+    this->mRunningState = eRoaRunningState_Off;
+    this->mRoaMode = eRoaMode_Advanced;
+    //this->mDetectCount = 0;
+    this->mDetectCount = 0;
+    this->mSensorError = eRoaSensorError_Ok;
 }
 
 VehicleContext::~VehicleContext()
 {
-
+    LOG_INFO() << __func__;
 }
 
 int VehicleContext::Load()
 {
+    LOG_INFO() << __func__;
+
     struct stat file_stat;
     if (stat(DATAFILE_DIR_PATH, &file_stat) != 0)
     {
@@ -98,15 +97,6 @@ int VehicleContext::Load()
     }
 
     // Implement the load function using ifs:
-    RCtnSwitch_e rcLastUserSwitch;
-    ifs.read(reinterpret_cast<char *>(&rcLastUserSwitch), sizeof(rcLastUserSwitch));
-    this->mRCLastUserSwitch = rcLastUserSwitch;
-
-    RCtnState_e rcLastState;
-    ifs.read(reinterpret_cast<char *>(&rcLastState), sizeof(rcLastState));
-    this->mRCLastState = rcLastState;
-
-
 
     ifs.close();
     return 0;
@@ -144,12 +134,6 @@ int VehicleContext::Save()
     ofs.write(reinterpret_cast<const char *>(&version), sizeof(version));
 
     // Implement the load function using ifs:
-    RCtnSwitch_e rcLastUserSwitch = this->mRCLastUserSwitch;
-    ofs.write(reinterpret_cast<char *>(&rcLastUserSwitch), sizeof(rcLastUserSwitch));
-
-    RCtnState_e rcLastState = this->mRCLastState;
-    ofs.write(reinterpret_cast<char *>(&rcLastState), sizeof(rcLastState));
-
 
     ofs.close();
     return 0;
@@ -167,10 +151,12 @@ std::string VehicleContext::DebugInfo()
     std::ostringstream ss;
 
     ss << "VehicleContext:\r\n";
+#if 0
     ss << "- Speed : " << this->mVehicleSpeed << ", valid: " << (this->mSpeedValid ? "True" : "False") << "\r\n";
     ss << "- Gear  : " << getStringEnum_GearState_e(this->mGearState) << "\r\n";
     ss << "- Rear Curtain : Power(" << getStringEnum_PowerState_e(this->mRCPower) << "), Switch(" << getStringEnum_RCtnSwitch_e(this->mRCSwitch) << "), State(" << getStringEnum_RCtnState_e(this->mRCState) << ")\r\n";
     ss << "- Moodlamp : Power(" << getStringEnum_PowerState_e(this->mMlmPower) << "), ColorIndex(" << this->mMlmColorIndex << "), Brightness(" << this->mMlmBrightness << "), Mode(" << getStringEnum_MlmMoodMode_e(this->mMlmMoodMode) << ")\r\n";
+#endif
 
     return ss.str();
 }

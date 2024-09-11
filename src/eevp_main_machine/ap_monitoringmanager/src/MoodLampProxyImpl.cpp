@@ -88,7 +88,7 @@ MoodLampProxyImpl::requestMlmSetBrightness(const std::int16_t& brightness) {
 }
 
 bool
-MoodLampProxyImpl::getterSoaMlmStatus(eevp::control::SoaMlmStatus& soaMlmStatus) {
+MoodLampProxyImpl::getSoaMlmStatus(eevp::control::SoaMlmStatus& soaMlmStatus) {
     mLogger.LogInfo() << __func__;
 
     if (mProxy == nullptr) {
@@ -107,6 +107,31 @@ MoodLampProxyImpl::getterSoaMlmStatus(eevp::control::SoaMlmStatus& soaMlmStatus)
         }
     } else {
         mLogger.LogError() << "Timeout to call soaMlmStatus's Getter";
+    }
+
+    return false;
+}
+
+bool
+MoodLampProxyImpl::getSoaMlmSwVersion(std::uint8_t& soaMlmSwVersion) {
+    mLogger.LogInfo() << __func__;
+
+    if (mProxy == nullptr) {
+        return false;
+    }
+
+    auto future = mProxy->soaMlmSwVersion.Get();
+    auto status = future.wait_for(std::chrono::milliseconds(10));
+    if (status == future_status::ready) {
+        auto result = future.GetResult();
+        if (result.HasValue()) {
+            soaMlmSwVersion = static_cast<std::uint8_t>(result.Value());
+            return true;
+        } else {
+            mLogger.LogError() << __func__ << ": Return error with " << result.Error().Message();
+        }
+    } else {
+        mLogger.LogError() << "Timeout to call soaMlmSwVersion's Getter";
     }
 
     return false;
@@ -137,7 +162,8 @@ MoodLampProxyImpl::FindServiceCallback(
     mProxy = std::make_shared<proxy::SoaMlmProxy>(container.at(0));
 
     SubscribeEvent();
-    SubscribeField();
+    SubscribeSoaMlmStatus();
+    SubscribeSoaMlmSwVersion();
 
     cvHandle.notify_one();
 }
@@ -149,7 +175,7 @@ MoodLampProxyImpl::SubscribeEvent() {
 }
 
 void
-MoodLampProxyImpl::SubscribeField() {
+MoodLampProxyImpl::SubscribeSoaMlmStatus() {
     mLogger.LogInfo() << __func__;
 
     if (mProxy == nullptr) {
@@ -170,6 +196,28 @@ MoodLampProxyImpl::SubscribeField() {
         mLogger.LogWarn() << "Failed to Subscribe for soaMlmStatus with " << result.Error().Message();
     }
 }
+void
+MoodLampProxyImpl::SubscribeSoaMlmSwVersion() {
+    mLogger.LogInfo() << __func__;
+
+    if (mProxy == nullptr) {
+        return;
+    }
+
+    if (mProxy->soaMlmSwVersion.GetSubscriptionState() != ara::com::SubscriptionState::kNotSubscribed) {
+        return;
+    }
+
+    auto result = mProxy->soaMlmSwVersion.SetReceiveHandler(std::bind(&MoodLampProxyImpl::cbSoaMlmSwVersion, this));
+    if (!result.HasValue()) {
+        mLogger.LogWarn() << "Failed to SetReceiveHandler for cbSoaMlmSwVersion with " << result.Error().Message();
+    }
+
+    result = mProxy->soaMlmSwVersion.Subscribe(10);
+    if (!result.HasValue()) {
+        mLogger.LogWarn() << "Failed to Subscribe for soaMlmSwVersion with " << result.Error().Message();
+    }
+}
 
 void
 MoodLampProxyImpl::UnsubscribeEvent() {
@@ -185,6 +233,7 @@ MoodLampProxyImpl::UnsubscribeField() {
     }
 
     mProxy->soaMlmStatus.Unsubscribe();
+    mProxy->soaMlmSwVersion.Unsubscribe();
 }
 
 void
@@ -206,6 +255,29 @@ MoodLampProxyImpl::cbSoaMlmStatus() {
         // mLogger.LogInfo() << "cbSoaMlmStatus : " << fieldValue;
         if (listener != nullptr) {
             listener->notifySoaMlmStatus(fieldValue);
+        }
+    });
+}
+
+void
+MoodLampProxyImpl::cbSoaMlmSwVersion() {
+    mLogger.LogInfo() << "cbSoaMlmSwVersion";
+
+    std::uint8_t fieldValue;
+
+    if (mProxy == nullptr) {
+        return;
+    }
+
+    if (mProxy->soaMlmSwVersion.GetSubscriptionState() != ara::com::SubscriptionState::kSubscribed) {
+        return;
+    }
+
+    mProxy->soaMlmSwVersion.GetNewSamples([&](auto msg) {
+        fieldValue = static_cast<std::uint8_t>(*msg);    // fieldValue = *msg;
+        // mLogger.LogInfo() << "cbSoaMlmStatus : " << fieldValue;
+        if (listener != nullptr) {
+            listener->notifySoaMlmSwVersion(fieldValue);
         }
     });
 }

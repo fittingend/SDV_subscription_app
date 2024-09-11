@@ -22,6 +22,13 @@ public:
     void ResetRoaDetectInfo() override;
     void SetRoaMode(const eevp::control::SoaRoaMode& mode) override;
 
+    void UpdateDeviceNormal();
+    void UpdateRunningState();
+    void UpdateRoaMode();
+    void UpdateDetectState();
+    void UpdateDetectCount();
+    void UpdateSensorError();
+
 private:
     /// @brief Field
     fields::soaRoaDeviceNormal::FieldType mDeviceNormal;
@@ -29,7 +36,8 @@ private:
     fields::soaRoaMode::FieldType mMode;
 	fields::soaRoaDetectState::FieldType mDetectState;
     fields::soaRoaDetectCount::FieldType mDetectCount;
-    fields::soaRoaSensorError::FieldType mSensorError;	
+    fields::soaRoaSensorError::FieldType mSensorError;
+    fields::soaRoaSwVersion::FieldType mSwVersion;
 
     /// @brief Logger
     ara::log::Logger& mLogger;
@@ -40,7 +48,8 @@ private:
     ara::core::Future<fields::soaRoaDetectState::FieldType> getter_DetectState();
     ara::core::Future<fields::soaRoaDetectCount::FieldType> getter_DetectCount();
     ara::core::Future<fields::soaRoaSensorError::FieldType> getter_SensorError();
-	
+    ara::core::Future<fields::soaRoaSwVersion::FieldType> getter_SwVersion();
+
 };
 } // namespace control
 } // namespace eevp

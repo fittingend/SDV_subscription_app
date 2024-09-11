@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : otasubscription_skeleton.h
 /// SERVICE INTERFACE NAME            : OtaSubscription
-/// GENERATED DATE                    : 2024-07-19 07:35:28
+/// GENERATED DATE                    : 2024-08-14 14:33:41
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

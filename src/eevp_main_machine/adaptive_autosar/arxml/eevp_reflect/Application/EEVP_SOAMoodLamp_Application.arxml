@@ -42,6 +42,15 @@
               <PROCESS-REF DEST="PROCESS">/Application/Process/SOA_MoodLamp</PROCESS-REF>
               <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Provider/Provider_SoaMlm</SERVICE-INSTANCE-REF>
             </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="83d15264-35d7-4588-849b-a1fd2583aaf1">
+              <SHORT-NAME>SOA_MoodLamp_AA_RPort_Zone1Mlm</SHORT-NAME>
+              <PORT-PROTOTYPE-IREF>
+                <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/Application/Executable/SOA_MoodLamp/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
+                <TARGET-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Application/SwComponent/SOA_MoodLamp/RPort_Zone1Mlm</TARGET-PORT-PROTOTYPE-REF>
+              </PORT-PROTOTYPE-IREF>
+              <PROCESS-REF DEST="PROCESS">/Application/Process/SOA_MoodLamp</PROCESS-REF>
+              <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/Consumer_Zone1Mlm</SERVICE-INSTANCE-REF>
+            </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
           </ELEMENTS>
         </AR-PACKAGE>
         <AR-PACKAGE>
@@ -93,6 +102,28 @@
                   </ELEMENTS>
                 </AR-PACKAGE>
                 <AR-PACKAGE>
+                  <SHORT-NAME>SoftwareCluster_1_0_2</SHORT-NAME>
+                  <ELEMENTS>
+                    <SOFTWARE-CLUSTER UUID="8a3dc9af-9320-4429-8e31-72e233c0ac59">
+                      <SHORT-NAME>SOA_MoodLamp_SoftwareCluster</SHORT-NAME>
+                      <CATEGORY>APPLICATION_LAYER</CATEGORY>
+                      <CONTAINED-AR-ELEMENT-REFS>
+                        <CONTAINED-AR-ELEMENT-REF DEST="EXECUTABLE">/Application/Executable/SOA_MoodLamp</CONTAINED-AR-ELEMENT-REF>
+                      </CONTAINED-AR-ELEMENT-REFS>
+                      <CONTAINED-PACKAGE-ELEMENT-REFS>
+                        <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_MoodLamp_AA_PPort_SOA_MoodLamp</CONTAINED-PACKAGE-ELEMENT-REF>
+                        <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_MoodLamp_AA_RPort_Zone1Mlm</CONTAINED-PACKAGE-ELEMENT-REF>
+                      </CONTAINED-PACKAGE-ELEMENT-REFS>
+                      <CONTAINED-PROCESS-REFS>
+                        <CONTAINED-PROCESS-REF DEST="PROCESS">/Application/Process/SOA_MoodLamp</CONTAINED-PROCESS-REF>
+                      </CONTAINED-PROCESS-REFS>
+                      <VENDOR-ID>79</VENDOR-ID>
+                      <VENDOR-SIGNATURE-REF DEST="CRYPTO-SERVICE-CERTIFICATE">/System/CryptoService/ParaCertificate</VENDOR-SIGNATURE-REF>
+                      <VERSION>1.0.2</VERSION>
+                    </SOFTWARE-CLUSTER>
+                  </ELEMENTS>
+                </AR-PACKAGE>
+                <AR-PACKAGE>
                   <SHORT-NAME>SoftwarePackage</SHORT-NAME>
                   <ELEMENTS>
                     <SOFTWARE-PACKAGE UUID="e95458ba-32c2-4b36-a893-27419a347623">
@@ -121,7 +152,7 @@
                       </VERIFY-IREFS>
                     </SOFTWARE-PACKAGE>
                     <SOFTWARE-PACKAGE UUID="d5484f58-a9b2-4487-a1e5-cd61980e9701">
-                      <SHORT-NAME>SOA_MoodLamp_RemoveSoftwarePackage_1_0_1</SHORT-NAME>
+                      <SHORT-NAME>SOA_MoodLamp_RemoveSoftwarePackage_1_0_2</SHORT-NAME>
                       <ACTION-TYPE>REMOVE</ACTION-TYPE>
                       <COMPRESSED-SOFTWARE-PACKAGE-SIZE>0</COMPRESSED-SOFTWARE-PACKAGE-SIZE>
                       <MAXIMUM-SUPPORTED-UCM-VERSION>1.0.0</MAXIMUM-SUPPORTED-UCM-VERSION>
@@ -136,7 +167,7 @@
                         </PRE-ACTIVATE-IREF>
                       </PRE-ACTIVATE-IREFS>
                       <PRE-ACTIVATION-REBOOT>false</PRE-ACTIVATION-REBOOT>
-                      <SOFTWARE-CLUSTER-REF DEST="SOFTWARE-CLUSTER">/Application/Package/SOA_MoodLamp/SoftwareCluster_1_0_1/SOA_MoodLamp_SoftwareCluster</SOFTWARE-CLUSTER-REF>
+                      <SOFTWARE-CLUSTER-REF DEST="SOFTWARE-CLUSTER">/Application/Package/SOA_MoodLamp/SoftwareCluster_1_0_2/SOA_MoodLamp_SoftwareCluster</SOFTWARE-CLUSTER-REF>
                       <UNCOMPRESSED-SOFTWARE-CLUSTER-SIZE>0</UNCOMPRESSED-SOFTWARE-CLUSTER-SIZE>
                       <VERIFY-IREFS>
                         <VERIFY-IREF>
@@ -222,12 +253,12 @@
                               <SOFTWARE-PACKAGE-STEPS>
                                 <SOFTWARE-PACKAGE-STEP UUID="f34b282b-c769-4474-b1fc-3bac22c56857">
                                   <SHORT-NAME>SoftwarePackageStep0</SHORT-NAME>
-                                  <PROCESS-REF DEST="SOFTWARE-PACKAGE">/Application/Package/SOA_MoodLamp/SoftwarePackage/SOA_MoodLamp_RemoveSoftwarePackage_1_0_1</PROCESS-REF>
+                                  <PROCESS-REF DEST="SOFTWARE-PACKAGE">/Application/Package/SOA_MoodLamp/SoftwarePackage/SOA_MoodLamp_RemoveSoftwarePackage_1_0_2</PROCESS-REF>
                                   <TRANSFERS>
                                     <SOFTWARE-PACKAGE-STORING>
                                       <STORING>UCM</STORING>
                                       <TRANSFER-REFS>
-                                        <TRANSFER-REF DEST="SOFTWARE-PACKAGE">/Application/Package/SOA_MoodLamp/SoftwarePackage/SOA_MoodLamp_RemoveSoftwarePackage_1_0_1</TRANSFER-REF>
+                                        <TRANSFER-REF DEST="SOFTWARE-PACKAGE">/Application/Package/SOA_MoodLamp/SoftwarePackage/SOA_MoodLamp_RemoveSoftwarePackage_1_0_2</TRANSFER-REF>
                                       </TRANSFER-REFS>
                                     </SOFTWARE-PACKAGE-STORING>
                                   </TRANSFERS>
@@ -324,6 +355,10 @@
                   <SHORT-NAME>PPort_SOA_MoodLamp</SHORT-NAME>
                   <PROVIDED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/SoaMlm</PROVIDED-INTERFACE-TREF>
                 </P-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="81b410ef-35af-4e5e-b472-8b50811506c1">
+                  <SHORT-NAME>RPort_Zone1Mlm</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/Zone1Mlm</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
               </PORTS>
             </ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE>
           </ELEMENTS>

@@ -11,8 +11,10 @@ class IRearCurtainListener {
 public:
     virtual ~IRearCurtainListener() {};
     virtual void notifySoaRctnStatus(const eevp::control::SoaRctnStatus& fieldValue) = 0;
+    virtual void notifySoaRctnSwVersion(const std::uint8_t& fieldValue) = 0;
 
-    virtual void getSoaRctnStatus() = 0;
+    virtual void getSoaRctnStatus(eevp::control::SoaRctnStatus& fieldValue) = 0;
+    virtual void getSoaRctnSwVersion(std::uint8_t& fieldValue) = 0;
 };
 
 } /// namespace rearcurtain

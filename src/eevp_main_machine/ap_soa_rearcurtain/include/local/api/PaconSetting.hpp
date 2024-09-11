@@ -3,7 +3,6 @@
 
 #include <Common.h>
 #include <SoaDataType.h>
-#include <SoaRcurtainSkeletonImpl.hpp>
 
 class PaconSetting
 {
@@ -12,7 +11,6 @@ private:
 
     bool mCoreInitialized;
     bool mExecutionStateReported;
-    eevp::control::SoaRcurtainSkeletonImpl *mSoaRctn;
 
     PaconSetting();
     ~PaconSetting();
@@ -23,8 +21,6 @@ public:
     static void RemoveInstance();
 
     bool StartPacon();
-
-    eevp::control::SoaRcurtainSkeletonImpl *GetSoaRcurtain();
 };
 
 #endif

@@ -1,3 +1,0 @@
-/tmp/para-root/opt/KATECH/etc/exec/KATECH.json
-/tmp/para-root/opt/KATECH/etc/interface/KATECH/AA/KATEHCH_RPort.json
-/tmp/para-root/opt/KATECH/bin/KATECH

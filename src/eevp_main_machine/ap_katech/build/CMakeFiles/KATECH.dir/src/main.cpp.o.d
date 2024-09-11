@@ -188,138 +188,53 @@ CMakeFiles/KATECH.dir/src/main.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/xopen_lim.h \
  /usr/include/x86_64-linux-gnu/bits/uio_lim.h \
  /home/popcornsar/work/para-sdk/include/ara/core/variant.h \
- /home/popcornsar/src/eevp_main_machine/ap_katech/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/KATECH/include/../include/eevp/control/katech.h \
- /usr/include/c++/11/csignal /usr/include/signal.h \
- /usr/include/x86_64-linux-gnu/bits/signum-generic.h \
- /usr/include/x86_64-linux-gnu/bits/signum-arch.h \
- /usr/include/x86_64-linux-gnu/bits/types/sig_atomic_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h \
- /usr/include/x86_64-linux-gnu/bits/siginfo-arch.h \
- /usr/include/x86_64-linux-gnu/bits/siginfo-consts.h \
- /usr/include/x86_64-linux-gnu/bits/siginfo-consts-arch.h \
- /usr/include/x86_64-linux-gnu/bits/types/sigval_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h \
- /usr/include/x86_64-linux-gnu/bits/sigevent-consts.h \
- /usr/include/x86_64-linux-gnu/bits/sigaction.h \
- /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
- /usr/include/x86_64-linux-gnu/bits/types/stack_t.h \
- /usr/include/x86_64-linux-gnu/sys/ucontext.h \
- /usr/include/x86_64-linux-gnu/bits/sigstack.h \
- /usr/include/x86_64-linux-gnu/bits/sigstksz.h /usr/include/unistd.h \
- /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
- /usr/include/x86_64-linux-gnu/bits/environments.h \
- /usr/include/x86_64-linux-gnu/bits/confname.h \
- /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
- /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
- /usr/include/x86_64-linux-gnu/bits/unistd.h \
- /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
- /usr/include/linux/close_range.h \
- /usr/include/x86_64-linux-gnu/bits/ss_flags.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h \
- /usr/include/x86_64-linux-gnu/bits/sigthread.h \
- /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
- /usr/include/c++/11/thread /usr/include/c++/11/bits/std_thread.h \
- /usr/include/c++/11/bits/this_thread_sleep.h /usr/include/c++/11/chrono \
- /usr/include/c++/11/ratio /usr/include/c++/11/ctime \
- /usr/include/c++/11/bits/parse_numbers.h \
- /home/popcornsar/work/para-sdk/include/ara/log/logger.h \
- /usr/include/c++/11/atomic \
- /home/popcornsar/work/para-sdk/include/ara/log/log_stream.h \
- /home/popcornsar/work/para-sdk/include/dlt/dlt_user.h \
- /usr/include/mqueue.h /usr/include/fcntl.h \
- /usr/include/x86_64-linux-gnu/bits/fcntl.h \
- /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
- /usr/include/linux/falloc.h /usr/include/x86_64-linux-gnu/bits/stat.h \
- /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
- /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
- /usr/include/x86_64-linux-gnu/bits/mqueue.h \
- /usr/include/x86_64-linux-gnu/bits/mqueue2.h /usr/include/semaphore.h \
- /usr/include/x86_64-linux-gnu/bits/semaphore.h \
- /home/popcornsar/work/para-sdk/include/dlt/dlt_types.h \
- /home/popcornsar/work/para-sdk/include/dlt/dlt_shm.h \
- /home/popcornsar/work/para-sdk/include/dlt/dlt_common.h \
- /usr/include/netinet/in.h /usr/include/x86_64-linux-gnu/sys/socket.h \
- /usr/include/x86_64-linux-gnu/bits/socket.h \
- /usr/include/x86_64-linux-gnu/bits/socket_type.h \
- /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
- /usr/include/x86_64-linux-gnu/asm/socket.h \
- /usr/include/asm-generic/socket.h /usr/include/linux/posix_types.h \
- /usr/include/linux/stddef.h \
- /usr/include/x86_64-linux-gnu/asm/posix_types.h \
- /usr/include/x86_64-linux-gnu/asm/posix_types_64.h \
- /usr/include/asm-generic/posix_types.h \
- /usr/include/x86_64-linux-gnu/asm/bitsperlong.h \
- /usr/include/asm-generic/bitsperlong.h \
- /usr/include/x86_64-linux-gnu/asm/sockios.h \
- /usr/include/asm-generic/sockios.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
- /usr/include/x86_64-linux-gnu/bits/socket2.h \
- /usr/include/x86_64-linux-gnu/bits/in.h \
- /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h \
- /usr/include/termios.h /usr/include/x86_64-linux-gnu/bits/termios.h \
- /usr/include/x86_64-linux-gnu/bits/termios-struct.h \
- /usr/include/x86_64-linux-gnu/bits/termios-c_cc.h \
- /usr/include/x86_64-linux-gnu/bits/termios-c_iflag.h \
- /usr/include/x86_64-linux-gnu/bits/termios-c_oflag.h \
- /usr/include/x86_64-linux-gnu/bits/termios-baud.h \
- /usr/include/x86_64-linux-gnu/bits/termios-c_cflag.h \
- /usr/include/x86_64-linux-gnu/bits/termios-c_lflag.h \
- /usr/include/x86_64-linux-gnu/bits/termios-tcflow.h \
- /usr/include/x86_64-linux-gnu/bits/termios-misc.h \
- /usr/include/x86_64-linux-gnu/sys/ttydefaults.h \
- /home/popcornsar/work/para-sdk/include/dlt/dlt_protocol.h \
- /home/popcornsar/work/para-sdk/include/dlt/dlt_user_macros.h \
- /home/popcornsar/work/para-sdk/include/dlt/dlt_version.h \
- /usr/include/c++/11/sstream /usr/include/c++/11/bits/sstream.tcc \
- /home/popcornsar/work/para-sdk/include/ara/core/instance_specifier.h \
- /usr/include/c++/11/algorithm /usr/include/c++/11/bits/stl_algo.h \
- /usr/include/c++/11/bits/algorithmfwd.h \
- /usr/include/c++/11/bits/stl_heap.h \
- /usr/include/c++/11/bits/uniform_int_dist.h \
- /home/popcornsar/work/para-sdk/include/ara/core/core_error_domain.h \
- /home/popcornsar/work/para-sdk/include/ara/core/exception.h \
- /home/popcornsar/work/para-sdk/include/ara/core/string.h \
- /home/popcornsar/work/para-sdk/include/ara/core/span.h \
- /usr/include/c++/11/cassert /usr/include/assert.h \
- /home/popcornsar/work/para-sdk/include/ara/core/array.h \
- /home/popcornsar/work/para-sdk/include/ara/log/common.h \
- /usr/include/c++/11/queue /usr/include/c++/11/deque \
- /usr/include/c++/11/bits/stl_deque.h /usr/include/c++/11/bits/deque.tcc \
- /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_vector.h \
- /usr/include/c++/11/bits/stl_bvector.h \
- /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/bits/stl_queue.h \
- /usr/include/c++/11/mutex /usr/include/c++/11/bits/std_mutex.h \
- /usr/include/c++/11/bits/unique_lock.h \
- /usr/include/c++/11/condition_variable \
- /home/popcornsar/src/eevp_main_machine/ap_katech/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/KATECH/include/../include/eevp/control/IRoaListener.h \
- /home/popcornsar/src/eevp_main_machine/ap_katech/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/KATECH/include/eevp/control/impl_type_soaroadetectstate.h \
- /home/popcornsar/src/eevp_main_machine/ap_katech/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/KATECH/include/../include/eevp/control/RoaProxyImpl.h \
+ /home/popcornsar/src/eevp_main_machine/ap_katech/./include/katech.h \
  /home/popcornsar/src/eevp_main_machine/ap_katech/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/KATECH/include/eevp/control/soaroa_proxy.h \
  /home/popcornsar/src/eevp_main_machine/ap_katech/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/KATECH/include/eevp/control/soaroa_common.h \
  /home/popcornsar/work/para-sdk/include/ara/core/future.h \
- /usr/include/c++/11/future /usr/include/c++/11/bits/atomic_futex.h \
+ /usr/include/c++/11/cassert /usr/include/assert.h \
+ /usr/include/c++/11/chrono /usr/include/c++/11/ratio \
+ /usr/include/c++/11/ctime /usr/include/c++/11/bits/parse_numbers.h \
+ /usr/include/c++/11/future /usr/include/c++/11/mutex \
+ /usr/include/c++/11/bits/std_mutex.h \
+ /usr/include/c++/11/bits/unique_lock.h \
+ /usr/include/c++/11/condition_variable /usr/include/c++/11/atomic \
+ /usr/include/c++/11/bits/atomic_futex.h \
+ /usr/include/c++/11/bits/std_thread.h \
+ /home/popcornsar/work/para-sdk/include/ara/core/core_error_domain.h \
+ /home/popcornsar/work/para-sdk/include/ara/core/exception.h \
  /home/popcornsar/work/para-sdk/include/ara/core/future_error_domain.h \
  /home/popcornsar/work/para-sdk/include/ara/core/internal/state.h \
  /home/popcornsar/work/para-sdk/include/ara/core/promise.h \
  /home/popcornsar/work/para-sdk/include/ara/com/types.h \
  /home/popcornsar/work/para-sdk/include/ara/com/com_error_domain.h \
  /home/popcornsar/work/para-sdk/include/ara/com/sample_ptr.h \
+ /usr/include/c++/11/algorithm /usr/include/c++/11/bits/stl_algo.h \
+ /usr/include/c++/11/bits/algorithmfwd.h \
+ /usr/include/c++/11/bits/stl_heap.h \
+ /usr/include/c++/11/bits/uniform_int_dist.h \
  /home/popcornsar/work/para-sdk/include/ara/com/e2e/types.h \
+ /home/popcornsar/work/para-sdk/include/ara/core/instance_specifier.h \
+ /home/popcornsar/work/para-sdk/include/ara/core/string.h \
  /home/popcornsar/work/para-sdk/include/ara/core/vector.h \
+ /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_vector.h \
+ /usr/include/c++/11/bits/stl_bvector.h \
+ /usr/include/c++/11/bits/vector.tcc \
  /home/popcornsar/src/eevp_main_machine/ap_katech/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/KATECH/include/eevp/control/impl_type_soadeviceisnormal.h \
+ /home/popcornsar/src/eevp_main_machine/ap_katech/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/KATECH/include/eevp/control/impl_type_soaroadetectstate.h \
  /home/popcornsar/src/eevp_main_machine/ap_katech/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/KATECH/include/eevp/control/impl_type_soaroamode.h \
  /home/popcornsar/src/eevp_main_machine/ap_katech/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/KATECH/include/eevp/control/impl_type_soaroarunningstate.h \
  /home/popcornsar/src/eevp_main_machine/ap_katech/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/KATECH/include/eevp/control/impl_type_soaroasensorerror.h \
  /home/popcornsar/work/para-sdk/include/para/com/proxy/proxy_interface.h \
  /home/popcornsar/work/para-sdk/include/para/com/types.h \
+ /usr/include/c++/11/sstream /usr/include/c++/11/bits/sstream.tcc \
  /home/popcornsar/work/para-sdk/include/para/serialization/serializer.h \
  /usr/include/c++/11/cstring /usr/include/string.h /usr/include/strings.h \
  /usr/include/x86_64-linux-gnu/bits/strings_fortified.h \
  /usr/include/x86_64-linux-gnu/bits/string_fortified.h \
  /home/popcornsar/work/para-sdk/include/para/serialization/base/array.h \
  /usr/include/c++/11/numeric /usr/include/c++/11/bits/stl_numeric.h \
+ /home/popcornsar/work/para-sdk/include/ara/core/array.h \
  /home/popcornsar/work/para-sdk/include/para/serialization/base/encoding.h \
  /home/popcornsar/work/para-sdk/include/para/serialization/base/status.h \
  /home/popcornsar/work/para-sdk/include/para/serialization/types/result.h \
@@ -354,4 +269,101 @@ CMakeFiles/KATECH.dir/src/main.cpp.o: \
  /home/popcornsar/work/para-sdk/include/para/serialization/base/variant.h \
  /home/popcornsar/work/para-sdk/include/para/serialization/base/vector.h \
  /home/popcornsar/work/para-sdk/include/para/serialization/stream_reader.h \
- /home/popcornsar/work/para-sdk/include/para/serialization/stream_writer.h
+ /home/popcornsar/work/para-sdk/include/para/serialization/stream_writer.h \
+ /home/popcornsar/work/para-sdk/include/ara/log/logger.h \
+ /home/popcornsar/work/para-sdk/include/ara/log/log_stream.h \
+ /home/popcornsar/work/para-sdk/include/dlt/dlt_user.h \
+ /usr/include/mqueue.h /usr/include/fcntl.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
+ /usr/include/linux/falloc.h /usr/include/x86_64-linux-gnu/bits/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
+ /usr/include/x86_64-linux-gnu/bits/fcntl2.h \
+ /usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h \
+ /usr/include/x86_64-linux-gnu/bits/mqueue.h \
+ /usr/include/x86_64-linux-gnu/bits/mqueue2.h /usr/include/semaphore.h \
+ /usr/include/x86_64-linux-gnu/bits/semaphore.h \
+ /home/popcornsar/work/para-sdk/include/dlt/dlt_types.h \
+ /home/popcornsar/work/para-sdk/include/dlt/dlt_shm.h \
+ /home/popcornsar/work/para-sdk/include/dlt/dlt_common.h \
+ /usr/include/netinet/in.h /usr/include/x86_64-linux-gnu/sys/socket.h \
+ /usr/include/x86_64-linux-gnu/bits/socket.h \
+ /usr/include/x86_64-linux-gnu/bits/socket_type.h \
+ /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
+ /usr/include/x86_64-linux-gnu/asm/socket.h \
+ /usr/include/asm-generic/socket.h /usr/include/linux/posix_types.h \
+ /usr/include/linux/stddef.h \
+ /usr/include/x86_64-linux-gnu/asm/posix_types.h \
+ /usr/include/x86_64-linux-gnu/asm/posix_types_64.h \
+ /usr/include/asm-generic/posix_types.h \
+ /usr/include/x86_64-linux-gnu/asm/bitsperlong.h \
+ /usr/include/asm-generic/bitsperlong.h \
+ /usr/include/x86_64-linux-gnu/asm/sockios.h \
+ /usr/include/asm-generic/sockios.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+ /usr/include/x86_64-linux-gnu/bits/socket2.h \
+ /usr/include/x86_64-linux-gnu/bits/in.h \
+ /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h /usr/include/unistd.h \
+ /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
+ /usr/include/x86_64-linux-gnu/bits/environments.h \
+ /usr/include/x86_64-linux-gnu/bits/confname.h \
+ /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
+ /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
+ /usr/include/x86_64-linux-gnu/bits/unistd.h \
+ /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
+ /usr/include/linux/close_range.h /usr/include/termios.h \
+ /usr/include/x86_64-linux-gnu/bits/termios.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-struct.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_cc.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_iflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_oflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-baud.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_cflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-c_lflag.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-tcflow.h \
+ /usr/include/x86_64-linux-gnu/bits/termios-misc.h \
+ /usr/include/x86_64-linux-gnu/sys/ttydefaults.h \
+ /home/popcornsar/work/para-sdk/include/dlt/dlt_protocol.h \
+ /home/popcornsar/work/para-sdk/include/dlt/dlt_user_macros.h \
+ /home/popcornsar/work/para-sdk/include/dlt/dlt_version.h \
+ /home/popcornsar/work/para-sdk/include/ara/core/span.h \
+ /home/popcornsar/work/para-sdk/include/ara/log/common.h \
+ /usr/include/c++/11/csignal /usr/include/signal.h \
+ /usr/include/x86_64-linux-gnu/bits/signum-generic.h \
+ /usr/include/x86_64-linux-gnu/bits/signum-arch.h \
+ /usr/include/x86_64-linux-gnu/bits/types/sig_atomic_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h \
+ /usr/include/x86_64-linux-gnu/bits/siginfo-arch.h \
+ /usr/include/x86_64-linux-gnu/bits/siginfo-consts.h \
+ /usr/include/x86_64-linux-gnu/bits/siginfo-consts-arch.h \
+ /usr/include/x86_64-linux-gnu/bits/types/sigval_t.h \
+ /usr/include/x86_64-linux-gnu/bits/sigevent-consts.h \
+ /usr/include/x86_64-linux-gnu/bits/sigaction.h \
+ /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
+ /usr/include/x86_64-linux-gnu/bits/types/stack_t.h \
+ /usr/include/x86_64-linux-gnu/sys/ucontext.h \
+ /usr/include/x86_64-linux-gnu/bits/sigstack.h \
+ /usr/include/x86_64-linux-gnu/bits/sigstksz.h \
+ /usr/include/x86_64-linux-gnu/bits/ss_flags.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h \
+ /usr/include/x86_64-linux-gnu/bits/sigthread.h \
+ /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
+ /usr/include/c++/11/thread /usr/include/c++/11/bits/this_thread_sleep.h \
+ /usr/include/c++/11/queue /usr/include/c++/11/deque \
+ /usr/include/c++/11/bits/stl_deque.h /usr/include/c++/11/bits/deque.tcc \
+ /usr/include/c++/11/bits/stl_queue.h \
+ /home/popcornsar/src/eevp_main_machine/ap_katech/./include/KatechRoaListener.h \
+ /home/popcornsar/src/eevp_main_machine/ap_katech/./include/RoaProxyImpl.h \
+ /home/popcornsar/src/eevp_main_machine/ap_katech/./include/KatechSkeletonImpl.hpp \
+ /home/popcornsar/src/eevp_main_machine/ap_katech/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/KATECH/include/eevp/control/soarcurtain_skeleton.h \
+ /home/popcornsar/src/eevp_main_machine/ap_katech/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/KATECH/include/eevp/control/soarcurtain_common.h \
+ /home/popcornsar/src/eevp_main_machine/ap_katech/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/KATECH/include/eevp/control/impl_type_soaerrorstate.h \
+ /home/popcornsar/src/eevp_main_machine/ap_katech/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/KATECH/include/eevp/control/impl_type_soarctnmotordir.h \
+ /home/popcornsar/src/eevp_main_machine/ap_katech/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/KATECH/include/eevp/control/impl_type_soarctnstatus.h \
+ /home/popcornsar/work/para-sdk/include/ara/core/structure.h \
+ /home/popcornsar/src/eevp_main_machine/ap_katech/adaptive_autosar/gen/gen_ara/implementation/EEVP_Main_Machine/KATECH/include/eevp/control/impl_type_soarctnstate.h \
+ /home/popcornsar/work/para-sdk/include/para/com/skeleton/skeleton_interface.h \
+ /home/popcornsar/work/para-sdk/include/ara/com/e2e/e2e_error_domain.h \
+ /home/popcornsar/work/para-sdk/include/ara/com/e2e/types.h

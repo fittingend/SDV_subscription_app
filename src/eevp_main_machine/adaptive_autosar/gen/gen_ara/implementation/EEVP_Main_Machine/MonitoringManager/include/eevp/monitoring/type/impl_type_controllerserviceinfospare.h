@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_controllerserviceinfospare.h
 /// IMPLEMENTATION DATA TYPE NAME     : ControllerServiceInfoSpare
-/// GENERATED DATE                    : 2024-07-19 07:35:27
+/// GENERATED DATE                    : 2024-08-14 14:33:40
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

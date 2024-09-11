@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : soawiper_skeleton.h
 /// SERVICE INTERFACE NAME            : SoaWiper
-/// GENERATED DATE                    : 2024-07-19 07:35:32
+/// GENERATED DATE                    : 2024-08-14 14:33:45
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -210,6 +210,91 @@ private:
     const std::string kGetterCallSign = {"soaWiperStatusGetter"};
     const std::string kNotifierCallSign = {"soaWiperStatusNotifier"};
 };
+/// @uptrace{SWS_CM_00007}
+class soaWiperSwVersion
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = std::uint8_t;
+    /// @brief Constructor
+    explicit soaWiperSwVersion(para::com::SkeletonInterface* interface) : mInterface(interface)
+    {
+    }
+    /// @brief Destructor
+    virtual ~soaWiperSwVersion() = default;
+    /// @brief Delete copy constructor
+    soaWiperSwVersion(const soaWiperSwVersion& other) = delete;
+    /// @brief Delete copy assignment
+    soaWiperSwVersion& operator=(const soaWiperSwVersion& other) = delete;
+    /// @brief Move constructor
+    soaWiperSwVersion(soaWiperSwVersion&& other) noexcept : mInterface(other.mInterface)
+    {
+        RegisterGetHandler(std::move(other.mGetHandler));
+    }
+    /// @brief Move assignment
+    soaWiperSwVersion& operator=(soaWiperSwVersion&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        RegisterGetHandler(std::move(other.mGetHandler));
+        return *this;
+    }
+    /// @brief Register callback for getter method
+    /// @uptrace{SWS_CM_00114}
+    ara::core::Result<void> RegisterGetHandler(std::function<ara::core::Future<FieldType>()> getHandler)
+    {
+        ara::core::Result<void> result{};
+        if (getHandler != nullptr)
+        {
+            mGetHandler = std::move(getHandler);
+            mInterface->SetMethodCallHandler(kGetterCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+                HandleGet(token);
+            });
+        }
+        return result;
+    }
+    /// @brief Send notification with value to subscribing service consumers
+    /// @uptrace{SWS_CM_90437}
+    ara::core::Result<void> Update(const FieldType& value)
+    {
+        para::serializer::Serializer serializer{};
+        serializer.write(value);
+        auto payload = serializer.ensure();
+        return mInterface->SendEvent(kNotifierCallSign, payload);
+    }
+    
+private:
+    void HandleGet(const para::com::MethodToken token)
+    {
+        std::uint8_t retResult{1};
+        std::vector<std::uint8_t> retData{};
+        auto future = mGetHandler();
+        auto result = future.GetResult();
+        if (result.HasValue())
+        {
+            FieldType value = result.Value();
+            para::serializer::Serializer serializer{};
+            serializer.write(value);
+            retData = serializer.ensure();
+            retResult = 0;
+        }
+        else
+        {
+            ara::core::ErrorDomain::IdType domainId = result.Error().Domain().Id();
+            ara::core::ErrorDomain::CodeType errorCode = result.Error().Value();
+            para::serializer::Serializer serializer{};
+            serializer.write(0, true, 0, domainId);
+            serializer.write(0, true, 0, errorCode);
+            retData = serializer.ensure();
+            retResult = 1;
+        }
+        mInterface->ReturnMethod(kGetterCallSign, retResult, retData, token);
+    }
+    para::com::SkeletonInterface* mInterface;
+    std::function<ara::core::Future<FieldType>()> mGetHandler{nullptr};
+    const std::string kGetterCallSign = {"soaWiperSwVersionGetter"};
+    const std::string kNotifierCallSign = {"soaWiperSwVersionNotifier"};
+};
 } /// namespace fields
 /// @uptrace{SWS_CM_00002}
 class SoaWiperSkeleton
@@ -222,6 +307,7 @@ public:
         : mInterface(std::make_unique<para::com::SkeletonInterface>(instanceSpec, mode))
         , soaWiperDeviceNormal(mInterface.get())
         , soaWiperStatus(mInterface.get())
+        , soaWiperSwVersion(mInterface.get())
     {
         mInterface->SetMethodCallHandler(kRequestWiperOperationCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken /*token*/) {
             HandleRequestWiperOperation(data);
@@ -247,6 +333,7 @@ public:
         : mInterface(std::move(other.mInterface))
         , soaWiperDeviceNormal(std::move(other.soaWiperDeviceNormal))
         , soaWiperStatus(std::move(other.soaWiperStatus))
+        , soaWiperSwVersion(std::move(other.soaWiperSwVersion))
     {
         mInterface->SetMethodCallHandler(kRequestWiperOperationCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken /*token*/) {
             HandleRequestWiperOperation(data);
@@ -266,6 +353,7 @@ public:
         mInterface = std::move(other.mInterface);
         soaWiperDeviceNormal = std::move(other.soaWiperDeviceNormal);
         soaWiperStatus = std::move(other.soaWiperStatus);
+        soaWiperSwVersion = std::move(other.soaWiperSwVersion);
         mInterface->SetMethodCallHandler(kRequestWiperOperationCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken /*token*/) {
             HandleRequestWiperOperation(data);
         });
@@ -318,10 +406,12 @@ private:
     std::unique_ptr<para::com::SkeletonInterface> mInterface;
     
 public:
-    /// @brief Field, isDeviceNormal
+    /// @brief Field, soaWiperDeviceNormal
     fields::soaWiperDeviceNormal soaWiperDeviceNormal;
     /// @brief Field, soaWiperStatus
     fields::soaWiperStatus soaWiperStatus;
+    /// @brief Method, RequestWiperOperation
+    fields::soaWiperSwVersion soaWiperSwVersion;
     /// @brief Method, RequestWiperOperation
     /// @uptrace{SWS_CM_90434}
     virtual void RequestWiperOperation(const eevp::control::SoaWiperMode& mode) = 0;

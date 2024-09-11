@@ -1,5 +1,0 @@
-/tmp/para-root/etc/exec/OTAClient.json
-/tmp/para-root/etc/interface/OTAClient/AA/VehiclePackageManagement.json
-/tmp/para-root/etc/interface/OTAClient/AA/PPortOtaSubscription.json
-/tmp/para-root/etc/interface/OTAClient/AA/PPortOtaMonitoring.json
-/tmp/para-root/bin/OTAClient

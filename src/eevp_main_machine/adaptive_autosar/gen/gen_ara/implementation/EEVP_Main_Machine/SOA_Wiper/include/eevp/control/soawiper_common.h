@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : soawiper_common.h
 /// SERVICE INTERFACE NAME            : SoaWiper
-/// GENERATED DATE                    : 2024-07-19 07:35:32
+/// GENERATED DATE                    : 2024-08-14 14:33:45
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

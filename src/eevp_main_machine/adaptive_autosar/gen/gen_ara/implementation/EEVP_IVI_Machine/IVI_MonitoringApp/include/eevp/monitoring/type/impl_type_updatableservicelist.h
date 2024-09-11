@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_updatableservicelist.h
 /// IMPLEMENTATION DATA TYPE NAME     : UpdatableServiceList
-/// GENERATED DATE                    : 2024-07-19 07:35:34
+/// GENERATED DATE                    : 2024-08-14 14:33:49
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

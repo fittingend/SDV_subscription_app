@@ -13,8 +13,8 @@
     "client-id" : "882",
     "events" : [
         {
-            "name" : "UssData",
-            "event-id" : "1",
+            "name" : "UssFront",
+            "event-id" : "12920",
             "transport" : "udp",
             "max-segment-len" : "0",
             "separation-time" : "0.0"

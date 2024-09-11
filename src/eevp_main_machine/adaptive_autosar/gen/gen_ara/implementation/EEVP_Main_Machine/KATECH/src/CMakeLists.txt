@@ -18,6 +18,4 @@ Para_Target(${PARA_APP_NAME}
 target_sources(${PARA_APP_NAME}
                PRIVATE
                main.cpp
-               katech.cpp
-               RoaProxyImpl.cpp
 )

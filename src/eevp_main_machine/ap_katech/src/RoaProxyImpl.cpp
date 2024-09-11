@@ -1,5 +1,4 @@
 #include "RoaProxyImpl.h"
-#include "eevp/control/impl_type_soaroadetectstate.h"
 
 using namespace ara::core;
 using namespace eevp::control;
@@ -26,31 +25,28 @@ RoaProxyImpl::~RoaProxyImpl() {
 }
 
 void
-RoaProxyImpl::setEventListener(std::shared_ptr<IRoaListener> _listener) {
+RoaProxyImpl::setEventListener(std::shared_ptr<KatechRoaListener> _listener) {
     listener = _listener;
 }
-/*
+
 bool
 RoaProxyImpl::init() {
     mLogger.LogInfo() << __func__;
 
-    ara::core::InstanceSpecifier specifier("KATECH/AA/KATEHCH_RPort");
+    ara::core::InstanceSpecifier specifier("KATECH/AA/RPortRoa");
 
     auto callback = [&](auto container, auto findHandle) {
         FindServiceCallback(container, findHandle);
     };
 
-//    std::unique_lock<std::mutex> lock(mHandle);
-    //ok until here
+    std::unique_lock<std::mutex> lock(mHandle);
 
     auto result = proxy::SoaRoaProxy::StartFindService(callback, specifier);
     //이후 execution 이 안됨 
-    mLogger.LogInfo() << "sujin";
     
-
-    // if (cvHandle.wait_for(lock, std::chrono::milliseconds(1000)) == std::cv_status::timeout) {
-    //     return false;
-    // }
+    if (cvHandle.wait_for(lock, std::chrono::milliseconds(1000)) == std::cv_status::timeout) {
+        return false;
+    }
 
     if (!result.HasValue()) {
         mLogger.LogInfo() << "SoaRoaProxy StartFindService() Failed";
@@ -58,40 +54,10 @@ RoaProxyImpl::init() {
     }
 
     return true;
-}*/
-bool
-RoaProxyImpl::init() {
-    mLogger.LogInfo() << __func__;
-
-    ara::core::InstanceSpecifier specifier("KATECH/AA/KATEHCH_RPort");
-
-    auto callback = [&](auto container, auto findHandle) {
-        FindServiceCallback(container, findHandle);
-    };
-
-    std::unique_lock<std::mutex> lock(mHandle);
-    //ok until here
-
-    auto ret = proxy::SoaRoaProxy::StartFindService(callback, specifier);
-    //이후 execution 이 안됨 
-    mLogger.LogInfo() << "sujin";
-    if (ret.HasValue()) {
-        mLogger.LogInfo() << "SoaRoaProxy Start Find Service Success";
-        //mRunning = true;
-        return true;
-    } else {
-        mLogger.LogInfo() << "SoaRoaProxy Start Find Service Failed";
-        return false;
-    }
-
-    // if (cvHandle.wait_for(lock, std::chrono::milliseconds(1000)) == std::cv_status::timeout) {
-    //     return false;
-    // }
-
 }
 
 bool
-RoaProxyImpl::getterSoaRoaDetectState(eevp::control::SoaRoaDetectState& soaRoaDetectState) {
+RoaProxyImpl::getSoaRoaDetectState(eevp::control::SoaRoaDetectState& soaRoaDetectState) {
     mLogger.LogInfo() << __func__;
 
     if (mProxy == nullptr) {
@@ -101,12 +67,12 @@ RoaProxyImpl::getterSoaRoaDetectState(eevp::control::SoaRoaDetectState& soaRoaDe
     auto future = mProxy->soaRoaDetectState.Get();
     auto status = future.wait_for(std::chrono::milliseconds(10));
     if (status == future_status::ready) {
-        auto soaRoaDetectState = future.GetResult();
-        if (soaRoaDetectState.HasValue()) {
-            soaRoaDetectState = static_cast<eevp::control::SoaRoaDetectState>(soaRoaDetectState.Value());
+        auto result = future.GetResult();
+        if (result.HasValue()) {
+            soaRoaDetectState = static_cast<eevp::control::SoaRoaDetectState>(result.Value());
             return true;
         } else {
-            mLogger.LogError() << __func__ << ": Return error with " << soaRoaDetectState.Error().Message();
+            mLogger.LogError() << __func__ << ": Return error with " << result.Error().Message();
         }
     } else {
         mLogger.LogError() << "Timeout to call soaRoaDetectState's Getter";
@@ -114,6 +80,33 @@ RoaProxyImpl::getterSoaRoaDetectState(eevp::control::SoaRoaDetectState& soaRoaDe
 
     return false;
 }
+
+bool
+RoaProxyImpl::getSoaRoaDetectCount(uint8_t& soaRoaDetectCount) {
+    mLogger.LogInfo() << __func__;
+
+    if (mProxy == nullptr) {
+        return false;
+    }
+
+    auto future = mProxy->soaRoaDetectCount.Get();
+    auto status = future.wait_for(std::chrono::milliseconds(10));
+    if (status == future_status::ready) {
+        auto result = future.GetResult();
+        if (result.HasValue()) {
+            soaRoaDetectCount =result.Value();
+            return true;
+        } else {
+            mLogger.LogError() << __func__ << ": Return error with " << result.Error().Message();
+        }
+    } else {
+        mLogger.LogError() << "Timeout to call soaRoaDetectCount's Getter";
+    }
+
+    return false;
+}
+
+/*
 void RoaProxyImpl::FindServiceCallback(ara::com::ServiceHandleContainer<proxy::SoaRoaProxy::HandleType> services, ara::com::FindServiceHandle handle)
 {
     proxy::SoaRoaProxy::HandleType proxyHandle;
@@ -139,17 +132,103 @@ void RoaProxyImpl::FindServiceCallback(ara::com::ServiceHandleContainer<proxy::S
         findFlag = true;
         proxyHandle = service;
     }
+    //std::lock_guard<std::mutex> lock(mHandle);
 
     if ((offeredFlag == false)&&(findFlag == true)) {
         mRPort = std::make_unique<eevp::control::proxy::SoaRoaProxy>(proxyHandle);
-        mFindHandle = new ara::com::FindServiceHandle(handle);
+        mFindHandle = std::make_shared<ara::com::FindServiceHandle>(handle);
+        //mFindHandle = new ara::com::FindServiceHandle(handle);
         mProxyHandle = proxyHandle;
         SubscribeField();
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        mLogger.LogInfo() << "SubscribeField end";
+
+
     }
     if (findFlag == false) {
         mLogger.LogInfo() << "Not available ServiceProvider";
         mRPort = nullptr;
+    }
+}
+*/
+
+void
+RoaProxyImpl::FindServiceCallback(
+        ara::com::ServiceHandleContainer<proxy::SoaRoaProxy::HandleType> container,
+        ara::com::FindServiceHandle findHandle) {
+    mLogger.LogInfo() << __func__;
+
+    std::lock_guard<std::mutex> lock(mHandle);
+
+    if (mProxy != nullptr) {
+        UnsubscribeField();
+
+        mFindHandle = nullptr;
+        mProxy = nullptr;
+    }
+
+    if (container.empty()) {
+        mProxy = nullptr;
+        return;
+    }
+
+    mFindHandle = std::make_shared<ara::com::FindServiceHandle>(findHandle);
+    mProxy = std::make_shared<proxy::SoaRoaProxy>(container.at(0));
+
+    SubscribeRoaSwVersion();
+    SubscribeRoaDeviceNormal();
+
+    cvHandle.notify_one();
+    mLogger.LogInfo() << "여기까지 OK";
+
+}
+
+void
+RoaProxyImpl::SubscribeRoaDeviceNormal() {
+    mLogger.LogInfo() << __func__;
+
+    if (mProxy == nullptr) {
+        return;
+    }
+
+    if (mProxy->soaRoaDeviceNormal.GetSubscriptionState() != ara::com::SubscriptionState::kNotSubscribed) {
+        return;
+    }
+
+    auto result = mProxy->soaRoaDeviceNormal.SetReceiveHandler(std::bind(&RoaProxyImpl::cbSoaRoaIsDeviceNormal, this));
+    if (!result.HasValue()) {
+        mLogger.LogWarn() << "Failed to SetReceiveHandler for cbSoaRoaIsDeviceNormal with " << result.Error().Message();
+    }
+
+    result = mProxy->soaRoaDeviceNormal.Subscribe(10);
+    if (!result.HasValue()) {
+        mLogger.LogWarn() << "Failed to Subscribe for cbSoaRoaIsDeviceNormal with " << result.Error().Message();
+    }
+}
+
+void
+RoaProxyImpl::SubscribeRoaSwVersion() {
+    mLogger.LogInfo() << __func__;
+
+    if (mProxy == nullptr) {
+        mLogger.LogInfo() << "null";
+        return;
+    }
+
+    if (mProxy->soaRoaSwVersion.GetSubscriptionState() != ara::com::SubscriptionState::kNotSubscribed) {
+        mLogger.LogInfo() << "sujinsidfn";
+
+        return;
+    }
+
+    auto result = mProxy->soaRoaSwVersion.SetReceiveHandler(std::bind(&RoaProxyImpl::cbSoaRoaSwVersion, this));
+    if (!result.HasValue()) {
+        mLogger.LogWarn() << "Failed to SetReceiveHandler for cbSoaRoaSwVersion with " << result.Error().Message();
+    }
+
+    result = mProxy->soaRoaSwVersion.Subscribe(10);
+    if (!result.HasValue()) {
+        mLogger.LogWarn() << "Failed to Subscribe for cbSoaRoaSwVersion with " << result.Error().Message();
     }
 }
 /*
@@ -214,6 +293,71 @@ RoaProxyImpl::SubscribeField() {
 
 }
 */
+void
+RoaProxyImpl::getSoaRoaDeviceNormal(eevp::control::SoaDeviceIsNormal& deviceIsNormal) {
+    mLogger.LogInfo() << __func__;
+
+    if (mProxy == nullptr) {
+        return;
+    }
+
+    auto future = mProxy->soaRoaDeviceNormal.Get();
+    auto status = future.wait_for(std::chrono::milliseconds(10));
+    if (status == future_status::ready) {
+        auto result = future.GetResult();
+        if (result.HasValue()) {
+            deviceIsNormal = static_cast<eevp::control::SoaDeviceIsNormal>(result.Value());
+        } else {
+            mLogger.LogError() << __func__ << ": Return error with " << result.Error().Message();
+        }
+    } else {
+        mLogger.LogError() << "Timeout to call soaRoaDeviceNormal's Getter";
+    }
+    return;
+}
+void
+RoaProxyImpl::cbSoaRoaIsDeviceNormal() {
+    mLogger.LogInfo() << "cbSoaRoaIsDeviceNormal";
+    eevp::control::SoaDeviceIsNormal deviceIsNormal;
+
+    if (mProxy == nullptr) {
+        return;
+    }
+
+    if (mProxy->soaRoaDeviceNormal.GetSubscriptionState() != ara::com::SubscriptionState::kSubscribed) {
+        return;
+    }
+
+    mProxy->soaRoaDeviceNormal.GetNewSamples([&](auto msg) {
+        deviceIsNormal = static_cast<eevp::control::SoaDeviceIsNormal>(*msg);
+        if (listener != nullptr) {
+            listener->notifySoaRoaDeviceNormal(deviceIsNormal);
+        }
+    });
+}
+
+
+void
+RoaProxyImpl::cbSoaRoaSwVersion() {
+    mLogger.LogInfo() << "cbSoaRoaSwVersion";
+
+    std::uint8_t roaSwVersion;
+
+    if (mProxy == nullptr) {
+        return;
+    }
+
+    if (mProxy->soaRoaSwVersion.GetSubscriptionState() != ara::com::SubscriptionState::kSubscribed) {
+        return;
+    }
+
+    mProxy->soaRoaSwVersion.GetNewSamples([&](auto msg) {
+        roaSwVersion = static_cast<std::uint8_t>(*msg);
+        if (listener != nullptr) {
+            listener->notifySoaRoaSwVersion(roaSwVersion);
+        }
+    });
+}
 
 void RoaProxyImpl::SubscribeField()
 {
@@ -290,28 +434,28 @@ RoaProxyImpl::UnsubscribeField() {
     mProxy->soaRoaDetectState.Unsubscribe();
 }
 
-void
-RoaProxyImpl::cbSoaRoaDetectState() {
-    mLogger.LogInfo() << "cbSoaRoaDetectState";
+// void
+// RoaProxyImpl::cbSoaRoaDetectState() {
+//     mLogger.LogInfo() << "cbSoaRoaDetectState";
 
-    eevp::control::SoaRoaDetectState fieldValue;
+//     eevp::control::SoaRoaDetectState fieldValue;
 
-    if (mProxy == nullptr) {
-        return;
-    }
+//     if (mProxy == nullptr) {
+//         return;
+//     }
 
-    if (mProxy->soaRoaDetectState.GetSubscriptionState() != ara::com::SubscriptionState::kSubscribed) {
-        return;
-    }
+//     // if (mProxy->soaRoaDetectState.GetSubscriptionState() != ara::com::SubscriptionState::kSubscribed) {
+//     //     return;
+//     // }
 
-    mProxy->soaRoaDetectState.GetNewSamples([&](auto msg) {
-        fieldValue = static_cast<eevp::control::SoaRoaDetectState>(*msg);   // fieldValue = *msg
-        // mLogger.LogInfo() << "cbSoaRctnStatus : " << fieldValue;
-        if (listener != nullptr) {
-            listener->notifyRoaDetectState(fieldValue);
-        }
-    });
-}
+//     mProxy->soaRoaDetectState.GetNewSamples([&](auto msg) {
+//         fieldValue = static_cast<eevp::control::SoaRoaDetectState>(*msg);   // fieldValue = *msg
+//         // mLogger.LogInfo() << "cbSoaRctnStatus : " << fieldValue;
+//         if (listener != nullptr) {
+//             listener->notifyRoaDetectState(fieldValue);
+//         }
+//     });
+// }
 
 } /// namespace roa
 } /// namespace control

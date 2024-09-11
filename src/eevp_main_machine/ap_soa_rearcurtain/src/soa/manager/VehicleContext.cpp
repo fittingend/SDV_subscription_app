@@ -29,14 +29,14 @@ VehicleContext::VehicleContext()
     this->mSpeedValid = false;
     this->mVehicleSpeed = 0;
     this->mGearState = eGearState_P;
-    this->mRCPower = ePowerState_Off;
-    this->mRCSwitch = eRCtnSwitch_Unknown;
-    this->mRCState = eRCtnState_Unknown;
-    this->mRCLastUserSwitch = eRCtnSwitch_Unknown;
-    this->mMlmPower = ePowerState_Off;
-    this->mMlmColorIndex = 0;
-    this->mMlmBrightness = 0;
-    this->mMlmMoodMode = eMlmMoodMode_CareMood;
+    this->mRctnPower = ePowerState_Off;
+    this->mRctnSwitch = eRCtnSwitch_Off;
+    this->mRctnState = eRCtnState_FullyOpened;
+    this->mMotorMoving = false;
+    this->mRctnInputPosition = 0;
+    this->mRctnZoneInputPosition = 4;
+    this->mRctnCurrPosition = 0;
+    this->mIsNormal = eDeviceNormal_Ok;
 }
 
 VehicleContext::~VehicleContext()
@@ -98,15 +98,6 @@ int VehicleContext::Load()
     }
 
     // Implement the load function using ifs:
-    RCtnSwitch_e rcLastUserSwitch;
-    ifs.read(reinterpret_cast<char *>(&rcLastUserSwitch), sizeof(rcLastUserSwitch));
-    this->mRCLastUserSwitch = rcLastUserSwitch;
-
-    RCtnState_e rcLastState;
-    ifs.read(reinterpret_cast<char *>(&rcLastState), sizeof(rcLastState));
-    this->mRCLastState = rcLastState;
-
-
 
     ifs.close();
     return 0;
@@ -144,12 +135,6 @@ int VehicleContext::Save()
     ofs.write(reinterpret_cast<const char *>(&version), sizeof(version));
 
     // Implement the load function using ifs:
-    RCtnSwitch_e rcLastUserSwitch = this->mRCLastUserSwitch;
-    ofs.write(reinterpret_cast<char *>(&rcLastUserSwitch), sizeof(rcLastUserSwitch));
-
-    RCtnState_e rcLastState = this->mRCLastState;
-    ofs.write(reinterpret_cast<char *>(&rcLastState), sizeof(rcLastState));
-
 
     ofs.close();
     return 0;
@@ -166,11 +151,13 @@ std::string VehicleContext::DebugInfo()
 {
     std::ostringstream ss;
 
+#if 0
     ss << "VehicleContext:\r\n";
     ss << "- Speed : " << this->mVehicleSpeed << ", valid: " << (this->mSpeedValid ? "True" : "False") << "\r\n";
     ss << "- Gear  : " << getStringEnum_GearState_e(this->mGearState) << "\r\n";
     ss << "- Rear Curtain : Power(" << getStringEnum_PowerState_e(this->mRCPower) << "), Switch(" << getStringEnum_RCtnSwitch_e(this->mRCSwitch) << "), State(" << getStringEnum_RCtnState_e(this->mRCState) << ")\r\n";
     ss << "- Moodlamp : Power(" << getStringEnum_PowerState_e(this->mMlmPower) << "), ColorIndex(" << this->mMlmColorIndex << "), Brightness(" << this->mMlmBrightness << "), Mode(" << getStringEnum_MlmMoodMode_e(this->mMlmMoodMode) << ")\r\n";
+#endif
 
     return ss.str();
 }

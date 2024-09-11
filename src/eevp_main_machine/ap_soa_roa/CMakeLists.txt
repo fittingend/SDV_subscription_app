@@ -53,8 +53,14 @@ MESSAGE(STATUS "PARA_APP_GEN_INCLUDE_DIR : ${PARA_APP_GEN_INCLUDE_DIR}")
 SET(SRC
     src/soa/api/PaconSetting.cpp
     src/soa/api/SoaRoaSkeletonImpl.cpp
+    src/soa/api/Zone2RoaProxyImpl.cpp
+    src/soa/api/Api_SoaRoa.cpp
+    src/soa/api/Api_Zone2Roa.cpp
+    src/soa/debug/CmdLists_ZoneApi.cpp
+    src/soa/debug/CmdMgr.cpp
     src/soa/debug/Debug_DataType2String.cpp
     src/soa/debug/Log.cpp
+    src/soa/debug/TelnetServer.cpp
     src/soa/devices/DevicesInit.cpp
     src/soa/manager/ManagerBase.cpp
     src/soa/manager/VehicleContext.cpp

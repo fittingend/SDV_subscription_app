@@ -3,6 +3,19 @@
 #include <string>
 #include <Debug_DataType2String.hpp>
 
+std::string getStringEnum_DeviceNormal_e(DeviceNormal_e val)
+{
+    switch (val)
+    {
+    case eDeviceNormal_Ok:          return "OK";
+    case eDeviceNormal_Abnormal:    return "ABNORMAL";
+    default:
+        break;
+    }
+
+    return "UNKNOWN";
+}
+
 std::string getStringEnum_PowerState_e(PowerState_e val)
 {
     switch (val)
@@ -10,75 +23,53 @@ std::string getStringEnum_PowerState_e(PowerState_e val)
     case ePowerState_On:    return "ON";
     case ePowerState_Off:   return "OFF";
     case ePowerState_Error: return "Error";
-    default: break;
+    default:
+        break;
     }
 
     return "UNKNOWN";
 }
 
-std::string getStringEnum_GearState_e(GearState_e val)
+std::string getStringEnum_RoaRunningState_e(RoaRunningState_e val)
 {
     switch (val)
     {
-    case eGearState_P:      return "P";
-    case eGearState_D:      return "D";
-    case eGearState_N:      return "N";
-    case eGearState_R:      return "R";
-    case eGearState_Fault:  return "Fault";
-    default:                break;
+    case eRoaRunningState_Off:      return "OFF";
+    case eRoaRunningState_On:       return "ON";
+    case eRoaRunningState_Error:    return "Error";
+    default:
+        break;
     }
 
     return "UNKNOWN";
 }
 
-std::string getStringEnum_RCtnSwitch_e(RCtnSwitch_e val)
+std::string getStringEnum_RoaMode_e(RoaMode_e val)
 {
     switch (val)
     {
-    case eRCtnSwitch_Off:   return "OFF";
-    case eRCtnSwitch_OpenOn:    return "OPEN_ON";
-    case eRCtnSwitch_CloseOn:   return "CLOSE_ON";
-    default:                    break;
+    case eRoaMode_Off:          return "OFF";
+    case eRoaMode_Normal:       return "Normal";
+    case eRoaMode_Advanced:     return "Advanced";
+    default:
+        break;
     }
 
     return "UNKNOWN";
-
 }
 
-std::string getStringEnum_RCtnState_e(RCtnState_e val)
+std::string getStringEnum_RoaSensorError_e(RoaSensorError_e val)
 {
     switch (val)
     {
-    case eRCtnState_FullyOpened:    return "FullyOpened";
-    case eRCtnState_FullyClosed:    return "FullyClosed";
-    case eRCtnState_PartlyOpened:   return "PartlyOpened";
-    case eRCtnState_Opening:        return "Opening";
-    case eRCtnState_Closing:        return "Closing";
-    case eRCtnState_Unknown:        return "Unknow";
-    case eRCtnState_Error:          return "Error";
-
-    default:                        break;
+    case eRoaSensorError_Ok:         return "OK";
+    case eRoaSensorError_Snsr:       return "SNSR";
+    case eRoaSensorError_Blckge:     return "BLCKGE";
+    default:
+        break;
     }
 
     return "UNKNOWN";
+
 }
-
-std::string getStringEnum_MlmMoodMode_e(MlmMoodMode_e val)
-{
-    switch (val)
-    {
-    case eMlmMoodMode_CareMood:         return "CareMood";
-    case eMlmMoodMode_ComfortMood:      return "ComfortMood";
-    case eMlmMoodMode_DelightMood:      return "DelightMood";
-    case eMlmMoodMode_MoodTherapy:      return "MoodTherapy";
-    case eMlmMoodMode_VitalityMood:     return "VitalityMood";
-
-    default:                        break;
-    }
-
-    return "UNKNOWN";
-}
-
-
-
 

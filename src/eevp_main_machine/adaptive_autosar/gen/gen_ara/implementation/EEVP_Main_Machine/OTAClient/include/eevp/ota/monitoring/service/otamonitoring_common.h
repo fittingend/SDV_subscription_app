@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : otamonitoring_common.h
 /// SERVICE INTERFACE NAME            : OtaMonitoring
-/// GENERATED DATE                    : 2024-07-19 07:35:27
+/// GENERATED DATE                    : 2024-08-14 14:33:41
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

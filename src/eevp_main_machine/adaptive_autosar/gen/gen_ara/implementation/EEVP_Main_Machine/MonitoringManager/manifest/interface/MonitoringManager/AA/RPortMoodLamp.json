@@ -10,7 +10,7 @@
     "instance-id" : "ANY",
     "major-version" : "1",
     "minor-version" : "ANY",
-    "client-id" : "789",
+    "client-id" : "772",
     "events" : [
     ],
     "methods" : [
@@ -63,6 +63,31 @@
             },
             "notifier" : {
                 "event-id" : "16385",
+                "transport" : "udp",
+                "max-segment-len" : "0",
+                "separation-time" : "0.0"
+            }
+        },
+        {
+            "name" : "soaMlmSwVersion",
+            "getter" : {
+                "method-id" : "2",
+                "transport" : "udp",
+                "req-max-segment-len" : "0",
+                "req-separation-time" : "0.0",
+                "resp-max-segment-len" : "0",
+                "resp-separation-time" : "0.0"
+            },
+            "setter" : {
+                "method-id" : "0",
+                "transport" : "undefined",
+                "req-max-segment-len" : "0",
+                "req-separation-time" : "0.0",
+                "resp-max-segment-len" : "0",
+                "resp-separation-time" : "0.0"
+            },
+            "notifier" : {
+                "event-id" : "16386",
                 "transport" : "udp",
                 "max-segment-len" : "0",
                 "separation-time" : "0.0"

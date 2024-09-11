@@ -19,6 +19,7 @@ public:
     ~SoaRcurtainSkeletonImpl();
 
     ara::core::Future<SoaRcurtainSkeleton::RequestRearCurtainOperationOutput> RequestRearCurtainOperation(const eevp::control::SoaRctnMotorDir& motorDir) override;
+    void RequestRearCurtainPosition(const std::uint8_t& posPercentage) override;
 
     void SetSoaRctnStatus(eevp::control::SoaRctnStatus status);
 
@@ -28,11 +29,13 @@ public:
     }
 private:
     /// @brief Field
-    fields::soaRctnStatus::FieldType mField;
+    fields::soaRctnStatus::FieldType mStatus;
+    fields::soaRctnSwVersion::FieldType mSwVersion;
 
     ara::log::Logger& mLogger;
 
     ara::core::Future<fields::soaRctnStatus::FieldType> soaRctnStatusGetter();
+    ara::core::Future<fields::soaRctnSwVersion::FieldType> soaRctnSwVersionGetter();
 };
 } // namespace control
 } // namespace eevp

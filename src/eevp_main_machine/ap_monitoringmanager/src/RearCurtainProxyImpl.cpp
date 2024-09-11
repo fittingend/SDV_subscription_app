@@ -81,8 +81,20 @@ RearCurtainProxyImpl::requestRearCurtainOperation(const eevp::control::SoaRctnMo
 
 }
 
+void
+RearCurtainProxyImpl::requestRearCurtainPosition(const std::uint8_t& posPercentage) {
+    mLogger.LogInfo() << __func__;
+
+    if (mProxy == nullptr) {
+        return;
+    }
+
+    mProxy->RequestRearCurtainPosition(posPercentage);
+    return;
+}
+
 bool
-RearCurtainProxyImpl::getterSoaRctnStatus(eevp::control::SoaRctnStatus& soaRctnStatus) {
+RearCurtainProxyImpl::getSoaRctnStatus(eevp::control::SoaRctnStatus& soaRctnStatus) {
     mLogger.LogInfo() << __func__;
 
     if (mProxy == nullptr) {
@@ -101,6 +113,31 @@ RearCurtainProxyImpl::getterSoaRctnStatus(eevp::control::SoaRctnStatus& soaRctnS
         }
     } else {
         mLogger.LogError() << "Timeout to call soaRctnStatus's Getter";
+    }
+
+    return false;
+}
+
+bool
+RearCurtainProxyImpl::getSoaRctnSwVersion(std::uint8_t& soaRctnSwVersion) {
+    mLogger.LogInfo() << __func__;
+
+    if (mProxy == nullptr) {
+        return false;
+    }
+
+    auto future = mProxy->soaRctnSwVersion.Get();
+    auto status = future.wait_for(std::chrono::milliseconds(10));
+    if (status == future_status::ready) {
+        auto result = future.GetResult();
+        if (result.HasValue()) {
+            soaRctnSwVersion = static_cast<std::uint8_t>(result.Value());
+            return true;
+        } else {
+            mLogger.LogError() << __func__ << ": Return error with " << result.Error().Message();
+        }
+    } else {
+        mLogger.LogError() << "Timeout to call soaRctnSwVersion's Getter";
     }
 
     return false;
@@ -131,7 +168,8 @@ RearCurtainProxyImpl::FindServiceCallback(
     mProxy = std::make_shared<proxy::SoaRcurtainProxy>(container.at(0));
 
     SubscribeEvent();
-    SubscribeField();
+    SubscribeRctnStatus();
+    SubscribeRctnSwVersion();
 
     cvHandle.notify_one();
 }
@@ -143,7 +181,7 @@ RearCurtainProxyImpl::SubscribeEvent() {
 }
 
 void
-RearCurtainProxyImpl::SubscribeField() {
+RearCurtainProxyImpl::SubscribeRctnStatus() {
     mLogger.LogInfo() << __func__;
 
     if (mProxy == nullptr) {
@@ -166,6 +204,29 @@ RearCurtainProxyImpl::SubscribeField() {
 }
 
 void
+RearCurtainProxyImpl::SubscribeRctnSwVersion() {
+    mLogger.LogInfo() << __func__;
+
+    if (mProxy == nullptr) {
+        return;
+    }
+
+    if (mProxy->soaRctnSwVersion.GetSubscriptionState() != ara::com::SubscriptionState::kNotSubscribed) {
+        return;
+    }
+
+    auto result = mProxy->soaRctnSwVersion.SetReceiveHandler(std::bind(&RearCurtainProxyImpl::cbSoaRctnSwVersion, this));
+    if (!result.HasValue()) {
+        mLogger.LogWarn() << "Failed to SetReceiveHandler for cbSoaRctnSwVersion with " << result.Error().Message();
+    }
+
+    result = mProxy->soaRctnSwVersion.Subscribe(10);
+    if (!result.HasValue()) {
+        mLogger.LogWarn() << "Failed to Subscribe for soaRctnSwVersion with " << result.Error().Message();
+    }
+}
+
+void
 RearCurtainProxyImpl::UnsubscribeEvent() {
     if (mProxy == nullptr) {
         return;
@@ -179,13 +240,13 @@ RearCurtainProxyImpl::UnsubscribeField() {
     }
 
     mProxy->soaRctnStatus.Unsubscribe();
+    mProxy->soaRctnSwVersion.Unsubscribe();
 }
 
 void
 RearCurtainProxyImpl::cbSoaRctnStatus() {
     mLogger.LogInfo() << "cbSoaRctnStatus";
 
-    eevp::control::SoaRctnStatus fieldValue;
 
     if (mProxy == nullptr) {
         return;
@@ -196,10 +257,31 @@ RearCurtainProxyImpl::cbSoaRctnStatus() {
     }
 
     mProxy->soaRctnStatus.GetNewSamples([&](auto msg) {
-        fieldValue = static_cast<eevp::control::SoaRctnStatus>(*msg);   // fieldValue = *msg
-        // mLogger.LogInfo() << "cbSoaRctnStatus : " << fieldValue;
+        eevp::control::SoaRctnStatus fieldValue = static_cast<eevp::control::SoaRctnStatus>(*msg);   // fieldValue = *msg
+        //mLogger.LogInfo() << "cbSoaRctnStatus : " << fieldValue;
         if (listener != nullptr) {
             listener->notifySoaRctnStatus(fieldValue);
+        }
+    });
+}
+
+void
+RearCurtainProxyImpl::cbSoaRctnSwVersion() {
+    mLogger.LogInfo() << "cbSoaRctnSwVersion";
+
+    if (mProxy == nullptr) {
+        return;
+    }
+
+    if (mProxy->soaRctnStatus.GetSubscriptionState() != ara::com::SubscriptionState::kSubscribed) {
+        return;
+    }
+
+    mProxy->soaRctnSwVersion.GetNewSamples([&](auto msg) {
+        std::uint8_t fieldValue = static_cast<std::uint8_t>(*msg);   // fieldValue = *msg
+        mLogger.LogInfo() << "cbSoaRctnSwVersion : " << fieldValue;
+        if (listener != nullptr) {
+            listener->notifySoaRctnSwVersion(fieldValue);
         }
     });
 }

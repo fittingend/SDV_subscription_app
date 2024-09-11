@@ -32,43 +32,7 @@ static ara::log::Logger& logger()
     return logger;
 }
 
-soa::debug::Log &LOG_FATAL()
-{
-    static soa::debug::Log *log = new soa::debug::Log(soa::debug::eLOG_FATAL, "FATAL", true);
-    return *log;
-}
-
-soa::debug::Log &LOG_ERROR()
-{
-    static soa::debug::Log *log = new soa::debug::Log(soa::debug::eLOG_ERROR, "ERROR", true);
-    return *log;
-}
-
-soa::debug::Log &LOG_WARNING()
-{
-    static soa::debug::Log *log = new soa::debug::Log(soa::debug::eLOG_WARNING, "WARN", true);
-    return *log;
-}
-
-soa::debug::Log &LOG_INFO()
-{
-    static soa::debug::Log *log = new soa::debug::Log(soa::debug::eLOG_INFO, "INFO", false);
-    return *log;
-}
-
-soa::debug::Log &LOG_DEBUG()
-{
-    static soa::debug::Log *log = new soa::debug::Log(soa::debug::eLOG_DEBUG, "DEBUG", false);
-    return *log;
-}
-
-soa::debug::Log &LOG_VERBOSE()
-{
-    static soa::debug::Log *log = new soa::debug::Log(soa::debug::eLOG_VERBOSE, "VERBOSE", true);
-    return *log;
-}
-
-extern std::string LOG_POS(const char *path, const uint32_t line, const char *func)
+static std::string logHeader(const char *path, const uint32_t line, const char *func)
 {
     std::stringstream ss;
     std::string path_str(path);
@@ -78,6 +42,55 @@ extern std::string LOG_POS(const char *path, const uint32_t line, const char *fu
     ss << "[" << file << ":" << line << "|" << func << "] ";
     return ss.str();
 }
+
+soa::debug::Log &LOG_FATAL(const char *path, const uint32_t line, const char *func)
+{
+    static soa::debug::Log *log = new soa::debug::Log(soa::debug::eLOG_FATAL, "FATAL", true);
+    std::string header = logHeader(path, line, func);
+    log->setLogHeader(header);
+    return *log;
+}
+
+soa::debug::Log &LOG_ERROR(const char *path, const uint32_t line, const char *func)
+{
+    static soa::debug::Log *log = new soa::debug::Log(soa::debug::eLOG_ERROR, "ERROR", true);
+    std::string header = logHeader(path, line, func);
+    log->setLogHeader(header);
+    return *log;
+}
+
+soa::debug::Log &LOG_WARNING(const char *path, const uint32_t line, const char *func)
+{
+    static soa::debug::Log *log = new soa::debug::Log(soa::debug::eLOG_WARNING, "WARN", true);
+    std::string header = logHeader(path, line, func);
+    log->setLogHeader(header);
+    return *log;
+}
+
+soa::debug::Log &LOG_INFO(const char *path, const uint32_t line, const char *func)
+{
+    static soa::debug::Log *log = new soa::debug::Log(soa::debug::eLOG_INFO, "INFO", true);
+    std::string header = logHeader(path, line, func);
+    log->setLogHeader(header);
+    return *log;
+}
+
+soa::debug::Log &LOG_DEBUG(const char *path, const uint32_t line, const char *func)
+{
+    static soa::debug::Log *log = new soa::debug::Log(soa::debug::eLOG_DEBUG, "DEBUG", false);
+    std::string header = logHeader(path, line, func);
+    log->setLogHeader(header);
+    return *log;
+}
+
+soa::debug::Log &LOG_VERBOSE(const char *path, const uint32_t line, const char *func)
+{
+    static soa::debug::Log *log = new soa::debug::Log(soa::debug::eLOG_VERBOSE, "VERBOSE", false);
+    std::string header = logHeader(path, line, func);
+    log->setLogHeader(header);
+    return *log;
+}
+
 
 namespace soa
 {
@@ -221,24 +234,9 @@ Log & Log::operator<<(std::string str)
     return *this;
 }
 
-Log & Log::operator<<(std::string &str)
+void Log::setLogHeader(std::string header)
 {
-    std::vector<std::string> strVector = split(str, '\n');
-    int length = strVector.size();
-    int i = 0;
-    for (std::string strItem: strVector) {
-        if (strItem != "")
-        {
-            this->mStream << strItem;
-        }
-
-        i++;
-        if (i < length) {
-            this->flush();
-        }
-    }
-
-    return *this;
+    this->mLogHeader = header;
 }
 
 void Log::flush()
@@ -253,42 +251,41 @@ void Log::flush()
         case soa::debug::eLOG_FATAL:
         case soa::debug::eLOG_ERROR:
         case soa::debug::eLOG_WARNING:
-            std::cerr << "[" << this->mLabel << "] " << string << '\n';
+            std::cerr << "[" << this->mLabel << "] " << this->mLogHeader << string << '\n';
             break;
         case soa::debug::eLOG_INFO:
         case soa::debug::eLOG_DEBUG:
         case soa::debug::eLOG_VERBOSE:
         default:
-            std::cout << "[" << this->mLabel << "] " << string << '\n';
+            std::cout << "[" << this->mLabel << "] " << this->mLogHeader << string << '\n';
             break;
         }
     }
-
 #endif
 
 #if defined(USL_LOG_ARA_LOG)
         switch (this->mLevel)
         {
         case soa::debug::eLOG_FATAL:
-            logger().LogFatal() << string.c_str();
+            logger().LogFatal() << this->mLogHeader.c_str() << string.c_str() << '\n';
             break;
         case soa::debug::eLOG_ERROR:
-            logger().LogError() << string.c_str();
+            logger().LogError() << this->mLogHeader.c_str() << string.c_str() << '\n';
             break;
         case soa::debug::eLOG_WARNING:
-            logger().LogWarn() << string.c_str();
+            logger().LogWarn() << this->mLogHeader.c_str() << string.c_str() << '\n';
             break;
         case soa::debug::eLOG_INFO:
-            logger().LogInfo() << string.c_str();
+            logger().LogInfo() << this->mLogHeader.c_str() << string.c_str() << '\n';
             break;
         case soa::debug::eLOG_DEBUG:
-            logger().LogDebug() << string.c_str();
+            logger().LogDebug() << this->mLogHeader.c_str() << string.c_str() << '\n';
             break;
         case soa::debug::eLOG_VERBOSE:
-            logger().LogVerbose() << string.c_str();
+            logger().LogVerbose() << this->mLogHeader.c_str() << string.c_str() << '\n';
             break;
         default:
-            logger().LogDebug() << string.c_str();
+            logger().LogDebug() << this->mLogHeader.c_str() << string.c_str() << '\n';
             break;
         }
 #endif

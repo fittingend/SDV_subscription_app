@@ -438,6 +438,30 @@
                     <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
                   </TYPE-REFERENCE>
                 </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="64e961ae-b25b-4db2-9eae-86f24db688ea">
+                  <SHORT-NAME>AliveCount</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="5c2acc41-0d85-4da8-806c-a717fa162043">
+                  <SHORT-NAME>Version</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="431cc7c0-43f9-4325-a87e-b2e068fe8032">
+                  <SHORT-NAME>LowspeedState</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="5313b2fb-5be3-4230-9b27-875b42d1368c">
+                  <SHORT-NAME>InitComplete</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
               </SUB-ELEMENTS>
             </STD-CPP-IMPLEMENTATION-DATA-TYPE>
           </ELEMENTS>

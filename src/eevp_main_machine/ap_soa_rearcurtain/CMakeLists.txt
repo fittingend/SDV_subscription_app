@@ -51,17 +51,12 @@ INCLUDE_DIRECTORIES(${PARA_INC_DIR})
 MESSAGE(STATUS "PARA_APP_GEN_INCLUDE_DIR : ${PARA_APP_GEN_INCLUDE_DIR}")
 
 SET(SRC
-    src/soa/api/ApiRcurtain_Local.cpp
+    src/soa/api/Api_SoaRcurtain.cpp
+    src/soa/api/Api_Zone3Rcurtain.cpp
     src/soa/api/PaconSetting.cpp
     src/soa/api/SoaRcurtainSkeletonImpl.cpp
-    src/soa/api/UdpParser.cpp
-    src/soa/api/UdpServer.cpp
-    src/soa/api/Zone1Api_Local.cpp
-    src/soa/api/Zone3Api_Local.cpp
-    src/soa/debug/CmdLists_Rcurtain.cpp
-    src/soa/debug/CmdLists_UdpParser.cpp
-    src/soa/debug/CmdLists_UdpServer.cpp
-    src/soa/debug/CmdLists_VehicleContext.cpp
+    src/soa/api/Zone3RcurtainProxyImpl.cpp
+    src/soa/debug/CmdLists_ZoneApi.cpp
     src/soa/debug/CmdMgr.cpp
     src/soa/debug/Debug_DataType2String.cpp
     src/soa/debug/Log.cpp

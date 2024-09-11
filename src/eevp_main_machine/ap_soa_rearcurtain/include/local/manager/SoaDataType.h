@@ -4,6 +4,13 @@
 #include <Common.h>
 
 typedef enum {
+    eDeviceNormal_Ok,
+    eDeviceNormal_Abnormal,
+
+    eDeviceNormal_EndOfCase
+} DeviceNormal_e;
+
+typedef enum {
     ePowerState_Off,
     ePowerState_On,
     ePowerState_Error,
@@ -42,14 +49,4 @@ typedef enum {
 
     eRCtnState_EndOfCase
 } RCtnState_e;
-
-typedef enum {
-    eMlmMoodMode_CareMood,
-    eMlmMoodMode_ComfortMood,
-    eMlmMoodMode_DelightMood,
-    eMlmMoodMode_MoodTherapy,
-    eMlmMoodMode_VitalityMood,
-
-    eMlmMoodMode_EndOfCase
-} MlmMoodMode_e;
 #endif

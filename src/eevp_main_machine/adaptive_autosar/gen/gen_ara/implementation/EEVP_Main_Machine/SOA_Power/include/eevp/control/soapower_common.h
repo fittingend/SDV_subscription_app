@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : soapower_common.h
 /// SERVICE INTERFACE NAME            : SoaPower
-/// GENERATED DATE                    : 2024-07-19 07:35:30
+/// GENERATED DATE                    : 2024-08-14 14:33:44
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -30,14 +30,7 @@
 /// INCLUSION OF CPP IMPLEMENTATION DATA TYPE HEADER FILES
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @uptrace{SWS_CM_10372}
-#include "eevp/control/impl_type_soapwrzone1curr.h"
-#include "eevp/control/impl_type_soapwrzone1power.h"
-#include "eevp/control/impl_type_soapwrzone2curr.h"
-#include "eevp/control/impl_type_soapwrzone2power.h"
-#include "eevp/control/impl_type_soapwrzone3curr.h"
-#include "eevp/control/impl_type_soapwrzone3power.h"
-#include "eevp/control/impl_type_soapwrzone4curr.h"
-#include "eevp/control/impl_type_soapwrzone4power.h"
+#include "eevp/control/impl_type_soadeviceisnormal.h"
 /// @uptrace{SWS_CM_01005}
 namespace eevp
 {

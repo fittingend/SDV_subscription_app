@@ -3,8 +3,6 @@
 #include "ara/exec/execution_client.h"
 #include <ctime>
 
-// #define demo
-
 namespace eevp {
 namespace monitoring {
 
@@ -71,6 +69,28 @@ public:
         return monitoringManager->resetUcmTest();
     }
 
+    /// MoodLamp
+    void RequestMlmSetRgbColor(const std::uint8_t& colorTableIndex) {
+        return monitoringManager->RequestMlmSetRgbColor(colorTableIndex);
+    }
+
+    /// RearCurtain
+    void RequestRearCurtainOperation(const eevp::control::SoaRctnMotorDir& motorDir) {
+        return monitoringManager->RequestRearCurtainOperation(motorDir);
+    }
+    void RequestRearCurtainPosition(const std::uint8_t& posPercentage) {
+        return monitoringManager->RequestRearCurtainPosition(posPercentage);
+    }
+
+    /// Wiper
+    void requestWiperOperation(const eevp::control::SoaWiperMode& mode) {
+        return monitoringManager->requestWiperOperation(mode);
+    }
+
+    void setWiperAutoSpeed(const bool& isAutoSpeed) {
+        return monitoringManager->setWiperAutoSpeed(isAutoSpeed);
+    }
+
 private:
     MonitoringManager* monitoringManager;
 };
@@ -119,8 +139,116 @@ public:
         return monitoringManager->notifySoaMlmStatus(fieldValue);
     }
 
-    void getSoaMlmStatus() {
-        return monitoringManager->getSoaMlmStatus();
+    void notifySoaMlmSwVersion(const std::uint8_t& fieldValue) {
+        return monitoringManager->notifySoaMlmSwVersion(fieldValue);
+    }
+
+    void getSoaMlmStatus(eevp::control::SoaMlmStatus& fieldValue) {
+        return monitoringManager->getSoaMlmStatus(fieldValue);
+    }
+
+    void getSoaMlmSwVersion(std::uint8_t& fieldValue) {
+        return monitoringManager->getSoaMlmSwVersion(fieldValue);
+    }
+
+private:
+    MonitoringManager* monitoringManager;
+};
+
+class PdwListener : public eevp::pdw::IPdwListener {
+public :
+    PdwListener(MonitoringManager* mgr) : monitoringManager(mgr) {}
+
+    void notifyDistanceLevel(const eevp::pdw::type::DistanceLevel& dLevel){
+        return monitoringManager->notifyDistanceLevel(dLevel);
+    }
+
+private:
+    MonitoringManager* monitoringManager;
+};
+
+class WiperListener : public eevp::control::wiper::IWiperListener {
+public:
+    WiperListener(MonitoringManager* mgr) : monitoringManager(mgr) {}
+
+    void notifySoaWiperDeviceNormal(const eevp::control::SoaDeviceIsNormal& deviceIsNormal) {
+        return monitoringManager->notifySoaWiperDeviceNormal(deviceIsNormal);
+    }
+
+    void notifySoaWiperStatus(const eevp::control::SoaWiperStatus& wiperStatusValue) {
+        return monitoringManager->notifySoaWiperStatus(wiperStatusValue);
+    }
+
+    void notifySoaWiperSwVersion(const std::uint8_t& wiperSwVersion) {
+        return monitoringManager->notifySoaWiperSwVersion(wiperSwVersion);
+    }
+
+    void getSoaWiperDeviceNormal(eevp::control::SoaDeviceIsNormal& deviceIsNormal) {
+        return monitoringManager->getSoaWiperDeviceNormal(deviceIsNormal);
+    }
+
+    void getSoaWiperStatus(eevp::control::SoaWiperStatus& wiperStatusValue) {
+        return monitoringManager->getSoaWiperStatus(wiperStatusValue);
+    }
+
+    void getSoaWiperSwVersion(std::uint8_t& wiperSwVersion) {
+        return monitoringManager->getSoaWiperSwVersion(wiperSwVersion);
+    }
+
+    void requestWiperOperation(const eevp::control::SoaWiperMode& wiperOperationMode) {
+        return monitoringManager->requestWiperOperation(wiperOperationMode);
+    }
+
+    void setWiperAutoSpeed(const bool& isAutoSpeed) {
+        return monitoringManager->setWiperAutoSpeed(isAutoSpeed);
+    }
+
+private:
+    MonitoringManager* monitoringManager;
+};
+
+class RoaListener : public eevp::control::roa::IRoaListener {
+public:
+    RoaListener(MonitoringManager* mgr) : monitoringManager(mgr) {}
+
+    void notifySoaRoaDeviceNormal(const eevp::control::SoaDeviceIsNormal& deviceIsNormal) {
+        return monitoringManager->notifySoaRoaDeviceNormal(deviceIsNormal);
+    }
+
+    void notifySoaRoaSwVersion(const std::uint8_t& powerSwVersion) {
+        return monitoringManager->notifySoaRoaSwVersion(powerSwVersion);
+    }
+
+    void getSoaRoaDeviceNormal(eevp::control::SoaDeviceIsNormal& deviceIsNormal) {
+        return monitoringManager->getSoaRoaDeviceNormal(deviceIsNormal);
+    }
+
+    void getSoaRoaSwVersion(std::uint8_t& powerSwVersion) {
+        return monitoringManager->getSoaRoaSwVersion(powerSwVersion);
+    }
+
+private:
+    MonitoringManager* monitoringManager;
+};
+
+class DrvseatListener : public eevp::control::drvseat::IDrvseatListener {
+public:
+    DrvseatListener(MonitoringManager* mgr) : monitoringManager(mgr) {}
+
+    void notifySoaDrvseatDeviceNormal(const eevp::control::SoaDeviceIsNormal& deviceIsNormal) {
+        return monitoringManager->notifySoaDrvseatDeviceNormal(deviceIsNormal);
+    }
+
+    void notifySoaDrvseatSwVersion(const std::uint8_t& powerSwVersion) {
+        return monitoringManager->notifySoaDrvseatSwVersion(powerSwVersion);
+    }
+
+    void getSoaDrvseatDeviceNormal(eevp::control::SoaDeviceIsNormal& deviceIsNormal) {
+        return monitoringManager->getSoaDrvseatDeviceNormal(deviceIsNormal);
+    }
+
+    void getSoaDrvseatSwVersion(std::uint8_t& powerSwVersion) {
+        return monitoringManager->getSoaDrvseatSwVersion(powerSwVersion);
     }
 
 private:
@@ -135,21 +263,59 @@ public:
         return monitoringManager->notifySoaRctnStatus(fieldValue);
     }
 
-    void getSoaRctnStatus() {
-        return monitoringManager->getSoaRctnStatus();
+    void notifySoaRctnSwVersion(const std::uint8_t& fieldValue) {
+        return monitoringManager->notifySoaRctnSwVersion(fieldValue);
+    }
+
+    void getSoaRctnStatus(eevp::control::SoaRctnStatus& fieldValue) {
+        return monitoringManager->getSoaRctnStatus(fieldValue);
+    }
+
+    void getSoaRctnSwVersion(std::uint8_t& fieldValue) {
+        return monitoringManager->getSoaRctnSwVersion(fieldValue);
     }
 
 private:
     MonitoringManager* monitoringManager;
 };
 
+class PowerListener : public eevp::control::power::IPowerListener {
+public:
+    PowerListener(MonitoringManager* mgr) : monitoringManager(mgr) {}
+
+    void notifySoaPowerDeviceNormal(const eevp::control::SoaDeviceIsNormal& deviceIsNormal) {
+        return monitoringManager->notifySoaPowerDeviceNormal(deviceIsNormal);
+    }
+
+    void notifySoaPowerSwVersion(const std::uint8_t& powerSwVersion) {
+        return monitoringManager->notifySoaPowerSwVersion(powerSwVersion);
+    }
+
+    void getSoaPowerDeviceNormal(eevp::control::SoaDeviceIsNormal& deviceIsNormal) {
+        return monitoringManager->getSoaPowerDeviceNormal(deviceIsNormal);
+    }
+
+    void getSoaPowerSwVersion(std::uint8_t& powerSwVersion) {
+        return monitoringManager->getSoaPowerSwVersion(powerSwVersion);
+    }
+
+private:
+    MonitoringManager* monitoringManager;
+};
+
+
 MonitoringManager::MonitoringManager() :
         mLogger(ara::log::CreateLogger("MONM", "MONM", ara::log::LogLevel::kInfo)),
         stateManagerProxyImpl{nullptr},
         otaMonitoringProxyImpl{nullptr},
         monitoringManagementSkeletonImpl{nullptr},
+        moodLampProxyImpl{nullptr},
+        pdwProxyImpl{nullptr},
+        wiperProxyImpl{nullptr},
+        roaProxyImpl{nullptr},
+        drvseatProxyImpl{nullptr},
         rearCurtainProxyImpl{nullptr},
-        moodLampProxyImpl{nullptr} {
+        powerProxyImpl{nullptr} {
     mLogger.LogInfo() << __func__;
     // std::signal(SIGINT, SignalHandler);
     std::signal(SIGTERM, SignalHandler);
@@ -178,19 +344,6 @@ MonitoringManager::MonitoringManager() :
         {"app08",       {"app08"}},
         {"app09",       {"app09"}},
         {"app10",       {"app10",       "NORMAL", "OFF", "0"}}
-    };
-
-    controllerStatusMap = {
-        {"app01", eevp::monitoring::type::ControllerServiceStatus::NORMAL},
-        {"app02", eevp::monitoring::type::ControllerServiceStatus::ABNORMAL},
-        {"app03", eevp::monitoring::type::ControllerServiceStatus::ABNORMAL},
-        {"app04", eevp::monitoring::type::ControllerServiceStatus::NORMAL},
-        {"app05", eevp::monitoring::type::ControllerServiceStatus::NORMAL},
-        {"app06", eevp::monitoring::type::ControllerServiceStatus::ABNORMAL},
-        {"app07", eevp::monitoring::type::ControllerServiceStatus::NORMAL},
-        {"app08", eevp::monitoring::type::ControllerServiceStatus::ABNORMAL},
-        {"app09", eevp::monitoring::type::ControllerServiceStatus::ABNORMAL},
-        {"app10", eevp::monitoring::type::ControllerServiceStatus::NORMAL}
     };
 }
 
@@ -229,13 +382,31 @@ MonitoringManager::Start() {
         return false;
     }
 
+    if (!startPdwProxy()) {
+        return false;
+    }
+
+    if (!startWiperProxy()) {
+        return false;
+    }
+
+    if (!startRoaProxy()) {
+        return false;
+    }
+
+    if (!startDrvseatProxy()) {
+        return false;
+    }
+
     if (!startRearCurtainProxy()) {
         return false;
     }
 
-    eventProcessingThreadHandle = std::thread(&MonitoringManager::eventProcessingThread, this);
+    if (!startPowerProxy()) {
+        return false;
+    }
 
-    startThirtySecondTask();
+   // startThirtySecondTask();
 
     return true;
 }
@@ -247,35 +418,77 @@ MonitoringManager::Run(int ac, char** av) {
 
     while (mRunning) {
         mLogger.LogInfo() << "MonitoringManager is Running";
+        //test
+        getSoaRoaDetectState();
+        getSoaRoaDetectCount();
+
+        eevp::control::SoaMlmStatus mlmValue;
+        eevp::control::SoaRctnStatus rctnValue;
+        eevp::control::SoaWiperStatus wiperValue;
+
+        eevp::control::SoaDeviceIsNormal dNormal;
+
+        std::uint8_t swVersion;
+        getSoaRctnSwVersion(swVersion);
+        mLogger.LogInfo() << "swVersion is "<<swVersion;
+        eevp::control::SoaRctnMotorDir motorDir;
+
+        if (i % 2 == 0) {
+            mlmValue.colorTableIndex = 0;
+            mlmValue.moodMode = eevp::control::SoaMlmMoodMode::kCARE_MOOD;
+            mlmValue.brightness = 0;
+            mlmValue.isNormal = eevp::control::SoaDeviceIsNormal::kNORMAL;
+
+            rctnValue.errorState = eevp::control::SoaErrorState::kOK;
+            rctnValue.curMotorDirection = eevp::control::SoaRctnMotorDir::kSTOP;
+            rctnValue.curtainState = eevp::control::SoaRctnState::kFULLY_UP;
+            rctnValue.isNormal = eevp::control::SoaDeviceIsNormal::kNORMAL;
+
+            wiperValue.isAutoMode = true;
+            wiperValue.mode = eevp::control::SoaWiperMode::kMIST;
+            dNormal = eevp::control::SoaDeviceIsNormal::kNORMAL;
+
+            motorDir = eevp::control::SoaRctnMotorDir::kSTOP;
+
+            swVersion = 0;
+        } else {
+            mlmValue.colorTableIndex = 1;
+            mlmValue.moodMode = eevp::control::SoaMlmMoodMode::kCOMPORT_MOOD;
+            mlmValue.brightness = 1;
+            mlmValue.isNormal = eevp::control::SoaDeviceIsNormal::kABNORMAL;
+
+            rctnValue.errorState = eevp::control::SoaErrorState::kERROR;
+            rctnValue.curMotorDirection = eevp::control::SoaRctnMotorDir::kUP;
+            rctnValue.curtainState = eevp::control::SoaRctnState::kFULLY_DOWN;
+            rctnValue.isNormal = eevp::control::SoaDeviceIsNormal::kABNORMAL;
+
+            wiperValue.isAutoMode = false;
+            wiperValue.mode = eevp::control::SoaWiperMode::kOFF;
+            dNormal = eevp::control::SoaDeviceIsNormal::kABNORMAL;
+
+            motorDir = eevp::control::SoaRctnMotorDir::kUP;
+
+            swVersion = 1;
+        }
 /*
-        for (auto& info : controllerInfoMap) {
-            eevp::monitoring::type::ControllerServiceInfoSpare sendinfo = {info.second.serviceName,
-                                                                           info.second.version,
-                                                                           info.second.lastUpdateTime};
+        notifySoaRctnStatus(rctnValue);
+        notifySoaWiperStatus(wiperValue);
+        notifySoaMlmStatus(mlmValue);
 
-            enqueueEvent(Event(sendinfo));
-        }
+        notifySoaWiperDeviceNormal(dNormal);
 
-        for (auto& info : controllerServiceStatusMap) {
-            eevp::monitoring::type::ControllerServiceStatusSpare sendinfo = {info.second.serviceName,
-                                                                            info.second.serviceStatus,
-                                                                            info.second.serviceEnable,
-                                                                             info.second.serviceControl};
-
-            enqueueEvent(Event(sendinfo));
-        }
-
-        for (auto& info : controllerServiceStatusMap) {
-            eevp::monitoring::type::ControllerServiceErrorEvent sendinfo;
-
-            sendinfo.serviceName = info.second.serviceName;
-            sendinfo.serviceStatus = info.second.serviceStatus;
-            sendinfo.serviceError = "";
-
-            enqueueEvent(Event(sendinfo));
-        }
+        notifySoaRctnSwVersion(swVersion);
+        notifySoaWiperSwVersion(swVersion);
+        notifySoaMlmSwVersion(swVersion);
 */
-	std::this_thread::sleep_for(std::chrono::seconds(5));
+        i++;
+
+        RequestRearCurtainOperation(motorDir);
+        getSoaRctnStatus(rctnValue);
+
+        getSoaMlmStatus(mlmValue);
+
+	    std::this_thread::sleep_for(std::chrono::seconds(5));
     }
 }
 
@@ -285,9 +498,38 @@ MonitoringManager::Terminate() {
     mRunning = false;
 
     stopThirtySecondTask();
-    if (eventProcessingThreadHandle.joinable()) {
-        eventProcessingThreadHandle.join();
+}
+void
+MonitoringManager::getSoaRoaDetectState() {
+    mLogger.LogInfo() << __func__;
+
+    eevp::control::SoaRoaDetectState soaRoaDetectState;
+    roaProxyImpl->getSoaRoaDetectState(soaRoaDetectState);
+
+    if (soaRoaDetectState == eevp::control::SoaRoaDetectState::kEMPTY) {
+    mLogger.LogInfo() << "kEMPTY";  
     }
+    if (soaRoaDetectState == eevp::control::SoaRoaDetectState::kDETECTED_ONCE) {
+    mLogger.LogInfo() << "kDETECTED_ONCE";           
+    }
+
+    mLogger.LogInfo() << "[getSoaRoaDetectState]" << ":"
+                      << static_cast<int>(soaRoaDetectState);
+}
+void
+MonitoringManager::getSoaRoaDetectCount() {
+    mLogger.LogInfo() << __func__;
+
+    uint8_t soaRoaDetectCount;
+    roaProxyImpl->getSoaRoaDetectCount(soaRoaDetectCount);
+    if (soaRoaDetectCount == 0) {
+         mLogger.LogInfo() << "No detection";
+    }
+    if (soaRoaDetectCount !=0) {
+        mLogger.LogInfo() << "Multiple detection";
+    }
+    mLogger.LogInfo() << "[getSoaRoaDetectCount]" << ":"
+                      << soaRoaDetectCount;
 }
 
 void
@@ -308,48 +550,8 @@ void
 MonitoringManager::thirtySecondTask() {
     while (thrityRunning) {
         requestVersionInfo();
-        getSoaRctnStatus();
-        getSoaMlmStatus();
 
         std::this_thread::sleep_for(std::chrono::seconds(30));
-    }
-}
-
-void
-MonitoringManager::enqueueEvent(const Event& event) {
-    std::lock_guard<std::mutex> lock(queueMutex);
-    eventQueue.push(event);
-    queueCondVar.notify_one();
-}
-
-void
-MonitoringManager::eventProcessingThread() {
-    while (mRunning) {
-        std::unique_lock<std::mutex> lock(queueMutex);
-        queueCondVar.wait(lock, [this] { return !eventQueue.empty() || !mRunning; });
-
-        while (!eventQueue.empty()) {
-            auto event = eventQueue.front();
-            eventQueue.pop();
-            lock.unlock();
-
-            switch (event.type) {
-                case EventType::SERVICE_INFO_SPARE:
-                    monitoringManagementSkeletonImpl->sendeventServiceInfoSpare(event.serviceInfoSpare);
-                    break;
-                case EventType::SERVICE_STATUS_SPARE:
-                    monitoringManagementSkeletonImpl->sendeventServiceStatusSpare(event.serviceStatusSpare);
-                    break;
-                case EventType::SERVICE_ERROR:
-                    monitoringManagementSkeletonImpl->sendeventServiceError(event.serviceErrorEvent);
-                    break;
-                case EventType::SERVICE_UPDATABLE:
-                    monitoringManagementSkeletonImpl->sendupdatableserviceEvent(event.serviceUpdatableEvent);
-                    break;
-            }
-
-            lock.lock();
-        }
     }
 }
 
@@ -377,7 +579,7 @@ MonitoringManager::notifyServiceEvent(const eevp::ota::monitoring::type::Request
                             originalInfo.version,
                             originalInfo.lastUpdateTime};
 
-            enqueueEvent(Event(sendinfo));
+            monitoringManagementSkeletonImpl->sendeventServiceInfoSpare(sendinfo);
         }
     } else {
         mLogger.LogInfo() << "Key " << key.c_str() << " not found in controllerInfoMap.";
@@ -394,161 +596,7 @@ MonitoringManager::notifyUpdatableService(const eevp::ota::monitoring::type::Upd
                     updatableServiceInfo.version,
                     updatableServiceInfo.actionType};
 
-    enqueueEvent(Event(sendinfo));
-}
-
-void
-MonitoringManager::notifySoaMlmStatus(const eevp::control::SoaMlmStatus& fieldValue) {
-    mLogger.LogInfo() << __func__;
-
-    auto it = controllerServiceStatusMap.find("MoodLamp");
-
-    if (it == controllerServiceStatusMap.end()) {
-        mLogger.LogInfo() << "APP IS NOT EXISTED";
-        return;
-    }
-
-    auto& info = it->second;
-
-    if (fieldValue.isNormal == eevp::control::SoaDeviceIsNormal::kABNORMAL) {
-        info.serviceStatus = "ABNORMAL";
-    } else if (fieldValue.isNormal == eevp::control::SoaDeviceIsNormal::kNORMAL) {
-        info.serviceStatus = "NORMAL";
-    }
-
-    if (fieldValue.colorTableIndex == 1) {
-        info.serviceControl = "701";
-    } else if (fieldValue.colorTableIndex == 2) {
-        info.serviceControl = "702";
-    } else {
-        info.serviceControl = "703";
-    }
-
-    eevp::monitoring::type::ControllerServiceStatusSpare sendinfo = {
-                    info.serviceName,
-                    info.serviceStatus,
-                    info.serviceEnable,
-                    info.serviceControl};
-
-    enqueueEvent(Event(sendinfo));
-}
-
-void
-MonitoringManager::getSoaMlmStatus() {
-    mLogger.LogInfo() << __func__;
-
-    eevp::control::SoaMlmStatus soaMlmStatus;
-    moodLampProxyImpl->getterSoaMlmStatus(soaMlmStatus);
-
-    auto it = controllerServiceStatusMap.find("MoodLamp");
-
-    if (it == controllerServiceStatusMap.end()) {
-        mLogger.LogInfo() << "APP IS NOT EXISTED";
-        return;
-    }
-
-    auto& info = it->second;
-
-    if (soaMlmStatus.isNormal == eevp::control::SoaDeviceIsNormal::kABNORMAL) {
-        info.serviceStatus = "ABNORMAL";
-    } else if (soaMlmStatus.isNormal == eevp::control::SoaDeviceIsNormal::kNORMAL) {
-        info.serviceStatus = "NORMAL";
-    }
-
-    if (soaMlmStatus.colorTableIndex == 1) {
-        info.serviceControl = "701";
-    } else if (soaMlmStatus.colorTableIndex == 2) {
-        info.serviceControl = "702";
-    } else {
-        info.serviceControl = "703";
-    }
-
-    mLogger.LogInfo() << "[getSoaMlmStatus]" << "("
-                      << static_cast<int>(soaMlmStatus.isNormal) << ":"
-                      << static_cast<int>(soaMlmStatus.colorTableIndex) << ")";
-
-    eevp::monitoring::type::ControllerServiceStatusSpare sendinfo = {
-                    info.serviceName,
-                    info.serviceStatus,
-                    info.serviceEnable,
-                    info.serviceControl};
-
-    enqueueEvent(Event(sendinfo));
-}
-
-void
-MonitoringManager::notifySoaRctnStatus(const eevp::control::SoaRctnStatus& fieldValue) {
-    mLogger.LogInfo() << __func__;
-
-    auto it = controllerServiceStatusMap.find("RearCurtain");
-
-    if (it == controllerServiceStatusMap.end()) {
-        mLogger.LogInfo() << "APP IS NOT EXISTED";
-        return;
-    }
-
-    auto& info = it->second;
-
-    if (fieldValue.isNormal == eevp::control::SoaDeviceIsNormal::kABNORMAL) {
-        info.serviceStatus = "ABNORMAL";
-    } else if (fieldValue.isNormal == eevp::control::SoaDeviceIsNormal::kNORMAL) {
-        info.serviceStatus = "NORMAL";
-    }
-
-    if (fieldValue.curMotorDirection == eevp::control::SoaRctnMotorDir::kUP) {
-        info.serviceControl = "UP";
-    } else if (fieldValue.curMotorDirection == eevp::control::SoaRctnMotorDir::kDOWN) {
-        info.serviceControl = "DOWN";
-    }
-
-    eevp::monitoring::type::ControllerServiceStatusSpare sendinfo = {
-                    info.serviceName,
-                    info.serviceStatus,
-                    info.serviceEnable,
-                    info.serviceControl};
-
-    enqueueEvent(Event(sendinfo));
-}
-
-void
-MonitoringManager::getSoaRctnStatus() {
-    mLogger.LogInfo() << __func__;
-
-    eevp::control::SoaRctnStatus soaRctnStatus;
-    rearCurtainProxyImpl->getterSoaRctnStatus(soaRctnStatus);
-
-    auto it = controllerServiceStatusMap.find("RearCurtain");
-
-    if (it == controllerServiceStatusMap.end()) {
-        mLogger.LogInfo() << "APP IS NOT EXISTED";
-        return;
-    }
-
-    auto& info = it->second;
-
-    if (soaRctnStatus.isNormal == eevp::control::SoaDeviceIsNormal::kABNORMAL) {
-        info.serviceStatus = "ABNORMAL";
-    } else if (soaRctnStatus.isNormal == eevp::control::SoaDeviceIsNormal::kNORMAL) {
-        info.serviceStatus = "NORMAL";
-    }
-
-    if (soaRctnStatus.curMotorDirection == eevp::control::SoaRctnMotorDir::kUP) {
-        info.serviceControl = "UP";
-    } else if (soaRctnStatus.curMotorDirection == eevp::control::SoaRctnMotorDir::kDOWN) {
-        info.serviceControl = "DOWN";
-    }
-
-    mLogger.LogInfo() << "[getSoaRctnStatus]" << "("
-                      << static_cast<int>(soaRctnStatus.isNormal) << ":"
-                      << static_cast<int>(soaRctnStatus.curMotorDirection) << ")";
-
-    eevp::monitoring::type::ControllerServiceStatusSpare sendinfo = {
-                    info.serviceName,
-                    info.serviceStatus,
-                    info.serviceEnable,
-                    info.serviceControl};
-
-    enqueueEvent(Event(sendinfo));
+    monitoringManagementSkeletonImpl->sendupdatableserviceEvent(sendinfo);
 }
 
 bool
@@ -716,7 +764,7 @@ MonitoringManager::setEnableControllerService(const eevp::type::String& serviceN
                     info.serviceEnable,
                     info.serviceControl};
 
-    enqueueEvent(Event(sendinfo));
+    monitoringManagementSkeletonImpl->sendeventServiceStatusSpare(sendinfo);
     return val;
 }
 
@@ -737,6 +785,7 @@ MonitoringManager::requestControllerServiceInfoAllSpare(
 
     return true;
 }
+
 bool
 MonitoringManager::requestControllerServiceStatusAllSpare(
                 eevp::monitoring::type::StringArray& serviceName,
@@ -747,15 +796,18 @@ MonitoringManager::requestControllerServiceStatusAllSpare(
 
     int index = 0;
     for (const auto& pair : controllerServiceStatusMap) {
-        serviceName[index] = pair.second.serviceName;
-        serviceStatus[index] = pair.second.serviceStatus;
-        serviceEnable[index] = pair.second.serviceEnable;
-        serviceControl[index] = pair.second.serviceControl;
+        const auto& serviceInfo = pair.second;
+
+        serviceName[index] = serviceInfo.serviceName;
+        serviceStatus[index] = serviceInfo.serviceStatus;
+        serviceEnable[index] = serviceInfo.serviceEnable;
+        serviceControl[index] = serviceInfo.serviceControl;
         ++index;
     }
 
     return true;
 }
+
 bool
 MonitoringManager::setControlControllerService(
                 const eevp::type::String& serviceName,
@@ -791,7 +843,7 @@ MonitoringManager::setControlControllerService(
                             info.serviceStatus,
                             info.serviceEnable,
                             info.serviceControl};
-            enqueueEvent(Event(sendinfo));
+            monitoringManagementSkeletonImpl->sendeventServiceStatusSpare(sendinfo);
             return true;
         } else {
             mLogger.LogInfo() << "MoodLamp Color Change failed!";
@@ -802,11 +854,303 @@ MonitoringManager::setControlControllerService(
 }
 
 void
+MonitoringManager::requestVersionInfo() {
+    mLogger.LogInfo() << __func__;
+
+    eevp::ota::monitoring::type::RequestServiceInfoMap requestServiceInfoMap;
+    otaMonitoringProxyImpl->requestVersionInfo(requestServiceInfoMap);
+
+    controllerInfoMap.clear();
+
+    for (auto& info : requestServiceInfoMap) {
+        //controllerInfoMap[info.first] = info.second;
+    }
+
+    for (auto& info : controllerInfoMap) {
+        //eevp::monitoring::type::ControllerServiceInfoSpare sendinfo = info.second;
+        //monitoringManagementSkeletonImpl->sendeventServiceInfoSpare(sendinfo);
+
+    }
+}
+
+bool
+MonitoringManager::requestControllerServiceInfoAll(eevp::monitoring::type::ControllerServiceInfoMap& infoMap) {
+    mLogger.LogInfo() << __func__;
+    return true;
+}
+
+bool
+MonitoringManager::requestControllerServiceStatusAll(eevp::monitoring::type::ControllerServiceStatusMap& statusMap) {
+    mLogger.LogInfo() << __func__;
+
+    return true;
+}
+
+void
+MonitoringManager::notifyNotifySystemState(const ivi::info::statemanager::type::State& state) {
+    mLogger.LogInfo() << __func__           << static_cast<std::uint8_t>(state);
+}
+
+void
+MonitoringManager::notifyNotifyTime(const std::uint8_t& notifyTime) {
+    mLogger.LogInfo() << __func__ << notifyTime;
+}
+
+void
+MonitoringManager::notifySystemState(const ivi::info::statemanager::type::State& state) {
+    mLogger.LogInfo() << __func__           << static_cast<std::uint8_t>(state);
+}
+
+void
 MonitoringManager::resetUcmTest() {
     mLogger.LogInfo() << __func__;
     otaMonitoringProxyImpl->resetUcmTest();
     return;
 }
+
+
+/// MoodLamp Start
+void
+MonitoringManager::notifySoaMlmStatus(const eevp::control::SoaMlmStatus& fieldValue) {
+    mLogger.LogInfo() << __func__;
+
+    monitoringManagementSkeletonImpl->updateMlmStatus(fieldValue);
+}
+
+void
+MonitoringManager::notifySoaMlmSwVersion(const std::uint8_t& fieldValue) {
+    mLogger.LogInfo() << __func__;
+
+    monitoringManagementSkeletonImpl->updateMlmSwVersion(fieldValue);
+}
+
+void
+MonitoringManager::getSoaMlmStatus(eevp::control::SoaMlmStatus& fieldValue) {
+    mLogger.LogInfo() << __func__;
+
+    moodLampProxyImpl->getSoaMlmStatus(fieldValue);
+    notifySoaMlmStatus(fieldValue);
+}
+
+void
+MonitoringManager::getSoaMlmSwVersion(std::uint8_t& fieldValue) {
+    mLogger.LogInfo() << __func__;
+
+    moodLampProxyImpl->getSoaMlmSwVersion(fieldValue);
+    notifySoaMlmSwVersion(fieldValue);
+}
+
+void
+MonitoringManager::RequestMlmSetRgbColor(const std::uint8_t& colorTableIndex) {
+    mLogger.LogInfo() << __func__;
+
+    moodLampProxyImpl->requestMlmSetRGBColor(colorTableIndex);
+}
+
+/// MoodLamp End
+
+/// PDW start
+
+void
+MonitoringManager::notifyDistanceLevel(const eevp::pdw::type::DistanceLevel& dLevel) {
+    mLogger.LogInfo() << "__func__";
+
+    monitoringManagementSkeletonImpl->notifyDistanceLevel(dLevel);
+}
+
+/// PDW end
+
+/// Wiper Start
+
+void
+MonitoringManager::notifySoaWiperDeviceNormal(const eevp::control::SoaDeviceIsNormal& deviceIsNormal) {
+    mLogger.LogInfo() << __func__;
+
+    monitoringManagementSkeletonImpl->updateSoaWiperDeviceNormal(deviceIsNormal);
+}
+
+void
+MonitoringManager::notifySoaWiperStatus(const eevp::control::SoaWiperStatus& wiperStatusValue) {
+    mLogger.LogInfo() << __func__;
+
+    monitoringManagementSkeletonImpl->updateSoaWiperStatus(wiperStatusValue);
+}
+
+void
+MonitoringManager::notifySoaWiperSwVersion(const std::uint8_t& wiperSwVersion) {
+    mLogger.LogInfo() << __func__;
+
+    monitoringManagementSkeletonImpl->updateSoaWiperSwVersion(wiperSwVersion);
+}
+
+void
+MonitoringManager::getSoaWiperDeviceNormal(eevp::control::SoaDeviceIsNormal& deviceIsNormal) {
+    mLogger.LogInfo() << __func__;
+
+    wiperProxyImpl->getSoaWiperDeviceNormal(deviceIsNormal);
+    notifySoaWiperDeviceNormal(deviceIsNormal);
+}
+
+void
+MonitoringManager::getSoaWiperStatus(eevp::control::SoaWiperStatus& wiperStatusValue) {
+    mLogger.LogInfo() << __func__;
+
+    wiperProxyImpl->getSoaWiperStatus(wiperStatusValue);
+    notifySoaWiperStatus(wiperStatusValue);
+}
+
+void
+MonitoringManager::getSoaWiperSwVersion(std::uint8_t& wiperSwVersion) {
+    mLogger.LogInfo() << __func__;
+
+    wiperProxyImpl->getSoaWiperSwVersion(wiperSwVersion);
+    notifySoaWiperSwVersion(wiperSwVersion);
+}
+
+void
+MonitoringManager::requestWiperOperation(const eevp::control::SoaWiperMode& wiperOperationMode) {
+    mLogger.LogInfo() << __func__;
+
+    wiperProxyImpl->requestWiperOperation(wiperOperationMode);
+}
+
+void
+MonitoringManager::setWiperAutoSpeed(const bool& isAutoSpeed) {
+    mLogger.LogInfo() << __func__;
+
+    wiperProxyImpl->setWiperAutoSpeed(isAutoSpeed);
+}
+
+/// Wiper End
+
+/// Roa Start
+
+void
+MonitoringManager::notifySoaRoaDeviceNormal(const eevp::control::SoaDeviceIsNormal& deviceIsNormal) {
+    mLogger.LogInfo() << __func__;
+
+    monitoringManagementSkeletonImpl->updateRoaDeviceNormal(deviceIsNormal);
+}
+
+void
+MonitoringManager::notifySoaRoaSwVersion(const std::uint8_t& powerSwVersion) {
+}
+
+void
+MonitoringManager::getSoaRoaDeviceNormal(eevp::control::SoaDeviceIsNormal& deviceIsNormal) {
+    mLogger.LogInfo() << __func__;
+
+    roaProxyImpl->getSoaRoaDeviceNormal(deviceIsNormal);
+    notifySoaRoaDeviceNormal(deviceIsNormal);
+}
+
+void
+MonitoringManager::getSoaRoaSwVersion(std::uint8_t& powerSwVersion) {
+}
+
+/// Roa End
+
+/// DriverSeat Start
+
+void
+MonitoringManager::notifySoaDrvseatDeviceNormal(const eevp::control::SoaDeviceIsNormal& deviceIsNormal) {
+    mLogger.LogInfo() << __func__;
+
+    monitoringManagementSkeletonImpl->updateDrvseatDeviceNormal(deviceIsNormal);
+}
+
+void
+MonitoringManager::notifySoaDrvseatSwVersion(const std::uint8_t& powerSwVersion) {
+}
+
+void
+MonitoringManager::getSoaDrvseatDeviceNormal(eevp::control::SoaDeviceIsNormal& deviceIsNormal) {
+    mLogger.LogInfo() << __func__;
+
+    drvseatProxyImpl->getSoaDrvseatDeviceNormal(deviceIsNormal);
+    notifySoaDrvseatDeviceNormal(deviceIsNormal);
+}
+
+void
+MonitoringManager::getSoaDrvseatSwVersion(std::uint8_t& powerSwVersion) {
+}
+
+/// DriverSeat End
+
+/// RearCurtain Start
+
+void
+MonitoringManager::notifySoaRctnStatus(const eevp::control::SoaRctnStatus& fieldValue) {
+    mLogger.LogInfo() << __func__;
+
+    monitoringManagementSkeletonImpl->updateRctnStatus(fieldValue);
+}
+
+void
+MonitoringManager::notifySoaRctnSwVersion(const std::uint8_t& fieldValue) {
+    mLogger.LogInfo() << __func__;
+
+    monitoringManagementSkeletonImpl->updateRctnVersion(fieldValue);
+}
+
+void
+MonitoringManager::getSoaRctnStatus(eevp::control::SoaRctnStatus& fieldValue) {
+    mLogger.LogInfo() << __func__;
+
+    rearCurtainProxyImpl->getSoaRctnStatus(fieldValue);
+    notifySoaRctnStatus(fieldValue);
+}
+
+void
+MonitoringManager::getSoaRctnSwVersion(std::uint8_t& fieldValue) {
+    mLogger.LogInfo() << __func__;
+
+    rearCurtainProxyImpl->getSoaRctnSwVersion(fieldValue);
+    notifySoaRctnSwVersion(fieldValue);
+}
+
+void
+MonitoringManager::RequestRearCurtainOperation(const eevp::control::SoaRctnMotorDir& motorDir) {
+    mLogger.LogInfo() << __func__;
+
+    eevp::control::SoaErrorState errorState = rearCurtainProxyImpl->requestRearCurtainOperation(motorDir);
+}
+
+void
+MonitoringManager::RequestRearCurtainPosition(const std::uint8_t& posPercentage) {
+    mLogger.LogInfo() << __func__;
+
+    rearCurtainProxyImpl->requestRearCurtainPosition(posPercentage);
+}
+
+/// RearCurtain End
+
+/// Power Start
+
+void
+MonitoringManager::notifySoaPowerDeviceNormal(const eevp::control::SoaDeviceIsNormal& deviceIsNormal) {
+    mLogger.LogInfo() << __func__;
+
+    monitoringManagementSkeletonImpl->updateRoaDeviceNormal(deviceIsNormal);
+}
+
+void
+MonitoringManager::notifySoaPowerSwVersion(const std::uint8_t& powerSwVersion) {
+}
+
+void
+MonitoringManager::getSoaPowerDeviceNormal(eevp::control::SoaDeviceIsNormal& deviceIsNormal) {
+    mLogger.LogInfo() << __func__;
+
+    powerProxyImpl->getSoaPowerDeviceNormal(deviceIsNormal);
+    notifySoaPowerDeviceNormal(deviceIsNormal);
+}
+
+void
+MonitoringManager::getSoaPowerSwVersion(std::uint8_t& powerSwVersion) {
+}
+
+/// Power End
 
 bool
 MonitoringManager::setRunningState() {
@@ -864,6 +1208,46 @@ MonitoringManager::startMoodLampProxy() {
 }
 
 bool
+MonitoringManager::startPdwProxy() {
+    mLogger.LogInfo() << __func__;
+    pdwProxyImpl = std::make_shared<eevp::pdw::PdwProxyImpl>();
+    auto pdwListener = std::make_shared<PdwListener>(this);
+    pdwProxyImpl->setEventListener(pdwListener);
+    pdwProxyImpl->init();
+    return true;
+}
+
+bool
+MonitoringManager::startWiperProxy() {
+    mLogger.LogInfo() << __func__;
+    wiperProxyImpl = std::make_shared<eevp::control::wiper::WiperProxyImpl>();
+    auto wiperListener = std::make_shared<WiperListener>(this);
+    wiperProxyImpl->setEventListener(wiperListener);
+    wiperProxyImpl->init();
+    return true;
+}
+
+bool
+MonitoringManager::startRoaProxy() {
+    mLogger.LogInfo() << __func__;
+    roaProxyImpl = std::make_shared<eevp::control::roa::RoaProxyImpl>();
+    auto roaListener = std::make_shared<RoaListener>(this);
+    roaProxyImpl->setEventListener(roaListener);
+    roaProxyImpl->init();
+    return true;
+}
+
+bool
+MonitoringManager::startDrvseatProxy() {
+    mLogger.LogInfo() << __func__;
+    drvseatProxyImpl = std::make_shared<eevp::control::drvseat::DrvseatProxyImpl>();
+    auto drvseatListener = std::make_shared<DrvseatListener>(this);
+    drvseatProxyImpl->setEventListener(drvseatListener);
+    drvseatProxyImpl->init();
+    return true;
+}
+
+bool
 MonitoringManager::startRearCurtainProxy() {
     mLogger.LogInfo() << __func__;
     rearCurtainProxyImpl = std::make_shared<eevp::control::rearcurtain::RearCurtainProxyImpl>();
@@ -873,92 +1257,14 @@ MonitoringManager::startRearCurtainProxy() {
     return true;
 }
 
-eevp::type::String
-MonitoringManager::getCurrentDate() {
-    std::time_t t = std::time(nullptr);
-    std::tm tm = *std::localtime(&t);
-    char buffer[11]; // YYYY.MM.DD is 10 characters long + 1 for null terminator
-    std::strftime(buffer, sizeof(buffer), "%Y.%m.%d", &tm);
-    return eevp::type::String(buffer);
-}
-
-void
-MonitoringManager::printMap() {
-    for (const auto& info : controllerInfoMap) {
-        mLogger.LogInfo() << "[Key] "   << info.first << " "
-                          << "[Value] " << "ServiceName("       << info.second.serviceName      << ") "
-                                        << "Version("           << info.second.version          << ") "
-                                        << "lastUpdateTime("    << info.second.lastUpdateTime   << ")";
-    }
-}
-
-void
-MonitoringManager::requestVersionInfo() {
-    mLogger.LogInfo() << __func__;
-
-    eevp::ota::monitoring::type::RequestServiceInfoMap requestServiceInfoMap;
-    otaMonitoringProxyImpl->requestVersionInfo(requestServiceInfoMap);
-
-    controllerInfoMap.clear();
-
-    for (auto& info : requestServiceInfoMap) {
-        eevp::monitoring::type::ControllerServiceInfo newInfo;
-
-        newInfo.serviceName = info.second.serviceName;
-        newInfo.version = info.second.version;
-        newInfo.lastUpdateTime = info.second.lastUpdateTime;
-
-        controllerInfoMap[info.first] = newInfo;
-    }
-
-    for (auto& info : controllerInfoMap) {
-        eevp::monitoring::type::ControllerServiceInfoSpare sendinfo = {
-                        info.second.serviceName,
-                        info.second.version,
-                        info.second.lastUpdateTime};
-
-        enqueueEvent(Event(sendinfo));
-    }
-}
-
 bool
-MonitoringManager::requestControllerServiceInfoAll(eevp::monitoring::type::ControllerServiceInfoMap& infoMap) {
+MonitoringManager::startPowerProxy() {
     mLogger.LogInfo() << __func__;
-
-    if (controllerInfoMap.size() == 0) {
-        return false;
-    }
-
-    infoMap = controllerInfoMap;
+    powerProxyImpl = std::make_shared<eevp::control::power::PowerProxyImpl>();
+    auto powerListener = std::make_shared<PowerListener>(this);
+    powerProxyImpl->setEventListener(powerListener);
+    powerProxyImpl->init();
     return true;
 }
-
-bool
-MonitoringManager::requestControllerServiceStatusAll(eevp::monitoring::type::ControllerServiceStatusMap& statusMap) {
-    mLogger.LogInfo() << __func__;
-
-    if (controllerStatusMap.size() == 0) {
-        return false;
-    }
-
-    statusMap = controllerStatusMap;
-    return true;
-}
-
-void
-MonitoringManager::notifyNotifySystemState(const ivi::info::statemanager::type::State& state) {
-    mLogger.LogInfo() << __func__           << static_cast<std::uint8_t>(state);
-}
-
-void
-MonitoringManager::notifyNotifyTime(const std::uint8_t& notifyTime) {
-    mLogger.LogInfo() << __func__ << notifyTime;
-}
-
-void
-MonitoringManager::notifySystemState(const ivi::info::statemanager::type::State& state) {
-    mLogger.LogInfo() << __func__           << static_cast<std::uint8_t>(state);
-}
-
 } // namespace monitoring
 } // namespace eevp

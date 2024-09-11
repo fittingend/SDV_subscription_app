@@ -13,23 +13,44 @@
 #include <CmdLists.hpp>
 #include <Log.hpp>
 
-#define TELNET_PORT 31457
+#define TELNET_PORT 31464
+
+TelnetServer *TelnetServer::mInst = nullptr;
+
+TelnetServer *TelnetServer::GetInstance()
+{
+    if (TelnetServer::mInst == nullptr)
+    {
+        TelnetServer::mInst = new TelnetServer();
+    }
+
+    return TelnetServer::mInst;
+}
+
+void TelnetServer::DestroyInstance()
+{
+    if (TelnetServer::mInst != nullptr)
+    {
+        delete TelnetServer::mInst;
+        TelnetServer::mInst = nullptr;
+    }
+}
 
 TelnetServer::TelnetServer()
 {
-    this->mCmdMgr = new CmdMgr(this);
+    CmdMgr *cmdMgr = CmdMgr::GetInstance();
     this->mClientSocket = -1;
     this->mServerSocket = -1;
     this->mThreadCreated = false;
     this->mThreadRunning = false;
     this->mTelnetReady = false;
+    this->mDisconnectClient = false;
     memset(this->mInputCmd, 0, 1024);
     this->mInputPointer = 0;
 
-    RegisterUdpParserCommands(this->mCmdMgr);
-    RegisterVehicleContextCommands(this->mCmdMgr);
-    RegisterRearCurtainCommands(this->mCmdMgr);
-    RegisterUdpServerCommands(this->mCmdMgr);
+    cmdMgr->RegisterMsgSender(this);
+    //RegisterUdpParserCommands(this->mCmdMgr);
+    RegisterEcuApi();
 }
 
 TelnetServer::~TelnetServer()
@@ -41,7 +62,6 @@ void TelnetServer::Start(void)
 {
     this->mThread = std::thread(&TelnetServer::RunServer, this);
     this->mThreadCreated = true;
-
 }
 
 void TelnetServer::Stop(void)
@@ -50,6 +70,7 @@ void TelnetServer::Stop(void)
     this->mThread.join();
     this->mThreadCreated = false;
 
+    CmdMgr::DestroyInstance();
 }
 
 void TelnetServer::RunServer()
@@ -62,7 +83,7 @@ void TelnetServer::RunServer()
         retVal = this->CreateServer();
         if (retVal != 0)
         {
-            LOG_ERROR() << "[TelnetServer::RunServer] create server failed:\n";
+            LOG_ERROR() << "create server failed:\n";
             this->ExecuteErrorState();
             continue;
         }
@@ -70,7 +91,7 @@ void TelnetServer::RunServer()
         retVal = this->ConnectClient();
         if (retVal != 0)
         {
-            LOG_ERROR() << "[TelnetServer::RunServer] connection failed:\n";
+            LOG_ERROR() << "connection failed:\n";
             this->ExecuteErrorState();
             continue;
         }
@@ -78,7 +99,7 @@ void TelnetServer::RunServer()
         retVal = this->CommunicateWithClient();
         if (retVal != 0)
         {
-            LOG_ERROR() << "[TelnetServer::RunServer] connection failed:\n";
+            LOG_ERROR() << "connection failed:\n";
         }
 
         this->ExecuteErrorState();
@@ -90,7 +111,7 @@ int TelnetServer::CreateServer(void)
     // 소켓 생성
     this->mServerSocket = socket(AF_INET, SOCK_STREAM, 0);
     if ( this->mServerSocket == -1) {
-        LOG_ERROR() << "[TelnetServer::CreateServer] Error creating socket\n";
+        LOG_ERROR() << "Error creating socket\n";
         this->mServerSocket = -1;
         return -1;
     }
@@ -107,7 +128,7 @@ int TelnetServer::CreateServer(void)
     timeout.tv_usec = 0;
     if (setsockopt(this->mServerSocket, SOL_SOCKET, SO_RCVTIMEO, (const char*)&timeout, sizeof(timeout)) < 0)
     {
-        LOG_ERROR() << "[TelnetServer::CreateServer] Failed to set receive timeout\n";
+        LOG_ERROR() << "Failed to set receive timeout\n";
         return -1;
     }
 
@@ -115,13 +136,13 @@ int TelnetServer::CreateServer(void)
     int opt = 1;
     if (setsockopt(this->mServerSocket, SOL_SOCKET, SO_REUSEADDR, (const char*)&opt, sizeof(opt)) < 0)
     {
-        LOG_ERROR() << "[TelnetServer::CreateServer] Failed to set socket reuseable\n";
+        LOG_ERROR() << "Failed to set socket reuseable\n";
         return -1;
     }
 
     // 소켓에 주소 할당
     if (bind(this->mServerSocket, (struct sockaddr*)&serverAddr, sizeof(serverAddr)) == -1) {
-        LOG_ERROR() << "[TelnetServer::CreateServer] Error binding socket\n";
+        LOG_ERROR() << "Error binding socket\n";
         close(this->mServerSocket);
         this->mServerSocket = -1;
         return -1;
@@ -129,13 +150,13 @@ int TelnetServer::CreateServer(void)
 
     // 연결 요청 대기
     if (listen(this->mServerSocket, 5) == -1) {
-        LOG_ERROR() << "[TelnetServer::CreateServer] Error listening on socket\n";
+        LOG_ERROR() << "Error listening on socket\n";
         close(this->mServerSocket);
         this->mServerSocket = -1;
         return -1;
     }
 
-    LOG_DEBUG() << "[TelnetServer::CreateServer] Server started, waiting for connections...\n";
+    LOG_DEBUG() << "Server started, waiting for connections...\n";
     return 0;
 }
 
@@ -155,28 +176,29 @@ int TelnetServer::ConnectClient(void)
                 continue;
             }
 
-            LOG_ERROR() << "[TelnetServer::ConnectClient] Error accepting connection\n";
+            LOG_ERROR() << "Error accepting connection\n";
             return -1;
         }
 
-        LOG_DEBUG() << "[TelnetServer::ConnectClient] Client connected\n";
+        LOG_DEBUG() << "Client connected\n";
         return 0;
     }
 
-    LOG_ERROR() << "[TelnetServer::ConnectClient] Telnet Server Stopped\n";
+    LOG_ERROR() << "Telnet Server Stopped\n";
     return -1;
 }
 
 int TelnetServer::CommunicateWithClient(void)
 {
     // 클라이언트와의 통신
-    LOG_DEBUG() << "[TelnetServer::CommunicateWithClient] ReadyTelnet\n";
+    LOG_DEBUG() << "ReadyTelnet\n";
     std::thread readyThread = std::thread(&TelnetServer::ReadyTelnet, this);
-    LOG_DEBUG() << "[TelnetServer::CommunicateWithClient] ReadyTelnet End\n";
+    LOG_DEBUG() << "ReadyTelnet End\n";
 
+    this->mDisconnectClient = false;
 
     char buffer[1024];
-    while (this->mThreadRunning) {
+    while (this->mThreadRunning && !this->mDisconnectClient) {
         int bytesRead = recv(this->mClientSocket, buffer, sizeof(buffer), 0);
         if (bytesRead < 0)
         {
@@ -186,10 +208,10 @@ int TelnetServer::CommunicateWithClient(void)
                 continue;
             }
 
-            LOG_ERROR() << "[TelnetServer] Error reading from client\n";
+            LOG_ERROR() << "Error reading from client\n";
             break;
         } else if (bytesRead == 0) {
-            LOG_DEBUG() << "[TelnetServer] Client disconnected\n";
+            LOG_DEBUG() << "Client disconnected\n";
             break;
         } else {
             if (this->mTelnetReady)
@@ -268,7 +290,7 @@ int TelnetServer::ReadCommand(char buffer[], int length)
             send(this->mClientSocket, sendBuff, 3, 0);
             i += 3;
         }
-        else if ((buffer[i] == 0x0d) && (buffer[i + 1] == 0x00) || (buffer[i] == 0x0d) && (buffer[i + 1] == 0x0a)) // Enter
+        else if ((buffer[i] == 0x0d) || (buffer[i] == 0x0a)) // Enter
         {
             sprintf(sendBuff, "\r\n");
             send(this->mClientSocket, sendBuff, strlen(sendBuff), 0);
@@ -276,15 +298,19 @@ int TelnetServer::ReadCommand(char buffer[], int length)
             if (this->mInputPointer > 0)
             {
                 this->mInputCmd[this->mInputPointer] = '\0';
-                this->mCmdMgr->ExecuteCommand(this->mInputCmd);
+                CmdMgr::GetInstance()->ExecuteCommand(this->mInputCmd);
 
                 // Reset Command
                 memset(this->mInputCmd, 0, 1024);
                 this->mInputPointer = 0;
             }
 
-            i += 2;
-            sprintf(sendBuff, "\r\n>> ");
+            while (((buffer[i] == 0x0d) || (buffer[i] == 0x0a)) && (i < length))
+            {
+                i++;
+            }
+
+            strcpy(sendBuff, CmdMgr::GetInstance()->GetPrompt().c_str());
             send(this->mClientSocket, sendBuff, strlen(sendBuff), 0);
         }
         else
@@ -300,13 +326,14 @@ int TelnetServer::ReadCommand(char buffer[], int length)
 
 void TelnetServer::ReadyTelnet()
 {
-    LOG_DEBUG() << "[TelnetServer::ReadyTelnet] (+)\n";
+    LOG_DEBUG() << "(+)\n";
     usleep(100 * 1000);  // 100ms
     char buffer[1024];
-    sprintf(buffer, "SOA connected: \r\n>> ");
+    strcpy(buffer, "SOA_RearCurtain connected: \r\n");
+    strcat(buffer, CmdMgr::GetInstance()->GetPrompt().c_str());
     send(this->mClientSocket, buffer, strlen(buffer), 0);
     this->mTelnetReady = true;
-    LOG_DEBUG() << "[TelnetServer::ReadyTelnet] (-)\n";
+    LOG_DEBUG() << "(-)\n";
 }
 
 int TelnetServer::CleanResources(void)
@@ -318,7 +345,7 @@ int TelnetServer::CleanResources(void)
         retVal = close(this->mClientSocket);
         if (retVal != 0)
         {
-            LOG_ERROR() << "[TelnetServer::CleanResources] close(this->mClientSocket) err:\n";
+            LOG_ERROR() << "close(this->mClientSocket) err:\n";
             return retVal;
         }
         this->mClientSocket = -1;
@@ -329,7 +356,7 @@ int TelnetServer::CleanResources(void)
         retVal = close(this->mServerSocket);
         if (retVal != 0)
         {
-            LOG_ERROR() << "[TelnetServer::CleanResources] close(this->mServerSocket) err:\n";
+            LOG_ERROR() << "close(this->mServerSocket) err:\n";
             return retVal;
         }
         this->mServerSocket = -1;
@@ -348,15 +375,15 @@ void TelnetServer::ExecuteErrorState(void)
         usleep(50 * 1000);  // 150ms
         if (retVal == 0)
         {
-            LOG_DEBUG() << "[TelnetServer::ExecuteErrorState] Clean succeeded.\n";
+            LOG_DEBUG() << "Clean succeeded.\n";
             return;
         }
 
-        LOG_ERROR() << "[TelnetServer::ExecuteErrorState] Close Error with count " << count << ", sleep 200ms\n";
+        LOG_ERROR() << "Close Error with count " << count << ", sleep 200ms\n";
         usleep(150 * 1000);  // 150ms
     }
 
-    LOG_ERROR() << "[TelnetServer::ExecuteErrorState] Close failed\n";
+    LOG_ERROR() << "Close failed\n";
 }
 
 void TelnetServer::SendMessage(std::string message)
@@ -366,5 +393,10 @@ void TelnetServer::SendMessage(std::string message)
         const char *msg = message.c_str();
         send(this->mClientSocket, msg, strlen(msg), 0);
     }
+}
+
+void TelnetServer::Disconnect(void)
+{
+    this->mDisconnectClient = true;
 }
 

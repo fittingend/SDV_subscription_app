@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_soaroadetectstate.h
 /// IMPLEMENTATION DATA TYPE NAME     : SoaRoaDetectState
-/// GENERATED DATE                    : 2024-07-30 18:35:48
+/// GENERATED DATE                    : 2024-09-02 16:05:54
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -34,7 +34,6 @@ enum class SoaRoaDetectState : std::uint8_t
     kDETECTED_ONCE = 1U,
     kDETECTED_SEVERAL = 2U,
     kUNKNOWN = 3U
-    
 };
 } /// namespace control
 } /// namespace eevp

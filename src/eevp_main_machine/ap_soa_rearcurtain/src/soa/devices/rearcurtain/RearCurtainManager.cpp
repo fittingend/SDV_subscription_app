@@ -1,9 +1,8 @@
 #include <Common.h>
 #include <MessageItem.hpp>
 #include <VehicleContext.hpp>
-#include <Zone1Api_Local.hpp>
-#include <Zone3Api_Local.hpp>
-#include <ApiRcurtain_Local.hpp>
+#include <Api_Zone3Rcurtain.hpp>
+#include <Api_SoaRcurtain.hpp>
 #include <RearCurtainManager.hpp>
 #include <Log.hpp>
 
@@ -49,16 +48,13 @@ void RearCurtainManager::OnEventRcButton(RCtnSwitch_e btn_curr, RCtnSwitch_e btn
     {
     case eRCtnSwitch_OpenOn:
         msgItem.mFunc = [](int arg1, int arg2, int arg3, void *argPtr) {
-            LOG_DEBUG() << "[RearCurtainManager::OnEventRcButton] eRCtnSwitch_OpenOn\n";
+            LOG_DEBUG() << "eRCtnSwitch_OpenOn\n";
             VehicleContext *context = VehicleContext::GetInstance();
 
-            if (context->mRCState != eRCtnState_FullyOpened)
+            if (context->mRctnState != eRCtnState_FullyOpened)
             {
                 Zone3_RCtn_MoveCurtainMotor(eRCtnSwitch_OpenOn);
-                // context->mRCState = eRCtnState_Opening;
-                context->mRCLastState = eRCtnState_PartlyOpened;
-                context->mRCLastUserSwitch = eRCtnSwitch_OpenOn;
-                context->Save();
+                // context->Save();
             }
 
             Api_Rcurtain_Field_SoaRctnStatus();
@@ -68,16 +64,12 @@ void RearCurtainManager::OnEventRcButton(RCtnSwitch_e btn_curr, RCtnSwitch_e btn
 
     case eRCtnSwitch_CloseOn:
         msgItem.mFunc = [](int arg1, int arg2, int arg3, void *argPtr) {
-            LOG_DEBUG() << "[RearCurtainManager::OnEventRcButton] eRCtnSwitch_CloseOn\n";
+            LOG_DEBUG() << "eRCtnSwitch_CloseOn\n";
             VehicleContext *context = VehicleContext::GetInstance();
 
-            if (context->mRCState != eRCtnState_FullyClosed && context->mGearState != eGearState_R)
+            if (context->mRctnState != eRCtnState_FullyClosed && context->mGearState != eGearState_R)
             {
                 Zone3_RCtn_MoveCurtainMotor(eRCtnSwitch_CloseOn);
-                // context->mRCState = eRCtnState_Closing;
-                context->mRCLastState = eRCtnState_PartlyOpened;
-                context->mRCLastUserSwitch = eRCtnSwitch_CloseOn;
-                context->Save();
             }
 
              Api_Rcurtain_Field_SoaRctnStatus();
@@ -90,23 +82,7 @@ void RearCurtainManager::OnEventRcButton(RCtnSwitch_e btn_curr, RCtnSwitch_e btn
             LOG_DEBUG() << "[RearCurtainManager::OnEventRcButton] eRCtnSwitch_Off\n";
             VehicleContext *context = VehicleContext::GetInstance();
 
-            if (context->mRCLastUserSwitch == eRCtnSwitch_Unknown)
-            {
-                context->mRCLastUserSwitch = eRCtnSwitch_Off;
-                context->Save();
-            }
-            else if (context->mRCLastUserSwitch != eRCtnSwitch_Off)
-            {
-                Zone3_RCtn_MoveCurtainMotor(eRCtnSwitch_Off);
-                if (context->mRCState != eRCtnState_FullyClosed && context->mRCState != eRCtnState_FullyOpened)
-                {
-                    // context->mRCState = eRCtnState_PartlyOpened;
-                    context->mRCLastState = eRCtnState_PartlyOpened;
-                    // context->mRCLastUserSwitch = eRCtnSwitch_Off;
-                    context->Save();
-                }
-            }
-
+            Zone3_RCtn_MoveCurtainMotor(eRCtnSwitch_Off);
             Api_Rcurtain_Field_SoaRctnStatus();
             return 0;
         };
@@ -121,6 +97,7 @@ void RearCurtainManager::OnEventRcButton(RCtnSwitch_e btn_curr, RCtnSwitch_e btn
 
 void RearCurtainManager::OnEventGearState(GearState_e gear_curr, GearState_e gear_prev)
 {
+#if 0
     funcMsgItem msgItem;
 
     if (gear_curr == eGearState_R)
@@ -129,12 +106,9 @@ void RearCurtainManager::OnEventGearState(GearState_e gear_curr, GearState_e gea
             LOG_DEBUG() << "[RearCurtainManager::OnEventGearState] eGearState_R\n";
             VehicleContext *context = VehicleContext::GetInstance();
 
-            if (context->mRCState != eRCtnState_FullyOpened)
+            if (context->mRctnState != eRCtnState_FullyOpened)
             {
                 Zone3_RCtn_MoveCurtainMotor(eRCtnSwitch_OpenOn);
-                //context->mRCState = eRCtnState_Opening;
-                context->mRCLastState = eRCtnState_PartlyOpened;
-                context->Save();
             }
 
             Api_Rcurtain_Field_SoaRctnStatus();
@@ -147,18 +121,18 @@ void RearCurtainManager::OnEventGearState(GearState_e gear_curr, GearState_e gea
             LOG_DEBUG() << "[RearCurtainManager::OnEventGearState] !eGearState_R\n";
             VehicleContext *context = VehicleContext::GetInstance();
 
-            if (context->mRCLastUserSwitch == eRCtnSwitch_OpenOn && context->mRCState != eRCtnState_FullyOpened)
+            if (context->mRCLastUserSwitch == eRCtnSwitch_OpenOn && context->mRctnState != eRCtnState_FullyOpened)
             {
                 Zone3_RCtn_MoveCurtainMotor(eRCtnSwitch_OpenOn);
-                //context->mRCState = eRCtnState_Opening;
+                //context->mRctnState = eRCtnState_Opening;
                 context->mRCLastState = eRCtnState_PartlyOpened;
 
                 context->Save();
             }
-            else if (context->mRCLastUserSwitch == eRCtnSwitch_CloseOn && context->mRCState != eRCtnState_FullyClosed)
+            else if (context->mRCLastUserSwitch == eRCtnSwitch_CloseOn && context->mRctnState != eRCtnState_FullyClosed)
             {
                 Zone3_RCtn_MoveCurtainMotor(eRCtnSwitch_CloseOn);
-                //context->mRCState = eRCtnState_Closing;
+                //context->mRctnState = eRCtnState_Closing;
                 context->mRCLastState = eRCtnState_PartlyOpened;
                 context->Save();
             }
@@ -169,10 +143,12 @@ void RearCurtainManager::OnEventGearState(GearState_e gear_curr, GearState_e gea
     }
 
     this->sendMessage(msgItem);
+#endif
 }
 
 void RearCurtainManager::OnEventRcState(RCtnState_e state_curr, RCtnState_e state_prev)
 {
+#if 0
     funcMsgItem msgItem;
 
     switch (state_curr)
@@ -185,7 +161,7 @@ void RearCurtainManager::OnEventRcState(RCtnState_e state_curr, RCtnState_e stat
             if (context->mRCLastState != eRCtnState_FullyOpened)
             {
                 Zone3_RCtn_MoveCurtainMotor(eRCtnSwitch_Off);
-                // context->mRCState = eRCtnState_FullyOpened;
+                // context->mRctnState = eRCtnState_FullyOpened;
                 context->mRCLastState = eRCtnState_FullyOpened;
                 context->Save();
             }
@@ -203,7 +179,7 @@ void RearCurtainManager::OnEventRcState(RCtnState_e state_curr, RCtnState_e stat
             if (context->mRCLastState != eRCtnState_FullyClosed)
             {
                 Zone3_RCtn_MoveCurtainMotor(eRCtnSwitch_Off);
-                // context->mRCState = eRCtnState_FullyClosed;
+                // context->mRctnState = eRCtnState_FullyClosed;
                 context->mRCLastState = eRCtnState_FullyClosed;
                 context->Save();
             }
@@ -223,6 +199,7 @@ void RearCurtainManager::OnEventRcState(RCtnState_e state_curr, RCtnState_e stat
     }
 
     this->sendMessage(msgItem);
+#endif
 }
 
 int RearCurtainManager::OnCmdRequestRearCurtainOperation(RCtnSwitch_e btn, bool api_modal)
@@ -236,13 +213,10 @@ int RearCurtainManager::OnCmdRequestRearCurtainOperation(RCtnSwitch_e btn, bool 
             LOG_DEBUG() << "[RearCurtainManager::OnCmdRequestRearCurtainOperation] eRCtnSwitch_OpenOn\n";
             VehicleContext *context = VehicleContext::GetInstance();
 
-            if (context->mRCState != eRCtnState_FullyOpened)
+            if (context->mRctnState != eRCtnState_FullyOpened)
             {
                 Zone3_RCtn_MoveCurtainMotor(eRCtnSwitch_OpenOn);
-                context->mRCState = eRCtnState_Opening;
-                context->mRCLastState = eRCtnState_PartlyOpened;
-                context->mRCLastUserSwitch = eRCtnSwitch_OpenOn;
-                context->Save();
+                context->mRctnState = eRCtnState_Opening;
             }
 
             Api_Rcurtain_Field_SoaRctnStatus();
@@ -255,13 +229,10 @@ int RearCurtainManager::OnCmdRequestRearCurtainOperation(RCtnSwitch_e btn, bool 
             LOG_DEBUG() << "[RearCurtainManager::OnCmdRequestRearCurtainOperation] eRCtnSwitch_CloseOn\n";
             VehicleContext *context = VehicleContext::GetInstance();
 
-            if (context->mRCState != eRCtnState_FullyClosed && context->mGearState != eGearState_R)
+            if (context->mRctnState != eRCtnState_FullyClosed && context->mGearState != eGearState_R)
             {
                 Zone3_RCtn_MoveCurtainMotor(eRCtnSwitch_CloseOn);
-                context->mRCState = eRCtnState_Closing;
-                context->mRCLastState = eRCtnState_PartlyOpened;
-                context->mRCLastUserSwitch = eRCtnSwitch_CloseOn;
-                context->Save();
+                context->mRctnState = eRCtnState_Closing;
             }
 
             Api_Rcurtain_Field_SoaRctnStatus();
@@ -274,20 +245,12 @@ int RearCurtainManager::OnCmdRequestRearCurtainOperation(RCtnSwitch_e btn, bool 
             LOG_DEBUG() << "[RearCurtainManager::OnCmdRequestRearCurtainOperation] eRCtnSwitch_Off\n";
             VehicleContext *context = VehicleContext::GetInstance();
 
-            if (context->mRCLastUserSwitch == eRCtnSwitch_Unknown)
-            {
-                context->mRCLastUserSwitch = eRCtnSwitch_Off;
-                context->Save();
-            }
-            else if (context->mRCLastUserSwitch != eRCtnSwitch_Off)
+            if (context->mRctnSwitch != eRCtnSwitch_Off)
             {
                 Zone3_RCtn_MoveCurtainMotor(eRCtnSwitch_Off);
-                if (context->mRCState != eRCtnState_FullyClosed && context->mRCState != eRCtnState_FullyOpened)
+                if (context->mRctnState != eRCtnState_FullyClosed && context->mRctnState != eRCtnState_FullyOpened)
                 {
-                    context->mRCState = eRCtnState_PartlyOpened;
-                    context->mRCLastState = eRCtnState_PartlyOpened;
-                    context->mRCLastUserSwitch = eRCtnSwitch_Off;
-                    context->Save();
+                    context->mRctnState = eRCtnState_PartlyOpened;
                 }
             }
 
@@ -299,6 +262,20 @@ int RearCurtainManager::OnCmdRequestRearCurtainOperation(RCtnSwitch_e btn, bool 
     default:
         return 1;
     }
+
+    return this->sendMessage(msgItem, api_modal);
+}
+
+int RearCurtainManager::OnCmdRequestRearCurtainPosition(int position_per, bool api_modal)
+{
+    funcMsgItem msgItem;
+
+    msgItem.mFunc = [](int arg1, int arg2, int arg3, void *argPtr) {
+        LOG_DEBUG() << "[RearCurtainManager::OnCmdRequestRearCurtainOperation] eRCtnSwitch_OpenOn\n";
+        Zone3_RCtn_MoveCurtainMotorToPosition(arg1);
+        return 0;
+    };
+    msgItem.mArg1 = position_per;
 
     return this->sendMessage(msgItem, api_modal);
 }

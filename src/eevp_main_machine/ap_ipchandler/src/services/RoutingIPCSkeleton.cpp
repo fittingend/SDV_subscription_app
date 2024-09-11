@@ -1,8 +1,12 @@
 /* Copyright 2024 Hyundai Mobis Co., Ltd. All rights reserved */
 
+#include <string>
 #include <cstring>
+#include <sstream>
+#include <iomanip>
 #include <services/RoutingIPCSkeleton.hpp>
 #include <ipc/IPCIntf.hpp>
+#include <Log.hpp>
 
 using namespace ara::com;
 using namespace ara::core;
@@ -12,6 +16,13 @@ using namespace eevp::ipchandler::service;
 namespace routingipc {
 
 static InstanceSpecifier kRootSwComponent{"IPCHandler/RootSwComponent/IPCHandler"};
+
+template <typename T>
+String uintToHexString(T value) {
+    std::stringstream ss;
+    ss << std::hex << std::setw(sizeof(T) * 2) << std::setfill('0') << static_cast<int>(value);
+    return String(ss.str());
+}
 
 IPCRoutingIPCSkeleton::IPCRoutingIPCSkeleton()
     : Main_IPC_RoutingIPCSkeleton(kRootSwComponent, MethodCallProcessingMode::kEventSingleThread),
@@ -49,9 +60,10 @@ IPCRoutingIPCSkeleton::GetOneTimeSystemInfo()
     OneTimeSysInfo sysInfo;
     {
         std::lock_guard<std::mutex> lock(cpLock_);
-        std::string hw_version(cpInfo_.hw_version, 3);
-        std::string sw_version(cpInfo_.mcu_sw_version, 5);
-        VersionInfo version{hw_version, sw_version};
+        std::uint32_t hw_version = static_cast<int>(cpInfo_.hw_version[2]);
+        std::uint32_t mcu_sw_version = static_cast<int>(cpInfo_.mcu_sw_version[3]) * 10 +
+            static_cast<int>(cpInfo_.mcu_sw_version[4]);
+        VersionInfo version{std::to_string(hw_version), std::to_string(mcu_sw_version)};
         sysInfo = OneTimeSysInfo{version};
     }
 
@@ -98,6 +110,39 @@ IPCRoutingIPCSkeleton::ASMInfoRequest()
 
 void IPCRoutingIPCSkeleton::UpdateCpInfo(const CpInfo& newInfo)
 {
+    std::uint32_t hw_version = static_cast<int>(cpInfo_.hw_version[2]);
+    std::uint32_t mcu_sw_version = static_cast<int>(newInfo.mcu_sw_version[3]) * 10 +
+            static_cast<int>(newInfo.mcu_sw_version[4]);
+
+    logger().LogDebug() << "system_ctrl_req: " << static_cast<std::uint32_t>(newInfo.system_ctrl_req);
+    logger().LogDebug() << "hw_version: " << hw_version;
+    logger().LogDebug() << "mcu_sw_version: " << mcu_sw_version;
+    logger().LogDebug() << "acc: " << static_cast<std::uint32_t>(newInfo.acc);
+    logger().LogDebug() << "ign1: " << static_cast<std::uint32_t>(newInfo.ign1);
+    logger().LogDebug() << "ign3: " << static_cast<std::uint32_t>(newInfo.ign3);
+    logger().LogDebug() << "acc_cnt: " << static_cast<std::uint32_t>(newInfo.acc_cnt);
+
+    {
+        const char *p = reinterpret_cast<const char*>(&newInfo);
+        String v1{};
+        size_t i = 0;
+        size_t index = 0;
+        for (; i < offsetof(struct CpInfo, ign3_cnt); ++i) {
+            String value = uintToHexString<std::uint8_t>(p[i]);
+
+            if (i != 0 && i % 16 == 0) {
+                logger().LogDebug() << "[" << index << "] " << v1;
+                v1.clear();
+                index += 16;
+            }
+
+            v1 += " ";
+            v1 += value;
+        }
+        if (!v1.empty()) {
+            logger().LogDebug() << "[" << index + 16 << "] " << v1;
+        }
+    }
 
     std::uint8_t newReq;
     {

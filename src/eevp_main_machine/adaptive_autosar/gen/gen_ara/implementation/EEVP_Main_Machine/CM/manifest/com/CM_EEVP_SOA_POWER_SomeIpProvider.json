@@ -25,15 +25,6 @@
             },
             "eventgroups" : [
                 {
-                    "eventgroup-id" : "8194",
-                    "events" : ["16386"],
-                    "threshold" : "0",
-                    "multicast-address" : "undefined",
-                    "multicast-udp-port" : "0",
-                    "req-resp-delay-min" : "0.0",
-                    "req-resp-delay-max" : "0.0"
-                },
-                {
                     "eventgroup-id" : "8193",
                     "events" : ["16385"],
                     "threshold" : "0",
@@ -43,53 +34,8 @@
                     "req-resp-delay-max" : "0.0"
                 },
                 {
-                    "eventgroup-id" : "8196",
-                    "events" : ["16388"],
-                    "threshold" : "0",
-                    "multicast-address" : "undefined",
-                    "multicast-udp-port" : "0",
-                    "req-resp-delay-min" : "0.0",
-                    "req-resp-delay-max" : "0.0"
-                },
-                {
-                    "eventgroup-id" : "8195",
-                    "events" : ["16387"],
-                    "threshold" : "0",
-                    "multicast-address" : "undefined",
-                    "multicast-udp-port" : "0",
-                    "req-resp-delay-min" : "0.0",
-                    "req-resp-delay-max" : "0.0"
-                },
-                {
-                    "eventgroup-id" : "8198",
-                    "events" : ["16390"],
-                    "threshold" : "0",
-                    "multicast-address" : "undefined",
-                    "multicast-udp-port" : "0",
-                    "req-resp-delay-min" : "0.0",
-                    "req-resp-delay-max" : "0.0"
-                },
-                {
-                    "eventgroup-id" : "8197",
-                    "events" : ["16389"],
-                    "threshold" : "0",
-                    "multicast-address" : "undefined",
-                    "multicast-udp-port" : "0",
-                    "req-resp-delay-min" : "0.0",
-                    "req-resp-delay-max" : "0.0"
-                },
-                {
-                    "eventgroup-id" : "8200",
-                    "events" : ["16392"],
-                    "threshold" : "0",
-                    "multicast-address" : "undefined",
-                    "multicast-udp-port" : "0",
-                    "req-resp-delay-min" : "0.0",
-                    "req-resp-delay-max" : "0.0"
-                },
-                {
-                    "eventgroup-id" : "8199",
-                    "events" : ["16391"],
+                    "eventgroup-id" : "8194",
+                    "events" : ["16386"],
                     "threshold" : "0",
                     "multicast-address" : "undefined",
                     "multicast-udp-port" : "0",

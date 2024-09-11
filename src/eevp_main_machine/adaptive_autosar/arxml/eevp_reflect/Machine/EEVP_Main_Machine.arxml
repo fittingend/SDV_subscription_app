@@ -162,14 +162,13 @@
                     <LOG-TRACE-LOG-MODE>NETWORK</LOG-TRACE-LOG-MODE>
                   </LOG-TRACE-LOG-MODES>
                 </DLT-LOG-CHANNEL>
-                <DLT-LOG-CHANNEL UUID="5df90b72-2609-4031-ab35-2a755c2b7925">
+                <DLT-LOG-CHANNEL UUID="4d263570-792c-48b2-bf91-3534237165b2">
                   <SHORT-NAME>KATECH</SHORT-NAME>
                   <APPLICATION-ID>KATC</APPLICATION-ID>
                   <CONTEXT-ID>KATC</CONTEXT-ID>
                   <LOG-TRACE-DEFAULT-LOG-LEVEL>INFO</LOG-TRACE-DEFAULT-LOG-LEVEL>
                   <LOG-TRACE-LOG-MODES>
                     <LOG-TRACE-LOG-MODE>CONSOLE</LOG-TRACE-LOG-MODE>
-                    <LOG-TRACE-LOG-MODE>NETWORK</LOG-TRACE-LOG-MODE>
                   </LOG-TRACE-LOG-MODES>
                 </DLT-LOG-CHANNEL>
                 <DLT-LOG-CHANNEL UUID="9546793c-89a5-4d20-b8ee-b4a71c2ffff6">
@@ -484,7 +483,7 @@
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
                   <PROCESS-REF DEST="PROCESS">/Application/Process/InfoHealthTest</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>
-                <PROCESS-TO-MACHINE-MAPPING UUID="65bacf2d-49b6-4216-93c1-74c082e9fc6e">
+                <PROCESS-TO-MACHINE-MAPPING UUID="ca1407ea-2a98-4182-b758-85264231f548">
                   <SHORT-NAME>ProcessToMachineMapping_KATECH_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
                   <PROCESS-REF DEST="PROCESS">/Application/Process/KATECH</PROCESS-REF>
@@ -575,7 +574,7 @@
                   <PROCESS-REF DEST="PROCESS">/Application/Process/VDI</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>
                 <PROCESS-TO-MACHINE-MAPPING UUID="ebc41e70-9d2b-4076-8c3c-14baf639800c">
-                  <SHORT-NAME>ProcessToMachineMapping_VUCM_TO_EEVP_Machine_TO_UnknownModule</SHORT-NAME>
+                  <SHORT-NAME>ProcessToMachineMapping_VUCM_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
                   <PROCESS-REF DEST="PROCESS">/Application/Process/VUCM</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>

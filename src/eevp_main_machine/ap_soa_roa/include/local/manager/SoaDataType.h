@@ -4,6 +4,13 @@
 #include <Common.h>
 
 typedef enum {
+    eDeviceNormal_Ok,
+    eDeviceNormal_Abnormal,
+
+    eDeviceNormal_EndOfCase
+} DeviceNormal_e;
+
+typedef enum {
     ePowerState_Off,
     ePowerState_On,
     ePowerState_Error,
@@ -12,44 +19,28 @@ typedef enum {
 } PowerState_e;
 
 typedef enum {
-    eGearState_P,
-    eGearState_D,
-    eGearState_N,
-    eGearState_R,
-    eGearState_Fault,
-    eGearState_Unknown,
+    eRoaRunningState_Off,
+    eRoaRunningState_On,
+    eRoaRunningState_Error,
 
-    eGearState_EndOfCase
-} GearState_e;
+    eRoaRunningState_EndOfCase
+
+} RoaRunningState_e;
 
 typedef enum {
-    eRCtnSwitch_Off,
-    eRCtnSwitch_OpenOn,
-    eRCtnSwitch_CloseOn,
-    eRCtnSwitch_Unknown,
+    eRoaMode_Off,
+    eRoaMode_Normal,
+    eRoaMode_Advanced,
 
-    eRCtnSwitch_EndOfCase
-} RCtnSwitch_e;
-
-typedef enum {
-    eRCtnState_FullyOpened,
-    eRCtnState_FullyClosed,
-    eRCtnState_PartlyOpened,
-    eRCtnState_Opening,
-    eRCtnState_Closing,
-    eRCtnState_Unknown,
-    eRCtnState_Error,
-
-    eRCtnState_EndOfCase
-} RCtnState_e;
+    eRoaMode_EndOfCase
+} RoaMode_e;
 
 typedef enum {
-    eMlmMoodMode_CareMood,
-    eMlmMoodMode_ComfortMood,
-    eMlmMoodMode_DelightMood,
-    eMlmMoodMode_MoodTherapy,
-    eMlmMoodMode_VitalityMood,
+    eRoaSensorError_Ok,
+    eRoaSensorError_Snsr,
+    eRoaSensorError_Blckge,
 
-    eMlmMoodMode_EndOfCase
-} MlmMoodMode_e;
+    eRoaSensorError_EndOfCase
+} RoaSensorError_e;
+
 #endif

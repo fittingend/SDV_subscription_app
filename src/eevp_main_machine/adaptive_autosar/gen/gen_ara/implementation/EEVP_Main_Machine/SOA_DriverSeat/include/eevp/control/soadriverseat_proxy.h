@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : soadriverseat_proxy.h
 /// SERVICE INTERFACE NAME            : SoaDriverSeat
-/// GENERATED DATE                    : 2024-07-19 07:35:30
+/// GENERATED DATE                    : 2024-08-14 14:33:44
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -522,6 +522,167 @@ private:
     const std::string kGetterCallSign = {"soaDrvSeatMotorPositionGetter"};
     const std::string kNotifierCallSign = {"soaDrvSeatMotorPositionNotifier"};
 };
+/// @uptrace{SWS_CM_00008}
+class soaDrvSeatSwVersion
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = std::uint8_t;
+    /// @brief Constructor
+    explicit soaDrvSeatSwVersion(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~soaDrvSeatSwVersion() = default;
+    /// @brief Delete copy constructor
+    soaDrvSeatSwVersion(const soaDrvSeatSwVersion& other) = delete;
+    /// @brief Delete copy assignment
+    soaDrvSeatSwVersion& operator=(const soaDrvSeatSwVersion& other) = delete;
+    /// @brief Move constructor
+    soaDrvSeatSwVersion(soaDrvSeatSwVersion&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    soaDrvSeatSwVersion& operator=(soaDrvSeatSwVersion&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"soaDrvSeatSwVersionGetter"};
+    const std::string kNotifierCallSign = {"soaDrvSeatSwVersionNotifier"};
+};
 } /// namespace fields
 /// @uptrace{SWS_CM_01015}
 namespace methods
@@ -761,6 +922,7 @@ public:
         , soaDrvSeatDeviceNormal(mInterface.get())
         , soaDrvSeatMotorDirection(mInterface.get())
         , soaDrvSeatMotorPosition(mInterface.get())
+        , soaDrvSeatSwVersion(mInterface.get())
         , RequestMoveDrvSeatHeight(mInterface.get())
         , RequestMoveDrvSeatRecline(mInterface.get())
         , RequestMoveDrvSeatSlide(mInterface.get())
@@ -784,6 +946,7 @@ public:
         , soaDrvSeatDeviceNormal(std::move(other.soaDrvSeatDeviceNormal))
         , soaDrvSeatMotorDirection(std::move(other.soaDrvSeatMotorDirection))
         , soaDrvSeatMotorPosition(std::move(other.soaDrvSeatMotorPosition))
+        , soaDrvSeatSwVersion(std::move(other.soaDrvSeatSwVersion))
         , RequestMoveDrvSeatHeight(std::move(other.RequestMoveDrvSeatHeight))
         , RequestMoveDrvSeatRecline(std::move(other.RequestMoveDrvSeatRecline))
         , RequestMoveDrvSeatSlide(std::move(other.RequestMoveDrvSeatSlide))
@@ -802,6 +965,7 @@ public:
         soaDrvSeatDeviceNormal = std::move(other.soaDrvSeatDeviceNormal);
         soaDrvSeatMotorDirection = std::move(other.soaDrvSeatMotorDirection);
         soaDrvSeatMotorPosition = std::move(other.soaDrvSeatMotorPosition);
+        soaDrvSeatSwVersion = std::move(other.soaDrvSeatSwVersion);
         RequestMoveDrvSeatHeight = std::move(other.RequestMoveDrvSeatHeight);
         RequestMoveDrvSeatRecline = std::move(other.RequestMoveDrvSeatRecline);
         RequestMoveDrvSeatSlide = std::move(other.RequestMoveDrvSeatSlide);
@@ -827,12 +991,14 @@ private:
     std::unique_ptr<para::com::ProxyInterface> mInterface;
     
 public:
-    /// @brief - field, isDeviceNormal
+    /// @brief - field, soaDrvSeatDeviceNormal
     fields::soaDrvSeatDeviceNormal soaDrvSeatDeviceNormal;
     /// @brief - field, soaDrvSeatMotorDirection
     fields::soaDrvSeatMotorDirection soaDrvSeatMotorDirection;
     /// @brief - field, soaDrvSeatMotorPosition
     fields::soaDrvSeatMotorPosition soaDrvSeatMotorPosition;
+    /// @brief - method, RequestMoveDrvSeatHeight
+    fields::soaDrvSeatSwVersion soaDrvSeatSwVersion;
     /// @brief - method, RequestMoveDrvSeatHeight
     methods::RequestMoveDrvSeatHeight RequestMoveDrvSeatHeight;
     /// @brief - method, RequestMoveDrvSeatRecline

@@ -185,16 +185,6 @@
                       <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/MonitoringManagement/Eventgroup_eventService</EVENT-GROUP-REF>
                       <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
                     </SOMEIP-REQUIRED-EVENT-GROUP>
-                    <SOMEIP-REQUIRED-EVENT-GROUP>
-                      <SHORT-NAME>Eventgroup_eventServiceInfo</SHORT-NAME>
-                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/MonitoringManagement/Eventgroup_eventServiceInfo</EVENT-GROUP-REF>
-                      <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
-                    </SOMEIP-REQUIRED-EVENT-GROUP>
-                    <SOMEIP-REQUIRED-EVENT-GROUP>
-                      <SHORT-NAME>Eventgroup_eventServiceStatus</SHORT-NAME>
-                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/MonitoringManagement/Eventgroup_eventServiceStatus</EVENT-GROUP-REF>
-                      <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
-                    </SOMEIP-REQUIRED-EVENT-GROUP>
                   </REQUIRED-EVENT-GROUPS>
                   <REQUIRED-MINOR-VERSION>ANY</REQUIRED-MINOR-VERSION>
                   <REQUIRED-SERVICE-INSTANCE-ID>ANY</REQUIRED-SERVICE-INSTANCE-ID>
@@ -279,7 +269,7 @@
           <FIELDS>
             <FIELD UUID="5ecf3318-1249-439a-bad4-336271515590">
               <SHORT-NAME>NotifyTime</SHORT-NAME>
-              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-TREF>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-TREF>
               <HAS-GETTER>true</HAS-GETTER>
               <HAS-NOTIFIER>true</HAS-NOTIFIER>
               <HAS-SETTER>true</HAS-SETTER>

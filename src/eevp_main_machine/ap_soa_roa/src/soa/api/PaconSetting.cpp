@@ -2,11 +2,10 @@
 #include <SoaDataType.h>
 #include "ara/core/initialization.h"
 #include "ara/exec/execution_client.h"
-#include "eevp/control/soaroa_common.h"
+#include <Api_SoaRoa.hpp>
+#include <Api_Zone2Roa.hpp>
 #include <PaconSetting.hpp>
 #include <Log.hpp>
-
-using namespace eevp::control;
 
 PaconSetting *PaconSetting::mInst = nullptr;
 
@@ -33,16 +32,13 @@ PaconSetting::PaconSetting()
 {
     this->mCoreInitialized = false;
     this->mExecutionStateReported = false;
-    this->mSoaRoa = nullptr;
 }
 
 
 PaconSetting::~PaconSetting()
 {
-    if (this->mSoaRoa != nullptr) {
-        delete this->mSoaRoa;
-        this->mSoaRoa = nullptr;
-    }
+    Zone2_SOA_Term();
+    SOA_ROA_Term();
 
     if (this->mCoreInitialized)
     {
@@ -73,21 +69,10 @@ bool PaconSetting::StartPacon()
     this->mExecutionStateReported = true;
     LOG_DEBUG() << "[PaconSetting::StartPacon] ara::exec::ExecutionClient::ReportExecutionState (-)\n";
 
-    this->setRoa();
+    SOA_ROA_Init();
+    Zone2_SOA_Init();
 
     LOG_INFO() << "[PaconSetting::StartPacon] (-)\n";
     return true;
 #endif
-}
-
-void PaconSetting::setRoa()
-{
-    ara::core::InstanceSpecifier specifier("SOA_ROA/AA/PPort_SOA_ROA");
-    this->mSoaRoa = new SoaRoaSkeletonImpl(specifier);
-    this->mSoaRoa->OfferService();
-}
-
-eevp::control::SoaRoaSkeletonImpl *PaconSetting::GetSoaRoa()
-{
-    return this->mSoaRoa;
 }

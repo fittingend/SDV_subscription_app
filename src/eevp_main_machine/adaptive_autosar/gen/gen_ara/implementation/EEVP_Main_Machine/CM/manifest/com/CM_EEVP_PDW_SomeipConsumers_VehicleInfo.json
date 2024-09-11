@@ -25,8 +25,8 @@
             },
             "eventgroups" : [
                 {
-                    "eventgroup-id" : "1",
-                    "events" : ["1"],
+                    "eventgroup-id" : "1004",
+                    "events" : ["12916"],
                     "subscribe-ttl" : "16777215",
                     "subscribe-retry-delay" : "0.0",
                     "subscribe-retry-max" : "3",

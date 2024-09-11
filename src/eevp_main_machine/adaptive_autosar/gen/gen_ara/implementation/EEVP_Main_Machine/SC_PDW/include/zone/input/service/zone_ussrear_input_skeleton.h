@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : zone_ussrear_input_skeleton.h
 /// SERVICE INTERFACE NAME            : Zone_UssRear_Input
-/// GENERATED DATE                    : 2024-07-19 07:35:28
+/// GENERATED DATE                    : 2024-08-14 14:33:42
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -39,28 +39,28 @@ class Zone_UssRear_InputSkeleton;
 namespace events
 {
 /// @uptrace{SWS_CM_00003}
-class UssData
+class UssRear
 {
 public:
     /// @brief Type alias for type of event data
     /// @uptrace{SWS_CM_00162, SWS_CM_90437}
     using SampleType = zone::input::type::UssData;
     /// @brief Constructor
-    explicit UssData(para::com::SkeletonInterface* interface) : mInterface(interface)
+    explicit UssRear(para::com::SkeletonInterface* interface) : mInterface(interface)
     {
     }
     /// @brief Destructor
-    virtual ~UssData() = default;
+    virtual ~UssRear() = default;
     /// @brief Delete copy constructor
-    UssData(const UssData& other) = delete;
+    UssRear(const UssRear& other) = delete;
     /// @brief Delete copy assignment
-    UssData& operator=(const UssData& other) = delete;
+    UssRear& operator=(const UssRear& other) = delete;
     /// @brief Move constructor
-    UssData(UssData&& other) noexcept : mInterface(other.mInterface)
+    UssRear(UssRear&& other) noexcept : mInterface(other.mInterface)
     {
     }
     /// @brief Move assignment
-    UssData& operator=(UssData&& other) noexcept
+    UssRear& operator=(UssRear&& other) noexcept
     {
         mInterface = other.mInterface;
         return *this;
@@ -83,7 +83,7 @@ public:
     
 private:
     para::com::SkeletonInterface* mInterface;
-    const std::string kCallSign = {"UssData"};
+    const std::string kCallSign = {"UssRear"};
 };
 } /// namespace events
 /// @uptrace{SWS_CM_01031}
@@ -99,7 +99,7 @@ public:
     /// @uptrace{SWS_CM_00002, SWS_CM_00152}
     Zone_UssRear_InputSkeleton(ara::core::InstanceSpecifier instanceSpec, ara::com::MethodCallProcessingMode mode = ara::com::MethodCallProcessingMode::kEvent)
         : mInterface(std::make_unique<para::com::SkeletonInterface>(instanceSpec, mode))
-        , UssData(mInterface.get())
+        , UssRear(mInterface.get())
     {
         mInterface->SetE2EErrorHandler([this](const ara::com::e2e::E2EErrorDomain& errorCode, ara::com::e2e::DataID dataID, ara::com::e2e::MessageCounter messageCounter) {
             E2EErrorHandler(errorCode, dataID, messageCounter);
@@ -117,7 +117,7 @@ public:
     /// @uptrace{SWS_CM_00135}
     Zone_UssRear_InputSkeleton(Zone_UssRear_InputSkeleton&& other) noexcept
         : mInterface(std::move(other.mInterface))
-        , UssData(std::move(other.UssData))
+        , UssRear(std::move(other.UssRear))
     {
         mInterface->SetE2EErrorHandler([this](const ara::com::e2e::E2EErrorDomain& errorCode, ara::com::e2e::DataID dataID, ara::com::e2e::MessageCounter messageCounter) {
             E2EErrorHandler(errorCode, dataID, messageCounter);
@@ -129,7 +129,7 @@ public:
     Zone_UssRear_InputSkeleton& operator=(Zone_UssRear_InputSkeleton&& other) noexcept
     {
         mInterface = std::move(other.mInterface);
-        UssData = std::move(other.UssData);
+        UssRear = std::move(other.UssRear);
         mInterface->SetE2EErrorHandler([this](const ara::com::e2e::E2EErrorDomain& errorCode, ara::com::e2e::DataID dataID, ara::com::e2e::MessageCounter messageCounter) {
             E2EErrorHandler(errorCode, dataID, messageCounter);
         });
@@ -176,8 +176,8 @@ private:
     std::unique_ptr<para::com::SkeletonInterface> mInterface;
     
 public:
-    /// @brief Event, UssData
-    events::UssData UssData;
+    /// @brief Event, UssRear
+    events::UssRear UssRear;
     
 private:
 };

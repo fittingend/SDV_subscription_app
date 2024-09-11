@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : zone_ussrear_input_proxy.h
 /// SERVICE INTERFACE NAME            : Zone_UssRear_Input
-/// GENERATED DATE                    : 2024-07-19 07:35:28
+/// GENERATED DATE                    : 2024-08-14 14:33:42
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -38,24 +38,24 @@ namespace proxy
 namespace events
 {
 /// @uptrace{SWS_CM_00003}
-class UssData
+class UssRear
 {
 public:
     /// @brief Type alias for type of event data
     /// @uptrace{SWS_CM_00162, SWS_CM_90437}
     using SampleType = zone::input::type::UssData;
     /// @brief Constructor
-    explicit UssData(para::com::ProxyInterface* interface) : mInterface(interface)
+    explicit UssRear(para::com::ProxyInterface* interface) : mInterface(interface)
     {
     }
     /// @brief Destructor
-    virtual ~UssData() = default;
+    virtual ~UssRear() = default;
     /// @brief Delete copy constructor
-    UssData(const UssData& other) = delete;
+    UssRear(const UssRear& other) = delete;
     /// @brief Delete copy assignment
-    UssData& operator=(const UssData& other) = delete;
+    UssRear& operator=(const UssRear& other) = delete;
     /// @brief Move constructor
-    UssData(UssData&& other) noexcept : mInterface(other.mInterface)
+    UssRear(UssRear&& other) noexcept : mInterface(other.mInterface)
     {
         mMaxSampleCount = other.mMaxSampleCount;
         mEventReceiveHandler = other.mEventReceiveHandler;
@@ -64,7 +64,7 @@ public:
         mInterface->SetSubscriptionStateChangeHandler(kCallSign, mSubscriptionStateChangeHandler);
     }
     /// @brief Move assignment
-    UssData& operator=(UssData&& other) noexcept
+    UssRear& operator=(UssRear&& other) noexcept
     {
         mInterface = other.mInterface;
         mMaxSampleCount = other.mMaxSampleCount;
@@ -168,7 +168,7 @@ private:
     size_t mMaxSampleCount{0};
     ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
     ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
-    const std::string kCallSign = {"UssData"};
+    const std::string kCallSign = {"UssRear"};
 };
 } /// namespace events
 /// @uptrace{SWS_CM_01031}
@@ -262,7 +262,7 @@ public:
     explicit Zone_UssRear_InputProxy(HandleType& handle)
         : mHandle(handle)
         , mInterface(std::make_unique<para::com::ProxyInterface>(handle.GetInstanceSpecifier(), handle.GetServiceHandle()))
-        , UssData(mInterface.get())
+        , UssRear(mInterface.get())
     {
     }
     /// @brief Destructor
@@ -279,7 +279,7 @@ public:
     Zone_UssRear_InputProxy(Zone_UssRear_InputProxy&& other) noexcept
         : mHandle(std::move(other.mHandle))
         , mInterface(std::move(other.mInterface))
-        , UssData(std::move(other.UssData))
+        , UssRear(std::move(other.UssRear))
     {
         mInterface->StopFindService();
         other.mInterface.reset();
@@ -291,7 +291,7 @@ public:
         mHandle = std::move(other.mHandle);
         mInterface = std::move(other.mInterface);
         mInterface->StopFindService();
-        UssData = std::move(other.UssData);
+        UssRear = std::move(other.UssRear);
         other.mInterface.reset();
         return *this;
     }
@@ -313,8 +313,8 @@ private:
     std::unique_ptr<para::com::ProxyInterface> mInterface;
     
 public:
-    /// @brief - event, UssData
-    events::UssData UssData;
+    /// @brief - event, UssRear
+    events::UssRear UssRear;
 };
 } /// namespace proxy
 } /// namespace service

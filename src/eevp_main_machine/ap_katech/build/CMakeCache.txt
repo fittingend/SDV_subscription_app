@@ -213,8 +213,8 @@ KATECH_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 KATECH_SOURCE_DIR:STATIC=/home/popcornsar/src/eevp_main_machine/ap_katech
 
-//PARA SDK location
-PARA_SDK:PATH=/home/popcornsar/work/para-sdk
+//No help, variable specified on the command line.
+PARA_SDK:UNINITIALIZED=/home/popcornsar/work/para-sdk
 
 //The directory containing a CMake configuration file for para-base.
 para-base_DIR:PATH=/home/popcornsar/work/para-sdk/lib/cmake/para-base

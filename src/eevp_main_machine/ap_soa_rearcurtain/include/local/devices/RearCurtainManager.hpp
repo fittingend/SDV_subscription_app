@@ -22,5 +22,6 @@ public:
     void OnEventRcState(RCtnState_e state_curr, RCtnState_e state_prev);
 
     int OnCmdRequestRearCurtainOperation(RCtnSwitch_e btn, bool api_modal = false);
+    int OnCmdRequestRearCurtainPosition(int position_per, bool api_modal = false);
 };
 #endif

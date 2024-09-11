@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : monitoringmanagement_proxy.h
 /// SERVICE INTERFACE NAME            : MonitoringManagement
-/// GENERATED DATE                    : 2024-07-19 07:35:27
+/// GENERATED DATE                    : 2024-08-27 13:02:45
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -37,6 +37,139 @@ namespace proxy
 /// @uptrace{SWS_CM_01009}
 namespace events
 {
+/// @uptrace{SWS_CM_00003}
+class DistanceLevel
+{
+public:
+    /// @brief Type alias for type of event data
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using SampleType = eevp::pdw::type::DistanceLevel;
+    /// @brief Constructor
+    explicit DistanceLevel(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+    }
+    /// @brief Destructor
+    virtual ~DistanceLevel() = default;
+    /// @brief Delete copy constructor
+    DistanceLevel(const DistanceLevel& other) = delete;
+    /// @brief Delete copy assignment
+    DistanceLevel& operator=(const DistanceLevel& other) = delete;
+    /// @brief Move constructor
+    DistanceLevel(DistanceLevel&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Move assignment
+    DistanceLevel& operator=(DistanceLevel&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kCallSign, mSubscriptionStateChangeHandler);
+        return *this;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kCallSign);
+    }
+    /// @brief Get received event data from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            SampleType data;
+            deserializer.read(data);
+            f(ara::com::make_sample_ptr<const SampleType>(data));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that event data is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kCallSign, mEventReceiveHandler); 
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kCallSign);
+    }
+    /// @brief Returns the count of free event cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    /// @brief This method provides access to the global SMState of the this Method class,
+    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
+    /// @uptrace{SWS_CM_10475}
+    /// @uptrace{SWS_CM_90431}
+    ara::com::e2e::SMState GetSMState() const noexcept
+    {
+        return mInterface->GetE2EStateMachineState(kCallSign);
+    }
+    
+private:
+    para::com::ProxyInterface* mInterface;
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    const std::string kCallSign = {"DistanceLevel"};
+};
 /// @uptrace{SWS_CM_00003}
 class eventServiceError
 {
@@ -839,10 +972,4547 @@ private:
 /// @uptrace{SWS_CM_01031}
 namespace fields
 {
+/// @uptrace{SWS_CM_00008}
+class mbTemp
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = eevp::type::String;
+    /// @brief Constructor
+    explicit mbTemp(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~mbTemp() = default;
+    /// @brief Delete copy constructor
+    mbTemp(const mbTemp& other) = delete;
+    /// @brief Delete copy assignment
+    mbTemp& operator=(const mbTemp& other) = delete;
+    /// @brief Move constructor
+    mbTemp(mbTemp&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    mbTemp& operator=(mbTemp&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"mbTempGetter"};
+    const std::string kNotifierCallSign = {"mbTempNotifier"};
+};
+/// @uptrace{SWS_CM_00008}
+class soaDrvSeatDeviceNormal
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = eevp::control::SoaDeviceIsNormal;
+    /// @brief Constructor
+    explicit soaDrvSeatDeviceNormal(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~soaDrvSeatDeviceNormal() = default;
+    /// @brief Delete copy constructor
+    soaDrvSeatDeviceNormal(const soaDrvSeatDeviceNormal& other) = delete;
+    /// @brief Delete copy assignment
+    soaDrvSeatDeviceNormal& operator=(const soaDrvSeatDeviceNormal& other) = delete;
+    /// @brief Move constructor
+    soaDrvSeatDeviceNormal(soaDrvSeatDeviceNormal&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    soaDrvSeatDeviceNormal& operator=(soaDrvSeatDeviceNormal&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"soaDrvSeatDeviceNormalGetter"};
+    const std::string kNotifierCallSign = {"soaDrvSeatDeviceNormalNotifier"};
+};
+/// @uptrace{SWS_CM_00008}
+class soaDrvSeatMotorDirection
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = eevp::control::SoaSeatMotorDirection;
+    /// @brief Constructor
+    explicit soaDrvSeatMotorDirection(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~soaDrvSeatMotorDirection() = default;
+    /// @brief Delete copy constructor
+    soaDrvSeatMotorDirection(const soaDrvSeatMotorDirection& other) = delete;
+    /// @brief Delete copy assignment
+    soaDrvSeatMotorDirection& operator=(const soaDrvSeatMotorDirection& other) = delete;
+    /// @brief Move constructor
+    soaDrvSeatMotorDirection(soaDrvSeatMotorDirection&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    soaDrvSeatMotorDirection& operator=(soaDrvSeatMotorDirection&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"soaDrvSeatMotorDirectionGetter"};
+    const std::string kNotifierCallSign = {"soaDrvSeatMotorDirectionNotifier"};
+};
+/// @uptrace{SWS_CM_00008}
+class soaDrvSeatMotorPosition
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = eevp::control::SoaSeatMotorPosition;
+    /// @brief Constructor
+    explicit soaDrvSeatMotorPosition(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~soaDrvSeatMotorPosition() = default;
+    /// @brief Delete copy constructor
+    soaDrvSeatMotorPosition(const soaDrvSeatMotorPosition& other) = delete;
+    /// @brief Delete copy assignment
+    soaDrvSeatMotorPosition& operator=(const soaDrvSeatMotorPosition& other) = delete;
+    /// @brief Move constructor
+    soaDrvSeatMotorPosition(soaDrvSeatMotorPosition&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    soaDrvSeatMotorPosition& operator=(soaDrvSeatMotorPosition&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"soaDrvSeatMotorPositionGetter"};
+    const std::string kNotifierCallSign = {"soaDrvSeatMotorPositionNotifier"};
+};
+/// @uptrace{SWS_CM_00008}
+class soaDrvSeatSwVersion
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = std::uint8_t;
+    /// @brief Constructor
+    explicit soaDrvSeatSwVersion(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~soaDrvSeatSwVersion() = default;
+    /// @brief Delete copy constructor
+    soaDrvSeatSwVersion(const soaDrvSeatSwVersion& other) = delete;
+    /// @brief Delete copy assignment
+    soaDrvSeatSwVersion& operator=(const soaDrvSeatSwVersion& other) = delete;
+    /// @brief Move constructor
+    soaDrvSeatSwVersion(soaDrvSeatSwVersion&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    soaDrvSeatSwVersion& operator=(soaDrvSeatSwVersion&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"soaDrvSeatSwVersionGetter"};
+    const std::string kNotifierCallSign = {"soaDrvSeatSwVersionNotifier"};
+};
+/// @uptrace{SWS_CM_00008}
+class soaMlmStatus
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = eevp::control::SoaMlmStatus;
+    /// @brief Constructor
+    explicit soaMlmStatus(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~soaMlmStatus() = default;
+    /// @brief Delete copy constructor
+    soaMlmStatus(const soaMlmStatus& other) = delete;
+    /// @brief Delete copy assignment
+    soaMlmStatus& operator=(const soaMlmStatus& other) = delete;
+    /// @brief Move constructor
+    soaMlmStatus(soaMlmStatus&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    soaMlmStatus& operator=(soaMlmStatus&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"soaMlmStatusGetter"};
+    const std::string kNotifierCallSign = {"soaMlmStatusNotifier"};
+};
+/// @uptrace{SWS_CM_00008}
+class soaMlmSwVersion
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = std::uint8_t;
+    /// @brief Constructor
+    explicit soaMlmSwVersion(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~soaMlmSwVersion() = default;
+    /// @brief Delete copy constructor
+    soaMlmSwVersion(const soaMlmSwVersion& other) = delete;
+    /// @brief Delete copy assignment
+    soaMlmSwVersion& operator=(const soaMlmSwVersion& other) = delete;
+    /// @brief Move constructor
+    soaMlmSwVersion(soaMlmSwVersion&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    soaMlmSwVersion& operator=(soaMlmSwVersion&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"soaMlmSwVersionGetter"};
+    const std::string kNotifierCallSign = {"soaMlmSwVersionNotifier"};
+};
+/// @uptrace{SWS_CM_00008}
+class soaPowerDeviceNormal
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = eevp::control::SoaDeviceIsNormal;
+    /// @brief Constructor
+    explicit soaPowerDeviceNormal(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~soaPowerDeviceNormal() = default;
+    /// @brief Delete copy constructor
+    soaPowerDeviceNormal(const soaPowerDeviceNormal& other) = delete;
+    /// @brief Delete copy assignment
+    soaPowerDeviceNormal& operator=(const soaPowerDeviceNormal& other) = delete;
+    /// @brief Move constructor
+    soaPowerDeviceNormal(soaPowerDeviceNormal&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    soaPowerDeviceNormal& operator=(soaPowerDeviceNormal&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"soaPowerDeviceNormalGetter"};
+    const std::string kNotifierCallSign = {"soaPowerDeviceNormalNotifier"};
+};
+/// @uptrace{SWS_CM_00008}
+class soaPowerSwVersion
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = std::uint8_t;
+    /// @brief Constructor
+    explicit soaPowerSwVersion(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~soaPowerSwVersion() = default;
+    /// @brief Delete copy constructor
+    soaPowerSwVersion(const soaPowerSwVersion& other) = delete;
+    /// @brief Delete copy assignment
+    soaPowerSwVersion& operator=(const soaPowerSwVersion& other) = delete;
+    /// @brief Move constructor
+    soaPowerSwVersion(soaPowerSwVersion&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    soaPowerSwVersion& operator=(soaPowerSwVersion&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"soaPowerSwVersionGetter"};
+    const std::string kNotifierCallSign = {"soaPowerSwVersionNotifier"};
+};
+/// @uptrace{SWS_CM_00008}
+class soaRctnStatus
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = eevp::control::SoaRctnStatus;
+    /// @brief Constructor
+    explicit soaRctnStatus(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~soaRctnStatus() = default;
+    /// @brief Delete copy constructor
+    soaRctnStatus(const soaRctnStatus& other) = delete;
+    /// @brief Delete copy assignment
+    soaRctnStatus& operator=(const soaRctnStatus& other) = delete;
+    /// @brief Move constructor
+    soaRctnStatus(soaRctnStatus&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    soaRctnStatus& operator=(soaRctnStatus&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"soaRctnStatusGetter"};
+    const std::string kNotifierCallSign = {"soaRctnStatusNotifier"};
+};
+/// @uptrace{SWS_CM_00008}
+class soaRctnSwVersion
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = std::uint8_t;
+    /// @brief Constructor
+    explicit soaRctnSwVersion(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~soaRctnSwVersion() = default;
+    /// @brief Delete copy constructor
+    soaRctnSwVersion(const soaRctnSwVersion& other) = delete;
+    /// @brief Delete copy assignment
+    soaRctnSwVersion& operator=(const soaRctnSwVersion& other) = delete;
+    /// @brief Move constructor
+    soaRctnSwVersion(soaRctnSwVersion&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    soaRctnSwVersion& operator=(soaRctnSwVersion&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"soaRctnSwVersionGetter"};
+    const std::string kNotifierCallSign = {"soaRctnSwVersionNotifier"};
+};
+/// @uptrace{SWS_CM_00008}
+class soaRoaDetectCount
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = std::uint8_t;
+    /// @brief Constructor
+    explicit soaRoaDetectCount(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~soaRoaDetectCount() = default;
+    /// @brief Delete copy constructor
+    soaRoaDetectCount(const soaRoaDetectCount& other) = delete;
+    /// @brief Delete copy assignment
+    soaRoaDetectCount& operator=(const soaRoaDetectCount& other) = delete;
+    /// @brief Move constructor
+    soaRoaDetectCount(soaRoaDetectCount&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    soaRoaDetectCount& operator=(soaRoaDetectCount&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"soaRoaDetectCountGetter"};
+    const std::string kNotifierCallSign = {"soaRoaDetectCountNotifier"};
+};
+/// @uptrace{SWS_CM_00008}
+class soaRoaDetectState
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = eevp::control::SoaRoaDetectState;
+    /// @brief Constructor
+    explicit soaRoaDetectState(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~soaRoaDetectState() = default;
+    /// @brief Delete copy constructor
+    soaRoaDetectState(const soaRoaDetectState& other) = delete;
+    /// @brief Delete copy assignment
+    soaRoaDetectState& operator=(const soaRoaDetectState& other) = delete;
+    /// @brief Move constructor
+    soaRoaDetectState(soaRoaDetectState&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    soaRoaDetectState& operator=(soaRoaDetectState&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"soaRoaDetectStateGetter"};
+    const std::string kNotifierCallSign = {"soaRoaDetectStateNotifier"};
+};
+/// @uptrace{SWS_CM_00008}
+class soaRoaDeviceNormal
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = eevp::control::SoaDeviceIsNormal;
+    /// @brief Constructor
+    explicit soaRoaDeviceNormal(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~soaRoaDeviceNormal() = default;
+    /// @brief Delete copy constructor
+    soaRoaDeviceNormal(const soaRoaDeviceNormal& other) = delete;
+    /// @brief Delete copy assignment
+    soaRoaDeviceNormal& operator=(const soaRoaDeviceNormal& other) = delete;
+    /// @brief Move constructor
+    soaRoaDeviceNormal(soaRoaDeviceNormal&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    soaRoaDeviceNormal& operator=(soaRoaDeviceNormal&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"soaRoaDeviceNormalGetter"};
+    const std::string kNotifierCallSign = {"soaRoaDeviceNormalNotifier"};
+};
+/// @uptrace{SWS_CM_00008}
+class soaRoaMode
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = eevp::control::SoaRoaMode;
+    /// @brief Constructor
+    explicit soaRoaMode(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~soaRoaMode() = default;
+    /// @brief Delete copy constructor
+    soaRoaMode(const soaRoaMode& other) = delete;
+    /// @brief Delete copy assignment
+    soaRoaMode& operator=(const soaRoaMode& other) = delete;
+    /// @brief Move constructor
+    soaRoaMode(soaRoaMode&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    soaRoaMode& operator=(soaRoaMode&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"soaRoaModeGetter"};
+    const std::string kNotifierCallSign = {"soaRoaModeNotifier"};
+};
+/// @uptrace{SWS_CM_00008}
+class soaRoaRunningState
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = eevp::control::SoaRoaRunningState;
+    /// @brief Constructor
+    explicit soaRoaRunningState(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~soaRoaRunningState() = default;
+    /// @brief Delete copy constructor
+    soaRoaRunningState(const soaRoaRunningState& other) = delete;
+    /// @brief Delete copy assignment
+    soaRoaRunningState& operator=(const soaRoaRunningState& other) = delete;
+    /// @brief Move constructor
+    soaRoaRunningState(soaRoaRunningState&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    soaRoaRunningState& operator=(soaRoaRunningState&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"soaRoaRunningStateGetter"};
+    const std::string kNotifierCallSign = {"soaRoaRunningStateNotifier"};
+};
+/// @uptrace{SWS_CM_00008}
+class soaRoaSensorError
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = eevp::control::SoaRoaSensorError;
+    /// @brief Constructor
+    explicit soaRoaSensorError(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~soaRoaSensorError() = default;
+    /// @brief Delete copy constructor
+    soaRoaSensorError(const soaRoaSensorError& other) = delete;
+    /// @brief Delete copy assignment
+    soaRoaSensorError& operator=(const soaRoaSensorError& other) = delete;
+    /// @brief Move constructor
+    soaRoaSensorError(soaRoaSensorError&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    soaRoaSensorError& operator=(soaRoaSensorError&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"soaRoaSensorErrorGetter"};
+    const std::string kNotifierCallSign = {"soaRoaSensorErrorNotifier"};
+};
+/// @uptrace{SWS_CM_00008}
+class soaRoaSwVersion
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = std::uint8_t;
+    /// @brief Constructor
+    explicit soaRoaSwVersion(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~soaRoaSwVersion() = default;
+    /// @brief Delete copy constructor
+    soaRoaSwVersion(const soaRoaSwVersion& other) = delete;
+    /// @brief Delete copy assignment
+    soaRoaSwVersion& operator=(const soaRoaSwVersion& other) = delete;
+    /// @brief Move constructor
+    soaRoaSwVersion(soaRoaSwVersion&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    soaRoaSwVersion& operator=(soaRoaSwVersion&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"soaRoaSwVersionGetter"};
+    const std::string kNotifierCallSign = {"soaRoaSwVersionNotifier"};
+};
+/// @uptrace{SWS_CM_00008}
+class soaWiperDeviceNormal
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = eevp::control::SoaDeviceIsNormal;
+    /// @brief Constructor
+    explicit soaWiperDeviceNormal(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~soaWiperDeviceNormal() = default;
+    /// @brief Delete copy constructor
+    soaWiperDeviceNormal(const soaWiperDeviceNormal& other) = delete;
+    /// @brief Delete copy assignment
+    soaWiperDeviceNormal& operator=(const soaWiperDeviceNormal& other) = delete;
+    /// @brief Move constructor
+    soaWiperDeviceNormal(soaWiperDeviceNormal&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    soaWiperDeviceNormal& operator=(soaWiperDeviceNormal&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"soaWiperDeviceNormalGetter"};
+    const std::string kNotifierCallSign = {"soaWiperDeviceNormalNotifier"};
+};
+/// @uptrace{SWS_CM_00008}
+class soaWiperStatus
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = eevp::control::SoaWiperStatus;
+    /// @brief Constructor
+    explicit soaWiperStatus(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~soaWiperStatus() = default;
+    /// @brief Delete copy constructor
+    soaWiperStatus(const soaWiperStatus& other) = delete;
+    /// @brief Delete copy assignment
+    soaWiperStatus& operator=(const soaWiperStatus& other) = delete;
+    /// @brief Move constructor
+    soaWiperStatus(soaWiperStatus&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    soaWiperStatus& operator=(soaWiperStatus&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"soaWiperStatusGetter"};
+    const std::string kNotifierCallSign = {"soaWiperStatusNotifier"};
+};
+/// @uptrace{SWS_CM_00008}
+class soaWiperSwVersion
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = std::uint8_t;
+    /// @brief Constructor
+    explicit soaWiperSwVersion(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~soaWiperSwVersion() = default;
+    /// @brief Delete copy constructor
+    soaWiperSwVersion(const soaWiperSwVersion& other) = delete;
+    /// @brief Delete copy assignment
+    soaWiperSwVersion& operator=(const soaWiperSwVersion& other) = delete;
+    /// @brief Move constructor
+    soaWiperSwVersion(soaWiperSwVersion&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    soaWiperSwVersion& operator=(soaWiperSwVersion&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"soaWiperSwVersionGetter"};
+    const std::string kNotifierCallSign = {"soaWiperSwVersionNotifier"};
+};
 } /// namespace fields
 /// @uptrace{SWS_CM_01015}
 namespace methods
 {
+/// @uptrace{SWS_CM_00006}
+class RequestMlmSetRgbColor
+{
+public:
+    /// @brief Container for OUT arguments
+    /// @uptrace{SWS_CM_00196}
+    struct Output
+    {
+    };
+    /// @brief Constructor
+    explicit RequestMlmSetRgbColor(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~RequestMlmSetRgbColor() = default;
+    /// @brief
+    RequestMlmSetRgbColor(const RequestMlmSetRgbColor& other) = delete;
+    RequestMlmSetRgbColor& operator=(const RequestMlmSetRgbColor& other) = delete;
+    /// @brief Move constructor
+    RequestMlmSetRgbColor(RequestMlmSetRgbColor&& other) noexcept : mInterface(other.mInterface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    RequestMlmSetRgbColor& operator=(RequestMlmSetRgbColor&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Function call operator
+    /// @uptrace{SWS_CM_00196}
+    ara::core::Future<Output> operator()(const std::uint8_t& colorTableIndex)
+    {
+        para::serializer::Serializer __serializer__{};
+        __serializer__.write(colorTableIndex);
+        auto __data__ = __serializer__.ensure();
+        auto* __promise__ = new ara::core::Promise<Output>();
+        auto __future__ = __promise__->get_future();
+        mInterface->CallMethod(kCallSign, __data__, __promise__);
+        return __future__;
+    }
+    /// @brief This method provides access to the global SMState of the this Method class,
+    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
+    /// @uptrace{SWS_CM_90483}
+    /// @uptrace{SWS_CM_90484}
+    ara::com::e2e::SMState GetSMState() const noexcept
+    {
+        return mInterface->GetE2EStateMachineState(kCallSign);
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<RequestMlmSetRgbColor::Output>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            RequestMlmSetRgbColor::Output output;
+            promise->set_value(output);
+        }
+        else
+        {
+            para::serializer::Deserializer deserializer{data};
+            ara::core::ErrorDomain::IdType domainId{};
+            ara::core::ErrorDomain::CodeType errorCode{};
+            deserializer.read(0, true, 0, domainId);
+            deserializer.read(0, true, 0, errorCode);
+            switch (domainId)
+            {
+                default:
+                {
+                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
+                    break;
+                }
+            }
+        }
+        delete static_cast<ara::core::Promise<RequestMlmSetRgbColor::Output>*>(userData);
+    }
+    para::com::ProxyInterface* mInterface;
+    const std::string kCallSign{"RequestMlmSetRgbColor"};
+};
+/// @uptrace{SWS_CM_00006}
+class RequestMoveDrvSeatHeight
+{
+public:
+    /// @brief Container for OUT arguments
+    /// @uptrace{SWS_CM_00196}
+    struct Output
+    {
+    };
+    /// @brief Constructor
+    explicit RequestMoveDrvSeatHeight(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~RequestMoveDrvSeatHeight() = default;
+    /// @brief
+    RequestMoveDrvSeatHeight(const RequestMoveDrvSeatHeight& other) = delete;
+    RequestMoveDrvSeatHeight& operator=(const RequestMoveDrvSeatHeight& other) = delete;
+    /// @brief Move constructor
+    RequestMoveDrvSeatHeight(RequestMoveDrvSeatHeight&& other) noexcept : mInterface(other.mInterface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    RequestMoveDrvSeatHeight& operator=(RequestMoveDrvSeatHeight&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Function call operator
+    /// @uptrace{SWS_CM_00196}
+    ara::core::Future<Output> operator()(const eevp::control::SoaSeatHeightDirection& dir)
+    {
+        para::serializer::Serializer __serializer__{};
+        __serializer__.write(dir);
+        auto __data__ = __serializer__.ensure();
+        auto* __promise__ = new ara::core::Promise<Output>();
+        auto __future__ = __promise__->get_future();
+        mInterface->CallMethod(kCallSign, __data__, __promise__);
+        return __future__;
+    }
+    /// @brief This method provides access to the global SMState of the this Method class,
+    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
+    /// @uptrace{SWS_CM_90483}
+    /// @uptrace{SWS_CM_90484}
+    ara::com::e2e::SMState GetSMState() const noexcept
+    {
+        return mInterface->GetE2EStateMachineState(kCallSign);
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<RequestMoveDrvSeatHeight::Output>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            RequestMoveDrvSeatHeight::Output output;
+            promise->set_value(output);
+        }
+        else
+        {
+            para::serializer::Deserializer deserializer{data};
+            ara::core::ErrorDomain::IdType domainId{};
+            ara::core::ErrorDomain::CodeType errorCode{};
+            deserializer.read(0, true, 0, domainId);
+            deserializer.read(0, true, 0, errorCode);
+            switch (domainId)
+            {
+                default:
+                {
+                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
+                    break;
+                }
+            }
+        }
+        delete static_cast<ara::core::Promise<RequestMoveDrvSeatHeight::Output>*>(userData);
+    }
+    para::com::ProxyInterface* mInterface;
+    const std::string kCallSign{"RequestMoveDrvSeatHeight"};
+};
+/// @uptrace{SWS_CM_00006}
+class RequestMoveDrvSeatRecline
+{
+public:
+    /// @brief Container for OUT arguments
+    /// @uptrace{SWS_CM_00196}
+    struct Output
+    {
+    };
+    /// @brief Constructor
+    explicit RequestMoveDrvSeatRecline(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~RequestMoveDrvSeatRecline() = default;
+    /// @brief
+    RequestMoveDrvSeatRecline(const RequestMoveDrvSeatRecline& other) = delete;
+    RequestMoveDrvSeatRecline& operator=(const RequestMoveDrvSeatRecline& other) = delete;
+    /// @brief Move constructor
+    RequestMoveDrvSeatRecline(RequestMoveDrvSeatRecline&& other) noexcept : mInterface(other.mInterface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    RequestMoveDrvSeatRecline& operator=(RequestMoveDrvSeatRecline&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Function call operator
+    /// @uptrace{SWS_CM_00196}
+    ara::core::Future<Output> operator()(const eevp::control::SoaSeatReclineDirection& dir)
+    {
+        para::serializer::Serializer __serializer__{};
+        __serializer__.write(dir);
+        auto __data__ = __serializer__.ensure();
+        auto* __promise__ = new ara::core::Promise<Output>();
+        auto __future__ = __promise__->get_future();
+        mInterface->CallMethod(kCallSign, __data__, __promise__);
+        return __future__;
+    }
+    /// @brief This method provides access to the global SMState of the this Method class,
+    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
+    /// @uptrace{SWS_CM_90483}
+    /// @uptrace{SWS_CM_90484}
+    ara::com::e2e::SMState GetSMState() const noexcept
+    {
+        return mInterface->GetE2EStateMachineState(kCallSign);
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<RequestMoveDrvSeatRecline::Output>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            RequestMoveDrvSeatRecline::Output output;
+            promise->set_value(output);
+        }
+        else
+        {
+            para::serializer::Deserializer deserializer{data};
+            ara::core::ErrorDomain::IdType domainId{};
+            ara::core::ErrorDomain::CodeType errorCode{};
+            deserializer.read(0, true, 0, domainId);
+            deserializer.read(0, true, 0, errorCode);
+            switch (domainId)
+            {
+                default:
+                {
+                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
+                    break;
+                }
+            }
+        }
+        delete static_cast<ara::core::Promise<RequestMoveDrvSeatRecline::Output>*>(userData);
+    }
+    para::com::ProxyInterface* mInterface;
+    const std::string kCallSign{"RequestMoveDrvSeatRecline"};
+};
+/// @uptrace{SWS_CM_00006}
+class RequestMoveDrvSeatSlide
+{
+public:
+    /// @brief Container for OUT arguments
+    /// @uptrace{SWS_CM_00196}
+    struct Output
+    {
+    };
+    /// @brief Constructor
+    explicit RequestMoveDrvSeatSlide(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~RequestMoveDrvSeatSlide() = default;
+    /// @brief
+    RequestMoveDrvSeatSlide(const RequestMoveDrvSeatSlide& other) = delete;
+    RequestMoveDrvSeatSlide& operator=(const RequestMoveDrvSeatSlide& other) = delete;
+    /// @brief Move constructor
+    RequestMoveDrvSeatSlide(RequestMoveDrvSeatSlide&& other) noexcept : mInterface(other.mInterface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    RequestMoveDrvSeatSlide& operator=(RequestMoveDrvSeatSlide&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Function call operator
+    /// @uptrace{SWS_CM_00196}
+    ara::core::Future<Output> operator()(const eevp::control::SoaSeatSlideDirection& dir)
+    {
+        para::serializer::Serializer __serializer__{};
+        __serializer__.write(dir);
+        auto __data__ = __serializer__.ensure();
+        auto* __promise__ = new ara::core::Promise<Output>();
+        auto __future__ = __promise__->get_future();
+        mInterface->CallMethod(kCallSign, __data__, __promise__);
+        return __future__;
+    }
+    /// @brief This method provides access to the global SMState of the this Method class,
+    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
+    /// @uptrace{SWS_CM_90483}
+    /// @uptrace{SWS_CM_90484}
+    ara::com::e2e::SMState GetSMState() const noexcept
+    {
+        return mInterface->GetE2EStateMachineState(kCallSign);
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<RequestMoveDrvSeatSlide::Output>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            RequestMoveDrvSeatSlide::Output output;
+            promise->set_value(output);
+        }
+        else
+        {
+            para::serializer::Deserializer deserializer{data};
+            ara::core::ErrorDomain::IdType domainId{};
+            ara::core::ErrorDomain::CodeType errorCode{};
+            deserializer.read(0, true, 0, domainId);
+            deserializer.read(0, true, 0, errorCode);
+            switch (domainId)
+            {
+                default:
+                {
+                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
+                    break;
+                }
+            }
+        }
+        delete static_cast<ara::core::Promise<RequestMoveDrvSeatSlide::Output>*>(userData);
+    }
+    para::com::ProxyInterface* mInterface;
+    const std::string kCallSign{"RequestMoveDrvSeatSlide"};
+};
+/// @uptrace{SWS_CM_00006}
+class RequestMoveDrvSeatTilt
+{
+public:
+    /// @brief Container for OUT arguments
+    /// @uptrace{SWS_CM_00196}
+    struct Output
+    {
+    };
+    /// @brief Constructor
+    explicit RequestMoveDrvSeatTilt(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~RequestMoveDrvSeatTilt() = default;
+    /// @brief
+    RequestMoveDrvSeatTilt(const RequestMoveDrvSeatTilt& other) = delete;
+    RequestMoveDrvSeatTilt& operator=(const RequestMoveDrvSeatTilt& other) = delete;
+    /// @brief Move constructor
+    RequestMoveDrvSeatTilt(RequestMoveDrvSeatTilt&& other) noexcept : mInterface(other.mInterface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    RequestMoveDrvSeatTilt& operator=(RequestMoveDrvSeatTilt&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Function call operator
+    /// @uptrace{SWS_CM_00196}
+    ara::core::Future<Output> operator()(const eevp::control::SoaSeatTiltDirection& dir)
+    {
+        para::serializer::Serializer __serializer__{};
+        __serializer__.write(dir);
+        auto __data__ = __serializer__.ensure();
+        auto* __promise__ = new ara::core::Promise<Output>();
+        auto __future__ = __promise__->get_future();
+        mInterface->CallMethod(kCallSign, __data__, __promise__);
+        return __future__;
+    }
+    /// @brief This method provides access to the global SMState of the this Method class,
+    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
+    /// @uptrace{SWS_CM_90483}
+    /// @uptrace{SWS_CM_90484}
+    ara::com::e2e::SMState GetSMState() const noexcept
+    {
+        return mInterface->GetE2EStateMachineState(kCallSign);
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<RequestMoveDrvSeatTilt::Output>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            RequestMoveDrvSeatTilt::Output output;
+            promise->set_value(output);
+        }
+        else
+        {
+            para::serializer::Deserializer deserializer{data};
+            ara::core::ErrorDomain::IdType domainId{};
+            ara::core::ErrorDomain::CodeType errorCode{};
+            deserializer.read(0, true, 0, domainId);
+            deserializer.read(0, true, 0, errorCode);
+            switch (domainId)
+            {
+                default:
+                {
+                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
+                    break;
+                }
+            }
+        }
+        delete static_cast<ara::core::Promise<RequestMoveDrvSeatTilt::Output>*>(userData);
+    }
+    para::com::ProxyInterface* mInterface;
+    const std::string kCallSign{"RequestMoveDrvSeatTilt"};
+};
+/// @uptrace{SWS_CM_00006}
+class RequestRearCurtainOperation
+{
+public:
+    /// @brief Container for OUT arguments
+    /// @uptrace{SWS_CM_00196}
+    struct Output
+    {
+        eevp::control::SoaErrorState err;
+    };
+    /// @brief Constructor
+    explicit RequestRearCurtainOperation(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~RequestRearCurtainOperation() = default;
+    /// @brief
+    RequestRearCurtainOperation(const RequestRearCurtainOperation& other) = delete;
+    RequestRearCurtainOperation& operator=(const RequestRearCurtainOperation& other) = delete;
+    /// @brief Move constructor
+    RequestRearCurtainOperation(RequestRearCurtainOperation&& other) noexcept : mInterface(other.mInterface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    RequestRearCurtainOperation& operator=(RequestRearCurtainOperation&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Function call operator
+    /// @uptrace{SWS_CM_00196}
+    ara::core::Future<Output> operator()(const eevp::control::SoaRctnMotorDir& motorDir)
+    {
+        para::serializer::Serializer __serializer__{};
+        __serializer__.write(motorDir);
+        auto __data__ = __serializer__.ensure();
+        auto* __promise__ = new ara::core::Promise<Output>();
+        auto __future__ = __promise__->get_future();
+        mInterface->CallMethod(kCallSign, __data__, __promise__);
+        return __future__;
+    }
+    /// @brief This method provides access to the global SMState of the this Method class,
+    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
+    /// @uptrace{SWS_CM_90483}
+    /// @uptrace{SWS_CM_90484}
+    ara::com::e2e::SMState GetSMState() const noexcept
+    {
+        return mInterface->GetE2EStateMachineState(kCallSign);
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<RequestRearCurtainOperation::Output>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            RequestRearCurtainOperation::Output output;
+            deserializer.read(output.err);
+            promise->set_value(output);
+        }
+        else
+        {
+            para::serializer::Deserializer deserializer{data};
+            ara::core::ErrorDomain::IdType domainId{};
+            ara::core::ErrorDomain::CodeType errorCode{};
+            deserializer.read(0, true, 0, domainId);
+            deserializer.read(0, true, 0, errorCode);
+            switch (domainId)
+            {
+                default:
+                {
+                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
+                    break;
+                }
+            }
+        }
+        delete static_cast<ara::core::Promise<RequestRearCurtainOperation::Output>*>(userData);
+    }
+    para::com::ProxyInterface* mInterface;
+    const std::string kCallSign{"RequestRearCurtainOperation"};
+};
+/// @uptrace{SWS_CM_00006}
+class RequestRearCurtainPosition
+{
+public:
+    /// @brief Container for OUT arguments
+    /// @uptrace{SWS_CM_00196}
+    struct Output
+    {
+    };
+    /// @brief Constructor
+    explicit RequestRearCurtainPosition(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~RequestRearCurtainPosition() = default;
+    /// @brief
+    RequestRearCurtainPosition(const RequestRearCurtainPosition& other) = delete;
+    RequestRearCurtainPosition& operator=(const RequestRearCurtainPosition& other) = delete;
+    /// @brief Move constructor
+    RequestRearCurtainPosition(RequestRearCurtainPosition&& other) noexcept : mInterface(other.mInterface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    RequestRearCurtainPosition& operator=(RequestRearCurtainPosition&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Function call operator
+    /// @uptrace{SWS_CM_00196}
+    ara::core::Future<Output> operator()(const std::uint8_t& posPercentage)
+    {
+        para::serializer::Serializer __serializer__{};
+        __serializer__.write(posPercentage);
+        auto __data__ = __serializer__.ensure();
+        auto* __promise__ = new ara::core::Promise<Output>();
+        auto __future__ = __promise__->get_future();
+        mInterface->CallMethod(kCallSign, __data__, __promise__);
+        return __future__;
+    }
+    /// @brief This method provides access to the global SMState of the this Method class,
+    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
+    /// @uptrace{SWS_CM_90483}
+    /// @uptrace{SWS_CM_90484}
+    ara::com::e2e::SMState GetSMState() const noexcept
+    {
+        return mInterface->GetE2EStateMachineState(kCallSign);
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<RequestRearCurtainPosition::Output>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            RequestRearCurtainPosition::Output output;
+            promise->set_value(output);
+        }
+        else
+        {
+            para::serializer::Deserializer deserializer{data};
+            ara::core::ErrorDomain::IdType domainId{};
+            ara::core::ErrorDomain::CodeType errorCode{};
+            deserializer.read(0, true, 0, domainId);
+            deserializer.read(0, true, 0, errorCode);
+            switch (domainId)
+            {
+                default:
+                {
+                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
+                    break;
+                }
+            }
+        }
+        delete static_cast<ara::core::Promise<RequestRearCurtainPosition::Output>*>(userData);
+    }
+    para::com::ProxyInterface* mInterface;
+    const std::string kCallSign{"RequestRearCurtainPosition"};
+};
+/// @uptrace{SWS_CM_00006}
+class RequestWiperOperation
+{
+public:
+    /// @brief Container for OUT arguments
+    /// @uptrace{SWS_CM_00196}
+    struct Output
+    {
+    };
+    /// @brief Constructor
+    explicit RequestWiperOperation(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~RequestWiperOperation() = default;
+    /// @brief
+    RequestWiperOperation(const RequestWiperOperation& other) = delete;
+    RequestWiperOperation& operator=(const RequestWiperOperation& other) = delete;
+    /// @brief Move constructor
+    RequestWiperOperation(RequestWiperOperation&& other) noexcept : mInterface(other.mInterface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    RequestWiperOperation& operator=(RequestWiperOperation&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Function call operator
+    /// @uptrace{SWS_CM_00196}
+    ara::core::Future<Output> operator()(const eevp::control::SoaWiperMode& mode)
+    {
+        para::serializer::Serializer __serializer__{};
+        __serializer__.write(mode);
+        auto __data__ = __serializer__.ensure();
+        auto* __promise__ = new ara::core::Promise<Output>();
+        auto __future__ = __promise__->get_future();
+        mInterface->CallMethod(kCallSign, __data__, __promise__);
+        return __future__;
+    }
+    /// @brief This method provides access to the global SMState of the this Method class,
+    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
+    /// @uptrace{SWS_CM_90483}
+    /// @uptrace{SWS_CM_90484}
+    ara::com::e2e::SMState GetSMState() const noexcept
+    {
+        return mInterface->GetE2EStateMachineState(kCallSign);
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<RequestWiperOperation::Output>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            RequestWiperOperation::Output output;
+            promise->set_value(output);
+        }
+        else
+        {
+            para::serializer::Deserializer deserializer{data};
+            ara::core::ErrorDomain::IdType domainId{};
+            ara::core::ErrorDomain::CodeType errorCode{};
+            deserializer.read(0, true, 0, domainId);
+            deserializer.read(0, true, 0, errorCode);
+            switch (domainId)
+            {
+                default:
+                {
+                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
+                    break;
+                }
+            }
+        }
+        delete static_cast<ara::core::Promise<RequestWiperOperation::Output>*>(userData);
+    }
+    para::com::ProxyInterface* mInterface;
+    const std::string kCallSign{"RequestWiperOperation"};
+};
+/// @uptrace{SWS_CM_00006}
+class ResetRoaDetectInfo
+{
+public:
+    /// @brief Container for OUT arguments
+    /// @uptrace{SWS_CM_00196}
+    struct Output
+    {
+    };
+    /// @brief Constructor
+    explicit ResetRoaDetectInfo(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~ResetRoaDetectInfo() = default;
+    /// @brief
+    ResetRoaDetectInfo(const ResetRoaDetectInfo& other) = delete;
+    ResetRoaDetectInfo& operator=(const ResetRoaDetectInfo& other) = delete;
+    /// @brief Move constructor
+    ResetRoaDetectInfo(ResetRoaDetectInfo&& other) noexcept : mInterface(other.mInterface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    ResetRoaDetectInfo& operator=(ResetRoaDetectInfo&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Function call operator
+    /// @uptrace{SWS_CM_00196}
+    ara::core::Future<Output> operator()()
+    {
+        para::serializer::Serializer __serializer__{};
+        auto __data__ = __serializer__.ensure();
+        auto* __promise__ = new ara::core::Promise<Output>();
+        auto __future__ = __promise__->get_future();
+        mInterface->CallMethod(kCallSign, __data__, __promise__);
+        return __future__;
+    }
+    /// @brief This method provides access to the global SMState of the this Method class,
+    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
+    /// @uptrace{SWS_CM_90483}
+    /// @uptrace{SWS_CM_90484}
+    ara::com::e2e::SMState GetSMState() const noexcept
+    {
+        return mInterface->GetE2EStateMachineState(kCallSign);
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<ResetRoaDetectInfo::Output>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            ResetRoaDetectInfo::Output output;
+            promise->set_value(output);
+        }
+        else
+        {
+            para::serializer::Deserializer deserializer{data};
+            ara::core::ErrorDomain::IdType domainId{};
+            ara::core::ErrorDomain::CodeType errorCode{};
+            deserializer.read(0, true, 0, domainId);
+            deserializer.read(0, true, 0, errorCode);
+            switch (domainId)
+            {
+                default:
+                {
+                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
+                    break;
+                }
+            }
+        }
+        delete static_cast<ara::core::Promise<ResetRoaDetectInfo::Output>*>(userData);
+    }
+    para::com::ProxyInterface* mInterface;
+    const std::string kCallSign{"ResetRoaDetectInfo"};
+};
+/// @uptrace{SWS_CM_00006}
+class SetRoaMode
+{
+public:
+    /// @brief Container for OUT arguments
+    /// @uptrace{SWS_CM_00196}
+    struct Output
+    {
+    };
+    /// @brief Constructor
+    explicit SetRoaMode(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~SetRoaMode() = default;
+    /// @brief
+    SetRoaMode(const SetRoaMode& other) = delete;
+    SetRoaMode& operator=(const SetRoaMode& other) = delete;
+    /// @brief Move constructor
+    SetRoaMode(SetRoaMode&& other) noexcept : mInterface(other.mInterface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    SetRoaMode& operator=(SetRoaMode&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Function call operator
+    /// @uptrace{SWS_CM_00196}
+    ara::core::Future<Output> operator()(const eevp::control::SoaRoaMode& mode)
+    {
+        para::serializer::Serializer __serializer__{};
+        __serializer__.write(mode);
+        auto __data__ = __serializer__.ensure();
+        auto* __promise__ = new ara::core::Promise<Output>();
+        auto __future__ = __promise__->get_future();
+        mInterface->CallMethod(kCallSign, __data__, __promise__);
+        return __future__;
+    }
+    /// @brief This method provides access to the global SMState of the this Method class,
+    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
+    /// @uptrace{SWS_CM_90483}
+    /// @uptrace{SWS_CM_90484}
+    ara::com::e2e::SMState GetSMState() const noexcept
+    {
+        return mInterface->GetE2EStateMachineState(kCallSign);
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<SetRoaMode::Output>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            SetRoaMode::Output output;
+            promise->set_value(output);
+        }
+        else
+        {
+            para::serializer::Deserializer deserializer{data};
+            ara::core::ErrorDomain::IdType domainId{};
+            ara::core::ErrorDomain::CodeType errorCode{};
+            deserializer.read(0, true, 0, domainId);
+            deserializer.read(0, true, 0, errorCode);
+            switch (domainId)
+            {
+                default:
+                {
+                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
+                    break;
+                }
+            }
+        }
+        delete static_cast<ara::core::Promise<SetRoaMode::Output>*>(userData);
+    }
+    para::com::ProxyInterface* mInterface;
+    const std::string kCallSign{"SetRoaMode"};
+};
+/// @uptrace{SWS_CM_00006}
+class SetWiperAutoSpeed
+{
+public:
+    /// @brief Container for OUT arguments
+    /// @uptrace{SWS_CM_00196}
+    struct Output
+    {
+    };
+    /// @brief Constructor
+    explicit SetWiperAutoSpeed(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~SetWiperAutoSpeed() = default;
+    /// @brief
+    SetWiperAutoSpeed(const SetWiperAutoSpeed& other) = delete;
+    SetWiperAutoSpeed& operator=(const SetWiperAutoSpeed& other) = delete;
+    /// @brief Move constructor
+    SetWiperAutoSpeed(SetWiperAutoSpeed&& other) noexcept : mInterface(other.mInterface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    SetWiperAutoSpeed& operator=(SetWiperAutoSpeed&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Function call operator
+    /// @uptrace{SWS_CM_00196}
+    ara::core::Future<Output> operator()(const bool& isAutoSpeed)
+    {
+        para::serializer::Serializer __serializer__{};
+        __serializer__.write(isAutoSpeed);
+        auto __data__ = __serializer__.ensure();
+        auto* __promise__ = new ara::core::Promise<Output>();
+        auto __future__ = __promise__->get_future();
+        mInterface->CallMethod(kCallSign, __data__, __promise__);
+        return __future__;
+    }
+    /// @brief This method provides access to the global SMState of the this Method class,
+    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
+    /// @uptrace{SWS_CM_90483}
+    /// @uptrace{SWS_CM_90484}
+    ara::com::e2e::SMState GetSMState() const noexcept
+    {
+        return mInterface->GetE2EStateMachineState(kCallSign);
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<SetWiperAutoSpeed::Output>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            SetWiperAutoSpeed::Output output;
+            promise->set_value(output);
+        }
+        else
+        {
+            para::serializer::Deserializer deserializer{data};
+            ara::core::ErrorDomain::IdType domainId{};
+            ara::core::ErrorDomain::CodeType errorCode{};
+            deserializer.read(0, true, 0, domainId);
+            deserializer.read(0, true, 0, errorCode);
+            switch (domainId)
+            {
+                default:
+                {
+                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
+                    break;
+                }
+            }
+        }
+        delete static_cast<ara::core::Promise<SetWiperAutoSpeed::Output>*>(userData);
+    }
+    para::com::ProxyInterface* mInterface;
+    const std::string kCallSign{"SetWiperAutoSpeed"};
+};
+/// @uptrace{SWS_CM_00006}
+class StartRoa
+{
+public:
+    /// @brief Container for OUT arguments
+    /// @uptrace{SWS_CM_00196}
+    struct Output
+    {
+    };
+    /// @brief Constructor
+    explicit StartRoa(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~StartRoa() = default;
+    /// @brief
+    StartRoa(const StartRoa& other) = delete;
+    StartRoa& operator=(const StartRoa& other) = delete;
+    /// @brief Move constructor
+    StartRoa(StartRoa&& other) noexcept : mInterface(other.mInterface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    StartRoa& operator=(StartRoa&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Function call operator
+    /// @uptrace{SWS_CM_00196}
+    ara::core::Future<Output> operator()()
+    {
+        para::serializer::Serializer __serializer__{};
+        auto __data__ = __serializer__.ensure();
+        auto* __promise__ = new ara::core::Promise<Output>();
+        auto __future__ = __promise__->get_future();
+        mInterface->CallMethod(kCallSign, __data__, __promise__);
+        return __future__;
+    }
+    /// @brief This method provides access to the global SMState of the this Method class,
+    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
+    /// @uptrace{SWS_CM_90483}
+    /// @uptrace{SWS_CM_90484}
+    ara::com::e2e::SMState GetSMState() const noexcept
+    {
+        return mInterface->GetE2EStateMachineState(kCallSign);
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<StartRoa::Output>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            StartRoa::Output output;
+            promise->set_value(output);
+        }
+        else
+        {
+            para::serializer::Deserializer deserializer{data};
+            ara::core::ErrorDomain::IdType domainId{};
+            ara::core::ErrorDomain::CodeType errorCode{};
+            deserializer.read(0, true, 0, domainId);
+            deserializer.read(0, true, 0, errorCode);
+            switch (domainId)
+            {
+                default:
+                {
+                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
+                    break;
+                }
+            }
+        }
+        delete static_cast<ara::core::Promise<StartRoa::Output>*>(userData);
+    }
+    para::com::ProxyInterface* mInterface;
+    const std::string kCallSign{"StartRoa"};
+};
+/// @uptrace{SWS_CM_00006}
+class StopRoa
+{
+public:
+    /// @brief Container for OUT arguments
+    /// @uptrace{SWS_CM_00196}
+    struct Output
+    {
+    };
+    /// @brief Constructor
+    explicit StopRoa(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~StopRoa() = default;
+    /// @brief
+    StopRoa(const StopRoa& other) = delete;
+    StopRoa& operator=(const StopRoa& other) = delete;
+    /// @brief Move constructor
+    StopRoa(StopRoa&& other) noexcept : mInterface(other.mInterface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    StopRoa& operator=(StopRoa&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Function call operator
+    /// @uptrace{SWS_CM_00196}
+    ara::core::Future<Output> operator()()
+    {
+        para::serializer::Serializer __serializer__{};
+        auto __data__ = __serializer__.ensure();
+        auto* __promise__ = new ara::core::Promise<Output>();
+        auto __future__ = __promise__->get_future();
+        mInterface->CallMethod(kCallSign, __data__, __promise__);
+        return __future__;
+    }
+    /// @brief This method provides access to the global SMState of the this Method class,
+    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
+    /// @uptrace{SWS_CM_90483}
+    /// @uptrace{SWS_CM_90484}
+    ara::com::e2e::SMState GetSMState() const noexcept
+    {
+        return mInterface->GetE2EStateMachineState(kCallSign);
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<StopRoa::Output>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            StopRoa::Output output;
+            promise->set_value(output);
+        }
+        else
+        {
+            para::serializer::Deserializer deserializer{data};
+            ara::core::ErrorDomain::IdType domainId{};
+            ara::core::ErrorDomain::CodeType errorCode{};
+            deserializer.read(0, true, 0, domainId);
+            deserializer.read(0, true, 0, errorCode);
+            switch (domainId)
+            {
+                default:
+                {
+                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
+                    break;
+                }
+            }
+        }
+        delete static_cast<ara::core::Promise<StopRoa::Output>*>(userData);
+    }
+    para::com::ProxyInterface* mInterface;
+    const std::string kCallSign{"StopRoa"};
+};
 /// @uptrace{SWS_CM_00006}
 class requestAppInstall
 {
@@ -1941,12 +6611,47 @@ public:
     explicit MonitoringManagementProxy(HandleType& handle)
         : mHandle(handle)
         , mInterface(std::make_unique<para::com::ProxyInterface>(handle.GetInstanceSpecifier(), handle.GetServiceHandle()))
+        , DistanceLevel(mInterface.get())
         , eventServiceError(mInterface.get())
         , eventServiceInfo(mInterface.get())
         , eventServiceInfoSpare(mInterface.get())
         , eventServiceStatus(mInterface.get())
         , eventServiceStatusSpare(mInterface.get())
         , eventUpdatableService(mInterface.get())
+        , mbTemp(mInterface.get())
+        , soaDrvSeatDeviceNormal(mInterface.get())
+        , soaDrvSeatMotorDirection(mInterface.get())
+        , soaDrvSeatMotorPosition(mInterface.get())
+        , soaDrvSeatSwVersion(mInterface.get())
+        , soaMlmStatus(mInterface.get())
+        , soaMlmSwVersion(mInterface.get())
+        , soaPowerDeviceNormal(mInterface.get())
+        , soaPowerSwVersion(mInterface.get())
+        , soaRctnStatus(mInterface.get())
+        , soaRctnSwVersion(mInterface.get())
+        , soaRoaDetectCount(mInterface.get())
+        , soaRoaDetectState(mInterface.get())
+        , soaRoaDeviceNormal(mInterface.get())
+        , soaRoaMode(mInterface.get())
+        , soaRoaRunningState(mInterface.get())
+        , soaRoaSensorError(mInterface.get())
+        , soaRoaSwVersion(mInterface.get())
+        , soaWiperDeviceNormal(mInterface.get())
+        , soaWiperStatus(mInterface.get())
+        , soaWiperSwVersion(mInterface.get())
+        , RequestMlmSetRgbColor(mInterface.get())
+        , RequestMoveDrvSeatHeight(mInterface.get())
+        , RequestMoveDrvSeatRecline(mInterface.get())
+        , RequestMoveDrvSeatSlide(mInterface.get())
+        , RequestMoveDrvSeatTilt(mInterface.get())
+        , RequestRearCurtainOperation(mInterface.get())
+        , RequestRearCurtainPosition(mInterface.get())
+        , RequestWiperOperation(mInterface.get())
+        , ResetRoaDetectInfo(mInterface.get())
+        , SetRoaMode(mInterface.get())
+        , SetWiperAutoSpeed(mInterface.get())
+        , StartRoa(mInterface.get())
+        , StopRoa(mInterface.get())
         , requestAppInstall(mInterface.get())
         , requestAppUpdate(mInterface.get())
         , requestControllerServiceInfo(mInterface.get())
@@ -1974,12 +6679,47 @@ public:
     MonitoringManagementProxy(MonitoringManagementProxy&& other) noexcept
         : mHandle(std::move(other.mHandle))
         , mInterface(std::move(other.mInterface))
+        , DistanceLevel(std::move(other.DistanceLevel))
         , eventServiceError(std::move(other.eventServiceError))
         , eventServiceInfo(std::move(other.eventServiceInfo))
         , eventServiceInfoSpare(std::move(other.eventServiceInfoSpare))
         , eventServiceStatus(std::move(other.eventServiceStatus))
         , eventServiceStatusSpare(std::move(other.eventServiceStatusSpare))
         , eventUpdatableService(std::move(other.eventUpdatableService))
+        , mbTemp(std::move(other.mbTemp))
+        , soaDrvSeatDeviceNormal(std::move(other.soaDrvSeatDeviceNormal))
+        , soaDrvSeatMotorDirection(std::move(other.soaDrvSeatMotorDirection))
+        , soaDrvSeatMotorPosition(std::move(other.soaDrvSeatMotorPosition))
+        , soaDrvSeatSwVersion(std::move(other.soaDrvSeatSwVersion))
+        , soaMlmStatus(std::move(other.soaMlmStatus))
+        , soaMlmSwVersion(std::move(other.soaMlmSwVersion))
+        , soaPowerDeviceNormal(std::move(other.soaPowerDeviceNormal))
+        , soaPowerSwVersion(std::move(other.soaPowerSwVersion))
+        , soaRctnStatus(std::move(other.soaRctnStatus))
+        , soaRctnSwVersion(std::move(other.soaRctnSwVersion))
+        , soaRoaDetectCount(std::move(other.soaRoaDetectCount))
+        , soaRoaDetectState(std::move(other.soaRoaDetectState))
+        , soaRoaDeviceNormal(std::move(other.soaRoaDeviceNormal))
+        , soaRoaMode(std::move(other.soaRoaMode))
+        , soaRoaRunningState(std::move(other.soaRoaRunningState))
+        , soaRoaSensorError(std::move(other.soaRoaSensorError))
+        , soaRoaSwVersion(std::move(other.soaRoaSwVersion))
+        , soaWiperDeviceNormal(std::move(other.soaWiperDeviceNormal))
+        , soaWiperStatus(std::move(other.soaWiperStatus))
+        , soaWiperSwVersion(std::move(other.soaWiperSwVersion))
+        , RequestMlmSetRgbColor(std::move(other.RequestMlmSetRgbColor))
+        , RequestMoveDrvSeatHeight(std::move(other.RequestMoveDrvSeatHeight))
+        , RequestMoveDrvSeatRecline(std::move(other.RequestMoveDrvSeatRecline))
+        , RequestMoveDrvSeatSlide(std::move(other.RequestMoveDrvSeatSlide))
+        , RequestMoveDrvSeatTilt(std::move(other.RequestMoveDrvSeatTilt))
+        , RequestRearCurtainOperation(std::move(other.RequestRearCurtainOperation))
+        , RequestRearCurtainPosition(std::move(other.RequestRearCurtainPosition))
+        , RequestWiperOperation(std::move(other.RequestWiperOperation))
+        , ResetRoaDetectInfo(std::move(other.ResetRoaDetectInfo))
+        , SetRoaMode(std::move(other.SetRoaMode))
+        , SetWiperAutoSpeed(std::move(other.SetWiperAutoSpeed))
+        , StartRoa(std::move(other.StartRoa))
+        , StopRoa(std::move(other.StopRoa))
         , requestAppInstall(std::move(other.requestAppInstall))
         , requestAppUpdate(std::move(other.requestAppUpdate))
         , requestControllerServiceInfo(std::move(other.requestControllerServiceInfo))
@@ -2002,12 +6742,47 @@ public:
         mHandle = std::move(other.mHandle);
         mInterface = std::move(other.mInterface);
         mInterface->StopFindService();
+        DistanceLevel = std::move(other.DistanceLevel);
         eventServiceError = std::move(other.eventServiceError);
         eventServiceInfo = std::move(other.eventServiceInfo);
         eventServiceInfoSpare = std::move(other.eventServiceInfoSpare);
         eventServiceStatus = std::move(other.eventServiceStatus);
         eventServiceStatusSpare = std::move(other.eventServiceStatusSpare);
         eventUpdatableService = std::move(other.eventUpdatableService);
+        mbTemp = std::move(other.mbTemp);
+        soaDrvSeatDeviceNormal = std::move(other.soaDrvSeatDeviceNormal);
+        soaDrvSeatMotorDirection = std::move(other.soaDrvSeatMotorDirection);
+        soaDrvSeatMotorPosition = std::move(other.soaDrvSeatMotorPosition);
+        soaDrvSeatSwVersion = std::move(other.soaDrvSeatSwVersion);
+        soaMlmStatus = std::move(other.soaMlmStatus);
+        soaMlmSwVersion = std::move(other.soaMlmSwVersion);
+        soaPowerDeviceNormal = std::move(other.soaPowerDeviceNormal);
+        soaPowerSwVersion = std::move(other.soaPowerSwVersion);
+        soaRctnStatus = std::move(other.soaRctnStatus);
+        soaRctnSwVersion = std::move(other.soaRctnSwVersion);
+        soaRoaDetectCount = std::move(other.soaRoaDetectCount);
+        soaRoaDetectState = std::move(other.soaRoaDetectState);
+        soaRoaDeviceNormal = std::move(other.soaRoaDeviceNormal);
+        soaRoaMode = std::move(other.soaRoaMode);
+        soaRoaRunningState = std::move(other.soaRoaRunningState);
+        soaRoaSensorError = std::move(other.soaRoaSensorError);
+        soaRoaSwVersion = std::move(other.soaRoaSwVersion);
+        soaWiperDeviceNormal = std::move(other.soaWiperDeviceNormal);
+        soaWiperStatus = std::move(other.soaWiperStatus);
+        soaWiperSwVersion = std::move(other.soaWiperSwVersion);
+        RequestMlmSetRgbColor = std::move(other.RequestMlmSetRgbColor);
+        RequestMoveDrvSeatHeight = std::move(other.RequestMoveDrvSeatHeight);
+        RequestMoveDrvSeatRecline = std::move(other.RequestMoveDrvSeatRecline);
+        RequestMoveDrvSeatSlide = std::move(other.RequestMoveDrvSeatSlide);
+        RequestMoveDrvSeatTilt = std::move(other.RequestMoveDrvSeatTilt);
+        RequestRearCurtainOperation = std::move(other.RequestRearCurtainOperation);
+        RequestRearCurtainPosition = std::move(other.RequestRearCurtainPosition);
+        RequestWiperOperation = std::move(other.RequestWiperOperation);
+        ResetRoaDetectInfo = std::move(other.ResetRoaDetectInfo);
+        SetRoaMode = std::move(other.SetRoaMode);
+        SetWiperAutoSpeed = std::move(other.SetWiperAutoSpeed);
+        StartRoa = std::move(other.StartRoa);
+        StopRoa = std::move(other.StopRoa);
         requestAppInstall = std::move(other.requestAppInstall);
         requestAppUpdate = std::move(other.requestAppUpdate);
         requestControllerServiceInfo = std::move(other.requestControllerServiceInfo);
@@ -2040,6 +6815,8 @@ private:
     std::unique_ptr<para::com::ProxyInterface> mInterface;
     
 public:
+    /// @brief - event, DistanceLevel
+    events::DistanceLevel DistanceLevel;
     /// @brief - event, eventServiceError
     events::eventServiceError eventServiceError;
     /// @brief - event, eventServiceInfo
@@ -2052,6 +6829,74 @@ public:
     events::eventServiceStatusSpare eventServiceStatusSpare;
     /// @brief - event, eventUpdatableService
     events::eventUpdatableService eventUpdatableService;
+    /// @brief - field, mbTemp
+    fields::mbTemp mbTemp;
+    /// @brief - field, soaDrvSeatDeviceNormal
+    fields::soaDrvSeatDeviceNormal soaDrvSeatDeviceNormal;
+    /// @brief - field, soaDrvSeatMotorDirection
+    fields::soaDrvSeatMotorDirection soaDrvSeatMotorDirection;
+    /// @brief - field, soaDrvSeatMotorPosition
+    fields::soaDrvSeatMotorPosition soaDrvSeatMotorPosition;
+    /// @brief - field, soaDrvSeatSwVersion
+    fields::soaDrvSeatSwVersion soaDrvSeatSwVersion;
+    /// @brief - field, soaMlmStatus
+    fields::soaMlmStatus soaMlmStatus;
+    /// @brief - field, soaMlmSwVersion
+    fields::soaMlmSwVersion soaMlmSwVersion;
+    /// @brief - field, soaPowerDeviceNormal
+    fields::soaPowerDeviceNormal soaPowerDeviceNormal;
+    /// @brief - field, soaPowerSwVersion
+    fields::soaPowerSwVersion soaPowerSwVersion;
+    /// @brief - field, soaRctnStatus
+    fields::soaRctnStatus soaRctnStatus;
+    /// @brief - field, soaRctnSwVersion
+    fields::soaRctnSwVersion soaRctnSwVersion;
+    /// @brief - field, soaRoaDetectCount
+    fields::soaRoaDetectCount soaRoaDetectCount;
+    /// @brief - field, soaRoaDetectState
+    fields::soaRoaDetectState soaRoaDetectState;
+    /// @brief - field, soaRoaDeviceNormal
+    fields::soaRoaDeviceNormal soaRoaDeviceNormal;
+    /// @brief - field, soaRoaMode
+    fields::soaRoaMode soaRoaMode;
+    /// @brief - field, soaRoaRunningState
+    fields::soaRoaRunningState soaRoaRunningState;
+    /// @brief - field, soaRoaSensorError
+    fields::soaRoaSensorError soaRoaSensorError;
+    /// @brief - field, soaRoaSwVersion
+    fields::soaRoaSwVersion soaRoaSwVersion;
+    /// @brief - field, soaWiperDeviceNormal
+    fields::soaWiperDeviceNormal soaWiperDeviceNormal;
+    /// @brief - field, soaWiperStatus
+    fields::soaWiperStatus soaWiperStatus;
+    /// @brief - field, soaWiperSwVersion
+    fields::soaWiperSwVersion soaWiperSwVersion;
+    /// @brief - method, RequestMlmSetRgbColor
+    methods::RequestMlmSetRgbColor RequestMlmSetRgbColor;
+    /// @brief - method, RequestMoveDrvSeatHeight
+    methods::RequestMoveDrvSeatHeight RequestMoveDrvSeatHeight;
+    /// @brief - method, RequestMoveDrvSeatRecline
+    methods::RequestMoveDrvSeatRecline RequestMoveDrvSeatRecline;
+    /// @brief - method, RequestMoveDrvSeatSlide
+    methods::RequestMoveDrvSeatSlide RequestMoveDrvSeatSlide;
+    /// @brief - method, RequestMoveDrvSeatTilt
+    methods::RequestMoveDrvSeatTilt RequestMoveDrvSeatTilt;
+    /// @brief - method, RequestRearCurtainOperation
+    methods::RequestRearCurtainOperation RequestRearCurtainOperation;
+    /// @brief - method, RequestRearCurtainPosition
+    methods::RequestRearCurtainPosition RequestRearCurtainPosition;
+    /// @brief - method, RequestWiperOperation
+    methods::RequestWiperOperation RequestWiperOperation;
+    /// @brief - method, ResetRoaDetectInfo
+    methods::ResetRoaDetectInfo ResetRoaDetectInfo;
+    /// @brief - method, SetRoaMode
+    methods::SetRoaMode SetRoaMode;
+    /// @brief - method, SetWiperAutoSpeed
+    methods::SetWiperAutoSpeed SetWiperAutoSpeed;
+    /// @brief - method, StartRoa
+    methods::StartRoa StartRoa;
+    /// @brief - method, StopRoa
+    methods::StopRoa StopRoa;
     /// @brief - method, requestAppInstall
     methods::requestAppInstall requestAppInstall;
     /// @brief - method, requestAppUpdate

@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : monitoringmanagement_common.h
 /// SERVICE INTERFACE NAME            : MonitoringManagement
-/// GENERATED DATE                    : 2024-07-19 07:35:34
+/// GENERATED DATE                    : 2024-08-27 13:02:34
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -30,6 +30,23 @@
 /// INCLUSION OF CPP IMPLEMENTATION DATA TYPE HEADER FILES
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @uptrace{SWS_CM_10372}
+#include "eevp/control/impl_type_soadeviceisnormal.h"
+#include "eevp/control/impl_type_soaerrorstate.h"
+#include "eevp/control/impl_type_soamlmstatus.h"
+#include "eevp/control/impl_type_soarctnmotordir.h"
+#include "eevp/control/impl_type_soarctnstatus.h"
+#include "eevp/control/impl_type_soaroadetectstate.h"
+#include "eevp/control/impl_type_soaroamode.h"
+#include "eevp/control/impl_type_soaroarunningstate.h"
+#include "eevp/control/impl_type_soaroasensorerror.h"
+#include "eevp/control/impl_type_soaseatheightdirection.h"
+#include "eevp/control/impl_type_soaseatmotordirection.h"
+#include "eevp/control/impl_type_soaseatmotorposition.h"
+#include "eevp/control/impl_type_soaseatreclinedirection.h"
+#include "eevp/control/impl_type_soaseatslidedirection.h"
+#include "eevp/control/impl_type_soaseattiltdirection.h"
+#include "eevp/control/impl_type_soawipermode.h"
+#include "eevp/control/impl_type_soawiperstatus.h"
 #include "eevp/monitoring/type/impl_type_controllerserviceerrorevent.h"
 #include "eevp/monitoring/type/impl_type_controllerserviceinfo.h"
 #include "eevp/monitoring/type/impl_type_controllerserviceinfomap.h"
@@ -39,6 +56,7 @@
 #include "eevp/monitoring/type/impl_type_stringarray.h"
 #include "eevp/monitoring/type/impl_type_timearray.h"
 #include "eevp/monitoring/type/impl_type_updatableservicelist.h"
+#include "eevp/pdw/type/impl_type_distancelevel.h"
 #include "eevp/type/impl_type_string.h"
 /// @uptrace{SWS_CM_01005}
 namespace eevp

@@ -3,7 +3,6 @@
 
 #include <Common.h>
 #include <SoaDataType.h>
-#include <SoaRoaSkeletonImpl.hpp>
 
 class PaconSetting
 {
@@ -12,18 +11,15 @@ private:
 
     bool mCoreInitialized;
     bool mExecutionStateReported;
-    eevp::control::SoaRoaSkeletonImpl *mSoaRoa;
 
     PaconSetting();
     ~PaconSetting();
-    void setRoa();
 
 public:
     static PaconSetting *GetInstance();
     static void RemoveInstance();
 
     bool StartPacon();
-    eevp::control::SoaRoaSkeletonImpl *GetSoaRoa();
 };
 
 #endif

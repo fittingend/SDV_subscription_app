@@ -41,6 +41,14 @@
               </PORT-PROTOTYPE-IREF>
               <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Provider/EEVP_MonitoringManager_Provider_MonitoringManagement</SERVICE-INSTANCE-REF>
             </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="23220a69-d54b-412f-9d6d-92054f9bff97">
+              <SHORT-NAME>MonitoringManager_AA_RPortDrvSeat</SHORT-NAME>
+              <PORT-PROTOTYPE-IREF>
+                <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/Application/Executable/MonitoringManager/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
+                <TARGET-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Application/SwComponent/MonitoringManager/RPortDrvSeat</TARGET-PORT-PROTOTYPE-REF>
+              </PORT-PROTOTYPE-IREF>
+              <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_MonitoringManager_Consumer_SoaDriverSeat</SERVICE-INSTANCE-REF>
+            </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
             <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="db5b00d2-522f-4f46-b3fb-170c6bba1920">
               <SHORT-NAME>MonitoringManager_AA_RPortMoodLamp</SHORT-NAME>
               <PORT-PROTOTYPE-IREF>
@@ -57,6 +65,22 @@
               </PORT-PROTOTYPE-IREF>
               <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_MonitoringManager_Consumer_OtaMonitoring</SERVICE-INSTANCE-REF>
             </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="c71e7817-620e-4a9d-b1dc-03ee937b3134">
+              <SHORT-NAME>MonitoringManager_AA_RPortPDW</SHORT-NAME>
+              <PORT-PROTOTYPE-IREF>
+                <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/Application/Executable/MonitoringManager/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
+                <TARGET-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Application/SwComponent/MonitoringManager/RPortPDW</TARGET-PORT-PROTOTYPE-REF>
+              </PORT-PROTOTYPE-IREF>
+              <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_MonitoringManager_Consumer_PDW</SERVICE-INSTANCE-REF>
+            </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="a35d1064-df79-442f-aba9-07372371930d">
+              <SHORT-NAME>MonitoringManager_AA_RPortPower</SHORT-NAME>
+              <PORT-PROTOTYPE-IREF>
+                <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/Application/Executable/MonitoringManager/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
+                <TARGET-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Application/SwComponent/MonitoringManager/RPortPower</TARGET-PORT-PROTOTYPE-REF>
+              </PORT-PROTOTYPE-IREF>
+              <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_MonitoringManager_Consumer_SoaPower</SERVICE-INSTANCE-REF>
+            </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
             <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="b119fa58-6a6f-42b0-9d6f-ede5822812a9">
               <SHORT-NAME>MonitoringManager_AA_RPortRearCurtain</SHORT-NAME>
               <PORT-PROTOTYPE-IREF>
@@ -65,6 +89,14 @@
               </PORT-PROTOTYPE-IREF>
               <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_MonitoringManager_Consumer_RearCurtain</SERVICE-INSTANCE-REF>
             </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="4d959b94-520e-471f-a949-14a7359ce824">
+              <SHORT-NAME>MonitoringManager_AA_RPortRoa</SHORT-NAME>
+              <PORT-PROTOTYPE-IREF>
+                <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/Application/Executable/MonitoringManager/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
+                <TARGET-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Application/SwComponent/MonitoringManager/RPortRoa</TARGET-PORT-PROTOTYPE-REF>
+              </PORT-PROTOTYPE-IREF>
+              <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_MonitoringManager_Consumer_SoaRoa</SERVICE-INSTANCE-REF>
+            </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
             <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="be460bd0-93f3-4a3a-995e-d6ce82ae385e">
               <SHORT-NAME>MonitoringManager_AA_RPortStateManager</SHORT-NAME>
               <PORT-PROTOTYPE-IREF>
@@ -72,6 +104,14 @@
                 <TARGET-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Application/SwComponent/MonitoringManager/RPortStateManager</TARGET-PORT-PROTOTYPE-REF>
               </PORT-PROTOTYPE-IREF>
               <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_MonitoringManager_Consumer_StateManager</SERVICE-INSTANCE-REF>
+            </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="48e29159-d950-4609-8bdc-3b6125d8c830">
+              <SHORT-NAME>MonitoringManager_AA_RPortWiper</SHORT-NAME>
+              <PORT-PROTOTYPE-IREF>
+                <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/Application/Executable/MonitoringManager/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
+                <TARGET-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Application/SwComponent/MonitoringManager/RPortWiper</TARGET-PORT-PROTOTYPE-REF>
+              </PORT-PROTOTYPE-IREF>
+              <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_MonitoringManager_Consumer_Wiper</SERVICE-INSTANCE-REF>
             </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
           </ELEMENTS>
         </AR-PACKAGE>
@@ -134,6 +174,10 @@
                   <SHORT-NAME>PPortMonitoringManagement</SHORT-NAME>
                   <PROVIDED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/MonitoringManagement</PROVIDED-INTERFACE-TREF>
                 </P-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="5ab5cfce-d0dd-427b-87ec-37a4d2294f3b">
+                  <SHORT-NAME>RPortDrvSeat</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/SoaDriverSeat</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
                 <R-PORT-PROTOTYPE UUID="4b3f9eb4-a300-406b-aca6-2a8536e4962b">
                   <SHORT-NAME>RPortMoodLamp</SHORT-NAME>
                   <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/SoaMlm</REQUIRED-INTERFACE-TREF>
@@ -142,13 +186,29 @@
                   <SHORT-NAME>RPortOtaMonitoring</SHORT-NAME>
                   <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/OtaMonitoring</REQUIRED-INTERFACE-TREF>
                 </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="7affc707-6786-43bf-a3e6-120a703900c8">
+                  <SHORT-NAME>RPortPDW</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/Main_PDW_Service</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="248e8794-cc43-473e-91f0-852c94e694ce">
+                  <SHORT-NAME>RPortPower</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/SoaPower</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
                 <R-PORT-PROTOTYPE UUID="39faccff-2e11-4300-acae-671e5ab9616d">
                   <SHORT-NAME>RPortRearCurtain</SHORT-NAME>
                   <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/SoaRcurtain</REQUIRED-INTERFACE-TREF>
                 </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="6f76e229-63d6-478e-8559-efe938a1120d">
+                  <SHORT-NAME>RPortRoa</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/SoaRoa</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
                 <R-PORT-PROTOTYPE UUID="afb26a0f-fdc4-468a-86c3-ebaed3c9fa09">
                   <SHORT-NAME>RPortStateManager</SHORT-NAME>
                   <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/StateManager</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="b1f8fb01-1339-4483-a0fb-a94434b94035">
+                  <SHORT-NAME>RPortWiper</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/SoaWiper</REQUIRED-INTERFACE-TREF>
                 </R-PORT-PROTOTYPE>
               </PORTS>
             </ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE>

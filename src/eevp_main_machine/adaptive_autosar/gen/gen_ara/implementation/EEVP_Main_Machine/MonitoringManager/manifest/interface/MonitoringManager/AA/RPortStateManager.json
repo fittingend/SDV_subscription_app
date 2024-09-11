@@ -10,7 +10,7 @@
     "instance-id" : "ANY",
     "major-version" : "1",
     "minor-version" : "ANY",
-    "client-id" : "786",
+    "client-id" : "785",
     "events" : [
         {
             "name" : "NotifySystemState",

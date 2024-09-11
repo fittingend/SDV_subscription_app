@@ -71,49 +71,101 @@
         </AR-PACKAGE>
         <AR-PACKAGE>
           <SHORT-NAME>Package</SHORT-NAME>
-          <ELEMENTS>
-            <SOFTWARE-CLUSTER UUID="47a66a85-0892-4e8f-a42a-2adc87cb3fc6">
-              <SHORT-NAME>DummyTest_Consumer</SHORT-NAME>
-              <DESC>
-                <L-2>1.0.0</L-2>
-              </DESC>
-              <CATEGORY>APPLICATION_LAYER</CATEGORY>
-              <CONTAINED-AR-ELEMENT-REFS>
-                <CONTAINED-AR-ELEMENT-REF DEST="EXECUTABLE">/Application/Executable/DummyTest_Consumer</CONTAINED-AR-ELEMENT-REF>
-              </CONTAINED-AR-ELEMENT-REFS>
-              <CONTAINED-PACKAGE-ELEMENT-REFS>
-                <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/DummyTest_Consumer_AA_DummyTest_RPort</CONTAINED-PACKAGE-ELEMENT-REF>
-              </CONTAINED-PACKAGE-ELEMENT-REFS>
-              <CONTAINED-PROCESS-REFS>
-                <CONTAINED-PROCESS-REF DEST="PROCESS">/Application/Process/DummyTest_Consumer</CONTAINED-PROCESS-REF>
-              </CONTAINED-PROCESS-REFS>
-              <VENDOR-ID>101</VENDOR-ID>
-              <VENDOR-SIGNATURE-REF DEST="CRYPTO-SERVICE-CERTIFICATE">/System/CryptoService/ParaCertificate</VENDOR-SIGNATURE-REF>
-              <VERSION>1.0.0</VERSION>
-            </SOFTWARE-CLUSTER>
-            <SOFTWARE-CLUSTER UUID="406b04c2-48c5-44cc-9de3-9bbce246245a">
-              <SHORT-NAME>DummyTest_Consumer</SHORT-NAME>
-              <DESC>
-                <L-2>1.0.1</L-2>
-              </DESC>
-              <CATEGORY>APPLICATION_LAYER</CATEGORY>
-              <CONTAINED-AR-ELEMENT-REFS>
-                <CONTAINED-AR-ELEMENT-REF DEST="EXECUTABLE">/Application/Executable/DummyTest_Consumer</CONTAINED-AR-ELEMENT-REF>
-              </CONTAINED-AR-ELEMENT-REFS>
-              <CONTAINED-PACKAGE-ELEMENT-REFS>
-                <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/DummyTest_Consumer_AA_DummyTest_RPort</CONTAINED-PACKAGE-ELEMENT-REF>
-              </CONTAINED-PACKAGE-ELEMENT-REFS>
-              <CONTAINED-PROCESS-REFS>
-                <CONTAINED-PROCESS-REF DEST="PROCESS">/Application/Process/DummyTest_Consumer</CONTAINED-PROCESS-REF>
-              </CONTAINED-PROCESS-REFS>
-              <VENDOR-ID>101</VENDOR-ID>
-              <VENDOR-SIGNATURE-REF DEST="CRYPTO-SERVICE-CERTIFICATE">/System/CryptoService/ParaCertificate</VENDOR-SIGNATURE-REF>
-              <VERSION>1.0.1</VERSION>
-            </SOFTWARE-CLUSTER>
-          </ELEMENTS>
           <AR-PACKAGES>
             <AR-PACKAGE>
-              <SHORT-NAME>DummyTest_Consumer_Install_1_0_0</SHORT-NAME>
+              <SHORT-NAME>SoftwareCluster_1_0_0</SHORT-NAME>
+              <ELEMENTS>
+                <SOFTWARE-CLUSTER UUID="47a66a85-0892-4e8f-a42a-2adc87cb3fc6">
+                  <SHORT-NAME>DummyTest_Consumer</SHORT-NAME>
+                  <DESC>
+                    <L-2>1.0.0</L-2>
+                  </DESC>
+                  <CATEGORY>APPLICATION_LAYER</CATEGORY>
+                  <CONTAINED-AR-ELEMENT-REFS>
+                    <CONTAINED-AR-ELEMENT-REF DEST="EXECUTABLE">/Application/Executable/DummyTest_Consumer</CONTAINED-AR-ELEMENT-REF>
+                  </CONTAINED-AR-ELEMENT-REFS>
+                  <CONTAINED-PACKAGE-ELEMENT-REFS>
+                    <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/DummyTest_Consumer_AA_DummyTest_RPort</CONTAINED-PACKAGE-ELEMENT-REF>
+                  </CONTAINED-PACKAGE-ELEMENT-REFS>
+                  <CONTAINED-PROCESS-REFS>
+                    <CONTAINED-PROCESS-REF DEST="PROCESS">/Application/Process/DummyTest_Consumer</CONTAINED-PROCESS-REF>
+                  </CONTAINED-PROCESS-REFS>
+                  <VENDOR-ID>101</VENDOR-ID>
+                  <VENDOR-SIGNATURE-REF DEST="CRYPTO-SERVICE-CERTIFICATE">/System/CryptoService/ParaCertificate</VENDOR-SIGNATURE-REF>
+                  <VERSION>1.0.0</VERSION>
+                </SOFTWARE-CLUSTER>
+              </ELEMENTS>
+            </AR-PACKAGE>
+            <AR-PACKAGE>
+              <SHORT-NAME>SoftwareCluster_1_0_1</SHORT-NAME>
+              <ELEMENTS>
+                <SOFTWARE-CLUSTER UUID="406b04c2-48c5-44cc-9de3-9bbce246245a">
+                  <SHORT-NAME>DummyTest_Consumer</SHORT-NAME>
+                  <DESC>
+                    <L-2>1.0.1</L-2>
+                  </DESC>
+                  <CATEGORY>APPLICATION_LAYER</CATEGORY>
+                  <CONTAINED-AR-ELEMENT-REFS>
+                    <CONTAINED-AR-ELEMENT-REF DEST="EXECUTABLE">/Application/Executable/DummyTest_Consumer</CONTAINED-AR-ELEMENT-REF>
+                  </CONTAINED-AR-ELEMENT-REFS>
+                  <CONTAINED-PACKAGE-ELEMENT-REFS>
+                    <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/DummyTest_Consumer_AA_DummyTest_RPort</CONTAINED-PACKAGE-ELEMENT-REF>
+                  </CONTAINED-PACKAGE-ELEMENT-REFS>
+                  <CONTAINED-PROCESS-REFS>
+                    <CONTAINED-PROCESS-REF DEST="PROCESS">/Application/Process/DummyTest_Consumer</CONTAINED-PROCESS-REF>
+                  </CONTAINED-PROCESS-REFS>
+                  <VENDOR-ID>101</VENDOR-ID>
+                  <VENDOR-SIGNATURE-REF DEST="CRYPTO-SERVICE-CERTIFICATE">/System/CryptoService/ParaCertificate</VENDOR-SIGNATURE-REF>
+                  <VERSION>1.0.1</VERSION>
+                </SOFTWARE-CLUSTER>
+              </ELEMENTS>
+            </AR-PACKAGE>
+            <AR-PACKAGE>
+              <SHORT-NAME>SoftwarePackage</SHORT-NAME>
+              <ELEMENTS>
+                <SOFTWARE-PACKAGE UUID="2ff46613-9158-4f56-9d2d-7a2e9c290e79">
+                  <SHORT-NAME>DummyTest_Consumer_Install_1_0_0</SHORT-NAME>
+                  <ACTION-TYPE>INSTALL</ACTION-TYPE>
+                  <COMPRESSED-SOFTWARE-PACKAGE-SIZE>0</COMPRESSED-SOFTWARE-PACKAGE-SIZE>
+                  <MAXIMUM-SUPPORTED-UCM-VERSION>1.0.0</MAXIMUM-SUPPORTED-UCM-VERSION>
+                  <MINIMUM-SUPPORTED-UCM-VERSION>1.0.0</MINIMUM-SUPPORTED-UCM-VERSION>
+                  <PACKAGER-ID>101</PACKAGER-ID>
+                  <PACKAGER-SIGNATURE-REF DEST="CRYPTO-SERVICE-CERTIFICATE">/System/CryptoService/ParaCertificate</PACKAGER-SIGNATURE-REF>
+                  <POST-VERIFICATION-REBOOT>false</POST-VERIFICATION-REBOOT>
+                  <PRE-ACTIVATION-REBOOT>false</PRE-ACTIVATION-REBOOT>
+                  <SOFTWARE-CLUSTER-REF DEST="SOFTWARE-CLUSTER">/Application/Package/SoftwareCluster_1_0_1/DummyTest_Consumer</SOFTWARE-CLUSTER-REF>
+                  <UNCOMPRESSED-SOFTWARE-CLUSTER-SIZE>0</UNCOMPRESSED-SOFTWARE-CLUSTER-SIZE>
+                </SOFTWARE-PACKAGE>
+                <SOFTWARE-PACKAGE UUID="60f821d7-eff5-4f85-b070-b794f73c4cb8">
+                  <SHORT-NAME>DummyTest_Consumer_Remove_1_0_1</SHORT-NAME>
+                  <ACTION-TYPE>REMOVE</ACTION-TYPE>
+                  <COMPRESSED-SOFTWARE-PACKAGE-SIZE>0</COMPRESSED-SOFTWARE-PACKAGE-SIZE>
+                  <MAXIMUM-SUPPORTED-UCM-VERSION>1.0.1</MAXIMUM-SUPPORTED-UCM-VERSION>
+                  <MINIMUM-SUPPORTED-UCM-VERSION>1.0.0</MINIMUM-SUPPORTED-UCM-VERSION>
+                  <PACKAGER-ID>101</PACKAGER-ID>
+                  <PACKAGER-SIGNATURE-REF DEST="CRYPTO-SERVICE-CERTIFICATE">/System/CryptoService/ParaCertificate</PACKAGER-SIGNATURE-REF>
+                  <POST-VERIFICATION-REBOOT>false</POST-VERIFICATION-REBOOT>
+                  <PRE-ACTIVATION-REBOOT>false</PRE-ACTIVATION-REBOOT>
+                  <SOFTWARE-CLUSTER-REF DEST="SOFTWARE-CLUSTER">/Application/Package/SoftwareCluster_1_0_1/DummyTest_Consumer</SOFTWARE-CLUSTER-REF>
+                  <UNCOMPRESSED-SOFTWARE-CLUSTER-SIZE>0</UNCOMPRESSED-SOFTWARE-CLUSTER-SIZE>
+                </SOFTWARE-PACKAGE>
+                <SOFTWARE-PACKAGE UUID="5248a725-f523-4ebb-bc6a-0214e696bf62">
+                  <SHORT-NAME>DummyTest_Consumer_Update_1_0_1</SHORT-NAME>
+                  <ACTION-TYPE>UPDATE</ACTION-TYPE>
+                  <COMPRESSED-SOFTWARE-PACKAGE-SIZE>0</COMPRESSED-SOFTWARE-PACKAGE-SIZE>
+                  <MAXIMUM-SUPPORTED-UCM-VERSION>1.0.0</MAXIMUM-SUPPORTED-UCM-VERSION>
+                  <MINIMUM-SUPPORTED-UCM-VERSION>1.0.0</MINIMUM-SUPPORTED-UCM-VERSION>
+                  <PACKAGER-ID>101</PACKAGER-ID>
+                  <PACKAGER-SIGNATURE-REF DEST="CRYPTO-SERVICE-CERTIFICATE">/System/CryptoService/ParaCertificate</PACKAGER-SIGNATURE-REF>
+                  <POST-VERIFICATION-REBOOT>false</POST-VERIFICATION-REBOOT>
+                  <PRE-ACTIVATION-REBOOT>false</PRE-ACTIVATION-REBOOT>
+                  <SOFTWARE-CLUSTER-REF DEST="SOFTWARE-CLUSTER">/Application/Package/SoftwareCluster_1_0_1/DummyTest_Consumer</SOFTWARE-CLUSTER-REF>
+                  <UNCOMPRESSED-SOFTWARE-CLUSTER-SIZE>0</UNCOMPRESSED-SOFTWARE-CLUSTER-SIZE>
+                </SOFTWARE-PACKAGE>
+              </ELEMENTS>
+            </AR-PACKAGE>
+            <AR-PACKAGE>
+              <SHORT-NAME>VehiclePackage</SHORT-NAME>
               <ELEMENTS>
                 <VEHICLE-PACKAGE UUID="3cfbb529-df87-4ebb-93df-b3691bef4a89">
                   <SHORT-NAME>DummyTest_Consumer_Install_1_0_0</SHORT-NAME>
@@ -130,18 +182,18 @@
                           <SOFTWARE-PACKAGE-STEPS>
                             <SOFTWARE-PACKAGE-STEP UUID="57c5bf53-7a0b-4229-842b-9337ae096854">
                               <SHORT-NAME>SoftwarePackageStep</SHORT-NAME>
-                              <PROCESS-REF DEST="SOFTWARE-PACKAGE">/Application/Package/DummyTest_Consumer_Install_1_0_0/DummyTest_Consumer_Install_1_0_0</PROCESS-REF>
+                              <PROCESS-REF DEST="SOFTWARE-PACKAGE">/Application/Package/SoftwarePackage/DummyTest_Consumer_Install_1_0_0</PROCESS-REF>
                               <TRANSFERS>
                                 <SOFTWARE-PACKAGE-STORING>
                                   <STORING>UCM</STORING>
                                   <TRANSFER-REFS>
-                                    <TRANSFER-REF DEST="SOFTWARE-PACKAGE">/Application/Package/DummyTest_Consumer_Install_1_0_0/DummyTest_Consumer_Install_1_0_0</TRANSFER-REF>
+                                    <TRANSFER-REF DEST="SOFTWARE-PACKAGE">/Application/Package/SoftwarePackage/DummyTest_Consumer_Install_1_0_0</TRANSFER-REF>
                                   </TRANSFER-REFS>
                                 </SOFTWARE-PACKAGE-STORING>
                               </TRANSFERS>
                             </SOFTWARE-PACKAGE-STEP>
                           </SOFTWARE-PACKAGE-STEPS>
-                          <UCM-REF DEST="UCM-DESCRIPTION">/Application/Package/DummyTest_Consumer_Install_1_0_0/DummyTest_Consumer_Install_1_0_0/EEVP_UCM</UCM-REF>
+                          <UCM-REF DEST="UCM-DESCRIPTION">/Application/Package/VehiclePackage/DummyTest_Consumer_Install_1_0_0/EEVP_UCM</UCM-REF>
                         </UCM-STEP>
                       </UCM-PROCESSINGS>
                     </VEHICLE-ROLLOUT-STEP>
@@ -153,37 +205,6 @@
                     </UCM-DESCRIPTION>
                   </UCMS>
                 </VEHICLE-PACKAGE>
-                <SOFTWARE-PACKAGE UUID="2ff46613-9158-4f56-9d2d-7a2e9c290e79">
-                  <SHORT-NAME>DummyTest_Consumer_Install_1_0_0</SHORT-NAME>
-                  <ACTION-TYPE>INSTALL</ACTION-TYPE>
-                  <COMPRESSED-SOFTWARE-PACKAGE-SIZE>0</COMPRESSED-SOFTWARE-PACKAGE-SIZE>
-                  <MAXIMUM-SUPPORTED-UCM-VERSION>1.0.0</MAXIMUM-SUPPORTED-UCM-VERSION>
-                  <MINIMUM-SUPPORTED-UCM-VERSION>1.0.0</MINIMUM-SUPPORTED-UCM-VERSION>
-                  <PACKAGER-ID>101</PACKAGER-ID>
-                  <PACKAGER-SIGNATURE-REF DEST="CRYPTO-SERVICE-CERTIFICATE">/System/CryptoService/ParaCertificate</PACKAGER-SIGNATURE-REF>
-                  <POST-VERIFICATION-REBOOT>false</POST-VERIFICATION-REBOOT>
-                  <PRE-ACTIVATION-REBOOT>false</PRE-ACTIVATION-REBOOT>
-                  <SOFTWARE-CLUSTER-REF DEST="SOFTWARE-CLUSTER">/Application/Package/DummyTest_Consumer</SOFTWARE-CLUSTER-REF>
-                  <UNCOMPRESSED-SOFTWARE-CLUSTER-SIZE>0</UNCOMPRESSED-SOFTWARE-CLUSTER-SIZE>
-                </SOFTWARE-PACKAGE>
-              </ELEMENTS>
-            </AR-PACKAGE>
-            <AR-PACKAGE>
-              <SHORT-NAME>DummyTest_Consumer_Remove_1_0_1</SHORT-NAME>
-              <ELEMENTS>
-                <SOFTWARE-PACKAGE UUID="60f821d7-eff5-4f85-b070-b794f73c4cb8">
-                  <SHORT-NAME>DummyTest_Consumer_Remove_1_0_1</SHORT-NAME>
-                  <ACTION-TYPE>REMOVE</ACTION-TYPE>
-                  <COMPRESSED-SOFTWARE-PACKAGE-SIZE>0</COMPRESSED-SOFTWARE-PACKAGE-SIZE>
-                  <MAXIMUM-SUPPORTED-UCM-VERSION>1.0.1</MAXIMUM-SUPPORTED-UCM-VERSION>
-                  <MINIMUM-SUPPORTED-UCM-VERSION>1.0.0</MINIMUM-SUPPORTED-UCM-VERSION>
-                  <PACKAGER-ID>101</PACKAGER-ID>
-                  <PACKAGER-SIGNATURE-REF DEST="CRYPTO-SERVICE-CERTIFICATE">/System/CryptoService/ParaCertificate</PACKAGER-SIGNATURE-REF>
-                  <POST-VERIFICATION-REBOOT>false</POST-VERIFICATION-REBOOT>
-                  <PRE-ACTIVATION-REBOOT>false</PRE-ACTIVATION-REBOOT>
-                  <SOFTWARE-CLUSTER-REF DEST="SOFTWARE-CLUSTER">/Application/Package/DummyTest_Consumer</SOFTWARE-CLUSTER-REF>
-                  <UNCOMPRESSED-SOFTWARE-CLUSTER-SIZE>0</UNCOMPRESSED-SOFTWARE-CLUSTER-SIZE>
-                </SOFTWARE-PACKAGE>
                 <VEHICLE-PACKAGE UUID="de18e17c-f9ab-48fd-b8be-a2807188ee20">
                   <SHORT-NAME>DummyTest_Consumer_Remove_1_0_1</SHORT-NAME>
                   <DESC>
@@ -199,18 +220,18 @@
                           <SOFTWARE-PACKAGE-STEPS>
                             <SOFTWARE-PACKAGE-STEP UUID="6d09c1f2-eeff-46c9-883f-083717c4d8de">
                               <SHORT-NAME>SoftwarePackageStep</SHORT-NAME>
-                              <PROCESS-REF DEST="SOFTWARE-PACKAGE">/Application/Package/DummyTest_Consumer_Remove_1_0_1/DummyTest_Consumer_Remove_1_0_1</PROCESS-REF>
+                              <PROCESS-REF DEST="SOFTWARE-PACKAGE">/Application/Package/SoftwarePackage/DummyTest_Consumer_Remove_1_0_1</PROCESS-REF>
                               <TRANSFERS>
                                 <SOFTWARE-PACKAGE-STORING>
                                   <STORING>UCM</STORING>
                                   <TRANSFER-REFS>
-                                    <TRANSFER-REF DEST="SOFTWARE-PACKAGE">/Application/Package/DummyTest_Consumer_Remove_1_0_1/DummyTest_Consumer_Remove_1_0_1</TRANSFER-REF>
+                                    <TRANSFER-REF DEST="SOFTWARE-PACKAGE">/Application/Package/SoftwarePackage/DummyTest_Consumer_Remove_1_0_1</TRANSFER-REF>
                                   </TRANSFER-REFS>
                                 </SOFTWARE-PACKAGE-STORING>
                               </TRANSFERS>
                             </SOFTWARE-PACKAGE-STEP>
                           </SOFTWARE-PACKAGE-STEPS>
-                          <UCM-REF DEST="UCM-DESCRIPTION">/Application/Package/DummyTest_Consumer_Remove_1_0_1/DummyTest_Consumer_Remove_1_0_1/EEVP_UCM</UCM-REF>
+                          <UCM-REF DEST="UCM-DESCRIPTION">/Application/Package/VehiclePackage/DummyTest_Consumer_Remove_1_0_1/EEVP_UCM</UCM-REF>
                         </UCM-STEP>
                       </UCM-PROCESSINGS>
                     </VEHICLE-ROLLOUT-STEP>
@@ -222,24 +243,6 @@
                     </UCM-DESCRIPTION>
                   </UCMS>
                 </VEHICLE-PACKAGE>
-              </ELEMENTS>
-            </AR-PACKAGE>
-            <AR-PACKAGE>
-              <SHORT-NAME>DummyTest_Consumer_Update_1_0_1</SHORT-NAME>
-              <ELEMENTS>
-                <SOFTWARE-PACKAGE UUID="5248a725-f523-4ebb-bc6a-0214e696bf62">
-                  <SHORT-NAME>DummyTest_Consumer_Update_1_0_1</SHORT-NAME>
-                  <ACTION-TYPE>UPDATE</ACTION-TYPE>
-                  <COMPRESSED-SOFTWARE-PACKAGE-SIZE>0</COMPRESSED-SOFTWARE-PACKAGE-SIZE>
-                  <MAXIMUM-SUPPORTED-UCM-VERSION>1.0.0</MAXIMUM-SUPPORTED-UCM-VERSION>
-                  <MINIMUM-SUPPORTED-UCM-VERSION>1.0.0</MINIMUM-SUPPORTED-UCM-VERSION>
-                  <PACKAGER-ID>101</PACKAGER-ID>
-                  <PACKAGER-SIGNATURE-REF DEST="CRYPTO-SERVICE-CERTIFICATE">/System/CryptoService/ParaCertificate</PACKAGER-SIGNATURE-REF>
-                  <POST-VERIFICATION-REBOOT>false</POST-VERIFICATION-REBOOT>
-                  <PRE-ACTIVATION-REBOOT>false</PRE-ACTIVATION-REBOOT>
-                  <SOFTWARE-CLUSTER-REF DEST="SOFTWARE-CLUSTER">/Application/Package/DummyTest_Consumer</SOFTWARE-CLUSTER-REF>
-                  <UNCOMPRESSED-SOFTWARE-CLUSTER-SIZE>0</UNCOMPRESSED-SOFTWARE-CLUSTER-SIZE>
-                </SOFTWARE-PACKAGE>
                 <VEHICLE-PACKAGE UUID="18387f8c-cea2-4530-b8d1-63e8f6d8c874">
                   <SHORT-NAME>DummyTest_Consumer_Update_1_0_1</SHORT-NAME>
                   <DESC>
@@ -255,18 +258,18 @@
                           <SOFTWARE-PACKAGE-STEPS>
                             <SOFTWARE-PACKAGE-STEP UUID="c91c5b81-3193-4d74-8337-bdd3758714ad">
                               <SHORT-NAME>SoftwarePackageStep</SHORT-NAME>
-                              <PROCESS-REF DEST="SOFTWARE-PACKAGE">/Application/Package/DummyTest_Consumer_Update_1_0_1/DummyTest_Consumer_Update_1_0_1</PROCESS-REF>
+                              <PROCESS-REF DEST="SOFTWARE-PACKAGE">/Application/Package/SoftwarePackage/DummyTest_Consumer_Update_1_0_1</PROCESS-REF>
                               <TRANSFERS>
                                 <SOFTWARE-PACKAGE-STORING>
                                   <STORING>UCM</STORING>
                                   <TRANSFER-REFS>
-                                    <TRANSFER-REF DEST="SOFTWARE-PACKAGE">/Application/Package/DummyTest_Consumer_Update_1_0_1/DummyTest_Consumer_Update_1_0_1</TRANSFER-REF>
+                                    <TRANSFER-REF DEST="SOFTWARE-PACKAGE">/Application/Package/SoftwarePackage/DummyTest_Consumer_Update_1_0_1</TRANSFER-REF>
                                   </TRANSFER-REFS>
                                 </SOFTWARE-PACKAGE-STORING>
                               </TRANSFERS>
                             </SOFTWARE-PACKAGE-STEP>
                           </SOFTWARE-PACKAGE-STEPS>
-                          <UCM-REF DEST="UCM-DESCRIPTION">/Application/Package/DummyTest_Consumer_Update_1_0_1/DummyTest_Consumer_Update_1_0_1/EEVP_UCM</UCM-REF>
+                          <UCM-REF DEST="UCM-DESCRIPTION">/Application/Package/VehiclePackage/DummyTest_Consumer_Update_1_0_1/EEVP_UCM</UCM-REF>
                         </UCM-STEP>
                       </UCM-PROCESSINGS>
                     </VEHICLE-ROLLOUT-STEP>

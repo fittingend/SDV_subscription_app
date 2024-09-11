@@ -5,7 +5,6 @@
 
 #include <ManagerBase.hpp>
 #include <MessageQueue.hpp>
-#include <UdpServer.hpp>
 #include <TelnetServer.hpp>
 #include <VehicleContext.hpp>
 #include <PaconSetting.hpp>
@@ -35,6 +34,8 @@ int main(int argc, char *argv[])
     std::signal(SIGINT, signalHandler);
     std::signal(SIGTERM, signalHandler);
 
+    VehicleContext *context = VehicleContext::GetInstance();
+
     if (!PaconSetting::GetInstance()->StartPacon())
     {
         (void)PaconSetting::RemoveInstance();
@@ -42,14 +43,10 @@ int main(int argc, char *argv[])
     }
 
     // TODO: your code here
-    VehicleContext *context = VehicleContext::GetInstance();
     DevicesInit();
 
-#if defined(ZONE_COMM_UDP)
-    UdpServer *udpServer = UdpServer::GetInstance();
-#endif
 #if defined(DEBUG_TELNET)
-    TelnetServer *telnetServer = new TelnetServer();
+    TelnetServer *telnetServer = TelnetServer::GetInstance();
     telnetServer->Start();
 #endif
 
@@ -60,11 +57,9 @@ int main(int argc, char *argv[])
 
     ManagerBase::StopAllManagers();
 
-#if defined(ZONE_COMM_UDP)
-    udpServer->Stop();
-#endif
 #if defined(DEBUG_TELNET)
     telnetServer->Stop();
+    TelnetServer::DestroyInstance();
 #endif
 
     (void)PaconSetting::RemoveInstance();

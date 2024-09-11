@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : otamonitoring_proxy.h
 /// SERVICE INTERFACE NAME            : OtaMonitoring
-/// GENERATED DATE                    : 2024-07-19 07:35:26
+/// GENERATED DATE                    : 2024-08-14 14:33:40
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

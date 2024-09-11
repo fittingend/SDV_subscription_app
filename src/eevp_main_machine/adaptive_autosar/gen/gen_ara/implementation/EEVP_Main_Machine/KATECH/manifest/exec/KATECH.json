@@ -29,12 +29,15 @@
         }
     ],
     "execution-dependencies" : [
+        {
+            "dependent-process" : "CM",
+            "state" : "Running"
+        }
     ],
     "log-trace-configuration" : {
     	"default-log-level" : "info",
     	"log-modes" : [
-    	    "console",
-    	    "network"
+    	    "console"
     	],
     	"application-id" : "KATC",
     	"application-description" : "undefined",

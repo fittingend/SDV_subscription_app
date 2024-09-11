@@ -15,8 +15,8 @@
               <EVENT-DEPLOYMENTS>
                 <SOMEIP-EVENT-DEPLOYMENT UUID="1e33accf-8436-4f04-ac2a-9c370c3160ff">
                   <SHORT-NAME>UssData</SHORT-NAME>
-                  <EVENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/ServiceInterface/Zone_UssFront_Input/UssData</EVENT-REF>
-                  <EVENT-ID>1</EVENT-ID>
+                  <EVENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/ServiceInterface/Zone_UssFront_Input/UssFront</EVENT-REF>
+                  <EVENT-ID>12920</EVENT-ID>
                   <SERIALIZER>SOMEIP</SERIALIZER>
                   <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                 </SOMEIP-EVENT-DEPLOYMENT>
@@ -25,7 +25,7 @@
               <EVENT-GROUPS>
                 <SOMEIP-EVENT-GROUP UUID="d5fcecaf-23aa-47c6-9ec6-4d038e48cd35">
                   <SHORT-NAME>Eventgroup_UssData</SHORT-NAME>
-                  <EVENT-GROUP-ID>1</EVENT-GROUP-ID>
+                  <EVENT-GROUP-ID>1034</EVENT-GROUP-ID>
                   <EVENT-REFS>
                     <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/Zone_UssFront_Input/UssData</EVENT-REF>
                   </EVENT-REFS>
@@ -42,8 +42,8 @@
               <EVENT-DEPLOYMENTS>
                 <SOMEIP-EVENT-DEPLOYMENT UUID="8365597b-25c2-4623-a25f-aebee654821f">
                   <SHORT-NAME>UssData</SHORT-NAME>
-                  <EVENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/ServiceInterface/Zone_UssRear_Input/UssData</EVENT-REF>
-                  <EVENT-ID>1</EVENT-ID>
+                  <EVENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/ServiceInterface/Zone_UssRear_Input/UssRear</EVENT-REF>
+                  <EVENT-ID>12921</EVENT-ID>
                   <SERIALIZER>SOMEIP</SERIALIZER>
                   <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                 </SOMEIP-EVENT-DEPLOYMENT>
@@ -52,7 +52,7 @@
               <EVENT-GROUPS>
                 <SOMEIP-EVENT-GROUP UUID="f14dc502-2745-4ca0-9636-925a5cff05ff">
                   <SHORT-NAME>Eventgroup_UssData</SHORT-NAME>
-                  <EVENT-GROUP-ID>1</EVENT-GROUP-ID>
+                  <EVENT-GROUP-ID>1024</EVENT-GROUP-ID>
                   <EVENT-REFS>
                     <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/Zone_UssUssRear_Input/UssData</EVENT-REF>
                   </EVENT-REFS>
@@ -173,7 +173,7 @@
           <MINOR-VERSION>0</MINOR-VERSION>
           <EVENTS>
             <VARIABLE-DATA-PROTOTYPE UUID="0047a100-3651-4d2f-8076-62ba5f1d3d5c">
-              <SHORT-NAME>UssData</SHORT-NAME>
+              <SHORT-NAME>UssFront</SHORT-NAME>
               <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/UssData</TYPE-TREF>
             </VARIABLE-DATA-PROTOTYPE>
           </EVENTS>
@@ -198,7 +198,7 @@
           <MINOR-VERSION>0</MINOR-VERSION>
           <EVENTS>
             <VARIABLE-DATA-PROTOTYPE UUID="06ec1970-5a80-4d71-97a3-1a594254f12b">
-              <SHORT-NAME>UssData</SHORT-NAME>
+              <SHORT-NAME>UssRear</SHORT-NAME>
               <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/UssData</TYPE-TREF>
             </VARIABLE-DATA-PROTOTYPE>
           </EVENTS>

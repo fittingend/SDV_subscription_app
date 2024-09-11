@@ -63,22 +63,6 @@ std::string getStringEnum_RCtnState_e(RCtnState_e val)
     return "UNKNOWN";
 }
 
-std::string getStringEnum_MlmMoodMode_e(MlmMoodMode_e val)
-{
-    switch (val)
-    {
-    case eMlmMoodMode_CareMood:         return "CareMood";
-    case eMlmMoodMode_ComfortMood:      return "ComfortMood";
-    case eMlmMoodMode_DelightMood:      return "DelightMood";
-    case eMlmMoodMode_MoodTherapy:      return "MoodTherapy";
-    case eMlmMoodMode_VitalityMood:     return "VitalityMood";
-
-    default:                        break;
-    }
-
-    return "UNKNOWN";
-}
-
 
 
 

@@ -16,7 +16,7 @@
                 <SOMEIP-EVENT-DEPLOYMENT UUID="7bd0f0dc-78ef-431d-bb9c-f2b191914f62">
                   <SHORT-NAME>VehicleInfo</SHORT-NAME>
                   <EVENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/ServiceInterface/Zone_VehicleInfo_Input/VehicleInfo</EVENT-REF>
-                  <EVENT-ID>1</EVENT-ID>
+                  <EVENT-ID>12916</EVENT-ID>
                   <SERIALIZER>SOMEIP</SERIALIZER>
                   <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                 </SOMEIP-EVENT-DEPLOYMENT>
@@ -25,7 +25,7 @@
               <EVENT-GROUPS>
                 <SOMEIP-EVENT-GROUP UUID="20bda204-92f7-43f1-a85a-3330183b7b87">
                   <SHORT-NAME>Eventgroup_VehicleInfo</SHORT-NAME>
-                  <EVENT-GROUP-ID>1</EVENT-GROUP-ID>
+                  <EVENT-GROUP-ID>1004</EVENT-GROUP-ID>
                   <EVENT-REFS>
                     <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/Zone_VehicleInfo_Input/VehicleInfo</EVENT-REF>
                   </EVENT-REFS>

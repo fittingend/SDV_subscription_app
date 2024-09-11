@@ -3,7 +3,8 @@
 #include "ara/core/initialization.h"
 #include "ara/exec/execution_client.h"
 #include "eevp/control/soarcurtain_common.h"
-#include "SoaRcurtainSkeletonImpl.hpp"
+#include <Api_SoaRcurtain.hpp>
+#include <Api_Zone3Rcurtain.hpp>
 #include <PaconSetting.hpp>
 #include <Log.hpp>
 
@@ -23,6 +24,8 @@ PaconSetting *PaconSetting::GetInstance()
 
 void PaconSetting::RemoveInstance()
 {
+
+
     if (PaconSetting::mInst != nullptr)
     {
         delete PaconSetting::mInst;
@@ -34,17 +37,13 @@ PaconSetting::PaconSetting()
 {
     this->mCoreInitialized = false;
     this->mExecutionStateReported = false;
-    this->mSoaRctn = nullptr;
 }
 
 
 PaconSetting::~PaconSetting()
 {
-    if (this->mSoaRctn != nullptr)
-    {
-        delete this->mSoaRctn;
-        this->mSoaRctn = nullptr;
-    }
+    Zone3_RCtn_Term();
+    Api_Rcurtain_Term();
 
     if (this->mCoreInitialized)
     {
@@ -55,10 +54,6 @@ PaconSetting::~PaconSetting()
 bool PaconSetting::StartPacon()
 {
     LOG_INFO() << "[PaconSetting::StartPacon] (+)\n";
-#if defined(DISABLE_SOMEIP)
-    LOG_INFO() << "[PaconSetting::StartPacon] (-)\n";
-    return true;
-#else
     LOG_DEBUG() << "[PaconSetting::StartPacon] ara::core::Initialize() (+)\n";
     ara::core::Initialize();
     this->mCoreInitialized = true;
@@ -75,25 +70,9 @@ bool PaconSetting::StartPacon()
     this->mExecutionStateReported = true;
     LOG_DEBUG() << "[PaconSetting::StartPacon] ara::exec::ExecutionClient::ReportExecutionState (-)\n";
 
-    this->setRearCurtain();
-
+    Api_Rcurtain_Init();
+    Zone3_RCtn_Init();
 
     LOG_INFO() << "[PaconSetting::StartPacon] (-)\n";
     return true;
-#endif
 }
-
-void PaconSetting::setRearCurtain()
-{
-    LOG_DEBUG() << "[PaconSetting::setRearCurtain] (+)\n";
-    ara::core::InstanceSpecifier specifier("SOA_RearCurtain/AA/PPort_SOA_RearCurtain");
-    this->mSoaRctn = new SoaRcurtainSkeletonImpl(specifier);
-    this->mSoaRctn->OfferService();
-    LOG_DEBUG() << "[PaconSetting::setRearCurtain] (-)\n";
-}
-
-eevp::control::SoaRcurtainSkeletonImpl *PaconSetting::GetSoaRcurtain()
-{
-    return this->mSoaRctn;
-}
-

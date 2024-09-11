@@ -25,8 +25,26 @@
             },
             "eventgroups" : [
                 {
-                    "eventgroup-id" : "8449",
+                    "eventgroup-id" : "8705",
                     "events" : ["16385"],
+                    "threshold" : "0",
+                    "multicast-address" : "undefined",
+                    "multicast-udp-port" : "0",
+                    "req-resp-delay-min" : "0.0",
+                    "req-resp-delay-max" : "0.0"
+                },
+                {
+                    "eventgroup-id" : "8706",
+                    "events" : ["16386"],
+                    "threshold" : "0",
+                    "multicast-address" : "undefined",
+                    "multicast-udp-port" : "0",
+                    "req-resp-delay-min" : "0.0",
+                    "req-resp-delay-max" : "0.0"
+                },
+                {
+                    "eventgroup-id" : "8707",
+                    "events" : ["16387"],
                     "threshold" : "0",
                     "multicast-address" : "undefined",
                     "multicast-udp-port" : "0",

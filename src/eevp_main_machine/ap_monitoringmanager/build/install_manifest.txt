@@ -1,0 +1,12 @@
+/tmp/para-root/opt/MonitoringManager/etc/exec/MonitoringManager.json
+/tmp/para-root/opt/MonitoringManager/etc/interface/MonitoringManager/AA/RPortDrvSeat.json
+/tmp/para-root/opt/MonitoringManager/etc/interface/MonitoringManager/AA/RPortPower.json
+/tmp/para-root/opt/MonitoringManager/etc/interface/MonitoringManager/AA/RPortMoodLamp.json
+/tmp/para-root/opt/MonitoringManager/etc/interface/MonitoringManager/AA/RPortRoa.json
+/tmp/para-root/opt/MonitoringManager/etc/interface/MonitoringManager/AA/RPortPDW.json
+/tmp/para-root/opt/MonitoringManager/etc/interface/MonitoringManager/AA/RPortOtaMonitoring.json
+/tmp/para-root/opt/MonitoringManager/etc/interface/MonitoringManager/AA/PPortMonitoringManagement.json
+/tmp/para-root/opt/MonitoringManager/etc/interface/MonitoringManager/AA/RPortStateManager.json
+/tmp/para-root/opt/MonitoringManager/etc/interface/MonitoringManager/AA/RPortWiper.json
+/tmp/para-root/opt/MonitoringManager/etc/interface/MonitoringManager/AA/RPortRearCurtain.json
+/tmp/para-root/opt/MonitoringManager/bin/MonitoringManager

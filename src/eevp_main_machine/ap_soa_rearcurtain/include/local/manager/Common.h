@@ -3,12 +3,12 @@
 
 // Add all the functional definition in here
 
-//#define DEBUG_TELNET
+#define DEBUG_TELNET
 //#define DISABLE_SOMEIP
-#define ZONE_COMM_UDP
+//#define ZONE_COMM_UDP
 //#define ZONE_COMM_UDP_MULTICAST
 //#define CHANGE_ZONEIP_BY_UDP_PACKETS
-#define UDP_SEND_REPEAT
+//#define UDP_SEND_REPEAT
 #define BLOCK_MOODLAMP_STATUS_FROM_ZONE1
 
 #define USE_SOA_DEBUGGER

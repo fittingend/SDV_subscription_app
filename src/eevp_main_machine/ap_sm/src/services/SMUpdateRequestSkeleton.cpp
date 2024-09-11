@@ -55,7 +55,7 @@ SMUpdateRequestSkeleton::PrepareRollback(const FunctionGroupList& fgList)
         p.SetError(ara::core::ErrorCode(SMErrorDomainErrc::kRejected));
     } else {
         auto it = std::find_if(fgList.begin(), fgList.end(), [](ara::sm::FGNameType v) {
-            return v == kMachinFg;
+            return v == kMachineFg;
         });
         if (it != fgList.end()) {
             // No plan to change MachinFG to Off state
@@ -92,7 +92,7 @@ SMUpdateRequestSkeleton::PrepareUpdate(const FunctionGroupList& fgList)
         p.SetError(ara::core::ErrorCode(SMErrorDomainErrc::kRejected));
     } else {
         auto it = std::find_if(fgList.begin(), fgList.end(), [](ara::sm::FGNameType v) {
-            return v == kMachinFg;
+            return v == kMachineFg;
         });
         if (it != fgList.end()) {
             // No plan to change MachinFG to Off state
@@ -129,7 +129,7 @@ SMUpdateRequestSkeleton::VerifyUpdate(const FunctionGroupList& fgList)
         p.SetError(ara::core::ErrorCode(SMErrorDomainErrc::kRejected));
     } else {
         auto it = std::find_if(fgList.begin(), fgList.end(), [](ara::sm::FGNameType v) {
-            return v == kMachinFg;
+            return v == kMachineFg;
         });
         if (it != fgList.end()) {
             // No plan to change MachinFG to Off state

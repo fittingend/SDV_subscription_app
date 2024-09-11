@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : soarcurtain_common.h
 /// SERVICE INTERFACE NAME            : SoaRcurtain
-/// GENERATED DATE                    : 2024-07-19 07:35:26
+/// GENERATED DATE                    : 2024-08-14 14:33:40
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

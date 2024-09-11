@@ -11,13 +11,23 @@
 #include "IOtaMonitoringListener.h"
 #include "IStateManagerListener.h"
 #include "IMoodLampListener.h"
+#include "IPdwListener.h"
+#include "IWiperListener.h"
+#include "IRoaListener.h"
+#include "IDrvseatListener.h"
 #include "IRearCurtainListener.h"
+#include "IPowerListener.h"
 
 #include "MonitoringManagementSkeletonImpl.h"
 #include "OtaMonitoringProxyImpl.h"
 #include "StateManagerProxyImpl.h"
 #include "MoodLampProxyImpl.h"
+#include "PdwProxyImpl.h"
+#include "WiperProxyImpl.h"
+#include "RoaProxyImpl.h"
+#include "DrvseatProxyImpl.h"
 #include "RearCurtainProxyImpl.h"
+#include "PowerProxyImpl.h"
 
 namespace eevp {
 namespace monitoring {
@@ -39,6 +49,8 @@ public:
     void startThirtySecondTask();
     void stopThirtySecondTask();
     void thirtySecondTask();
+
+    int i;
 
     // IMonitoringManagementListener.h
     bool requestAppInstall(const eevp::type::String& serviceName);
@@ -62,94 +74,72 @@ public:
     bool setControlControllerService(
                     const eevp::type::String& serviceName,
                     const eevp::type::String& serviceControl);
-    void resetUcmTest();
 
-    // IStateManagerListener
+    /// IStateManagerListener
     void notifyNotifySystemState(const ivi::info::statemanager::type::State& state);
     void notifyNotifyTime(const std::uint8_t& notifyTime);
     void notifySystemState(const ivi::info::statemanager::type::State& state);
 
-    // IOtaMonitoringListener
+    /// IOtaMonitoringListener
     void notifyServiceEvent(const eevp::ota::monitoring::type::RequestServiceInfo& requestServiceInfo);
     void notifyUpdatableService(const eevp::ota::monitoring::type::UpdatableServiceInfo& updatableServiceInfo);
 
-    // IMoodLampListener
+    void resetUcmTest();
+
+    /// IMoodLampListener
     void notifySoaMlmStatus(const eevp::control::SoaMlmStatus& fieldValue);
-    void getSoaMlmStatus();
+    void notifySoaMlmSwVersion(const std::uint8_t & fieldValue);
+    void getSoaMlmStatus(eevp::control::SoaMlmStatus& fieldValue);
+    void getSoaMlmSwVersion(std::uint8_t& fieldValue);
 
-    // IRearCurtainListener
+    void RequestMlmSetRgbColor(const std::uint8_t& colorTableIndex);
+
+    /// IPdwListener
+    void notifyDistanceLevel(const eevp::pdw::type::DistanceLevel& dLevel);
+
+    /// IWiperListener
+    void notifySoaWiperDeviceNormal(const eevp::control::SoaDeviceIsNormal& deviceIsNormal);
+    void notifySoaWiperStatus(const eevp::control::SoaWiperStatus& wiperStatusValue);
+    void notifySoaWiperSwVersion(const std::uint8_t& wiperSwVersion);
+    void getSoaWiperDeviceNormal(eevp::control::SoaDeviceIsNormal& deviceIsNormal);
+    void getSoaWiperStatus(eevp::control::SoaWiperStatus& wiperStatusValue);
+    void getSoaWiperSwVersion(std::uint8_t& wiperSwVersion);
+
+    void requestWiperOperation(const eevp::control::SoaWiperMode& wiperOperationMode);
+    void setWiperAutoSpeed(const bool& isAutoSpeed);
+
+    /// IRoaListener
+    void notifySoaRoaDeviceNormal(const eevp::control::SoaDeviceIsNormal& deviceIsNormal);
+    void notifySoaRoaSwVersion(const std::uint8_t& fieldValue);
+    void getSoaRoaDeviceNormal(eevp::control::SoaDeviceIsNormal& deviceIsNormal);
+    void getSoaRoaSwVersion(std::uint8_t& fieldValue);
+
+    /// IDrvseatListener
+    void notifySoaDrvseatDeviceNormal(const eevp::control::SoaDeviceIsNormal& deviceIsNormal);
+    void notifySoaDrvseatSwVersion(const std::uint8_t& drvseatSwVersion);
+    void getSoaDrvseatDeviceNormal(eevp::control::SoaDeviceIsNormal& deviceIsNormal);
+    void getSoaDrvseatSwVersion(std::uint8_t& drvseatSwVersion);
+
+    /// IRearCurtainListener
     void notifySoaRctnStatus(const eevp::control::SoaRctnStatus& fieldValue);
-    void getSoaRctnStatus();
+    void notifySoaRctnSwVersion(const std::uint8_t& fieldValue);
+    void getSoaRctnStatus(eevp::control::SoaRctnStatus& fieldValue);
+    void getSoaRctnSwVersion(std::uint8_t& fieldValue);
 
-    enum EventType {
-        SERVICE_INFO_SPARE,
-        SERVICE_STATUS_SPARE,
-        SERVICE_ERROR,
-        SERVICE_UPDATABLE
-    };
+    void RequestRearCurtainOperation(const eevp::control::SoaRctnMotorDir& motorDir);
+    void RequestRearCurtainPosition(const std::uint8_t& posPercentage);
 
-    struct Event {
-        EventType type;
-        union {
-            eevp::monitoring::type::ControllerServiceInfoSpare serviceInfoSpare;
-            eevp::monitoring::type::ControllerServiceStatusSpare serviceStatusSpare;
-            eevp::monitoring::type::ControllerServiceErrorEvent serviceErrorEvent;
-            eevp::monitoring::type::UpdatableServiceList serviceUpdatableEvent;
-        };
+    /// IPowerListener
+    void notifySoaPowerDeviceNormal(const eevp::control::SoaDeviceIsNormal& deviceIsNormal);
+    void notifySoaPowerSwVersion(const std::uint8_t& fieldValue);
 
-        Event(const eevp::monitoring::type::ControllerServiceInfoSpare& evt)
-            : type(SERVICE_INFO_SPARE), serviceInfoSpare(evt) {}
+    void getSoaPowerDeviceNormal(eevp::control::SoaDeviceIsNormal& deviceIsNormal);
+    void getSoaPowerSwVersion( std::uint8_t& fieldValue);
 
-        Event(const eevp::monitoring::type::ControllerServiceStatusSpare& evt)
-            : type(SERVICE_STATUS_SPARE), serviceStatusSpare(evt) {}
+    //test
+    void getSoaRoaDetectState();
+    void getSoaRoaDetectCount();
 
-        Event(const eevp::monitoring::type::ControllerServiceErrorEvent& evt)
-            : type(SERVICE_ERROR), serviceErrorEvent(evt) {}
-
-        Event(const eevp::monitoring::type::UpdatableServiceList& evt)
-            : type(SERVICE_UPDATABLE), serviceUpdatableEvent(evt) {}
-
-        ~Event() {
-            switch (type) {
-                case SERVICE_INFO_SPARE:
-                    serviceInfoSpare.~ControllerServiceInfoSpare();
-                    break;
-                case SERVICE_STATUS_SPARE:
-                    serviceStatusSpare.~ControllerServiceStatusSpare();
-                    break;
-                case SERVICE_ERROR:
-                    serviceErrorEvent.~ControllerServiceErrorEvent();
-                case SERVICE_UPDATABLE:
-                    serviceUpdatableEvent.~UpdatableServiceList();
-            }
-        }
-
-        Event(const Event& other) : type(other.type) {
-            switch (type) {
-                case SERVICE_INFO_SPARE:
-                    new(&serviceInfoSpare) eevp::monitoring::type::ControllerServiceInfoSpare(other.serviceInfoSpare);
-                    break;
-                case SERVICE_STATUS_SPARE:
-                    new(&serviceStatusSpare) eevp::monitoring::type::ControllerServiceStatusSpare(other.serviceStatusSpare);
-                    break;
-                case SERVICE_ERROR:
-                    new(&serviceErrorEvent) eevp::monitoring::type::ControllerServiceErrorEvent(other.serviceErrorEvent);
-                    break;
-                case SERVICE_UPDATABLE:
-                    new(&serviceUpdatableEvent) eevp::monitoring::type::UpdatableServiceList(other.serviceUpdatableEvent);
-            }
-        }
-
-         Event& operator=(const Event& other) {
-            if (this != &other) {
-                this->~Event();
-                new(this) Event(other);
-            }
-            return *this;
-        }
-    };
-
-    void enqueueEvent(const Event& event);
 
 private:
     /// @brief Signal Handler
@@ -161,18 +151,33 @@ private:
     /// @brief Find StateManager Proxy
     bool startStateManagerProxy();
 
-    /// @brief Find Proxy
+    /// @brief Find Ota Proxy
     bool startOtaMonitoringProxy();
+
+    /// @brief Find MoodLamp Proxy
+    bool startMoodLampProxy();
+
+/// @brief Find Pdw Proxy
+    bool startPdwProxy();
+
+    /// @brief Find Wiper Proxy
+    bool startWiperProxy();
+
+    /// @brief Find Roa Proxy
+    bool startRoaProxy();
+
+    /// @brief Find DriverSeat Proxy
+    bool startDrvseatProxy();
+
+    /// @brief Find RearCurtain Proxy
+    bool startRearCurtainProxy();
+
+    /// @brief Find Power Proxy
+    bool startPowerProxy();
 
     /// @brief Start Stub
     bool startMonitoringManagementStub();
 
-    /// @brief Find Control Proxy
-    bool startMoodLampProxy();
-    bool startRearCurtainProxy();
-
-    void printMap();
-    eevp::type::String getCurrentDate();
     void requestVersionInfo();
 
     std::thread periodicThread;
@@ -187,7 +192,13 @@ private:
     std::shared_ptr<eevp::monitoring::OtaMonitoringProxyImpl> otaMonitoringProxyImpl;
     std::shared_ptr<eevp::monitoring::MonitoringManagementSkeletonImpl> monitoringManagementSkeletonImpl;
     std::shared_ptr<eevp::control::moodlamp::MoodLampProxyImpl> moodLampProxyImpl;
+    std::shared_ptr<eevp::pdw::PdwProxyImpl> pdwProxyImpl;
+    std::shared_ptr<eevp::control::wiper::WiperProxyImpl> wiperProxyImpl;
     std::shared_ptr<eevp::control::rearcurtain::RearCurtainProxyImpl> rearCurtainProxyImpl;
+    std::shared_ptr<eevp::control::roa::RoaProxyImpl> roaProxyImpl;
+    std::shared_ptr<eevp::control::drvseat::DrvseatProxyImpl> drvseatProxyImpl;
+    std::shared_ptr<eevp::control::power::PowerProxyImpl> powerProxyImpl;
+
 
     eevp::monitoring::type::ControllerServiceInfoMap controllerInfoMap;
     eevp::monitoring::type::ControllerServiceStatusMap controllerStatusMap;
@@ -204,13 +215,6 @@ private:
 
     std::thread thrityThread;
     std::atomic_bool thrityRunning;
-
-    void eventProcessingThread();
-    std::thread eventProcessingThreadHandle;
-
-    std::queue<Event> eventQueue;
-    std::mutex queueMutex;
-    std::condition_variable queueCondVar;
 
     ivi::info::statemanager::type::State state;
     std::uint8_t notifyTime;

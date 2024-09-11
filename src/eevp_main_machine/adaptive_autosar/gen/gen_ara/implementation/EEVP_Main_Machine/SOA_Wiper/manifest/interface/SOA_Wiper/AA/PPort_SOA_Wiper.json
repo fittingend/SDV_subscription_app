@@ -83,6 +83,31 @@
                 "max-segment-len" : "0",
                 "separation-time" : "0.0"
             }
+        },
+        {
+            "name" : "soaWiperSwVersion",
+            "getter" : {
+                "method-id" : "3",
+                "transport" : "udp",
+                "req-max-segment-len" : "0",
+                "req-separation-time" : "0.0",
+                "resp-max-segment-len" : "0",
+                "resp-separation-time" : "0.0"
+            },
+            "setter" : {
+                "method-id" : "0",
+                "transport" : "undefined",
+                "req-max-segment-len" : "0",
+                "req-separation-time" : "0.0",
+                "resp-max-segment-len" : "0",
+                "resp-separation-time" : "0.0"
+            },
+            "notifier" : {
+                "event-id" : "16387",
+                "transport" : "udp",
+                "max-segment-len" : "0",
+                "separation-time" : "0.0"
+            }
         }
     ]
 }

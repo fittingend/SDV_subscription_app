@@ -25,8 +25,8 @@ private:
     bool mEnableLog;
     soa::debug::LogLevel_e mLevel;
     std::string mLabel;
+    std::string mLogHeader;
     std::stringstream mStream;
-
     void flush();
 
 public:
@@ -45,17 +45,16 @@ public:
     Log & operator<<(double value);
     Log & operator<<(const char *value);
     Log & operator<<(std::string value);
-    Log & operator<<(std::string &value);
+    void setLogHeader(std::string header);
 };
 }
 }
 
-extern soa::debug::Log &LOG_FATAL();
-extern soa::debug::Log &LOG_ERROR();
-extern soa::debug::Log &LOG_WARNING();
-extern soa::debug::Log &LOG_INFO();
-extern soa::debug::Log &LOG_DEBUG();
-extern soa::debug::Log &LOG_VERBOSE();
-extern std::string LOG_POS(const char *path = __builtin_FILE(), const uint32_t line = __builtin_LINE(), const char *func = __builtin_FUNCTION());
+extern soa::debug::Log &LOG_FATAL(const char *path = __builtin_FILE(), const uint32_t line = __builtin_LINE(), const char *func = __builtin_FUNCTION());
+extern soa::debug::Log &LOG_ERROR(const char *path = __builtin_FILE(), const uint32_t line = __builtin_LINE(), const char *func = __builtin_FUNCTION());
+extern soa::debug::Log &LOG_WARNING(const char *path = __builtin_FILE(), const uint32_t line = __builtin_LINE(), const char *func = __builtin_FUNCTION());
+extern soa::debug::Log &LOG_INFO(const char *path = __builtin_FILE(), const uint32_t line = __builtin_LINE(), const char *func = __builtin_FUNCTION());
+extern soa::debug::Log &LOG_DEBUG(const char *path = __builtin_FILE(), const uint32_t line = __builtin_LINE(), const char *func = __builtin_FUNCTION());
+extern soa::debug::Log &LOG_VERBOSE(const char *path = __builtin_FILE(), const uint32_t line = __builtin_LINE(), const char *func = __builtin_FUNCTION());
 
 #endif

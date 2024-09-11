@@ -14,7 +14,7 @@
     "events" : [
         {
             "name" : "VehicleInfo",
-            "event-id" : "1",
+            "event-id" : "12916",
             "transport" : "udp",
             "max-segment-len" : "0",
             "separation-time" : "0.0"

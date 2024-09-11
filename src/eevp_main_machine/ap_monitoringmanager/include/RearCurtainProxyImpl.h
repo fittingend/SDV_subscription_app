@@ -24,9 +24,11 @@ public:
 
     // method
     eevp::control::SoaErrorState requestRearCurtainOperation(const eevp::control::SoaRctnMotorDir& motorDir);
+    void requestRearCurtainPosition(const std::uint8_t& posPercentage);
 
     // field getter
-    bool getterSoaRctnStatus(eevp::control::SoaRctnStatus& soaRctnStatus);
+    bool getSoaRctnStatus(eevp::control::SoaRctnStatus& soaRctnStatus);
+    bool getSoaRctnSwVersion(std::uint8_t& soaRctnSwVersion);
 
 private:
     void FindServiceCallback(
@@ -36,7 +38,8 @@ private:
     /// @brief Subscribe Event
     void SubscribeEvent();
     /// @brief Subscribe Field
-    void SubscribeField();
+    void SubscribeRctnStatus();
+    void SubscribeRctnSwVersion();
 
     /// @brief Unsubscribe Event
     void UnsubscribeEvent();
@@ -45,6 +48,7 @@ private:
 
     // callback func
     void cbSoaRctnStatus();
+    void cbSoaRctnSwVersion();
 
     ara::log::Logger& mLogger;
     std::shared_ptr<eevp::control::rearcurtain::IRearCurtainListener> listener;

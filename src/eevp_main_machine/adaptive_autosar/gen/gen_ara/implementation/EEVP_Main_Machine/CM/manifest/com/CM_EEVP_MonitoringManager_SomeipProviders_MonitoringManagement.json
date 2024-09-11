@@ -5,8 +5,8 @@
     "service-protocol" : "someip",
     "connector" : "eth0",
     "unicast-address" : "10.100.0.40",
-    "tcp-port" : "50011",
-    "udp-port" : "50011",
+    "tcp-port" : "55011",
+    "udp-port" : "55011",
     "skeletons" : [
         {
             "service-id" : "4881",
@@ -25,26 +25,8 @@
             },
             "eventgroups" : [
                 {
-                    "eventgroup-id" : "3",
-                    "events" : ["3","4","5","6"],
-                    "threshold" : "0",
-                    "multicast-address" : "undefined",
-                    "multicast-udp-port" : "0",
-                    "req-resp-delay-min" : "0.0",
-                    "req-resp-delay-max" : "0.0"
-                },
-                {
                     "eventgroup-id" : "1",
-                    "events" : ["1"],
-                    "threshold" : "0",
-                    "multicast-address" : "undefined",
-                    "multicast-udp-port" : "0",
-                    "req-resp-delay-min" : "0.0",
-                    "req-resp-delay-max" : "0.0"
-                },
-                {
-                    "eventgroup-id" : "2",
-                    "events" : ["2"],
+                    "events" : ["501","3","4","5","6","13","751","752","753","754","401","402","1051","1052","901","902","651","652","653","654","655","656","657","801","802","803"],
                     "threshold" : "0",
                     "multicast-address" : "undefined",
                     "multicast-udp-port" : "0",

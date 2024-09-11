@@ -1,14 +1,11 @@
 #include "ara/core/initialization.h"
-
-#include "consumer.h"
-int main(void)
+ 
+int main(int argc, char *argv[])
 {
     ara::core::Initialize();
-    swc::Consumer swc;
-    if (swc.Start()) {
-        swc.Run();
-        swc.Terminate();
-    }
+    
+    // TODO: your code here
+    
     ara::core::Deinitialize();
     
     return 0;

@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : soaroa_skeleton.h
 /// SERVICE INTERFACE NAME            : SoaRoa
-/// GENERATED DATE                    : 2024-07-19 07:35:31
+/// GENERATED DATE                    : 2024-08-14 14:33:45
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -550,6 +550,91 @@ private:
     const std::string kGetterCallSign = {"soaRoaSensorErrorGetter"};
     const std::string kNotifierCallSign = {"soaRoaSensorErrorNotifier"};
 };
+/// @uptrace{SWS_CM_00007}
+class soaRoaSwVersion
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = std::uint8_t;
+    /// @brief Constructor
+    explicit soaRoaSwVersion(para::com::SkeletonInterface* interface) : mInterface(interface)
+    {
+    }
+    /// @brief Destructor
+    virtual ~soaRoaSwVersion() = default;
+    /// @brief Delete copy constructor
+    soaRoaSwVersion(const soaRoaSwVersion& other) = delete;
+    /// @brief Delete copy assignment
+    soaRoaSwVersion& operator=(const soaRoaSwVersion& other) = delete;
+    /// @brief Move constructor
+    soaRoaSwVersion(soaRoaSwVersion&& other) noexcept : mInterface(other.mInterface)
+    {
+        RegisterGetHandler(std::move(other.mGetHandler));
+    }
+    /// @brief Move assignment
+    soaRoaSwVersion& operator=(soaRoaSwVersion&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        RegisterGetHandler(std::move(other.mGetHandler));
+        return *this;
+    }
+    /// @brief Register callback for getter method
+    /// @uptrace{SWS_CM_00114}
+    ara::core::Result<void> RegisterGetHandler(std::function<ara::core::Future<FieldType>()> getHandler)
+    {
+        ara::core::Result<void> result{};
+        if (getHandler != nullptr)
+        {
+            mGetHandler = std::move(getHandler);
+            mInterface->SetMethodCallHandler(kGetterCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+                HandleGet(token);
+            });
+        }
+        return result;
+    }
+    /// @brief Send notification with value to subscribing service consumers
+    /// @uptrace{SWS_CM_90437}
+    ara::core::Result<void> Update(const FieldType& value)
+    {
+        para::serializer::Serializer serializer{};
+        serializer.write(value);
+        auto payload = serializer.ensure();
+        return mInterface->SendEvent(kNotifierCallSign, payload);
+    }
+    
+private:
+    void HandleGet(const para::com::MethodToken token)
+    {
+        std::uint8_t retResult{1};
+        std::vector<std::uint8_t> retData{};
+        auto future = mGetHandler();
+        auto result = future.GetResult();
+        if (result.HasValue())
+        {
+            FieldType value = result.Value();
+            para::serializer::Serializer serializer{};
+            serializer.write(value);
+            retData = serializer.ensure();
+            retResult = 0;
+        }
+        else
+        {
+            ara::core::ErrorDomain::IdType domainId = result.Error().Domain().Id();
+            ara::core::ErrorDomain::CodeType errorCode = result.Error().Value();
+            para::serializer::Serializer serializer{};
+            serializer.write(0, true, 0, domainId);
+            serializer.write(0, true, 0, errorCode);
+            retData = serializer.ensure();
+            retResult = 1;
+        }
+        mInterface->ReturnMethod(kGetterCallSign, retResult, retData, token);
+    }
+    para::com::SkeletonInterface* mInterface;
+    std::function<ara::core::Future<FieldType>()> mGetHandler{nullptr};
+    const std::string kGetterCallSign = {"soaRoaSwVersionGetter"};
+    const std::string kNotifierCallSign = {"soaRoaSwVersionNotifier"};
+};
 } /// namespace fields
 /// @uptrace{SWS_CM_00002}
 class SoaRoaSkeleton
@@ -566,6 +651,7 @@ public:
         , soaRoaMode(mInterface.get())
         , soaRoaRunningState(mInterface.get())
         , soaRoaSensorError(mInterface.get())
+        , soaRoaSwVersion(mInterface.get())
     {
         mInterface->SetMethodCallHandler(kResetRoaDetectInfoCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken /*token*/) {
             HandleResetRoaDetectInfo(data);
@@ -601,6 +687,7 @@ public:
         , soaRoaMode(std::move(other.soaRoaMode))
         , soaRoaRunningState(std::move(other.soaRoaRunningState))
         , soaRoaSensorError(std::move(other.soaRoaSensorError))
+        , soaRoaSwVersion(std::move(other.soaRoaSwVersion))
     {
         mInterface->SetMethodCallHandler(kResetRoaDetectInfoCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken /*token*/) {
             HandleResetRoaDetectInfo(data);
@@ -630,6 +717,7 @@ public:
         soaRoaMode = std::move(other.soaRoaMode);
         soaRoaRunningState = std::move(other.soaRoaRunningState);
         soaRoaSensorError = std::move(other.soaRoaSensorError);
+        soaRoaSwVersion = std::move(other.soaRoaSwVersion);
         mInterface->SetMethodCallHandler(kResetRoaDetectInfoCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken /*token*/) {
             HandleResetRoaDetectInfo(data);
         });
@@ -688,19 +776,21 @@ private:
     std::unique_ptr<para::com::SkeletonInterface> mInterface;
     
 public:
-    /// @brief Field, isDeviceNormal
+    /// @brief Field, soaRoaDetectCount
     fields::soaRoaDetectCount soaRoaDetectCount;
     /// @brief Field, soaRoaDetectState
     fields::soaRoaDetectState soaRoaDetectState;
     /// @brief Field, soaRoaDeviceNormal
     fields::soaRoaDeviceNormal soaRoaDeviceNormal;
-    /// @brief Field, soaRoaRunningState
+    /// @brief Field, soaRoaMode
     fields::soaRoaMode soaRoaMode;
     /// @brief Field, soaRoaRunningState
     fields::soaRoaRunningState soaRoaRunningState;
     /// @brief Field, soaRoaSensorError
     fields::soaRoaSensorError soaRoaSensorError;
-    /// @brief Field, sorRoaDetectCount
+    /// @brief Method, ResetRoaDetectInfo
+    fields::soaRoaSwVersion soaRoaSwVersion;
+    /// @brief Method, ResetRoaDetectInfo
     /// @uptrace{SWS_CM_90434}
     virtual void ResetRoaDetectInfo() = 0;
     /// @brief Method, SetRoaMode

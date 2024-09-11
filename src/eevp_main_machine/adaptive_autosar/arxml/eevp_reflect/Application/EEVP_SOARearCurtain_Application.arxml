@@ -42,6 +42,15 @@
               <PROCESS-REF DEST="PROCESS">/Application/Process/SOA_RearCurtain</PROCESS-REF>
               <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Provider/Provider_SoaRcurtain</SERVICE-INSTANCE-REF>
             </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="ad0dca43-8a00-4b06-85cc-94c06597ac45">
+              <SHORT-NAME>SOA_RearCurtain_AA_RPort_Zone3Rcurtain</SHORT-NAME>
+              <PORT-PROTOTYPE-IREF>
+                <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/Application/Executable/SOA_RearCurtain/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
+                <TARGET-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Application/SwComponent/SOA_RearCurtain/RPort_Zone3Rcurtain</TARGET-PORT-PROTOTYPE-REF>
+              </PORT-PROTOTYPE-IREF>
+              <PROCESS-REF DEST="PROCESS">/Application/Process/SOA_RearCurtain</PROCESS-REF>
+              <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/Consumer_Zone3Rcurtain</SERVICE-INSTANCE-REF>
+            </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
           </ELEMENTS>
         </AR-PACKAGE>
         <AR-PACKAGE>
@@ -93,10 +102,32 @@
                   </ELEMENTS>
                 </AR-PACKAGE>
                 <AR-PACKAGE>
+                  <SHORT-NAME>SoftwareCluster_1_0_2</SHORT-NAME>
+                  <ELEMENTS>
+                    <SOFTWARE-CLUSTER UUID="e1364fa6-e254-42f5-aa4d-c5f2f5dc903e">
+                      <SHORT-NAME>SOA_RearCurtain_SoftwareCluster</SHORT-NAME>
+                      <CATEGORY>APPLICATION_LAYER</CATEGORY>
+                      <CONTAINED-AR-ELEMENT-REFS>
+                        <CONTAINED-AR-ELEMENT-REF DEST="EXECUTABLE">/Application/Executable/SOA_RearCurtain</CONTAINED-AR-ELEMENT-REF>
+                      </CONTAINED-AR-ELEMENT-REFS>
+                      <CONTAINED-PACKAGE-ELEMENT-REFS>
+                        <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_RearCurtain_AA_PPort_SOA_RearCurtain</CONTAINED-PACKAGE-ELEMENT-REF>
+                        <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_RearCurtain_AA_RPort_Zone3Rcurtain</CONTAINED-PACKAGE-ELEMENT-REF>
+                      </CONTAINED-PACKAGE-ELEMENT-REFS>
+                      <CONTAINED-PROCESS-REFS>
+                        <CONTAINED-PROCESS-REF DEST="PROCESS">/Application/Process/SOA_RearCurtain</CONTAINED-PROCESS-REF>
+                      </CONTAINED-PROCESS-REFS>
+                      <VENDOR-ID>79</VENDOR-ID>
+                      <VENDOR-SIGNATURE-REF DEST="CRYPTO-SERVICE-CERTIFICATE">/System/CryptoService/ParaCertificate</VENDOR-SIGNATURE-REF>
+                      <VERSION>1.0.2</VERSION>
+                    </SOFTWARE-CLUSTER>
+                  </ELEMENTS>
+                </AR-PACKAGE>
+                <AR-PACKAGE>
                   <SHORT-NAME>SoftwarePackage</SHORT-NAME>
                   <ELEMENTS>
                     <SOFTWARE-PACKAGE UUID="fb185746-327e-4c63-9670-ddc5d087ea38">
-                      <SHORT-NAME>SOA_RearCuratin_RemoveSoftwarePackage_1_0_1</SHORT-NAME>
+                      <SHORT-NAME>SOA_RearCuratin_RemoveSoftwarePackage_1_0_2</SHORT-NAME>
                       <ACTION-TYPE>REMOVE</ACTION-TYPE>
                       <COMPRESSED-SOFTWARE-PACKAGE-SIZE>0</COMPRESSED-SOFTWARE-PACKAGE-SIZE>
                       <MAXIMUM-SUPPORTED-UCM-VERSION>1.0.0</MAXIMUM-SUPPORTED-UCM-VERSION>
@@ -111,7 +142,7 @@
                         </PRE-ACTIVATE-IREF>
                       </PRE-ACTIVATE-IREFS>
                       <PRE-ACTIVATION-REBOOT>false</PRE-ACTIVATION-REBOOT>
-                      <SOFTWARE-CLUSTER-REF DEST="SOFTWARE-CLUSTER">/Application/Package/SOA_RearCurtain/SoftwareCluster_1_0_1/SOA_RearCurtain_SoftwareCluster</SOFTWARE-CLUSTER-REF>
+                      <SOFTWARE-CLUSTER-REF DEST="SOFTWARE-CLUSTER">/Application/Package/SOA_RearCurtain/SoftwareCluster_1_0_2/SOA_RearCurtain_SoftwareCluster</SOFTWARE-CLUSTER-REF>
                       <UNCOMPRESSED-SOFTWARE-CLUSTER-SIZE>0</UNCOMPRESSED-SOFTWARE-CLUSTER-SIZE>
                       <VERIFY-IREFS>
                         <VERIFY-IREF>
@@ -222,12 +253,12 @@
                               <SOFTWARE-PACKAGE-STEPS>
                                 <SOFTWARE-PACKAGE-STEP UUID="d611f72a-2d28-4452-a155-ce027bed6537">
                                   <SHORT-NAME>SoftwarePackageStep0</SHORT-NAME>
-                                  <PROCESS-REF DEST="SOFTWARE-PACKAGE">/Application/Package/SOA_RearCurtain/SoftwarePackage/SOA_RearCuratin_RemoveSoftwarePackage_1_0_1</PROCESS-REF>
+                                  <PROCESS-REF DEST="SOFTWARE-PACKAGE">/Application/Package/SOA_RearCurtain/SoftwarePackage/SOA_RearCuratin_RemoveSoftwarePackage_1_0_2</PROCESS-REF>
                                   <TRANSFERS>
                                     <SOFTWARE-PACKAGE-STORING>
                                       <STORING>UCM</STORING>
                                       <TRANSFER-REFS>
-                                        <TRANSFER-REF DEST="SOFTWARE-PACKAGE">/Application/Package/SOA_RearCurtain/SoftwarePackage/SOA_RearCuratin_RemoveSoftwarePackage_1_0_1</TRANSFER-REF>
+                                        <TRANSFER-REF DEST="SOFTWARE-PACKAGE">/Application/Package/SOA_RearCurtain/SoftwarePackage/SOA_RearCuratin_RemoveSoftwarePackage_1_0_2</TRANSFER-REF>
                                       </TRANSFER-REFS>
                                     </SOFTWARE-PACKAGE-STORING>
                                   </TRANSFERS>
@@ -325,6 +356,10 @@
                   <SHORT-NAME>PPort_SOA_RearCurtain</SHORT-NAME>
                   <PROVIDED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/SoaRcurtain</PROVIDED-INTERFACE-TREF>
                 </P-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="8f5a031a-befe-40a4-ba40-08da55566a56">
+                  <SHORT-NAME>RPort_Zone3Rcurtain</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/Zone3Rcurtain</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
               </PORTS>
             </ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE>
           </ELEMENTS>

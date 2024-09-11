@@ -19,7 +19,7 @@ const ara::core::String kOff{"Off"};
 const ara::core::String kOn{"On"};
 const ara::core::String kVerify{"Verify"};
 
-const ara::core::String kMachinFg{"MachineFG"};
+const ara::core::String kMachineFg{"MachineFG"};
 
 const ara::core::String kMachineStartup{"Startup"};     // for future
 const ara::core::String kMachineShutdown{"Shutdown"};   // for future

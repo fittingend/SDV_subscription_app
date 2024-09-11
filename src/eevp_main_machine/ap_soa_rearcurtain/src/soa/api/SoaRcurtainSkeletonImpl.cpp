@@ -1,7 +1,7 @@
 #include "SoaRcurtainSkeletonImpl.hpp"
 #include <Common.h>
 #include <SoaDataType.h>
-#include <ApiRcurtain_Local.hpp>
+#include <Api_SoaRcurtain.hpp>
 #include <Log.hpp>
 
 using namespace eevp::control::skeleton;
@@ -18,15 +18,36 @@ SoaRcurtainSkeletonImpl::SoaRcurtainSkeletonImpl(
         return this->soaRctnStatusGetter();
     };
 
+    auto soaRctnSwVersion_get_handler = [this]() {
+        return this->soaRctnSwVersionGetter();
+    };
+
+    this->mStatus.errorState = eevp::control::SoaErrorState::kOK;
+    this->mStatus.curMotorDirection = eevp::control::SoaRctnMotorDir::kSTOP;
+    this->mStatus.curtainState = eevp::control::SoaRctnState::kFULLY_UP;
+    this->mStatus.isNormal = eevp::control::SoaDeviceIsNormal::kNORMAL;
+    this->mSwVersion = 0;
+
     soaRctnStatus.RegisterGetHandler(soaRctnStatus_get_handler);
+    soaRctnSwVersion.RegisterGetHandler(soaRctnSwVersion_get_handler);
 }
 
 ara::core::Future<fields::soaRctnStatus::FieldType> SoaRcurtainSkeletonImpl::soaRctnStatusGetter()
 {
-    LOG_DEBUG() << "[SoaRcurtainSkeletonImpl::soaRctnStatusGetter] (+)\n";
+    LOG_DEBUG() << "(+)\n";
     ara::core::Promise<fields::soaRctnStatus::FieldType> promise;
-    promise.set_value(this->mField);
-    LOG_DEBUG() << "[SoaRcurtainSkeletonImpl::soaRctnStatusGetter] (-)\n";
+    promise.set_value(this->mStatus);
+    LOG_DEBUG() << "(-)\n";
+    return promise.get_future();
+}
+
+ara::core::Future<fields::soaRctnSwVersion::FieldType> SoaRcurtainSkeletonImpl::soaRctnSwVersionGetter()
+{
+    LOG_DEBUG() << "(+)\n";
+    ara::core::Promise<fields::soaRctnSwVersion::FieldType> promise;
+    promise.set_value(this->mSwVersion);
+    LOG_DEBUG() << "(-)\n";
+    LOG_INFO() << "mSW version is" << this->mSwVersion;
     return promise.get_future();
 }
 
@@ -66,16 +87,24 @@ ara::core::Future<SoaRcurtainSkeleton::RequestRearCurtainOperationOutput> SoaRcu
     return promise.get_future();
 }
 
+void SoaRcurtainSkeletonImpl::RequestRearCurtainPosition(const std::uint8_t& posPercentage)
+{
+    if (this->mSwVersion > 0)
+    {
+        Api_Rcurtain_Method_RequestRearCurtainPosition((int)posPercentage);
+    }
+}
+
 void SoaRcurtainSkeletonImpl::SetSoaRctnStatus(eevp::control::SoaRctnStatus status)
 {
     LOG_DEBUG() << "[SoaRcurtainSkeletonImpl::SetSoaRctnStatus] (+)\n";
-    if ((this->mField.errorState != status.errorState) ||
-        (this->mField.curMotorDirection != status.curMotorDirection) ||
-        (this->mField.curtainState != status.curtainState) ||
-        (this->mField.isNormal != status.isNormal))
+    if ((this->mStatus.errorState != status.errorState) ||
+        (this->mStatus.curMotorDirection != status.curMotorDirection) ||
+        (this->mStatus.curtainState != status.curtainState) ||
+        (this->mStatus.isNormal != status.isNormal))
     {
-        this->mField = status;
-        soaRctnStatus.Update(this->mField);
+        this->mStatus = status;
+        soaRctnStatus.Update(this->mStatus);
     }
     LOG_DEBUG() << "[SoaRcurtainSkeletonImpl::SetSoaRctnStatus] (-)\n";
 }

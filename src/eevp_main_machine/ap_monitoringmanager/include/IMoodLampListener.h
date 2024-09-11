@@ -11,8 +11,10 @@ class IMoodLampListener {
 public:
     virtual ~IMoodLampListener() {};
     virtual void notifySoaMlmStatus(const eevp::control::SoaMlmStatus& fieldValue) = 0;
+    virtual void notifySoaMlmSwVersion(const std::uint8_t& fieldValue) = 0;
 
-    virtual void getSoaMlmStatus() = 0;
+    virtual void getSoaMlmStatus(eevp::control::SoaMlmStatus& fieldValue) = 0;
+    virtual void getSoaMlmSwVersion(std::uint8_t& fieldValue) = 0;
 };
 
 } /// namespace moodlamp

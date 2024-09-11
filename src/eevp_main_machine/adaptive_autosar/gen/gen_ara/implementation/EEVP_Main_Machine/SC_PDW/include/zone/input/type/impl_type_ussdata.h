@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_ussdata.h
 /// IMPLEMENTATION DATA TYPE NAME     : UssData
-/// GENERATED DATE                    : 2024-07-19 07:35:29
+/// GENERATED DATE                    : 2024-08-14 14:33:42
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -101,7 +101,11 @@ struct UssData
     std::uint16_t ErrorFlagFIR;
     std::uint16_t ErrorFlagFOR;
     std::uint16_t ErrorFlagFSR;
-    PARA_STRUCTURE(UssData, TofUpdateFlagDirRSL, TofUpdateFlagIndORSL, TofUpdateFlagDirROL, TofUpdateFlagIndIROL, TofUpdateFlagIndORIL, TofUpdateFlagDirRIL, TofUpdateFlagIndIRIL, TofUpdateFlagIndIRIR, TofUpdateFlagDirRIR, TofUpdateFlagIndORIR, TofUpdateFlagIndIROR, TofUpdateFlagDirROR, TofUpdateFlagIndORSR, TofUpdateFlagDirRSR, TofUpdateFlagDirFSL, TofUpdateFlagIndOFSL, TofUpdateFlagDirFOL, TofUpdateFlagIndIFOL, TofUpdateFlagIndOFIL, TofUpdateFlagDirFIL, TofUpdateFlagIndIFIL, TofUpdateFlagIndIFIR, TofUpdateFlagDirFIR, TofUpdateFlagIndOFIR, TofUpdateFlagIndIFOR, TofUpdateFlagDirFOR, TofUpdateFlagIndOFSR, TofUpdateFlagDirFSR, ProcTof1DirRSL, ProcTof1IndORSL, ProcTof1DirROL, ProcTof1IndIROL, ProcTof1IndORIL, ProcTof1DirRIL, ProcTof1IndIRIL, ProcTof1IndIRIR, ProcTof1DirRIR, ProcTof1IndORIR, ProcTof1IndIROR, ProcTof1DirROR, ProcTof1IndORSR, ProcTof1DirRSR, ProcTof1DirFSL, ProcTof1IndOFSL, ProcTof1DirFOL, ProcTof1IndIFOL, ProcTof1IndOFIL, ProcTof1DirFIL, ProcTof1IndIFIL, ProcTof1IndIFIR, ProcTof1DirFIR, ProcTof1IndOFIR, ProcTof1IndIFOR, ProcTof1DirFOR, ProcTof1IndOFSR, ProcTof1DirFSR, ErrorFlagRSL, ErrorFlagROL, ErrorFlagRIL, ErrorFlagRIR, ErrorFlagROR, ErrorFlagRSR, ErrorFlagFSL, ErrorFlagFOL, ErrorFlagFIL, ErrorFlagFIR, ErrorFlagFOR, ErrorFlagFSR);
+    std::uint8_t AliveCount;
+    std::uint8_t Version;
+    std::uint8_t LowspeedState;
+    std::uint8_t InitComplete;
+    PARA_STRUCTURE(UssData, TofUpdateFlagDirRSL, TofUpdateFlagIndORSL, TofUpdateFlagDirROL, TofUpdateFlagIndIROL, TofUpdateFlagIndORIL, TofUpdateFlagDirRIL, TofUpdateFlagIndIRIL, TofUpdateFlagIndIRIR, TofUpdateFlagDirRIR, TofUpdateFlagIndORIR, TofUpdateFlagIndIROR, TofUpdateFlagDirROR, TofUpdateFlagIndORSR, TofUpdateFlagDirRSR, TofUpdateFlagDirFSL, TofUpdateFlagIndOFSL, TofUpdateFlagDirFOL, TofUpdateFlagIndIFOL, TofUpdateFlagIndOFIL, TofUpdateFlagDirFIL, TofUpdateFlagIndIFIL, TofUpdateFlagIndIFIR, TofUpdateFlagDirFIR, TofUpdateFlagIndOFIR, TofUpdateFlagIndIFOR, TofUpdateFlagDirFOR, TofUpdateFlagIndOFSR, TofUpdateFlagDirFSR, ProcTof1DirRSL, ProcTof1IndORSL, ProcTof1DirROL, ProcTof1IndIROL, ProcTof1IndORIL, ProcTof1DirRIL, ProcTof1IndIRIL, ProcTof1IndIRIR, ProcTof1DirRIR, ProcTof1IndORIR, ProcTof1IndIROR, ProcTof1DirROR, ProcTof1IndORSR, ProcTof1DirRSR, ProcTof1DirFSL, ProcTof1IndOFSL, ProcTof1DirFOL, ProcTof1IndIFOL, ProcTof1IndOFIL, ProcTof1DirFIL, ProcTof1IndIFIL, ProcTof1IndIFIR, ProcTof1DirFIR, ProcTof1IndOFIR, ProcTof1IndIFOR, ProcTof1DirFOR, ProcTof1IndOFSR, ProcTof1DirFSR, ErrorFlagRSL, ErrorFlagROL, ErrorFlagRIL, ErrorFlagRIR, ErrorFlagROR, ErrorFlagRSR, ErrorFlagFSL, ErrorFlagFOL, ErrorFlagFIL, ErrorFlagFIR, ErrorFlagFOR, ErrorFlagFSR, AliveCount, Version, LowspeedState, InitComplete);
 };
 } /// namespace type
 } /// namespace input

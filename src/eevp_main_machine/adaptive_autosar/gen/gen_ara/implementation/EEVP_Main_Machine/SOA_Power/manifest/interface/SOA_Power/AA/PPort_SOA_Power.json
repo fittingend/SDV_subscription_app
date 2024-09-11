@@ -14,116 +14,10 @@
     "events" : [
     ],
     "methods" : [
-        {
-            "name" : "SetEnableDrvseat",
-            "method-id" : "16386",
-            "transport" : "udp",
-            "req-max-segment-len" : "0",
-            "req-separation-time" : "0.0",
-            "resp-max-segment-len" : "0",
-            "resp-separation-time" : "0.0"
-        },
-        {
-            "name" : "SetEnableFrontPdw",
-            "method-id" : "16393",
-            "transport" : "udp",
-            "req-max-segment-len" : "0",
-            "req-separation-time" : "0.0",
-            "resp-max-segment-len" : "0",
-            "resp-separation-time" : "0.0"
-        },
-        {
-            "name" : "SetEnableMfsw",
-            "method-id" : "16387",
-            "transport" : "udp",
-            "req-max-segment-len" : "0",
-            "req-separation-time" : "0.0",
-            "resp-max-segment-len" : "0",
-            "resp-separation-time" : "0.0"
-        },
-        {
-            "name" : "SetEnableMlm",
-            "method-id" : "16385",
-            "transport" : "udp",
-            "req-max-segment-len" : "0",
-            "req-separation-time" : "0.0",
-            "resp-max-segment-len" : "0",
-            "resp-separation-time" : "0.0"
-        },
-        {
-            "name" : "SetEnableRainSensor",
-            "method-id" : "16389",
-            "transport" : "udp",
-            "req-max-segment-len" : "0",
-            "req-separation-time" : "0.0",
-            "resp-max-segment-len" : "0",
-            "resp-separation-time" : "0.0"
-        },
-        {
-            "name" : "SetEnableRearCurtain",
-            "method-id" : "16390",
-            "transport" : "udp",
-            "req-max-segment-len" : "0",
-            "req-separation-time" : "0.0",
-            "resp-max-segment-len" : "0",
-            "resp-separation-time" : "0.0"
-        },
-        {
-            "name" : "SetEnableRearPdw",
-            "method-id" : "16391",
-            "transport" : "udp",
-            "req-max-segment-len" : "0",
-            "req-separation-time" : "0.0",
-            "resp-max-segment-len" : "0",
-            "resp-separation-time" : "0.0"
-        },
-        {
-            "name" : "SetEnableRoa",
-            "method-id" : "16388",
-            "transport" : "udp",
-            "req-max-segment-len" : "0",
-            "req-separation-time" : "0.0",
-            "resp-max-segment-len" : "0",
-            "resp-separation-time" : "0.0"
-        },
-        {
-            "name" : "SetEnableWiper",
-            "method-id" : "16392",
-            "transport" : "udp",
-            "req-max-segment-len" : "0",
-            "req-separation-time" : "0.0",
-            "resp-max-segment-len" : "0",
-            "resp-separation-time" : "0.0"
-        }
     ],
     "fields" : [
         {
-            "name" : "soaPwrZone1Curr",
-            "getter" : {
-                "method-id" : "2",
-                "transport" : "udp",
-                "req-max-segment-len" : "0",
-                "req-separation-time" : "0.0",
-                "resp-max-segment-len" : "0",
-                "resp-separation-time" : "0.0"
-            },
-            "setter" : {
-                "method-id" : "0",
-                "transport" : "undefined",
-                "req-max-segment-len" : "0",
-                "req-separation-time" : "0.0",
-                "resp-max-segment-len" : "0",
-                "resp-separation-time" : "0.0"
-            },
-            "notifier" : {
-                "event-id" : "16386",
-                "transport" : "udp",
-                "max-segment-len" : "0",
-                "separation-time" : "0.0"
-            }
-        },
-        {
-            "name" : "soaPwrZone1Power",
+            "name" : "soaPowerDeviceNormal",
             "getter" : {
                 "method-id" : "1",
                 "transport" : "udp",
@@ -148,9 +42,9 @@
             }
         },
         {
-            "name" : "soaPwrZone2Curr",
+            "name" : "soaPowerSwVersion",
             "getter" : {
-                "method-id" : "4",
+                "method-id" : "2",
                 "transport" : "udp",
                 "req-max-segment-len" : "0",
                 "req-separation-time" : "0.0",
@@ -166,133 +60,8 @@
                 "resp-separation-time" : "0.0"
             },
             "notifier" : {
-                "event-id" : "16388",
+                "event-id" : "16386",
                 "transport" : "udp",
-                "max-segment-len" : "0",
-                "separation-time" : "0.0"
-            }
-        },
-        {
-            "name" : "soaPwrZone2Power",
-            "getter" : {
-                "method-id" : "3",
-                "transport" : "udp",
-                "req-max-segment-len" : "0",
-                "req-separation-time" : "0.0",
-                "resp-max-segment-len" : "0",
-                "resp-separation-time" : "0.0"
-            },
-            "setter" : {
-                "method-id" : "0",
-                "transport" : "undefined",
-                "req-max-segment-len" : "0",
-                "req-separation-time" : "0.0",
-                "resp-max-segment-len" : "0",
-                "resp-separation-time" : "0.0"
-            },
-            "notifier" : {
-                "event-id" : "16387",
-                "transport" : "udp",
-                "max-segment-len" : "0",
-                "separation-time" : "0.0"
-            }
-        },
-        {
-            "name" : "soaPwrZone3Curr",
-            "getter" : {
-                "method-id" : "6",
-                "transport" : "udp",
-                "req-max-segment-len" : "0",
-                "req-separation-time" : "0.0",
-                "resp-max-segment-len" : "0",
-                "resp-separation-time" : "0.0"
-            },
-            "setter" : {
-                "method-id" : "0",
-                "transport" : "undefined",
-                "req-max-segment-len" : "0",
-                "req-separation-time" : "0.0",
-                "resp-max-segment-len" : "0",
-                "resp-separation-time" : "0.0"
-            },
-            "notifier" : {
-                "event-id" : "16390",
-                "transport" : "udp",
-                "max-segment-len" : "0",
-                "separation-time" : "0.0"
-            }
-        },
-        {
-            "name" : "soaPwrZone3Power",
-            "getter" : {
-                "method-id" : "5",
-                "transport" : "udp",
-                "req-max-segment-len" : "0",
-                "req-separation-time" : "0.0",
-                "resp-max-segment-len" : "0",
-                "resp-separation-time" : "0.0"
-            },
-            "setter" : {
-                "method-id" : "0",
-                "transport" : "undefined",
-                "req-max-segment-len" : "0",
-                "req-separation-time" : "0.0",
-                "resp-max-segment-len" : "0",
-                "resp-separation-time" : "0.0"
-            },
-            "notifier" : {
-                "event-id" : "16389",
-                "transport" : "udp",
-                "max-segment-len" : "0",
-                "separation-time" : "0.0"
-            }
-        },
-        {
-            "name" : "soaPwrZone4Curr",
-            "getter" : {
-                "method-id" : "8",
-                "transport" : "udp",
-                "req-max-segment-len" : "0",
-                "req-separation-time" : "0.0",
-                "resp-max-segment-len" : "0",
-                "resp-separation-time" : "0.0"
-            },
-            "setter" : {
-                "method-id" : "0",
-                "transport" : "undefined",
-                "req-max-segment-len" : "0",
-                "req-separation-time" : "0.0",
-                "resp-max-segment-len" : "0",
-                "resp-separation-time" : "0.0"
-            },
-            "notifier" : {
-                "event-id" : "16392",
-                "transport" : "udp",
-                "max-segment-len" : "0",
-                "separation-time" : "0.0"
-            }
-        },
-        {
-            "name" : "soaPwrZone4Power",
-            "getter" : {
-                "method-id" : "7",
-                "transport" : "udp",
-                "req-max-segment-len" : "0",
-                "req-separation-time" : "0.0",
-                "resp-max-segment-len" : "0",
-                "resp-separation-time" : "0.0"
-            },
-            "setter" : {
-                "method-id" : "0",
-                "transport" : "undefined",
-                "req-max-segment-len" : "0",
-                "req-separation-time" : "0.0",
-                "resp-max-segment-len" : "0",
-                "resp-separation-time" : "0.0"
-            },
-            "notifier" : {
-                "event-id" : "16391",
-                "transport" : "tcp",
                 "max-segment-len" : "0",
                 "separation-time" : "0.0"
             }

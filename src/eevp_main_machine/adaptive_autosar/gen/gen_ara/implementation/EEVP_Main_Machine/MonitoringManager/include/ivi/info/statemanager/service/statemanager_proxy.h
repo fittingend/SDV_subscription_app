@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : statemanager_proxy.h
 /// SERVICE INTERFACE NAME            : StateManager
-/// GENERATED DATE                    : 2024-07-19 08:45:39
+/// GENERATED DATE                    : 2024-08-14 14:33:40
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -182,7 +182,7 @@ class NotifyTime
 public:
     /// @brief Type alias for type of field value
     /// @uptrace{SWS_CM_00162, SWS_CM_90437}
-    using FieldType = std::uint8_t;
+    using FieldType = std::uint32_t;
     /// @brief Constructor
     explicit NotifyTime(para::com::ProxyInterface* interface) : mInterface(interface)
     {

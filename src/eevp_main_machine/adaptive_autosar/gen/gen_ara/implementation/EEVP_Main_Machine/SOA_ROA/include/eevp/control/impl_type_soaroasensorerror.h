@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_soaroasensorerror.h
 /// IMPLEMENTATION DATA TYPE NAME     : SoaRoaSensorError
-/// GENERATED DATE                    : 2024-07-24 15:58:11
+/// GENERATED DATE                    : 2024-08-14 14:33:45
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

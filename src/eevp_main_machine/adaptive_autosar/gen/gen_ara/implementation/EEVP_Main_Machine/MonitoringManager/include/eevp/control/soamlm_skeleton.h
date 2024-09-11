@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : soamlm_skeleton.h
 /// SERVICE INTERFACE NAME            : SoaMlm
-/// GENERATED DATE                    : 2024-07-19 07:35:26
+/// GENERATED DATE                    : 2024-08-14 14:33:40
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -125,6 +125,91 @@ private:
     const std::string kGetterCallSign = {"soaMlmStatusGetter"};
     const std::string kNotifierCallSign = {"soaMlmStatusNotifier"};
 };
+/// @uptrace{SWS_CM_00007}
+class soaMlmSwVersion
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = std::uint8_t;
+    /// @brief Constructor
+    explicit soaMlmSwVersion(para::com::SkeletonInterface* interface) : mInterface(interface)
+    {
+    }
+    /// @brief Destructor
+    virtual ~soaMlmSwVersion() = default;
+    /// @brief Delete copy constructor
+    soaMlmSwVersion(const soaMlmSwVersion& other) = delete;
+    /// @brief Delete copy assignment
+    soaMlmSwVersion& operator=(const soaMlmSwVersion& other) = delete;
+    /// @brief Move constructor
+    soaMlmSwVersion(soaMlmSwVersion&& other) noexcept : mInterface(other.mInterface)
+    {
+        RegisterGetHandler(std::move(other.mGetHandler));
+    }
+    /// @brief Move assignment
+    soaMlmSwVersion& operator=(soaMlmSwVersion&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        RegisterGetHandler(std::move(other.mGetHandler));
+        return *this;
+    }
+    /// @brief Register callback for getter method
+    /// @uptrace{SWS_CM_00114}
+    ara::core::Result<void> RegisterGetHandler(std::function<ara::core::Future<FieldType>()> getHandler)
+    {
+        ara::core::Result<void> result{};
+        if (getHandler != nullptr)
+        {
+            mGetHandler = std::move(getHandler);
+            mInterface->SetMethodCallHandler(kGetterCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+                HandleGet(token);
+            });
+        }
+        return result;
+    }
+    /// @brief Send notification with value to subscribing service consumers
+    /// @uptrace{SWS_CM_90437}
+    ara::core::Result<void> Update(const FieldType& value)
+    {
+        para::serializer::Serializer serializer{};
+        serializer.write(value);
+        auto payload = serializer.ensure();
+        return mInterface->SendEvent(kNotifierCallSign, payload);
+    }
+    
+private:
+    void HandleGet(const para::com::MethodToken token)
+    {
+        std::uint8_t retResult{1};
+        std::vector<std::uint8_t> retData{};
+        auto future = mGetHandler();
+        auto result = future.GetResult();
+        if (result.HasValue())
+        {
+            FieldType value = result.Value();
+            para::serializer::Serializer serializer{};
+            serializer.write(value);
+            retData = serializer.ensure();
+            retResult = 0;
+        }
+        else
+        {
+            ara::core::ErrorDomain::IdType domainId = result.Error().Domain().Id();
+            ara::core::ErrorDomain::CodeType errorCode = result.Error().Value();
+            para::serializer::Serializer serializer{};
+            serializer.write(0, true, 0, domainId);
+            serializer.write(0, true, 0, errorCode);
+            retData = serializer.ensure();
+            retResult = 1;
+        }
+        mInterface->ReturnMethod(kGetterCallSign, retResult, retData, token);
+    }
+    para::com::SkeletonInterface* mInterface;
+    std::function<ara::core::Future<FieldType>()> mGetHandler{nullptr};
+    const std::string kGetterCallSign = {"soaMlmSwVersionGetter"};
+    const std::string kNotifierCallSign = {"soaMlmSwVersionNotifier"};
+};
 } /// namespace fields
 /// @uptrace{SWS_CM_00002}
 class SoaMlmSkeleton
@@ -136,6 +221,7 @@ public:
     SoaMlmSkeleton(ara::core::InstanceSpecifier instanceSpec, ara::com::MethodCallProcessingMode mode = ara::com::MethodCallProcessingMode::kEvent)
         : mInterface(std::make_unique<para::com::SkeletonInterface>(instanceSpec, mode))
         , soaMlmStatus(mInterface.get())
+        , soaMlmSwVersion(mInterface.get())
     {
         mInterface->SetMethodCallHandler(kRequestMlmSetBrightnessCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken /*token*/) {
             HandleRequestMlmSetBrightness(data);
@@ -163,6 +249,7 @@ public:
     SoaMlmSkeleton(SoaMlmSkeleton&& other) noexcept
         : mInterface(std::move(other.mInterface))
         , soaMlmStatus(std::move(other.soaMlmStatus))
+        , soaMlmSwVersion(std::move(other.soaMlmSwVersion))
     {
         mInterface->SetMethodCallHandler(kRequestMlmSetBrightnessCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken /*token*/) {
             HandleRequestMlmSetBrightness(data);
@@ -184,6 +271,7 @@ public:
     {
         mInterface = std::move(other.mInterface);
         soaMlmStatus = std::move(other.soaMlmStatus);
+        soaMlmSwVersion = std::move(other.soaMlmSwVersion);
         mInterface->SetMethodCallHandler(kRequestMlmSetBrightnessCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken /*token*/) {
             HandleRequestMlmSetBrightness(data);
         });
@@ -241,6 +329,8 @@ private:
 public:
     /// @brief Field, soaMlmStatus
     fields::soaMlmStatus soaMlmStatus;
+    /// @brief Method, RequestMlmSetBrightness
+    fields::soaMlmSwVersion soaMlmSwVersion;
     /// @brief Method, RequestMlmSetBrightness
     /// @uptrace{SWS_CM_90434}
     virtual void RequestMlmSetBrightness(const std::uint16_t& brightness) = 0;

@@ -1,4 +1,5 @@
 #include "eevp/control/soaroa_proxy.h"
+//#include "eevp/control/soarcurtain_skeleton.h"
 
 #include <csignal>
 #include <thread>
@@ -10,10 +11,11 @@
 #include <condition_variable>
 
 //#include "IKatechListener.h"
-#include "IRoaListener.h"
+#include "KatechRoaListener.h"
 
 //#include "KatechSkeletonImpl.h"
 #include "RoaProxyImpl.h"
+#include "KatechSkeletonImpl.hpp"
 
 namespace eevp {
 namespace control {
@@ -35,10 +37,15 @@ public:
     void startRoutineTask();
     void stopRoutineTask();
     void routineTask();
-
-    // IRearCurtainListener
+ /// KatechRoaListener
+    void notifySoaRoaDeviceNormal(const eevp::control::SoaDeviceIsNormal& deviceIsNormal);
+    void notifySoaRoaSwVersion(const std::uint8_t& fieldValue);
+    void getSoaRoaDeviceNormal(eevp::control::SoaDeviceIsNormal& deviceIsNormal);
+    void getSoaRoaSwVersion(std::uint8_t& fieldValue);
     void notifyRoaDetectState(const eevp::control::SoaRoaDetectState& fieldValue);
-    void getSoaRoaDetectState();
+    
+    void getSoaRoaDetectState(eevp::control::SoaRoaDetectState& soaRoaDetectState);
+    void getSoaRoaDetectCount(std::uint8_t& soaRoaDetectCount);
 
 private:
     /// @brief Signal Handler
@@ -64,10 +71,11 @@ private:
     bool setRunningState();
 
     /// @brief Start Stub
-    bool startKatechStub();
+    bool startKatechSkeleton();
 
     /// @brief Find Control Proxy
     bool startRoaProxy();
+    bool startRearCurtainSkeleton();
 
     /// @brief Flag of Running
     static std::atomic_bool mRunning;
@@ -76,8 +84,9 @@ private:
 
     //std::shared_ptr<eevp::monitoring::MonitoringManagementSkeletonImpl> monitoringManagementSkeletonImpl;
     std::shared_ptr<eevp::control::roa::RoaProxyImpl> roaProxyImpl;
+    std::shared_ptr<eevp::control::KatechSkeletonImpl> mPPortImpl;
+    eevp::control::KatechSkeletonImpl *mSoaRctn;
 
- 
     std::thread routineThread;
     std::atomic_bool routineTaskRunning;
 

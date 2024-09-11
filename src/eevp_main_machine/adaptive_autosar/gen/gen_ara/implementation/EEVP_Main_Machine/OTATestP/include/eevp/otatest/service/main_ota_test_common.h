@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : main_ota_test_common.h
 /// SERVICE INTERFACE NAME            : Main_OTA_Test
-/// GENERATED DATE                    : 2024-07-19 07:35:28
+/// GENERATED DATE                    : 2024-08-14 14:33:42
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

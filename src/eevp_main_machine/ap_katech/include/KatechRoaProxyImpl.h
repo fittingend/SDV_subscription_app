@@ -1,5 +1,5 @@
-#ifndef EEVP_ROA_PROXY_IMPL_H_
-#define EEVP_ROA_PROXY_IMPL_H_
+#ifndef EEVP_KATECH_ROA_PROXY_IMPL_H_
+#define EEVP_KATECH_ROA_PROXY_IMPL_H_
 #include <condition_variable>
 #include <mutex>
 #include <thread>
@@ -7,18 +7,18 @@
 #include "eevp/control/soaroa_proxy.h"
 #include "ara/log/logger.h"
 
-#include "KatechRoaListener.h"
+#include "IRoaListener.h"
 
 namespace eevp {
 namespace control {
 namespace roa {
 
-class RoaProxyImpl {
+class KatechRoaProxyImpl {
 public:
-    RoaProxyImpl();
-    ~RoaProxyImpl();
+    KatechRoaProxyImpl();
+    ~KatechRoaProxyImpl();
 
-    void setEventListener(const std::shared_ptr<eevp::control::roa::KatechRoaListener> _listener);
+    void setEventListener(const std::shared_ptr<eevp::control::roa::IRoaListener> _listener);
     bool init();
 
     // method
@@ -56,9 +56,8 @@ private:
     /// @brief Process received field value 
     void GetFieldValue();
     ara::log::Logger& mLogger;
-    std::shared_ptr<eevp::control::roa::KatechRoaListener> listener;
+    std::shared_ptr<eevp::control::roa::IRoaListener> listener;
     std::shared_ptr<eevp::control::proxy::SoaRoaProxy> mProxy;
-    //std::shared_ptr<ara::com::FindServiceHandle> mFindHandle;
 
     std::unique_ptr<eevp::control::proxy::SoaRoaProxy> mRPort{nullptr};
     /// @brief FindServiceHandle

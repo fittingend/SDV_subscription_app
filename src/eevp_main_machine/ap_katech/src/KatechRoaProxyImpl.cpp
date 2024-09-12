@@ -1,4 +1,4 @@
-#include "RoaProxyImpl.h"
+#include "KatechRoaProxyImpl.h"
 
 using namespace ara::core;
 using namespace eevp::control;
@@ -8,7 +8,7 @@ namespace eevp {
 namespace control {
 namespace roa {
 
-RoaProxyImpl::RoaProxyImpl() :
+KatechRoaProxyImpl::KatechRoaProxyImpl() :
         mProxy{nullptr},
         mFindHandle{nullptr},
         mHandle{},
@@ -17,7 +17,7 @@ RoaProxyImpl::RoaProxyImpl() :
     mLogger.LogInfo() << __func__;
 }
 
-RoaProxyImpl::~RoaProxyImpl() {
+KatechRoaProxyImpl::~KatechRoaProxyImpl() {
     if (mProxy) {
         mProxy->StopFindService(*mFindHandle);
         mProxy.reset();
@@ -25,12 +25,12 @@ RoaProxyImpl::~RoaProxyImpl() {
 }
 
 void
-RoaProxyImpl::setEventListener(std::shared_ptr<KatechRoaListener> _listener) {
+KatechRoaProxyImpl::setEventListener(std::shared_ptr<IRoaListener> _listener) {
     listener = _listener;
 }
 
 bool
-RoaProxyImpl::init() {
+KatechRoaProxyImpl::init() {
     mLogger.LogInfo() << __func__;
 
     ara::core::InstanceSpecifier specifier("KATECH/AA/RPortRoa");
@@ -42,7 +42,6 @@ RoaProxyImpl::init() {
     std::unique_lock<std::mutex> lock(mHandle);
 
     auto result = proxy::SoaRoaProxy::StartFindService(callback, specifier);
-    //이후 execution 이 안됨 
     
     if (cvHandle.wait_for(lock, std::chrono::milliseconds(1000)) == std::cv_status::timeout) {
         return false;
@@ -57,7 +56,7 @@ RoaProxyImpl::init() {
 }
 
 bool
-RoaProxyImpl::getSoaRoaDetectState(eevp::control::SoaRoaDetectState& soaRoaDetectState) {
+KatechRoaProxyImpl::getSoaRoaDetectState(eevp::control::SoaRoaDetectState& soaRoaDetectState) {
     mLogger.LogInfo() << __func__;
 
     if (mProxy == nullptr) {
@@ -82,7 +81,7 @@ RoaProxyImpl::getSoaRoaDetectState(eevp::control::SoaRoaDetectState& soaRoaDetec
 }
 
 bool
-RoaProxyImpl::getSoaRoaDetectCount(uint8_t& soaRoaDetectCount) {
+KatechRoaProxyImpl::getSoaRoaDetectCount(uint8_t& soaRoaDetectCount) {
     mLogger.LogInfo() << __func__;
 
     if (mProxy == nullptr) {
@@ -107,7 +106,7 @@ RoaProxyImpl::getSoaRoaDetectCount(uint8_t& soaRoaDetectCount) {
 }
 
 /*
-void RoaProxyImpl::FindServiceCallback(ara::com::ServiceHandleContainer<proxy::SoaRoaProxy::HandleType> services, ara::com::FindServiceHandle handle)
+void KatechRoaProxyImpl::FindServiceCallback(ara::com::ServiceHandleContainer<proxy::SoaRoaProxy::HandleType> services, ara::com::FindServiceHandle handle)
 {
     proxy::SoaRoaProxy::HandleType proxyHandle;
     bool findFlag = false;
@@ -153,7 +152,7 @@ void RoaProxyImpl::FindServiceCallback(ara::com::ServiceHandleContainer<proxy::S
 */
 
 void
-RoaProxyImpl::FindServiceCallback(
+KatechRoaProxyImpl::FindServiceCallback(
         ara::com::ServiceHandleContainer<proxy::SoaRoaProxy::HandleType> container,
         ara::com::FindServiceHandle findHandle) {
     mLogger.LogInfo() << __func__;
@@ -184,7 +183,7 @@ RoaProxyImpl::FindServiceCallback(
 }
 
 void
-RoaProxyImpl::SubscribeRoaDeviceNormal() {
+KatechRoaProxyImpl::SubscribeRoaDeviceNormal() {
     mLogger.LogInfo() << __func__;
 
     if (mProxy == nullptr) {
@@ -195,7 +194,7 @@ RoaProxyImpl::SubscribeRoaDeviceNormal() {
         return;
     }
 
-    auto result = mProxy->soaRoaDeviceNormal.SetReceiveHandler(std::bind(&RoaProxyImpl::cbSoaRoaIsDeviceNormal, this));
+    auto result = mProxy->soaRoaDeviceNormal.SetReceiveHandler(std::bind(&KatechRoaProxyImpl::cbSoaRoaIsDeviceNormal, this));
     if (!result.HasValue()) {
         mLogger.LogWarn() << "Failed to SetReceiveHandler for cbSoaRoaIsDeviceNormal with " << result.Error().Message();
     }
@@ -207,7 +206,7 @@ RoaProxyImpl::SubscribeRoaDeviceNormal() {
 }
 
 void
-RoaProxyImpl::SubscribeRoaSwVersion() {
+KatechRoaProxyImpl::SubscribeRoaSwVersion() {
     mLogger.LogInfo() << __func__;
 
     if (mProxy == nullptr) {
@@ -221,7 +220,7 @@ RoaProxyImpl::SubscribeRoaSwVersion() {
         return;
     }
 
-    auto result = mProxy->soaRoaSwVersion.SetReceiveHandler(std::bind(&RoaProxyImpl::cbSoaRoaSwVersion, this));
+    auto result = mProxy->soaRoaSwVersion.SetReceiveHandler(std::bind(&KatechRoaProxyImpl::cbSoaRoaSwVersion, this));
     if (!result.HasValue()) {
         mLogger.LogWarn() << "Failed to SetReceiveHandler for cbSoaRoaSwVersion with " << result.Error().Message();
     }
@@ -233,7 +232,7 @@ RoaProxyImpl::SubscribeRoaSwVersion() {
 }
 /*
 void
-RoaProxyImpl::FindServiceCallback(
+KatechRoaProxyImpl::FindServiceCallback(
         ara::com::ServiceHandleContainer<proxy::SoaRoaProxy::HandleType> container,
         ara::com::FindServiceHandle findHandle) {
     mLogger.LogInfo() << __func__;
@@ -270,7 +269,7 @@ RoaProxyImpl::FindServiceCallback(
 */
 /*
 void
-RoaProxyImpl::SubscribeField() {
+KatechRoaProxyImpl::SubscribeField() {
     mLogger.LogInfo() << __func__;
 
     if (mProxy == nullptr) {
@@ -281,7 +280,7 @@ RoaProxyImpl::SubscribeField() {
         return;
     }
 
-    auto result = mProxy->soaRoaDetectState.SetReceiveHandler(std::bind(&RoaProxyImpl::cbSoaRoaDetectState, this));
+    auto result = mProxy->soaRoaDetectState.SetReceiveHandler(std::bind(&KatechRoaProxyImpl::cbSoaRoaDetectState, this));
     if (!result.HasValue()) {
         mLogger.LogWarn() << "Failed to SetReceiveHandler for cbSoaRoaDetectState with " << result.Error().Message();
     }
@@ -294,7 +293,7 @@ RoaProxyImpl::SubscribeField() {
 }
 */
 void
-RoaProxyImpl::getSoaRoaDeviceNormal(eevp::control::SoaDeviceIsNormal& deviceIsNormal) {
+KatechRoaProxyImpl::getSoaRoaDeviceNormal(eevp::control::SoaDeviceIsNormal& deviceIsNormal) {
     mLogger.LogInfo() << __func__;
 
     if (mProxy == nullptr) {
@@ -316,7 +315,7 @@ RoaProxyImpl::getSoaRoaDeviceNormal(eevp::control::SoaDeviceIsNormal& deviceIsNo
     return;
 }
 void
-RoaProxyImpl::cbSoaRoaIsDeviceNormal() {
+KatechRoaProxyImpl::cbSoaRoaIsDeviceNormal() {
     mLogger.LogInfo() << "cbSoaRoaIsDeviceNormal";
     eevp::control::SoaDeviceIsNormal deviceIsNormal;
 
@@ -338,7 +337,7 @@ RoaProxyImpl::cbSoaRoaIsDeviceNormal() {
 
 
 void
-RoaProxyImpl::cbSoaRoaSwVersion() {
+KatechRoaProxyImpl::cbSoaRoaSwVersion() {
     mLogger.LogInfo() << "cbSoaRoaSwVersion";
 
     std::uint8_t roaSwVersion;
@@ -359,7 +358,7 @@ RoaProxyImpl::cbSoaRoaSwVersion() {
     });
 }
 
-void RoaProxyImpl::SubscribeField()
+void KatechRoaProxyImpl::SubscribeField()
 {
 
     if (mRPort->soaRoaDetectState.GetSubscriptionState() != ara::com::SubscriptionState::kNotSubscribed) {
@@ -381,7 +380,7 @@ void RoaProxyImpl::SubscribeField()
 
 }
 
-void RoaProxyImpl::StateChangeCallback(ara::core::String callsign, ara::com::SubscriptionState state) 
+void KatechRoaProxyImpl::StateChangeCallback(ara::core::String callsign, ara::com::SubscriptionState state) 
 {
     switch (state)
     {
@@ -399,7 +398,7 @@ void RoaProxyImpl::StateChangeCallback(ara::core::String callsign, ara::com::Sub
         break;
     }
 }
-void RoaProxyImpl::GetFieldValue()
+void KatechRoaProxyImpl::GetFieldValue()
 {
     mLogger.LogInfo() << "test3";
 
@@ -425,7 +424,7 @@ void RoaProxyImpl::GetFieldValue()
 
 
 void
-RoaProxyImpl::UnsubscribeField() {
+KatechRoaProxyImpl::UnsubscribeField() {
     mLogger.LogInfo() << __func__;
     if (mProxy == nullptr) {
         return;
@@ -435,7 +434,7 @@ RoaProxyImpl::UnsubscribeField() {
 }
 
 // void
-// RoaProxyImpl::cbSoaRoaDetectState() {
+// KatechRoaProxyImpl::cbSoaRoaDetectState() {
 //     mLogger.LogInfo() << "cbSoaRoaDetectState";
 
 //     eevp::control::SoaRoaDetectState fieldValue;

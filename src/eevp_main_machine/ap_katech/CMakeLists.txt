@@ -49,7 +49,7 @@ MESSAGE(STATUS "PARA_APP_GEN_INCLUDE_DIR : ${PARA_APP_GEN_INCLUDE_DIR}")
 SET(SRC
     src/main.cpp
     src/katech.cpp
-    src/RoaProxyImpl.cpp)
+    src/KatechRoaProxyImpl.cpp)
 
 ADD_EXECUTABLE(${PROJECT_NAME} ${SRC})
 

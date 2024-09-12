@@ -17,14 +17,15 @@ std::atomic_bool KATECH::mRunning(false);
 //     KATECH* katech;
 // };
 
-class RoaListener : public eevp::control::roa::KatechRoaListener {
+class RoaListener : public eevp::control::roa::IRoaListener {
 public:
     RoaListener(KATECH* katech_app) : katech(katech_app) {}
-
-    // void notifyRoaDetectState(const eevp::control::SoaRoaDetectState & value) {
-    //     return katech->notifyRoaDetectState(value);
-    // }
-
+    
+    //add
+    void notifyRoaDetectCount(std::uint8_t& value) {
+        return katech->notifyRoaDetectCount(value);
+    }
+    //default
     void notifySoaRoaDeviceNormal(const eevp::control::SoaDeviceIsNormal& deviceIsNormal) {
         return katech->notifySoaRoaDeviceNormal(deviceIsNormal);
     }
@@ -114,7 +115,7 @@ KATECH::Terminate() {
         eventProcessingThreadHandle.join();
     }
 }
-
+/*
 void
 KATECH::startRoutineTask() {
     routineTaskRunning = true;
@@ -141,7 +142,7 @@ KATECH::routineTask() {
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 }
-
+*/
 void
 KATECH::getSoaRoaDetectState(eevp::control::SoaRoaDetectState& soaRoaDetectState){
     mLogger.LogInfo() << __func__;
@@ -203,13 +204,15 @@ KATECH::setRunningState() {
 // }
 
 void
-KATECH::notifyRoaDetectState(const eevp::control::SoaRoaDetectState& fieldValue) {
+KATECH::notifyRoaDetectCount(std::uint8_t& soaRoaDetectCount) {
     mLogger.LogInfo() << __func__;
 
-     if (fieldValue == eevp::control::SoaRoaDetectState::kEMPTY) {
-        mLogger.LogInfo() << "test";
+     if (soaRoaDetectCount == 0) {
+        mLogger.LogInfo() << "empty";
 
-    } else if (fieldValue == eevp::control::SoaRoaDetectState::kDETECTED_SEVERAL) {
+    } else if (soaRoaDetectCount!=0){
+        mLogger.LogInfo() << "soaRoaDetectCount:" << soaRoaDetectCount;
+
     }
 
     // if (fieldValue.curMotorDirection == eevp::control::SoaRctnMotorDir::kUP) {
@@ -253,7 +256,7 @@ KATECH::getSoaRoaSwVersion(std::uint8_t& powerSwVersion) {
 bool
 KATECH::startRoaProxy() {
     mLogger.LogInfo() << __func__;
-    roaProxyImpl = std::make_shared<eevp::control::roa::RoaProxyImpl>();
+    roaProxyImpl = std::make_shared<eevp::control::roa::KatechRoaProxyImpl>();
     auto roaListener = std::make_shared<RoaListener>(this);
     roaProxyImpl->setEventListener(roaListener);
     roaProxyImpl->init();

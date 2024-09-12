@@ -11,10 +11,10 @@
 #include <condition_variable>
 
 //#include "IKatechListener.h"
-#include "KatechRoaListener.h"
+#include "IRoaListener.h"
 
 //#include "KatechSkeletonImpl.h"
-#include "RoaProxyImpl.h"
+#include "KatechRoaProxyImpl.h"
 #include "KatechSkeletonImpl.hpp"
 
 namespace eevp {
@@ -37,12 +37,14 @@ public:
     void startRoutineTask();
     void stopRoutineTask();
     void routineTask();
- /// KatechRoaListener
+ /// IRoaListener
     void notifySoaRoaDeviceNormal(const eevp::control::SoaDeviceIsNormal& deviceIsNormal);
     void notifySoaRoaSwVersion(const std::uint8_t& fieldValue);
     void getSoaRoaDeviceNormal(eevp::control::SoaDeviceIsNormal& deviceIsNormal);
     void getSoaRoaSwVersion(std::uint8_t& fieldValue);
-    void notifyRoaDetectState(const eevp::control::SoaRoaDetectState& fieldValue);
+
+    //new
+    void notifyRoaDetectCount(std::uint8_t& soaRoaDetectCount);
     
     void getSoaRoaDetectState(eevp::control::SoaRoaDetectState& soaRoaDetectState);
     void getSoaRoaDetectCount(std::uint8_t& soaRoaDetectCount);
@@ -83,7 +85,7 @@ private:
     ara::log::Logger& mLogger;
 
     //std::shared_ptr<eevp::monitoring::MonitoringManagementSkeletonImpl> monitoringManagementSkeletonImpl;
-    std::shared_ptr<eevp::control::roa::RoaProxyImpl> roaProxyImpl;
+    std::shared_ptr<eevp::control::roa::KatechRoaProxyImpl> roaProxyImpl;
     std::shared_ptr<eevp::control::KatechSkeletonImpl> mPPortImpl;
     eevp::control::KatechSkeletonImpl *mSoaRctn;
 

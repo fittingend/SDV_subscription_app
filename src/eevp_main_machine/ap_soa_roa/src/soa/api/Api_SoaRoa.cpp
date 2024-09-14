@@ -42,8 +42,6 @@ void SOA_ROA_SetMode(RoaMode_e mode)
 void SOA_ROA_ResetSensor()
 {
     LOG_DEBUG() << "(+)\n";
-    LOG_INFO() <<__func__;
-
     VehicleContext *context = VehicleContext::GetInstance();
     Zone2_SOA_ResetSensor();
     if (context->mDetectCount != 0)

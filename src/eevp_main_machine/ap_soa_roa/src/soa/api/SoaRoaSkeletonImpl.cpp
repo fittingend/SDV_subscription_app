@@ -44,14 +44,14 @@ SoaRoaSkeletonImpl::SoaRoaSkeletonImpl(
         return this->getter_SwVersion();
     };
 
-    this->mDeviceNormal	= fields::soaRoaDeviceNormal::FieldType::kABNORMAL;
-    this->mRunningState	= fields::soaRoaRunningState::FieldType::kOFF;
-    this->mMode			= fields::soaRoaMode::FieldType::kNORMAL;
-    //this->mDetectState	= fields::soaRoaDetectState::FieldType::kEMPTY;
-    this->mDetectState	= fields::soaRoaDetectState::FieldType::kDETECTED_ONCE;
-    this->mDetectCount	= 2;
-    this->mSensorError	= fields::soaRoaSensorError::FieldType::kOK;
-    this->mSwVersion = 12;
+    this->updateFieldDeviceNormalWithContext();
+    this->updateFieldRunningStateWithContext();
+    this->updateFieldRoaModeWithContext();
+    this->updateFieldDetectStateWithContext();
+    this->updateFieldDetectCountWithContext();
+    this->updateFieldSensorErrorWithContext();
+
+    this->mSwVersion = (std::uint8_t)SW_VERSION;
 
     soaRoaDeviceNormal.RegisterGetHandler(deviceNormal_getHandler);
     soaRoaRunningState.RegisterGetHandler(runningState_getHandler);
@@ -60,6 +60,162 @@ SoaRoaSkeletonImpl::SoaRoaSkeletonImpl(
     soaRoaDetectCount.RegisterGetHandler(detectCount_getHandler);
     soaRoaSensorError.RegisterGetHandler(sensorError_getHandler);
     soaRoaSwVersion.RegisterGetHandler(sw_getHandler);
+}
+
+static SoaDeviceIsNormal convert_eDeviceNormal_to_SoaDeviceIsNormal(DeviceNormal_e val)
+{
+    switch (val)
+    {
+    case eDeviceNormal_Ok:          return SoaDeviceIsNormal::kNORMAL;
+    case eDeviceNormal_Abnormal:    return SoaDeviceIsNormal::kABNORMAL;
+    default:
+        break;
+    }
+
+    return SoaDeviceIsNormal::kABNORMAL;
+}
+
+static SoaRoaRunningState convert_eRoaRunningState_to_SoaRoaRunningState(RoaRunningState_e val)
+{
+    switch (val)
+    {
+    case eRoaRunningState_Off:      return SoaRoaRunningState::kOFF;
+    case eRoaRunningState_On:       return SoaRoaRunningState::kON;
+    default:
+        break;
+    }
+
+    return SoaRoaRunningState::kOFF;
+}
+
+static SoaRoaMode convert_eRoaMode_to_SoaRoaMode(RoaMode_e val)
+{
+    switch (val)
+    {
+    case eRoaMode_Off:              return SoaRoaMode::kOFF;
+    case eRoaMode_Normal:           return SoaRoaMode::kNORMAL;
+    case eRoaMode_Advanced:         return SoaRoaMode::kADVANCED;
+    default:
+        break;
+    }
+
+    return SoaRoaMode::kOFF;
+}
+
+static SoaRoaDetectState convert_nDetectCount_to_SoaRoaDetectState(int value)
+{
+    if (value == 0)
+    {
+        return SoaRoaDetectState::kEMPTY;
+    }
+    else if (value == 1)
+    {
+        return SoaRoaDetectState::kDETECTED_ONCE;
+    }
+    else if (value > 1)
+    {
+        return SoaRoaDetectState::kDETECTED_SEVERAL;
+    }
+
+    return SoaRoaDetectState::kUNKNOWN;
+}
+
+static SoaRoaSensorError convert_eRoaSensorError_to_SoaRoaSensorError(RoaSensorError_e val)
+{
+    switch (val)
+    {
+    case eRoaSensorError_Ok:        return SoaRoaSensorError::kOK;
+    case eRoaSensorError_Snsr:      return SoaRoaSensorError::kERR_SNSR;
+    case eRoaSensorError_Blckge:    return SoaRoaSensorError::kERR_BLCKGE;
+    default:
+        break;
+    }
+
+    return SoaRoaSensorError::kERR_SNSR;
+}
+
+bool SoaRoaSkeletonImpl::updateFieldDeviceNormalWithContext(void)
+{
+    VehicleContext *context = VehicleContext::GetInstance();
+
+    SoaDeviceIsNormal deviceNormal = convert_eDeviceNormal_to_SoaDeviceIsNormal(context->mIsNormal);
+    if (this->mDeviceNormal != deviceNormal)
+    {
+        this->mDeviceNormal = deviceNormal;
+        return true;
+    }
+
+    return false;
+}
+
+bool SoaRoaSkeletonImpl::updateFieldRunningStateWithContext(void)
+{
+    VehicleContext *context = VehicleContext::GetInstance();
+
+    SoaRoaRunningState runningState = convert_eRoaRunningState_to_SoaRoaRunningState(context->mRunningState);
+    if (this->mRunningState != runningState)
+    {
+        this->mRunningState = runningState;
+        return true;
+    }
+
+    return false;
+}
+
+bool SoaRoaSkeletonImpl::updateFieldRoaModeWithContext(void)
+{
+    VehicleContext *context = VehicleContext::GetInstance();
+
+    SoaRoaMode roaMode = convert_eRoaMode_to_SoaRoaMode(context->mRoaMode);
+    if (this->mMode != roaMode)
+    {
+        this->mMode = roaMode;
+        return true;
+    }
+
+    return false;
+}
+
+bool SoaRoaSkeletonImpl::updateFieldDetectStateWithContext(void)
+{
+    VehicleContext *context = VehicleContext::GetInstance();
+
+    SoaRoaDetectState detectState = convert_nDetectCount_to_SoaRoaDetectState(context->mDetectCount);
+    if (this->mDetectState != detectState)
+    {
+        this->mDetectState = detectState;
+        return true;
+    }
+
+    return false;
+}
+
+bool SoaRoaSkeletonImpl::updateFieldDetectCountWithContext(void)
+{
+    VehicleContext *context = VehicleContext::GetInstance();
+
+    std::uint8_t detectCount = (std::uint8_t)context->mDetectCount;
+    if (this->mDetectCount != detectCount)
+    {
+        this->mDetectCount = detectCount;
+        return true;
+    }
+
+    return false;
+}
+
+bool SoaRoaSkeletonImpl::updateFieldSensorErrorWithContext(void)
+{
+    VehicleContext *context = VehicleContext::GetInstance();
+
+    SoaRoaSensorError sensorError = convert_eRoaSensorError_to_SoaRoaSensorError(context->mSensorError);
+    if (this->mSensorError != sensorError)
+    {
+        this->mSensorError = sensorError;
+        return true;
+    }
+
+    return false;
 }
 
 ara::core::Future<fields::soaRoaDeviceNormal::FieldType> SoaRoaSkeletonImpl::getter_DeviceNormal()
@@ -86,7 +242,6 @@ ara::core::Future<fields::soaRoaMode::FieldType> SoaRoaSkeletonImpl::getter_Mode
 ara::core::Future<fields::soaRoaDetectState::FieldType> SoaRoaSkeletonImpl::getter_DetectState()
 {
     ara::core::Promise<fields::soaRoaDetectState::FieldType> promise;
-    mLogger.LogInfo() << __func__;
     promise.set_value(this->mDetectState);
     return promise.get_future();
 }
@@ -162,144 +317,54 @@ void SoaRoaSkeletonImpl::SetRoaMode(const eevp::control::SoaRoaMode& mode)
 
 void SoaRoaSkeletonImpl::UpdateDeviceNormal()
 {
-    VehicleContext *context = VehicleContext::GetInstance();
-    fields::soaRoaDeviceNormal::FieldType value;
-
-    value = (context->mIsNormal == eDeviceNormal_Ok) ? eevp::control::SoaDeviceIsNormal::kNORMAL : eevp::control::SoaDeviceIsNormal::kABNORMAL;
-    if (this->mDeviceNormal != value)
+    if (this->updateFieldDeviceNormalWithContext())
     {
-        this->mDeviceNormal = value;
+        LOG_DEBUG() << "soaRoaDeviceNormal updated.\n";
         soaRoaDeviceNormal.Update(this->mDeviceNormal);
     }
 }
 
 void SoaRoaSkeletonImpl::UpdateRunningState()
 {
-    VehicleContext *context = VehicleContext::GetInstance();
-    fields::soaRoaRunningState::FieldType value;
-
-    switch (context->mRunningState)
+    if (this->updateFieldRunningStateWithContext())
     {
-    case eRoaRunningState_Off:
-        value = eevp::control::SoaRoaRunningState::kOFF;
-        break;
-    case eRoaRunningState_On:
-        value = eevp::control::SoaRoaRunningState::kON;
-        break;
-    case eRoaRunningState_Error:
-    default:
-        value = eevp::control::SoaRoaRunningState::kUNKNOWN;
-        break;
-    }
-
-    if (this->mRunningState != value)
-    {
-        this->mRunningState = value;
+        LOG_DEBUG() << "soaRoaRunningState updated.\n";
         soaRoaRunningState.Update(this->mRunningState);
     }
 }
 
 void SoaRoaSkeletonImpl::UpdateRoaMode()
 {
-    VehicleContext *context = VehicleContext::GetInstance();
-    fields::soaRoaMode::FieldType value;
-
-    switch (context->mRoaMode)
+    if (this->updateFieldRoaModeWithContext())
     {
-    case eRoaMode_Off:
-        value = fields::soaRoaMode::FieldType::kOFF;
-        break;
-    case eRoaMode_Normal:
-        value = fields::soaRoaMode::FieldType::kNORMAL;
-        break;
-    case eRoaMode_Advanced:
-        value = fields::soaRoaMode::FieldType::kADVANCED;
-        break;
-    default:
-        value = fields::soaRoaMode::FieldType::kOFF;
-        break;
-    }
-
-    if (this->mMode != value)
-    {
-        this->mMode = value;
+        LOG_DEBUG() << "soaRoaMode updated.\n";
         soaRoaMode.Update(this->mMode);
     }
 }
+
 void SoaRoaSkeletonImpl::UpdateDetectState()
 {
-    mLogger.LogInfo() << __func__;
-
-    fields::soaRoaDetectState::FieldType value;
-    value = fields::soaRoaDetectState::FieldType::kDETECTED_SEVERAL;
-    this->mDetectState = value;
-    soaRoaDetectState.Update(this->mDetectState);
-}
-/*
-void SoaRoaSkeletonImpl::UpdateDetectState()
-{
-    VehicleContext *context = VehicleContext::GetInstance();
-    fields::soaRoaDetectState::FieldType value;
-
-    if (context->mDetectCount <= 0)
+    if (this->updateFieldDetectStateWithContext())
     {
-        value = fields::soaRoaDetectState::FieldType::kEMPTY;
-    }
-    else if (context->mDetectCount == 1)
-    {
-        value = fields::soaRoaDetectState::FieldType::kDETECTED_ONCE;
-    }
-    else
-    {
-        value = fields::soaRoaDetectState::FieldType::kDETECTED_SEVERAL;
-    }
-
-    if (this->mDetectState != value)
-    {
-        this->mDetectState = value;
+        LOG_DEBUG() << "soaRoaDetectState updated.\n";
         soaRoaDetectState.Update(this->mDetectState);
     }
 }
-*/
+
 void SoaRoaSkeletonImpl::UpdateDetectCount()
 {
-    LOG_INFO() << __func__;
-    VehicleContext *context = VehicleContext::GetInstance();
-    fields::soaRoaDetectCount::FieldType value;
-    LOG_INFO() << "sss value is" << value;
-
-    value = (fields::soaRoaDetectCount::FieldType)context->mDetectCount;
-    if (this->mDetectCount != value)
+    if (this->updateFieldDetectCountWithContext())
     {
-        this->mDetectCount = value;
-        LOG_INFO() << "jjj value is" << value;
+        LOG_DEBUG() << "soaRoaDetectCount updated.\n";
         soaRoaDetectCount.Update(this->mDetectCount);
     }
 }
 
 void SoaRoaSkeletonImpl::UpdateSensorError()
 {
-    VehicleContext *context = VehicleContext::GetInstance();
-    fields::soaRoaSensorError::FieldType value;
-    switch (context->mSensorError)
+    if (this->updateFieldSensorErrorWithContext())
     {
-    case eRoaSensorError_Ok:
-        value = fields::soaRoaSensorError::FieldType::kOK;
-        break;
-    case eRoaSensorError_Snsr:
-        value = fields::soaRoaSensorError::FieldType::kERR_SNSR;
-        break;
-    case eRoaSensorError_Blckge:
-        value = fields::soaRoaSensorError::FieldType::kERR_BLCKGE;
-        break;
-    default:
-        value = fields::soaRoaSensorError::FieldType::kOK;
-        break;
-    }
-
-    if (this->mSensorError != value)
-    {
-        this->mSensorError = value;
+        LOG_DEBUG() << "soaRoaSensorError updated.\n";
         soaRoaSensorError.Update(this->mSensorError);
     }
 }

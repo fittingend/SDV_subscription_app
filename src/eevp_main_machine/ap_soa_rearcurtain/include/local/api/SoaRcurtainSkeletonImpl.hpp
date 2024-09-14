@@ -21,7 +21,7 @@ public:
     ara::core::Future<SoaRcurtainSkeleton::RequestRearCurtainOperationOutput> RequestRearCurtainOperation(const eevp::control::SoaRctnMotorDir& motorDir) override;
     void RequestRearCurtainPosition(const std::uint8_t& posPercentage) override;
 
-    void SetSoaRctnStatus(eevp::control::SoaRctnStatus status);
+    void UpdateStatus(void);
 
     void E2EErrorHandler(const ara::com::e2e::E2EErrorDomain& errorCode, ara::com::e2e::DataID dataID, ara::com::e2e::MessageCounter messageCounter) override
     {
@@ -36,6 +36,7 @@ private:
 
     ara::core::Future<fields::soaRctnStatus::FieldType> soaRctnStatusGetter();
     ara::core::Future<fields::soaRctnSwVersion::FieldType> soaRctnSwVersionGetter();
+    bool updateFieldWithContext();
 };
 } // namespace control
 } // namespace eevp

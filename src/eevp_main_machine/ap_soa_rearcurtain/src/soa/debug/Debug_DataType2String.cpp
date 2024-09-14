@@ -3,6 +3,19 @@
 #include <string>
 #include <Debug_DataType2String.hpp>
 
+std::string getStringEnum_DeviceNormal_e(DeviceNormal_e val)
+{
+    switch (val)
+    {
+    case eDeviceNormal_Ok:          return "NORMAL";
+    case eDeviceNormal_Abnormal:    return "ABNORMAL";
+    default:
+        break;
+    }
+
+    return "UNKNOWN";
+}
+
 std::string getStringEnum_PowerState_e(PowerState_e val)
 {
     switch (val)

@@ -56,6 +56,7 @@ SET(SRC
     src/soa/api/PaconSetting.cpp
     src/soa/api/SoaRcurtainSkeletonImpl.cpp
     src/soa/api/Zone3RcurtainProxyImpl.cpp
+    src/soa/debug/CmdLists_Context.cpp
     src/soa/debug/CmdLists_ZoneApi.cpp
     src/soa/debug/CmdMgr.cpp
     src/soa/debug/Debug_DataType2String.cpp

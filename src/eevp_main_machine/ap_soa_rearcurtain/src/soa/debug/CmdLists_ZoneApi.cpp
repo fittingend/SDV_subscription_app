@@ -4,9 +4,10 @@
 #include <sstream>
 #include <string>
 #include <string.h>
+#include <Api_Zone3Rcurtain.hpp>
 #include <Zone3RcurtainProxyImpl.hpp>
 
-static int cmd_driveseat_get_status (std::list<std::string> &argList)
+static int cmd_rcurtain_status (std::list<std::string> &argList)
 {
     std::stringstream ss;
 
@@ -39,7 +40,7 @@ static int cmd_driveseat_get_status (std::list<std::string> &argList)
     return 0;
 }
 
-static int cmd_driveseat_motor (std::list<std::string> &argList)
+static int cmd_rcurtain_motor (std::list<std::string> &argList)
 {
     std::stringstream ss;
 
@@ -48,33 +49,74 @@ static int cmd_driveseat_motor (std::list<std::string> &argList)
     {
         ss << "Zone3RearCurtain Service not found" ;
         CmdMgr::GetInstance()->Println(ss.str());
-        return 0;
+        // return 0;
     }
 
     if (argList.size() <= 0)
     {
-        ss << "Usage: ecu motor [slide] [recline] [height] [rlxTilt]" ;
+        ss << "Usage: ecu move [up|down]" ;
         CmdMgr::GetInstance()->Println(ss.str());
         return 0;
     }
+
     std::string arg = std::move(argList.front());
     argList.pop_front();
+    std::for_each(arg.begin(), arg.end(), [](auto &c) { c = tolower(c); });
+
+    if (arg == "up")
+    {
+        Zone3_RCtn_MoveCurtainMotor(eRCtnSwitch_CloseOn);
+    }
+    else if (arg == "down")
+    {
+        Zone3_RCtn_MoveCurtainMotor(eRCtnSwitch_OpenOn);
+    }
+    else
+    {
+        ss << "Usage: ecu move [up|down]" ;
+        CmdMgr::GetInstance()->Println(ss.str());
+        return 0;
+    }
+
+    return 0;
+}
+
+static int cmd_rcurtain_setpos (std::list<std::string> &argList)
+{
+    std::stringstream ss;
+
+    auto *inst = zone3::rcurtain::control::Zone3RearCurtainProxyImpl::GetInstance();
+    if (!inst->isServiceFound())
+    {
+        ss << "Zone3RearCurtain Service not found" ;
+        CmdMgr::GetInstance()->Println(ss.str());
+        // return 0;
+    }
+
+    if (argList.size() <= 0)
+    {
+        ss << "Usage: ecu setpos [percentage]" ;
+        CmdMgr::GetInstance()->Println(ss.str());
+        return 0;
+    }
+
+    std::string arg = std::move(argList.front());
+    argList.pop_front();
+    std::for_each(arg.begin(), arg.end(), [](auto &c) { c = tolower(c); });
 
     int num;
-    bool valid;
     std::stringstream ss2(arg);
     ss2 >> num;
     if (ss2.fail())
     {
-        ss << "Usage: ecu motor [motor_opnum]" ;
+        ss << "Usage: ecu setpos [percentage]" ;
         CmdMgr::GetInstance()->Println(ss.str());
         return 0;
     }
 
-    inst->controlMotor((std::uint8_t)num);
-
+    Zone3_RCtn_MoveCurtainMotorToPosition(num);
     return 0;
-};
+}
 
 static int cmd_Ecu(void *item, std::list<std::string> argList)
 {
@@ -88,13 +130,17 @@ static int cmd_Ecu(void *item, std::list<std::string> argList)
     argList.pop_front();
     std::for_each(cmd.begin(), cmd.end(), [](auto &c) { c = tolower(c); });
 
-    if (cmd == "motor")
+    if (cmd == "move")
     {
-        return cmd_driveseat_motor(argList);
+        return cmd_rcurtain_motor(argList);
+    }
+    else if (cmd == "setpos")
+    {
+        return cmd_rcurtain_setpos(argList);
     }
     else if (cmd == "status")
     {
-        return cmd_driveseat_get_status(argList);
+        return cmd_rcurtain_status(argList);
     }
     else
     {
@@ -139,15 +185,13 @@ public:
 
     void getRcurtainStatus()
     {
-
     }
-
 };
 
 void RegisterEcuApi()
 {
     CmdMgr::GetInstance()->InsertCommand("ecu",
-            "ecu [motor|status] (args...)",
+            "ecu [move|setpos|status] (args...)",
             "debug for ECU Rear Curtain APIs",
             "debug for ECU Rear Curtain APIs",
             cmd_Ecu, nullptr);

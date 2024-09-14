@@ -34,9 +34,9 @@ VehicleContext::VehicleContext()
     this->mRctnState = eRCtnState_FullyOpened;
     this->mMotorMoving = false;
     this->mRctnInputPosition = 0;
-    this->mRctnZoneInputPosition = 4;
+    this->mRctnZoneInputPosition = -1;
     this->mRctnCurrPosition = 0;
-    this->mIsNormal = eDeviceNormal_Ok;
+    this->mIsNormal = eDeviceNormal_Abnormal;
 }
 
 VehicleContext::~VehicleContext()
@@ -151,13 +151,28 @@ std::string VehicleContext::DebugInfo()
 {
     std::ostringstream ss;
 
-#if 0
-    ss << "VehicleContext:\r\n";
-    ss << "- Speed : " << this->mVehicleSpeed << ", valid: " << (this->mSpeedValid ? "True" : "False") << "\r\n";
-    ss << "- Gear  : " << getStringEnum_GearState_e(this->mGearState) << "\r\n";
-    ss << "- Rear Curtain : Power(" << getStringEnum_PowerState_e(this->mRCPower) << "), Switch(" << getStringEnum_RCtnSwitch_e(this->mRCSwitch) << "), State(" << getStringEnum_RCtnState_e(this->mRCState) << ")\r\n";
-    ss << "- Moodlamp : Power(" << getStringEnum_PowerState_e(this->mMlmPower) << "), ColorIndex(" << this->mMlmColorIndex << "), Brightness(" << this->mMlmBrightness << "), Mode(" << getStringEnum_MlmMoodMode_e(this->mMlmMoodMode) << ")\r\n";
-#endif
+
+    std::atomic<bool> mSpeedValid;
+    std::atomic<int> mVehicleSpeed;
+    std::atomic<GearState_e> mGearState;
+
+    // Rear Curtain
+    std::atomic<PowerState_e> mRctnPower;
+    std::atomic<RCtnSwitch_e> mRctnSwitch;
+    std::atomic<RCtnState_e> mRctnState;
+    std::atomic<int> mRctnInputPosition;
+    std::atomic<DeviceNormal_e> mIsNormal;
+
+    std::atomic<bool> mMotorMoving;
+    std::atomic<int> mRctnZoneInputPosition;
+    std::atomic<int> mRctnCurrPosition;
+
+    ss << "VehicleContext:\n";
+    ss << "- isNormal : " << ((this->mIsNormal == eDeviceNormal_Ok) ? "OK": "Abnormal") << "\n";
+    ss << "- Speed : " << this->mVehicleSpeed << ", valid: " << (this->mSpeedValid ? "True" : "False") << "\n";
+    ss << "- Gear  : " << getStringEnum_GearState_e(this->mGearState) << "\n";
+    ss << "- Rear Curtain : Power(" << getStringEnum_PowerState_e(this->mRctnPower) << "), Switch(" << getStringEnum_RCtnSwitch_e(this->mRctnSwitch) << "), State(" << getStringEnum_RCtnState_e(this->mRctnState) << ")\r\n";
+    ss << "-              : Position(" << this->mRctnInputPosition << "), isMoving(" << ((this->mMotorMoving) ? "True" : "False") << ")\n";
 
     return ss.str();
 }

@@ -56,6 +56,7 @@ SET(SRC
     src/soa/api/Zone2RoaProxyImpl.cpp
     src/soa/api/Api_SoaRoa.cpp
     src/soa/api/Api_Zone2Roa.cpp
+    src/soa/debug/CmdLists_Context.cpp
     src/soa/debug/CmdLists_ZoneApi.cpp
     src/soa/debug/CmdMgr.cpp
     src/soa/debug/Debug_DataType2String.cpp

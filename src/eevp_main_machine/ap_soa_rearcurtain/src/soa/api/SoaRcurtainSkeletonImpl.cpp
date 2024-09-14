@@ -2,12 +2,97 @@
 #include <Common.h>
 #include <SoaDataType.h>
 #include <Api_SoaRcurtain.hpp>
+#include <VehicleContext.hpp>
 #include <Log.hpp>
 
 using namespace eevp::control::skeleton;
 
 namespace eevp {
 namespace control {
+
+static SoaRctnMotorDir convert_RCtnSwitch_to_SoaRctnMotorDir(RCtnSwitch_e val)
+{
+    switch (val)
+    {
+    case eRCtnSwitch_Off:
+        return SoaRctnMotorDir::kSTOP;
+    case eRCtnSwitch_OpenOn:
+        return SoaRctnMotorDir::kDOWN;
+    case eRCtnSwitch_CloseOn:
+        return SoaRctnMotorDir::kUP;
+    default:
+        break;
+    }
+
+    return SoaRctnMotorDir::kSTOP;
+}
+
+static SoaRctnState convert_RctnState_to_SoaRctnState(RCtnState_e val)
+{
+    switch (val)
+    {
+    case eRCtnState_FullyOpened:
+        return SoaRctnState::kFULLY_DOWN;
+    case eRCtnState_FullyClosed:
+        return SoaRctnState::kFULLY_UP;
+    case eRCtnState_PartlyOpened:
+        return SoaRctnState::kPARTLY_OPENED;
+    case eRCtnState_Opening:
+        return SoaRctnState::kMOVING_DOWN;
+    case eRCtnState_Closing:
+        return SoaRctnState::kMOVING_UP;
+    default:
+        break;
+    }
+
+    return SoaRctnState::kFULLY_DOWN;
+}
+
+static SoaDeviceIsNormal convert_DeviceNormal_to_SoaDeviceIsNormal(DeviceNormal_e val)
+{
+    switch (val)
+    {
+    case eDeviceNormal_Ok:
+        return SoaDeviceIsNormal::kNORMAL;
+    case eDeviceNormal_Abnormal:
+        return SoaDeviceIsNormal::kABNORMAL;
+    default:
+        break;
+    }
+
+    return SoaDeviceIsNormal::kABNORMAL;
+}
+
+bool SoaRcurtainSkeletonImpl::updateFieldWithContext(void)
+{
+    bool is_changed = false;
+    VehicleContext *context = VehicleContext::GetInstance();
+    SoaRctnMotorDir curMotorDirection = convert_RCtnSwitch_to_SoaRctnMotorDir(context->mRctnSwitch);
+    SoaRctnState curtainState = convert_RctnState_to_SoaRctnState(context->mRctnState);
+    SoaDeviceIsNormal isNormal = convert_DeviceNormal_to_SoaDeviceIsNormal(context->mIsNormal);
+
+    if (this->mStatus.curMotorDirection != curMotorDirection)
+    {
+        this->mStatus.curMotorDirection = curMotorDirection;
+        is_changed = true;
+    }
+
+    if (this->mStatus.curtainState != curtainState)
+    {
+        this->mStatus.curtainState = curtainState;
+        is_changed = true;
+    }
+
+    if (this->mStatus.isNormal != isNormal)
+    {
+        this->mStatus.isNormal = isNormal;
+        is_changed = true;
+    }
+
+
+    return is_changed;
+}
+
 SoaRcurtainSkeletonImpl::SoaRcurtainSkeletonImpl(
         ara::core::InstanceSpecifier instanceSpec,
         ara::com::MethodCallProcessingMode mode) :
@@ -22,11 +107,10 @@ SoaRcurtainSkeletonImpl::SoaRcurtainSkeletonImpl(
         return this->soaRctnSwVersionGetter();
     };
 
+    VehicleContext *context = VehicleContext::GetInstance();
     this->mStatus.errorState = eevp::control::SoaErrorState::kOK;
-    this->mStatus.curMotorDirection = eevp::control::SoaRctnMotorDir::kSTOP;
-    this->mStatus.curtainState = eevp::control::SoaRctnState::kFULLY_UP;
-    this->mStatus.isNormal = eevp::control::SoaDeviceIsNormal::kNORMAL;
-    this->mSwVersion = 0;
+    updateFieldWithContext();
+    this->mSwVersion = (std::uint8_t)SW_VERSION;
 
     soaRctnStatus.RegisterGetHandler(soaRctnStatus_get_handler);
     soaRctnSwVersion.RegisterGetHandler(soaRctnSwVersion_get_handler);
@@ -47,7 +131,6 @@ ara::core::Future<fields::soaRctnSwVersion::FieldType> SoaRcurtainSkeletonImpl::
     ara::core::Promise<fields::soaRctnSwVersion::FieldType> promise;
     promise.set_value(this->mSwVersion);
     LOG_DEBUG() << "(-)\n";
-    LOG_INFO() << "mSW version is" << this->mSwVersion;
     return promise.get_future();
 }
 
@@ -60,7 +143,7 @@ ara::core::Future<SoaRcurtainSkeleton::RequestRearCurtainOperationOutput> SoaRcu
     RequestRearCurtainOperationOutput response;
     ara::core::Promise<RequestRearCurtainOperationOutput> promise;
 
-    LOG_DEBUG() << "[SoaRcurtainSkeletonImpl::RequestRearCurtainOperation] (+)\n";
+    LOG_DEBUG() << "(+)\n";
 
     RCtnSwitch_e eBtnValue;
     switch (motorDir)
@@ -83,30 +166,30 @@ ara::core::Future<SoaRcurtainSkeleton::RequestRearCurtainOperationOutput> SoaRcu
     response.err = (ret == 0) ? eevp::control::SoaErrorState::kOK : eevp::control::SoaErrorState::kERROR;
     promise.set_value(response);
 
-    LOG_DEBUG() << "[SoaRcurtainSkeletonImpl::RequestRearCurtainOperation] (-)\n";
+    LOG_DEBUG() << "(-)\n";
     return promise.get_future();
 }
 
 void SoaRcurtainSkeletonImpl::RequestRearCurtainPosition(const std::uint8_t& posPercentage)
 {
+    LOG_DEBUG() << "(+)\n";
     if (this->mSwVersion > 0)
     {
         Api_Rcurtain_Method_RequestRearCurtainPosition((int)posPercentage);
     }
+    LOG_DEBUG() << "(-)\n";
 }
 
-void SoaRcurtainSkeletonImpl::SetSoaRctnStatus(eevp::control::SoaRctnStatus status)
+void SoaRcurtainSkeletonImpl::UpdateStatus(void)
 {
-    LOG_DEBUG() << "[SoaRcurtainSkeletonImpl::SetSoaRctnStatus] (+)\n";
-    if ((this->mStatus.errorState != status.errorState) ||
-        (this->mStatus.curMotorDirection != status.curMotorDirection) ||
-        (this->mStatus.curtainState != status.curtainState) ||
-        (this->mStatus.isNormal != status.isNormal))
+    LOG_DEBUG() << "(+)\n";
+    if (updateFieldWithContext())
     {
-        this->mStatus = status;
+        LOG_DEBUG() << "Data updated: Notify\n";
         soaRctnStatus.Update(this->mStatus);
     }
-    LOG_DEBUG() << "[SoaRcurtainSkeletonImpl::SetSoaRctnStatus] (-)\n";
+    LOG_DEBUG() << "(-)\n";
+
 }
 
 } // namespace control

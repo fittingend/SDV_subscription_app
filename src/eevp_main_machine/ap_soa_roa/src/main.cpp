@@ -8,7 +8,6 @@
 #include <VehicleContext.hpp>
 #include <PaconSetting.hpp>
 #include <TelnetServer.hpp>
-#include <Log.hpp>
 
 using namespace std;
 
@@ -34,7 +33,7 @@ int main(int argc, char *argv[])
 
     std::signal(SIGINT, signalHandler);
     std::signal(SIGTERM, signalHandler);
-    
+
     VehicleContext *context = VehicleContext::GetInstance();
 
     if (!PaconSetting::GetInstance()->StartPacon())
@@ -42,9 +41,6 @@ int main(int argc, char *argv[])
         (void)PaconSetting::RemoveInstance();
         return 1;
     }
-    LOG_INFO() << "sujin oh\n";
-    LOG_INFO() << "count:" << context->mDetectCount <<"\n";
-    LOG_INFO() << "sujin oh over\n";
 
     // TODO: your code here
 

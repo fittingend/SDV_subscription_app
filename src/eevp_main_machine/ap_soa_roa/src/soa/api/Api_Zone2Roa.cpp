@@ -60,6 +60,7 @@ static void checkRoaSnSrStatusAndUpdateContext(EcmRoaSnsrStatus status)
     {
         context->mDetectCount = detectCount;
         SOA_ROA_UpdateDetectCount();
+        SOA_ROA_UpdateDetectState();
     }
 }
 
@@ -68,6 +69,10 @@ class RoaListener : public IZone2RoaListener
 public:
     void notifySnsrStatus(const EcmRoaSnsrStatus &fieldValue) override
     {
+        LOG_DEBUG() << "EcmRoaSnsrStatus.detInfo = " << (int)fieldValue.detInfo << "\n";
+        LOG_DEBUG() << "EcmRoaSnsrStatus.snsrStat = " << (int)fieldValue.snsrStat << "\n";
+        LOG_DEBUG() << "EcmRoaSnsrStatus.snsrErrState = " << (int)fieldValue.snsrErrState << "\n";
+        LOG_DEBUG() << "EcmRoaSnsrStatus.isNormal = " << (int)fieldValue.isNormal << "\n";
         checkRoaSnSrStatusAndUpdateContext(fieldValue);
     }
 
@@ -116,3 +121,12 @@ void Zone2_SOA_StopSensor()
     LOG_DEBUG() << "(-)\n";
 }
 
+void Zone2_SOA_UpdateContext()
+{
+    auto *inst = Zone2RoaProxyImpl::GetInstance();
+    EcmRoaSnsrStatus status;
+    if (inst->getterSnsrStatus(status))
+    {
+        checkRoaSnSrStatusAndUpdateContext(status);
+    }
+}

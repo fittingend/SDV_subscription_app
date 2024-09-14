@@ -19,8 +19,6 @@ VehicleContext *VehicleContext::GetInstance()
     if (VehicleContext::mInst == nullptr)
     {
         VehicleContext::mInst = new VehicleContext();
-        LOG_INFO() << "count value is " << VehicleContext::mInst->mDetectCount;
-
     }
 
     return VehicleContext::mInst;
@@ -28,23 +26,20 @@ VehicleContext *VehicleContext::GetInstance()
 
 VehicleContext::VehicleContext()
 {
-    this->mIsNormal = eDeviceNormal_Ok;
+    this->mIsNormal = eDeviceNormal_Abnormal;
     this->mRunningState = eRoaRunningState_Off;
     this->mRoaMode = eRoaMode_Advanced;
-    //this->mDetectCount = 0;
     this->mDetectCount = 0;
     this->mSensorError = eRoaSensorError_Ok;
 }
 
 VehicleContext::~VehicleContext()
 {
-    LOG_INFO() << __func__;
+
 }
 
 int VehicleContext::Load()
 {
-    LOG_INFO() << __func__;
-
     struct stat file_stat;
     if (stat(DATAFILE_DIR_PATH, &file_stat) != 0)
     {
@@ -150,13 +145,13 @@ std::string VehicleContext::DebugInfo()
 {
     std::ostringstream ss;
 
-    ss << "VehicleContext:\r\n";
-#if 0
-    ss << "- Speed : " << this->mVehicleSpeed << ", valid: " << (this->mSpeedValid ? "True" : "False") << "\r\n";
-    ss << "- Gear  : " << getStringEnum_GearState_e(this->mGearState) << "\r\n";
-    ss << "- Rear Curtain : Power(" << getStringEnum_PowerState_e(this->mRCPower) << "), Switch(" << getStringEnum_RCtnSwitch_e(this->mRCSwitch) << "), State(" << getStringEnum_RCtnState_e(this->mRCState) << ")\r\n";
-    ss << "- Moodlamp : Power(" << getStringEnum_PowerState_e(this->mMlmPower) << "), ColorIndex(" << this->mMlmColorIndex << "), Brightness(" << this->mMlmBrightness << "), Mode(" << getStringEnum_MlmMoodMode_e(this->mMlmMoodMode) << ")\r\n";
-#endif
+    ss << "VehicleContext:\n";
+    ss << "- DeviceIsNormal : " << getStringEnum_DeviceNormal_e(this->mIsNormal) << "\n";
+    ss << "- Running State : " << getStringEnum_RoaRunningState_e(this->mRunningState) << "\n";
+    ss << "- ROA mode : " << getStringEnum_RoaMode_e(this->mRoaMode) << "\n";
+    ss << "- Detect Count : " << this->mDetectCount << "\n";
+    ss << "- Running State : " << getStringEnum_RoaRunningState_e(this->mRunningState) << "\n";
+    ss << "- Sensor Error : " << getStringEnum_RoaSensorError_e(this->mSensorError) << "\n";
 
     return ss.str();
 }

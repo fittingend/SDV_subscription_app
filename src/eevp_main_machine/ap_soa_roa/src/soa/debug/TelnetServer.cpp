@@ -51,6 +51,7 @@ TelnetServer::TelnetServer()
     cmdMgr->RegisterMsgSender(this);
     //RegisterUdpParserCommands(this->mCmdMgr);
     RegisterEcuApi();
+    RegisterCmdContext();
 }
 
 TelnetServer::~TelnetServer()
@@ -124,8 +125,8 @@ int TelnetServer::CreateServer(void)
 
     // Timeout
     struct timeval timeout;
-    timeout.tv_sec = 1;
-    timeout.tv_usec = 0;
+    timeout.tv_sec = 0;
+    timeout.tv_usec = 70 * 1000;
     if (setsockopt(this->mServerSocket, SOL_SOCKET, SO_RCVTIMEO, (const char*)&timeout, sizeof(timeout)) < 0)
     {
         LOG_ERROR() << "Failed to set receive timeout\n";

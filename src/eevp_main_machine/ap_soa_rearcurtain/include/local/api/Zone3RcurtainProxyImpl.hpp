@@ -3,6 +3,7 @@
 
 #include <thread>
 
+#include <list>
 #include "zone3/rcurtain/control/zone3rcurtain_proxy.h"
 #include "IZone3RearCurtainListener.hpp"
 
@@ -40,12 +41,16 @@ private:
     void SubscribeEvent();
     /// @brief Subscribe Field
     void SubscribeField();
+    /// @brief Unsubscribe Event
+    void UnsubscribeEvent();
+    /// @brief Unsubscribe Field
+    void UnsubscribeField();
 
     // callback func
     void cbZone3RctnStatus();
 
     bool mServiceFound;
-    std::shared_ptr<zone3::rcurtain::control::IZone3RearCurtainListener> mListener;
+    std::list<std::shared_ptr<zone3::rcurtain::control::IZone3RearCurtainListener>> mListenerList;
     std::shared_ptr<zone3::rcurtain::control::proxy::Zone3RcurtainProxy> mProxy;
     std::shared_ptr<ara::com::FindServiceHandle> mFindHandle;
 };

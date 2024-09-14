@@ -9,5 +9,6 @@ extern void Zone3_RCtn_Term(void);
 extern void Zone3_RCtn_PowerOn(PowerState_e power);
 extern void Zone3_RCtn_MoveCurtainMotor(RCtnSwitch_e btn);
 extern void Zone3_RCtn_MoveCurtainMotorToPosition(int pos);
+extern void Zone3_RCtn_UpdateContext(void);
 
 #endif

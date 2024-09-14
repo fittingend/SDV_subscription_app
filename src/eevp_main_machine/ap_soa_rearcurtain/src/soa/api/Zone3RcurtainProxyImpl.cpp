@@ -32,7 +32,7 @@ Zone3RearCurtainProxyImpl::Zone3RearCurtainProxyImpl()
     this->mServiceFound = false;
     this->mProxy = nullptr;
     this->mFindHandle = nullptr;
-    this->mListener = nullptr;
+    this->mListenerList.clear();
 }
 
 Zone3RearCurtainProxyImpl::~Zone3RearCurtainProxyImpl()
@@ -42,11 +42,20 @@ Zone3RearCurtainProxyImpl::~Zone3RearCurtainProxyImpl()
         this->mProxy->StopFindService(*(this->mFindHandle));
         this->mProxy.reset();
     }
+    this->mListenerList.clear();
 }
 
 void Zone3RearCurtainProxyImpl::setEventListener(const std::shared_ptr<zone3::rcurtain::control::IZone3RearCurtainListener> _listener)
 {
-    this->mListener = _listener;
+    for (auto item: this->mListenerList)
+    {
+        if (item.get() == _listener.get())
+        {
+            return;
+        }
+    }
+
+    this->mListenerList.push_back(_listener);
 }
 
 bool Zone3RearCurtainProxyImpl::init()
@@ -67,17 +76,15 @@ bool Zone3RearCurtainProxyImpl::init()
         return false;
     }
 
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < 20; i++)
     {
         if (this->mServiceFound)
         {
             LOG_INFO() << "Zone3RearCurtainProxy Start Find Service Success\n";
-            SubscribeEvent();
-            SubscribeField();
             return true;
         }
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        std::this_thread::sleep_for(std::chrono::milliseconds(20));
     }
 
     LOG_INFO() << "(-)\n";
@@ -90,28 +97,47 @@ void Zone3RearCurtainProxyImpl::FindServiceCallback(
 {
     LOG_INFO() << "(+)\n";
 
+    if (this->mProxy != nullptr)
+    {
+        LOG_WARNING() << "proxy exists: remove the old proxy\n";
+        this->UnsubscribeEvent();
+        this->UnsubscribeField();
+
+        this->mFindHandle = nullptr;
+        this->mProxy = nullptr;
+    }
+
     if (container.empty())
     {
         LOG_ERROR() << "container.empty() ... \n";
-        LOG_INFO() << "(-)\n";
-        return;
-    }
+        if (this->mProxy != nullptr)
+        {
+            LOG_WARNING() << "proxy exists: remove the old proxy\n";
+            this->UnsubscribeEvent();
+            this->UnsubscribeField();
 
-    for (auto& handle : container)
+            this->mFindHandle = nullptr;
+            this->mProxy = nullptr;
+        }
+    }
+    else
     {
-        LOG_ERROR() <<  "Zone3RearCurtainProxyImpl::Find::Searched Instance::ServiceId =" <<
-                                    handle.GetServiceHandle().serviceId <<
-                                    ", InstanceId =" <<
-                                    handle.GetServiceHandle().instanceId << "\n";
+        for (auto& handle : container)
+        {
+            LOG_DEBUG() <<  "Zone3RearCurtainProxy::Find::Searched Instance::ServiceId =" <<
+                                        handle.GetServiceHandle().serviceId <<
+                                        ", InstanceId =" <<
+                                        handle.GetServiceHandle().instanceId << "\n";
+        }
+
+        this->mFindHandle = std::make_shared<ara::com::FindServiceHandle>(findHandle);
+        this->mProxy = std::make_shared<proxy::Zone3RcurtainProxy>(container.at(0));
+
+        LOG_INFO() << "Zone3RearCurtainProxy Find-Service Success\n";
+        SubscribeEvent();
+        SubscribeField();
+        this->mServiceFound = true;
     }
-
-    this->mFindHandle = std::make_shared<ara::com::FindServiceHandle>(findHandle);
-    this->mProxy = std::make_shared<proxy::Zone3RcurtainProxy>(container.at(0));
-
-    LOG_INFO() << "Zone3RearCurtainProxy Find-Service Success\n";
-    SubscribeEvent();
-    SubscribeField();
-    this->mServiceFound = true;
 
     LOG_INFO() << "(-)\n";
 }
@@ -141,7 +167,7 @@ bool Zone3RearCurtainProxyImpl::getterRcurtainStatus(zone3::rcurtain::control::E
     }
 
     auto future = this->mProxy->zone3RcurtainStatus.Get();
-    auto status = future.wait_for(std::chrono::milliseconds(100));
+    auto status = future.wait_for(std::chrono::milliseconds(5000));
     if (status == ara::core::future_status::ready)
     {
         auto result = future.GetResult();
@@ -213,6 +239,23 @@ void Zone3RearCurtainProxyImpl::SubscribeField()
     LOG_INFO() << "(-)\n";
 }
 
+void Zone3RearCurtainProxyImpl::UnsubscribeEvent()
+{
+    if (this->mProxy != nullptr)
+    {
+        // To Do:
+    }
+}
+
+void Zone3RearCurtainProxyImpl::UnsubscribeField()
+{
+    if (this->mProxy != nullptr)
+    {
+        this->mProxy->zone3RcurtainStatus.Unsubscribe();
+    }
+}
+
+
 void Zone3RearCurtainProxyImpl::cbZone3RctnStatus()
 {
     LOG_INFO() << "(+)\n";
@@ -239,9 +282,9 @@ void Zone3RearCurtainProxyImpl::cbZone3RctnStatus()
         LOG_INFO() << "cbZone3RctnStatus : curMotorLimit " << (int)fieldValue.curMotorLimit << "\n";
         LOG_INFO() << "cbZone3RctnStatus : motorCurrent " << (int)fieldValue.motorCurrent << "\n";
         LOG_INFO() << "cbZone3RctnStatus : isNormal " << (int)fieldValue.isNormal << "\n";
-        if (this->mListener != nullptr)
+        for (auto item: this->mListenerList)
         {
-            this->mListener->notifyRcurtainStatus(fieldValue);
+            item->notifyRcurtainStatus(fieldValue);
         }
     });
 

@@ -55,50 +55,80 @@ static int convert_motor_move_percentage_to_zone3_command(int percentage)
     return ZONE3_MOTOR_POS_FULL_OPEN;
 }
 
+static bool update_vehicle_context_by_EcuRcurtainStatus(EcuRcurtainStatus status)
+{
+    VehicleContext *context = VehicleContext::GetInstance();
+    RCtnSwitch_e rctnSwitch = context->mRctnSwitch;
+    RCtnState_e rctnState = context->mRctnState;
+    DeviceNormal_e isNormal = context->mIsNormal;
+
+    if (context->mMotorMoving == true)
+    {
+        if (status.curMotorDir == context->mRctnZoneInputPosition)
+        {
+            if (status.curMotorDir == ZONE3_MOTOR_POS_FULL_CLOSE)
+            {
+                rctnState = eRCtnState_FullyClosed;
+            }
+            else if (status.curMotorDir == ZONE3_MOTOR_POS_FULL_OPEN)
+            {
+                rctnState = eRCtnState_FullyOpened;
+            }
+            else
+            {
+                rctnState = eRCtnState_PartlyOpened;
+            }
+
+            rctnSwitch = eRCtnSwitch_Off;
+            context->mMotorMoving = false;
+        }
+    }
+    else
+    {
+        switch (status.curMotorDir)
+        {
+        case ZONE3_MOTOR_POS_FULL_CLOSE:
+            rctnState = eRCtnState_FullyClosed;
+            break;
+        case ZONE3_MOTOR_POS_CLOSS_66:
+        case ZONE3_MOTOR_POS_CLOSS_33:
+            rctnState = eRCtnState_PartlyOpened;
+            break;
+        case ZONE3_MOTOR_POS_FULL_OPEN:
+            rctnState = eRCtnState_FullyOpened;
+            break;
+        }
+    }
+
+    isNormal = (status.isNormal == 0) ? eDeviceNormal_Ok : eDeviceNormal_Abnormal;
+    if ((context->mRctnSwitch != rctnSwitch) || (context->mRctnState != rctnState) || (context->mIsNormal != isNormal))
+    {
+        LOG_DEBUG() << "context changed\n";
+
+        context->mRctnSwitch = rctnSwitch;
+        context->mRctnState = rctnState;
+        context->mIsNormal = isNormal;
+        Api_Rcurtain_Field_SoaRctnStatus();
+        return true;
+    }
+
+    return false;
+}
+
 class RearCurtainListener : public zone3::rcurtain::control::IZone3RearCurtainListener
 {
     void notifyRcurtainStatus(const zone3::rcurtain::control::EcuRcurtainStatus &fieldValue)
     {
-        VehicleContext *context = VehicleContext::GetInstance();
-        RCtnSwitch_e rctnSwitch = context->mRctnSwitch;
-        RCtnState_e rctnState = context->mRctnState;
-        DeviceNormal_e isNormal = context->mIsNormal;
+        LOG_DEBUG() << "EcuRcurtainStatus.curMotorDir = " << (int)fieldValue.curMotorDir << "\n";
+        LOG_DEBUG() << "EcuRcurtainStatus.curMotorLimit = " << (int)fieldValue.curMotorLimit << "\n";
+        LOG_DEBUG() << "EcuRcurtainStatus.motorCurrent = " << (int)fieldValue.motorCurrent << "\n";
+        LOG_DEBUG() << "EcuRcurtainStatus.isNormal = " << (int)fieldValue.isNormal << "\n";
 
-        if (context->mMotorMoving == true)
-        {
-            if (fieldValue.curMotorDir == context->mRctnZoneInputPosition)
-            {
-                if (fieldValue.curMotorDir == ZONE3_MOTOR_POS_FULL_CLOSE)
-                {
-                    rctnState = eRCtnState_FullyClosed;
-                }
-                else if (fieldValue.curMotorDir == ZONE3_MOTOR_POS_FULL_OPEN)
-                {
-                    rctnState = eRCtnState_FullyOpened;
-                }
-                else
-                {
-                    rctnState = eRCtnState_PartlyOpened;
-                }
-
-                rctnSwitch = eRCtnSwitch_Off;
-                context->mMotorMoving = false;
-            }
-        }
-
-        isNormal = (fieldValue.isNormal == 0) ? eDeviceNormal_Ok : eDeviceNormal_Abnormal;
-        if ((context->mRctnSwitch != rctnSwitch) || (context->mRctnState != rctnState) || (context->mIsNormal != isNormal))
-        {
-            context->mRctnSwitch = rctnSwitch;
-            context->mRctnState = rctnState;
-            context->mIsNormal = isNormal;
-            Api_Rcurtain_Field_SoaRctnStatus();
-        }
+        update_vehicle_context_by_EcuRcurtainStatus(fieldValue);
     }
 
     void getRcurtainStatus()
     {
-
     }
 };
 
@@ -112,31 +142,7 @@ void Zone3_RCtn_Init(void)
         EcuRcurtainStatus status;
         if (inst->getterRcurtainStatus(status))
         {
-            VehicleContext *context = VehicleContext::GetInstance();
-            RCtnState_e rctnState = context->mRctnState;
-            DeviceNormal_e isNormal = context->mIsNormal;
-
-            switch (status.curMotorDir)
-            {
-            case ZONE3_MOTOR_POS_FULL_CLOSE:
-                rctnState = eRCtnState_FullyClosed;
-                break;
-            case ZONE3_MOTOR_POS_CLOSS_66:
-            case ZONE3_MOTOR_POS_CLOSS_33:
-                rctnState = eRCtnState_PartlyOpened;
-                break;
-            case ZONE3_MOTOR_POS_FULL_OPEN:
-                rctnState = eRCtnState_FullyOpened;
-                break;
-            }
-
-            isNormal = (status.isNormal == 0) ? eDeviceNormal_Ok : eDeviceNormal_Abnormal;
-            if ((context->mRctnState != rctnState) || (context->mIsNormal != isNormal))
-            {
-                context->mRctnState = rctnState;
-                context->mIsNormal = isNormal;
-                Api_Rcurtain_Field_SoaRctnStatus();
-            }
+            update_vehicle_context_by_EcuRcurtainStatus(status);
         }
     }
 }
@@ -153,10 +159,13 @@ void Zone3_RCtn_PowerOn(PowerState_e power)
 
 void Zone3_RCtn_MoveCurtainMotor(RCtnSwitch_e btn)
 {
+    LOG_DEBUG() << "(+)\n";
     VehicleContext *context = VehicleContext::GetInstance();
     int zone_val = convert_motor_btn_to_zone3_command(btn);
     RCtnSwitch_e rctnSwitch = context->mRctnSwitch;
     RCtnState_e rctnState = context->mRctnState;
+
+    LOG_DEBUG() << "controlMotor(" << (int)context->mRctnZoneInputPosition << " -> " << zone_val << ")\n";
 
     if (zone_val != ZONE3_MOTOR_POS_STOP)
     {
@@ -185,14 +194,18 @@ void Zone3_RCtn_MoveCurtainMotor(RCtnSwitch_e btn)
             Api_Rcurtain_Field_SoaRctnStatus();
         }
     }
+    LOG_DEBUG() << "(-)\n";
 }
 
 void Zone3_RCtn_MoveCurtainMotorToPosition(int pos)
 {
+    LOG_DEBUG() << "(+) pos=" << pos << "\n";
     VehicleContext *context = VehicleContext::GetInstance();
     int zone_val = convert_motor_move_percentage_to_zone3_command(pos);
     RCtnSwitch_e rctnSwitch = context->mRctnSwitch;
     RCtnState_e rctnState = context->mRctnState;
+
+    LOG_DEBUG() << "controlMotor(" << (int)context->mRctnZoneInputPosition << " -> " << zone_val << ")\n";
 
     if ((context->mRctnZoneInputPosition != zone_val) && (context->mMotorMoving != true))
     {
@@ -218,4 +231,17 @@ void Zone3_RCtn_MoveCurtainMotorToPosition(int pos)
         context->mRctnState = rctnState;
         Api_Rcurtain_Field_SoaRctnStatus();
     }
+    LOG_DEBUG() << "(-)\n";
+}
+
+void Zone3_RCtn_UpdateContext(void)
+{
+    auto *inst = Zone3RearCurtainProxyImpl::GetInstance();
+
+    EcuRcurtainStatus status;
+    if (inst->getterRcurtainStatus(status))
+    {
+        update_vehicle_context_by_EcuRcurtainStatus(status);
+    }
+
 }

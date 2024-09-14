@@ -1,13 +1,9 @@
 #ifndef EEVP_ROA_PROXY_IMPL_H_
 #define EEVP_ROA_PROXY_IMPL_H_
-#include <condition_variable>
-#include <mutex>
-#include <thread>
 
+#include <ara/log/logger.h>
 #include "eevp/control/soaroa_proxy.h"
-#include "ara/log/logger.h"
-
-#include "KatechRoaListener.h"
+#include "IRoaListener.h"
 
 namespace eevp {
 namespace control {
@@ -18,18 +14,12 @@ public:
     RoaProxyImpl();
     ~RoaProxyImpl();
 
-    void setEventListener(const std::shared_ptr<eevp::control::roa::KatechRoaListener> _listener);
+    void setEventListener(const std::shared_ptr<eevp::control::roa::IRoaListener> _listener);
     bool init();
-
-    // method
-    //eevp::control::SoaErrorState requestRearCurtainOperation(const eevp::control::SoaRctnMotorDir& motorDir);
 
     // field getter
     bool getSoaRoaDetectState(eevp::control::SoaRoaDetectState& soaRoaDetectState);
     bool getSoaRoaDetectCount(std::uint8_t& soaRoaDetectCount);
-
-    void getSoaRoaDeviceNormal(eevp::control::SoaDeviceIsNormal& deviceIsNormal);
-    void getSoaRoaSwVersion(std::uint8_t& roaSwVersion);
 
 private:
     void FindServiceCallback(
@@ -37,28 +27,18 @@ private:
         ara::com::FindServiceHandle findHandle);
 
     /// @brief Subscribe Field
-    void SubscribeRoaSwVersion();
-    void SubscribeRoaDeviceNormal();
-
-    /// @brief Subscribe Field
-    void SubscribeField();
+    void SubscribeSoaRoaDetectCount();
 
     /// @brief Unsubscribe Field
     void UnsubscribeField();
 
+    /// @brief callback func
+    void cbSoaRoaDetectCount();
+    //void StateChangeCallback(ara::core::String callsign, ara::com::SubscriptionState state);
 
-    // callback func
-    void cbSoaRoaIsDeviceNormal();
-    void cbSoaRoaSwVersion();
-    // // callback func
-    void cbSoaRoaDetectState();
-    void StateChangeCallback(ara::core::String callsign, ara::com::SubscriptionState state);
-    /// @brief Process received field value 
-    void GetFieldValue();
     ara::log::Logger& mLogger;
-    std::shared_ptr<eevp::control::roa::KatechRoaListener> listener;
+    std::shared_ptr<eevp::control::roa::IRoaListener> listener;
     std::shared_ptr<eevp::control::proxy::SoaRoaProxy> mProxy;
-    //std::shared_ptr<ara::com::FindServiceHandle> mFindHandle;
 
     std::unique_ptr<eevp::control::proxy::SoaRoaProxy> mRPort{nullptr};
     /// @brief FindServiceHandle

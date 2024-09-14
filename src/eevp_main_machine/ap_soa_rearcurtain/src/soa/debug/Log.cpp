@@ -4,6 +4,9 @@
 #include <sstream>
 #include <vector>
 #include <ara/log/logger.h>
+#if defined(USE_LOG_TELNET)
+#include <TelnetServer.hpp>
+#endif
 #include <Log.hpp>
 
 std::vector<std::string> split(std::string str, char Delimiter) {
@@ -28,7 +31,7 @@ std::vector<std::string> split(std::string str, char Delimiter) {
 
 static ara::log::Logger& logger()
 {
-    static ara::log::Logger& logger = ara::log::CreateLogger("SOA", "Default");
+    static ara::log::Logger& logger = ara::log::CreateLogger("SRCT", "SRCT");
     return logger;
 }
 
@@ -69,7 +72,7 @@ soa::debug::Log &LOG_WARNING(const char *path, const uint32_t line, const char *
 
 soa::debug::Log &LOG_INFO(const char *path, const uint32_t line, const char *func)
 {
-    static soa::debug::Log *log = new soa::debug::Log(soa::debug::eLOG_INFO, "INFO", ture);
+    static soa::debug::Log *log = new soa::debug::Log(soa::debug::eLOG_INFO, "INFO", false);
     std::string header = logHeader(path, line, func);
     log->setLogHeader(header);
     return *log;
@@ -263,7 +266,7 @@ void Log::flush()
     }
 #endif
 
-#if defined(USL_LOG_ARA_LOG)
+#if defined(USE_LOG_ARA_LOG)
         switch (this->mLevel)
         {
         case soa::debug::eLOG_FATAL:
@@ -288,6 +291,14 @@ void Log::flush()
             logger().LogDebug() << this->mLogHeader.c_str() << string.c_str() << '\n';
             break;
         }
+#endif
+
+#if defined(USE_LOG_TELNET)
+{
+    std::stringstream telnet_string;
+    telnet_string << "[" << this->mLabel << "] " << this->mLogHeader << string << "\r\n";
+    TelnetServer::GetInstance()->SendMessage(telnet_string.str());
+}
 #endif
 
     // Clear stream

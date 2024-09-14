@@ -42,6 +42,13 @@ private:
     /// @brief Logger
     ara::log::Logger& mLogger;
 
+    bool updateFieldDeviceNormalWithContext(void);
+    bool updateFieldRunningStateWithContext(void);
+    bool updateFieldRoaModeWithContext(void);
+    bool updateFieldDetectStateWithContext(void);
+    bool updateFieldDetectCountWithContext(void);
+    bool updateFieldSensorErrorWithContext(void);
+
     ara::core::Future<fields::soaRoaDeviceNormal::FieldType> getter_DeviceNormal();
     ara::core::Future<fields::soaRoaRunningState::FieldType> getter_RunningState();
     ara::core::Future<fields::soaRoaMode::FieldType> getter_Mode();

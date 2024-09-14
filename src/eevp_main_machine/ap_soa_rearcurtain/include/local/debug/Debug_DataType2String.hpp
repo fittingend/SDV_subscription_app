@@ -5,9 +5,10 @@
 #include <SoaDataType.h>
 #include <string>
 
-std::string getStringEnum_PowerState_e(PowerState_e val);
-std::string getStringEnum_GearState_e(GearState_e val);
-std::string getStringEnum_RCtnSwitch_e(RCtnSwitch_e val);
-std::string getStringEnum_RCtnState_e(RCtnState_e val);
+extern std::string getStringEnum_DeviceNormal_e(DeviceNormal_e val);
+extern std::string getStringEnum_PowerState_e(PowerState_e val);
+extern std::string getStringEnum_GearState_e(GearState_e val);
+extern std::string getStringEnum_RCtnSwitch_e(RCtnSwitch_e val);
+extern std::string getStringEnum_RCtnState_e(RCtnState_e val);
 
 #endif

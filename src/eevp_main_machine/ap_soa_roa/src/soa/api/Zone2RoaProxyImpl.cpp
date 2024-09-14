@@ -77,17 +77,15 @@ bool Zone2RoaProxyImpl::init()
         return false;
     }
 
-    for (int i = 0; i < 100; i++)
+    for (int i = 0; i < 20; i++)
     {
         if (this->mServiceFound)
         {
             LOG_INFO() << "Zone2RoaProxy Start Find Service Success\n";
-            SubscribeEvent();
-            SubscribeField();
             return true;
         }
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        std::this_thread::sleep_for(std::chrono::milliseconds(20));
     }
 
     LOG_INFO() << "(-)\n";
@@ -100,28 +98,47 @@ void Zone2RoaProxyImpl::FindServiceCallback(
 {
     LOG_INFO() << "(+)\n";
 
+    if (this->mProxy != nullptr)
+    {
+        LOG_WARNING() << "proxy exists: remove the old proxy\n";
+        this->UnsubscribeEvent();
+        this->UnsubscribeField();
+
+        this->mFindHandle = nullptr;
+        this->mProxy = nullptr;
+    }
+
     if (container.empty())
     {
         LOG_ERROR() << "container.empty() ... \n";
-        LOG_INFO() << "(-)\n";
-        return;
-    }
+        if (this->mProxy != nullptr)
+        {
+            LOG_WARNING() << "proxy exists: remove the old proxy\n";
+            this->UnsubscribeEvent();
+            this->UnsubscribeField();
 
-    for (auto& handle : container)
+            this->mFindHandle = nullptr;
+            this->mProxy = nullptr;
+        }
+    }
+    else
     {
-        LOG_ERROR() <<  "Zone2RoaProxyImpl::Find::Searched Instance::ServiceId =" <<
-                                    handle.GetServiceHandle().serviceId <<
-                                    ", InstanceId =" <<
-                                    handle.GetServiceHandle().instanceId << "\n";
+        for (auto& handle : container)
+        {
+            LOG_DEBUG() <<  "Zone2RoaProxyImpl::Find::Searched Instance::ServiceId =" <<
+                                        handle.GetServiceHandle().serviceId <<
+                                        ", InstanceId =" <<
+                                        handle.GetServiceHandle().instanceId << "\n";
+        }
+
+        this->mFindHandle = std::make_shared<ara::com::FindServiceHandle>(findHandle);
+        this->mProxy = std::make_shared<proxy::Zone2RoaProxy>(container.at(0));
+
+        LOG_INFO() << "Zone2RoaProxy Find-Service Success\n";
+        SubscribeEvent();
+        SubscribeField();
+        this->mServiceFound = true;
     }
-
-    this->mFindHandle = std::make_shared<ara::com::FindServiceHandle>(findHandle);
-    this->mProxy = std::make_shared<proxy::Zone2RoaProxy>(container.at(0));
-
-    LOG_INFO() << "Zone2RoaProxy Find-Service Success\n";
-    SubscribeEvent();
-    SubscribeField();
-    this->mServiceFound = true;
 
     LOG_INFO() << "(-)\n";
 }
@@ -151,7 +168,7 @@ bool Zone2RoaProxyImpl::getterSnsrStatus(zone2::roa::control::EcmRoaSnsrStatus& 
     }
 
     auto future = this->mProxy->zone2RoaSnsrStatus.Get();
-    auto status = future.wait_for(std::chrono::milliseconds(100));
+    auto status = future.wait_for(std::chrono::milliseconds(5000));
     if (status == ara::core::future_status::ready)
     {
         auto result = future.GetResult();
@@ -221,6 +238,22 @@ void Zone2RoaProxyImpl::SubscribeField()
     }
 
     LOG_INFO() << "(-)\n";
+}
+
+void Zone2RoaProxyImpl::UnsubscribeEvent()
+{
+    if (this->mProxy != nullptr)
+    {
+        // To Do:
+    }
+}
+
+void Zone2RoaProxyImpl::UnsubscribeField()
+{
+    if (this->mProxy != nullptr)
+    {
+        this->mProxy->zone2RoaSnsrStatus.Unsubscribe();
+    }
 }
 
 void Zone2RoaProxyImpl::cbZone2SnsrStatus()

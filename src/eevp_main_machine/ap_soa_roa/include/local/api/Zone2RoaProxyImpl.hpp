@@ -44,6 +44,10 @@ private:
     void SubscribeEvent();
     /// @brief Subscribe Field
     void SubscribeField();
+    /// @brief Unsubscribe Event
+    void UnsubscribeEvent();
+    /// @brief Unsubscribe Field
+    void UnsubscribeField();
 
     // callback func
     void cbZone2SnsrStatus();

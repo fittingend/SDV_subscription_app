@@ -2,15 +2,9 @@
 
 #include <csignal>
 #include <thread>
-
 #include <ara/log/logger.h>
 
-// #include <queue>
-// #include <mutex>
-// #include <condition_variable>
-
 #include "IRoaListener.h"
-
 #include "RoaProxyImpl.h"
 #include "RearCurtainProxyImpl.h"
 

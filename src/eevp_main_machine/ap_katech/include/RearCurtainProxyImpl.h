@@ -2,7 +2,6 @@
 #define EEVP_CONTROL_REARCURTAIN_PROXY_IMPL_H_
 
 #include <ara/log/logger.h>
-
 #include "eevp/control/soarcurtain_proxy.h"
 
 namespace eevp {

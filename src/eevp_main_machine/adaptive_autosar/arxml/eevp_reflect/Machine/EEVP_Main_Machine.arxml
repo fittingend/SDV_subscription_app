@@ -225,9 +225,19 @@
                   <NON-VERBOSE-MODE>true</NON-VERBOSE-MODE>
                 </DLT-LOG-CHANNEL>
                 <DLT-LOG-CHANNEL UUID="a455bff7-04e4-4960-8782-18f33f87006d">
-                  <SHORT-NAME>SC_PDW</SHORT-NAME>
-                  <APPLICATION-ID>PDW</APPLICATION-ID>
-                  <CONTEXT-ID>PDW</CONTEXT-ID>
+                  <SHORT-NAME>SC_PDW_FRONT</SHORT-NAME>
+                  <APPLICATION-ID>PDWF</APPLICATION-ID>
+                  <CONTEXT-ID>PDWF</CONTEXT-ID>
+                  <LOG-TRACE-DEFAULT-LOG-LEVEL>INFO</LOG-TRACE-DEFAULT-LOG-LEVEL>
+                  <LOG-TRACE-LOG-MODES>
+                    <LOG-TRACE-LOG-MODE>CONSOLE</LOG-TRACE-LOG-MODE>
+                    <LOG-TRACE-LOG-MODE>NETWORK</LOG-TRACE-LOG-MODE>
+                  </LOG-TRACE-LOG-MODES>
+                </DLT-LOG-CHANNEL>
+                <DLT-LOG-CHANNEL UUID="72b07231-d484-477b-aace-e53c7f7ecf25">
+                  <SHORT-NAME>SC_PDW_REAR</SHORT-NAME>
+                  <APPLICATION-ID>PDWR</APPLICATION-ID>
+                  <CONTEXT-ID>PDWR</CONTEXT-ID>
                   <LOG-TRACE-DEFAULT-LOG-LEVEL>INFO</LOG-TRACE-DEFAULT-LOG-LEVEL>
                   <LOG-TRACE-LOG-MODES>
                     <LOG-TRACE-LOG-MODE>CONSOLE</LOG-TRACE-LOG-MODE>
@@ -308,6 +318,16 @@
                   <SHORT-NAME>SOA_Wiper</SHORT-NAME>
                   <APPLICATION-ID>SWIP</APPLICATION-ID>
                   <CONTEXT-ID>SWIP</CONTEXT-ID>
+                  <LOG-TRACE-DEFAULT-LOG-LEVEL>INFO</LOG-TRACE-DEFAULT-LOG-LEVEL>
+                  <LOG-TRACE-LOG-MODES>
+                    <LOG-TRACE-LOG-MODE>CONSOLE</LOG-TRACE-LOG-MODE>
+                    <LOG-TRACE-LOG-MODE>NETWORK</LOG-TRACE-LOG-MODE>
+                  </LOG-TRACE-LOG-MODES>
+                </DLT-LOG-CHANNEL>
+                <DLT-LOG-CHANNEL UUID="72a0f413-41e5-44dd-8ba8-ec8573703017">
+                  <SHORT-NAME>ServiceCreator</SHORT-NAME>
+                  <APPLICATION-ID>SVCC</APPLICATION-ID>
+                  <CONTEXT-ID>SVCC</CONTEXT-ID>
                   <LOG-TRACE-DEFAULT-LOG-LEVEL>INFO</LOG-TRACE-DEFAULT-LOG-LEVEL>
                   <LOG-TRACE-LOG-MODES>
                     <LOG-TRACE-LOG-MODE>CONSOLE</LOG-TRACE-LOG-MODE>
@@ -514,9 +534,14 @@
                   <PROCESS-REF DEST="PROCESS">/Application/Process/PHM</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>
                 <PROCESS-TO-MACHINE-MAPPING UUID="2e9d6c4e-d454-40be-b302-286e5ef25b4e">
-                  <SHORT-NAME>ProcessToMachineMapping_SC_PDW_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
+                  <SHORT-NAME>ProcessToMachineMapping_SC_PDW_FRONT_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
-                  <PROCESS-REF DEST="PROCESS">/Application/Process/SC_PDW</PROCESS-REF>
+                  <PROCESS-REF DEST="PROCESS">/Application/Process/SC_PDW_FRONT</PROCESS-REF>
+                </PROCESS-TO-MACHINE-MAPPING>
+                <PROCESS-TO-MACHINE-MAPPING UUID="29ecd981-5e32-4c5d-af89-9037828fb6f1">
+                  <SHORT-NAME>ProcessToMachineMapping_SC_PDW_REAR_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
+                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
+                  <PROCESS-REF DEST="PROCESS">/Application/Process/SC_PDW_REAR</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>
                 <PROCESS-TO-MACHINE-MAPPING UUID="58eaf27b-88ce-44c1-8206-b20386e4517d">
                   <SHORT-NAME>ProcessToMachineMapping_SM_TO_EEVP_Machine_TO_UnknownModule</SHORT-NAME>
@@ -558,6 +583,11 @@
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
                   <PROCESS-REF DEST="PROCESS">/Application/Process/SOA_Wiper</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>
+                <PROCESS-TO-MACHINE-MAPPING UUID="bbb3020f-d5b4-4c35-85ff-1090165e1bd2">
+                  <SHORT-NAME>ProcessToMachineMapping_ServiceCreator_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
+                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
+                  <PROCESS-REF DEST="PROCESS">/Application/Process/ServiceCreator</PROCESS-REF>
+                </PROCESS-TO-MACHINE-MAPPING>
                 <PROCESS-TO-MACHINE-MAPPING UUID="e6028cee-902f-42b0-a691-a7009e57b5e2">
                   <SHORT-NAME>ProcessToMachineMapping_SubscriptionManager_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
@@ -574,7 +604,7 @@
                   <PROCESS-REF DEST="PROCESS">/Application/Process/VDI</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>
                 <PROCESS-TO-MACHINE-MAPPING UUID="ebc41e70-9d2b-4076-8c3c-14baf639800c">
-                  <SHORT-NAME>ProcessToMachineMapping_VUCM_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
+                  <SHORT-NAME>ProcessToMachineMapping_VUCM_TO_EEVP_Machine_TO_UnknownModule</SHORT-NAME>
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
                   <PROCESS-REF DEST="PROCESS">/Application/Process/VUCM</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>

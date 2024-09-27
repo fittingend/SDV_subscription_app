@@ -1,4 +1,0 @@
-/tmp/para-root/opt/KATECH/etc/exec/KATECH.json
-/tmp/para-root/opt/KATECH/etc/interface/KATECH/AA/RPortRoa.json
-/tmp/para-root/opt/KATECH/etc/interface/KATECH/AA/PPortRearCurtain.json
-/tmp/para-root/opt/KATECH/bin/KATECH

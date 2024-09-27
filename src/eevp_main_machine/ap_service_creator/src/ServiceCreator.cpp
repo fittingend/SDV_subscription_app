@@ -62,6 +62,7 @@ namespace eevp
 
             memset(&serv_adr, 0, sizeof(serv_adr));
             serv_adr.sin_family = AF_INET;
+            // ip 및 port 입력
             serv_adr.sin_addr.s_addr = inet_addr("192.168.100.242");
             serv_adr.sin_port = htons(5000);
 
@@ -71,19 +72,22 @@ namespace eevp
             else
                 mLogger.LogInfo() << "Connected...........";
 
-            // 사용자가 q를 입력할 때까지 반복
-            for (int i = 0; ; i++)
+            // 소켓 read 루프 => read 후 다른 서비스로 스켈레톤을 통해 전송 구현 필요
+            for (int i = 0;; i++)
             {
-                std::string str = "hello" + std::to_string(i);
-                strcpy(message, str.c_str());
-
-                // 콘솔창에 출력하는 함수
+                // std::string str = "hello" + std::to_string(i);
+                // strcpy(message, str.c_str());
                 str_len = read(sock, message, BUF_SIZE - 1);
-                mLogger.LogInfo() << message;
+                if (str_len==-1)
+                {
+                    mLogger.LogInfo() << "Connect is broken";
+                    break;
+                }
                 write(sock, message, strlen(message));
                 message[str_len] = 0;
+                mLogger.LogInfo() << strlen;
                 mLogger.LogInfo() << "Message from server and send: " << message;
-                std::this_thread::sleep_for(std::chrono::seconds(2));
+                // json 형식 파싱 예정
             }
             close(sock);
             /*소켓 코드 완료*/

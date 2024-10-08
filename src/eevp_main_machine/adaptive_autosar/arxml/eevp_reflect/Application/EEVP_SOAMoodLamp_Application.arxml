@@ -70,6 +70,7 @@
                       </CONTAINED-AR-ELEMENT-REFS>
                       <CONTAINED-PACKAGE-ELEMENT-REFS>
                         <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_MoodLamp_AA_PPort_SOA_MoodLamp</CONTAINED-PACKAGE-ELEMENT-REF>
+                        <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_MoodLamp_AA_RPort_Zone1Mlm</CONTAINED-PACKAGE-ELEMENT-REF>
                       </CONTAINED-PACKAGE-ELEMENT-REFS>
                       <CONTAINED-PROCESS-REFS>
                         <CONTAINED-PROCESS-REF DEST="PROCESS">/Application/Process/SOA_MoodLamp</CONTAINED-PROCESS-REF>
@@ -91,6 +92,7 @@
                       </CONTAINED-AR-ELEMENT-REFS>
                       <CONTAINED-PACKAGE-ELEMENT-REFS>
                         <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_MoodLamp_AA_PPort_SOA_MoodLamp</CONTAINED-PACKAGE-ELEMENT-REF>
+                        <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_MoodLamp_AA_RPort_Zone1Mlm</CONTAINED-PACKAGE-ELEMENT-REF>
                       </CONTAINED-PACKAGE-ELEMENT-REFS>
                       <CONTAINED-PROCESS-REFS>
                         <CONTAINED-PROCESS-REF DEST="PROCESS">/Application/Process/SOA_MoodLamp</CONTAINED-PROCESS-REF>
@@ -242,7 +244,7 @@
                       </UCMS>
                     </VEHICLE-PACKAGE>
                     <VEHICLE-PACKAGE UUID="b4245052-cd02-4315-a80e-bba9e63e3b09">
-                      <SHORT-NAME>SOA_MoodLamp_RemoveVehiclePackage_1_0_1</SHORT-NAME>
+                      <SHORT-NAME>SOA_MoodLamp_RemoveVehiclePackage_1_0_2</SHORT-NAME>
                       <PACKAGER-SIGNATURE-REF DEST="CRYPTO-SERVICE-CERTIFICATE">/System/CryptoService/ParaCertificate</PACKAGER-SIGNATURE-REF>
                       <ROLLOUT-QUALIFICATIONS>
                         <VEHICLE-ROLLOUT-STEP UUID="28b6380e-f218-4acd-81f3-1bea5bde10ff">
@@ -264,7 +266,7 @@
                                   </TRANSFERS>
                                 </SOFTWARE-PACKAGE-STEP>
                               </SOFTWARE-PACKAGE-STEPS>
-                              <UCM-REF DEST="UCM-DESCRIPTION">/Application/Package/SOA_MoodLamp/VehiclePackage/SOA_MoodLamp_RemoveVehiclePackage_1_0_1/EEVP_UCM</UCM-REF>
+                              <UCM-REF DEST="UCM-DESCRIPTION">/Application/Package/SOA_MoodLamp/VehiclePackage/SOA_MoodLamp_RemoveVehiclePackage_1_0_2/EEVP_UCM</UCM-REF>
                             </UCM-STEP>
                           </UCM-PROCESSINGS>
                         </VEHICLE-ROLLOUT-STEP>
@@ -333,6 +335,10 @@
                     <FUNCTION-GROUP-STATE-IREF>
                       <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Machine/FunctionGroup/EEVP_Main_FunctionGroup/SC</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
                       <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/StateMachine/SCState/On</TARGET-MODE-DECLARATION-REF>
+                    </FUNCTION-GROUP-STATE-IREF>
+                    <FUNCTION-GROUP-STATE-IREF>
+                      <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Machine/FunctionGroup/EEVP_Main_FunctionGroup/SC</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                      <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/StateMachine/SCState/Verify</TARGET-MODE-DECLARATION-REF>
                     </FUNCTION-GROUP-STATE-IREF>
                   </FUNCTION-GROUP-STATE-IREFS>
                   <RESOURCE-GROUP-REF DEST="RESOURCE-GROUP">/Machine/EEVP_Main_Machine/POSIX/DefaultResourceGroup</RESOURCE-GROUP-REF>

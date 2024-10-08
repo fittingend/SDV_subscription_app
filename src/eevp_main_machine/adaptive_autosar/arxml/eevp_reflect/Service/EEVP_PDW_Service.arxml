@@ -21,6 +21,23 @@
                   <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                 </SOMEIP-EVENT-DEPLOYMENT>
               </EVENT-DEPLOYMENTS>
+              <FIELD-DEPLOYMENTS>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="5645e36f-937b-4e91-9bfc-64ecbfd1d5d2">
+                  <SHORT-NAME>UssStatus</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/Main_PDW_Service/UssStatus</FIELD-REF>
+                  <GET UUID="30529335-3073-4774-a25d-3f0d52226afb">
+                    <SHORT-NAME>Getter</SHORT-NAME>
+                    <METHOD-ID>257</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="73b60d1a-2c9d-4351-944f-21778cc7359e">
+                    <SHORT-NAME>Notifier</SHORT-NAME>
+                    <EVENT-ID>257</EVENT-ID>
+                    <SERIALIZER>SOMEIP</SERIALIZER>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+              </FIELD-DEPLOYMENTS>
               <SERVICE-INTERFACE-REF DEST="SERVICE-INTERFACE">/ServiceInterface/Main_PDW_Service</SERVICE-INTERFACE-REF>
               <EVENT-GROUPS>
                 <SOMEIP-EVENT-GROUP UUID="4a952363-0770-417e-8098-8fa54ad0772f">
@@ -28,6 +45,13 @@
                   <EVENT-GROUP-ID>1</EVENT-GROUP-ID>
                   <EVENT-REFS>
                     <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/Main_PDW_Service/DistanceLevel</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+                <SOMEIP-EVENT-GROUP UUID="1b8e9fd6-7005-4cc1-8543-4e290d77e722">
+                  <SHORT-NAME>Eventgroup_UssStatus</SHORT-NAME>
+                  <EVENT-GROUP-ID>2</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/Main_PDW_Service/UssStatus/Notifier</EVENT-REF>
                   </EVENT-REFS>
                 </SOMEIP-EVENT-GROUP>
               </EVENT-GROUPS>
@@ -206,6 +230,11 @@
                       <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
                       <SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-SERVER-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdPublishConfig</SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF>
                     </SOMEIP-PROVIDED-EVENT-GROUP>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="c99f8d8e-4eb8-49d7-a526-361ec317c159">
+                      <SHORT-NAME>Eventgroup_UssStatus</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/Main_PDW_Service/Eventgroup_UssStatus</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
                   </PROVIDED-EVENT-GROUPS>
                   <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/DefaultSdServerConfig</SD-SERVER-CONFIG-REF>
                   <SERVICE-INSTANCE-ID>1</SERVICE-INSTANCE-ID>
@@ -224,6 +253,11 @@
                       <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/Main_PDW_Service/Eventgroup_DistanceLevel</EVENT-GROUP-REF>
                       <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
                       <SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-SERVER-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdPublishConfig</SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="a7572810-4f3f-41fa-8f18-116892faad2c">
+                      <SHORT-NAME>Eventgroup_UssStatus</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/Main_PDW_Service/Eventgroup_UssStatus</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
                     </SOMEIP-PROVIDED-EVENT-GROUP>
                   </PROVIDED-EVENT-GROUPS>
                   <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/DefaultSdServerConfig</SD-SERVER-CONFIG-REF>
@@ -262,6 +296,15 @@
               <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/DistanceLevel</TYPE-TREF>
             </VARIABLE-DATA-PROTOTYPE>
           </EVENTS>
+          <FIELDS>
+            <FIELD UUID="c0b9a523-e0b5-4434-b09d-a41abca8905c">
+              <SHORT-NAME>UssStatus</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/UssStatus</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+          </FIELDS>
         </SERVICE-INTERFACE>
       </ELEMENTS>
       <AR-PACKAGES>

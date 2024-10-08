@@ -155,27 +155,6 @@
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/MonitoringManagement/requestControllerServiceInfo</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                     <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/MonitoringManagement/requestControllerServiceInfoAll</METHOD-REF>
-                    </SOMEIP-METHOD-PROPS>
-                    <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/MonitoringManagement/requestControllerServiceInfoAllSpare</METHOD-REF>
-                    </SOMEIP-METHOD-PROPS>
-                    <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/MonitoringManagement/requestControllerServiceStatus</METHOD-REF>
-                    </SOMEIP-METHOD-PROPS>
-                    <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/MonitoringManagement/requestControllerServiceStatusAll</METHOD-REF>
-                    </SOMEIP-METHOD-PROPS>
-                    <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/MonitoringManagement/requestControllerServiceStatusAllSpare</METHOD-REF>
-                    </SOMEIP-METHOD-PROPS>
-                    <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/MonitoringManagement/setControlControllerService</METHOD-REF>
-                    </SOMEIP-METHOD-PROPS>
-                    <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/MonitoringManagement/setEnableControllerService</METHOD-REF>
-                    </SOMEIP-METHOD-PROPS>
-                    <SOMEIP-METHOD-PROPS>
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/MonitoringManagement/resetUcmTest</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                   </METHOD-REQUEST-PROPSS>
@@ -263,7 +242,7 @@
           <EVENTS>
             <VARIABLE-DATA-PROTOTYPE UUID="5e26b27b-55f9-42cd-98d5-10c1d09314fa">
               <SHORT-NAME>NotifySystemState</SHORT-NAME>
-              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/State</TYPE-TREF>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/IviState</TYPE-TREF>
             </VARIABLE-DATA-PROTOTYPE>
           </EVENTS>
           <FIELDS>
@@ -276,7 +255,7 @@
             </FIELD>
             <FIELD UUID="b97b3a3f-7de8-4cba-9c3d-83ec343ff448">
               <SHORT-NAME>SystemState</SHORT-NAME>
-              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/State</TYPE-TREF>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/IviState</TYPE-TREF>
               <HAS-GETTER>true</HAS-GETTER>
               <HAS-NOTIFIER>true</HAS-NOTIFIER>
               <HAS-SETTER>false</HAS-SETTER>

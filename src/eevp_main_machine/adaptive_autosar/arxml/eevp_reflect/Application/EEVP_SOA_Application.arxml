@@ -14,8 +14,10 @@
                   <SHORT-NAME>SOA</SHORT-NAME>
                   <SCHEDULING-POLICY>SCHED_OTHER</SCHEDULING-POLICY>
                   <SCHEDULING-PRIORITY>0</SCHEDULING-PRIORITY>
-                  <TERMINATION-BEHAVIOR>PROCESS-IS-SELF-TERMINATING</TERMINATION-BEHAVIOR>
-                  <TIMEOUT/>
+                  <TIMEOUT>
+                    <ENTER-TIMEOUT-VALUE>30.0</ENTER-TIMEOUT-VALUE>
+                    <EXIT-TIMEOUT-VALUE>3.0</EXIT-TIMEOUT-VALUE>
+                  </TIMEOUT>
                 </STARTUP-CONFIG>
               </STARTUP-CONFIGS>
             </STARTUP-CONFIG-SET>

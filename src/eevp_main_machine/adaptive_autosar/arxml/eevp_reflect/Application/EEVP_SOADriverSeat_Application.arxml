@@ -49,7 +49,7 @@
                 <TARGET-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Application/SwComponent/SOA_DriverSeat/RPort_Zone1DrvSeat</TARGET-PORT-PROTOTYPE-REF>
               </PORT-PROTOTYPE-IREF>
               <PROCESS-REF DEST="PROCESS">/Application/Process/SOA_DriverSeat</PROCESS-REF>
-              <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/Consumer_SoaDriverSeat</SERVICE-INSTANCE-REF>
+              <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/Consumer_Zone1DrvSeat</SERVICE-INSTANCE-REF>
             </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
           </ELEMENTS>
         </AR-PACKAGE>
@@ -70,6 +70,7 @@
                       </CONTAINED-AR-ELEMENT-REFS>
                       <CONTAINED-PACKAGE-ELEMENT-REFS>
                         <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_DriverSeat_AA_PPort_SOA_DriverSeat</CONTAINED-PACKAGE-ELEMENT-REF>
+                        <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_DriverSeat_AA_RPort_Zone1DrvSeat</CONTAINED-PACKAGE-ELEMENT-REF>
                       </CONTAINED-PACKAGE-ELEMENT-REFS>
                       <CONTAINED-PROCESS-REFS>
                         <CONTAINED-PROCESS-REF DEST="PROCESS">/Application/Process/SOA_DriverSeat</CONTAINED-PROCESS-REF>
@@ -91,6 +92,7 @@
                       </CONTAINED-AR-ELEMENT-REFS>
                       <CONTAINED-PACKAGE-ELEMENT-REFS>
                         <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_DriverSeat_AA_PPort_SOA_DriverSeat</CONTAINED-PACKAGE-ELEMENT-REF>
+                        <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_DriverSeat_AA_RPort_Zone1DrvSeat</CONTAINED-PACKAGE-ELEMENT-REF>
                       </CONTAINED-PACKAGE-ELEMENT-REFS>
                       <CONTAINED-PROCESS-REFS>
                         <CONTAINED-PROCESS-REF DEST="PROCESS">/Application/Process/SOA_DriverSeat</CONTAINED-PROCESS-REF>
@@ -242,7 +244,7 @@
                       </UCMS>
                     </VEHICLE-PACKAGE>
                     <VEHICLE-PACKAGE UUID="0ab187b8-af5a-4d45-b8fd-70d17dfc5c17">
-                      <SHORT-NAME>SOA_DriverSeat_RemoveVehiclePackage_1_0_1</SHORT-NAME>
+                      <SHORT-NAME>SOA_DriverSeat_RemoveVehiclePackage_1_0_2</SHORT-NAME>
                       <PACKAGER-SIGNATURE-REF DEST="CRYPTO-SERVICE-CERTIFICATE">/System/CryptoService/ParaCertificate</PACKAGER-SIGNATURE-REF>
                       <ROLLOUT-QUALIFICATIONS>
                         <VEHICLE-ROLLOUT-STEP UUID="6ed9db72-7b10-401f-842a-615cc5ac1b8f">
@@ -264,7 +266,7 @@
                                   </TRANSFERS>
                                 </SOFTWARE-PACKAGE-STEP>
                               </SOFTWARE-PACKAGE-STEPS>
-                              <UCM-REF DEST="UCM-DESCRIPTION">/Application/Package/SOA_DriverSeat/VehiclePackage/SOA_DriverSeat_RemoveVehiclePackage_1_0_1/EEVP_UCM</UCM-REF>
+                              <UCM-REF DEST="UCM-DESCRIPTION">/Application/Package/SOA_DriverSeat/VehiclePackage/SOA_DriverSeat_RemoveVehiclePackage_1_0_2/EEVP_UCM</UCM-REF>
                             </UCM-STEP>
                           </UCM-PROCESSINGS>
                         </VEHICLE-ROLLOUT-STEP>
@@ -333,6 +335,10 @@
                     <FUNCTION-GROUP-STATE-IREF>
                       <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Machine/FunctionGroup/EEVP_Main_FunctionGroup/SC</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
                       <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/StateMachine/SCState/On</TARGET-MODE-DECLARATION-REF>
+                    </FUNCTION-GROUP-STATE-IREF>
+                    <FUNCTION-GROUP-STATE-IREF>
+                      <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Machine/FunctionGroup/EEVP_Main_FunctionGroup/SC</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                      <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/StateMachine/SCState/Verify</TARGET-MODE-DECLARATION-REF>
                     </FUNCTION-GROUP-STATE-IREF>
                   </FUNCTION-GROUP-STATE-IREFS>
                   <RESOURCE-GROUP-REF DEST="RESOURCE-GROUP">/Machine/EEVP_Main_Machine/POSIX/DefaultResourceGroup</RESOURCE-GROUP-REF>

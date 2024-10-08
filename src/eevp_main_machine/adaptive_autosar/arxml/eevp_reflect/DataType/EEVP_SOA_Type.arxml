@@ -738,12 +738,6 @@
                     <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
                   </TYPE-REFERENCE>
                 </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="2ea294d7-d369-4749-95f4-33d4073c3369">
-                  <SHORT-NAME>moodMode</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SoaMlmMoodMode</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
                 <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="1a075dfa-2add-4e28-ac92-15b48380908c">
                   <SHORT-NAME>brightness</SHORT-NAME>
                   <TYPE-REFERENCE>
@@ -1521,36 +1515,36 @@
               <COMPU-INTERNAL-TO-PHYS>
                 <COMPU-SCALES>
                   <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>kCARE_MOOD</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
                     <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
                     <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
                     <COMPU-CONST>
-                      <VT>kCARE_MOOD</VT>
+                      <VT>kCOMPORT_MOOD</VT>
                     </COMPU-CONST>
                   </COMPU-SCALE>
                   <COMPU-SCALE>
                     <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
                     <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
                     <COMPU-CONST>
-                      <VT>kCOMPORT_MOOD</VT>
+                      <VT>kDELIGHT_MOOD</VT>
                     </COMPU-CONST>
                   </COMPU-SCALE>
                   <COMPU-SCALE>
                     <LOWER-LIMIT INTERVAL-TYPE="CLOSED">3</LOWER-LIMIT>
                     <UPPER-LIMIT INTERVAL-TYPE="CLOSED">3</UPPER-LIMIT>
                     <COMPU-CONST>
-                      <VT>kDELIGHT_MOOD</VT>
+                      <VT>kMOOD_THERAPHY</VT>
                     </COMPU-CONST>
                   </COMPU-SCALE>
                   <COMPU-SCALE>
                     <LOWER-LIMIT INTERVAL-TYPE="CLOSED">4</LOWER-LIMIT>
                     <UPPER-LIMIT INTERVAL-TYPE="CLOSED">4</UPPER-LIMIT>
-                    <COMPU-CONST>
-                      <VT>kMOOD_THERAPHY</VT>
-                    </COMPU-CONST>
-                  </COMPU-SCALE>
-                  <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">5</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">5</UPPER-LIMIT>
                     <COMPU-CONST>
                       <VT>kVITALITY_MOOD</VT>
                     </COMPU-CONST>
@@ -1564,22 +1558,22 @@
               <COMPU-INTERNAL-TO-PHYS>
                 <COMPU-SCALES>
                   <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
                     <COMPU-CONST>
                       <VT>kON</VT>
                     </COMPU-CONST>
                   </COMPU-SCALE>
                   <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
                     <COMPU-CONST>
                       <VT>kOFF</VT>
                     </COMPU-CONST>
                   </COMPU-SCALE>
                   <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">3</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">3</UPPER-LIMIT>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
                     <COMPU-CONST>
                       <VT>kERROR</VT>
                     </COMPU-CONST>
@@ -1593,22 +1587,22 @@
               <COMPU-INTERNAL-TO-PHYS>
                 <COMPU-SCALES>
                   <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
                     <COMPU-CONST>
                       <VT>kSTOP</VT>
                     </COMPU-CONST>
                   </COMPU-SCALE>
                   <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
                     <COMPU-CONST>
                       <VT>kUP</VT>
                     </COMPU-CONST>
                   </COMPU-SCALE>
                   <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">3</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">3</UPPER-LIMIT>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
                     <COMPU-CONST>
                       <VT>kDOWN</VT>
                     </COMPU-CONST>
@@ -1622,36 +1616,36 @@
               <COMPU-INTERNAL-TO-PHYS>
                 <COMPU-SCALES>
                   <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>kFULLY_UP</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
                     <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
                     <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
                     <COMPU-CONST>
-                      <VT>kFULLY_UP</VT>
+                      <VT>kFULLY_DOWN</VT>
                     </COMPU-CONST>
                   </COMPU-SCALE>
                   <COMPU-SCALE>
                     <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
                     <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
                     <COMPU-CONST>
-                      <VT>kFULLY_DOWN</VT>
+                      <VT>kPARTLY_OPENED</VT>
                     </COMPU-CONST>
                   </COMPU-SCALE>
                   <COMPU-SCALE>
                     <LOWER-LIMIT INTERVAL-TYPE="CLOSED">3</LOWER-LIMIT>
                     <UPPER-LIMIT INTERVAL-TYPE="CLOSED">3</UPPER-LIMIT>
                     <COMPU-CONST>
-                      <VT>kPARTLY_OPENED</VT>
+                      <VT>kMOVING_UP</VT>
                     </COMPU-CONST>
                   </COMPU-SCALE>
                   <COMPU-SCALE>
                     <LOWER-LIMIT INTERVAL-TYPE="CLOSED">4</LOWER-LIMIT>
                     <UPPER-LIMIT INTERVAL-TYPE="CLOSED">4</UPPER-LIMIT>
-                    <COMPU-CONST>
-                      <VT>kMOVING_UP</VT>
-                    </COMPU-CONST>
-                  </COMPU-SCALE>
-                  <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">5</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">5</UPPER-LIMIT>
                     <COMPU-CONST>
                       <VT>kMOVING_DOWN</VT>
                     </COMPU-CONST>
@@ -1914,56 +1908,28 @@
                     <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
                     <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
                     <COMPU-CONST>
-                      <VT>kMIST</VT>
+                      <VT>kINT1</VT>
                     </COMPU-CONST>
                   </COMPU-SCALE>
                   <COMPU-SCALE>
                     <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
                     <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
                     <COMPU-CONST>
-                      <VT>kLOW</VT>
+                      <VT>kINT2</VT>
                     </COMPU-CONST>
                   </COMPU-SCALE>
                   <COMPU-SCALE>
                     <LOWER-LIMIT INTERVAL-TYPE="CLOSED">3</LOWER-LIMIT>
                     <UPPER-LIMIT INTERVAL-TYPE="CLOSED">3</UPPER-LIMIT>
                     <COMPU-CONST>
-                      <VT>kHIGH</VT>
+                      <VT>kINT3</VT>
                     </COMPU-CONST>
                   </COMPU-SCALE>
                   <COMPU-SCALE>
                     <LOWER-LIMIT INTERVAL-TYPE="CLOSED">4</LOWER-LIMIT>
                     <UPPER-LIMIT INTERVAL-TYPE="CLOSED">4</UPPER-LIMIT>
                     <COMPU-CONST>
-                      <VT>kINT1</VT>
-                    </COMPU-CONST>
-                  </COMPU-SCALE>
-                  <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">5</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">5</UPPER-LIMIT>
-                    <COMPU-CONST>
-                      <VT>kINT2</VT>
-                    </COMPU-CONST>
-                  </COMPU-SCALE>
-                  <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">6</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">6</UPPER-LIMIT>
-                    <COMPU-CONST>
-                      <VT>kINT3</VT>
-                    </COMPU-CONST>
-                  </COMPU-SCALE>
-                  <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">7</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">7</UPPER-LIMIT>
-                    <COMPU-CONST>
-                      <VT>kINT4</VT>
-                    </COMPU-CONST>
-                  </COMPU-SCALE>
-                  <COMPU-SCALE>
-                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">8</LOWER-LIMIT>
-                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">8</UPPER-LIMIT>
-                    <COMPU-CONST>
-                      <VT>kINT5</VT>
+                      <VT>kON</VT>
                     </COMPU-CONST>
                   </COMPU-SCALE>
                 </COMPU-SCALES>

@@ -97,6 +97,10 @@
                       </CONTAINED-AR-ELEMENT-REFS>
                       <CONTAINED-PACKAGE-ELEMENT-REFS>
                         <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_Power_AA_PPort_SOA_Power</CONTAINED-PACKAGE-ELEMENT-REF>
+                        <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_Power_AA_RPort_Zone1RsvA</CONTAINED-PACKAGE-ELEMENT-REF>
+                        <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_Power_AA_RPort_Zone2RsvA</CONTAINED-PACKAGE-ELEMENT-REF>
+                        <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_Power_AA_RPort_Zone3RsvA</CONTAINED-PACKAGE-ELEMENT-REF>
+                        <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_Power_AA_RPort_Zone4RsvA</CONTAINED-PACKAGE-ELEMENT-REF>
                       </CONTAINED-PACKAGE-ELEMENT-REFS>
                       <CONTAINED-PROCESS-REFS>
                         <CONTAINED-PROCESS-REF DEST="PROCESS">/Application/Process/SOA_Power</CONTAINED-PROCESS-REF>
@@ -118,6 +122,10 @@
                       </CONTAINED-AR-ELEMENT-REFS>
                       <CONTAINED-PACKAGE-ELEMENT-REFS>
                         <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_Power_AA_PPort_SOA_Power</CONTAINED-PACKAGE-ELEMENT-REF>
+                        <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_Power_AA_RPort_Zone1RsvA</CONTAINED-PACKAGE-ELEMENT-REF>
+                        <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_Power_AA_RPort_Zone2RsvA</CONTAINED-PACKAGE-ELEMENT-REF>
+                        <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_Power_AA_RPort_Zone3RsvA</CONTAINED-PACKAGE-ELEMENT-REF>
+                        <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_Power_AA_RPort_Zone4RsvA</CONTAINED-PACKAGE-ELEMENT-REF>
                       </CONTAINED-PACKAGE-ELEMENT-REFS>
                       <CONTAINED-PROCESS-REFS>
                         <CONTAINED-PROCESS-REF DEST="PROCESS">/Application/Process/SOA_Power</CONTAINED-PROCESS-REF>
@@ -272,7 +280,7 @@
                       </UCMS>
                     </VEHICLE-PACKAGE>
                     <VEHICLE-PACKAGE UUID="34f4ed56-8f14-4bf8-b2cc-4dd308b8a475">
-                      <SHORT-NAME>SOA_Power_RemoveVehiclePackage_1_0_1</SHORT-NAME>
+                      <SHORT-NAME>SOA_Power_RemoveVehiclePackage_1_0_2</SHORT-NAME>
                       <PACKAGER-SIGNATURE-REF DEST="CRYPTO-SERVICE-CERTIFICATE">/System/CryptoService/ParaCertificate</PACKAGER-SIGNATURE-REF>
                       <ROLLOUT-QUALIFICATIONS>
                         <VEHICLE-ROLLOUT-STEP UUID="53b1478a-d767-4616-ad67-c6c874d36107">
@@ -294,7 +302,7 @@
                                   </TRANSFERS>
                                 </SOFTWARE-PACKAGE-STEP>
                               </SOFTWARE-PACKAGE-STEPS>
-                              <UCM-REF DEST="UCM-DESCRIPTION">/Application/Package/SOA_Power/VehiclePackage/SOA_Power_RemoveVehiclePackage_1_0_1/EEVP_UCM</UCM-REF>
+                              <UCM-REF DEST="UCM-DESCRIPTION">/Application/Package/SOA_Power/VehiclePackage/SOA_Power_RemoveVehiclePackage_1_0_2/EEVP_UCM</UCM-REF>
                             </UCM-STEP>
                           </UCM-PROCESSINGS>
                         </VEHICLE-ROLLOUT-STEP>
@@ -363,6 +371,10 @@
                     <FUNCTION-GROUP-STATE-IREF>
                       <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Machine/FunctionGroup/EEVP_Main_FunctionGroup/SC</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
                       <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/StateMachine/SCState/On</TARGET-MODE-DECLARATION-REF>
+                    </FUNCTION-GROUP-STATE-IREF>
+                    <FUNCTION-GROUP-STATE-IREF>
+                      <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Machine/FunctionGroup/EEVP_Main_FunctionGroup/SC</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                      <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/StateMachine/SCState/Verify</TARGET-MODE-DECLARATION-REF>
                     </FUNCTION-GROUP-STATE-IREF>
                   </FUNCTION-GROUP-STATE-IREFS>
                   <RESOURCE-GROUP-REF DEST="RESOURCE-GROUP">/Machine/EEVP_Main_Machine/POSIX/DefaultResourceGroup</RESOURCE-GROUP-REF>

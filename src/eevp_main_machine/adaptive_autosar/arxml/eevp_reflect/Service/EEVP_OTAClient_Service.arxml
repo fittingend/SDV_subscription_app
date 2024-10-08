@@ -25,6 +25,12 @@
                   <EVENT-ID>12</EVENT-ID>
                   <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                 </SOMEIP-EVENT-DEPLOYMENT>
+                <SOMEIP-EVENT-DEPLOYMENT UUID="d76091e4-8054-4fb8-9b69-a96ce096bfd9">
+                  <SHORT-NAME>resetUcmCompleted</SHORT-NAME>
+                  <EVENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/ServiceInterface/OtaMonitoring/resetUcmCompleted</EVENT-REF>
+                  <EVENT-ID>13</EVENT-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-EVENT-DEPLOYMENT>
               </EVENT-DEPLOYMENTS>
               <METHOD-DEPLOYMENTS>
                 <SOMEIP-METHOD-DEPLOYMENT UUID="0ed0cd25-b7bd-48e9-85a0-cfeeaf8c777a">
@@ -66,6 +72,13 @@
                   <EVENT-GROUP-ID>22</EVENT-GROUP-ID>
                   <EVENT-REFS>
                     <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/OtaMonitoring/notifyUpdatableService</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+                <SOMEIP-EVENT-GROUP UUID="e81579f7-0a50-4279-acc0-c34a8d755c39">
+                  <SHORT-NAME>Eventgroup_resetUcmCompleted</SHORT-NAME>
+                  <EVENT-GROUP-ID>23</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/OtaMonitoring/resetUcmCompleted</EVENT-REF>
                   </EVENT-REFS>
                 </SOMEIP-EVENT-GROUP>
               </EVENT-GROUPS>
@@ -295,6 +308,9 @@
                     <SOMEIP-EVENT-PROPS>
                       <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/OtaMonitoring/notifyUpdatableService</EVENT-REF>
                     </SOMEIP-EVENT-PROPS>
+                    <SOMEIP-EVENT-PROPS>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/OtaMonitoring/resetUcmCompleted</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
                   </EVENT-PROPSS>
                   <METHOD-RESPONSE-PROPSS>
                     <SOMEIP-METHOD-PROPS>
@@ -320,6 +336,12 @@
                     <SOMEIP-PROVIDED-EVENT-GROUP UUID="ef8fd5de-d842-4a4a-8263-6092fc0e2e19">
                       <SHORT-NAME>Eventgroup_notifyUpdatableService</SHORT-NAME>
                       <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/OtaMonitoring/Eventgroup_notifyUpdatableService</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
+                      <SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-SERVER-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdPublishConfig</SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="f1100857-de81-4b02-8efd-ce9542ce6f1d">
+                      <SHORT-NAME>Eventgroup_resetUcmCompleted</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/OtaMonitoring/Eventgroup_resetUcmCompleted</EVENT-GROUP-REF>
                       <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
                       <SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-SERVER-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdPublishConfig</SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF>
                     </SOMEIP-PROVIDED-EVENT-GROUP>
@@ -403,6 +425,10 @@
             <VARIABLE-DATA-PROTOTYPE UUID="514ec029-b3df-4d03-9a87-41e9b7bbbef1">
               <SHORT-NAME>notifyUpdatableService</SHORT-NAME>
               <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/UpdatableServiceInfo</TYPE-TREF>
+            </VARIABLE-DATA-PROTOTYPE>
+            <VARIABLE-DATA-PROTOTYPE UUID="cd26d35a-d9be-4fff-9c15-cdb976720623">
+              <SHORT-NAME>resetUcmCompleted</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-TREF>
             </VARIABLE-DATA-PROTOTYPE>
           </EVENTS>
           <METHODS>

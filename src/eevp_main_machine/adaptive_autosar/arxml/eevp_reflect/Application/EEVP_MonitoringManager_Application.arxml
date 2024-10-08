@@ -69,9 +69,17 @@
               <SHORT-NAME>MonitoringManager_AA_RPortPDW</SHORT-NAME>
               <PORT-PROTOTYPE-IREF>
                 <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/Application/Executable/MonitoringManager/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
-                <TARGET-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Application/SwComponent/MonitoringManager/RPortPDW</TARGET-PORT-PROTOTYPE-REF>
+                <TARGET-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Application/SwComponent/MonitoringManager/RPortPDWFront</TARGET-PORT-PROTOTYPE-REF>
               </PORT-PROTOTYPE-IREF>
-              <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_MonitoringManager_Consumer_PDW</SERVICE-INSTANCE-REF>
+              <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_MonitoringManager_Consumer_PDWFront</SERVICE-INSTANCE-REF>
+            </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="6f078c87-db45-48c5-a57d-3bf7dfb14ac2">
+              <SHORT-NAME>MonitoringManager_AA_RPortPDWRear</SHORT-NAME>
+              <PORT-PROTOTYPE-IREF>
+                <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/Application/Executable/MonitoringManager/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
+                <TARGET-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Application/SwComponent/MonitoringManager/RPortPDWRear</TARGET-PORT-PROTOTYPE-REF>
+              </PORT-PROTOTYPE-IREF>
+              <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_MonitoringManager_Consumer_PDWRear</SERVICE-INSTANCE-REF>
             </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
             <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="a35d1064-df79-442f-aba9-07372371930d">
               <SHORT-NAME>MonitoringManager_AA_RPortPower</SHORT-NAME>
@@ -158,7 +166,9 @@
                   <SHORT-NAME>MonitoringManager</SHORT-NAME>
                   <SCHEDULING-POLICY>SCHED_OTHER</SCHEDULING-POLICY>
                   <SCHEDULING-PRIORITY>0</SCHEDULING-PRIORITY>
-                  <TIMEOUT/>
+                  <TIMEOUT>
+                    <ENTER-TIMEOUT-VALUE>5.0</ENTER-TIMEOUT-VALUE>
+                  </TIMEOUT>
                 </STARTUP-CONFIG>
               </STARTUP-CONFIGS>
             </STARTUP-CONFIG-SET>
@@ -187,7 +197,11 @@
                   <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/OtaMonitoring</REQUIRED-INTERFACE-TREF>
                 </R-PORT-PROTOTYPE>
                 <R-PORT-PROTOTYPE UUID="7affc707-6786-43bf-a3e6-120a703900c8">
-                  <SHORT-NAME>RPortPDW</SHORT-NAME>
+                  <SHORT-NAME>RPortPDWFront</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/Main_PDW_Service</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="59edd0ab-e87a-4784-909c-5b6f1b5fd38c">
+                  <SHORT-NAME>RPortPDWRear</SHORT-NAME>
                   <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/Main_PDW_Service</REQUIRED-INTERFACE-TREF>
                 </R-PORT-PROTOTYPE>
                 <R-PORT-PROTOTYPE UUID="248e8794-cc43-473e-91f0-852c94e694ce">

@@ -70,6 +70,7 @@
                       </CONTAINED-AR-ELEMENT-REFS>
                       <CONTAINED-PACKAGE-ELEMENT-REFS>
                         <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_ROA_AA_PPort_SOA_ROA</CONTAINED-PACKAGE-ELEMENT-REF>
+                        <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_ROA_AA_RPort_Zone2Roa</CONTAINED-PACKAGE-ELEMENT-REF>
                       </CONTAINED-PACKAGE-ELEMENT-REFS>
                       <CONTAINED-PROCESS-REFS>
                         <CONTAINED-PROCESS-REF DEST="PROCESS">/Application/Process/SOA_ROA</CONTAINED-PROCESS-REF>
@@ -91,6 +92,7 @@
                       </CONTAINED-AR-ELEMENT-REFS>
                       <CONTAINED-PACKAGE-ELEMENT-REFS>
                         <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_ROA_AA_PPort_SOA_ROA</CONTAINED-PACKAGE-ELEMENT-REF>
+                        <CONTAINED-PACKAGE-ELEMENT-REF DEST="SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING">/Application/Manifest/SOA_ROA_AA_RPort_Zone2Roa</CONTAINED-PACKAGE-ELEMENT-REF>
                       </CONTAINED-PACKAGE-ELEMENT-REFS>
                       <CONTAINED-PROCESS-REFS>
                         <CONTAINED-PROCESS-REF DEST="PROCESS">/Application/Process/SOA_ROA</CONTAINED-PROCESS-REF>
@@ -242,7 +244,7 @@
                       </UCMS>
                     </VEHICLE-PACKAGE>
                     <VEHICLE-PACKAGE UUID="91a2c43a-058d-4503-8e6b-6a0fe38795e1">
-                      <SHORT-NAME>SOA_ROA_RemoveVehiclePackage_1_0_1</SHORT-NAME>
+                      <SHORT-NAME>SOA_ROA_RemoveVehiclePackage_1_0_2</SHORT-NAME>
                       <PACKAGER-SIGNATURE-REF DEST="CRYPTO-SERVICE-CERTIFICATE">/System/CryptoService/ParaCertificate</PACKAGER-SIGNATURE-REF>
                       <ROLLOUT-QUALIFICATIONS>
                         <VEHICLE-ROLLOUT-STEP UUID="379bae03-7fb5-444a-b3b8-859d891f6213">
@@ -264,7 +266,7 @@
                                   </TRANSFERS>
                                 </SOFTWARE-PACKAGE-STEP>
                               </SOFTWARE-PACKAGE-STEPS>
-                              <UCM-REF DEST="UCM-DESCRIPTION">/Application/Package/SOA_ROA/VehiclePackage/SOA_ROA_RemoveVehiclePackage_1_0_1/EEVP_UCM</UCM-REF>
+                              <UCM-REF DEST="UCM-DESCRIPTION">/Application/Package/SOA_ROA/VehiclePackage/SOA_ROA_RemoveVehiclePackage_1_0_2/EEVP_UCM</UCM-REF>
                             </UCM-STEP>
                           </UCM-PROCESSINGS>
                         </VEHICLE-ROLLOUT-STEP>
@@ -333,6 +335,10 @@
                     <FUNCTION-GROUP-STATE-IREF>
                       <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Machine/FunctionGroup/EEVP_Main_FunctionGroup/SC</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
                       <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/StateMachine/SCState/On</TARGET-MODE-DECLARATION-REF>
+                    </FUNCTION-GROUP-STATE-IREF>
+                    <FUNCTION-GROUP-STATE-IREF>
+                      <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Machine/FunctionGroup/EEVP_Main_FunctionGroup/SC</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                      <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/StateMachine/SCState/Verify</TARGET-MODE-DECLARATION-REF>
                     </FUNCTION-GROUP-STATE-IREF>
                   </FUNCTION-GROUP-STATE-IREFS>
                   <RESOURCE-GROUP-REF DEST="RESOURCE-GROUP">/Machine/EEVP_Main_Machine/POSIX/DefaultResourceGroup</RESOURCE-GROUP-REF>

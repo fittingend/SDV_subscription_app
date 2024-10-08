@@ -388,7 +388,9 @@
                   <SHORT-NAME>DefaultStartupConfig</SHORT-NAME>
                   <SCHEDULING-POLICY>SCHED_OTHER</SCHEDULING-POLICY>
                   <SCHEDULING-PRIORITY>0</SCHEDULING-PRIORITY>
-                  <TIMEOUT/>
+                  <TIMEOUT>
+                    <EXIT-TIMEOUT-VALUE>2.0</EXIT-TIMEOUT-VALUE>
+                  </TIMEOUT>
                 </STARTUP-CONFIG>
                 <STARTUP-CONFIG UUID="636b9dac-e6c5-4ef6-adb0-c2c5946b86c3">
                   <SHORT-NAME>PHM</SHORT-NAME>

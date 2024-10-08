@@ -8,7 +8,7 @@
           <SHORT-NAME>CppImplementationType</SHORT-NAME>
           <ELEMENTS>
             <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="bfd6ac9d-0d3d-4d1d-b867-ee800cc36a69">
-              <SHORT-NAME>ErrorReason</SHORT-NAME>
+              <SHORT-NAME>IviErrorReason</SHORT-NAME>
               <CATEGORY>TYPE_REFERENCE</CATEGORY>
               <SW-DATA-DEF-PROPS>
                 <SW-DATA-DEF-PROPS-VARIANTS>
@@ -38,7 +38,7 @@
               <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
             </STD-CPP-IMPLEMENTATION-DATA-TYPE>
             <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="0f11040b-cc65-42fc-82ad-c9ff90fb36b4">
-              <SHORT-NAME>State</SHORT-NAME>
+              <SHORT-NAME>IviState</SHORT-NAME>
               <CATEGORY>TYPE_REFERENCE</CATEGORY>
               <SW-DATA-DEF-PROPS>
                 <SW-DATA-DEF-PROPS-VARIANTS>
@@ -97,13 +97,13 @@
                 <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="34d19d54-49e0-4a9b-b875-395ed75ed586">
                   <SHORT-NAME>currentState</SHORT-NAME>
                   <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/State</TYPE-REFERENCE-REF>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/IviState</TYPE-REFERENCE-REF>
                   </TYPE-REFERENCE>
                 </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
                 <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="69286e62-37b5-4cf2-8473-0d7a7e7bac69">
                   <SHORT-NAME>errorReason</SHORT-NAME>
                   <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/ErrorReason</TYPE-REFERENCE-REF>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/IviErrorReason</TYPE-REFERENCE-REF>
                   </TYPE-REFERENCE>
                 </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
               </SUB-ELEMENTS>

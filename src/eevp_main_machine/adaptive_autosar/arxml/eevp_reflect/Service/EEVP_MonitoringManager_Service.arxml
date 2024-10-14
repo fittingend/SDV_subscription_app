@@ -1276,6 +1276,7 @@
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/MonitoringManagement/soaDrvSeatSwVersion/Get_soaDrvSeatSwVersion</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                     <SOMEIP-METHOD-PROPS>
+                      <COLLECTION-PROPS/>
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/MonitoringManagement/soaRoaDetectCount/Get_soaRoaDetectCount</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                     <SOMEIP-METHOD-PROPS>

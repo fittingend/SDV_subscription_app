@@ -7,6 +7,31 @@
         <AR-PACKAGE UUID="829f1df0-b501-401a-a1c5-ee957e229ab2">
           <SHORT-NAME>CppImplementationType</SHORT-NAME>
           <ELEMENTS>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="d9a36728-09f6-4fe8-b702-7d5f1b467520">
+              <SHORT-NAME>AppVer</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <ARRAY-SIZE>6</ARRAY-SIZE>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TEMPLATE-ARGUMENTS>
+                <CPP-TEMPLATE-ARGUMENT>
+                  <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TEMPLATE-TYPE-REF>
+                </CPP-TEMPLATE-ARGUMENT>
+              </TEMPLATE-ARGUMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
             <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="09d9083a-4d4d-4998-a1dc-a70aa5151598">
               <SHORT-NAME>BCM_ReturnCode</SHORT-NAME>
               <CATEGORY>TYPE_REFERENCE</CATEGORY>
@@ -51,6 +76,144 @@
               </NAMESPACES>
               <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
             </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="358e13aa-86b7-418a-be74-ec50e90e1080">
+              <SHORT-NAME>Brightness</SHORT-NAME>
+              <CATEGORY>TYPE_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <COMPU-METHOD-REF DEST="COMPU-METHOD">/DataType/Semantics/Brightness</COMPU-METHOD-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="b1123b66-b0da-4d13-a671-b6e84c88d07a">
+              <SHORT-NAME>ColorIndex</SHORT-NAME>
+              <CATEGORY>TYPE_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <COMPU-METHOD-REF DEST="COMPU-METHOD">/DataType/Semantics/ColorIndex</COMPU-METHOD-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="c3bfd50f-670d-43f3-a9a2-4083649cf314">
+              <SHORT-NAME>CompleteTime</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <ARRAY-SIZE>2</ARRAY-SIZE>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TEMPLATE-ARGUMENTS>
+                <CPP-TEMPLATE-ARGUMENT>
+                  <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TEMPLATE-TYPE-REF>
+                </CPP-TEMPLATE-ARGUMENT>
+              </TEMPLATE-ARGUMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="d0b76d75-5541-4bea-bfc8-11f8ffe74d7e">
+              <SHORT-NAME>Ctrl_ReturnCode</SHORT-NAME>
+              <CATEGORY>TYPE_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <COMPU-METHOD-REF DEST="COMPU-METHOD">/DataType/Semantics/Ctrl_ReturnCode</COMPU-METHOD-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="268c0027-ad89-4eac-9a92-b67a879c6d9f">
+              <SHORT-NAME>DMS_ReturnCode</SHORT-NAME>
+              <CATEGORY>TYPE_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <COMPU-METHOD-REF DEST="COMPU-METHOD">/DataType/Semantics/DMS_ReturnCode</COMPU-METHOD-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="9acf4b4e-b382-45cb-a4be-89672ffd7f91">
+              <SHORT-NAME>Date</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <ARRAY-SIZE>8</ARRAY-SIZE>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TEMPLATE-ARGUMENTS>
+                <CPP-TEMPLATE-ARGUMENT>
+                  <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TEMPLATE-TYPE-REF>
+                </CPP-TEMPLATE-ARGUMENT>
+              </TEMPLATE-ARGUMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
             <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="e79ed193-35e0-4ef0-962c-0b8c9feb5003">
               <SHORT-NAME>DirectionVeh</SHORT-NAME>
               <CATEGORY>TYPE_REFERENCE</CATEGORY>
@@ -72,6 +235,122 @@
                 </SYMBOL-PROPS>
               </NAMESPACES>
               <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="9be67f2f-143e-4c1e-8e16-a4b076de3253">
+              <SHORT-NAME>DmsStatus</SHORT-NAME>
+              <CATEGORY>TYPE_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <COMPU-METHOD-REF DEST="COMPU-METHOD">/DataType/Semantics/DmsStatus</COMPU-METHOD-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="1f13d976-2574-4d66-8af7-d6db1dcb3561">
+              <SHORT-NAME>ElapsedTime</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <ARRAY-SIZE>2</ARRAY-SIZE>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TEMPLATE-ARGUMENTS>
+                <CPP-TEMPLATE-ARGUMENT>
+                  <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TEMPLATE-TYPE-REF>
+                </CPP-TEMPLATE-ARGUMENT>
+              </TEMPLATE-ARGUMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="c14c9f2f-6b1c-44d6-980b-b389d6d5a852">
+              <SHORT-NAME>FDM_EmotionType</SHORT-NAME>
+              <CATEGORY>TYPE_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <COMPU-METHOD-REF DEST="COMPU-METHOD">/DataType/Semantics/FDM_EmotionType</COMPU-METHOD-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="815d813a-319c-465d-a527-23705a0515bf">
+              <SHORT-NAME>FDM_ReturnCode</SHORT-NAME>
+              <CATEGORY>TYPE_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <COMPU-METHOD-REF DEST="COMPU-METHOD">/DataType/Semantics/FDM_ReturnCode</COMPU-METHOD-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="012bb3da-5379-4b3f-bab4-8346b423ab62">
+              <SHORT-NAME>FinishedTime</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <ARRAY-SIZE>7</ARRAY-SIZE>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TEMPLATE-ARGUMENTS>
+                <CPP-TEMPLATE-ARGUMENT>
+                  <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TEMPLATE-TYPE-REF>
+                </CPP-TEMPLATE-ARGUMENT>
+              </TEMPLATE-ARGUMENTS>
             </STD-CPP-IMPLEMENTATION-DATA-TYPE>
             <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="ef57ffd6-586c-459d-bd7a-dc0183e9b5e8">
               <SHORT-NAME>GearStatus</SHORT-NAME>
@@ -95,6 +374,164 @@
               </NAMESPACES>
               <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
             </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="cdf2de8d-a57e-4d84-8c32-bc42de709da6">
+              <SHORT-NAME>KickdownStatus</SHORT-NAME>
+              <CATEGORY>TYPE_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <COMPU-METHOD-REF DEST="COMPU-METHOD">/DataType/Semantics/KickdownStatus</COMPU-METHOD-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="9e4dd209-4459-439e-9698-d162b59bb56c">
+              <SHORT-NAME>MAXdata</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <ARRAY-SIZE>2</ARRAY-SIZE>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TEMPLATE-ARGUMENTS>
+                <CPP-TEMPLATE-ARGUMENT>
+                  <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TEMPLATE-TYPE-REF>
+                </CPP-TEMPLATE-ARGUMENT>
+              </TEMPLATE-ARGUMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="12a88372-c485-4afb-a780-fd4ee15dc06e">
+              <SHORT-NAME>MINdata</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <ARRAY-SIZE>2</ARRAY-SIZE>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TEMPLATE-ARGUMENTS>
+                <CPP-TEMPLATE-ARGUMENT>
+                  <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TEMPLATE-TYPE-REF>
+                </CPP-TEMPLATE-ARGUMENT>
+              </TEMPLATE-ARGUMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="2457cb7c-e252-4262-af7e-9ce9837ce122">
+              <SHORT-NAME>RCdata</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <ARRAY-SIZE>20</ARRAY-SIZE>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TEMPLATE-ARGUMENTS>
+                <CPP-TEMPLATE-ARGUMENT>
+                  <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TEMPLATE-TYPE-REF>
+                </CPP-TEMPLATE-ARGUMENT>
+              </TEMPLATE-ARGUMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="59a22ddc-897f-448b-b572-870f6ec90e92">
+              <SHORT-NAME>SmartFilmStatus</SHORT-NAME>
+              <CATEGORY>TYPE_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <COMPU-METHOD-REF DEST="COMPU-METHOD">/DataType/Semantics/SmartFilmStatus</COMPU-METHOD-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="cd2534a3-9536-4374-92ef-665ec2976cfb">
+              <SHORT-NAME>SoaMlmStatus</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <SUB-ELEMENTS>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="fc06d933-26e1-4dd5-8bc5-fa0055fa5a1a">
+                  <SHORT-NAME>colorTableIndex</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="33f85614-b9a8-43b6-87b0-d65eccbb2e5e">
+                  <SHORT-NAME>brightMode</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="248ebf16-f92e-48a4-8cb5-04c844d7fef3">
+                  <SHORT-NAME>SoaDeviceIsNormal</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/int8_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
             <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="fffc50e1-2050-4e34-9089-9fb2c62b0e8d">
               <SHORT-NAME>SwitchStatus</SHORT-NAME>
               <CATEGORY>TYPE_REFERENCE</CATEGORY>
@@ -116,6 +553,482 @@
                 </SYMBOL-PROPS>
               </NAMESPACES>
               <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="3f87c5c4-e890-40b7-bb22-fd7e554f696a">
+              <SHORT-NAME>TMS_EnvZone</SHORT-NAME>
+              <CATEGORY>TYPE_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <COMPU-METHOD-REF DEST="COMPU-METHOD">/DataType/Semantics/TMS_EnvZone</COMPU-METHOD-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="d6582593-9dd3-4590-8d9f-eca240b8ff1b">
+              <SHORT-NAME>TMS_EnvZoneHumidityAry</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <ARRAY-SIZE>2</ARRAY-SIZE>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TEMPLATE-ARGUMENTS>
+                <CPP-TEMPLATE-ARGUMENT>
+                  <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/TMS_EnvZoneHumiditySt</TEMPLATE-TYPE-REF>
+                </CPP-TEMPLATE-ARGUMENT>
+              </TEMPLATE-ARGUMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="502ac841-7f40-4a66-82e1-92b7fb3915f0">
+              <SHORT-NAME>TMS_EnvZoneHumiditySt</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <SUB-ELEMENTS>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="6e737e9f-fc24-4756-9552-a71aa71c309f">
+                  <SHORT-NAME>zoneId</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/TMS_EnvZone</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="30170216-3bd2-4960-9c80-9ca71cd84c1b">
+                  <SHORT-NAME>humidity</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="e07ae8d3-1115-4c09-8bc3-292b216ec083">
+              <SHORT-NAME>TMS_EnvZoneLightIntensityAry</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <ARRAY-SIZE>2</ARRAY-SIZE>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TEMPLATE-ARGUMENTS>
+                <CPP-TEMPLATE-ARGUMENT>
+                  <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/TMS_EnvZoneLightIntensitySt</TEMPLATE-TYPE-REF>
+                </CPP-TEMPLATE-ARGUMENT>
+              </TEMPLATE-ARGUMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="346ccf1a-51b4-4714-8f87-37b0850a1a66">
+              <SHORT-NAME>TMS_EnvZoneLightIntensitySt</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <SUB-ELEMENTS>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="76a7fe93-d77b-4ae2-a17e-3e3f4e55f5b3">
+                  <SHORT-NAME>zoneId</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/TMS_EnvZone</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="9527eb67-7933-4f46-be5a-78978d79246e">
+                  <SHORT-NAME>lightIntensity</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="0b162a73-f0ca-4977-a6ce-52a1520d59bc">
+              <SHORT-NAME>TMS_EnvZoneTempAry</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <ARRAY-SIZE>2</ARRAY-SIZE>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TEMPLATE-ARGUMENTS>
+                <CPP-TEMPLATE-ARGUMENT>
+                  <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/TMS_EnvZoneTempSt</TEMPLATE-TYPE-REF>
+                </CPP-TEMPLATE-ARGUMENT>
+              </TEMPLATE-ARGUMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="cd4013e7-5817-455a-b466-cf93eb660a03">
+              <SHORT-NAME>TMS_EnvZoneTempSt</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <SUB-ELEMENTS>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="b96e2ac5-33d3-4311-91bc-eb837568f645">
+                  <SHORT-NAME>ZoneId</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/TMS_EnvZone</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="dab90aae-f56b-4040-982c-69d79efd9077">
+                  <SHORT-NAME>temp</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/int16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <COMPU-METHOD UUID="309b81d0-40ae-4f9a-bad1-87db38d0e7af">
+              <SHORT-NAME>TMS_FragranceType</SHORT-NAME>
+              <CATEGORY>TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>GULONG</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>OCEAN</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>APPLE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">3</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">3</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>LEMON</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">4</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">4</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>ROSE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="d460e02a-b199-4626-9722-27bd1fa1da50">
+              <SHORT-NAME>TMS_FragranceType</SHORT-NAME>
+              <CATEGORY>TYPE_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <COMPU-METHOD-REF DEST="COMPU-METHOD">/DataType/CppImplementationType/TMS_FragranceType</COMPU-METHOD-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <COMPU-METHOD UUID="027e22b3-e81e-4002-be0a-bd91b3e252ef">
+              <SHORT-NAME>TMS_ReturnCode</SHORT-NAME>
+              <CATEGORY>TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>SUCCESS</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FAILURE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="d0185d7b-b21b-44c9-a4b6-aeb1eaaa1ac9">
+              <SHORT-NAME>TMS_ReturnCode</SHORT-NAME>
+              <CATEGORY>TYPE_REFERENCE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL>
+                    <COMPU-METHOD-REF DEST="COMPU-METHOD">/DataType/CppImplementationType/TMS_ReturnCode</COMPU-METHOD-REF>
+                  </SW-DATA-DEF-PROPS-CONDITIONAL>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="eb43a113-812f-4d76-ba23-1b99d4c84923">
+              <SHORT-NAME>T_MSGINFO</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <SUB-ELEMENTS>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="c32c4fac-f110-4386-847f-52c63fc1d80f">
+                  <SHORT-NAME>tRslt</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="2c68a704-e947-4801-8bce-e4d95c3b7c4b">
+                  <SHORT-NAME>XaxisScale</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="128e145f-9ab9-460b-a768-aff3a93c8890">
+                  <SHORT-NAME>YaxisValidCnt</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="5e9f211e-f724-4b5b-99e2-5f06d2ff43d9">
+                  <SHORT-NAME>Ydata</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/Ydata</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="c0301469-4d64-491c-9a26-1821e4a47147">
+                  <SHORT-NAME>RCValidCnt</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="c3ad2db7-8936-4658-8428-4d4cbb8d019f">
+                  <SHORT-NAME>RCdata</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/RCdata</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="0ed73c5f-1550-4979-9ae1-e80bc69becf7">
+                  <SHORT-NAME>MAXdata</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/MAXdata</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="2c183508-38c0-499a-baf1-23a8aff19d5e">
+                  <SHORT-NAME>MINdata</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/MINdata</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="e26dd071-4285-43f7-9dbe-e33e398228ec">
+              <SHORT-NAME>USSSonarInfo</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <SUB-ELEMENTS>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="318092e3-9d1e-40a5-9ac0-a9b524219bc1">
+                  <SHORT-NAME>pasSonarEchoTof1</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="278ac4dd-2ea8-47a2-82db-dc3a463bf4f8">
+                  <SHORT-NAME>pasSonarEchoWidth1</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="25219bd1-eea7-4a5f-8cdb-7fcdbbb7dd83">
+                  <SHORT-NAME>pasSonarEchoPeak1</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="2bf9976f-ef1f-4cc6-8718-980fc2e34194">
+                  <SHORT-NAME>pasSonarEchoTof2</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="55ea5603-6f4e-495c-b669-a429bcca121c">
+                  <SHORT-NAME>pasSonarEchoWidth2</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="8a8bedbc-4785-4eff-bc2c-35078dd8f656">
+                  <SHORT-NAME>pasSonarEchoPeak2</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="b958ac2d-3f0d-4598-80f1-a670389f3b61">
+                  <SHORT-NAME>pasSonarEmit</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="b2d3515a-a593-4e58-b1a5-bef4734dd883">
+                  <SHORT-NAME>sonarRingingTimer</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="772ae2ff-7bf6-4cbf-84c9-f555bd323169">
+              <SHORT-NAME>VCS_Acceleration</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <SUB-ELEMENTS>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="9202abd5-2da0-4a7c-88fc-644e31e986eb">
+                  <SHORT-NAME>value</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/int16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="a595a25d-a383-46f4-9835-504951db516e">
+                  <SHORT-NAME>valid</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
             </STD-CPP-IMPLEMENTATION-DATA-TYPE>
             <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="6be8dcee-1ddc-436a-a5e5-54c421e6cf27">
               <SHORT-NAME>VCS_AccrPedal</SHORT-NAME>
@@ -146,6 +1059,87 @@
                   <SHORT-NAME>switchStatus</SHORT-NAME>
                   <TYPE-REFERENCE>
                     <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/SwitchStatus</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="4e105def-1c70-4b4c-a13e-ed9e24fcbb1b">
+                  <SHORT-NAME>position</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="627d82c5-32ce-4208-ae9d-d1648af6a9e1">
+                  <SHORT-NAME>kickdownStatus</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/KickdownStatus</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="13b2b5a0-91ea-45ab-a309-78e45997c7a5">
+                  <SHORT-NAME>faultStatus</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="c6deb4e4-67db-4df9-b849-0f223e56b1c7">
+                  <SHORT-NAME>positionRate</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/int32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="14c89107-56bd-44af-b1fb-ae60e177a300">
+              <SHORT-NAME>VCS_BrakePosn</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <SUB-ELEMENTS>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="2ec7bec3-0cf3-4c08-a17e-ef93dff29058">
+                  <SHORT-NAME>stroke</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/int16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="8508cdcc-7706-40b1-8edc-118fe1a28a7e">
+                  <SHORT-NAME>strokeValid</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="b2fe9cf5-65cb-4826-bd3f-9e0f09abc1c7">
+                  <SHORT-NAME>position</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/int16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="3212f66c-be87-4372-91ae-3853c4bf5abf">
+                  <SHORT-NAME>positionValid</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="3bb0ae04-7227-4655-87a0-8d0ec2a35e2f">
+                  <SHORT-NAME>strokeRate</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/int16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="eeab2a0b-489a-4bba-9225-cea9033d8a7c">
+                  <SHORT-NAME>strokeRateValid</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-REFERENCE-REF>
                   </TYPE-REFERENCE>
                 </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
               </SUB-ELEMENTS>
@@ -216,6 +1210,138 @@
                 </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
               </SUB-ELEMENTS>
             </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="ed950fbb-759a-4c81-b319-ae06fa05262d">
+              <SHORT-NAME>VCS_LgtBrkFTotal</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <SUB-ELEMENTS>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="4798a747-f36e-4025-81f4-0c43fa5e0ee4">
+                  <SHORT-NAME>value</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="0323e959-ab1e-456b-8637-de17ae0370bc">
+                  <SHORT-NAME>valid</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="1a61e89c-3334-437f-9ccf-c37b35a742fc">
+              <SHORT-NAME>VCS_MCPrs</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <SUB-ELEMENTS>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="f64f9382-5598-4056-b6cc-4ddc7b7961ae">
+                  <SHORT-NAME>value</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/int16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="d44957de-189a-46db-be80-e5b9c9c040e9">
+                  <SHORT-NAME>valid</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="036da554-9014-43ab-8523-3a18093a6a65">
+              <SHORT-NAME>VCS_Slope</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <SUB-ELEMENTS>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="ba4acaa8-a849-4751-b509-da93f720d85f">
+                  <SHORT-NAME>staticValue</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="a103d79c-5741-4549-b0fe-cacfe93831ed">
+                  <SHORT-NAME>staticValid</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="20d25065-f43c-413a-a093-24a4f8166a49">
+              <SHORT-NAME>VCS_TqCtrl</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <SUB-ELEMENTS>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="7afefd1b-a0bc-4038-acbf-bc573c98d018">
+                  <SHORT-NAME>value</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/int32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="8c28a8cf-f8e4-46db-a16e-94dfd6c9babb">
+                  <SHORT-NAME>valid</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
             <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="a27670b4-00c7-47d1-a202-47cdec21fac2">
               <SHORT-NAME>VCS_VehSpd</SHORT-NAME>
               <CATEGORY>STRUCTURE</CATEGORY>
@@ -266,6 +1392,454 @@
                   </TYPE-REFERENCE>
                 </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
               </SUB-ELEMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="379a3c94-ad6c-4bb7-9957-3859ca7a3794">
+              <SHORT-NAME>Ydata</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <ARRAY-SIZE>100</ARRAY-SIZE>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TEMPLATE-ARGUMENTS>
+                <CPP-TEMPLATE-ARGUMENT>
+                  <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TEMPLATE-TYPE-REF>
+                </CPP-TEMPLATE-ARGUMENT>
+              </TEMPLATE-ARGUMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="41954961-36f4-457e-8690-c2d54f2a4f75">
+              <SHORT-NAME>brightness</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <ARRAY-SIZE>15</ARRAY-SIZE>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TEMPLATE-ARGUMENTS>
+                <CPP-TEMPLATE-ARGUMENT>
+                  <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TEMPLATE-TYPE-REF>
+                </CPP-TEMPLATE-ARGUMENT>
+              </TEMPLATE-ARGUMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="cbdc7f7d-76b4-4e80-acfd-0cc6b17b944d">
+              <SHORT-NAME>color</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <ARRAY-SIZE>15</ARRAY-SIZE>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TEMPLATE-ARGUMENTS>
+                <CPP-TEMPLATE-ARGUMENT>
+                  <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TEMPLATE-TYPE-REF>
+                </CPP-TEMPLATE-ARGUMENT>
+              </TEMPLATE-ARGUMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="d0de2c2b-9d38-445c-b223-77f4aa286834">
+              <SHORT-NAME>ems_BmsInfo</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <SUB-ELEMENTS>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="0362e680-088c-407f-abdb-5b826bf1fcc5">
+                  <SHORT-NAME>InterfaceIDforDbg</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="ef7b3978-c291-452e-b802-7872cc3edf19">
+                  <SHORT-NAME>DataSerialNumber</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="57d01988-4256-4ce4-9945-261e5f492198">
+                  <SHORT-NAME>VehicleuniqueSnr</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="e56dea40-b29a-4f4e-b418-8cabd9dd1c4d">
+                  <SHORT-NAME>EMS_BatteryAvgTemperature</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="ab6ff4c2-a58f-4734-8110-a2b3e736d918">
+                  <SHORT-NAME>EMS_ChargerOutputVolt</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="d2b8bd0f-e732-41b1-9c8e-fb7b1812be29">
+                  <SHORT-NAME>EMS_ChargerOutputCurr</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="6f655943-eff2-4855-84d8-bb2e46102c2e">
+                  <SHORT-NAME>EMS_ReturnCode</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="80a3caad-50cf-494f-8051-8327d67c2fc5">
+                  <SHORT-NAME>EMS_ConnectionStatus</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="99b341d9-8e48-4e4a-bed6-1352fd765006">
+                  <SHORT-NAME>EMS_TargetVolt</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="2605c601-677b-450b-8227-c792873b9882">
+                  <SHORT-NAME>EMS_TargetCurr</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="778bc648-9689-46d6-a699-038a42bdedaa">
+                  <SHORT-NAME>EMS_RemainHour</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="757d5866-0dab-4379-8be7-af673baac5db">
+                  <SHORT-NAME>EMS_RemainMin</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="80836f2a-e14e-4c65-837b-d1a34c316c00">
+                  <SHORT-NAME>EMS_HVBattSOC</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="29ecb157-cecf-4f0c-933f-a8d8bdfe3092">
+                  <SHORT-NAME>EMS_HVBattSOE</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="3f72b5b0-38f3-419d-a555-e93dc9ec961a">
+                  <SHORT-NAME>EMS_HVBattSOH</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="59b99a10-7907-4bb1-82cb-8d6981a9adc4">
+                  <SHORT-NAME>EMS_BattVolt</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="05498202-f877-4e83-a6d5-376da9bbe168">
+                  <SHORT-NAME>EMS_BattCurr</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="194c27a0-6b52-43b1-ae6b-a0e2125479bd">
+                  <SHORT-NAME>EMS_Obc_dcVolt</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="08d48af4-9164-4f5c-b572-2c4478c0440f">
+                  <SHORT-NAME>EMS_Obc_dcCurr</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="30d661b3-f635-4444-a0ab-468fedb719f0">
+                  <SHORT-NAME>EMS_Anv_ChargeCurrSetSts</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="52c56f4c-e6f9-4a19-a4ec-ae2c5725c795">
+                  <SHORT-NAME>EMS_HvBatt_MainRlyCloseReq</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="c42a80a5-4033-4ee4-87e2-abc6c19eaea6">
+                  <SHORT-NAME>EMS_HvBatt_preChrgRlyStatus</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="6f127ac1-577b-4d2c-b64e-eb651adbdfcd">
+                  <SHORT-NAME>EMS_HvBatt_posRlyStatus</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="273485ba-5272-4dd2-8383-bda9ba34c135">
+                  <SHORT-NAME>EMS_HvBatt_negRlyStatus</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="33786a65-713f-4fc5-bf03-47bb024d63ff">
+                  <SHORT-NAME>EMS_Avn_DcChargingTartgetSetSts</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="cc4297de-d023-4995-bee1-97acbb41fc9f">
+                  <SHORT-NAME>EMS_Avn_AcChargingTartgetSetSts</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="6a5b40cb-becc-4a5a-a4a7-5a055cebff92">
+              <SHORT-NAME>ems_MsgInfo</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <SUB-ELEMENTS>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="71018f2f-c452-45c0-bf36-a5d1edf288a8">
+                  <SHORT-NAME>InterfaceIDforDbg</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="0bb41325-f3ea-4a32-a46b-e45c003fc439">
+                  <SHORT-NAME>VehicleUniqueSnr</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="dc34f606-cb4c-44ae-91f6-3d460f72dab8">
+                  <SHORT-NAME>AppVer</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/AppVer</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="59514fac-bcd6-4c21-85c4-72ca882fa31c">
+                  <SHORT-NAME>ChargeStatus</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="22acbdab-fc76-49cb-a1b5-c627cfbdf46f">
+                  <SHORT-NAME>EMS_ConnectionStatus</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="71ddab58-3bf1-49cf-8c6b-2942e1c9eb12">
+                  <SHORT-NAME>Date</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/Date</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="9f54c7fc-2d45-4ea9-97db-693299f83d72">
+                  <SHORT-NAME>BattSOC</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="dd337bc0-f220-4de6-8566-f01ef3176802">
+                  <SHORT-NAME>DTE</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="7b6ad03e-ecf7-47af-8705-2da165b1026c">
+                  <SHORT-NAME>BatteryStatus</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="069eb60c-47f3-4ef6-8160-737c567a8fc8">
+                  <SHORT-NAME>SOH</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="dbb6b862-d73d-4b8f-b8c8-298a13ac8461">
+                  <SHORT-NAME>SOE</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="741b4e94-8ade-4d2a-a0f1-dfc5c6ed8d1c">
+                  <SHORT-NAME>TargetSOC</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="ecd29fbb-21ff-4473-9fde-0fbb5480eac6">
+                  <SHORT-NAME>CompleteTime</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/CompleteTime</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="6d917483-c0b2-44b2-b8b2-5197bcce0ec6">
+                  <SHORT-NAME>FinishedTime</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/FinishedTime</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="3f85374d-dc2e-43d8-867f-652d7290d0ad">
+                  <SHORT-NAME>GetCount</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="9675bb17-b40f-415c-b320-7ca0656dc7fa">
+                  <SHORT-NAME>MissedCount</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="b7d6f12a-6007-463b-b528-849f559ca821">
+                  <SHORT-NAME>ChargeResult</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="28767599-20ff-4691-b2aa-d688e83e85b4">
+                  <SHORT-NAME>ChargedSOE</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="f23c6abd-d7e8-4834-a909-82e1286e92f8">
+                  <SHORT-NAME>ChargedSOC</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="2369bbe4-0402-4b66-b7a0-ac3984d27d50">
+                  <SHORT-NAME>Current</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/T_MSGINFO</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="fb5b9276-c5b9-4b04-bf60-2fe70875672c">
+                  <SHORT-NAME>Voltage</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/T_MSGINFO</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="3d20b1fa-60a7-43a4-998b-1884b737bd56">
+                  <SHORT-NAME>SOC</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/T_MSGINFO</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="2d3dcabe-1ccc-4183-a7b4-a5d66301c57b">
+                  <SHORT-NAME>Temp</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/T_MSGINFO</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="f9b4f509-c398-46b9-b71e-b7fe1e10f401">
+                  <SHORT-NAME>ElapsedTime</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/ElapsedTime</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="f9ee0a59-5804-44eb-9ddc-07c4bd52570c">
+                  <SHORT-NAME>ChargeStopReason</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="7971157e-1595-412b-b00d-959b8f800d8b">
+              <SHORT-NAME>lampStatus</SHORT-NAME>
+              <CATEGORY>ARRAY</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <ARRAY-SIZE>15</ARRAY-SIZE>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>simulation</SHORT-NAME>
+                  <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <TEMPLATE-ARGUMENTS>
+                <CPP-TEMPLATE-ARGUMENT>
+                  <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TEMPLATE-TYPE-REF>
+                </CPP-TEMPLATE-ARGUMENT>
+              </TEMPLATE-ARGUMENTS>
             </STD-CPP-IMPLEMENTATION-DATA-TYPE>
           </ELEMENTS>
         </AR-PACKAGE>
@@ -414,6 +1988,94 @@
                 </COMPU-SCALES>
               </COMPU-INTERNAL-TO-PHYS>
             </COMPU-METHOD>
+            <COMPU-METHOD UUID="897c9942-01b5-44f7-ab47-c2ef2b8d3d64">
+              <SHORT-NAME>Brightness</SHORT-NAME>
+              <CATEGORY>TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x9</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x9</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>START</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>END</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
+            <COMPU-METHOD UUID="3f958296-4744-4f6d-8905-cd064710ac61">
+              <SHORT-NAME>ColorIndex</SHORT-NAME>
+              <CATEGORY>TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>RED</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">3</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">3</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>BLUE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
+            <COMPU-METHOD UUID="8669693f-fdcb-4f91-92ed-10feecd084df">
+              <SHORT-NAME>Ctrl_ReturnCode</SHORT-NAME>
+              <CATEGORY>TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>SUCCESS</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FAILURE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
+            <COMPU-METHOD UUID="6c8a286e-1059-4230-92e2-b2ff92d9e939">
+              <SHORT-NAME>DMS_ReturnCode</SHORT-NAME>
+              <CATEGORY>TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>SUCCESS</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FAILURE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
             <COMPU-METHOD UUID="51c5ecd8-0286-4ddb-906c-82d65a636d54">
               <SHORT-NAME>DirectionVeh</SHORT-NAME>
               <CATEGORY>TEXTTABLE</CATEGORY>
@@ -438,6 +2100,93 @@
                     <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x02</UPPER-LIMIT>
                     <COMPU-CONST>
                       <VT>UNKNOWN</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
+            <COMPU-METHOD UUID="25f8d6d8-25c9-42d4-be1b-068b6be895c7">
+              <SHORT-NAME>DmsStatus</SHORT-NAME>
+              <CATEGORY>TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>UNACTIVATED</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>ACTIVATED</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
+            <COMPU-METHOD UUID="a0458c0b-a266-4bef-9269-fae6ea029cb5">
+              <SHORT-NAME>FDM_EmotionType</SHORT-NAME>
+              <CATEGORY>TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>EMOTION_NORMAL</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>EMOTION_ANGRY</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>EMOTION_HAPPY</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">3</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">3</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>EMOTION_SAD</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">4</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">4</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>EMOTION_DROWSY</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
+            <COMPU-METHOD UUID="eca71f57-5898-4945-ad92-83cf3b4361ce">
+              <SHORT-NAME>FDM_ReturnCode</SHORT-NAME>
+              <CATEGORY>TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>SUCCESS</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FAILURE</VT>
                     </COMPU-CONST>
                   </COMPU-SCALE>
                 </COMPU-SCALES>
@@ -486,6 +2235,50 @@
                 </COMPU-SCALES>
               </COMPU-INTERNAL-TO-PHYS>
             </COMPU-METHOD>
+            <COMPU-METHOD UUID="cc652544-f3fb-419f-99d7-884088a75e99">
+              <SHORT-NAME>KickdownStatus</SHORT-NAME>
+              <CATEGORY>TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x00</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x00</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>UNACTIVATED</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x01</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x01</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>ACTIVATED</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
+            <COMPU-METHOD UUID="89450f8a-3a03-4ee1-8aae-9c1f74142a6e">
+              <SHORT-NAME>SmartFilmStatus</SHORT-NAME>
+              <CATEGORY>TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>UNACTIVATED</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>ACTIVATED</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
             <COMPU-METHOD UUID="d15b2d94-b358-42a5-9275-903a2180320d">
               <SHORT-NAME>SwitchStatus</SHORT-NAME>
               <CATEGORY>TEXTTABLE</CATEGORY>
@@ -503,6 +2296,136 @@
                     <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x01</UPPER-LIMIT>
                     <COMPU-CONST>
                       <VT>PRESSED</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
+            <COMPU-METHOD UUID="26164ec0-3709-4a76-93a2-c761841eeb84">
+              <SHORT-NAME>TMS_AirMode</SHORT-NAME>
+              <CATEGORY>TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FACE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FACE_FOOT</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FOOT</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">3</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">3</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FOOT_DEFROST</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">4</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">4</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>DEFROST</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">5</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">5</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FACE_DEFROST</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">6</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">6</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>FACE_FOOT_WINDOW</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
+            <COMPU-METHOD UUID="4de231d2-66f7-426e-a359-e1508a90653f">
+              <SHORT-NAME>TMS_CyclingMode</SHORT-NAME>
+              <CATEGORY>TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>INTERIOR_CYCLE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>EXTERIOR_CYCLE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>AUTO_CYCLE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
+            <COMPU-METHOD UUID="ecf91225-3d1d-4297-aad4-6b1a545455d2">
+              <SHORT-NAME>TMS_EnvZone</SHORT-NAME>
+              <CATEGORY>TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>INTERIOR_ZONE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>EXTERIOR_ZONE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                </COMPU-SCALES>
+              </COMPU-INTERNAL-TO-PHYS>
+            </COMPU-METHOD>
+            <COMPU-METHOD UUID="1df42233-fef3-42e3-b4f0-14c17fcbc2df">
+              <SHORT-NAME>TMS_ParticleDetectMode</SHORT-NAME>
+              <CATEGORY>TEXTTABLE</CATEGORY>
+              <COMPU-INTERNAL-TO-PHYS>
+                <COMPU-SCALES>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>SILENT_MODE</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>NORMAL_MODE</VT>
                     </COMPU-CONST>
                   </COMPU-SCALE>
                 </COMPU-SCALES>

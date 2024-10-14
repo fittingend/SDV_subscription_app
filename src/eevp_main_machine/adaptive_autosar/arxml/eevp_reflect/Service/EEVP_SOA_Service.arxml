@@ -1525,6 +1525,7 @@
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaRoa/soaRoaMode/Get_soaRoaMode</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                     <SOMEIP-METHOD-PROPS>
+                      <COLLECTION-PROPS/>
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/SoaRoa/soaRoaRunningState/Get_soaRoaRunningState</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                     <SOMEIP-METHOD-PROPS>

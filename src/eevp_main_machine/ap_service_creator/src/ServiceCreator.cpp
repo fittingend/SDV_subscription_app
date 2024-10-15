@@ -119,3 +119,21 @@ namespace eevp
 
     }
 }
+
+bool
+ServiceCreator::startServiceCreatorStub() {
+    mLogger.LogInfo() << __func__;
+    ara::core::InstanceSpecifier specifier_WiperWash("ServiceCreator/AA/BCM_WiperWash");
+    ara::core::InstanceSpecifier specifier_VehSpd("ServiceCreator/AA/VCS_VehSpd");
+    ara::core::InstanceSpecifier specifier_AccerPedal("ServiceCreator/AA/VCS_AccerPedal");
+    ara::core::InstanceSpecifier specifier_BrakeSwitch("ServiceCreator/AA/VCS_BrakeSwitch");
+    ara::core::InstanceSpecifier specifier_Gear("ServiceCreator/AA/VCS_Gear");
+
+    WiperSkeletonImpl = std::make_shared<eevp::simulation::WiperSkeletonImpl>(specifier_WiperWash);
+    //auto monitoringManagementListener = std::make_shared<MonitoringManagementListener>(this);
+    //monitoringManagementSkeletonImpl->setEventListener(monitoringManagementListener);
+    WiperSkeletonImpl->OfferService();
+    return true;
+}
+}
+}

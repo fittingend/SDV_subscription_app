@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_vcs_accrpedal.h
 /// IMPLEMENTATION DATA TYPE NAME     : VCS_AccrPedal
-/// GENERATED DATE                    : 2024-09-23 16:49:20
+/// GENERATED DATE                    : 2024-10-24 11:01:44
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -22,8 +22,10 @@
 /// INCLUSION HEADER FILES
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @uptrace{SWS_CM_00402}
+#include <cstdint>
 #include <ara/core/structure.h>
 
+#include "eevp/simulation/impl_type_kickdownstatus.h"
 #include "eevp/simulation/impl_type_switchstatus.h"
 /// @uptrace{SWS_CM_10375}
 namespace eevp
@@ -34,7 +36,11 @@ struct VCS_AccrPedal
 {
     bool valid;
     eevp::simulation::SwitchStatus switchStatus;
-    PARA_STRUCTURE(VCS_AccrPedal, valid, switchStatus);
+    std::uint16_t position;
+    eevp::simulation::KickdownStatus kickdownStatus;
+    std::uint8_t faultStatus;
+    std::int32_t positionRate;
+    PARA_STRUCTURE(VCS_AccrPedal, valid, switchStatus, position, kickdownStatus, faultStatus, positionRate);
 };
 } /// namespace simulation
 } /// namespace eevp

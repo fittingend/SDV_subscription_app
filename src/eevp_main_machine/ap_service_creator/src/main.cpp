@@ -1,3 +1,5 @@
+#include <thread>
+#include <csignal>
 #include "ara/core/initialization.h"
 #include "ServiceCreator.h"
 

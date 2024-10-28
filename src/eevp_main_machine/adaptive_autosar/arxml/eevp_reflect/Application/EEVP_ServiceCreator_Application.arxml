@@ -33,7 +33,7 @@
         <AR-PACKAGE UUID="c7804087-03d1-4a6e-91d7-14b3e9d0ebe2">
           <SHORT-NAME>Manifest</SHORT-NAME>
           <ELEMENTS>
-            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="4ad79af3-f190-484f-97a0-0f60e31fbff2">
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="8d7a2d8d-4c1f-4fc8-a9d3-5057ae34ddf5">
               <SHORT-NAME>ServiceCreator_AA_PPort_BCM_WiperWash</SHORT-NAME>
               <PORT-PROTOTYPE-IREF>
                 <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/Application/Executable/ServiceCreator/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
@@ -80,6 +80,14 @@
                 <TARGET-PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/Application/SwComponent/ServiceCreator/PPort_MsgInfoSrv</TARGET-PORT-PROTOTYPE-REF>
               </PORT-PROTOTYPE-IREF>
               <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Provider/EEVP_ServiceCreator_Provider_MsgInfoSrv</SERVICE-INSTANCE-REF>
+            </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="e8eea608-f31a-4ef5-a6b2-1281be4d32f3">
+              <SHORT-NAME>ServiceCreator_AA_PPort_ServiceManagement</SHORT-NAME>
+              <PORT-PROTOTYPE-IREF>
+                <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/Application/Executable/ServiceCreator/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
+                <TARGET-PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/Application/SwComponent/ServiceCreator/PPort_ServiceManagement</TARGET-PORT-PROTOTYPE-REF>
+              </PORT-PROTOTYPE-IREF>
+              <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Provider/EEVP_ServiceCreator_Provider_ServiceManagement</SERVICE-INSTANCE-REF>
             </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
             <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="c6d82e85-c5e3-440a-81d9-12ea00953d5d">
               <SHORT-NAME>ServiceCreator_AA_PPort_SmartFilmCont</SHORT-NAME>
@@ -209,7 +217,7 @@
               </PORT-PROTOTYPE-IREF>
               <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_ServiceCreator_Consumer_BCM_Horn</SERVICE-INSTANCE-REF>
             </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
-            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="9ea8cbd2-411f-448e-a97a-410f28004503">
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="3c1e698f-c79f-4e81-a12f-ee4f0fe5a0c5">
               <SHORT-NAME>ServiceCreator_AA_RPort_BCM_WiperWash</SHORT-NAME>
               <PORT-PROTOTYPE-IREF>
                 <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/Application/Executable/ServiceCreator/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
@@ -378,7 +386,7 @@
             <ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE UUID="207a232b-e057-4802-b3f1-f285e7430c7f">
               <SHORT-NAME>ServiceCreator</SHORT-NAME>
               <PORTS>
-                <P-PORT-PROTOTYPE UUID="b933ff33-08da-454d-bb6d-2a9df8d1845a">
+                <P-PORT-PROTOTYPE UUID="ce504b0e-29af-4b41-8482-d0479d20901b">
                   <SHORT-NAME>PPort_BCM_WiperWash</SHORT-NAME>
                   <PROVIDED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/BCM_WiperWash</PROVIDED-INTERFACE-TREF>
                 </P-PORT-PROTOTYPE>
@@ -401,6 +409,10 @@
                 <P-PORT-PROTOTYPE UUID="b26475ac-8d14-4749-8b62-47948d4ba87d">
                   <SHORT-NAME>PPort_MsgInfoSrv</SHORT-NAME>
                   <PROVIDED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/MsgInfoSrv</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <P-PORT-PROTOTYPE UUID="9799348c-d23c-4b56-870b-3c4a3c0e223c">
+                  <SHORT-NAME>PPort_ServiceManagement</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/ServiceManagement</PROVIDED-INTERFACE-TREF>
                 </P-PORT-PROTOTYPE>
                 <P-PORT-PROTOTYPE UUID="784e1b7f-c3ce-4ac6-ad02-ec4704aeed27">
                   <SHORT-NAME>PPort_SmartFilmCont</SHORT-NAME>

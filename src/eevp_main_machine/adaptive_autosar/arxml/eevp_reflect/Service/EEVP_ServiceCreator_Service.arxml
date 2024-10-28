@@ -39,66 +39,106 @@
                 <MINOR-VERSION>0</MINOR-VERSION>
               </SERVICE-INTERFACE-VERSION>
             </SOMEIP-SERVICE-INTERFACE-DEPLOYMENT>
-            <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="77598acc-a872-4579-98a2-60b3b6001a89">
+            <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="39dff322-6324-46fc-8079-0611bb263ad7">
               <SHORT-NAME>BCM_WiperWash</SHORT-NAME>
+              <FIELD-DEPLOYMENTS>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="a7d2efe6-58c6-4414-98d2-88227ce0c736">
+                  <SHORT-NAME>wiperInterval</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/BCM_WiperWash/wiperInterval</FIELD-REF>
+                  <GET UUID="b2ef2ae2-cb2c-4210-87ea-553b151b71e9">
+                    <SHORT-NAME>Get_wiperInterval</SHORT-NAME>
+                    <METHOD-ID>13</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="a0b358c0-359f-4452-9aaa-46e1fa24e595">
+                    <SHORT-NAME>Notification_wiperInterval</SHORT-NAME>
+                    <EVENT-ID>14</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="990b6bf4-e0d8-483d-a791-2e886bd5f1ab">
+                  <SHORT-NAME>wiperLevel</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/BCM_WiperWash/wiperLevel</FIELD-REF>
+                  <GET UUID="18e4930b-4b6f-4881-b584-83154f44cbd0">
+                    <SHORT-NAME>Get_wiperLevel</SHORT-NAME>
+                    <METHOD-ID>11</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="917df515-3c32-41c4-8343-9e6b0d1b970d">
+                    <SHORT-NAME>Notification_wiperLevel</SHORT-NAME>
+                    <EVENT-ID>12</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+              </FIELD-DEPLOYMENTS>
               <METHOD-DEPLOYMENTS>
-                <SOMEIP-METHOD-DEPLOYMENT UUID="738388e0-3edc-41c1-b361-8e3f33a2a3a8">
+                <SOMEIP-METHOD-DEPLOYMENT UUID="73de13fa-9b57-49e6-bd95-5d2759efafa4">
                   <SHORT-NAME>getWipingInterval</SHORT-NAME>
                   <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/BCM_WiperWash/getWipingInterval</METHOD-REF>
-                  <METHOD-ID>1</METHOD-ID>
-                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
-                </SOMEIP-METHOD-DEPLOYMENT>
-                <SOMEIP-METHOD-DEPLOYMENT UUID="31bbc44b-325e-40c6-9943-3691c6ed6b77">
-                  <SHORT-NAME>getWipingLevel</SHORT-NAME>
-                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/BCM_WiperWash/getWipingLevel</METHOD-REF>
-                  <METHOD-ID>2</METHOD-ID>
-                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
-                </SOMEIP-METHOD-DEPLOYMENT>
-                <SOMEIP-METHOD-DEPLOYMENT UUID="2f1391f7-6f6e-459b-af18-77d22931f6c3">
-                  <SHORT-NAME>isWiping</SHORT-NAME>
-                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/BCM_WiperWash/isWiping</METHOD-REF>
-                  <METHOD-ID>3</METHOD-ID>
-                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
-                </SOMEIP-METHOD-DEPLOYMENT>
-                <SOMEIP-METHOD-DEPLOYMENT UUID="3186e80d-d65b-49c5-be4d-bd5cb77f7a64">
-                  <SHORT-NAME>notifyWipingStatus</SHORT-NAME>
-                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/BCM_WiperWash/notifyWipingStatus</METHOD-REF>
-                  <METHOD-ID>4</METHOD-ID>
-                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
-                </SOMEIP-METHOD-DEPLOYMENT>
-                <SOMEIP-METHOD-DEPLOYMENT UUID="1cef3fbe-9163-4ccb-81c2-3f1e981cdcea">
-                  <SHORT-NAME>setWipingInterval</SHORT-NAME>
-                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/BCM_WiperWash/setWipingInterval</METHOD-REF>
-                  <METHOD-ID>5</METHOD-ID>
-                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
-                </SOMEIP-METHOD-DEPLOYMENT>
-                <SOMEIP-METHOD-DEPLOYMENT UUID="bc20c27d-0a5a-4d2f-90f9-ac79f6fc4425">
-                  <SHORT-NAME>setWipingLevel</SHORT-NAME>
-                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/BCM_WiperWash/setWipingLevel</METHOD-REF>
-                  <METHOD-ID>6</METHOD-ID>
-                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
-                </SOMEIP-METHOD-DEPLOYMENT>
-                <SOMEIP-METHOD-DEPLOYMENT UUID="2a1d1d7b-2e14-45fe-bb19-e44b8254e7ea">
-                  <SHORT-NAME>setWipingLevelImme</SHORT-NAME>
-                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/BCM_WiperWash/setWipingLevelImme</METHOD-REF>
-                  <METHOD-ID>7</METHOD-ID>
-                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
-                </SOMEIP-METHOD-DEPLOYMENT>
-                <SOMEIP-METHOD-DEPLOYMENT UUID="fd1e519c-a6be-4b74-9197-8cae18dd5aa5">
-                  <SHORT-NAME>startWiping</SHORT-NAME>
-                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/BCM_WiperWash/startWiping</METHOD-REF>
                   <METHOD-ID>8</METHOD-ID>
                   <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                 </SOMEIP-METHOD-DEPLOYMENT>
-                <SOMEIP-METHOD-DEPLOYMENT UUID="1be78e5b-02ff-4f74-918e-4c645e446de1">
+                <SOMEIP-METHOD-DEPLOYMENT UUID="3a5f9a32-b435-4ffd-ac37-f010885db251">
+                  <SHORT-NAME>getWipingLevel</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/BCM_WiperWash/getWipingLevel</METHOD-REF>
+                  <METHOD-ID>7</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="856aed81-f071-4f08-b3db-c568d4f55436">
+                  <SHORT-NAME>isWiping</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/BCM_WiperWash/isWiping</METHOD-REF>
+                  <METHOD-ID>1</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="949fd8d4-a251-4801-b1fc-fc6bb356ca84">
+                  <SHORT-NAME>setWipingInterval</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/BCM_WiperWash/setWipingInterval</METHOD-REF>
+                  <METHOD-ID>2</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="0a548aef-e634-4c40-946e-b821d759d6bd">
+                  <SHORT-NAME>setWipingLevel</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/BCM_WiperWash/setWipingLevel</METHOD-REF>
+                  <METHOD-ID>3</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="5af4c989-fe17-47c6-8587-97c924178c2d">
+                  <SHORT-NAME>setWipingLevelImme</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/BCM_WiperWash/setWipingLevelImme</METHOD-REF>
+                  <METHOD-ID>4</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="a693e68d-8758-4c9a-aae4-f8c617b579f5">
+                  <SHORT-NAME>startWiping</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/BCM_WiperWash/startWiping</METHOD-REF>
+                  <METHOD-ID>5</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="4305ade1-254d-42d6-a2f6-4c26f8d2b6b1">
                   <SHORT-NAME>stopWiping</SHORT-NAME>
                   <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/BCM_WiperWash/stopWiping</METHOD-REF>
-                  <METHOD-ID>9</METHOD-ID>
+                  <METHOD-ID>6</METHOD-ID>
                   <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                 </SOMEIP-METHOD-DEPLOYMENT>
               </METHOD-DEPLOYMENTS>
               <SERVICE-INTERFACE-REF DEST="SERVICE-INTERFACE">/ServiceInterface/BCM_WiperWash</SERVICE-INTERFACE-REF>
-              <SERVICE-INTERFACE-ID>9000</SERVICE-INTERFACE-ID>
+              <EVENT-GROUPS>
+                <SOMEIP-EVENT-GROUP UUID="bbb3a6e4-e631-4d6f-9764-6cd31b0054b8">
+                  <SHORT-NAME>Eventgroup_WiperInterval</SHORT-NAME>
+                  <EVENT-GROUP-ID>2</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/wiperInterval/Notification_wiperInterval</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+                <SOMEIP-EVENT-GROUP UUID="8147f043-897e-49c3-a8ad-a643b766a57d">
+                  <SHORT-NAME>Eventgroup_WiperLevel</SHORT-NAME>
+                  <EVENT-GROUP-ID>1</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/wiperLevel/Notification_wiperLevel</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+              </EVENT-GROUPS>
+              <SERVICE-INTERFACE-ID>9005</SERVICE-INTERFACE-ID>
               <SERVICE-INTERFACE-VERSION>
                 <MAJOR-VERSION>1</MAJOR-VERSION>
                 <MINOR-VERSION>0</MINOR-VERSION>
@@ -286,6 +326,135 @@
                 </SOMEIP-EVENT-GROUP>
               </EVENT-GROUPS>
               <SERVICE-INTERFACE-ID>9021</SERVICE-INTERFACE-ID>
+              <SERVICE-INTERFACE-VERSION>
+                <MAJOR-VERSION>1</MAJOR-VERSION>
+                <MINOR-VERSION>0</MINOR-VERSION>
+              </SERVICE-INTERFACE-VERSION>
+            </SOMEIP-SERVICE-INTERFACE-DEPLOYMENT>
+            <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="9a90b8bb-0a1e-4aed-9040-4e061fd4c0e2">
+              <SHORT-NAME>ServiceManagement</SHORT-NAME>
+              <FIELD-DEPLOYMENTS>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="a6d04f92-7744-443b-a174-b7e66bbd98a7">
+                  <SHORT-NAME>wiperInterval</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/ServiceManagement/wiperInterval</FIELD-REF>
+                  <GET UUID="77dc1e2c-b19b-4f07-b666-6cc138fa1c8b">
+                    <SHORT-NAME>Get_wiperInterval</SHORT-NAME>
+                    <METHOD-ID>13</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="9e46992b-3f3a-4f1f-8a29-b93c65f58cef">
+                    <SHORT-NAME>Notify_wiperInterval</SHORT-NAME>
+                    <EVENT-ID>14</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="fc5ad7db-dc56-4774-97bc-4944fde1fa7d">
+                  <SHORT-NAME>wiperLevel</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/ServiceManagement/wiperLevel</FIELD-REF>
+                  <GET UUID="1ca2422e-3909-4992-bfcf-52bfc525eb48">
+                    <SHORT-NAME>Get_wiperLevel</SHORT-NAME>
+                    <METHOD-ID>11</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="d8b4aa6a-4819-4744-925f-126992e5917d">
+                    <SHORT-NAME>Notify_wiperLevel</SHORT-NAME>
+                    <EVENT-ID>12</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="9df000fc-674b-47d9-a443-1fc2f65081a0">
+                  <SHORT-NAME>wiperRecv</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/ServiceManagement/wiperRecv</FIELD-REF>
+                  <GET UUID="1c115c31-726a-4844-a84e-a8acf6388720">
+                    <SHORT-NAME>Get_wiperRecv</SHORT-NAME>
+                    <METHOD-ID>15</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="4ae3756f-fcd2-4d9a-ae2b-5136e3f9132e">
+                    <SHORT-NAME>Notify_wiperRecv</SHORT-NAME>
+                    <EVENT-ID>16</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="b779f437-e535-4e21-b6fb-bcaa69f942fc">
+                  <SHORT-NAME>wiperSend</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/ServiceManagement/wiperSend</FIELD-REF>
+                  <GET UUID="58f0487c-4aed-43ae-8a23-3dc99dfde37c">
+                    <SHORT-NAME>Get_wiperSend</SHORT-NAME>
+                    <METHOD-ID>17</METHOD-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </GET>
+                  <NOTIFIER UUID="8aad7272-26e6-4545-9aac-22984ddb0b72">
+                    <SHORT-NAME>Notify_wiperSend</SHORT-NAME>
+                    <EVENT-ID>18</EVENT-ID>
+                    <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                  </NOTIFIER>
+                </SOMEIP-FIELD-DEPLOYMENT>
+              </FIELD-DEPLOYMENTS>
+              <METHOD-DEPLOYMENTS>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="2ade099e-b187-424b-9b13-744582eb37c3">
+                  <SHORT-NAME>getWipingInterval</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/ServiceManagement/getWipingInterval</METHOD-REF>
+                  <METHOD-ID>8</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="6804465a-8404-4a7f-b587-d15157817631">
+                  <SHORT-NAME>getWipingLevel</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/ServiceManagement/getWipingLevel</METHOD-REF>
+                  <METHOD-ID>7</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="4294179e-c24e-48d2-8fbd-adcfc8cdf92a">
+                  <SHORT-NAME>isWiping</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/ServiceManagement/isWiping</METHOD-REF>
+                  <METHOD-ID>1</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="eef522e4-f051-4ffe-ab93-c844de7ac6b7">
+                  <SHORT-NAME>setWipingInterval</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/ServiceManagement/setWipingInterval</METHOD-REF>
+                  <METHOD-ID>6</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="72334715-af28-42cd-b46f-7f24ad303d17">
+                  <SHORT-NAME>setWipingLevel</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/ServiceManagement/setWipingLevel</METHOD-REF>
+                  <METHOD-ID>4</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="1ff10a01-6140-4ffd-a3a2-56cc25539cca">
+                  <SHORT-NAME>setWipingLevelImme</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/ServiceManagement/setWipingLevelImme</METHOD-REF>
+                  <METHOD-ID>5</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="676d3cbe-5abf-43a0-9140-e285bf308e73">
+                  <SHORT-NAME>startWiping</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/ServiceManagement/startWiping</METHOD-REF>
+                  <METHOD-ID>3</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="5f9ad088-44e1-409b-a9ff-c64e3bd322eb">
+                  <SHORT-NAME>stopWiping</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/ServiceManagement/stopWiping</METHOD-REF>
+                  <METHOD-ID>2</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+              </METHOD-DEPLOYMENTS>
+              <SERVICE-INTERFACE-REF DEST="SERVICE-INTERFACE">/ServiceInterface/ServiceManagement</SERVICE-INTERFACE-REF>
+              <EVENT-GROUPS>
+                <SOMEIP-EVENT-GROUP UUID="4926ed10-d894-47b8-bba0-2d77640c6879">
+                  <SHORT-NAME>Eventgroup_wiperEvent</SHORT-NAME>
+                  <EVENT-GROUP-ID>1</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/ServiceManagement/wiperInterval/Notify_wiperInterval</EVENT-REF>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/ServiceManagement/wiperLevel/Notify_wiperLevel</EVENT-REF>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/ServiceManagement/wiperRecv/Notify_wiperRecv</EVENT-REF>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/ServiceManagement/wiperSend/Notify_wiperSend</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+              </EVENT-GROUPS>
+              <SERVICE-INTERFACE-ID>9000</SERVICE-INTERFACE-ID>
               <SERVICE-INTERFACE-VERSION>
                 <MAJOR-VERSION>1</MAJOR-VERSION>
                 <MINOR-VERSION>0</MINOR-VERSION>
@@ -942,6 +1111,15 @@
               <TCP-PORT>50120</TCP-PORT>
               <UDP-PORT>50120</UDP-PORT>
             </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="6b886bd0-203d-45b9-9fee-f2e6da9b3764">
+              <SHORT-NAME>EEVP_ServiceCreator_SomeipProviders_ServiceManagement</SHORT-NAME>
+              <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
+              <SERVICE-INSTANCE-REFS>
+                <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Provider/EEVP_ServiceCreator_Provider_ServiceManagement</SERVICE-INSTANCE-REF>
+              </SERVICE-INSTANCE-REFS>
+              <TCP-PORT>55111</TCP-PORT>
+              <UDP-PORT>55111</UDP-PORT>
+            </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
             <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="baf5d727-491f-498f-aa7b-5e4b87b6ad32">
               <SHORT-NAME>EEVP_ServiceCreator_SomeipProviders_SmartFilmCont</SHORT-NAME>
               <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
@@ -1136,7 +1314,7 @@
                   <SD-CLIENT-CONFIG-REF DEST="SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Client/DefaultSdClientConfig</SD-CLIENT-CONFIG-REF>
                   <VERSION-DRIVEN-FIND-BEHAVIOR>EXACT-OR-ANY-MINOR-VERSION</VERSION-DRIVEN-FIND-BEHAVIOR>
                 </REQUIRED-SOMEIP-SERVICE-INSTANCE>
-                <REQUIRED-SOMEIP-SERVICE-INSTANCE UUID="33bc58cb-da30-4d29-9b14-edb1c96a1ea6">
+                <REQUIRED-SOMEIP-SERVICE-INSTANCE UUID="c81a1b44-5615-4890-acca-02541867406a">
                   <SHORT-NAME>EEVP_ServiceCreator_Consumer_BCM_WiperWash</SHORT-NAME>
                   <ADMIN-DATA>
                     <SDGS>
@@ -1148,16 +1326,14 @@
                   <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash</SERVICE-INTERFACE-DEPLOYMENT-REF>
                   <METHOD-REQUEST-PROPSS>
                     <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/getWipingInterval</METHOD-REF>
+                      <COLLECTION-PROPS/>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/wiperLevel/Get_wiperLevel</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                     <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/getWipingLevel</METHOD-REF>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/wiperInterval/Get_wiperInterval</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                     <SOMEIP-METHOD-PROPS>
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/isWiping</METHOD-REF>
-                    </SOMEIP-METHOD-PROPS>
-                    <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/notifyWipingStatus</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                     <SOMEIP-METHOD-PROPS>
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/setWipingInterval</METHOD-REF>
@@ -1174,11 +1350,28 @@
                     <SOMEIP-METHOD-PROPS>
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/stopWiping</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/getWipingLevel</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/getWipingInterval</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
                   </METHOD-REQUEST-PROPSS>
+                  <REQUIRED-EVENT-GROUPS>
+                    <SOMEIP-REQUIRED-EVENT-GROUP>
+                      <SHORT-NAME>Eventgroup_WiperInterval</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/BCM_WiperWash/Eventgroup_WiperInterval</EVENT-GROUP-REF>
+                      <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-REQUIRED-EVENT-GROUP>
+                    <SOMEIP-REQUIRED-EVENT-GROUP>
+                      <SHORT-NAME>Eventgroup_WiperLevel</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/BCM_WiperWash/Eventgroup_WiperLevel</EVENT-GROUP-REF>
+                      <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-REQUIRED-EVENT-GROUP>
+                  </REQUIRED-EVENT-GROUPS>
                   <REQUIRED-MINOR-VERSION>ANY</REQUIRED-MINOR-VERSION>
                   <REQUIRED-SERVICE-INSTANCE-ID>ANY</REQUIRED-SERVICE-INSTANCE-ID>
-                  <SD-CLIENT-CONFIG-REF DEST="SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Client/DefaultSdClientConfig</SD-CLIENT-CONFIG-REF>
-                  <VERSION-DRIVEN-FIND-BEHAVIOR>EXACT-OR-ANY-MINOR-VERSION</VERSION-DRIVEN-FIND-BEHAVIOR>
+                  <SD-CLIENT-CONFIG-REF DEST="SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Client/DefaultClientConfig</SD-CLIENT-CONFIG-REF>
                 </REQUIRED-SOMEIP-SERVICE-INSTANCE>
                 <REQUIRED-SOMEIP-SERVICE-INSTANCE UUID="6db65538-8d15-4f0d-8be5-e4ae77af0c38">
                   <SHORT-NAME>EEVP_ServiceCreator_Consumer_Ctrl_MoodLamp</SHORT-NAME>
@@ -1556,21 +1749,26 @@
             <AR-PACKAGE UUID="ba6bf8bd-2ba1-488a-8887-191220e900c5">
               <SHORT-NAME>Provider</SHORT-NAME>
               <ELEMENTS>
-                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="4674975c-1b1e-45a0-a110-6028d634773e">
+                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="154c3a2e-c5a2-41a0-a484-9dcc2942dddb">
                   <SHORT-NAME>EEVP_ServiceCreator_Provider_BCM_WiperWash</SHORT-NAME>
                   <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                  <EVENT-PROPSS>
+                    <SOMEIP-EVENT-PROPS>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/wiperLevel/Notification_wiperLevel</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
+                    <SOMEIP-EVENT-PROPS>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/wiperInterval/Notification_wiperInterval</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
+                  </EVENT-PROPSS>
                   <METHOD-RESPONSE-PROPSS>
                     <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/getWipingInterval</METHOD-REF>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/wiperLevel/Get_wiperLevel</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                     <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/getWipingLevel</METHOD-REF>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/wiperInterval/Get_wiperInterval</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                     <SOMEIP-METHOD-PROPS>
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/isWiping</METHOD-REF>
-                    </SOMEIP-METHOD-PROPS>
-                    <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/notifyWipingStatus</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                     <SOMEIP-METHOD-PROPS>
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/setWipingInterval</METHOD-REF>
@@ -1585,12 +1783,31 @@
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/startWiping</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                     <SOMEIP-METHOD-PROPS>
-                      <COLLECTION-PROPS/>
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/stopWiping</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/getWipingLevel</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/getWipingInterval</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
                   </METHOD-RESPONSE-PROPSS>
+                  <PROVIDED-EVENT-GROUPS>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="6baf0cad-e7e5-4371-8800-49ec4649c3a3">
+                      <SHORT-NAME>Eventgroup_WiperInterval</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/BCM_WiperWash/Eventgroup_WiperInterval</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
+                      <SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-SERVER-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdPublishConfig</SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="dff098b3-3968-4cbb-add2-322b7dad6811">
+                      <SHORT-NAME>Eventgroup_WiperLevel</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/BCM_WiperWash/Eventgroup_WiperLevel</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
+                      <SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-SERVER-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdPublishConfig</SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
+                  </PROVIDED-EVENT-GROUPS>
                   <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/DefaultSdServerConfig</SD-SERVER-CONFIG-REF>
-                  <SERVICE-INSTANCE-ID>9000</SERVICE-INSTANCE-ID>
+                  <SERVICE-INSTANCE-ID>9005</SERVICE-INSTANCE-ID>
                 </PROVIDED-SOMEIP-SERVICE-INSTANCE>
                 <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="fba13332-a1bd-447b-9533-f5f18d13843f">
                   <SHORT-NAME>EEVP_ServiceCreator_Provider_BmsInfoSrv</SHORT-NAME>
@@ -1693,6 +1910,71 @@
                   </PROVIDED-EVENT-GROUPS>
                   <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/DefaultSdServerConfig</SD-SERVER-CONFIG-REF>
                   <SERVICE-INSTANCE-ID>9021</SERVICE-INSTANCE-ID>
+                </PROVIDED-SOMEIP-SERVICE-INSTANCE>
+                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="ac2445bc-0048-489a-90fd-88f54673d9f1">
+                  <SHORT-NAME>EEVP_ServiceCreator_Provider_ServiceManagement</SHORT-NAME>
+                  <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/ServiceDeployment/Someip/ServiceManagement</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                  <EVENT-PROPSS>
+                    <SOMEIP-EVENT-PROPS>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/ServiceManagement/wiperLevel/Notify_wiperLevel</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
+                    <SOMEIP-EVENT-PROPS>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/ServiceManagement/wiperInterval/Notify_wiperInterval</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
+                    <SOMEIP-EVENT-PROPS>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/ServiceManagement/wiperRecv/Notify_wiperRecv</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
+                    <SOMEIP-EVENT-PROPS>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/ServiceManagement/wiperSend/Notify_wiperSend</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
+                  </EVENT-PROPSS>
+                  <METHOD-RESPONSE-PROPSS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/ServiceManagement/wiperLevel/Get_wiperLevel</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/ServiceManagement/wiperInterval/Get_wiperInterval</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/ServiceManagement/wiperRecv/Get_wiperRecv</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/ServiceManagement/wiperSend/Get_wiperSend</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/ServiceManagement/isWiping</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/ServiceManagement/stopWiping</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/ServiceManagement/startWiping</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/ServiceManagement/setWipingLevel</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/ServiceManagement/setWipingLevelImme</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/ServiceManagement/setWipingInterval</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/ServiceManagement/getWipingLevel</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/ServiceManagement/getWipingInterval</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                  </METHOD-RESPONSE-PROPSS>
+                  <PROVIDED-EVENT-GROUPS>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="3d494cff-3dca-4aca-9292-a5da9a0537f0">
+                      <SHORT-NAME>Eventgroup_wiperEvent</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/ServiceManagement/Eventgroup_wiperEvent</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
+                  </PROVIDED-EVENT-GROUPS>
+                  <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/DefaultSdServerConfig</SD-SERVER-CONFIG-REF>
+                  <SERVICE-INSTANCE-ID>9000</SERVICE-INSTANCE-ID>
                 </PROVIDED-SOMEIP-SERVICE-INSTANCE>
                 <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="faa82209-c3a1-481d-8380-e2f763a670d0">
                   <SHORT-NAME>EEVP_ServiceCreator_Provider_SmartFilmCont</SHORT-NAME>
@@ -2009,11 +2291,27 @@
           </NAMESPACES>
           <MAJOR-VERSION>1</MAJOR-VERSION>
           <MINOR-VERSION>0</MINOR-VERSION>
+          <FIELDS>
+            <FIELD UUID="a4273940-07b3-4fb0-a93d-ad66b8b0c92a">
+              <SHORT-NAME>wiperInterval</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+            <FIELD UUID="4935f519-319f-4518-8ac9-d528aec45229">
+              <SHORT-NAME>wiperLevel</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/BCM_WipingLevel</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+          </FIELDS>
           <METHODS>
-            <CLIENT-SERVER-OPERATION UUID="a21e1b8d-20dc-48e2-a01f-d4c06e0db1dd">
+            <CLIENT-SERVER-OPERATION UUID="e0b7b4eb-631c-406b-96f4-12cce3eb99a5">
               <SHORT-NAME>getWipingInterval</SHORT-NAME>
               <ARGUMENTS>
-                <ARGUMENT-DATA-PROTOTYPE UUID="c8f6c79b-d44c-49f2-bdf7-be490c66d596">
+                <ARGUMENT-DATA-PROTOTYPE UUID="3b1f1c71-eaeb-4283-ac4c-8a48ef63f043">
                   <SHORT-NAME>wipingInterval</SHORT-NAME>
                   <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-TREF>
                   <DIRECTION>OUT</DIRECTION>
@@ -2021,10 +2319,10 @@
               </ARGUMENTS>
               <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
             </CLIENT-SERVER-OPERATION>
-            <CLIENT-SERVER-OPERATION UUID="b3cba689-0365-4a3f-aa97-238234c73231">
+            <CLIENT-SERVER-OPERATION UUID="5a78ca21-a66b-4920-92f8-3850446baff3">
               <SHORT-NAME>getWipingLevel</SHORT-NAME>
               <ARGUMENTS>
-                <ARGUMENT-DATA-PROTOTYPE UUID="a10430ca-1f98-4ca3-89ea-10037f5060e3">
+                <ARGUMENT-DATA-PROTOTYPE UUID="97164d0a-d373-4a06-933a-e685a19a6212">
                   <SHORT-NAME>wipingLevel</SHORT-NAME>
                   <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/BCM_WipingLevel</TYPE-TREF>
                   <DIRECTION>OUT</DIRECTION>
@@ -2032,70 +2330,59 @@
               </ARGUMENTS>
               <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
             </CLIENT-SERVER-OPERATION>
-            <CLIENT-SERVER-OPERATION UUID="eb16c4c5-966f-4892-b4ae-bde6d7c64b80">
+            <CLIENT-SERVER-OPERATION UUID="8f2e584b-a21a-4a11-ab4f-2e3c978ad1ca">
               <SHORT-NAME>isWiping</SHORT-NAME>
               <ARGUMENTS>
-                <ARGUMENT-DATA-PROTOTYPE UUID="d915f127-faf2-4416-91d3-adffa83ccec5">
-                  <SHORT-NAME>isWiping</SHORT-NAME>
+                <ARGUMENT-DATA-PROTOTYPE UUID="6e98cf66-dcad-46db-885d-2db2d47f4db3">
+                  <SHORT-NAME>status</SHORT-NAME>
                   <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-TREF>
                   <DIRECTION>OUT</DIRECTION>
                 </ARGUMENT-DATA-PROTOTYPE>
               </ARGUMENTS>
               <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
             </CLIENT-SERVER-OPERATION>
-            <CLIENT-SERVER-OPERATION UUID="da22191b-96f0-4ef0-beae-7970da9ac07e">
-              <SHORT-NAME>notifyWipingStatus</SHORT-NAME>
-              <ARGUMENTS>
-                <ARGUMENT-DATA-PROTOTYPE UUID="241e9329-3e32-40c9-b00f-4f345a799e5e">
-                  <SHORT-NAME>isWiping</SHORT-NAME>
-                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-TREF>
-                  <DIRECTION>OUT</DIRECTION>
-                </ARGUMENT-DATA-PROTOTYPE>
-              </ARGUMENTS>
-              <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
-            </CLIENT-SERVER-OPERATION>
-            <CLIENT-SERVER-OPERATION UUID="fd8a9d9c-02ce-43fd-a9cc-9a9ef4fb5af7">
+            <CLIENT-SERVER-OPERATION UUID="0194f162-fd26-499a-a86c-1dfcf388d269">
               <SHORT-NAME>setWipingInterval</SHORT-NAME>
               <ARGUMENTS>
-                <ARGUMENT-DATA-PROTOTYPE UUID="d16710ab-3e94-42a7-83e8-54259ba93ab6">
+                <ARGUMENT-DATA-PROTOTYPE UUID="ab5735e2-e7ea-4501-87a2-1cd7d1b53da9">
                   <SHORT-NAME>wipingInterval</SHORT-NAME>
                   <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-TREF>
                   <DIRECTION>IN</DIRECTION>
                 </ARGUMENT-DATA-PROTOTYPE>
-                <ARGUMENT-DATA-PROTOTYPE UUID="5488fe04-c14f-4412-a930-77171b5b41bb">
-                  <SHORT-NAME>returnCode</SHORT-NAME>
+                <ARGUMENT-DATA-PROTOTYPE UUID="c4a738e3-c820-4e50-90b6-9e2f9be49817">
+                  <SHORT-NAME>BCM_ReturnCode</SHORT-NAME>
                   <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/BCM_ReturnCode</TYPE-TREF>
                   <DIRECTION>OUT</DIRECTION>
                 </ARGUMENT-DATA-PROTOTYPE>
               </ARGUMENTS>
               <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
             </CLIENT-SERVER-OPERATION>
-            <CLIENT-SERVER-OPERATION UUID="9d6204c4-9ce0-4c93-baec-065a991c24f2">
+            <CLIENT-SERVER-OPERATION UUID="dc3cf913-fc16-450a-8eef-292a854cd853">
               <SHORT-NAME>setWipingLevel</SHORT-NAME>
               <ARGUMENTS>
-                <ARGUMENT-DATA-PROTOTYPE UUID="9bc1fbda-fcfd-46ff-8363-d039d282ef9b">
-                  <SHORT-NAME>wipingLevel</SHORT-NAME>
+                <ARGUMENT-DATA-PROTOTYPE UUID="73f522e4-6ed1-40ce-909e-1899179c4d15">
+                  <SHORT-NAME>wipngLevel</SHORT-NAME>
                   <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/BCM_WipingLevel</TYPE-TREF>
                   <DIRECTION>IN</DIRECTION>
                 </ARGUMENT-DATA-PROTOTYPE>
-                <ARGUMENT-DATA-PROTOTYPE UUID="fb7d3b13-8f47-4b9b-b522-e00dd429126f">
-                  <SHORT-NAME>returnCode</SHORT-NAME>
+                <ARGUMENT-DATA-PROTOTYPE UUID="84f51236-3814-4439-866e-25b4374e88ed">
+                  <SHORT-NAME>BCM_ReturnCode</SHORT-NAME>
                   <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/BCM_ReturnCode</TYPE-TREF>
                   <DIRECTION>OUT</DIRECTION>
                 </ARGUMENT-DATA-PROTOTYPE>
               </ARGUMENTS>
               <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
             </CLIENT-SERVER-OPERATION>
-            <CLIENT-SERVER-OPERATION UUID="dff26117-a3a9-4547-8cc8-f4d38e2b0ec5">
+            <CLIENT-SERVER-OPERATION UUID="fd3751b6-208d-44d5-a88b-95752e345d0e">
               <SHORT-NAME>setWipingLevelImme</SHORT-NAME>
               <ARGUMENTS>
-                <ARGUMENT-DATA-PROTOTYPE UUID="cdadc10b-b562-48e1-9e4c-a1e620dd857f">
+                <ARGUMENT-DATA-PROTOTYPE UUID="61375efd-b6f7-4b2c-853a-df2170dc99a2">
                   <SHORT-NAME>wipingLevel</SHORT-NAME>
                   <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/BCM_WipingLevel</TYPE-TREF>
                   <DIRECTION>IN</DIRECTION>
                 </ARGUMENT-DATA-PROTOTYPE>
-                <ARGUMENT-DATA-PROTOTYPE UUID="27066474-cc94-48a7-b8e5-8e5d6265ead1">
-                  <SHORT-NAME>returnCode</SHORT-NAME>
+                <ARGUMENT-DATA-PROTOTYPE UUID="ef434bac-2050-458a-985d-cf4532755e6c">
+                  <SHORT-NAME>BCM_ReturnCode</SHORT-NAME>
                   <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/BCM_ReturnCode</TYPE-TREF>
                   <DIRECTION>OUT</DIRECTION>
                 </ARGUMENT-DATA-PROTOTYPE>
@@ -2402,6 +2689,156 @@
               <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/ems_MsgInfo</TYPE-TREF>
             </VARIABLE-DATA-PROTOTYPE>
           </EVENTS>
+        </SERVICE-INTERFACE>
+        <SERVICE-INTERFACE UUID="dc04c020-47c6-4caa-bd59-3158a1c14192">
+          <SHORT-NAME>ServiceManagement</SHORT-NAME>
+          <NAMESPACES>
+            <SYMBOL-PROPS>
+              <SHORT-NAME>eevp</SHORT-NAME>
+              <SYMBOL>eevp</SYMBOL>
+            </SYMBOL-PROPS>
+            <SYMBOL-PROPS>
+              <SHORT-NAME>service</SHORT-NAME>
+              <SYMBOL>service</SYMBOL>
+            </SYMBOL-PROPS>
+          </NAMESPACES>
+          <MAJOR-VERSION>1</MAJOR-VERSION>
+          <MINOR-VERSION>0</MINOR-VERSION>
+          <FIELDS>
+            <FIELD UUID="e55558d6-b8d7-470c-af01-c307bd68b579">
+              <SHORT-NAME>wiperInterval</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+            <FIELD UUID="eb2cdd71-2b1b-4c59-894a-dec500aae69b">
+              <SHORT-NAME>wiperLevel</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/BCM_WipingLevel</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+            <FIELD UUID="f561d5dc-e532-44a0-9545-877ff9afccd6">
+              <SHORT-NAME>wiperRecv</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/wiperRecv</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+            <FIELD UUID="b6b5400a-3f0c-4673-9f44-64ea0aa05751">
+              <SHORT-NAME>wiperSend</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/wiperSend</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+          </FIELDS>
+          <METHODS>
+            <CLIENT-SERVER-OPERATION UUID="72ee3ac7-3357-4c1c-9433-affa9dd71b13">
+              <SHORT-NAME>getWipingInterval</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="c9d94c14-02ba-4c99-85f2-5ee1ac52f906">
+                  <SHORT-NAME>wipingInterval</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-TREF>
+                  <DIRECTION>OUT</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="bb8345eb-3b5e-4e91-b481-77aba1b584a7">
+              <SHORT-NAME>getWipingLevel</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="36c9a9d3-8794-4d7b-98e6-e3cda8450130">
+                  <SHORT-NAME>wipingLevel</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/BCM_WipingLevel</TYPE-TREF>
+                  <DIRECTION>OUT</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="2d64b6c4-5028-4685-81d0-10739c2e5bd0">
+              <SHORT-NAME>isWiping</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="7e57abc6-b80b-4114-a8b2-512c58d52d59">
+                  <SHORT-NAME>status</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-TREF>
+                  <DIRECTION>OUT</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="d76220fc-515a-4848-846b-8e35f315a1fd">
+              <SHORT-NAME>setWipingInterval</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="7ea85e99-6503-4df2-8df9-2f6099b5a3bd">
+                  <SHORT-NAME>wipingInterval</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+                <ARGUMENT-DATA-PROTOTYPE UUID="0c6bbf2f-be5d-4aec-b7a3-c3ffd7727535">
+                  <SHORT-NAME>BCM_ReturnCode</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/BCM_ReturnCode</TYPE-TREF>
+                  <DIRECTION>OUT</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="850d5305-030e-4bc8-8dfd-f10b3e0809f0">
+              <SHORT-NAME>setWipingLevel</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="0cc878e8-9fe7-43b3-981b-ce151235083d">
+                  <SHORT-NAME>wipingLevel</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/BCM_WipingLevel</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+                <ARGUMENT-DATA-PROTOTYPE UUID="84231f9c-d5df-4664-b275-88964990f017">
+                  <SHORT-NAME>BCM_ReturnCode</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/BCM_ReturnCode</TYPE-TREF>
+                  <DIRECTION>OUT</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="f21af8ae-e2e1-46db-baac-7c8b4e7b5b2c">
+              <SHORT-NAME>setWipingLevelImme</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="20ad1055-c26a-4998-a5b5-8f0844da0958">
+                  <SHORT-NAME>wipingLevel</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/BCM_WipingLevel</TYPE-TREF>
+                  <DIRECTION>IN</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+                <ARGUMENT-DATA-PROTOTYPE UUID="ce9a2f12-8171-422a-9986-9fbaa4364e2b">
+                  <SHORT-NAME>BCM_ReturnCode</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/BCM_ReturnCode</TYPE-TREF>
+                  <DIRECTION>OUT</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="45ffdace-d3fd-4397-a71a-9627a13a4bd8">
+              <SHORT-NAME>startWiping</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="c490d61a-f189-4b74-9720-bc83b440bd0a">
+                  <SHORT-NAME>bcm_returnCode</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/BCM_ReturnCode</TYPE-TREF>
+                  <DIRECTION>OUT</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="05453185-e681-4902-afcc-ae2d7cc48fdb">
+              <SHORT-NAME>stopWiping</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="a2370932-8eb2-4011-a0e7-c30d34505e41">
+                  <SHORT-NAME>bcm_returnCode</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/BCM_ReturnCode</TYPE-TREF>
+                  <DIRECTION>OUT</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+          </METHODS>
         </SERVICE-INTERFACE>
         <SERVICE-INTERFACE UUID="d2a8ee3e-e794-4dac-ac84-2535302c96e9">
           <SHORT-NAME>SmartFilmCont</SHORT-NAME>

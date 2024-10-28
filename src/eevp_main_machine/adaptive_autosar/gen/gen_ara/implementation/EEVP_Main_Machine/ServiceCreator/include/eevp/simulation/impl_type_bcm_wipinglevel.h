@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_bcm_wipinglevel.h
 /// IMPLEMENTATION DATA TYPE NAME     : BCM_WipingLevel
-/// GENERATED DATE                    : 2024-09-23 16:49:20
+/// GENERATED DATE                    : 2024-10-24 11:01:44
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -32,7 +32,8 @@ enum class BCM_WipingLevel : std::uint8_t
 {
     LOW = 0U,
     MEDIUM = 1U,
-    HIGH = 2U
+    HIGH = 2U,
+    STOP = 3U
 };
 } /// namespace simulation
 } /// namespace eevp

@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : vcs_gear_proxy.h
 /// SERVICE INTERFACE NAME            : VCS_Gear
-/// GENERATED DATE                    : 2024-09-23 16:49:20
+/// GENERATED DATE                    : 2024-10-24 11:01:42
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -133,6 +133,97 @@ private:
     para::com::ProxyInterface* mInterface;
     const std::string kCallSign{"notifyStatus"};
 };
+/// @uptrace{SWS_CM_00006}
+class setTarget
+{
+public:
+    /// @brief Container for OUT arguments
+    /// @uptrace{SWS_CM_00196}
+    struct Output
+    {
+        bool return;
+    };
+    /// @brief Constructor
+    explicit setTarget(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~setTarget() = default;
+    /// @brief
+    setTarget(const setTarget& other) = delete;
+    setTarget& operator=(const setTarget& other) = delete;
+    /// @brief Move constructor
+    setTarget(setTarget&& other) noexcept : mInterface(other.mInterface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    setTarget& operator=(setTarget&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Function call operator
+    /// @uptrace{SWS_CM_00196}
+    ara::core::Future<Output> operator()(const eevp::simulation::VCS_Gear& targetGear)
+    {
+        para::serializer::Serializer __serializer__{};
+        __serializer__.write(targetGear);
+        auto __data__ = __serializer__.ensure();
+        auto* __promise__ = new ara::core::Promise<Output>();
+        auto __future__ = __promise__->get_future();
+        mInterface->CallMethod(kCallSign, __data__, __promise__);
+        return __future__;
+    }
+    /// @brief This method provides access to the global SMState of the this Method class,
+    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
+    /// @uptrace{SWS_CM_90483}
+    /// @uptrace{SWS_CM_90484}
+    ara::com::e2e::SMState GetSMState() const noexcept
+    {
+        return mInterface->GetE2EStateMachineState(kCallSign);
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<setTarget::Output>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            setTarget::Output output;
+            deserializer.read(output.return);
+            promise->set_value(output);
+        }
+        else
+        {
+            para::serializer::Deserializer deserializer{data};
+            ara::core::ErrorDomain::IdType domainId{};
+            ara::core::ErrorDomain::CodeType errorCode{};
+            deserializer.read(0, true, 0, domainId);
+            deserializer.read(0, true, 0, errorCode);
+            switch (domainId)
+            {
+                default:
+                {
+                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
+                    break;
+                }
+            }
+        }
+        delete static_cast<ara::core::Promise<setTarget::Output>*>(userData);
+    }
+    para::com::ProxyInterface* mInterface;
+    const std::string kCallSign{"setTarget"};
+};
 } /// namespace methods
 /// @uptrace{SWS_CM_00004}
 class VCS_GearProxy
@@ -218,6 +309,7 @@ public:
         : mHandle(handle)
         , mInterface(std::make_unique<para::com::ProxyInterface>(handle.GetInstanceSpecifier(), handle.GetServiceHandle()))
         , notifyStatus(mInterface.get())
+        , setTarget(mInterface.get())
     {
     }
     /// @brief Destructor
@@ -235,6 +327,7 @@ public:
         : mHandle(std::move(other.mHandle))
         , mInterface(std::move(other.mInterface))
         , notifyStatus(std::move(other.notifyStatus))
+        , setTarget(std::move(other.setTarget))
     {
         mInterface->StopFindService();
         other.mInterface.reset();
@@ -247,6 +340,7 @@ public:
         mInterface = std::move(other.mInterface);
         mInterface->StopFindService();
         notifyStatus = std::move(other.notifyStatus);
+        setTarget = std::move(other.setTarget);
         other.mInterface.reset();
         return *this;
     }
@@ -270,6 +364,8 @@ private:
 public:
     /// @brief - method, notifyStatus
     methods::notifyStatus notifyStatus;
+    /// @brief - method, setTarget
+    methods::setTarget setTarget;
 };
 } /// namespace proxy
 } /// namespace simulation

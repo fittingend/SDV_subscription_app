@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : vcs_gear_skeleton.h
 /// SERVICE INTERFACE NAME            : VCS_Gear
-/// GENERATED DATE                    : 2024-09-23 16:49:20
+/// GENERATED DATE                    : 2024-10-24 11:01:42
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -50,6 +50,10 @@ public:
     {
         eevp::simulation::VCS_Gear VCS_Gear;
     };
+    struct setTargetOutput
+    {
+        bool return;
+    };
     /// @brief Constructor
     /// @uptrace{SWS_CM_00002, SWS_CM_00152}
     VCS_GearSkeleton(ara::core::InstanceSpecifier instanceSpec, ara::com::MethodCallProcessingMode mode = ara::com::MethodCallProcessingMode::kEvent)
@@ -57,6 +61,9 @@ public:
     {
         mInterface->SetMethodCallHandler(knotifyStatusCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlenotifyStatus(data, token);
+        });
+        mInterface->SetMethodCallHandler(ksetTargetCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandlesetTarget(data, token);
         });
         mInterface->SetE2EErrorHandler([this](const ara::com::e2e::E2EErrorDomain& errorCode, ara::com::e2e::DataID dataID, ara::com::e2e::MessageCounter messageCounter) {
             E2EErrorHandler(errorCode, dataID, messageCounter);
@@ -78,6 +85,9 @@ public:
         mInterface->SetMethodCallHandler(knotifyStatusCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlenotifyStatus(data, token);
         });
+        mInterface->SetMethodCallHandler(ksetTargetCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandlesetTarget(data, token);
+        });
         mInterface->SetE2EErrorHandler([this](const ara::com::e2e::E2EErrorDomain& errorCode, ara::com::e2e::DataID dataID, ara::com::e2e::MessageCounter messageCounter) {
             E2EErrorHandler(errorCode, dataID, messageCounter);
         });
@@ -90,6 +100,9 @@ public:
         mInterface = std::move(other.mInterface);
         mInterface->SetMethodCallHandler(knotifyStatusCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlenotifyStatus(data, token);
+        });
+        mInterface->SetMethodCallHandler(ksetTargetCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandlesetTarget(data, token);
         });
         mInterface->SetE2EErrorHandler([this](const ara::com::e2e::E2EErrorDomain& errorCode, ara::com::e2e::DataID dataID, ara::com::e2e::MessageCounter messageCounter) {
             E2EErrorHandler(errorCode, dataID, messageCounter);
@@ -140,6 +153,9 @@ public:
     /// @brief Method, notifyStatus
     /// @uptrace{SWS_CM_00191}
     virtual ara::core::Future<notifyStatusOutput> notifyStatus() = 0;
+    /// @brief Method, setTarget
+    /// @uptrace{SWS_CM_00191}
+    virtual ara::core::Future<setTargetOutput> setTarget(const eevp::simulation::VCS_Gear& targetGear) = 0;
     
 private:
     void HandlenotifyStatus(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
@@ -168,7 +184,37 @@ private:
         }
         mInterface->ReturnMethod(knotifyStatusCallSign, retResult, retData, token);
     }
+    void HandlesetTarget(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
+    {
+        std::uint8_t retResult{1};
+        std::vector<std::uint8_t> retData{};
+        para::serializer::Deserializer deserializer{data};
+        eevp::simulation::VCS_Gear _targetGear_;
+        deserializer.read(_targetGear_);
+        auto future = setTarget(_targetGear_);
+        auto result = future.GetResult();
+        if (result.HasValue())
+        {
+            setTargetOutput output = result.Value();
+            para::serializer::Serializer serializer{};
+            serializer.write(output.return);
+            retData = serializer.ensure();
+            retResult = 0;
+        }
+        else
+        {
+            ara::core::ErrorDomain::IdType domainId = result.Error().Domain().Id();
+            ara::core::ErrorDomain::CodeType errorCode = result.Error().Value();
+            para::serializer::Serializer serializer{};
+            serializer.write(0, true, 0, domainId);
+            serializer.write(0, true, 0, errorCode);
+            retData = serializer.ensure();
+            retResult = 1;
+        }
+        mInterface->ReturnMethod(ksetTargetCallSign, retResult, retData, token);
+    }
     const std::string knotifyStatusCallSign{"notifyStatus"};
+    const std::string ksetTargetCallSign{"setTarget"};
 };
 } /// namespace skeleton
 } /// namespace simulation

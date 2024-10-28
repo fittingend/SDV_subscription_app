@@ -1,0 +1,38 @@
+{
+    "generation-by" : "PARA, PopcornSAR",
+    "autosar-version" : "R20-11",
+    "manifest-type" : "service-instance-manifest",
+    "port-type" : "pport",
+    "instance-specifier" : "ServiceCreator/AA/PPort_SmartFilmCont",
+    "service-protocol" : "someip",
+    "service-name" : "SmartFilmCont",
+    "service-id" : "9010",
+    "instance-id" : "9010",
+    "major-version" : "1",
+    "minor-version" : "0",
+    "client-id" : "undefined",
+    "events" : [
+    ],
+    "methods" : [
+        {
+            "name" : "SmartFilmControl",
+            "method-id" : "2",
+            "transport" : "udp",
+            "req-max-segment-len" : "0",
+            "req-separation-time" : "0.0",
+            "resp-max-segment-len" : "0",
+            "resp-separation-time" : "0.0"
+        },
+        {
+            "name" : "SmartFilmStatus",
+            "method-id" : "1",
+            "transport" : "udp",
+            "req-max-segment-len" : "0",
+            "req-separation-time" : "0.0",
+            "resp-max-segment-len" : "0",
+            "resp-separation-time" : "0.0"
+        }
+    ],
+    "fields" : [
+    ]
+}

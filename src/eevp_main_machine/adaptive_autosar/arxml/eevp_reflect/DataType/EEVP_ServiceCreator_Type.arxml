@@ -1468,6 +1468,52 @@
                 </CPP-TEMPLATE-ARGUMENT>
               </TEMPLATE-ARGUMENTS>
             </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="9eb60caf-6974-435f-9f28-e8cde078903b">
+              <SHORT-NAME>dataRecv</SHORT-NAME>
+              <CATEGORY>STRING</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>service</SHORT-NAME>
+                  <SYMBOL>service</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="fb720e51-6a2d-4a57-becb-e189bd9f864a">
+              <SHORT-NAME>dataSend</SHORT-NAME>
+              <CATEGORY>STRING</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>service</SHORT-NAME>
+                  <SYMBOL>service</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
             <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="d0de2c2b-9d38-445c-b223-77f4aa286834">
               <SHORT-NAME>ems_BmsInfo</SHORT-NAME>
               <CATEGORY>STRUCTURE</CATEGORY>
@@ -1841,6 +1887,80 @@
                 </CPP-TEMPLATE-ARGUMENT>
               </TEMPLATE-ARGUMENTS>
             </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="ff11dc3a-d98a-49be-9cac-b51d2a5dd09b">
+              <SHORT-NAME>wiperRecv</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>service</SHORT-NAME>
+                  <SYMBOL>service</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <SUB-ELEMENTS>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="39308cdc-7cee-42de-ac84-810034d1cbbb">
+                  <SHORT-NAME>wipingLevel</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/BCM_WipingLevel</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="5b6a8370-f0a1-491f-8cd0-140e20bf8a0a">
+                  <SHORT-NAME>wipingInterval</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="9e645414-9527-499d-8bd0-9bc2d1153202">
+              <SHORT-NAME>wiperSend</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>service</SHORT-NAME>
+                  <SYMBOL>service</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <SUB-ELEMENTS>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="9f6a7ded-fb26-4924-98cb-bf67dc1e142e">
+                  <SHORT-NAME>wipingLevel</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/BCM_WipingLevel</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="a8727cbe-f0e1-4c9a-995a-b40ba147bbea">
+                  <SHORT-NAME>wipingInterval</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
           </ELEMENTS>
         </AR-PACKAGE>
         <AR-PACKAGE UUID="c056a92a-1e2d-4086-932b-730ea2e1684c">
@@ -1983,6 +2103,13 @@
                     <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
                     <COMPU-CONST>
                       <VT>HIGH</VT>
+                    </COMPU-CONST>
+                  </COMPU-SCALE>
+                  <COMPU-SCALE>
+                    <LOWER-LIMIT INTERVAL-TYPE="CLOSED">3</LOWER-LIMIT>
+                    <UPPER-LIMIT INTERVAL-TYPE="CLOSED">3</UPPER-LIMIT>
+                    <COMPU-CONST>
+                      <VT>STOP</VT>
                     </COMPU-CONST>
                   </COMPU-SCALE>
                 </COMPU-SCALES>

@@ -112,6 +112,7 @@ namespace eevp
         Future<service::skeleton::fields::wiperLevel::FieldType>
         ServiceManagementSkeletonImpl::wiperLevelGetter()
         {
+            mLogger.LogInfo() << __func__;
             ara::core::Promise<service::skeleton::fields::wiperLevel::FieldType> promise;
             promise.set_value(this->wiperLevelField);
             return promise.get_future();

@@ -1,0 +1,34 @@
+{
+    "generation-by" : "PARA, PopcornSAR",
+    "autosar-version" : "R20-11",
+    "manifest-type" : "service-instance-manifest",
+    "port-type" : "pport",
+    "instance-specifier" : "ServiceCreator/AA/PPort_MsgInfoSrv",
+    "service-protocol" : "someip",
+    "service-name" : "MsgInfoSrv",
+    "service-id" : "9021",
+    "instance-id" : "9021",
+    "major-version" : "1",
+    "minor-version" : "0",
+    "client-id" : "undefined",
+    "events" : [
+        {
+            "name" : "T_MSGINFO",
+            "event-id" : "2",
+            "transport" : "udp",
+            "max-segment-len" : "0",
+            "separation-time" : "0.0"
+        },
+        {
+            "name" : "ems_MsgInfo",
+            "event-id" : "1",
+            "transport" : "udp",
+            "max-segment-len" : "0",
+            "separation-time" : "0.0"
+        }
+    ],
+    "methods" : [
+    ],
+    "fields" : [
+    ]
+}

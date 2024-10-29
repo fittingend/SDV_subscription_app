@@ -8,30 +8,32 @@ namespace eevp
 {
     namespace simulation
     {
-        namespace wiper
+        class IWiperListener
         {
-            class IWiperListener
-            {
-            public:
-                virtual ~IWiperListener() {};
-                virtual bool isWiping() = 0;
-                virtual eevp::simulation::BCM_ReturnCode stopWiping() = 0;
-                virtual eevp::simulation::BCM_ReturnCode startWiping() = 0;
+        public:
+            virtual ~IWiperListener() {};
+            virtual bool isWiping() = 0;
+            virtual eevp::simulation::BCM_ReturnCode stopWiping() = 0;
+            virtual eevp::simulation::BCM_ReturnCode startWiping() = 0;
 
-                virtual std::uint16_t getWipingInterval() = 0;
-                virtual eevp::simulation::BCM_WipingLevel getWipingLevel() = 0;
-                virtual eevp::simulation::BCM_ReturnCode setWipingLevelImme(const eevp::simulation::BCM_WipingLevel &wipingLevel) = 0;
-                virtual eevp::simulation::BCM_ReturnCode setWipingInterval(std::uint16_t &wipingInterval) = 0;
-                virtual eevp::simulation::BCM_ReturnCode setWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel) = 0;
+            virtual std::uint16_t getWipingInterval() = 0;
+            virtual eevp::simulation::BCM_WipingLevel getWipingLevel() = 0;
+            virtual eevp::simulation::BCM_ReturnCode setWipingLevelImme(const eevp::simulation::BCM_WipingLevel &wipingLevel) = 0;
+            virtual eevp::simulation::BCM_ReturnCode setWipingInterval(std::uint16_t &wipingInterval) = 0;
+            virtual eevp::simulation::BCM_ReturnCode setWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel) = 0;
 
-                virtual void getWipinginterval(std::uint16_t &wipingInterval) = 0;
-                virtual void getWipinglevel(eevp::simulation::BCM_WipingLevel &wipingLevel) = 0;
-                virtual void setWipingLevelimme(const eevp::simulation::BCM_WipingLevel &wipingLevel) = 0;
-                virtual void setWipinginterval(std::uint16_t &wipingInterval) = 0;
-                virtual void setWipinglevel(const eevp::simulation::BCM_WipingLevel &wipingLevel) = 0;
-            };
+            // virtual void isWiping_C(eevp::simulation::BCM_WipingLevel &wipingLevel) = 0;
+            // virtual void stopWiping_C(eevp::simulation::BCM_WipingLevel &wipingLevel) = 0;
+            // virtual void startWiping_C(eevp::simulation::BCM_WipingLevel &wipingLevel) = 0;
+            // virtual void getWipingInterval_C(std::uint16_t &wipingInterval) = 0;
+            // virtual void getWipingLevel_C(eevp::simulation::BCM_WipingLevel &wipingLevel) = 0;
+            // virtual void setWipingLevelImme_C(const eevp::simulation::BCM_WipingLevel &wipingLevel) = 0;
+            // virtual void setWipingInterval_C(std::uint16_t &wipingInterval) = 0;
+            // virtual void setWipingLevel_C(const eevp::simulation::BCM_WipingLevel &wipingLevel) = 0;
 
-        } /// namespace wiper
+            // virtual void getWipingLevel_Subs(eevp::simulation::BCM_WipingLevel &wipingLevel) = 0;
+            // virtual void setWipingLevel_Subs(const eevp::simulation::BCM_WipingLevel &wipingLevel) = 0;
+        };
     } /// namespace control
 } /// namespace eevp
 

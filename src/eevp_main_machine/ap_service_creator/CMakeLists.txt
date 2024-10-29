@@ -51,6 +51,7 @@ SET(SRC
     src/ServiceCreator.cpp
     src/WiperProxyImpl.cpp
     src/ServiceManagementSkeletonImpl.cpp
+    src/WiperSkeletonImpl.cpp
     )
 
 ADD_EXECUTABLE(${PROJECT_NAME} ${SRC})

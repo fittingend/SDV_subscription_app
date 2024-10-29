@@ -22,6 +22,7 @@
 #include "WiperProxyImpl.h"
 
 #include "ServiceManagementSkeletonImpl.h"
+#include "WiperSkeletonImpl.h"
 
 #define BUF_SIZE 1024
 using namespace ara::core;
@@ -55,11 +56,24 @@ namespace eevp
             eevp::simulation::BCM_ReturnCode setWipingInterval(std::uint16_t &wipingInterval);
             eevp::simulation::BCM_ReturnCode setWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel);
 
-            void getWipinginterval(std::uint16_t &wipingInterval);
-            void getWipinglevel(eevp::simulation::BCM_WipingLevel &wipingLevel);
-            void setWipingLevelimme(const eevp::simulation::BCM_WipingLevel &wipingLevel);
-            void setWipinginterval(std::uint16_t &wipingInterval);
-            void setWipinglevel(const eevp::simulation::BCM_WipingLevel &wipingLevel);
+            // void isWiping_C(eevp::simulation::BCM_WipingLevel &wipingLevel);
+            // void stopWiping_C(eevp::simulation::BCM_WipingLevel &wipingLevel);
+            // void startWiping_C(eevp::simulation::BCM_WipingLevel &wipingLevel);
+            // void getWipingInterval_C(std::uint16_t &wipingInterval);
+            // void getWipingLevel_C(eevp::simulation::BCM_WipingLevel &wipingLevel);
+            // void setWipingLevelImme_C(const eevp::simulation::BCM_WipingLevel &wipingLevel);
+            // void setWipingInterval_C(std::uint16_t &wipingInterval);
+            // void setWipingLevel_C(const eevp::simulation::BCM_WipingLevel &wipingLevel);
+
+
+            // void getWipingLevel_Subs(eevp::simulation::BCM_WipingLevel &wipingLevel);
+            // void setWipingLevel_Subs(const eevp::simulation::BCM_WipingLevel &wipingLevel);
+
+            // void getWipinginterval(std::uint16_t &wipingInterval);
+            // void getWipinglevel(eevp::simulation::BCM_WipingLevel &wipingLevel);
+            // void setWipingLevelimme(const eevp::simulation::BCM_WipingLevel &wipingLevel);
+            // void setWipinginterval(std::uint16_t &wipingInterval);
+            // void setWipinglevel(const eevp::simulation::BCM_WipingLevel &wipingLevel);
 
             // WiperVar
             static eevp::service::type::wiperRecv wiperRecv;
@@ -91,7 +105,8 @@ namespace eevp
             ara::log::Logger &mLogger;
 
             std::shared_ptr<eevp::service::ServiceManagementSkeletonImpl> serviceManagementSkeletonImpl;
-            std::shared_ptr<eevp::simulation::wiper::WiperProxyImpl> wiperProxyImpl;
+            std::shared_ptr<eevp::simulation::WiperSkeletonImpl> wiperSkeletonImpl;
+            std::shared_ptr<eevp::simulation::WiperProxyImpl> wiperProxyImpl;
             void getWiperRecv();
             void getWiperSend();
             void setWiperSend(std::uint16_t &wipingInterval);

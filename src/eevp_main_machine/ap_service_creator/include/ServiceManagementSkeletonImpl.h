@@ -22,6 +22,8 @@ namespace eevp
             ~ServiceManagementSkeletonImpl();
 
             void setEventListener(std::shared_ptr<eevp::service::IServiceManagementListener> _listener);
+
+
             Future<stopWipingOutput> stopWiping();
 
             Future<startWipingOutput> startWiping();

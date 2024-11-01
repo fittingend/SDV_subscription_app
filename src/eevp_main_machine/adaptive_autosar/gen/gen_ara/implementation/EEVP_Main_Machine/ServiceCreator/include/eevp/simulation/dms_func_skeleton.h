@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : dms_func_skeleton.h
 /// SERVICE INTERFACE NAME            : DMS_Func
-/// GENERATED DATE                    : 2024-10-29 13:55:02
+/// GENERATED DATE                    : 2024-11-01 14:56:47
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

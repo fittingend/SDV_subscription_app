@@ -13,7 +13,7 @@ public:
     RearCurtainProxyImpl();
     ~RearCurtainProxyImpl();
 
-    //void setEventListener(const std::shared_ptr<eevp::control::rearcurtain::IRearCurtainListener> _listener);
+    // void setEventListener(const std::shared_ptr<eevp::control::rearcurtain::IRearCurtainListener> _listener);
     bool init();
 
     // method

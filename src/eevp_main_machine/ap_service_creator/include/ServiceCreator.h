@@ -19,8 +19,6 @@
 #include "IWiperListener.h"
 #include "IServiceManagementListener.h"
 
-#include "WiperProxyImpl.h"
-
 #include "ServiceManagementSkeletonImpl.h"
 #include "WiperSkeletonImpl.h"
 
@@ -95,7 +93,6 @@ namespace eevp
             /// @brief set Running State
             bool setRunningState();
 
-            bool startWiperProxy();
 
             bool startSocketClient();
 
@@ -106,7 +103,6 @@ namespace eevp
 
             std::shared_ptr<eevp::service::ServiceManagementSkeletonImpl> serviceManagementSkeletonImpl;
             std::shared_ptr<eevp::simulation::WiperSkeletonImpl> wiperSkeletonImpl;
-            std::shared_ptr<eevp::simulation::WiperProxyImpl> wiperProxyImpl;
             void getWiperRecv();
             void getWiperSend();
             void setWiperSend(std::uint16_t &wipingInterval);

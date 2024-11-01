@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : ctrl_rearcurtain_skeleton.h
 /// SERVICE INTERFACE NAME            : Ctrl_RearCurtain
-/// GENERATED DATE                    : 2024-10-29 13:55:04
+/// GENERATED DATE                    : 2024-11-01 14:56:47
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

@@ -7,7 +7,7 @@ namespace eevp
 {
     namespace simulation
     {
-        eevp::service::type::wiperRecv ServiceCreator::wiperRecv = {eevp::simulation::BCM_WipingLevel::STOP, 0};
+        eevp::service::type::wiperRecv ServiceCreator::wiperRecv = {eevp::simulation::BCM_WipingLevel::STOP, 99};
         eevp::service::type::wiperSend ServiceCreator::wiperSend = {eevp::simulation::BCM_WipingLevel::LOW, 1};
         pthread_t ServiceCreator::thread_socket_recv;
         pthread_t ServiceCreator::thread_socket_send;
@@ -63,7 +63,6 @@ namespace eevp
         };
 
         ServiceCreator::ServiceCreator() : mLogger(ara::log::CreateLogger("SVCC", "SVCC", ara::log::LogLevel::kInfo)),
-                                           wiperProxyImpl{nullptr},
                                            serviceManagementSkeletonImpl{nullptr}
         {
             mLogger.LogInfo() << __func__;
@@ -100,11 +99,7 @@ namespace eevp
                 return false;
             }
             std::this_thread::sleep_for(std::chrono::seconds(1));
-            if (!startWiperProxy())
-            {
-                return false;
-            }
-            std::this_thread::sleep_for(std::chrono::seconds(1));
+
             if (!startSocketClient())
             {
                 return false;
@@ -201,14 +196,12 @@ namespace eevp
         std::uint16_t ServiceCreator::getWipingInterval()
         {
             mLogger.LogInfo() << __func__;
-            wiperProxyImpl->getWipingInterval();
             return 0;
         }
 
         eevp::simulation::BCM_WipingLevel ServiceCreator::getWipingLevel()
         {
             mLogger.LogInfo() << __func__;
-            wiperProxyImpl->getWipingLevel();
             return wiperRecv.wipingLevel;
         }
 
@@ -306,28 +299,11 @@ namespace eevp
             return true;
         }
 
-        bool ServiceCreator::startWiperProxy()
-        {
-            mLogger.LogInfo() << __func__;
-
-            wiperProxyImpl = std::make_shared<eevp::simulation::WiperProxyImpl>();
-            auto wiperListener = std::make_shared<WiperListener>(this);
-            wiperProxyImpl->setEventListener(wiperListener);
-            wiperProxyImpl->init();
-            return true;
-        }
-
         bool ServiceCreator::startServiceCreatorStub()
         {
             mLogger.LogInfo() << __func__;
 
             ara::core::InstanceSpecifier specifier_WiperWash("ServiceCreator/AA/PPort_BCM_WiperWash");
-            ara::core::InstanceSpecifier specifier("ServiceCreator/AA/PPort_ServiceManagement");
-
-            serviceManagementSkeletonImpl = std::make_shared<eevp::service::ServiceManagementSkeletonImpl>(specifier);
-            auto serviceManagementListener = std::make_shared<ServiceManagementListener>(this);
-            serviceManagementSkeletonImpl->setEventListener(serviceManagementListener);
-            serviceManagementSkeletonImpl->OfferService();
 
             wiperSkeletonImpl = std::make_shared<eevp::simulation::WiperSkeletonImpl>(specifier_WiperWash);
             auto wiperListener = std::make_shared<WiperListener>(this);
@@ -358,9 +334,13 @@ namespace eevp
             instance->mLogger.LogInfo() << __func__;
 
             // get함수로 값 받아와서 Send데이터 계속 송신
-            instance->getWipingLevel();
-            instance->getWipingInterval();
-
+            // instance->getWipingLevel();
+            // instance->getWipingInterval();
+            while(mRunning){
+                std::this_thread::sleep_for(std::chrono::seconds(3));
+                instance->getWiperRecv();
+                instance->getWiperSend();
+            }
 
             // 서버 소켓과 연결 후 송신해야 하는 이벤트 발생 시 데이터 송신
             // while (mRunning)
@@ -379,13 +359,13 @@ namespace eevp
         {
             ServiceCreator *instance = static_cast<ServiceCreator *>(inst);
             instance->mLogger.LogInfo() << __func__;
-
+            
             ///////////////////// 값을 소켓으로 받아서 recv데이터로 대입 /////////////////////
 
             ///////////////////// recv데이터 set함수로 보내기 /////////////////////
             // Wiper
-            instance->setWipingLevel(wiperRecv.wipingLevel);
-            instance->setWipingInterval(wiperRecv.wipingInterval);
+            // instance->setWipingLevel(wiperRecv.wipingLevel);
+            // instance->setWipingInterval(wiperRecv.wipingInterval);
 
                 // while (mRunning)
                 // {

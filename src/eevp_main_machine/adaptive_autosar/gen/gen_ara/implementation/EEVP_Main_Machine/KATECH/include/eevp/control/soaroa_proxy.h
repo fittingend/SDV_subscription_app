@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : soaroa_proxy.h
 /// SERVICE INTERFACE NAME            : SoaRoa
-/// GENERATED DATE                    : 2024-09-02 16:05:54
+/// GENERATED DATE                    : 2024-11-01 14:56:54
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -24,9 +24,6 @@
 /// @uptrace{SWS_CM_01004}
 #include "soaroa_common.h"
 #include "para/com/proxy/proxy_interface.h"
-#include <ara/log/logger.h>
-
-
 /// @uptrace{SWS_CM_01005}
 namespace eevp
 {
@@ -1368,24 +1365,15 @@ public:
     /// @uptrace{SWS_CM_00623}
     static ara::core::Result<ara::com::FindServiceHandle> StartFindService(ara::com::FindServiceHandler<SoaRoaProxy::HandleType> handler, ara::core::InstanceSpecifier instanceSpec)
     {
-        ara::log::Logger& mLogger = ara::log::CreateLogger("KATC", "Default", ara::log::LogLevel::kInfo);
-
         ara::com::FindServiceHandle findHandle = para::com::ProxyInterface::GetFindServiceHandle(instanceSpec);
         auto findCallback = [&, handler, findHandle, instanceSpec](std::vector<para::com::ServiceHandle> services) {
             ara::com::ServiceHandleContainer<SoaRoaProxy::HandleType> handleContainer;
-            //mLogger.LogInfo() << "시작";
-
             for (auto& service : services)
             {
-                //mLogger.LogInfo() << "시작1";
                 handleContainer.emplace_back(instanceSpec, service);
             }
-            //mLogger.LogInfo() << "시작2";
             handler(handleContainer, findHandle);
-            //mLogger.LogInfo() << "시작3";
-
         };
-        //mLogger.LogInfo() << "시작4";
         return para::com::ProxyInterface::StartFindService(instanceSpec, findCallback);
     }
     /// @brief Send "FindService" message to Communication Management at once

@@ -5,7 +5,7 @@
 #include <mutex>
 #include <thread>
 #include <string>
-#include <typeinfo>  
+#include <typeinfo>
 
 #include "eevp/simulation/bcm_wiperwash_proxy.h"
 #include "ara/log/logger.h"
@@ -35,7 +35,7 @@ namespace eevp
             eevp::simulation::BCM_ReturnCode setWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel);
             eevp::simulation::BCM_ReturnCode setWipingLevelImme(const eevp::simulation::BCM_WipingLevel &wipingLevel);
 
-            eevp::simulation::BCM_ReturnCode setWipingIneterval(std::uint16_t &wipingInterval);
+            eevp::simulation::BCM_ReturnCode setWipingInterval(std::uint16_t &wipingInterval);
             eevp::simulation::BCM_ReturnCode getWipingInterval();
             eevp::simulation::BCM_WipingLevel getWipingLevel();
 
@@ -44,12 +44,12 @@ namespace eevp
                 ara::com::ServiceHandleContainer<eevp::simulation::proxy::BCM_WiperWashProxy::HandleType> container,
                 ara::com::FindServiceHandle findHandle);
 
-            /// @brief Unsubscribe Field
-            void UnsubscribeField();
-
             /// @brief Subscribe Field
             void SubscribeWiperLevel();
             void SubscribeWiperInterval();
+
+            /// @brief Unsubscribe Field
+            void UnsubscribeField();
 
             // callback func
             void cbWiperLevel();
@@ -59,9 +59,13 @@ namespace eevp
             std::shared_ptr<eevp::simulation::IWiperListener> listener;
             std::shared_ptr<eevp::simulation::proxy::BCM_WiperWashProxy> mProxy;
             std::shared_ptr<ara::com::FindServiceHandle> mFindHandle;
+
+            std::unique_ptr<eevp::simulation::proxy::BCM_WiperWashProxy> mRPort{nullptr};
+
             void getWiperRecv();
             void getWiperSend();
 
+            eevp::simulation::proxy::BCM_WiperWashProxy::HandleType mProxyHandle;
             std::mutex mHandle;
             std::condition_variable cvHandle;
         }; // namespace wiper

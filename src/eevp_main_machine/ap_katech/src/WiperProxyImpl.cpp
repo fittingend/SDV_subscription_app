@@ -1,6 +1,7 @@
 #include "WiperProxyImpl.h"
-#include "ServiceCreator.h"
+
 using namespace eevp::simulation;
+using namespace ara::core;
 
 namespace eevp
 {
@@ -35,7 +36,7 @@ namespace eevp
         {
             mLogger.LogInfo() << __func__;
 
-            ara::core::InstanceSpecifier specifier("ServiceCreator/AA/RPort_BCM_WiperWash");
+            ara::core::InstanceSpecifier specifier("KATECH/AA/RPortBCMWiper");
 
             auto callback = [&](auto container, auto findHandle)
             {
@@ -52,50 +53,6 @@ namespace eevp
             }
 
             return true;
-        }
-
-        void
-        WiperProxyImpl::getWiperRecv()
-        {
-            switch (ServiceCreator::wiperRecv.wipingLevel)
-            {
-            case BCM_WipingLevel::HIGH:
-                mLogger.LogInfo() << "wiperRecv: [HIGH, " << ServiceCreator::wiperRecv.wipingInterval << "]";
-                break;
-            case BCM_WipingLevel::LOW:
-                mLogger.LogInfo() << "wiperRecv: [LOW, " << ServiceCreator::wiperRecv.wipingInterval << "]";
-                break;
-            case BCM_WipingLevel::MEDIUM:
-                mLogger.LogInfo() << "wiperRecv: [MEDIUM, " << ServiceCreator::wiperRecv.wipingInterval << "]";
-                break;
-            case BCM_WipingLevel::STOP:
-                mLogger.LogInfo() << "wiperRecv: [STOP, " << ServiceCreator::wiperRecv.wipingInterval << "]";
-                break;
-            default:
-                break;
-            }
-        }
-
-        void
-        WiperProxyImpl::getWiperSend()
-        {
-            switch (ServiceCreator::wiperSend.wipingLevel)
-            {
-            case BCM_WipingLevel::HIGH:
-                mLogger.LogInfo() << "wiperSend: [HIGH, " << ServiceCreator::wiperSend.wipingInterval << "]";
-                break;
-            case BCM_WipingLevel::LOW:
-                mLogger.LogInfo() << "wiperSend: [LOW, " << ServiceCreator::wiperSend.wipingInterval << "]";
-                break;
-            case BCM_WipingLevel::MEDIUM:
-                mLogger.LogInfo() << "wiperSend: [MEDIUM, " << ServiceCreator::wiperSend.wipingInterval << "]";
-                break;
-            case BCM_WipingLevel::STOP:
-                mLogger.LogInfo() << "wiperSend: [STOP, " << ServiceCreator::wiperSend.wipingInterval << "]";
-                break;
-            default:
-                break;
-            }
         }
 
         eevp::simulation::BCM_ReturnCode WiperProxyImpl::getWipingInterval()
@@ -121,7 +78,6 @@ namespace eevp
             {
                 mLogger.LogError() << "Timeout to call soaWiperStatus's Getter";
             }
-            ServiceCreator::wiperSend.wipingInterval = wipingInterval;
             mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(wipingInterval) << ")";
 
             return BCM_ReturnCode::SUCCESS;
@@ -150,7 +106,6 @@ namespace eevp
             {
                 mLogger.LogError() << "Timeout to call soaWiperStatus's Getter";
             }
-            ServiceCreator::wiperSend.wipingLevel = wipingLevel;
             mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(wipingLevel) << ")";
 
             return wipingLevel;
@@ -172,30 +127,45 @@ namespace eevp
             return BCM_ReturnCode::SUCCESS;
         }
 
+        eevp::simulation::BCM_ReturnCode
+        WiperProxyImpl::setWipingInterval(std::uint16_t &wipingInterval)
+        {
+            mLogger.LogInfo() << __func__;
+
+            if (mProxy == nullptr)
+            {
+                mLogger.LogInfo() << "setWipingInterval: mProxy is nullptr";
+                return BCM_ReturnCode::SUCCESS;
+            }
+
+            auto future = mProxy->setWipingInterval(wipingInterval);
+
+            return BCM_ReturnCode::SUCCESS;
+        }
+
         void
         WiperProxyImpl::FindServiceCallback(
             ara::com::ServiceHandleContainer<eevp::simulation::proxy::BCM_WiperWashProxy::HandleType> container,
             ara::com::FindServiceHandle findHandle)
         {
             mLogger.LogInfo() << __func__;
+
             std::lock_guard<std::mutex> lock(mHandle);
 
             if (mProxy != nullptr)
             {
-                mLogger.LogInfo() << "wiperProxy isn't empty, unsubscribe";
                 UnsubscribeField();
+
                 mFindHandle = nullptr;
                 mProxy = nullptr;
             }
 
             if (container.empty())
             {
-                mLogger.LogInfo() << "wiperProxyContainer is empty";
                 mProxy = nullptr;
                 return;
             }
-
-            mLogger.LogInfo() << "Find wiperProxyContainer, subscribeWiperService";
+            mLogger.LogInfo() << "find";
 
             mFindHandle = std::make_shared<ara::com::FindServiceHandle>(findHandle);
             mProxy = std::make_shared<proxy::BCM_WiperWashProxy>(container.at(0));
@@ -205,7 +175,6 @@ namespace eevp
             SubscribeWiperInterval();
 
             cvHandle.notify_one();
-            return;
         }
 
         void
@@ -301,7 +270,7 @@ namespace eevp
                                              {
             wipingLevel=static_cast<eevp::simulation::BCM_WipingLevel>(*msg);
                     if (listener != nullptr) {
-                        ServiceCreator::wiperSend.wipingLevel=wipingLevel;
+                        mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(wipingLevel) << ")";
                     } });
         }
 
@@ -325,7 +294,7 @@ namespace eevp
                                                 {
                 wipingInterval=static_cast<std::uint16_t>(*msg);
                     if (listener != nullptr) {
-                        ServiceCreator::wiperSend.wipingInterval=wipingInterval;
+                        mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(wipingInterval) << ")";
                     } });
         }
     }

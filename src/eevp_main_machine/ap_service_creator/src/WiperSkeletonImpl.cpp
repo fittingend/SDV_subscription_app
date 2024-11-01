@@ -85,6 +85,11 @@ namespace eevp
         Future<skeleton::BCM_WiperWashSkeleton::setWipingLevelOutput> WiperSkeletonImpl::setWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel)
         {
             mLogger.LogInfo() << __func__;
+            ara::core::Promise<skeleton::BCM_WiperWashSkeleton::setWipingLevelOutput> promise;
+            ServiceCreator::wiperSend.wipingLevel = wipingLevel;
+            promise.set_value(this->mWiperInterval);
+            updateWipingLevel(wipingLevel);
+            return promise.get_future();
         }
 
         Future<skeleton::BCM_WiperWashSkeleton::setWipingLevelImmeOutput> WiperSkeletonImpl::setWipingLevelImme(const eevp::simulation::BCM_WipingLevel &wipingLevel)
@@ -95,6 +100,10 @@ namespace eevp
         Future<skeleton::BCM_WiperWashSkeleton::setWipingIntervalOutput> WiperSkeletonImpl::setWipingInterval(const std::uint16_t &wipingInterval)
         {
             mLogger.LogInfo() << __func__;
+            ara::core::Promise<skeleton::BCM_WiperWashSkeleton::setWipingIntervalOutput> promise;
+            ServiceCreator::wiperSend.wipingInterval = wipingInterval;
+            updateWipingInterval(wipingInterval);
+            return promise.get_future();
         }
 
         Future<simulation::skeleton::fields::wiperInterval::FieldType>

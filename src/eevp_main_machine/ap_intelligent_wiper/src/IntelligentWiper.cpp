@@ -1,20 +1,19 @@
-#include "intelligent_wiper.h"
+#include "IntelligentWiper.h"
 #include "ara/exec/execution_client.h"
 #include <ctime>
+#include <ara/log/logger.h>
 
 namespace eevp {
 namespace simulation {
 
-//eevp::simulation::wi soaRearCurtainStatus;
-
 std::atomic_bool IntelligentWiper::mRunning(false);
 
-class WiperListener : public eevp::simulation::roa::IWiperListener {
+class WiperListener : public eevp::simulation::IWiperListener {
 public:
     WiperListener(IntelligentWiper* app) : intelligentWiper(app) {}
     
-    void notifyUserControl(std::uint8_t& value) {
-        return intelligentWiper->notifyUserControl(value);
+    void notifyBCM_WipingLevel(eevp::simulation::BCM_WipingLevel& value) {
+        return intelligentWiper->notifyBCM_WipingLevel(value);
     }
 private:
     IntelligentWiper* intelligentWiper;
@@ -22,11 +21,11 @@ private:
 
 IntelligentWiper::IntelligentWiper()
     : mLogger(ara::log::CreateLogger("INTW", "INTW", ara::log::LogLevel::kInfo)),
-      wiperProxyImpl{nullptr},
-      accrPedalProxyImpl{nullptr},
-      brakePedalProxyImpl{nullptr},
-      gearProxyImpl{nullptr},
-      vehSpdProxyImpl{nullptr} 
+      wiperProxyImpl{nullptr}
+      //accrPedalProxyImpl{nullptr},
+      //brakePedalProxyImpl{nullptr},
+      //gearProxyImpl{nullptr},
+      //vehSpdProxyImpl{nullptr} 
 {
     // Log the constructor function name for initialization tracking
     mLogger.LogInfo() << __func__;
@@ -67,7 +66,10 @@ IntelligentWiper::Run() {
     mLogger.LogInfo() << __func__;
     while (mRunning) 
     {
-        mLogger.LogInfo() << "Service Creator running";
+        execServiceLogic();
+        eevp::simulation::BCM_WipingLevel wipinglevel;
+        getBCM_WipingLevel(wipinglevel);
+        std::this_thread::sleep_for(std::chrono::seconds(5));
     }
 }
 
@@ -79,7 +81,7 @@ IntelligentWiper::Terminate()
 }
 
 bool
-KATECH::setRunningState() {
+IntelligentWiper::setRunningState() {
     ara::exec::ExecutionClient executionClient;
     auto exec = executionClient.ReportExecutionState(ara::exec::ExecutionState::kRunning);
     if (exec.HasValue()) {
@@ -91,115 +93,26 @@ KATECH::setRunningState() {
     return true;
 }
 
-// /// ROA Start
-
-// void
-// KATECH::getSoaRoaDetectState(eevp::control::SoaRoaDetectState& soaRoaDetectState)
-// {
-//     roaProxyImpl->getSoaRoaDetectState(soaRoaDetectState);
-//     mLogger.LogInfo() << "[getSoaRoaDetectState]:" << static_cast<std::uint8_t>(soaRoaDetectState);
-// }
-
-// void
-// KATECH::getSoaRoaDetectCount(std::uint8_t& soaRoaDetectCount) 
-// {
-//     roaProxyImpl->getSoaRoaDetectCount(soaRoaDetectCount);
-//     mLogger.LogInfo() << "[getSoaRoaDetectCount]" << ":"
-//                       << soaRoaDetectCount;
-// }
-
-// /// ROA End
-
-
-/// RearCurtain Start
-void IntelligentWiper::notifyUserControl()
-{
-    mLogger.LogInfo() << __func__;
-
-    
-
-}
-
-eevp::simulation::BCM_ReturnCode ServiceCreator::stopWiping()
-{
-    mLogger.LogInfo() << __func__;
-    return BCM_ReturnCode::SUCCESS;
-}
-
-eevp::simulation::BCM_ReturnCode ServiceCreator::startWiping()
-{
-    mLogger.LogInfo() << __func__;
-    return BCM_ReturnCode::SUCCESS;
-}
-
-eevp::simulation::BCM_ReturnCode ServiceCreator::setWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel)
-{
-    mLogger.LogInfo() << __func__;
-    wiperSkeletonImpl->updateWipingLevel(wipingLevel);
-    return BCM_ReturnCode::SUCCESS;
-}
-
-eevp::simulation::BCM_ReturnCode ServiceCreator::setWipingLevelImme(const eevp::simulation::BCM_WipingLevel &wipingLevel)
-{
-    mLogger.LogInfo() << __func__;
-    wiperSkeletonImpl->updateWipingLevel(wipingLevel);
-    return BCM_ReturnCode::SUCCESS;
-}
-
-eevp::simulation::BCM_ReturnCode ServiceCreator::setWipingInterval(std::uint16_t &wipingInterval)
-{
-    mLogger.LogInfo() << __func__;
-    wiperSkeletonImpl->updateWipingInterval(wipingInterval);
-    return BCM_ReturnCode::SUCCESS;
-}
-
-std::uint16_t ServiceCreator::getWipingInterval()
-{
-    mLogger.LogInfo() << __func__;
-    wiperProxyImpl->getWipingInterval();
-    return 0;
-}
-
-eevp::simulation::BCM_WipingLevel ServiceCreator::getWipingLevel()
-{
-    mLogger.LogInfo() << __func__;
-    wiperProxyImpl->getWipingLevel();
-    return wiperRecv.wipingLevel;
-}
 void
-IntelligentWiper::getSoaRctnStatus(eevp::control::SoaRctnStatus& fieldValue) {
-    mLogger.LogInfo() << __func__;
-
-    rearCurtainProxyImpl->getSoaRctnStatus(fieldValue);
-    if (fieldValue.errorState == eevp::control::SoaErrorState::kOK) {
-        mLogger.LogInfo() << "getSoaRctnStatus is kOK";
-    }
-    if (fieldValue.errorState == eevp::control::SoaErrorState::kERROR) {
-    mLogger.LogInfo() << "getSoaRctnStatus is kERROR";
-    }
-}
-
-bool
-KATECH::requestRearCurtainOperation(const eevp::control::SoaRctnMotorDir& motorDir) {
-    mLogger.LogInfo() << __func__;
-
-    eevp::control::SoaErrorState errorState = rearCurtainProxyImpl->requestRearCurtainOperation(motorDir);
-    if (errorState == eevp::control::SoaErrorState::kERROR) {
-        mLogger.LogInfo() << "rearcurtain opration is kERROR";
-        return false;
-    }
-    if (errorState == eevp::control::SoaErrorState::kOK) {
-        mLogger.LogInfo() << "rearcurtain operation is kOK";
-        return true;
-    }
+IntelligentWiper::getBCM_WipingLevel(eevp::simulation::BCM_WipingLevel& wipinglevel)
+{
+    wiperProxyImpl->getBCM_WipingLevel(wipinglevel);
+    mLogger.LogInfo() << "[getBCM_WipingLevel]:" << static_cast<std::uint8_t>(wipinglevel);
 }
 
 void
-KATECH::requestRearCurtainPosition(const std::uint8_t& posPercentage) {
-    mLogger.LogInfo() << __func__;
-
-    rearCurtainProxyImpl->requestRearCurtainPosition(posPercentage);
+IntelligentWiper::getGearValue(std::uint8_t& gearValue)
+{
+    gearProxyImpl->getGearValue(gearValue);
+    mLogger.LogInfo() << "[getGearValue]:" << static_cast<std::uint8_t>(gearValue);
 }
+
+void IntelligentWiper::notifyBCM_WipingLevel(eevp::simulation::BCM_WipingLevel& wipinglevel)
+{
+    mLogger.LogInfo() << __func__;
+    mLogger.LogInfo() << "wiping level: " << static_cast<std::uint8_t>(wipinglevel);
+}
+
 
 
 bool IntelligentWiper::startWiperProxy()
@@ -212,7 +125,93 @@ bool IntelligentWiper::startWiperProxy()
     wiperProxyImpl->init();
     return true;
 }
+void IntelligentWiper::execServiceLogic()
+{
+    bool isIntentToDrive, isParked, isStopped;
+
+    //주행 의도 판단 알고리즘
+    isIntentToDrive = checkDrivingIntention();
+
+    //주정차 상태 판단 알고리즘
+    checkStopStatus(isParked, isStopped); 
+
+    if (isIntentToDrive == false && isStopped == true || isParked == true)
+    {
+        wiperProxyImpl->startWiping();
+    }
+    else wiperProxyImpl->stopWiping();
+
+    DynamicWiperAdjustment();
+}
+
+void IntelligentWiper::DynamicWiperAdjustment()
+{
+    getVehVelocity(vehVelocity);
+    getBrakePedalValue(brakeValue);
+    
+    if((gearValue == DRIVE || gearValue == MANUAL) && (brakeValue == 0 || brakeValue == 1))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+bool IntelligentWiper::checkDrivingIntention()
+{
+    getGearValue(gearValue);
+    getBrakePedalValue(brakeValue);
+    
+    if((gearValue == DRIVE || gearValue == MANUAL) && (brakeValue == 0 || brakeValue == 1))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
 
 
-} // namespace control
+void IntelligentWiper::checkStopStatus(bool& isParked, bool& isStopped)
+{
+    getGearValue(gearValue);
+    getVehVelocity(vehVelocity);
+
+    if (gearValue == P)// == P
+    {
+        isParked = true;
+        //주차상태 TRUE
+    }
+    else if (vehVelocity < 1) // 속도가 1km/h 이내면 0 으로 가정
+    {   
+        isStopped = isVelocityZeroForDuration();
+    }
+}
+bool IntelligentWiper::isVelocityZeroForDuration() {
+
+    const double duration = 3.0; // seconds
+    const double checkInterval = 0.5; // seconds between checks
+    double timeZero = 0.0;
+
+    while (timeZero < duration) {
+        double vehVelocity;
+        getVehVelocity(vehVelocity);
+
+        if (vehVelocity != 0) {
+            // If velocity is not zero, exit immediately
+            return false;
+        } else {
+            // Accumulate time with velocity at zero
+            timeZero += checkInterval;
+        }
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(checkInterval * 1000)));
+    }
+
+    return true; // `vehVelocity` was 0 for the full 3 seconds
+}
+
+} // namespace simulation
 } // namespace eevp

@@ -1,12 +1,12 @@
 #include "ara/core/initialization.h"
-#include "intelligent_wiper.h"
+#include "IntelligentWiper.h"
 
 int main(void) {
     if (!ara::core::Initialize()) {
         return EXIT_FAILURE;
     }
 
-    eevp::simulation::INTELLIGENT_WIPER app;
+    eevp::simulation::IntelligentWiper app;
     if (app.Start()) {
         app.Run();
         app.Terminate();

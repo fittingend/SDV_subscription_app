@@ -2,7 +2,7 @@
 #include "ara/exec/execution_client.h"
 #include <ctime>
 #include <ara/log/logger.h>
-
+#include <cmath> 
 namespace eevp {
 namespace simulation {
 
@@ -114,7 +114,6 @@ void IntelligentWiper::notifyBCM_WipingLevel(eevp::simulation::BCM_WipingLevel& 
 }
 
 
-
 bool IntelligentWiper::startWiperProxy()
 {
     mLogger.LogInfo() << __func__;
@@ -141,23 +140,70 @@ void IntelligentWiper::execServiceLogic()
     }
     else wiperProxyImpl->stopWiping();
 
-    DynamicWiperAdjustment();
+    //주차 상황 판단 알고리즘
+    checkParkingIntention();
+
 }
 
-void IntelligentWiper::DynamicWiperAdjustment()
+void IntelligentWiper::checkParkingIntention()
 {
-    getVehVelocity(vehVelocity);
-    getBrakePedalValue(brakeValue);
-    
-    if((gearValue == DRIVE || gearValue == MANUAL) && (brakeValue == 0 || brakeValue == 1))
+    double gearValue;
+    double sonarValue;
+    getGearValue(gearValue);
+    getSonarValue(sonarValue);
+
+    if (sonarValue!= DETECTED && gearValue == PARK)
     {
-        return true;
+        wiperProxyImpl->stopWiping();
     }
-    else
+    else 
     {
-        return false;
+        wiperProxyImpl->startWiping();
+    }
+
+
+}
+
+
+void IntelligentWiper::notifyMFSWiperSpeedInterval(const double& wiperSpeed, const double& wiperInterval)
+{
+    DynamicWiperAdjustment(wiperSpeed, wiperInterval);
+}
+
+// 차속 연동 와이퍼 제어 알고리즘 
+// 운전자의 multifunction 스위치로 와이퍼가 수동 조작되었을때 호출되는 알고리즘
+void IntelligentWiper::DynamicWiperAdjustment(double new_wiperSpeed, double new_wiperInterval)
+{  
+    double vehVelocity;
+    getVehVelocity(vehVelocity);
+    double refVehVelocity = vehVelocity;
+    double refWiperSpeed = new_wiperSpeed;
+    double refWiperInterval = new_wiperInterval;
+    const int divider = 5;
+
+    while (1)
+    {
+        getVehVelocity(vehVelocity);
+
+        double diff = vehVelocity - refVehVelocity;
+        double diffDivided = diff / divider; 
+        int output_1;
+        if (diffDivided < 0) {
+        output_1 = -1;
+        } else if (diffDivided == 0) {
+            output_1 = 0;
+        } else if (diffDivided > 0) {
+            output_1 = 1;
+        }
+        double output_2 = std::floor(fabs(diffDivided))*0.1;
+        double output_3 = output_1 * output_2 + 1;
+        setWiperSpeed(std::round(output_3 * refWiperSpeed));
+        setWiperInterval(std::round(output_3 *refWiperInterval));
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(100)));
     }
 }
+
 bool IntelligentWiper::checkDrivingIntention()
 {
     getGearValue(gearValue);

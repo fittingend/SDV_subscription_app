@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_soarctnstate.h
 /// IMPLEMENTATION DATA TYPE NAME     : SoaRctnState
-/// GENERATED DATE                    : 2024-08-14 14:33:45
+/// GENERATED DATE                    : 2024-11-05 15:23:55
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -30,11 +30,11 @@ namespace control
 {
 enum class SoaRctnState : std::uint8_t
 {
-    kFULLY_UP = 1U,
-    kFULLY_DOWN = 2U,
-    kPARTLY_OPENED = 3U,
-    kMOVING_UP = 4U,
-    kMOVING_DOWN = 5U
+    kFULLY_UP = 0U,
+    kFULLY_DOWN = 1U,
+    kPARTLY_OPENED = 2U,
+    kMOVING_UP = 3U,
+    kMOVING_DOWN = 4U
 };
 } /// namespace control
 } /// namespace eevp

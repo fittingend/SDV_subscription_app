@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_soawipermode.h
 /// IMPLEMENTATION DATA TYPE NAME     : SoaWiperMode
-/// GENERATED DATE                    : 2024-08-14 14:33:44
+/// GENERATED DATE                    : 2024-11-05 15:23:53
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -31,14 +31,10 @@ namespace control
 enum class SoaWiperMode : std::uint8_t
 {
     kOFF = 0U,
-    kMIST = 1U,
-    kLOW = 2U,
-    kHIGH = 3U,
-    kINT1 = 4U,
-    kINT2 = 5U,
-    kINT3 = 6U,
-    kINT4 = 7U,
-    kINT5 = 8U
+    kINT1 = 1U,
+    kINT2 = 2U,
+    kINT3 = 3U,
+    kON = 4U
 };
 } /// namespace control
 } /// namespace eevp

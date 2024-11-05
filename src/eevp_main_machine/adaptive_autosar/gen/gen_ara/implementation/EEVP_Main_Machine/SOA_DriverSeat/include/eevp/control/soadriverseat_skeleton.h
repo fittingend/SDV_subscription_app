@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : soadriverseat_skeleton.h
 /// SERVICE INTERFACE NAME            : SoaDriverSeat
-/// GENERATED DATE                    : 2024-08-14 14:33:44
+/// GENERATED DATE                    : 2024-11-05 15:23:54
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -518,7 +518,7 @@ public:
     fields::soaDrvSeatMotorDirection soaDrvSeatMotorDirection;
     /// @brief Field, soaDrvSeatMotorPosition
     fields::soaDrvSeatMotorPosition soaDrvSeatMotorPosition;
-    /// @brief Method, RequestMoveDrvSeatHeight
+    /// @brief Field, soaDrvSeatSwVersion
     fields::soaDrvSeatSwVersion soaDrvSeatSwVersion;
     /// @brief Method, RequestMoveDrvSeatHeight
     /// @uptrace{SWS_CM_90434}

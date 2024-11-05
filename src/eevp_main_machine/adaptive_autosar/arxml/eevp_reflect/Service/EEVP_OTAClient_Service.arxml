@@ -97,10 +97,22 @@
                   <EVENT-ID>11</EVENT-ID>
                   <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                 </SOMEIP-EVENT-DEPLOYMENT>
+                <SOMEIP-EVENT-DEPLOYMENT UUID="2504b070-95d3-4c2b-b712-7e839a535083">
+                  <SHORT-NAME>notifyRollbackComplete</SHORT-NAME>
+                  <EVENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/ServiceInterface/OtaSubscription/notifyRollbackComplete</EVENT-REF>
+                  <EVENT-ID>22</EVENT-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-EVENT-DEPLOYMENT>
                 <SOMEIP-EVENT-DEPLOYMENT UUID="0add864f-6877-4969-809b-583a7e781336">
                   <SHORT-NAME>notifyUpdatableApp</SHORT-NAME>
                   <EVENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/ServiceInterface/OtaSubscription/notifyUpdatableApp</EVENT-REF>
                   <EVENT-ID>12</EVENT-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-EVENT-DEPLOYMENT>
+                <SOMEIP-EVENT-DEPLOYMENT UUID="9dec40b7-a059-45c3-aa04-2295310af5db">
+                  <SHORT-NAME>notifyUpdateComplete</SHORT-NAME>
+                  <EVENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/ServiceInterface/OtaSubscription/notifyUpdateComplete</EVENT-REF>
+                  <EVENT-ID>21</EVENT-ID>
                   <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                 </SOMEIP-EVENT-DEPLOYMENT>
               </EVENT-DEPLOYMENTS>
@@ -109,6 +121,12 @@
                   <SHORT-NAME>requestAppInstall</SHORT-NAME>
                   <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/OtaSubscription/requestAppInstall</METHOD-REF>
                   <METHOD-ID>1</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="601c9f6d-5903-46e6-add8-48fcd76da9b0">
+                  <SHORT-NAME>requestAppRollback</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/OtaSubscription/requestAppRollback</METHOD-REF>
+                  <METHOD-ID>11</METHOD-ID>
                   <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                 </SOMEIP-METHOD-DEPLOYMENT>
                 <SOMEIP-METHOD-DEPLOYMENT UUID="7784a71f-6c0e-4ee9-ba5f-ff0584692b56">
@@ -138,6 +156,14 @@
                   <EVENT-GROUP-ID>22</EVENT-GROUP-ID>
                   <EVENT-REFS>
                     <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/OtaSubscription/notifyUpdatableApp</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+                <SOMEIP-EVENT-GROUP UUID="030e33de-77e2-48db-a5d6-3f927f47259b">
+                  <SHORT-NAME>Eventgroup_verifySubScription</SHORT-NAME>
+                  <EVENT-GROUP-ID>31</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/OtaSubscription/notifyRollbackComplete</EVENT-REF>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/OtaSubscription/notifyUpdateComplete</EVENT-REF>
                   </EVENT-REFS>
                 </SOMEIP-EVENT-GROUP>
               </EVENT-GROUPS>
@@ -359,6 +385,12 @@
                     <SOMEIP-EVENT-PROPS>
                       <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/OtaSubscription/notifyUpdatableApp</EVENT-REF>
                     </SOMEIP-EVENT-PROPS>
+                    <SOMEIP-EVENT-PROPS>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/OtaSubscription/notifyUpdateComplete</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
+                    <SOMEIP-EVENT-PROPS>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/OtaSubscription/notifyRollbackComplete</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
                   </EVENT-PROPSS>
                   <METHOD-RESPONSE-PROPSS>
                     <SOMEIP-METHOD-PROPS>
@@ -369,6 +401,9 @@
                     </SOMEIP-METHOD-PROPS>
                     <SOMEIP-METHOD-PROPS>
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/OtaSubscription/requestVersionInfo</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/OtaSubscription/requestAppRollback</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                   </METHOD-RESPONSE-PROPSS>
                   <PROVIDED-EVENT-GROUPS>
@@ -381,6 +416,12 @@
                     <SOMEIP-PROVIDED-EVENT-GROUP UUID="d56192ac-8317-4685-904c-c06103394415">
                       <SHORT-NAME>Eventgroup_notifyUpdatableApp</SHORT-NAME>
                       <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/OtaSubscription/Eventgroup_notifyUpdatableApp</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
+                      <SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-SERVER-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdPublishConfig</SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="e2bcaeab-0a7a-43bf-b08b-c2ecf8034636">
+                      <SHORT-NAME>Eventgroup_verifySubScription</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/OtaSubscription/Eventgroup_verifySubScription</EVENT-GROUP-REF>
                       <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
                       <SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-SERVER-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdPublishConfig</SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF>
                     </SOMEIP-PROVIDED-EVENT-GROUP>
@@ -511,9 +552,17 @@
               <SHORT-NAME>notifyAppEvent</SHORT-NAME>
               <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/RequestAppInfo</TYPE-TREF>
             </VARIABLE-DATA-PROTOTYPE>
+            <VARIABLE-DATA-PROTOTYPE UUID="ec68b2fe-9e85-42dc-b309-33da14d31992">
+              <SHORT-NAME>notifyRollbackComplete</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-TREF>
+            </VARIABLE-DATA-PROTOTYPE>
             <VARIABLE-DATA-PROTOTYPE UUID="343a9204-5ce3-4ebd-b23a-906999c4c106">
               <SHORT-NAME>notifyUpdatableApp</SHORT-NAME>
               <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/UpdatableAppInfo</TYPE-TREF>
+            </VARIABLE-DATA-PROTOTYPE>
+            <VARIABLE-DATA-PROTOTYPE UUID="7b2562d3-11cb-4f5f-8b90-90f55bc7b8b9">
+              <SHORT-NAME>notifyUpdateComplete</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-TREF>
             </VARIABLE-DATA-PROTOTYPE>
           </EVENTS>
           <METHODS>
@@ -531,6 +580,10 @@
                   <DIRECTION>OUT</DIRECTION>
                 </ARGUMENT-DATA-PROTOTYPE>
               </ARGUMENTS>
+              <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
+            <CLIENT-SERVER-OPERATION UUID="7a3f2ca5-7abf-4fee-bece-1230b54cf04c">
+              <SHORT-NAME>requestAppRollback</SHORT-NAME>
               <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
             </CLIENT-SERVER-OPERATION>
             <CLIENT-SERVER-OPERATION UUID="45e392f0-c394-4298-8746-6b7db8b9c402">

@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : soawiper_skeleton.h
 /// SERVICE INTERFACE NAME            : SoaWiper
-/// GENERATED DATE                    : 2024-08-14 14:33:43
+/// GENERATED DATE                    : 2024-11-05 15:23:53
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -410,7 +410,7 @@ public:
     fields::soaWiperDeviceNormal soaWiperDeviceNormal;
     /// @brief Field, soaWiperStatus
     fields::soaWiperStatus soaWiperStatus;
-    /// @brief Method, RequestWiperOperation
+    /// @brief Field, soaWiperSwVersion
     fields::soaWiperSwVersion soaWiperSwVersion;
     /// @brief Method, RequestWiperOperation
     /// @uptrace{SWS_CM_90434}

@@ -23,12 +23,16 @@
             "uri" : "SOA_MoodLamp/etc/exec/SOA_MoodLamp.json"
         },
         {
-            "artifact-type" : "executable",
+            "artifact-type" : "executable-application",
             "uri" : "SOA_MoodLamp/bin/SOA_MoodLamp"
         },
         {
             "artifact-type" : "service-instance-manifest",
             "uri" : "SOA_MoodLamp/etc/interface/SOA_MoodLamp/AA/PPort_SOA_MoodLamp.json"
+        },
+        {
+            "artifact-type" : "service-instance-manifest",
+            "uri" : "SOA_MoodLamp/etc/interface/SOA_MoodLamp/AA/RPort_Zone1Mlm.json"
         }
     ]
 }

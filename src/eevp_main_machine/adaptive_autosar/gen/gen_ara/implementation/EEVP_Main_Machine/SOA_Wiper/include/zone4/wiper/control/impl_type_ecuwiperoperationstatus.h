@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_ecuwiperoperationstatus.h
 /// IMPLEMENTATION DATA TYPE NAME     : EcuWiperOperationStatus
-/// GENERATED DATE                    : 2024-08-21 14:57:53
+/// GENERATED DATE                    : 2024-11-05 15:23:55
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

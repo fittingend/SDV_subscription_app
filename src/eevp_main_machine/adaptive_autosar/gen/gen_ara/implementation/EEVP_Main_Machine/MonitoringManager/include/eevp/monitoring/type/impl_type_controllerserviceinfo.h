@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_controllerserviceinfo.h
 /// IMPLEMENTATION DATA TYPE NAME     : ControllerServiceInfo
-/// GENERATED DATE                    : 2024-08-14 14:33:41
+/// GENERATED DATE                    : 2024-11-05 15:23:51
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -37,7 +37,8 @@ struct ControllerServiceInfo
     eevp::type::String serviceName;
     eevp::type::String version;
     std::uint64_t lastUpdateTime;
-    PARA_STRUCTURE(ControllerServiceInfo, serviceName, version, lastUpdateTime);
+    eevp::type::String actionType;
+    PARA_STRUCTURE(ControllerServiceInfo, serviceName, version, lastUpdateTime, actionType);
 };
 } /// namespace type
 } /// namespace monitoring

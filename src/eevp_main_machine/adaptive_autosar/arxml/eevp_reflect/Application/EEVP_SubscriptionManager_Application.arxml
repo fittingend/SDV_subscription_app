@@ -94,7 +94,9 @@
                   <SHORT-NAME>SubscriptionManager</SHORT-NAME>
                   <SCHEDULING-POLICY>SCHED_OTHER</SCHEDULING-POLICY>
                   <SCHEDULING-PRIORITY>0</SCHEDULING-PRIORITY>
-                  <TIMEOUT/>
+                  <TIMEOUT>
+                    <ENTER-TIMEOUT-VALUE>5.0</ENTER-TIMEOUT-VALUE>
+                  </TIMEOUT>
                 </STARTUP-CONFIG>
               </STARTUP-CONFIGS>
             </STARTUP-CONFIG-SET>

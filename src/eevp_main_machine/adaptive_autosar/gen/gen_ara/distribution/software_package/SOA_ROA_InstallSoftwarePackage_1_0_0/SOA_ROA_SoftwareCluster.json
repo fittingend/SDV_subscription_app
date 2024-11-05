@@ -23,12 +23,16 @@
             "uri" : "SOA_ROA/etc/exec/SOA_ROA.json"
         },
         {
-            "artifact-type" : "executable",
+            "artifact-type" : "executable-application",
             "uri" : "SOA_ROA/bin/SOA_ROA"
         },
         {
             "artifact-type" : "service-instance-manifest",
             "uri" : "SOA_ROA/etc/interface/SOA_ROA/AA/PPort_SOA_ROA.json"
+        },
+        {
+            "artifact-type" : "service-instance-manifest",
+            "uri" : "SOA_ROA/etc/interface/SOA_ROA/AA/RPort_Zone2Roa.json"
         }
     ]
 }

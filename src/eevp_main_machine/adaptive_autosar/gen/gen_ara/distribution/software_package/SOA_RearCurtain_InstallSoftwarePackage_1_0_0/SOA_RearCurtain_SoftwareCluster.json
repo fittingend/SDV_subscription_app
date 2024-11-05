@@ -23,12 +23,16 @@
             "uri" : "SOA_RearCurtain/etc/exec/SOA_RearCurtain.json"
         },
         {
-            "artifact-type" : "executable",
+            "artifact-type" : "executable-application",
             "uri" : "SOA_RearCurtain/bin/SOA_RearCurtain"
         },
         {
             "artifact-type" : "service-instance-manifest",
             "uri" : "SOA_RearCurtain/etc/interface/SOA_RearCurtain/AA/PPort_SOA_RearCurtain.json"
+        },
+        {
+            "artifact-type" : "service-instance-manifest",
+            "uri" : "SOA_RearCurtain/etc/interface/SOA_RearCurtain/AA/RPort_Zone3Rcurtain.json"
         }
     ]
 }

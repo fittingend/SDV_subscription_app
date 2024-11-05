@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : soapower_proxy.h
 /// SERVICE INTERFACE NAME            : SoaPower
-/// GENERATED DATE                    : 2024-08-14 14:33:44
+/// GENERATED DATE                    : 2024-11-05 15:23:54
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -503,7 +503,7 @@ private:
     std::unique_ptr<para::com::ProxyInterface> mInterface;
     
 public:
-    /// @brief - field, soaPwrZone1Curr
+    /// @brief - field, soaPowerDeviceNormal
     fields::soaPowerDeviceNormal soaPowerDeviceNormal;
     /// @brief - field, soaPowerSwVersion
     fields::soaPowerSwVersion soaPowerSwVersion;

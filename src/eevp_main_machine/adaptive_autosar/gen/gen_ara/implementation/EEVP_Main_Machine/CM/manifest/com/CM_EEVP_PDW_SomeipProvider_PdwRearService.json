@@ -32,6 +32,15 @@
                     "multicast-udp-port" : "0",
                     "req-resp-delay-min" : "0.0",
                     "req-resp-delay-max" : "0.0"
+                },
+                {
+                    "eventgroup-id" : "2",
+                    "events" : ["257"],
+                    "threshold" : "0",
+                    "multicast-address" : "undefined",
+                    "multicast-udp-port" : "0",
+                    "req-resp-delay-min" : "0.0",
+                    "req-resp-delay-max" : "0.0"
                 }
             ],
             "e2e-event-protection-props" : [

@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : snsr_facedetectmodule_proxy.h
 /// SERVICE INTERFACE NAME            : Snsr_FaceDetectModule
-/// GENERATED DATE                    : 2024-11-01 14:56:48
+/// GENERATED DATE                    : 2024-11-05 15:23:59
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : soarcurtain_proxy.h
 /// SERVICE INTERFACE NAME            : SoaRcurtain
-/// GENERATED DATE                    : 2024-11-01 14:56:54
+/// GENERATED DATE                    : 2024-11-05 15:24:01
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

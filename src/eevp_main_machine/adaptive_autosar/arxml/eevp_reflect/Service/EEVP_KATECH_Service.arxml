@@ -36,6 +36,15 @@
               <TCP-PORT>55090</TCP-PORT>
               <UDP-PORT>55090</UDP-PORT>
             </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="18ac1cf6-6576-4958-8ca2-1a37ed18833b">
+              <SHORT-NAME>EEVP_KATECH_SomeipConsumers_Wiper</SHORT-NAME>
+              <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
+              <SERVICE-INSTANCE-REFS>
+                <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_KATECH_Consumer_Wiper</SERVICE-INSTANCE-REF>
+              </SERVICE-INSTANCE-REFS>
+              <TCP-PORT>50093</TCP-PORT>
+              <UDP-PORT>50093</UDP-PORT>
+            </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
           </ELEMENTS>
         </AR-PACKAGE>
         <AR-PACKAGE UUID="505fa4de-86eb-4120-8390-e7645cff6d2e">
@@ -101,7 +110,7 @@
                   </REQUIRED-EVENT-GROUPS>
                   <REQUIRED-MINOR-VERSION>ANY</REQUIRED-MINOR-VERSION>
                   <REQUIRED-SERVICE-INSTANCE-ID>ANY</REQUIRED-SERVICE-INSTANCE-ID>
-                  <SD-CLIENT-CONFIG-REF DEST="SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Client/DefaultSdClientConfig</SD-CLIENT-CONFIG-REF>
+                  <SD-CLIENT-CONFIG-REF DEST="SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Client/DefaultClientConfig</SD-CLIENT-CONFIG-REF>
                   <VERSION-DRIVEN-FIND-BEHAVIOR>EXACT-OR-ANY-MINOR-VERSION</VERSION-DRIVEN-FIND-BEHAVIOR>
                 </REQUIRED-SOMEIP-SERVICE-INSTANCE>
                 <REQUIRED-SOMEIP-SERVICE-INSTANCE UUID="6f1904ae-df73-4030-a155-cbfa1b8bfc06">
@@ -163,10 +172,131 @@
                   <SD-CLIENT-CONFIG-REF DEST="SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Client/DefaultClientConfig</SD-CLIENT-CONFIG-REF>
                   <VERSION-DRIVEN-FIND-BEHAVIOR>EXACT-OR-ANY-MINOR-VERSION</VERSION-DRIVEN-FIND-BEHAVIOR>
                 </REQUIRED-SOMEIP-SERVICE-INSTANCE>
+                <REQUIRED-SOMEIP-SERVICE-INSTANCE UUID="c2587d11-bcdb-4988-bf36-9162a8ef1ae2">
+                  <SHORT-NAME>EEVP_KATECH_Consumer_Wiper</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="PARA-SOMEIP-CONFIGURATION">
+                        <SD GID="CLIENT-ID">851</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                  <METHOD-REQUEST-PROPSS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/wiperInterval/Get_wiperInterval</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/wiperLevel/Get_wiperLevel</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/getWipingInterval</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/getWipingLevel</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/isWiping</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/setWipingInterval</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/setWipingLevel</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/setWipingLevelImme</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/startWiping</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/stopWiping</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                  </METHOD-REQUEST-PROPSS>
+                  <REQUIRED-EVENT-GROUPS>
+                    <SOMEIP-REQUIRED-EVENT-GROUP>
+                      <SHORT-NAME>Eventgroup_Notification_wiperInterval</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/BCM_WiperWash/Eventgroup_Notification_wiperInterval</EVENT-GROUP-REF>
+                      <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-REQUIRED-EVENT-GROUP>
+                    <SOMEIP-REQUIRED-EVENT-GROUP>
+                      <SHORT-NAME>Eventgroup_Notification_wiperLevel</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/BCM_WiperWash/Eventgroup_Notification_wiperLevel</EVENT-GROUP-REF>
+                      <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-REQUIRED-EVENT-GROUP>
+                  </REQUIRED-EVENT-GROUPS>
+                  <REQUIRED-MINOR-VERSION>ANY</REQUIRED-MINOR-VERSION>
+                  <REQUIRED-SERVICE-INSTANCE-ID>ANY</REQUIRED-SERVICE-INSTANCE-ID>
+                  <SD-CLIENT-CONFIG-REF DEST="SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Client/DefaultClientConfig</SD-CLIENT-CONFIG-REF>
+                  <VERSION-DRIVEN-FIND-BEHAVIOR>EXACT-OR-ANY-MINOR-VERSION</VERSION-DRIVEN-FIND-BEHAVIOR>
+                </REQUIRED-SOMEIP-SERVICE-INSTANCE>
               </ELEMENTS>
             </AR-PACKAGE>
             <AR-PACKAGE UUID="ba6bf8bd-2ba1-488a-8887-191220e900c5">
               <SHORT-NAME>Provider</SHORT-NAME>
+              <ELEMENTS>
+                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="7588f10f-b074-4442-a9ec-d416c98783ee">
+                  <SHORT-NAME>EEVP_ServiceCreator_Provider_BCM_WiperWash</SHORT-NAME>
+                  <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                  <EVENT-PROPSS>
+                    <SOMEIP-EVENT-PROPS>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/wiperInterval/Notification_wiperInterval</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
+                    <SOMEIP-EVENT-PROPS>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/wiperLevel/Notification_wiperLevel</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
+                  </EVENT-PROPSS>
+                  <METHOD-RESPONSE-PROPSS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/wiperInterval/Get_wiperInterval</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/wiperLevel/Get_wiperLevel</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/getWipingInterval</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/getWipingLevel</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/isWiping</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/setWipingInterval</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/setWipingLevel</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/setWipingLevelImme</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/startWiping</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/stopWiping</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                  </METHOD-RESPONSE-PROPSS>
+                  <PROVIDED-EVENT-GROUPS>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="3511e739-8cfa-41b2-a95c-215e6e867f77">
+                      <SHORT-NAME>Eventgroup_Notification_wiperInterval</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/BCM_WiperWash/Eventgroup_Notification_wiperInterval</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
+                      <SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-SERVER-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdPublishConfig</SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="ce179d34-9f81-4897-8bc3-b97ca305ff92">
+                      <SHORT-NAME>Eventgroup_Notification_wiperLevel</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/BCM_WiperWash/Eventgroup_Notification_wiperLevel</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
+                      <SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-SERVER-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdPublishConfig</SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
+                  </PROVIDED-EVENT-GROUPS>
+                  <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/DefaultSdServerConfig</SD-SERVER-CONFIG-REF>
+                  <SERVICE-INSTANCE-ID>9009</SERVICE-INSTANCE-ID>
+                </PROVIDED-SOMEIP-SERVICE-INSTANCE>
+              </ELEMENTS>
             </AR-PACKAGE>
           </AR-PACKAGES>
         </AR-PACKAGE>

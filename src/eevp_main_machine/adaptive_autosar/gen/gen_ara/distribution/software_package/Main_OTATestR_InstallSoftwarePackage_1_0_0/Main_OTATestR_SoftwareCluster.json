@@ -23,7 +23,7 @@
             "uri" : "OTATestR/etc/exec/OTATestR.json"
         },
         {
-            "artifact-type" : "executable",
+            "artifact-type" : "executable-application",
             "uri" : "OTATestR/bin/OTATestR"
         },
         {

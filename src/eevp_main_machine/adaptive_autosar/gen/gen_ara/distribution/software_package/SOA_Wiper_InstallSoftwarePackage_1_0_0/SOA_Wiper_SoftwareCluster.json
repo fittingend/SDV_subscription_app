@@ -23,12 +23,16 @@
             "uri" : "SOA_Wiper/etc/exec/SOA_Wiper.json"
         },
         {
-            "artifact-type" : "executable",
+            "artifact-type" : "executable-application",
             "uri" : "SOA_Wiper/bin/SOA_Wiper"
         },
         {
             "artifact-type" : "service-instance-manifest",
             "uri" : "SOA_Wiper/etc/interface/SOA_Wiper/AA/PPort_SOA_Wiper.json"
+        },
+        {
+            "artifact-type" : "service-instance-manifest",
+            "uri" : "SOA_Wiper/etc/interface/SOA_Wiper/AA/RPort_Zone4Wiper.json"
         }
     ]
 }

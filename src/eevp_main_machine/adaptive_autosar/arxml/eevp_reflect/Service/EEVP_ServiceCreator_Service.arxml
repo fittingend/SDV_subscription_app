@@ -39,106 +39,106 @@
                 <MINOR-VERSION>0</MINOR-VERSION>
               </SERVICE-INTERFACE-VERSION>
             </SOMEIP-SERVICE-INTERFACE-DEPLOYMENT>
-            <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="39dff322-6324-46fc-8079-0611bb263ad7">
+            <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="f88ec2e2-ad66-4ddd-a676-07249c185330">
               <SHORT-NAME>BCM_WiperWash</SHORT-NAME>
               <FIELD-DEPLOYMENTS>
-                <SOMEIP-FIELD-DEPLOYMENT UUID="a7d2efe6-58c6-4414-98d2-88227ce0c736">
+                <SOMEIP-FIELD-DEPLOYMENT UUID="e60249df-1af2-4ec3-8038-d68bd9c20b1e">
                   <SHORT-NAME>wiperInterval</SHORT-NAME>
                   <FIELD-REF DEST="FIELD">/ServiceInterface/BCM_WiperWash/wiperInterval</FIELD-REF>
-                  <GET UUID="b2ef2ae2-cb2c-4210-87ea-553b151b71e9">
+                  <GET UUID="6917f69f-5cec-426f-8000-70b835267136">
                     <SHORT-NAME>Get_wiperInterval</SHORT-NAME>
-                    <METHOD-ID>13</METHOD-ID>
+                    <METHOD-ID>1</METHOD-ID>
                     <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                   </GET>
-                  <NOTIFIER UUID="a0b358c0-359f-4452-9aaa-46e1fa24e595">
+                  <NOTIFIER UUID="9b47b063-e4bc-43b6-a13c-2d788cac3029">
                     <SHORT-NAME>Notification_wiperInterval</SHORT-NAME>
-                    <EVENT-ID>14</EVENT-ID>
+                    <EVENT-ID>11003</EVENT-ID>
                     <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                   </NOTIFIER>
                 </SOMEIP-FIELD-DEPLOYMENT>
-                <SOMEIP-FIELD-DEPLOYMENT UUID="990b6bf4-e0d8-483d-a791-2e886bd5f1ab">
+                <SOMEIP-FIELD-DEPLOYMENT UUID="73c00d41-61b7-4835-a9cf-a158753b06bd">
                   <SHORT-NAME>wiperLevel</SHORT-NAME>
                   <FIELD-REF DEST="FIELD">/ServiceInterface/BCM_WiperWash/wiperLevel</FIELD-REF>
-                  <GET UUID="18e4930b-4b6f-4881-b584-83154f44cbd0">
+                  <GET UUID="2de28956-7743-498a-ba42-61fd2cd9ef3e">
                     <SHORT-NAME>Get_wiperLevel</SHORT-NAME>
-                    <METHOD-ID>11</METHOD-ID>
+                    <METHOD-ID>2</METHOD-ID>
                     <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                   </GET>
-                  <NOTIFIER UUID="917df515-3c32-41c4-8343-9e6b0d1b970d">
+                  <NOTIFIER UUID="b41a4b0e-8b5c-4131-973b-0f40d59ed543">
                     <SHORT-NAME>Notification_wiperLevel</SHORT-NAME>
-                    <EVENT-ID>12</EVENT-ID>
+                    <EVENT-ID>11004</EVENT-ID>
                     <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                   </NOTIFIER>
                 </SOMEIP-FIELD-DEPLOYMENT>
               </FIELD-DEPLOYMENTS>
               <METHOD-DEPLOYMENTS>
-                <SOMEIP-METHOD-DEPLOYMENT UUID="73de13fa-9b57-49e6-bd95-5d2759efafa4">
+                <SOMEIP-METHOD-DEPLOYMENT UUID="a086e488-062f-48ee-8add-3d97880b6e2c">
                   <SHORT-NAME>getWipingInterval</SHORT-NAME>
                   <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/BCM_WiperWash/getWipingInterval</METHOD-REF>
-                  <METHOD-ID>8</METHOD-ID>
+                  <METHOD-ID>11001</METHOD-ID>
                   <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                 </SOMEIP-METHOD-DEPLOYMENT>
-                <SOMEIP-METHOD-DEPLOYMENT UUID="3a5f9a32-b435-4ffd-ac37-f010885db251">
+                <SOMEIP-METHOD-DEPLOYMENT UUID="31b5c508-7620-4117-8706-fd575f474632">
                   <SHORT-NAME>getWipingLevel</SHORT-NAME>
                   <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/BCM_WiperWash/getWipingLevel</METHOD-REF>
-                  <METHOD-ID>7</METHOD-ID>
+                  <METHOD-ID>11002</METHOD-ID>
                   <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                 </SOMEIP-METHOD-DEPLOYMENT>
-                <SOMEIP-METHOD-DEPLOYMENT UUID="856aed81-f071-4f08-b3db-c568d4f55436">
+                <SOMEIP-METHOD-DEPLOYMENT UUID="72409094-a543-453a-93e6-8d77fce9bc8a">
                   <SHORT-NAME>isWiping</SHORT-NAME>
                   <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/BCM_WiperWash/isWiping</METHOD-REF>
-                  <METHOD-ID>1</METHOD-ID>
+                  <METHOD-ID>11003</METHOD-ID>
                   <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                 </SOMEIP-METHOD-DEPLOYMENT>
-                <SOMEIP-METHOD-DEPLOYMENT UUID="949fd8d4-a251-4801-b1fc-fc6bb356ca84">
+                <SOMEIP-METHOD-DEPLOYMENT UUID="b0be64cb-c6ef-4104-aed6-46a492e9d379">
                   <SHORT-NAME>setWipingInterval</SHORT-NAME>
                   <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/BCM_WiperWash/setWipingInterval</METHOD-REF>
-                  <METHOD-ID>2</METHOD-ID>
+                  <METHOD-ID>11004</METHOD-ID>
                   <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                 </SOMEIP-METHOD-DEPLOYMENT>
-                <SOMEIP-METHOD-DEPLOYMENT UUID="0a548aef-e634-4c40-946e-b821d759d6bd">
+                <SOMEIP-METHOD-DEPLOYMENT UUID="90f7dfd3-d698-4220-8e85-c810e13ca40c">
                   <SHORT-NAME>setWipingLevel</SHORT-NAME>
                   <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/BCM_WiperWash/setWipingLevel</METHOD-REF>
-                  <METHOD-ID>3</METHOD-ID>
+                  <METHOD-ID>11005</METHOD-ID>
                   <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                 </SOMEIP-METHOD-DEPLOYMENT>
-                <SOMEIP-METHOD-DEPLOYMENT UUID="5af4c989-fe17-47c6-8587-97c924178c2d">
+                <SOMEIP-METHOD-DEPLOYMENT UUID="083a664e-8602-4b86-a98a-095524f9cb3d">
                   <SHORT-NAME>setWipingLevelImme</SHORT-NAME>
                   <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/BCM_WiperWash/setWipingLevelImme</METHOD-REF>
-                  <METHOD-ID>4</METHOD-ID>
+                  <METHOD-ID>11006</METHOD-ID>
                   <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                 </SOMEIP-METHOD-DEPLOYMENT>
-                <SOMEIP-METHOD-DEPLOYMENT UUID="a693e68d-8758-4c9a-aae4-f8c617b579f5">
+                <SOMEIP-METHOD-DEPLOYMENT UUID="fc29bdcc-07c5-4754-add9-7903a750c760">
                   <SHORT-NAME>startWiping</SHORT-NAME>
                   <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/BCM_WiperWash/startWiping</METHOD-REF>
-                  <METHOD-ID>5</METHOD-ID>
+                  <METHOD-ID>11007</METHOD-ID>
                   <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                 </SOMEIP-METHOD-DEPLOYMENT>
-                <SOMEIP-METHOD-DEPLOYMENT UUID="4305ade1-254d-42d6-a2f6-4c26f8d2b6b1">
+                <SOMEIP-METHOD-DEPLOYMENT UUID="333fa5a9-d5dc-48ab-9aa9-ea35b71e5a5d">
                   <SHORT-NAME>stopWiping</SHORT-NAME>
                   <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/BCM_WiperWash/stopWiping</METHOD-REF>
-                  <METHOD-ID>6</METHOD-ID>
+                  <METHOD-ID>11008</METHOD-ID>
                   <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                 </SOMEIP-METHOD-DEPLOYMENT>
               </METHOD-DEPLOYMENTS>
               <SERVICE-INTERFACE-REF DEST="SERVICE-INTERFACE">/ServiceInterface/BCM_WiperWash</SERVICE-INTERFACE-REF>
               <EVENT-GROUPS>
-                <SOMEIP-EVENT-GROUP UUID="bbb3a6e4-e631-4d6f-9764-6cd31b0054b8">
-                  <SHORT-NAME>Eventgroup_WiperInterval</SHORT-NAME>
-                  <EVENT-GROUP-ID>2</EVENT-GROUP-ID>
+                <SOMEIP-EVENT-GROUP UUID="ff7002bd-ef74-4b16-878b-fa09c0dc7464">
+                  <SHORT-NAME>Eventgroup_Notification_wiperInterval</SHORT-NAME>
+                  <EVENT-GROUP-ID>8561</EVENT-GROUP-ID>
                   <EVENT-REFS>
                     <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/wiperInterval/Notification_wiperInterval</EVENT-REF>
                   </EVENT-REFS>
                 </SOMEIP-EVENT-GROUP>
-                <SOMEIP-EVENT-GROUP UUID="8147f043-897e-49c3-a8ad-a643b766a57d">
-                  <SHORT-NAME>Eventgroup_WiperLevel</SHORT-NAME>
-                  <EVENT-GROUP-ID>1</EVENT-GROUP-ID>
+                <SOMEIP-EVENT-GROUP UUID="435ec7b6-4f10-4aa1-a5f0-3404a046843a">
+                  <SHORT-NAME>Eventgroup_Notification_wiperLevel</SHORT-NAME>
+                  <EVENT-GROUP-ID>8562</EVENT-GROUP-ID>
                   <EVENT-REFS>
                     <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/wiperLevel/Notification_wiperLevel</EVENT-REF>
                   </EVENT-REFS>
                 </SOMEIP-EVENT-GROUP>
               </EVENT-GROUPS>
-              <SERVICE-INTERFACE-ID>9005</SERVICE-INTERFACE-ID>
+              <SERVICE-INTERFACE-ID>5005</SERVICE-INTERFACE-ID>
               <SERVICE-INTERFACE-VERSION>
                 <MAJOR-VERSION>1</MAJOR-VERSION>
                 <MINOR-VERSION>0</MINOR-VERSION>
@@ -334,6 +334,14 @@
             <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="9a90b8bb-0a1e-4aed-9040-4e061fd4c0e2">
               <SHORT-NAME>ServiceManagement</SHORT-NAME>
               <FIELD-DEPLOYMENTS>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="4442a1d4-2180-4c63-85fb-6314a8c8480d">
+                  <SHORT-NAME>brakePedalRecv</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/ServiceManagement/brakePedalRecv</FIELD-REF>
+                </SOMEIP-FIELD-DEPLOYMENT>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="938c3295-5a50-4f53-ad4c-debab35b89df">
+                  <SHORT-NAME>brakePedalSend</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/ServiceManagement/brakePedalSend</FIELD-REF>
+                </SOMEIP-FIELD-DEPLOYMENT>
                 <SOMEIP-FIELD-DEPLOYMENT UUID="a6d04f92-7744-443b-a174-b7e66bbd98a7">
                   <SHORT-NAME>wiperInterval</SHORT-NAME>
                   <FIELD-REF DEST="FIELD">/ServiceInterface/ServiceManagement/wiperInterval</FIELD-REF>
@@ -840,46 +848,46 @@
                 <MINOR-VERSION>0</MINOR-VERSION>
               </SERVICE-INTERFACE-VERSION>
             </SOMEIP-SERVICE-INTERFACE-DEPLOYMENT>
-            <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="b8231b5c-ebc2-44ab-ad5c-1046e8729560">
+            <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="aed8fe37-594a-4a7f-854f-32a4c3338708">
               <SHORT-NAME>VCS_BrakePedal</SHORT-NAME>
               <FIELD-DEPLOYMENTS>
-                <SOMEIP-FIELD-DEPLOYMENT UUID="e5225bf0-9628-446b-8830-0dc08c7e6c23">
+                <SOMEIP-FIELD-DEPLOYMENT UUID="ff51b636-1b27-4f67-84d1-6bcf778ba702">
                   <SHORT-NAME>vcs_BrakePosn</SHORT-NAME>
                   <FIELD-REF DEST="FIELD">/ServiceInterface/VCS_BrakePedal/vcs_BrakePosn</FIELD-REF>
-                  <GET UUID="ef228d7c-6fb8-4cd9-984c-1d95aa5770c0">
+                  <GET UUID="84f5c624-f03e-4a80-bebd-ad3975164adf">
                     <SHORT-NAME>Get_vcs_BrakePosn</SHORT-NAME>
                     <METHOD-ID>13</METHOD-ID>
                     <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                   </GET>
-                  <NOTIFIER UUID="6c4f7226-2d6d-4023-81d6-cba32230de3c">
+                  <NOTIFIER UUID="d9adb0cc-153b-4d74-8790-0cebf715f6c3">
                     <SHORT-NAME>Notification_vcs_BrakePosn</SHORT-NAME>
                     <EVENT-ID>14</EVENT-ID>
                     <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                   </NOTIFIER>
                 </SOMEIP-FIELD-DEPLOYMENT>
-                <SOMEIP-FIELD-DEPLOYMENT UUID="c7c7c4aa-23df-4f35-a287-7e8ed29a1212">
-                  <SHORT-NAME>vcs_BrakeSwtich</SHORT-NAME>
-                  <FIELD-REF DEST="FIELD">/ServiceInterface/VCS_BrakePedal/vcs_BrakeSwtich</FIELD-REF>
-                  <GET UUID="a682b657-edf0-4110-90a9-0a5eb6635116">
-                    <SHORT-NAME>Get_vcs_BrakeSwtich</SHORT-NAME>
+                <SOMEIP-FIELD-DEPLOYMENT UUID="1d9d9b71-740d-4308-a6cb-5f26da5c8670">
+                  <SHORT-NAME>vcs_BrakeSwitch</SHORT-NAME>
+                  <FIELD-REF DEST="FIELD">/ServiceInterface/VCS_BrakePedal/vcs_BrakeSwitch</FIELD-REF>
+                  <GET UUID="ffd994d6-197b-44ff-b340-cb54eeac411b">
+                    <SHORT-NAME>Get_vcs_BrakeSwitch</SHORT-NAME>
                     <METHOD-ID>11</METHOD-ID>
                     <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                   </GET>
-                  <NOTIFIER UUID="53999d5b-8e1b-491c-bdf7-86270482592f">
-                    <SHORT-NAME>Notification_vcs_BrakeSwtich</SHORT-NAME>
+                  <NOTIFIER UUID="a11a5754-5661-420f-b86f-a1b45b3da4df">
+                    <SHORT-NAME>Notification_vcs_BrakeSwitch</SHORT-NAME>
                     <EVENT-ID>12</EVENT-ID>
                     <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                   </NOTIFIER>
                 </SOMEIP-FIELD-DEPLOYMENT>
               </FIELD-DEPLOYMENTS>
               <METHOD-DEPLOYMENTS>
-                <SOMEIP-METHOD-DEPLOYMENT UUID="723698b0-2485-4481-9fdc-87e41fdc2ac6">
+                <SOMEIP-METHOD-DEPLOYMENT UUID="571b40cb-c9a4-473c-a306-62081c1087f5">
                   <SHORT-NAME>nofitySwitch</SHORT-NAME>
                   <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/VCS_BrakePedal/nofitySwitch</METHOD-REF>
                   <METHOD-ID>1</METHOD-ID>
                   <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                 </SOMEIP-METHOD-DEPLOYMENT>
-                <SOMEIP-METHOD-DEPLOYMENT UUID="8cda5beb-8b65-45e1-9dca-accf9484eaf3">
+                <SOMEIP-METHOD-DEPLOYMENT UUID="94cd86d6-d3e2-47b7-86d6-bb100569ed9d">
                   <SHORT-NAME>notifyStatus</SHORT-NAME>
                   <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/VCS_BrakePedal/notifyStatus</METHOD-REF>
                   <METHOD-ID>2</METHOD-ID>
@@ -888,12 +896,18 @@
               </METHOD-DEPLOYMENTS>
               <SERVICE-INTERFACE-REF DEST="SERVICE-INTERFACE">/ServiceInterface/VCS_BrakePedal</SERVICE-INTERFACE-REF>
               <EVENT-GROUPS>
-                <SOMEIP-EVENT-GROUP UUID="7e294d65-ddab-417d-8795-1378c182660e">
-                  <SHORT-NAME>Eventgroup_VCSBrakePedal</SHORT-NAME>
-                  <EVENT-GROUP-ID>1</EVENT-GROUP-ID>
+                <SOMEIP-EVENT-GROUP UUID="52e3e8b0-c2cd-4ca0-8072-b36f5966e41e">
+                  <SHORT-NAME>Eventgroup_Notification_vcs_BrakePosn</SHORT-NAME>
+                  <EVENT-GROUP-ID>2</EVENT-GROUP-ID>
                   <EVENT-REFS>
                     <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/VCS_BrakePedal/vcs_BrakePosn/Notification_vcs_BrakePosn</EVENT-REF>
-                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/VCS_BrakePedal/vcs_BrakeSwtich/Notification_vcs_BrakeSwtich</EVENT-REF>
+                  </EVENT-REFS>
+                </SOMEIP-EVENT-GROUP>
+                <SOMEIP-EVENT-GROUP UUID="9255d3c1-8bab-4ba3-9de5-71cdf06ed172">
+                  <SHORT-NAME>Eventgroup_Notification_vcs_BrakeSwitch</SHORT-NAME>
+                  <EVENT-GROUP-ID>1</EVENT-GROUP-ID>
+                  <EVENT-REFS>
+                    <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/VCS_BrakePedal/vcs_BrakeSwitch/Notification_vcs_BrakeSwitch</EVENT-REF>
                   </EVENT-REFS>
                 </SOMEIP-EVENT-GROUP>
               </EVENT-GROUPS>
@@ -1046,14 +1060,14 @@
               <TCP-PORT>50440</TCP-PORT>
               <UDP-PORT>50440</UDP-PORT>
             </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
-            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="9c8b7af2-6c5d-46fa-becf-db8afd7c767f">
+            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="fe4e941d-df58-4d97-b408-afe68340dc51">
               <SHORT-NAME>EEVP_ServiceCreator_SomeipConsumers_BCM_WiperWash</SHORT-NAME>
               <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
               <SERVICE-INSTANCE-REFS>
                 <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_ServiceCreator_Consumer_BCM_WiperWash</SERVICE-INSTANCE-REF>
               </SERVICE-INSTANCE-REFS>
-              <TCP-PORT>50410</TCP-PORT>
-              <UDP-PORT>50410</UDP-PORT>
+              <TCP-PORT>50078</TCP-PORT>
+              <UDP-PORT>50078</UDP-PORT>
             </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
             <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="0665e0d3-5d33-4325-9ca6-5710c294b389">
               <SHORT-NAME>EEVP_ServiceCreator_SomeipConsumers_Ctrl_MoodLamp</SHORT-NAME>
@@ -1172,14 +1186,14 @@
               <TCP-PORT>50460</TCP-PORT>
               <UDP-PORT>50460</UDP-PORT>
             </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
-            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="8a1ea4e6-16c5-4a1a-8b17-2ce604f7b3d3">
+            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="e34502e1-c7ab-411f-a994-04a3654ede69">
               <SHORT-NAME>EEVP_ServiceCreator_SomeipProviders_BCM_WiperWash</SHORT-NAME>
               <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
               <SERVICE-INSTANCE-REFS>
                 <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Provider/EEVP_ServiceCreator_Provider_BCM_WiperWash</SERVICE-INSTANCE-REF>
               </SERVICE-INSTANCE-REFS>
-              <TCP-PORT>50093</TCP-PORT>
-              <UDP-PORT>50093</UDP-PORT>
+              <TCP-PORT>50077</TCP-PORT>
+              <UDP-PORT>50077</UDP-PORT>
             </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
             <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="c64989bc-2442-40f6-992d-230c0cda8adc">
               <SHORT-NAME>EEVP_ServiceCreator_SomeipProviders_BmsInfoSrv</SHORT-NAME>
@@ -1429,23 +1443,28 @@
                   <SD-CLIENT-CONFIG-REF DEST="SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Client/DefaultSdClientConfig</SD-CLIENT-CONFIG-REF>
                   <VERSION-DRIVEN-FIND-BEHAVIOR>EXACT-OR-ANY-MINOR-VERSION</VERSION-DRIVEN-FIND-BEHAVIOR>
                 </REQUIRED-SOMEIP-SERVICE-INSTANCE>
-                <REQUIRED-SOMEIP-SERVICE-INSTANCE UUID="c81a1b44-5615-4890-acca-02541867406a">
+                <REQUIRED-SOMEIP-SERVICE-INSTANCE UUID="1a18b0f9-9f68-4cfa-b84d-3b4a88a9351a">
                   <SHORT-NAME>EEVP_ServiceCreator_Consumer_BCM_WiperWash</SHORT-NAME>
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="PARA-SOMEIP-CONFIGURATION">
-                        <SD GID="CLIENT-ID">865</SD>
+                        <SD GID="CLIENT-ID">868</SD>
                       </SDG>
                     </SDGS>
                   </ADMIN-DATA>
                   <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash</SERVICE-INTERFACE-DEPLOYMENT-REF>
                   <METHOD-REQUEST-PROPSS>
                     <SOMEIP-METHOD-PROPS>
-                      <COLLECTION-PROPS/>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/wiperInterval/Get_wiperInterval</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/wiperLevel/Get_wiperLevel</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                     <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/wiperInterval/Get_wiperInterval</METHOD-REF>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/getWipingInterval</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/getWipingLevel</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                     <SOMEIP-METHOD-PROPS>
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/isWiping</METHOD-REF>
@@ -1465,28 +1484,23 @@
                     <SOMEIP-METHOD-PROPS>
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/stopWiping</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
-                    <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/getWipingLevel</METHOD-REF>
-                    </SOMEIP-METHOD-PROPS>
-                    <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/getWipingInterval</METHOD-REF>
-                    </SOMEIP-METHOD-PROPS>
                   </METHOD-REQUEST-PROPSS>
                   <REQUIRED-EVENT-GROUPS>
                     <SOMEIP-REQUIRED-EVENT-GROUP>
-                      <SHORT-NAME>Eventgroup_WiperInterval</SHORT-NAME>
-                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/BCM_WiperWash/Eventgroup_WiperInterval</EVENT-GROUP-REF>
+                      <SHORT-NAME>Eventgroup_Notification_wiperInterval</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/BCM_WiperWash/Eventgroup_Notification_wiperInterval</EVENT-GROUP-REF>
                       <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
                     </SOMEIP-REQUIRED-EVENT-GROUP>
                     <SOMEIP-REQUIRED-EVENT-GROUP>
-                      <SHORT-NAME>Eventgroup_WiperLevel</SHORT-NAME>
-                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/BCM_WiperWash/Eventgroup_WiperLevel</EVENT-GROUP-REF>
+                      <SHORT-NAME>Eventgroup_Notification_wiperLevel</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/BCM_WiperWash/Eventgroup_Notification_wiperLevel</EVENT-GROUP-REF>
                       <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
                     </SOMEIP-REQUIRED-EVENT-GROUP>
                   </REQUIRED-EVENT-GROUPS>
                   <REQUIRED-MINOR-VERSION>ANY</REQUIRED-MINOR-VERSION>
                   <REQUIRED-SERVICE-INSTANCE-ID>ANY</REQUIRED-SERVICE-INSTANCE-ID>
                   <SD-CLIENT-CONFIG-REF DEST="SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Client/DefaultClientConfig</SD-CLIENT-CONFIG-REF>
+                  <VERSION-DRIVEN-FIND-BEHAVIOR>EXACT-OR-ANY-MINOR-VERSION</VERSION-DRIVEN-FIND-BEHAVIOR>
                 </REQUIRED-SOMEIP-SERVICE-INSTANCE>
                 <REQUIRED-SOMEIP-SERVICE-INSTANCE UUID="6db65538-8d15-4f0d-8be5-e4ae77af0c38">
                   <SHORT-NAME>EEVP_ServiceCreator_Consumer_Ctrl_MoodLamp</SHORT-NAME>
@@ -1864,66 +1878,6 @@
             <AR-PACKAGE UUID="ba6bf8bd-2ba1-488a-8887-191220e900c5">
               <SHORT-NAME>Provider</SHORT-NAME>
               <ELEMENTS>
-                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="154c3a2e-c5a2-41a0-a484-9dcc2942dddb">
-                  <SHORT-NAME>EEVP_ServiceCreator_Provider_BCM_WiperWash</SHORT-NAME>
-                  <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash</SERVICE-INTERFACE-DEPLOYMENT-REF>
-                  <EVENT-PROPSS>
-                    <SOMEIP-EVENT-PROPS>
-                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/wiperLevel/Notification_wiperLevel</EVENT-REF>
-                    </SOMEIP-EVENT-PROPS>
-                    <SOMEIP-EVENT-PROPS>
-                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/wiperInterval/Notification_wiperInterval</EVENT-REF>
-                    </SOMEIP-EVENT-PROPS>
-                  </EVENT-PROPSS>
-                  <METHOD-RESPONSE-PROPSS>
-                    <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/wiperLevel/Get_wiperLevel</METHOD-REF>
-                    </SOMEIP-METHOD-PROPS>
-                    <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/wiperInterval/Get_wiperInterval</METHOD-REF>
-                    </SOMEIP-METHOD-PROPS>
-                    <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/isWiping</METHOD-REF>
-                    </SOMEIP-METHOD-PROPS>
-                    <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/setWipingInterval</METHOD-REF>
-                    </SOMEIP-METHOD-PROPS>
-                    <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/setWipingLevel</METHOD-REF>
-                    </SOMEIP-METHOD-PROPS>
-                    <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/setWipingLevelImme</METHOD-REF>
-                    </SOMEIP-METHOD-PROPS>
-                    <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/startWiping</METHOD-REF>
-                    </SOMEIP-METHOD-PROPS>
-                    <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/stopWiping</METHOD-REF>
-                    </SOMEIP-METHOD-PROPS>
-                    <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/getWipingLevel</METHOD-REF>
-                    </SOMEIP-METHOD-PROPS>
-                    <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/BCM_WiperWash/getWipingInterval</METHOD-REF>
-                    </SOMEIP-METHOD-PROPS>
-                  </METHOD-RESPONSE-PROPSS>
-                  <PROVIDED-EVENT-GROUPS>
-                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="6baf0cad-e7e5-4371-8800-49ec4649c3a3">
-                      <SHORT-NAME>Eventgroup_WiperInterval</SHORT-NAME>
-                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/BCM_WiperWash/Eventgroup_WiperInterval</EVENT-GROUP-REF>
-                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
-                      <SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-SERVER-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdPublishConfig</SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF>
-                    </SOMEIP-PROVIDED-EVENT-GROUP>
-                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="dff098b3-3968-4cbb-add2-322b7dad6811">
-                      <SHORT-NAME>Eventgroup_WiperLevel</SHORT-NAME>
-                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/BCM_WiperWash/Eventgroup_WiperLevel</EVENT-GROUP-REF>
-                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
-                      <SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-SERVER-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdPublishConfig</SD-SERVER-EVENT-GROUP-TIMING-CONFIG-REF>
-                    </SOMEIP-PROVIDED-EVENT-GROUP>
-                  </PROVIDED-EVENT-GROUPS>
-                  <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/DefaultSdServerConfig</SD-SERVER-CONFIG-REF>
-                  <SERVICE-INSTANCE-ID>9005</SERVICE-INSTANCE-ID>
-                </PROVIDED-SOMEIP-SERVICE-INSTANCE>
                 <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="fba13332-a1bd-447b-9533-f5f18d13843f">
                   <SHORT-NAME>EEVP_ServiceCreator_Provider_BmsInfoSrv</SHORT-NAME>
                   <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/ServiceDeployment/Someip/BmsInfoSrv</SERVICE-INTERFACE-DEPLOYMENT-REF>
@@ -2026,7 +1980,7 @@
                   <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/DefaultSdServerConfig</SD-SERVER-CONFIG-REF>
                   <SERVICE-INSTANCE-ID>9021</SERVICE-INSTANCE-ID>
                 </PROVIDED-SOMEIP-SERVICE-INSTANCE>
-                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="ac2445bc-0048-489a-90fd-88f54673d9f1">
+                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="1665e939-ce9b-46fa-914c-3d2824cfbe71">
                   <SHORT-NAME>EEVP_ServiceCreator_Provider_ServiceManagement</SHORT-NAME>
                   <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/ServiceDeployment/Someip/ServiceManagement</SERVICE-INTERFACE-DEPLOYMENT-REF>
                   <EVENT-PROPSS>
@@ -2082,7 +2036,7 @@
                     </SOMEIP-METHOD-PROPS>
                   </METHOD-RESPONSE-PROPSS>
                   <PROVIDED-EVENT-GROUPS>
-                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="3d494cff-3dca-4aca-9292-a5da9a0537f0">
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="2f6dd7b2-1cc3-4b60-a849-d4af325107da">
                       <SHORT-NAME>Eventgroup_wiperEvent</SHORT-NAME>
                       <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/ServiceManagement/Eventgroup_wiperEvent</EVENT-GROUP-REF>
                       <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
@@ -2311,21 +2265,20 @@
                   <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/DefaultSdServerConfig</SD-SERVER-CONFIG-REF>
                   <SERVICE-INSTANCE-ID>9032</SERVICE-INSTANCE-ID>
                 </PROVIDED-SOMEIP-SERVICE-INSTANCE>
-                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="6cda8a22-6f26-4e15-b6af-873ab8e3d84d">
+                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="eac09c7f-df11-4633-96f7-e5253bf5bbfb">
                   <SHORT-NAME>EEVP_ServiceCreator_Provider_VCS_BrakePedal</SHORT-NAME>
                   <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/ServiceDeployment/Someip/VCS_BrakePedal</SERVICE-INTERFACE-DEPLOYMENT-REF>
                   <EVENT-PROPSS>
                     <SOMEIP-EVENT-PROPS>
-                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/VCS_BrakePedal/vcs_BrakeSwtich/Notification_vcs_BrakeSwtich</EVENT-REF>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/VCS_BrakePedal/vcs_BrakeSwitch/Notification_vcs_BrakeSwitch</EVENT-REF>
                     </SOMEIP-EVENT-PROPS>
                     <SOMEIP-EVENT-PROPS>
-                      <COLLECTION-PROPS/>
                       <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/ServiceDeployment/Someip/VCS_BrakePedal/vcs_BrakePosn/Notification_vcs_BrakePosn</EVENT-REF>
                     </SOMEIP-EVENT-PROPS>
                   </EVENT-PROPSS>
                   <METHOD-RESPONSE-PROPSS>
                     <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/VCS_BrakePedal/vcs_BrakeSwtich/Get_vcs_BrakeSwtich</METHOD-REF>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/VCS_BrakePedal/vcs_BrakeSwitch/Get_vcs_BrakeSwitch</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                     <SOMEIP-METHOD-PROPS>
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/VCS_BrakePedal/vcs_BrakePosn/Get_vcs_BrakePosn</METHOD-REF>
@@ -2338,9 +2291,14 @@
                     </SOMEIP-METHOD-PROPS>
                   </METHOD-RESPONSE-PROPSS>
                   <PROVIDED-EVENT-GROUPS>
-                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="9e15a4d9-7952-44f1-858d-deef686f7241">
-                      <SHORT-NAME>Eventgroup_VCSBrakePedal</SHORT-NAME>
-                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/VCS_BrakePedal/Eventgroup_VCSBrakePedal</EVENT-GROUP-REF>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="17e60051-ad2a-4021-b778-d99c86983baa">
+                      <SHORT-NAME>Eventgroup_Notification_vcs_BrakePosn</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/VCS_BrakePedal/Eventgroup_Notification_vcs_BrakePosn</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="1f677494-8e48-4d1e-babb-8a57a8ea1e6f">
+                      <SHORT-NAME>Eventgroup_Notification_vcs_BrakeSwitch</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/VCS_BrakePedal/Eventgroup_Notification_vcs_BrakeSwitch</EVENT-GROUP-REF>
                       <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
                     </SOMEIP-PROVIDED-EVENT-GROUP>
                   </PROVIDED-EVENT-GROUPS>
@@ -2462,6 +2420,7 @@
         </SERVICE-INTERFACE>
         <SERVICE-INTERFACE UUID="051a69e4-e315-4cb4-8adf-d75f7ba9aec1">
           <SHORT-NAME>BCM_WiperWash</SHORT-NAME>
+          <CATEGORY>COMMUNICATION_GROUP</CATEGORY>
           <NAMESPACES>
             <SYMBOL-PROPS>
               <SHORT-NAME>eevp</SHORT-NAME>
@@ -2544,7 +2503,7 @@
               <SHORT-NAME>setWipingLevel</SHORT-NAME>
               <ARGUMENTS>
                 <ARGUMENT-DATA-PROTOTYPE UUID="73f522e4-6ed1-40ce-909e-1899179c4d15">
-                  <SHORT-NAME>wipngLevel</SHORT-NAME>
+                  <SHORT-NAME>wipingLevel</SHORT-NAME>
                   <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/BCM_WipingLevel</TYPE-TREF>
                   <DIRECTION>IN</DIRECTION>
                 </ARGUMENT-DATA-PROTOTYPE>
@@ -2888,6 +2847,20 @@
           <MAJOR-VERSION>1</MAJOR-VERSION>
           <MINOR-VERSION>0</MINOR-VERSION>
           <FIELDS>
+            <FIELD UUID="6f02fc83-753e-4276-8208-ad9fac596381">
+              <SHORT-NAME>brakePedalRecv</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/BrakePedalRecv</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
+            <FIELD UUID="828f7d6b-5095-4328-8078-d3c37b5b4ca7">
+              <SHORT-NAME>brakePedalSend</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/BrakePedalSend</TYPE-TREF>
+              <HAS-GETTER>true</HAS-GETTER>
+              <HAS-NOTIFIER>true</HAS-NOTIFIER>
+              <HAS-SETTER>false</HAS-SETTER>
+            </FIELD>
             <FIELD UUID="e55558d6-b8d7-470c-af01-c307bd68b579">
               <SHORT-NAME>wiperInterval</SHORT-NAME>
               <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-TREF>
@@ -3710,14 +3683,14 @@
           <FIELDS>
             <FIELD UUID="50da6cbb-5e7b-4615-aa0b-3abe93e74685">
               <SHORT-NAME>vcs_BrakePosn</SHORT-NAME>
-              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/VCS_BrakeSwitch</TYPE-TREF>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/VCS_BrakePosn</TYPE-TREF>
               <HAS-GETTER>true</HAS-GETTER>
               <HAS-NOTIFIER>true</HAS-NOTIFIER>
               <HAS-SETTER>false</HAS-SETTER>
             </FIELD>
             <FIELD UUID="6cffc700-9087-4fb3-85c5-f9be7b5d8ba9">
-              <SHORT-NAME>vcs_BrakeSwtich</SHORT-NAME>
-              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/VCS_BrakePosn</TYPE-TREF>
+              <SHORT-NAME>vcs_BrakeSwitch</SHORT-NAME>
+              <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/VCS_BrakeSwitch</TYPE-TREF>
               <HAS-GETTER>true</HAS-GETTER>
               <HAS-NOTIFIER>true</HAS-NOTIFIER>
               <HAS-SETTER>false</HAS-SETTER>

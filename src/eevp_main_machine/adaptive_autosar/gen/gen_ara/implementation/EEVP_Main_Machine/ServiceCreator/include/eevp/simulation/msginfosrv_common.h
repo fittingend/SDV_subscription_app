@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : msginfosrv_common.h
 /// SERVICE INTERFACE NAME            : MsgInfoSrv
-/// GENERATED DATE                    : 2024-11-01 14:56:47
+/// GENERATED DATE                    : 2024-11-05 15:24:00
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

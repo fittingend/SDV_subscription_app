@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : soarcurtain_skeleton.h
 /// SERVICE INTERFACE NAME            : SoaRcurtain
-/// GENERATED DATE                    : 2024-08-14 14:33:40
+/// GENERATED DATE                    : 2024-11-05 15:23:49
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -324,7 +324,7 @@ private:
 public:
     /// @brief Field, soaRctnStatus
     fields::soaRctnStatus soaRctnStatus;
-    /// @brief Method, RequestRearCurtainOperation
+    /// @brief Field, soaRctnSwVersion
     fields::soaRctnSwVersion soaRctnSwVersion;
     /// @brief Method, RequestRearCurtainOperation
     /// @uptrace{SWS_CM_00191}

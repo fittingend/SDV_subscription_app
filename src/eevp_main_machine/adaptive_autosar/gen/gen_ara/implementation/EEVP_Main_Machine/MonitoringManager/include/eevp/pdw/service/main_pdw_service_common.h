@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : main_pdw_service_common.h
 /// SERVICE INTERFACE NAME            : Main_PDW_Service
-/// GENERATED DATE                    : 2024-08-26 09:49:53
+/// GENERATED DATE                    : 2024-11-05 15:23:50
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -31,6 +31,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @uptrace{SWS_CM_10372}
 #include "eevp/pdw/type/impl_type_distancelevel.h"
+#include "eevp/pdw/type/impl_type_ussstatus.h"
 /// @uptrace{SWS_CM_01005}
 namespace eevp
 {

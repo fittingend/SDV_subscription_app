@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : soarcurtain_proxy.h
 /// SERVICE INTERFACE NAME            : SoaRcurtain
-/// GENERATED DATE                    : 2024-08-14 14:33:40
+/// GENERATED DATE                    : 2024-11-05 15:23:49
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -639,7 +639,7 @@ private:
 public:
     /// @brief - field, soaRctnStatus
     fields::soaRctnStatus soaRctnStatus;
-    /// @brief - method, RequestRearCurtainOperation
+    /// @brief - field, soaRctnSwVersion
     fields::soaRctnSwVersion soaRctnSwVersion;
     /// @brief - method, RequestRearCurtainOperation
     methods::RequestRearCurtainOperation RequestRearCurtainOperation;

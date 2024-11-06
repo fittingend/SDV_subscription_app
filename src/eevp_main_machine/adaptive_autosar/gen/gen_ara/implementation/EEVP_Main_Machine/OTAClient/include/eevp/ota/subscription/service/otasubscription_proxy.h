@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : otasubscription_proxy.h
 /// SERVICE INTERFACE NAME            : OtaSubscription
-/// GENERATED DATE                    : 2024-08-14 14:33:41
+/// GENERATED DATE                    : 2024-11-05 15:23:51
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -173,6 +173,139 @@ private:
     const std::string kCallSign = {"notifyAppEvent"};
 };
 /// @uptrace{SWS_CM_00003}
+class notifyRollbackComplete
+{
+public:
+    /// @brief Type alias for type of event data
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using SampleType = bool;
+    /// @brief Constructor
+    explicit notifyRollbackComplete(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+    }
+    /// @brief Destructor
+    virtual ~notifyRollbackComplete() = default;
+    /// @brief Delete copy constructor
+    notifyRollbackComplete(const notifyRollbackComplete& other) = delete;
+    /// @brief Delete copy assignment
+    notifyRollbackComplete& operator=(const notifyRollbackComplete& other) = delete;
+    /// @brief Move constructor
+    notifyRollbackComplete(notifyRollbackComplete&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Move assignment
+    notifyRollbackComplete& operator=(notifyRollbackComplete&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kCallSign, mSubscriptionStateChangeHandler);
+        return *this;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kCallSign);
+    }
+    /// @brief Get received event data from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            SampleType data;
+            deserializer.read(data);
+            f(ara::com::make_sample_ptr<const SampleType>(data));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that event data is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kCallSign, mEventReceiveHandler); 
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kCallSign);
+    }
+    /// @brief Returns the count of free event cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    /// @brief This method provides access to the global SMState of the this Method class,
+    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
+    /// @uptrace{SWS_CM_10475}
+    /// @uptrace{SWS_CM_90431}
+    ara::com::e2e::SMState GetSMState() const noexcept
+    {
+        return mInterface->GetE2EStateMachineState(kCallSign);
+    }
+    
+private:
+    para::com::ProxyInterface* mInterface;
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    const std::string kCallSign = {"notifyRollbackComplete"};
+};
+/// @uptrace{SWS_CM_00003}
 class notifyUpdatableApp
 {
 public:
@@ -305,6 +438,139 @@ private:
     ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
     const std::string kCallSign = {"notifyUpdatableApp"};
 };
+/// @uptrace{SWS_CM_00003}
+class notifyUpdateComplete
+{
+public:
+    /// @brief Type alias for type of event data
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using SampleType = bool;
+    /// @brief Constructor
+    explicit notifyUpdateComplete(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+    }
+    /// @brief Destructor
+    virtual ~notifyUpdateComplete() = default;
+    /// @brief Delete copy constructor
+    notifyUpdateComplete(const notifyUpdateComplete& other) = delete;
+    /// @brief Delete copy assignment
+    notifyUpdateComplete& operator=(const notifyUpdateComplete& other) = delete;
+    /// @brief Move constructor
+    notifyUpdateComplete(notifyUpdateComplete&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Move assignment
+    notifyUpdateComplete& operator=(notifyUpdateComplete&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kCallSign, mSubscriptionStateChangeHandler);
+        return *this;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kCallSign);
+    }
+    /// @brief Get received event data from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            SampleType data;
+            deserializer.read(data);
+            f(ara::com::make_sample_ptr<const SampleType>(data));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that event data is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kCallSign, mEventReceiveHandler); 
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kCallSign);
+    }
+    /// @brief Returns the count of free event cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    /// @brief This method provides access to the global SMState of the this Method class,
+    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
+    /// @uptrace{SWS_CM_10475}
+    /// @uptrace{SWS_CM_90431}
+    ara::com::e2e::SMState GetSMState() const noexcept
+    {
+        return mInterface->GetE2EStateMachineState(kCallSign);
+    }
+    
+private:
+    para::com::ProxyInterface* mInterface;
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    const std::string kCallSign = {"notifyUpdateComplete"};
+};
 } /// namespace events
 /// @uptrace{SWS_CM_01031}
 namespace fields
@@ -403,6 +669,94 @@ private:
     }
     para::com::ProxyInterface* mInterface;
     const std::string kCallSign{"requestAppInstall"};
+};
+/// @uptrace{SWS_CM_00006}
+class requestAppRollback
+{
+public:
+    /// @brief Container for OUT arguments
+    /// @uptrace{SWS_CM_00196}
+    struct Output
+    {
+    };
+    /// @brief Constructor
+    explicit requestAppRollback(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~requestAppRollback() = default;
+    /// @brief
+    requestAppRollback(const requestAppRollback& other) = delete;
+    requestAppRollback& operator=(const requestAppRollback& other) = delete;
+    /// @brief Move constructor
+    requestAppRollback(requestAppRollback&& other) noexcept : mInterface(other.mInterface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    requestAppRollback& operator=(requestAppRollback&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Function call operator
+    /// @uptrace{SWS_CM_00196}
+    ara::core::Future<Output> operator()()
+    {
+        para::serializer::Serializer __serializer__{};
+        auto __data__ = __serializer__.ensure();
+        auto* __promise__ = new ara::core::Promise<Output>();
+        auto __future__ = __promise__->get_future();
+        mInterface->CallMethod(kCallSign, __data__, __promise__);
+        return __future__;
+    }
+    /// @brief This method provides access to the global SMState of the this Method class,
+    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
+    /// @uptrace{SWS_CM_90483}
+    /// @uptrace{SWS_CM_90484}
+    ara::com::e2e::SMState GetSMState() const noexcept
+    {
+        return mInterface->GetE2EStateMachineState(kCallSign);
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<requestAppRollback::Output>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            requestAppRollback::Output output;
+            promise->set_value(output);
+        }
+        else
+        {
+            para::serializer::Deserializer deserializer{data};
+            ara::core::ErrorDomain::IdType domainId{};
+            ara::core::ErrorDomain::CodeType errorCode{};
+            deserializer.read(0, true, 0, domainId);
+            deserializer.read(0, true, 0, errorCode);
+            switch (domainId)
+            {
+                default:
+                {
+                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
+                    break;
+                }
+            }
+        }
+        delete static_cast<ara::core::Promise<requestAppRollback::Output>*>(userData);
+    }
+    para::com::ProxyInterface* mInterface;
+    const std::string kCallSign{"requestAppRollback"};
 };
 /// @uptrace{SWS_CM_00006}
 class requestAppUpdate
@@ -672,8 +1026,11 @@ public:
         : mHandle(handle)
         , mInterface(std::make_unique<para::com::ProxyInterface>(handle.GetInstanceSpecifier(), handle.GetServiceHandle()))
         , notifyAppEvent(mInterface.get())
+        , notifyRollbackComplete(mInterface.get())
         , notifyUpdatableApp(mInterface.get())
+        , notifyUpdateComplete(mInterface.get())
         , requestAppInstall(mInterface.get())
+        , requestAppRollback(mInterface.get())
         , requestAppUpdate(mInterface.get())
         , requestVersionInfo(mInterface.get())
     {
@@ -693,8 +1050,11 @@ public:
         : mHandle(std::move(other.mHandle))
         , mInterface(std::move(other.mInterface))
         , notifyAppEvent(std::move(other.notifyAppEvent))
+        , notifyRollbackComplete(std::move(other.notifyRollbackComplete))
         , notifyUpdatableApp(std::move(other.notifyUpdatableApp))
+        , notifyUpdateComplete(std::move(other.notifyUpdateComplete))
         , requestAppInstall(std::move(other.requestAppInstall))
+        , requestAppRollback(std::move(other.requestAppRollback))
         , requestAppUpdate(std::move(other.requestAppUpdate))
         , requestVersionInfo(std::move(other.requestVersionInfo))
     {
@@ -709,8 +1069,11 @@ public:
         mInterface = std::move(other.mInterface);
         mInterface->StopFindService();
         notifyAppEvent = std::move(other.notifyAppEvent);
+        notifyRollbackComplete = std::move(other.notifyRollbackComplete);
         notifyUpdatableApp = std::move(other.notifyUpdatableApp);
+        notifyUpdateComplete = std::move(other.notifyUpdateComplete);
         requestAppInstall = std::move(other.requestAppInstall);
+        requestAppRollback = std::move(other.requestAppRollback);
         requestAppUpdate = std::move(other.requestAppUpdate);
         requestVersionInfo = std::move(other.requestVersionInfo);
         other.mInterface.reset();
@@ -736,10 +1099,16 @@ private:
 public:
     /// @brief - event, notifyAppEvent
     events::notifyAppEvent notifyAppEvent;
+    /// @brief - event, notifyRollbackComplete
+    events::notifyRollbackComplete notifyRollbackComplete;
     /// @brief - event, notifyUpdatableApp
     events::notifyUpdatableApp notifyUpdatableApp;
+    /// @brief - event, notifyUpdateComplete
+    events::notifyUpdateComplete notifyUpdateComplete;
     /// @brief - method, requestAppInstall
     methods::requestAppInstall requestAppInstall;
+    /// @brief - method, requestAppRollback
+    methods::requestAppRollback requestAppRollback;
     /// @brief - method, requestAppUpdate
     methods::requestAppUpdate requestAppUpdate;
     /// @brief - method, requestVersionInfo

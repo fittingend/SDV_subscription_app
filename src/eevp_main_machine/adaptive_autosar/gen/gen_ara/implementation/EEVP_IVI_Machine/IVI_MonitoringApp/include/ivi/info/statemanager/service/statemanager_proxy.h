@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : statemanager_proxy.h
 /// SERVICE INTERFACE NAME            : StateManager
-/// GENERATED DATE                    : 2024-08-14 14:33:48
+/// GENERATED DATE                    : 2024-11-05 15:24:02
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -45,7 +45,7 @@ class NotifySystemState
 public:
     /// @brief Type alias for type of event data
     /// @uptrace{SWS_CM_00162, SWS_CM_90437}
-    using SampleType = ivi::info::statemanager::type::State;
+    using SampleType = ivi::info::statemanager::type::IviState;
     /// @brief Constructor
     explicit NotifySystemState(para::com::ProxyInterface* interface) : mInterface(interface)
     {
@@ -365,7 +365,7 @@ class SystemState
 public:
     /// @brief Type alias for type of field value
     /// @uptrace{SWS_CM_00162, SWS_CM_90437}
-    using FieldType = ivi::info::statemanager::type::State;
+    using FieldType = ivi::info::statemanager::type::IviState;
     /// @brief Constructor
     explicit SystemState(para::com::ProxyInterface* interface) : mInterface(interface)
     {

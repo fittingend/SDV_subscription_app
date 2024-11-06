@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_mindata.h
 /// IMPLEMENTATION DATA TYPE NAME     : MINdata
-/// GENERATED DATE                    : 2024-11-01 14:56:50
+/// GENERATED DATE                    : 2024-11-05 15:24:01
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

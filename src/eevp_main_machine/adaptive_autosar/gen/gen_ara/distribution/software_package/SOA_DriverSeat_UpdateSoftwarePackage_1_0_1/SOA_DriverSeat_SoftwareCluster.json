@@ -23,12 +23,16 @@
             "uri" : "SOA_DriverSeat/etc/exec/SOA_DriverSeat.json"
         },
         {
-            "artifact-type" : "executable",
+            "artifact-type" : "executable-application",
             "uri" : "SOA_DriverSeat/bin/SOA_DriverSeat"
         },
         {
             "artifact-type" : "service-instance-manifest",
             "uri" : "SOA_DriverSeat/etc/interface/SOA_DriverSeat/AA/PPort_SOA_DriverSeat.json"
+        },
+        {
+            "artifact-type" : "service-instance-manifest",
+            "uri" : "SOA_DriverSeat/etc/interface/SOA_DriverSeat/AA/RPort_Zone1DrvSeat.json"
         }
     ]
 }

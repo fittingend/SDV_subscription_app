@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : soawiper_proxy.h
 /// SERVICE INTERFACE NAME            : SoaWiper
-/// GENERATED DATE                    : 2024-08-14 14:33:43
+/// GENERATED DATE                    : 2024-11-05 15:23:53
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -751,7 +751,7 @@ public:
     fields::soaWiperDeviceNormal soaWiperDeviceNormal;
     /// @brief - field, soaWiperStatus
     fields::soaWiperStatus soaWiperStatus;
-    /// @brief - method, RequestWiperOperation
+    /// @brief - field, soaWiperSwVersion
     fields::soaWiperSwVersion soaWiperSwVersion;
     /// @brief - method, RequestWiperOperation
     methods::RequestWiperOperation RequestWiperOperation;

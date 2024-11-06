@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : otamonitoring_proxy.h
 /// SERVICE INTERFACE NAME            : OtaMonitoring
-/// GENERATED DATE                    : 2024-08-14 14:33:41
+/// GENERATED DATE                    : 2024-11-05 15:23:51
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -304,6 +304,139 @@ private:
     ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
     ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
     const std::string kCallSign = {"notifyUpdatableService"};
+};
+/// @uptrace{SWS_CM_00003}
+class resetUcmCompleted
+{
+public:
+    /// @brief Type alias for type of event data
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using SampleType = bool;
+    /// @brief Constructor
+    explicit resetUcmCompleted(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+    }
+    /// @brief Destructor
+    virtual ~resetUcmCompleted() = default;
+    /// @brief Delete copy constructor
+    resetUcmCompleted(const resetUcmCompleted& other) = delete;
+    /// @brief Delete copy assignment
+    resetUcmCompleted& operator=(const resetUcmCompleted& other) = delete;
+    /// @brief Move constructor
+    resetUcmCompleted(resetUcmCompleted&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Move assignment
+    resetUcmCompleted& operator=(resetUcmCompleted&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kCallSign, mSubscriptionStateChangeHandler);
+        return *this;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kCallSign);
+    }
+    /// @brief Get received event data from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            SampleType data;
+            deserializer.read(data);
+            f(ara::com::make_sample_ptr<const SampleType>(data));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that event data is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kCallSign, mEventReceiveHandler); 
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kCallSign);
+    }
+    /// @brief Returns the count of free event cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    /// @brief This method provides access to the global SMState of the this Method class,
+    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
+    /// @uptrace{SWS_CM_10475}
+    /// @uptrace{SWS_CM_90431}
+    ara::com::e2e::SMState GetSMState() const noexcept
+    {
+        return mInterface->GetE2EStateMachineState(kCallSign);
+    }
+    
+private:
+    para::com::ProxyInterface* mInterface;
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    const std::string kCallSign = {"resetUcmCompleted"};
 };
 } /// namespace events
 /// @uptrace{SWS_CM_01031}
@@ -761,6 +894,7 @@ public:
         , mInterface(std::make_unique<para::com::ProxyInterface>(handle.GetInstanceSpecifier(), handle.GetServiceHandle()))
         , notifyServiceEvent(mInterface.get())
         , notifyUpdatableService(mInterface.get())
+        , resetUcmCompleted(mInterface.get())
         , requestServiceInstall(mInterface.get())
         , requestServiceUpdate(mInterface.get())
         , requestVersionInfo(mInterface.get())
@@ -783,6 +917,7 @@ public:
         , mInterface(std::move(other.mInterface))
         , notifyServiceEvent(std::move(other.notifyServiceEvent))
         , notifyUpdatableService(std::move(other.notifyUpdatableService))
+        , resetUcmCompleted(std::move(other.resetUcmCompleted))
         , requestServiceInstall(std::move(other.requestServiceInstall))
         , requestServiceUpdate(std::move(other.requestServiceUpdate))
         , requestVersionInfo(std::move(other.requestVersionInfo))
@@ -800,6 +935,7 @@ public:
         mInterface->StopFindService();
         notifyServiceEvent = std::move(other.notifyServiceEvent);
         notifyUpdatableService = std::move(other.notifyUpdatableService);
+        resetUcmCompleted = std::move(other.resetUcmCompleted);
         requestServiceInstall = std::move(other.requestServiceInstall);
         requestServiceUpdate = std::move(other.requestServiceUpdate);
         requestVersionInfo = std::move(other.requestVersionInfo);
@@ -829,6 +965,8 @@ public:
     events::notifyServiceEvent notifyServiceEvent;
     /// @brief - event, notifyUpdatableService
     events::notifyUpdatableService notifyUpdatableService;
+    /// @brief - event, resetUcmCompleted
+    events::resetUcmCompleted resetUcmCompleted;
     /// @brief - method, requestServiceInstall
     methods::requestServiceInstall requestServiceInstall;
     /// @brief - method, requestServiceUpdate

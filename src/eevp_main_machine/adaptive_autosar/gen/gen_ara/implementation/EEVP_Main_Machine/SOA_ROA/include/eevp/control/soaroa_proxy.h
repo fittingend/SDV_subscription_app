@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : soaroa_proxy.h
 /// SERVICE INTERFACE NAME            : SoaRoa
-/// GENERATED DATE                    : 2024-08-14 14:33:45
+/// GENERATED DATE                    : 2024-11-05 15:23:54
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -1492,7 +1492,7 @@ public:
     fields::soaRoaRunningState soaRoaRunningState;
     /// @brief - field, soaRoaSensorError
     fields::soaRoaSensorError soaRoaSensorError;
-    /// @brief - method, ResetRoaDetectInfo
+    /// @brief - field, soaRoaSwVersion
     fields::soaRoaSwVersion soaRoaSwVersion;
     /// @brief - method, ResetRoaDetectInfo
     methods::ResetRoaDetectInfo ResetRoaDetectInfo;

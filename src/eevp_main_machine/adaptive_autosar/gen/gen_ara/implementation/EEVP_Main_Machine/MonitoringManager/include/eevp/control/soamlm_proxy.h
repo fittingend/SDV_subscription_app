@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : soamlm_proxy.h
 /// SERVICE INTERFACE NAME            : SoaMlm
-/// GENERATED DATE                    : 2024-08-14 14:33:40
+/// GENERATED DATE                    : 2024-11-05 15:23:51
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -625,7 +625,7 @@ private:
 public:
     /// @brief - field, soaMlmStatus
     fields::soaMlmStatus soaMlmStatus;
-    /// @brief - method, RequestMlmSetBrightness
+    /// @brief - field, soaMlmSwVersion
     fields::soaMlmSwVersion soaMlmSwVersion;
     /// @brief - method, RequestMlmSetBrightness
     methods::RequestMlmSetBrightness RequestMlmSetBrightness;

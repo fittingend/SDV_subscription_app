@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : bmsinfosrv_proxy.h
 /// SERVICE INTERFACE NAME            : BmsInfoSrv
-/// GENERATED DATE                    : 2024-11-01 14:56:47
+/// GENERATED DATE                    : 2024-11-05 15:24:01
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

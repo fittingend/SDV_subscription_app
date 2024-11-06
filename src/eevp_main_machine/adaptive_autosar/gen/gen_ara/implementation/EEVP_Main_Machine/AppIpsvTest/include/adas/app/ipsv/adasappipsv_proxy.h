@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : adasappipsv_proxy.h
 /// SERVICE INTERFACE NAME            : AdasAppIpsv
-/// GENERATED DATE                    : 2024-08-14 14:33:39
+/// GENERATED DATE                    : 2024-11-05 15:23:49
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

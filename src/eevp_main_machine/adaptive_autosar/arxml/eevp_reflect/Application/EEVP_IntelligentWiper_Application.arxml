@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00049.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE UUID="15d34bdb-43c5-49dd-a484-acfd0c51f7da">
+      <SHORT-NAME>Application</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE UUID="cd6ec693-deb3-49ec-b7d5-f6a7919f0259">
+          <SHORT-NAME>DltConfig</SHORT-NAME>
+          <ELEMENTS>
+            <DLT-LOG-CHANNEL-TO-PROCESS-MAPPING UUID="e8d273ea-70a0-470f-83c7-c670664412f4">
+              <SHORT-NAME>DltLogChannelToProcessMapping_IntelligentWiper_TO_IntelligentWiper</SHORT-NAME>
+              <DLT-LOG-CHANNEL-REF DEST="DLT-LOG-CHANNEL">/Machine/EEVP_Main_Machine/LOG/IntelligentWiper</DLT-LOG-CHANNEL-REF>
+              <PROCESS-REF DEST="PROCESS">/Application/Process/IntelligentWiper</PROCESS-REF>
+            </DLT-LOG-CHANNEL-TO-PROCESS-MAPPING>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="87f74325-a89a-488c-aaff-dbc25f8cdc60">
+          <SHORT-NAME>Executable</SHORT-NAME>
+          <ELEMENTS>
+            <EXECUTABLE UUID="33385d86-2b84-4ed6-a917-2a8effa9ade1">
+              <SHORT-NAME>IntelligentWiper</SHORT-NAME>
+              <CATEGORY>APPLICATION_LEVEL</CATEGORY>
+              <LOGGING-BEHAVIOR>USES-LOGGING</LOGGING-BEHAVIOR>
+              <REPORTING-BEHAVIOR>REPORTS-EXECUTION-STATE</REPORTING-BEHAVIOR>
+              <ROOT-SW-COMPONENT-PROTOTYPE UUID="f81b689c-fd75-453a-82e1-0a845e290acf">
+                <SHORT-NAME>AA</SHORT-NAME>
+                <APPLICATION-TYPE-TREF DEST="ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE">/Application/SwComponent/IntelligentWiper</APPLICATION-TYPE-TREF>
+              </ROOT-SW-COMPONENT-PROTOTYPE>
+              <VERSION>1.0.0</VERSION>
+            </EXECUTABLE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="c7804087-03d1-4a6e-91d7-14b3e9d0ebe2">
+          <SHORT-NAME>Manifest</SHORT-NAME>
+          <ELEMENTS>
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="795098a0-740f-4339-9427-4ddca63bc0e9">
+              <SHORT-NAME>IntelligentWiper_AA_RPort_BCM_WiperWash</SHORT-NAME>
+              <PORT-PROTOTYPE-IREF>
+                <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/Application/Executable/IntelligentWiper/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
+                <TARGET-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Application/SwComponent/IntelligentWiper/RPort_BCM_WiperWash</TARGET-PORT-PROTOTYPE-REF>
+              </PORT-PROTOTYPE-IREF>
+              <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_IntelligentWiper_Consumer_BCM_WiperWash</SERVICE-INSTANCE-REF>
+            </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="2c411a42-ecde-4475-9e81-7c3df4ff167f">
+          <SHORT-NAME>Process</SHORT-NAME>
+          <ELEMENTS>
+            <PROCESS UUID="e526b203-b2eb-4008-971c-36031efe2ef9">
+              <SHORT-NAME>IntelligentWiper</SHORT-NAME>
+              <EXECUTABLE-REF DEST="EXECUTABLE">/Application/Executable/IntelligentWiper</EXECUTABLE-REF>
+              <PROCESS-STATE-MACHINE UUID="19b571c4-a726-46b2-ace5-1b0ae000ff06">
+                <SHORT-NAME>IntelligentWiper</SHORT-NAME>
+                <TYPE-TREF DEST="MODE-DECLARATION-GROUP">/StateMachine/ProcessState</TYPE-TREF>
+              </PROCESS-STATE-MACHINE>
+              <STATE-DEPENDENT-STARTUP-CONFIGS>
+                <STATE-DEPENDENT-STARTUP-CONFIG>
+                  <EXECUTION-DEPENDENCYS>
+                    <EXECUTION-DEPENDENCY>
+                      <PROCESS-STATE-IREF>
+                        <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Application/Process/CM/CM</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                        <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/StateMachine/ProcessState/Running</TARGET-MODE-DECLARATION-REF>
+                      </PROCESS-STATE-IREF>
+                    </EXECUTION-DEPENDENCY>
+                  </EXECUTION-DEPENDENCYS>
+                  <FUNCTION-GROUP-STATE-IREFS>
+                    <FUNCTION-GROUP-STATE-IREF>
+                      <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Machine/FunctionGroup/EEVP_Main_FunctionGroup/MachineFG</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                      <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/StateMachine/MachineState/Startup</TARGET-MODE-DECLARATION-REF>
+                    </FUNCTION-GROUP-STATE-IREF>
+                  </FUNCTION-GROUP-STATE-IREFS>
+                  <RESOURCE-GROUP-REF DEST="RESOURCE-GROUP">/Machine/EEVP_Main_Machine/POSIX/DefaultResourceGroup</RESOURCE-GROUP-REF>
+                  <STARTUP-CONFIG-REF DEST="STARTUP-CONFIG">/Application/StartupConfig/EEVP_IntelligentWiper_StartupConfig/IntelligentWiper</STARTUP-CONFIG-REF>
+                </STATE-DEPENDENT-STARTUP-CONFIG>
+              </STATE-DEPENDENT-STARTUP-CONFIGS>
+            </PROCESS>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="c2e7bd7b-730c-4501-9603-be73e02c821e">
+          <SHORT-NAME>StartupConfig</SHORT-NAME>
+          <ELEMENTS>
+            <STARTUP-CONFIG-SET UUID="099e1055-85ef-4cb7-898e-746ea66f33ac">
+              <SHORT-NAME>EEVP_IntelligentWiper_StartupConfig</SHORT-NAME>
+              <STARTUP-CONFIGS>
+                <STARTUP-CONFIG UUID="2590c307-9d59-4664-b2c3-39f5f30d8370">
+                  <SHORT-NAME>IntelligentWiper</SHORT-NAME>
+                  <SCHEDULING-POLICY>SCHED_OTHER</SCHEDULING-POLICY>
+                  <SCHEDULING-PRIORITY>0</SCHEDULING-PRIORITY>
+                  <TIMEOUT/>
+                </STARTUP-CONFIG>
+              </STARTUP-CONFIGS>
+            </STARTUP-CONFIG-SET>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="b48a42b0-912a-4cec-ab85-f7b1fdf7c42a">
+          <SHORT-NAME>SwComponent</SHORT-NAME>
+          <ELEMENTS>
+            <ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE UUID="3cb34717-dc54-4b17-9dac-16e11deddc6e">
+              <SHORT-NAME>IntelligentWiper</SHORT-NAME>
+              <PORTS>
+                <R-PORT-PROTOTYPE UUID="0fb82d2e-8b86-48ea-9753-9d476fc98c80">
+                  <SHORT-NAME>RPort_BCM_WiperWash</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/BCM_WiperWash</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+              </PORTS>
+            </ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

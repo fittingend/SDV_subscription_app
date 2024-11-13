@@ -51,6 +51,16 @@ SET(SRC
     src/ServiceCreator.cpp
     src/ServiceManagementSkeletonImpl.cpp
     src/WiperSkeletonImpl.cpp
+    src/TMoodLampSkeletonImpl.cpp
+    src/BmsInfoSkeletonImpl.cpp
+    src/MsgInfoProxyImpl.cpp
+    src/AccrPedalSkeletonImpl.cpp
+    src/EnvMonitorSkeletonImpl.cpp
+    src/GearSkeletonImpl.cpp
+    src/BrakePedalSkeletonImpl.cpp
+    src/VehSpdSkeletonImpl.cpp
+    src/SnsrUssSkeletonImpl.cpp
+    src/LotteSkeletonImpl.cpp
     )
 
 ADD_EXECUTABLE(${PROJECT_NAME} ${SRC})

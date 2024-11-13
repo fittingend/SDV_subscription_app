@@ -65,7 +65,7 @@
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="PARA-SOMEIP-CONFIGURATION">
-                        <SD GID="CLIENT-ID">851</SD>
+                        <SD GID="CLIENT-ID">852</SD>
                       </SDG>
                     </SDGS>
                   </ADMIN-DATA>
@@ -105,12 +105,12 @@
                   <REQUIRED-EVENT-GROUPS>
                     <SOMEIP-REQUIRED-EVENT-GROUP>
                       <SHORT-NAME>Eventgroup_WiperInterval</SHORT-NAME>
-                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/BCM_WiperWash/Eventgroup_WiperInterval</EVENT-GROUP-REF>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/BCM_WiperWash/Eventgroup_Notification_wiperInterval</EVENT-GROUP-REF>
                       <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
                     </SOMEIP-REQUIRED-EVENT-GROUP>
                     <SOMEIP-REQUIRED-EVENT-GROUP>
                       <SHORT-NAME>Eventgroup_WiperLevel</SHORT-NAME>
-                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/BCM_WiperWash/Eventgroup_WiperLevel</EVENT-GROUP-REF>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/ServiceDeployment/Someip/BCM_WiperWash/Eventgroup_Notification_wiperLevel</EVENT-GROUP-REF>
                       <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
                     </SOMEIP-REQUIRED-EVENT-GROUP>
                   </REQUIRED-EVENT-GROUPS>

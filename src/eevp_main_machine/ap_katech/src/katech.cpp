@@ -82,6 +82,7 @@ namespace eevp
         bool
         KATECH::Start()
         {
+
             mLogger.LogInfo() << __func__;
 
             mRunning = true;
@@ -112,12 +113,31 @@ namespace eevp
         void
         KATECH::Run()
         {
+            srand((unsigned int)time(NULL));
             mLogger.LogInfo() << __func__;
             uint16_t staticwipingIntervalValue = 50;
-            setWipingLevel(eevp::simulation::BCM_WipingLevel::LOW);
-            setWipingInterval(staticwipingIntervalValue);
+            // setWipingLevel(eevp::simulation::BCM_WipingLevel::LOW);
+
             while (mRunning)
             {
+                uint16_t interval = rand() % 100;
+                int level = rand() % 4;
+                eevp::simulation::BCM_WipingLevel slevel;
+                switch (level)
+                {
+                case 0:
+                    slevel = eevp::simulation::BCM_WipingLevel::LOW;
+                    break;
+                case 1:
+                    slevel = eevp::simulation::BCM_WipingLevel::MEDIUM;
+                    break;
+                case 2:
+                    slevel = eevp::simulation::BCM_WipingLevel::HIGH;
+                    break;
+                case 3:
+                    slevel = eevp::simulation::BCM_WipingLevel::STOP;
+                    break;
+                }
 
                 // eevp::control::SoaRoaDetectState soaRoaDetectState;
                 // std::uint8_t soaRoaDetectCount;
@@ -125,10 +145,12 @@ namespace eevp
                 // getSoaRoaDetectCount(soaRoaDetectCount);
                 // eevp::control::SoaRctnStatus soaRctnStatus;
                 // getSoaRctnStatus(soaRctnStatus);
-                getWipingLevel();
-                getWipingInterval();
-
+                // getWipingLevel();
+                // getWipingInterval();
+                // std::this_thread::sleep_for(std::chrono::seconds(3));
                 std::this_thread::sleep_for(std::chrono::seconds(3));
+                setWipingLevel(slevel);
+                setWipingInterval(interval);
             }
         }
 
@@ -196,21 +218,21 @@ namespace eevp
 
         eevp::simulation::BCM_ReturnCode KATECH::setWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             wiperProxyImpl->setWipingLevel(wipingLevel);
             return eevp::simulation::BCM_ReturnCode::SUCCESS;
         }
 
         eevp::simulation::BCM_ReturnCode KATECH::setWipingLevelImme(const eevp::simulation::BCM_WipingLevel &wipingLevel)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             // wiperProxyImpl->setWipingLevelImme(wipingLevel);
             return eevp::simulation::BCM_ReturnCode::SUCCESS;
         }
 
         eevp::simulation::BCM_ReturnCode KATECH::setWipingInterval(std::uint16_t &wipingInterval)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             wiperProxyImpl->setWipingInterval(wipingInterval);
             return eevp::simulation::BCM_ReturnCode::SUCCESS;
         }

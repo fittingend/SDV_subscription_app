@@ -1,4 +1,4 @@
-#include "WiperSkeletonImpl.h"
+#include "skeleton/WiperSkeletonImpl.h"
 #include "ServiceCreator.h"
 
 using namespace ara::core;
@@ -84,11 +84,10 @@ namespace eevp
         }
         Future<skeleton::BCM_WiperWashSkeleton::setWipingLevelOutput> WiperSkeletonImpl::setWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             ara::core::Promise<skeleton::BCM_WiperWashSkeleton::setWipingLevelOutput> promise;
             ServiceCreator::wiperSend.wipingLevel = wipingLevel;
-            promise.set_value(this->mWiperInterval);
-            updateWipingLevel(wipingLevel);
+            listener->setWipingLevel(wipingLevel);
             return promise.get_future();
         }
 
@@ -99,17 +98,17 @@ namespace eevp
 
         Future<skeleton::BCM_WiperWashSkeleton::setWipingIntervalOutput> WiperSkeletonImpl::setWipingInterval(const std::uint16_t &wipingInterval)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             ara::core::Promise<skeleton::BCM_WiperWashSkeleton::setWipingIntervalOutput> promise;
             ServiceCreator::wiperSend.wipingInterval = wipingInterval;
-            updateWipingInterval(wipingInterval);
+            listener->setWipingInterval(wipingInterval);
             return promise.get_future();
         }
 
         Future<simulation::skeleton::fields::wiperInterval::FieldType>
         WiperSkeletonImpl::wiperIntervalGetter()
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             ara::core::Promise<simulation::skeleton::fields::wiperInterval::FieldType> promise;
             promise.set_value(this->mWiperInterval);
             return promise.get_future();
@@ -118,11 +117,12 @@ namespace eevp
         void
         WiperSkeletonImpl::updateWipingInterval(const std::uint16_t &wipingInterval)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             if (this->mWiperInterval != wipingInterval)
             {
                 this->mWiperInterval = wipingInterval;
                 auto updateResult = wiperInterval.Update(this->mWiperInterval);
+                ServiceCreator::wiperSend.wipingInterval = this->mWiperInterval;
                 if (!updateResult.HasValue())
                 {
                     mLogger.LogError() << "Update failed: " << updateResult.Error().Message();
@@ -134,7 +134,7 @@ namespace eevp
         Future<simulation::skeleton::fields::wiperLevel::FieldType>
         WiperSkeletonImpl::wiperLevelGetter()
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             ara::core::Promise<simulation::skeleton::fields::wiperLevel::FieldType> promise;
             promise.set_value(this->mWiperLevel);
             return promise.get_future();
@@ -143,11 +143,12 @@ namespace eevp
         void
         WiperSkeletonImpl::updateWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             if (this->mWiperLevel != wipingLevel)
             {
                 this->mWiperLevel = wipingLevel;
                 auto updateResult = wiperLevel.Update(this->mWiperLevel);
+                ServiceCreator::wiperSend.wipingLevel = this->mWiperLevel;
                 if (!updateResult.HasValue())
                 {
                     mLogger.LogError() << "Update failed: " << updateResult.Error().Message();

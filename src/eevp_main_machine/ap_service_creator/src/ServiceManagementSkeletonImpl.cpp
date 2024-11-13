@@ -1,4 +1,4 @@
-#include "ServiceManagementSkeletonImpl.h"
+#include "skeleton/ServiceManagementSkeletonImpl.h"
 #include "ServiceCreator.h"
 
 using namespace ara::core;
@@ -96,6 +96,7 @@ namespace eevp
         Future<service::skeleton::fields::wiperInterval::FieldType>
         ServiceManagementSkeletonImpl::wiperIntervalGetter()
         {
+            // mLogger.LogInfo() << __func__;
             ara::core::Promise<service::skeleton::fields::wiperInterval::FieldType> promise;
             promise.set_value(this->wiperIntervalField);
             return promise.get_future();
@@ -104,7 +105,7 @@ namespace eevp
         void
         ServiceManagementSkeletonImpl::updateWipingInterval(const std::uint16_t &wipingInterval)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             wiperInterval.Update(wipingInterval);
             mLogger.LogInfo() << __func__ << "(" << static_cast<uint16_t>(wipingInterval) << ")";
         }
@@ -112,7 +113,7 @@ namespace eevp
         Future<service::skeleton::fields::wiperLevel::FieldType>
         ServiceManagementSkeletonImpl::wiperLevelGetter()
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             ara::core::Promise<service::skeleton::fields::wiperLevel::FieldType> promise;
             promise.set_value(this->wiperLevelField);
             return promise.get_future();
@@ -120,7 +121,7 @@ namespace eevp
         void
         ServiceManagementSkeletonImpl::updateWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             wiperLevel.Update(wipingLevel);
             mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(wipingLevel) << ")";
         }

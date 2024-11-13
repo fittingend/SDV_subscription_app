@@ -114,7 +114,7 @@ namespace eevp
         eevp::simulation::BCM_ReturnCode
         WiperProxyImpl::setWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
 
             if (mProxy == nullptr)
             {
@@ -130,7 +130,7 @@ namespace eevp
         eevp::simulation::BCM_ReturnCode
         WiperProxyImpl::setWipingInterval(std::uint16_t &wipingInterval)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
 
             if (mProxy == nullptr)
             {
@@ -252,7 +252,7 @@ namespace eevp
         void
         WiperProxyImpl::cbWiperLevel()
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
 
             eevp::simulation::BCM_WipingLevel wipingLevel;
 
@@ -270,14 +270,14 @@ namespace eevp
                                              {
             wipingLevel=static_cast<eevp::simulation::BCM_WipingLevel>(*msg);
                     if (listener != nullptr) {
-                        mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(wipingLevel) << ")";
+                        // mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(wipingLevel) << ")";
                     } });
         }
 
         void
         WiperProxyImpl::cbWiperInterval()
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
 
             std::uint16_t wipingInterval;
             if (mProxy == nullptr)
@@ -294,7 +294,7 @@ namespace eevp
                                                 {
                 wipingInterval=static_cast<std::uint16_t>(*msg);
                     if (listener != nullptr) {
-                        mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(wipingInterval) << ")";
+                        // mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(wipingInterval) << ")";
                     } });
         }
     }

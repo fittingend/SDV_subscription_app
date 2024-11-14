@@ -25,8 +25,8 @@ namespace eevp
 
             Future<DmsCurrOutput> DmsCurr();
             Future<DmsStatusOutput> DmsStatus();
-            Future<SmartFilmControlOutput> SmartFilmControl(const std::int32_t &windowLoc, const std::int32_t &transparence);
-            Future<SmartFilmCurrOutput> SmartFilmCurr();
+            Future<SmartFilmControlOutput> SmartFilmControl(const std::uint8_t &windowLoc, const std::uint8_t &transparence);
+            Future<SmartFilmCurrOutput> SmartFilmCurr(const std::uint8_t &windowLoc);
             Future<SmartFilmStatusOutput> SmartFilmStatus();
 
         private:

@@ -81,7 +81,7 @@
               </PORT-PROTOTYPE-IREF>
               <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Provider/EEVP_ServiceCreator_Provider_EevpControlSoaMIm</SERVICE-INSTANCE-REF>
             </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
-            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="832b3239-9a60-440d-906f-07b4672b3551">
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="5ffbcc6a-f668-449d-b16b-cb033f13e8f7">
               <SHORT-NAME>ServiceCreator_AA_PPort_LotteService</SHORT-NAME>
               <PORT-PROTOTYPE-IREF>
                 <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/Application/Executable/ServiceCreator/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
@@ -394,7 +394,7 @@
                   <SHORT-NAME>PPort_LmpCtrl</SHORT-NAME>
                   <PROVIDED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/PortInterface/Service/EevpControlSoaMIm</PROVIDED-INTERFACE-TREF>
                 </P-PORT-PROTOTYPE>
-                <P-PORT-PROTOTYPE UUID="6ce95291-e54a-4034-9f12-37bd27886cc1">
+                <P-PORT-PROTOTYPE UUID="fceb1291-bfd4-4044-b804-e027186f15a8">
                   <SHORT-NAME>PPort_LotteService</SHORT-NAME>
                   <PROVIDED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/PortInterface/Service/LotteService</PROVIDED-INTERFACE-TREF>
                 </P-PORT-PROTOTYPE>

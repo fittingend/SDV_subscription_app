@@ -159,7 +159,7 @@ namespace eevp
 
             void NotifyDmsCurr(lotte::type::DmsGzDtctn &dmsGzDtctn) { return serviceCreator->NotifyDmsCurr(dmsGzDtctn); }
             void NotifyDmsStatus(bool &result) { return serviceCreator->NotifyDmsStatus(result); }
-            void NotifySmartFilmCurr(std::int32_t &result) { return serviceCreator->NotifySmartFilmCurr(result); }
+            void NotifySmartFilmCurr(lotte::type::SideTransparency &result) { return serviceCreator->NotifySmartFilmCurr(result); }
             void NotifySmartFilmStatus(bool &result) { return serviceCreator->NotifySmartFilmStatus(result); }
             void SmartFilmControl(const std::int32_t &windowLoc, const std::int32_t &transparence) { return serviceCreator->SmartFilmControl(windowLoc, transparence); }
 
@@ -606,35 +606,34 @@ namespace eevp
         void ServiceCreator::NotifyDmsCurr(lotte::type::DmsGzDtctn &dmsGzDtctn)
         {
             mLogger.LogInfo() << __func__;
-            dmsGzDtctn = this->dmsGzDtctn;
             return;
         }
 
         void ServiceCreator::NotifyDmsStatus(bool &result)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             result = this->dmsStatus;
             return;
         }
 
-        void ServiceCreator::NotifySmartFilmCurr(std::int32_t &result)
+        void ServiceCreator::NotifySmartFilmCurr(lotte::type::SideTransparency &result)
         {
-            mLogger.LogInfo() << __func__;
-            result = this->windowLoc;
+            // mLogger.LogInfo() << __func__;
             return;
         }
 
         void ServiceCreator::NotifySmartFilmStatus(bool &result)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             result = this->smartFilmStatus;
             return;
         }
 
         void ServiceCreator::SmartFilmControl(const std::int32_t &windowLoc, const std::int32_t &transparence)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             this->windowLocSend = windowLoc;
+            this->transparenceSend = transparence;
             return;
         }
 
@@ -948,11 +947,8 @@ namespace eevp
         // EnvMonitor 데이터 추출
         void ServiceCreator::extractEnvMonitorData(const json &envMonitorData)
         {
-            for (size_t i = 0; i < envZoneHumidityAry.size(); ++i)
-            {
-                envZoneHumidityAry[i].zoneId = static_cast<eevp::simulation::type::TMS_EnvZone>(envMonitorData["humidityAry"][i].value("zoneId", 0));
-                envZoneHumidityAry[i].humidity = envMonitorData["humidityAry"][i].value("humidity", 0);
-            }
+            envZoneHumidityAry[0].humidity = envMonitorData["EnvMonitor"].value("interiorhumidity", 0);
+            envZoneHumidityAry[1].humidity = envMonitorData["EnvMonitor"].value("exteriorhumidity", 0);
         }
 
         // Gear 데이터 추출
@@ -1000,24 +996,24 @@ namespace eevp
 
         void ServiceCreator::extractLotteData(const json &lotteData)
         {
-            dmsGzDtctn.headLocX = lotteData.value("headLocX", static_cast<std::uint8_t>(0));
-            dmsGzDtctn.headLocY = lotteData.value("headLocY", static_cast<std::uint8_t>(0));
-            dmsGzDtctn.headLocZ = lotteData.value("headLocZ", static_cast<std::uint8_t>(0));
-            dmsGzDtctn.eyeLocRightX = lotteData.value("eyeLocRightX", static_cast<std::uint8_t>(0));
-            dmsGzDtctn.eyeLocRightY = lotteData.value("eyeLocRightY", static_cast<std::uint8_t>(0));
-            dmsGzDtctn.eyeLocRightZ = lotteData.value("eyeLocRightZ", static_cast<std::uint8_t>(0));
-            dmsGzDtctn.eyeLocLeftX = lotteData.value("eyeLocLeftX", static_cast<std::uint8_t>(0));
-            dmsGzDtctn.eyeLocLeftY = lotteData.value("eyeLocLeftY", static_cast<std::uint8_t>(0));
-            dmsGzDtctn.eyeLocLeftZ = lotteData.value("eyeLocLeftZ", static_cast<std::uint8_t>(0));
-            dmsGzDtctn.headDirPitch = lotteData.value("headDirPitch", static_cast<std::uint8_t>(0));
-            dmsGzDtctn.headDirYaw = lotteData.value("headDirYaw", static_cast<std::uint8_t>(0));
-            dmsGzDtctn.gazeDirPitch = lotteData.value("gazeDirPitch", static_cast<std::uint8_t>(0));
-            dmsGzDtctn.gazeDirYaw = lotteData.value("gazeDirYaw", static_cast<std::uint8_t>(0));
-            dmsGzDtctn.gazeZone = static_cast<lotte::type::GazaZone>(lotteData.value("gazeZone", 0));
-            dmsGzDtctn.headZone = static_cast<lotte::type::HeadZone>(lotteData.value("headZone", 0));
+            // dmsGzDtctn.headLocX = lotteData.value("headLocX", static_cast<std::uint8_t>(0));
+            // dmsGzDtctn.headLocY = lotteData.value("headLocY", static_cast<std::uint8_t>(0));
+            // dmsGzDtctn.headLocZ = lotteData.value("headLocZ", static_cast<std::uint8_t>(0));
+            // dmsGzDtctn.eyeLocRightX = lotteData.value("eyeLocRightX", static_cast<std::uint8_t>(0));
+            // dmsGzDtctn.eyeLocRightY = lotteData.value("eyeLocRightY", static_cast<std::uint8_t>(0));
+            // dmsGzDtctn.eyeLocRightZ = lotteData.value("eyeLocRightZ", static_cast<std::uint8_t>(0));
+            // dmsGzDtctn.eyeLocLeftX = lotteData.value("eyeLocLeftX", static_cast<std::uint8_t>(0));
+            // dmsGzDtctn.eyeLocLeftY = lotteData.value("eyeLocLeftY", static_cast<std::uint8_t>(0));
+            // dmsGzDtctn.eyeLocLeftZ = lotteData.value("eyeLocLeftZ", static_cast<std::uint8_t>(0));
+            // dmsGzDtctn.headDirPitch = lotteData.value("headDirPitch", static_cast<std::uint8_t>(0));
+            // dmsGzDtctn.headDirYaw = lotteData.value("headDirYaw", static_cast<std::uint8_t>(0));
+            // dmsGzDtctn.gazeDirPitch = lotteData.value("gazeDirPitch", static_cast<std::uint8_t>(0));
+            // dmsGzDtctn.gazeDirYaw = lotteData.value("gazeDirYaw", static_cast<std::uint8_t>(0));
+            // dmsGzDtctn.gazeZone = static_cast<lotte::type::GazaZone>(lotteData.value("gazeZone", 0));
+            // dmsGzDtctn.headZone = static_cast<lotte::type::HeadZone>(lotteData.value("headZone", 0));
 
-            windowLoc = lotteData.value("windowLoc", static_cast<std::int32_t>(0));
-            transparence = lotteData.value("transparence", static_cast<std::int32_t>(0));
+            // windowLoc = lotteData.value("windowLoc", static_cast<std::int32_t>(0));
+            // transparence = lotteData.value("transparence", static_cast<std::int32_t>(0));
             dmsStatus = lotteData.value("dmsStatus", false);
             smartFilmStatus = lotteData.value("smartFilmStatus", false);
         }
@@ -1037,6 +1033,11 @@ namespace eevp
             sendData["Wiper"] = {
                 {"wipingLevel", this->wiperSend.wipingLevel},
                 {"wipingInterval", this->wiperSend.wipingInterval}};
+
+            // Lotte 데이터
+            sendData["Lotte"] = {
+                {"windowLoc", this->windowLocSend},
+                {"transparence", this->transparenceSend}};
 
             return sendData;
         }

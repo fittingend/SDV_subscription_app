@@ -1016,9 +1016,9 @@
               <TCP-PORT>50112</TCP-PORT>
               <UDP-PORT>50112</UDP-PORT>
             </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
-            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="403a7a93-73e1-48c0-a677-6fc3363414d2">
+            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="971569e3-d66d-42a8-ac88-802c03aa589a">
               <SHORT-NAME>EEVP_ServiceCreator_SomeipProviders_LotteService</SHORT-NAME>
-              <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/VehicleTopology/Ecu/Ecu/eth0</COMMUNICATION-CONNECTOR-REF>
+              <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
               <SERVICE-INSTANCE-REFS>
                 <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Provider/EEVP_ServiceCreator_Provider_LotteService</SERVICE-INSTANCE-REF>
               </SERVICE-INSTANCE-REFS>
@@ -1722,11 +1722,12 @@
                   <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/SdSeverConfig</SD-SERVER-CONFIG-REF>
                   <SERVICE-INSTANCE-ID>9112</SERVICE-INSTANCE-ID>
                 </PROVIDED-SOMEIP-SERVICE-INSTANCE>
-                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="7c70e642-5d2d-4641-bf3d-ec3a0157a7e5">
+                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="1844427b-0209-497d-abaf-8d6566bcef47">
                   <SHORT-NAME>EEVP_ServiceCreator_Provider_LotteService</SHORT-NAME>
                   <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/System/Service/Deployment/LotteService</SERVICE-INTERFACE-DEPLOYMENT-REF>
                   <METHOD-RESPONSE-PROPSS>
                     <SOMEIP-METHOD-PROPS>
+                      <COLLECTION-PROPS/>
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/DmsCurr</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                     <SOMEIP-METHOD-PROPS>
@@ -1736,14 +1737,14 @@
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/SmartFilmControl</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                     <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/SmartFilmStatus</METHOD-REF>
-                    </SOMEIP-METHOD-PROPS>
-                    <SOMEIP-METHOD-PROPS>
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/SmartFilmCurr</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/SmartFilmStatus</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
                   </METHOD-RESPONSE-PROPSS>
-                  <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/SdSeverConfig</SD-SERVER-CONFIG-REF>
-                  <SERVICE-INSTANCE-ID>9121</SERVICE-INSTANCE-ID>
+                  <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/DefaultSdServerConfig</SD-SERVER-CONFIG-REF>
+                  <SERVICE-INSTANCE-ID>41</SERVICE-INSTANCE-ID>
                 </PROVIDED-SOMEIP-SERVICE-INSTANCE>
                 <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="1665e939-ce9b-46fa-914c-3d2824cfbe71">
                   <SHORT-NAME>EEVP_ServiceCreator_Provider_ServiceManagement</SHORT-NAME>

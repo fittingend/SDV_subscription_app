@@ -4,6 +4,7 @@ namespace eevp
 {
     namespace simulation
     {
+        uint16_t countF = 3000; // 30second scenario
         LotteSkeletonImpl::LotteSkeletonImpl(
             ara::core::InstanceSpecifier instanceSpec,
             ara::com::MethodCallProcessingMode mode) : listener{nullptr},
@@ -13,7 +14,7 @@ namespace eevp
         {
             mLogger.LogInfo() << __func__;
         }
-        
+
         LotteSkeletonImpl::~LotteSkeletonImpl()
         {
             StopOfferService();
@@ -28,14 +29,52 @@ namespace eevp
         Future<skeleton::LotteServiceSkeleton::DmsCurrOutput>
         LotteSkeletonImpl::DmsCurr()
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
 
             skeleton::LotteServiceSkeleton::DmsCurrOutput response;
             Promise<DmsCurrOutput> promise;
 
-            if (listener != nullptr)
+            uint16_t time = --countF;
+
+            if (time > 2900)
             {
-                listener->NotifyDmsCurr(response.result);
+                response.result.gazeZone = lotte::type::GazaZone::FRONT_WINDSHIELD;
+            }
+            else if (time > 2700)
+            {
+                response.result.gazeZone = lotte::type::GazaZone::DRIVER_SIDE_MIRROR;
+            }
+            else if (time > 2200)
+            {
+                response.result.gazeZone = lotte::type::GazaZone::FRONT_WINDSHIELD;
+            }
+            else if (time > 2000)
+            {
+                response.result.gazeZone = lotte::type::GazaZone::PASSENGER_SIDE_MIRROR;
+            }
+            else if (time > 1500)
+            {
+                response.result.gazeZone = lotte::type::GazaZone::FRONT_WINDSHIELD;
+            }
+            else if (time > 1400)
+            {
+                response.result.gazeZone = lotte::type::GazaZone::DRIVER_SIDE_MIRROR;
+            }
+            else if (time > 1300)
+            {
+                response.result.gazeZone = lotte::type::GazaZone::PASSENGER_SIDE_MIRROR;
+            }
+            else if (time > 700)
+            {
+                response.result.gazeZone = lotte::type::GazaZone::FRONT_WINDSHIELD;
+            }
+            else if (time > 600)
+            {
+                response.result.gazeZone = lotte::type::GazaZone::BACK_MIRROR;
+            }
+            else
+            {
+                response.result.gazeZone = lotte::type::GazaZone::FRONT_WINDSHIELD;
             }
 
             promise.set_value(response);
@@ -44,7 +83,7 @@ namespace eevp
 
         Future<skeleton::LotteServiceSkeleton::DmsStatusOutput> LotteSkeletonImpl::DmsStatus()
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
 
             skeleton::LotteServiceSkeleton::DmsStatusOutput response;
             Promise<DmsStatusOutput> promise;
@@ -59,9 +98,8 @@ namespace eevp
         }
 
         Future<skeleton::LotteServiceSkeleton::SmartFilmControlOutput>
-        LotteSkeletonImpl::SmartFilmControl(const std::int32_t &windowLoc, const std::int32_t &transparence)
+        LotteSkeletonImpl::SmartFilmControl(const std::uint8_t &windowLoc, const std::uint8_t &transparence)
         {
-            mLogger.LogInfo() << __func__;
 
             skeleton::LotteServiceSkeleton::SmartFilmControlOutput response;
             Promise<SmartFilmControlOutput> promise;
@@ -71,21 +109,25 @@ namespace eevp
                 listener->SmartFilmControl(windowLoc, transparence);
             }
 
+            response.result = true;
+
             promise.set_value(response);
             return promise.get_future();
         }
 
         Future<skeleton::LotteServiceSkeleton::SmartFilmCurrOutput>
-        LotteSkeletonImpl::SmartFilmCurr()
+        LotteSkeletonImpl::SmartFilmCurr(const std::uint8_t &windowLoc)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
 
             skeleton::LotteServiceSkeleton::SmartFilmCurrOutput response;
             Promise<SmartFilmCurrOutput> promise;
 
             if (listener != nullptr)
             {
-                listener->NotifySmartFilmCurr(response.result);
+                response.result.currTransparency = 80;
+                response.result.zone = windowLoc;
+                // listener->NotifySmartFilmCurr(response.result);
             }
 
             promise.set_value(response);
@@ -95,7 +137,7 @@ namespace eevp
         Future<skeleton::LotteServiceSkeleton::SmartFilmStatusOutput>
         LotteSkeletonImpl::SmartFilmStatus()
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
 
             skeleton::LotteServiceSkeleton::SmartFilmStatusOutput response;
             Promise<SmartFilmStatusOutput> promise;

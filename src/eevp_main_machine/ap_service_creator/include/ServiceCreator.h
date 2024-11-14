@@ -132,17 +132,15 @@ namespace eevp
             // ILotteListener
             void NotifyDmsCurr(lotte::type::DmsGzDtctn &dmsGzDtctn);
             void NotifyDmsStatus(bool &result);
-            void NotifySmartFilmCurr(std::int32_t &result);
+            void NotifySmartFilmCurr(lotte::type::SideTransparency &result);
             void NotifySmartFilmStatus(bool &result);
             void SmartFilmControl(const std::int32_t &windowLoc, const std::int32_t &transparence);
 
             // LotteVar
-            lotte::type::DmsGzDtctn dmsGzDtctn;
-            std::int32_t windowLoc;
-            std::int32_t transparence;
             std::int32_t windowLocSend;
-            bool dmsStatus;
-            bool smartFilmStatus;
+            std::int32_t transparenceSend;
+            bool dmsStatus = true;
+            bool smartFilmStatus = true;
 
             // Thread
             void poolingFieldUpdate();
@@ -194,7 +192,6 @@ namespace eevp
             std::shared_ptr<eevp::simulation::VehSpdSkeletonImpl> vehSpdSkeletonImpl;
             std::shared_ptr<eevp::simulation::SnsrUssSkeletonImpl> snsrUssSkeletonImpl;
             std::shared_ptr<eevp::simulation::LotteSkeletonImpl> lotteSkeletonImpl;
-
 
             void getWiperRecv();
             void getWiperSend();

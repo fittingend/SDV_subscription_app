@@ -1,6 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00049.xsd">
   <AR-PACKAGES>
+    <AR-PACKAGE UUID="d1196ba9-ae2a-4138-9c43-b99041f6deb1">
+      <SHORT-NAME>AdaptiveApplication</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE UUID="8f1d20ef-b65e-4c49-b6f9-6ecc3461939b">
+          <SHORT-NAME>DltConfig</SHORT-NAME>
+          <ELEMENTS>
+            <DLT-LOG-CHANNEL-TO-PROCESS-MAPPING UUID="257efb2b-fb66-4232-91b8-f5225df2f646">
+              <SHORT-NAME>DltLogChannelToProcessMapping_LotteService_TO_LotteService</SHORT-NAME>
+              <DLT-LOG-CHANNEL-REF DEST="DLT-LOG-CHANNEL">/Machine/EEVP_Main_Machine/LOG/LotteService</DLT-LOG-CHANNEL-REF>
+              <PROCESS-REF DEST="PROCESS">/AdaptiveApplication/Process/LotteService</PROCESS-REF>
+            </DLT-LOG-CHANNEL-TO-PROCESS-MAPPING>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="f4afdf4f-ca2c-4bcb-8541-d5674f0f87df">
+          <SHORT-NAME>Executable</SHORT-NAME>
+          <ELEMENTS>
+            <EXECUTABLE UUID="beca7f1d-bade-4e07-8381-166a2d140d17">
+              <SHORT-NAME>LotteService</SHORT-NAME>
+              <CATEGORY>APPLICATION_LEVEL</CATEGORY>
+              <LOGGING-BEHAVIOR>USES-LOGGING</LOGGING-BEHAVIOR>
+              <REPORTING-BEHAVIOR>REPORTS-EXECUTION-STATE</REPORTING-BEHAVIOR>
+              <ROOT-SW-COMPONENT-PROTOTYPE UUID="33be3000-8aa6-4f4b-8abd-ea4185da3e33">
+                <SHORT-NAME>AA</SHORT-NAME>
+                <APPLICATION-TYPE-TREF DEST="ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE">/AdaptiveApplication/SwComponent/LotteService</APPLICATION-TYPE-TREF>
+              </ROOT-SW-COMPONENT-PROTOTYPE>
+              <VERSION>1.0.0</VERSION>
+            </EXECUTABLE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="b56956c2-81a7-431f-bb30-70bac802beee">
+          <SHORT-NAME>Manifest</SHORT-NAME>
+          <ELEMENTS>
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="21cd7dee-3fdb-4978-8e10-479eb78f1c17">
+              <SHORT-NAME>LotteService_AA_RPort</SHORT-NAME>
+              <PORT-PROTOTYPE-IREF>
+                <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/AdaptiveApplication/Executable/LotteService/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
+                <TARGET-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/AdaptiveApplication/SwComponent/LotteService/RPort</TARGET-PORT-PROTOTYPE-REF>
+              </PORT-PROTOTYPE-IREF>
+              <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/System/Service/Instance/EEVP_Lotte_Consumer_LotteService</SERVICE-INSTANCE-REF>
+            </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="0404ca64-a99a-4e11-a2a4-a9d15176f0e6">
+          <SHORT-NAME>Process</SHORT-NAME>
+          <ELEMENTS>
+            <PROCESS UUID="5ba94579-8c60-4dec-b162-d8a613706ba4">
+              <SHORT-NAME>LotteService</SHORT-NAME>
+              <EXECUTABLE-REF DEST="EXECUTABLE">/AdaptiveApplication/Executable/LotteService</EXECUTABLE-REF>
+              <PROCESS-STATE-MACHINE UUID="78d3c026-e3be-4085-8d3b-b8c31fcd8131">
+                <SHORT-NAME>LotteService</SHORT-NAME>
+                <TYPE-TREF DEST="MODE-DECLARATION-GROUP">/StateMachine/ProcessState</TYPE-TREF>
+              </PROCESS-STATE-MACHINE>
+              <STATE-DEPENDENT-STARTUP-CONFIGS>
+                <STATE-DEPENDENT-STARTUP-CONFIG>
+                  <EXECUTION-DEPENDENCYS>
+                    <EXECUTION-DEPENDENCY>
+                      <PROCESS-STATE-IREF>
+                        <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Application/Process/CM/CM</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                        <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/StateMachine/ProcessState/Running</TARGET-MODE-DECLARATION-REF>
+                      </PROCESS-STATE-IREF>
+                    </EXECUTION-DEPENDENCY>
+                  </EXECUTION-DEPENDENCYS>
+                  <FUNCTION-GROUP-STATE-IREFS>
+                    <FUNCTION-GROUP-STATE-IREF>
+                      <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Machine/FunctionGroup/EEVP_Main_FunctionGroup/MachineFG</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                      <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/StateMachine/MachineState/Startup</TARGET-MODE-DECLARATION-REF>
+                    </FUNCTION-GROUP-STATE-IREF>
+                  </FUNCTION-GROUP-STATE-IREFS>
+                  <RESOURCE-GROUP-REF DEST="RESOURCE-GROUP">/Machine/EEVP_Main_Machine/POSIX/DefaultResourceGroup</RESOURCE-GROUP-REF>
+                  <STARTUP-CONFIG-REF DEST="STARTUP-CONFIG">/AdaptiveApplication/StartupConfig/EEVP_LotteService_StartupConfig/LotteService</STARTUP-CONFIG-REF>
+                </STATE-DEPENDENT-STARTUP-CONFIG>
+              </STATE-DEPENDENT-STARTUP-CONFIGS>
+            </PROCESS>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="4bc26694-68bc-4f83-9de5-2dc4c5be572c">
+          <SHORT-NAME>StartupConfig</SHORT-NAME>
+          <ELEMENTS>
+            <STARTUP-CONFIG-SET UUID="d5d16296-9e86-4ca4-9021-51850bc5cafe">
+              <SHORT-NAME>EEVP_LotteService_StartupConfig</SHORT-NAME>
+              <STARTUP-CONFIGS>
+                <STARTUP-CONFIG UUID="aac268fa-37d9-4be4-80f1-42515ae24a18">
+                  <SHORT-NAME>LotteService</SHORT-NAME>
+                  <SCHEDULING-POLICY>SCHED_OTHER</SCHEDULING-POLICY>
+                  <SCHEDULING-PRIORITY>0</SCHEDULING-PRIORITY>
+                  <TIMEOUT/>
+                </STARTUP-CONFIG>
+              </STARTUP-CONFIGS>
+            </STARTUP-CONFIG-SET>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>SwComponent</SHORT-NAME>
+          <ELEMENTS>
+            <ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE UUID="9bbfffa0-aa16-4802-acd7-d7575cfd3b31">
+              <SHORT-NAME>LotteService</SHORT-NAME>
+              <PORTS>
+                <R-PORT-PROTOTYPE UUID="5f148fff-017d-4a12-b426-b9cfefc60e06">
+                  <SHORT-NAME>RPort</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/PortInterface/Service/LotteService</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+              </PORTS>
+            </ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
     <AR-PACKAGE UUID="be74d606-97bc-43ce-bf48-397aaef63932">
       <SHORT-NAME>DataType</SHORT-NAME>
       <AR-PACKAGES>
@@ -441,12 +548,12 @@
                   <ARGUMENTS>
                     <ARGUMENT-DATA-PROTOTYPE UUID="f0645958-839a-45a3-8015-da0dd9b7f61f">
                       <SHORT-NAME>windowLoc</SHORT-NAME>
-                      <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/int32_t</TYPE-TREF>
+                      <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-TREF>
                       <DIRECTION>IN</DIRECTION>
                     </ARGUMENT-DATA-PROTOTYPE>
                     <ARGUMENT-DATA-PROTOTYPE UUID="070dc210-642a-49af-821f-9a7111fa8801">
                       <SHORT-NAME>transparence</SHORT-NAME>
-                      <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/int32_t</TYPE-TREF>
+                      <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-TREF>
                       <DIRECTION>IN</DIRECTION>
                     </ARGUMENT-DATA-PROTOTYPE>
                     <ARGUMENT-DATA-PROTOTYPE UUID="c186924a-f1c7-4e84-a557-3d79f9aaa574">
@@ -462,8 +569,13 @@
                   <ARGUMENTS>
                     <ARGUMENT-DATA-PROTOTYPE UUID="1e4d8744-79a9-47a4-acca-8023b0f227b2">
                       <SHORT-NAME>result</SHORT-NAME>
-                      <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/int32_t</TYPE-TREF>
+                      <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/SideTransparency</TYPE-TREF>
                       <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE UUID="ce063a9b-54c0-4907-9df1-98a2576b56cd">
+                      <SHORT-NAME>windowLoc</SHORT-NAME>
+                      <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
                     </ARGUMENT-DATA-PROTOTYPE>
                   </ARGUMENTS>
                   <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
@@ -494,42 +606,42 @@
             <AR-PACKAGE UUID="d335c907-7d2b-4537-92f0-370cd7ed2846">
               <SHORT-NAME>Deployment</SHORT-NAME>
               <ELEMENTS>
-                <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="67e5a062-6186-4576-ac7f-27a33ee7697e">
+                <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="f4a336c3-ba9d-42c0-956b-d35b51ba91b9">
                   <SHORT-NAME>LotteService</SHORT-NAME>
                   <METHOD-DEPLOYMENTS>
-                    <SOMEIP-METHOD-DEPLOYMENT UUID="d9462a1d-7150-47f6-a830-b94bbfa1f718">
+                    <SOMEIP-METHOD-DEPLOYMENT UUID="f6854dd9-9084-4e68-9a10-83b4f5ef873e">
                       <SHORT-NAME>DmsCurr</SHORT-NAME>
                       <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/PortInterface/Service/LotteService/DmsCurr</METHOD-REF>
                       <METHOD-ID>1</METHOD-ID>
                       <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                     </SOMEIP-METHOD-DEPLOYMENT>
-                    <SOMEIP-METHOD-DEPLOYMENT UUID="47f0b43a-2c26-45d0-96be-727253fa32af">
+                    <SOMEIP-METHOD-DEPLOYMENT UUID="1819683c-7fdc-4733-94c6-7b561262757f">
                       <SHORT-NAME>DmsStatus</SHORT-NAME>
                       <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/PortInterface/Service/LotteService/DmsStatus</METHOD-REF>
                       <METHOD-ID>2</METHOD-ID>
                       <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                     </SOMEIP-METHOD-DEPLOYMENT>
-                    <SOMEIP-METHOD-DEPLOYMENT UUID="147a8061-72d1-4662-a9d5-e14360c701d5">
+                    <SOMEIP-METHOD-DEPLOYMENT UUID="6c913a59-42e6-40ba-9e90-112b1b201499">
                       <SHORT-NAME>SmartFilmControl</SHORT-NAME>
                       <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/PortInterface/Service/LotteService/SmartFilmControl</METHOD-REF>
+                      <METHOD-ID>3</METHOD-ID>
+                      <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                    </SOMEIP-METHOD-DEPLOYMENT>
+                    <SOMEIP-METHOD-DEPLOYMENT UUID="9e03c22d-10a0-4000-a931-7bac2331a0fa">
+                      <SHORT-NAME>SmartFilmCurr</SHORT-NAME>
+                      <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/PortInterface/Service/LotteService/SmartFilmCurr</METHOD-REF>
                       <METHOD-ID>4</METHOD-ID>
                       <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                     </SOMEIP-METHOD-DEPLOYMENT>
-                    <SOMEIP-METHOD-DEPLOYMENT UUID="f72b1593-26c8-44f9-b828-8437cde36ebe">
-                      <SHORT-NAME>SmartFilmCurr</SHORT-NAME>
-                      <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/PortInterface/Service/LotteService/SmartFilmCurr</METHOD-REF>
-                      <METHOD-ID>5</METHOD-ID>
-                      <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
-                    </SOMEIP-METHOD-DEPLOYMENT>
-                    <SOMEIP-METHOD-DEPLOYMENT UUID="0e855a9e-b38f-4d86-a3e5-568cf4bba44b">
+                    <SOMEIP-METHOD-DEPLOYMENT UUID="0fc58310-e256-4471-b3e7-7d5163892f9f">
                       <SHORT-NAME>SmartFilmStatus</SHORT-NAME>
                       <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/PortInterface/Service/LotteService/SmartFilmStatus</METHOD-REF>
-                      <METHOD-ID>3</METHOD-ID>
+                      <METHOD-ID>5</METHOD-ID>
                       <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                     </SOMEIP-METHOD-DEPLOYMENT>
                   </METHOD-DEPLOYMENTS>
                   <SERVICE-INTERFACE-REF DEST="SERVICE-INTERFACE">/PortInterface/Service/LotteService</SERVICE-INTERFACE-REF>
-                  <SERVICE-INTERFACE-ID>31</SERVICE-INTERFACE-ID>
+                  <SERVICE-INTERFACE-ID>41</SERVICE-INTERFACE-ID>
                   <SERVICE-INTERFACE-VERSION>
                     <MAJOR-VERSION>1</MAJOR-VERSION>
                     <MINOR-VERSION>0</MINOR-VERSION>
@@ -540,35 +652,35 @@
             <AR-PACKAGE UUID="f75c178e-cbd9-49ee-8b28-f7eac9f9fc75">
               <SHORT-NAME>Endpoint</SHORT-NAME>
               <ELEMENTS>
-                <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="02b1572c-cf9c-44d9-ab9e-5df99eb16812">
-                  <SHORT-NAME>SomeipConsumers</SHORT-NAME>
-                  <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/VehicleTopology/Ecu/Ecu/eth0</COMMUNICATION-CONNECTOR-REF>
+                <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="82113730-2427-4e00-83cb-a15df935f03c">
+                  <SHORT-NAME>EEVP_Lotte_SomeipConsumer_LotteService</SHORT-NAME>
+                  <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
                   <SERVICE-INSTANCE-REFS>
-                    <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/System/Service/Instance/Consumer_LotteService</SERVICE-INSTANCE-REF>
+                    <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/System/Service/Instance/EEVP_Lotte_Consumer_LotteService</SERVICE-INSTANCE-REF>
                   </SERVICE-INSTANCE-REFS>
-                  <TCP-PORT>35555</TCP-PORT>
-                  <UDP-PORT>35555</UDP-PORT>
+                  <TCP-PORT>50122</TCP-PORT>
+                  <UDP-PORT>50122</UDP-PORT>
                 </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
-                <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="f35a1c41-b16a-4367-9d77-28e4b3480047">
-                  <SHORT-NAME>SomeipProviders</SHORT-NAME>
-                  <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/VehicleTopology/Ecu/Ecu/eth0</COMMUNICATION-CONNECTOR-REF>
+                <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="a008c411-54c8-48a0-98e9-def1e9447434">
+                  <SHORT-NAME>EEVP_Lotte_SomeipProvider_LotteService</SHORT-NAME>
+                  <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
                   <SERVICE-INSTANCE-REFS>
-                    <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/System/Service/Instance/Provider_LotteService</SERVICE-INSTANCE-REF>
+                    <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/System/Service/Instance/EEVP_Lotte_Provider_LotteService</SERVICE-INSTANCE-REF>
                   </SERVICE-INSTANCE-REFS>
-                  <TCP-PORT>33333</TCP-PORT>
-                  <UDP-PORT>33333</UDP-PORT>
+                  <TCP-PORT>50123</TCP-PORT>
+                  <UDP-PORT>50123</UDP-PORT>
                 </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
               </ELEMENTS>
             </AR-PACKAGE>
             <AR-PACKAGE UUID="88a90eb0-5306-4dde-8919-58fcefcbb438">
               <SHORT-NAME>Instance</SHORT-NAME>
               <ELEMENTS>
-                <REQUIRED-SOMEIP-SERVICE-INSTANCE UUID="2432b4b6-dfc0-4a55-bc51-625c51644a05">
-                  <SHORT-NAME>Consumer_LotteService</SHORT-NAME>
+                <REQUIRED-SOMEIP-SERVICE-INSTANCE UUID="07e1622d-449e-48af-a83b-9c390ce43294">
+                  <SHORT-NAME>EEVP_Lotte_Consumer_LotteService</SHORT-NAME>
                   <ADMIN-DATA>
                     <SDGS>
                       <SDG GID="PARA-SOMEIP-CONFIGURATION">
-                        <SD GID="CLIENT-ID">49</SD>
+                        <SD GID="CLIENT-ID">65</SD>
                       </SDG>
                     </SDGS>
                   </ADMIN-DATA>
@@ -581,19 +693,22 @@
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/DmsStatus</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                     <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/SmartFilmStatus</METHOD-REF>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/SmartFilmControl</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                     <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/SmartFilmControl</METHOD-REF>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/SmartFilmCurr</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/SmartFilmStatus</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                   </METHOD-REQUEST-PROPSS>
                   <REQUIRED-MINOR-VERSION>ANY</REQUIRED-MINOR-VERSION>
                   <REQUIRED-SERVICE-INSTANCE-ID>ANY</REQUIRED-SERVICE-INSTANCE-ID>
-                  <SD-CLIENT-CONFIG-REF DEST="SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG">/System/Service/TimingConfig/SdClientConfig</SD-CLIENT-CONFIG-REF>
+                  <SD-CLIENT-CONFIG-REF DEST="SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Client/DefaultClientConfig</SD-CLIENT-CONFIG-REF>
                   <VERSION-DRIVEN-FIND-BEHAVIOR>EXACT-OR-ANY-MINOR-VERSION</VERSION-DRIVEN-FIND-BEHAVIOR>
                 </REQUIRED-SOMEIP-SERVICE-INSTANCE>
-                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="c84070d2-e055-4cce-97b0-47e081bb97d5">
-                  <SHORT-NAME>Provider_LotteService</SHORT-NAME>
+                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="2d3afc44-8df1-4302-b94c-473a2a494e35">
+                  <SHORT-NAME>EEVP_Lotte_Provider_LotteService</SHORT-NAME>
                   <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/System/Service/Deployment/LotteService</SERVICE-INTERFACE-DEPLOYMENT-REF>
                   <METHOD-RESPONSE-PROPSS>
                     <SOMEIP-METHOD-PROPS>
@@ -603,14 +718,17 @@
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/DmsStatus</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                     <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/SmartFilmStatus</METHOD-REF>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/SmartFilmControl</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                     <SOMEIP-METHOD-PROPS>
-                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/SmartFilmControl</METHOD-REF>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/SmartFilmCurr</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/SmartFilmStatus</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                   </METHOD-RESPONSE-PROPSS>
                   <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/System/Service/TimingConfig/SdServerConfig</SD-SERVER-CONFIG-REF>
-                  <SERVICE-INSTANCE-ID>1</SERVICE-INSTANCE-ID>
+                  <SERVICE-INSTANCE-ID>32</SERVICE-INSTANCE-ID>
                 </PROVIDED-SOMEIP-SERVICE-INSTANCE>
               </ELEMENTS>
             </AR-PACKAGE>

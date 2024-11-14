@@ -16,7 +16,7 @@ namespace eevp
 
             virtual void NotifyDmsCurr(lotte::type::DmsGzDtctn &dmsGzDtctn) = 0;
             virtual void NotifyDmsStatus(bool &result) = 0;
-            virtual void NotifySmartFilmCurr(std::int32_t &result) = 0;
+            virtual void NotifySmartFilmCurr(lotte::type::SideTransparency &result) = 0;
             virtual void NotifySmartFilmStatus(bool &result) = 0;
             virtual void SmartFilmControl(const std::int32_t &windowLoc, const std::int32_t &transparence) = 0;
         };

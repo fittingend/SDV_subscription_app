@@ -924,10 +924,10 @@
             <AR-PACKAGE UUID="8c9be196-6cb5-49ab-929a-72f2626c6cd6">
               <SHORT-NAME>Deployment</SHORT-NAME>
               <ELEMENTS>
-                <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="c6159987-ac58-4486-9ffa-916b683dab71">
+                <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="5a8f6db1-953f-450f-840a-c842ea26ac71">
                   <SHORT-NAME>BmsInfoSrv</SHORT-NAME>
                   <EVENT-DEPLOYMENTS>
-                    <SOMEIP-EVENT-DEPLOYMENT UUID="af254348-36df-45fe-ad60-5c8ada01a0c5">
+                    <SOMEIP-EVENT-DEPLOYMENT UUID="c2031ca3-9116-4aa2-9fb7-22adee96098f">
                       <SHORT-NAME>ems_BmsInfo</SHORT-NAME>
                       <EVENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/PortInterface/Service/BmsInfoSrv/ems_BmsInfo</EVENT-REF>
                       <EVENT-ID>1</EVENT-ID>
@@ -936,8 +936,8 @@
                   </EVENT-DEPLOYMENTS>
                   <SERVICE-INTERFACE-REF DEST="SERVICE-INTERFACE">/PortInterface/Service/BmsInfoSrv</SERVICE-INTERFACE-REF>
                   <EVENT-GROUPS>
-                    <SOMEIP-EVENT-GROUP UUID="9a821c45-406d-4a22-ab33-89cdf0d8245f">
-                      <SHORT-NAME>BmsInfoGr</SHORT-NAME>
+                    <SOMEIP-EVENT-GROUP UUID="0fc8cd38-8959-4145-8bf2-0a899c99cb00">
+                      <SHORT-NAME>Eventgroup_ems_BmsInfo</SHORT-NAME>
                       <EVENT-GROUP-ID>1</EVENT-GROUP-ID>
                       <EVENT-REFS>
                         <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/System/Service/Deployment/BmsInfoSrv/ems_BmsInfo</EVENT-REF>
@@ -950,22 +950,22 @@
                     <MINOR-VERSION>0</MINOR-VERSION>
                   </SERVICE-INTERFACE-VERSION>
                 </SOMEIP-SERVICE-INTERFACE-DEPLOYMENT>
-                <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="06095711-7430-404e-9aff-51f2bf1aefa5">
+                <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="ec71958e-a8ce-473c-81a5-0f946bad4a84">
                   <SHORT-NAME>EevpControlSoaMIm</SHORT-NAME>
                   <METHOD-DEPLOYMENTS>
-                    <SOMEIP-METHOD-DEPLOYMENT UUID="d3efe48b-e37f-4505-a460-b198b1c1af19">
+                    <SOMEIP-METHOD-DEPLOYMENT UUID="628993d4-969c-426b-a2a7-2ddaaddf2f9e">
                       <SHORT-NAME>RequestMImSetBrightness</SHORT-NAME>
                       <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/PortInterface/Service/EevpControlSoaMIm/RequestMImSetBrightness</METHOD-REF>
                       <METHOD-ID>3</METHOD-ID>
                       <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                     </SOMEIP-METHOD-DEPLOYMENT>
-                    <SOMEIP-METHOD-DEPLOYMENT UUID="7577b9f7-e8c1-432c-9056-732eca3de192">
+                    <SOMEIP-METHOD-DEPLOYMENT UUID="ba215fc6-3116-4ee8-8bd7-fdd2ecbd5d62">
                       <SHORT-NAME>RequestMImSetMode</SHORT-NAME>
                       <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/PortInterface/Service/EevpControlSoaMIm/RequestMImSetMode</METHOD-REF>
                       <METHOD-ID>2</METHOD-ID>
                       <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
                     </SOMEIP-METHOD-DEPLOYMENT>
-                    <SOMEIP-METHOD-DEPLOYMENT UUID="3aaccdeb-9fe1-48f5-aa62-d099b1d087ce">
+                    <SOMEIP-METHOD-DEPLOYMENT UUID="81c16b8d-c801-4f00-ab2e-06d1d08619b8">
                       <SHORT-NAME>RequestMImSetRGBColor</SHORT-NAME>
                       <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/PortInterface/Service/EevpControlSoaMIm/RequestMImSetRGBColor</METHOD-REF>
                       <METHOD-ID>1</METHOD-ID>
@@ -979,10 +979,10 @@
                     <MINOR-VERSION>0</MINOR-VERSION>
                   </SERVICE-INTERFACE-VERSION>
                 </SOMEIP-SERVICE-INTERFACE-DEPLOYMENT>
-                <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="f1c0ac29-d653-4a71-8639-1fae2f38c21a">
+                <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="397ef671-9a3e-45ed-afc2-1fbffc976f1a">
                   <SHORT-NAME>MsgInfoSrv</SHORT-NAME>
                   <EVENT-DEPLOYMENTS>
-                    <SOMEIP-EVENT-DEPLOYMENT UUID="69047d8a-da12-497f-b418-f680fb12216b">
+                    <SOMEIP-EVENT-DEPLOYMENT UUID="c2c2cead-da0a-41bc-aeb7-b2a6dcd14161">
                       <SHORT-NAME>ems_MsgInfo</SHORT-NAME>
                       <EVENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/PortInterface/Service/MsgInfoSrv/ems_MsgInfo</EVENT-REF>
                       <EVENT-ID>1</EVENT-ID>
@@ -991,8 +991,8 @@
                   </EVENT-DEPLOYMENTS>
                   <SERVICE-INTERFACE-REF DEST="SERVICE-INTERFACE">/PortInterface/Service/MsgInfoSrv</SERVICE-INTERFACE-REF>
                   <EVENT-GROUPS>
-                    <SOMEIP-EVENT-GROUP UUID="9b5a4e19-d922-41f5-b3db-76f11033b96b">
-                      <SHORT-NAME>MsgInfoGr</SHORT-NAME>
+                    <SOMEIP-EVENT-GROUP UUID="b07d3d50-b148-4e3d-a612-b75d0d89d2f8">
+                      <SHORT-NAME>Eventgroup_ems_MsgInfo</SHORT-NAME>
                       <EVENT-GROUP-ID>1</EVENT-GROUP-ID>
                       <EVENT-REFS>
                         <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/System/Service/Deployment/MsgInfoSrv/ems_MsgInfo</EVENT-REF>
@@ -1012,7 +1012,7 @@
               <ELEMENTS>
                 <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="4d261644-60da-40a3-b881-384a0d09420b">
                   <SHORT-NAME>Consumer_BmsInfoSrv</SHORT-NAME>
-                  <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/VehicleTopology/Ecu/Ecu/eth0</COMMUNICATION-CONNECTOR-REF>
+                  <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
                   <SERVICE-INSTANCE-REFS>
                     <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/System/Service/Instance/Consumer_BmsInfoSrv</SERVICE-INSTANCE-REF>
                   </SERVICE-INSTANCE-REFS>
@@ -1021,7 +1021,7 @@
                 </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
                 <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="9887f41b-5bff-4605-91c2-825e5f5bff39">
                   <SHORT-NAME>Consumer_EevpControlSoaMIm</SHORT-NAME>
-                  <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/VehicleTopology/Ecu/Ecu/eth0</COMMUNICATION-CONNECTOR-REF>
+                  <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
                   <SERVICE-INSTANCE-REFS>
                     <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/System/Service/Instance/Consumer_EevpControlSoaMIm</SERVICE-INSTANCE-REF>
                   </SERVICE-INSTANCE-REFS>
@@ -1030,7 +1030,7 @@
                 </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
                 <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="db6542cf-2205-4bef-9557-4db02b6e57aa">
                   <SHORT-NAME>Consumer_MsgInfoSrv</SHORT-NAME>
-                  <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/VehicleTopology/Ecu/Ecu/eth0</COMMUNICATION-CONNECTOR-REF>
+                  <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
                   <SERVICE-INSTANCE-REFS>
                     <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/System/Service/Instance/Consumer_MsgInfoSrv</SERVICE-INSTANCE-REF>
                   </SERVICE-INSTANCE-REFS>
@@ -1039,7 +1039,7 @@
                 </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
                 <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="469ce657-b83f-4f6c-a2f9-bae00fcc02a8">
                   <SHORT-NAME>Provider_BmsInfoSrv</SHORT-NAME>
-                  <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/VehicleTopology/Ecu/Ecu/eth0</COMMUNICATION-CONNECTOR-REF>
+                  <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
                   <SERVICE-INSTANCE-REFS>
                     <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/System/Service/Instance/Provider_BmsInfoSrv</SERVICE-INSTANCE-REF>
                   </SERVICE-INSTANCE-REFS>
@@ -1048,7 +1048,7 @@
                 </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
                 <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="6a8853be-39ff-4fa1-8bdd-d70b119a487e">
                   <SHORT-NAME>Provider_EevpControlSoaMIm</SHORT-NAME>
-                  <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/VehicleTopology/Ecu/Ecu/eth0</COMMUNICATION-CONNECTOR-REF>
+                  <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
                   <SERVICE-INSTANCE-REFS>
                     <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/System/Service/Instance/Provider_EevpControlSoaMIm</SERVICE-INSTANCE-REF>
                   </SERVICE-INSTANCE-REFS>
@@ -1057,7 +1057,7 @@
                 </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
                 <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="309b4e67-87f0-42e3-a5ef-2e826b9af011">
                   <SHORT-NAME>Provider_MsgInfoSrv</SHORT-NAME>
-                  <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/VehicleTopology/Ecu/Ecu/eth0</COMMUNICATION-CONNECTOR-REF>
+                  <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
                   <SERVICE-INSTANCE-REFS>
                     <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/System/Service/Instance/Provider_MsgInfoSrv</SERVICE-INSTANCE-REF>
                   </SERVICE-INSTANCE-REFS>
@@ -1300,6 +1300,137 @@
               </ELEMENTS>
             </AR-PACKAGE>
           </AR-PACKAGES>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+    <AR-PACKAGE UUID="9f1289b9-0c46-4c2b-8a86-d257ab804a44">
+      <SHORT-NAME>AdaptiveApplication</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE UUID="3c15c9ba-9f9f-40a5-9a53-5e5589179af9">
+          <SHORT-NAME>DltConfig</SHORT-NAME>
+          <ELEMENTS>
+            <DLT-LOG-CHANNEL-TO-PROCESS-MAPPING UUID="1b2f304a-610e-436d-8507-b5c3078501f1">
+              <SHORT-NAME>DltLogChannelToProcessMapping_DltLogChannel_BatteryMonitor_TO_BatteryMonitor</SHORT-NAME>
+              <DLT-LOG-CHANNEL-REF DEST="DLT-LOG-CHANNEL">/Machine/EEVP_Main_Machine/LOG/DltLogChannel_BatteryMonitor</DLT-LOG-CHANNEL-REF>
+              <PROCESS-REF DEST="PROCESS">/AdaptiveApplication/Process/BatteryMonitor</PROCESS-REF>
+            </DLT-LOG-CHANNEL-TO-PROCESS-MAPPING>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="eba0f9bd-fe96-4c7a-956d-f47d717ba7bf">
+          <SHORT-NAME>Executable</SHORT-NAME>
+          <ELEMENTS>
+            <EXECUTABLE UUID="fa86d1b3-46cf-4bae-a984-b5c5feba5984">
+              <SHORT-NAME>BatteryMonitor</SHORT-NAME>
+              <CATEGORY>APPLICATION_LEVEL</CATEGORY>
+              <LOGGING-BEHAVIOR>USES-LOGGING</LOGGING-BEHAVIOR>
+              <REPORTING-BEHAVIOR>REPORTS-EXECUTION-STATE</REPORTING-BEHAVIOR>
+              <ROOT-SW-COMPONENT-PROTOTYPE UUID="23338670-cf5a-4c06-a94c-5e8aed1d52f4">
+                <SHORT-NAME>AA</SHORT-NAME>
+                <APPLICATION-TYPE-TREF DEST="ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE">/SwComponent/AdaptiveApplication/BatteryMonitor</APPLICATION-TYPE-TREF>
+              </ROOT-SW-COMPONENT-PROTOTYPE>
+              <VERSION>1.0.0</VERSION>
+            </EXECUTABLE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="a1dcd2fc-1c55-4200-bf13-f719fe61945a">
+          <SHORT-NAME>Manifest</SHORT-NAME>
+          <ELEMENTS>
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="4392d7e8-4793-4ea3-a8f0-15b746c3ab97">
+              <SHORT-NAME>BatteryMonitor_AA_P_MsgInfo</SHORT-NAME>
+              <PORT-PROTOTYPE-IREF>
+                <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/AdaptiveApplication/Executable/BatteryMonitor/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
+                <TARGET-PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/SwComponent/AdaptiveApplication/BatteryMonitor/P_MsgInfo</TARGET-PORT-PROTOTYPE-REF>
+              </PORT-PROTOTYPE-IREF>
+              <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/System/Service/Instance/Provider_MsgInfoSrv</SERVICE-INSTANCE-REF>
+            </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="301a64f6-fe1d-4bb3-b21b-8b661fb398f0">
+              <SHORT-NAME>BatteryMonitor_AA_R_BmsInfo</SHORT-NAME>
+              <PORT-PROTOTYPE-IREF>
+                <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/AdaptiveApplication/Executable/BatteryMonitor/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
+                <TARGET-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponent/AdaptiveApplication/BatteryMonitor/R_BmsInfo</TARGET-PORT-PROTOTYPE-REF>
+              </PORT-PROTOTYPE-IREF>
+              <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/System/Service/Instance/Consumer_BmsInfoSrv</SERVICE-INSTANCE-REF>
+            </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="04f87ab7-bede-4b3b-a49a-2b844230fd1c">
+              <SHORT-NAME>BatteryMonitor_AA_R_LmpCtrl</SHORT-NAME>
+              <PORT-PROTOTYPE-IREF>
+                <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/AdaptiveApplication/Executable/BatteryMonitor/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
+                <TARGET-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponent/AdaptiveApplication/BatteryMonitor/R_LmpCtrl</TARGET-PORT-PROTOTYPE-REF>
+              </PORT-PROTOTYPE-IREF>
+              <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/System/Service/Instance/Consumer_EevpControlSoaMIm</SERVICE-INSTANCE-REF>
+            </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="a640c79a-1b80-46b4-bce4-827f38598e5f">
+          <SHORT-NAME>Process</SHORT-NAME>
+          <ELEMENTS>
+            <PROCESS UUID="a2e8ca77-2613-4210-b7c9-ccf6bcbc4169">
+              <SHORT-NAME>BatteryMonitor</SHORT-NAME>
+              <EXECUTABLE-REF DEST="EXECUTABLE">/AdaptiveApplication/Executable/BatteryMonitor</EXECUTABLE-REF>
+              <PROCESS-STATE-MACHINE UUID="4547ecc9-161f-4f24-804e-85b12d5831d1">
+                <SHORT-NAME>BatteryMonitor</SHORT-NAME>
+                <TYPE-TREF DEST="MODE-DECLARATION-GROUP">/StateMachine/ProcessState</TYPE-TREF>
+              </PROCESS-STATE-MACHINE>
+              <STATE-DEPENDENT-STARTUP-CONFIGS>
+                <STATE-DEPENDENT-STARTUP-CONFIG>
+                  <EXECUTION-DEPENDENCYS>
+                    <EXECUTION-DEPENDENCY>
+                      <PROCESS-STATE-IREF>
+                        <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Application/Process/CM/CM</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                        <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/StateMachine/ProcessState/Running</TARGET-MODE-DECLARATION-REF>
+                      </PROCESS-STATE-IREF>
+                    </EXECUTION-DEPENDENCY>
+                  </EXECUTION-DEPENDENCYS>
+                  <FUNCTION-GROUP-STATE-IREFS>
+                    <FUNCTION-GROUP-STATE-IREF>
+                      <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Machine/FunctionGroup/EEVP_Main_FunctionGroup/MachineFG</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                      <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/StateMachine/MachineState/Startup</TARGET-MODE-DECLARATION-REF>
+                    </FUNCTION-GROUP-STATE-IREF>
+                  </FUNCTION-GROUP-STATE-IREFS>
+                  <RESOURCE-GROUP-REF DEST="RESOURCE-GROUP">/Machine/EEVP_Main_Machine/POSIX/DefaultResourceGroup</RESOURCE-GROUP-REF>
+                  <STARTUP-CONFIG-REF DEST="STARTUP-CONFIG">/AdaptiveApplication/StartupConfig/StartupConfigSet/BatteryMonitor</STARTUP-CONFIG-REF>
+                </STATE-DEPENDENT-STARTUP-CONFIG>
+              </STATE-DEPENDENT-STARTUP-CONFIGS>
+            </PROCESS>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="f465abd0-375b-4915-9d6f-d1ba4c950672">
+          <SHORT-NAME>StartupConfig</SHORT-NAME>
+          <ELEMENTS>
+            <STARTUP-CONFIG-SET UUID="f6b0eaf8-c9fc-4c22-b36a-d5d2d5a2e685">
+              <SHORT-NAME>StartupConfigSet</SHORT-NAME>
+              <STARTUP-CONFIGS>
+                <STARTUP-CONFIG UUID="1106a30c-b9dd-4cd8-baec-ca97ddc3cc3f">
+                  <SHORT-NAME>BatteryMonitor</SHORT-NAME>
+                  <SCHEDULING-POLICY>SCHED_OTHER</SCHEDULING-POLICY>
+                  <SCHEDULING-PRIORITY>0</SCHEDULING-PRIORITY>
+                  <TIMEOUT/>
+                </STARTUP-CONFIG>
+              </STARTUP-CONFIGS>
+            </STARTUP-CONFIG-SET>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="1ed109af-c674-4b16-bf4d-47162c45c720">
+          <SHORT-NAME>SwComponent</SHORT-NAME>
+          <ELEMENTS>
+            <ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE UUID="ebbab7bb-84a5-460d-85f3-291a67c1a418">
+              <SHORT-NAME>BatteryMonitor</SHORT-NAME>
+              <PORTS>
+                <P-PORT-PROTOTYPE UUID="2ffeb559-68b1-4a44-9727-6fad2f7892c2">
+                  <SHORT-NAME>P_MsgInfo</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/PortInterface/Service/MsgInfoSrv</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="6c46d3ed-424c-450d-98ff-037675982d2b">
+                  <SHORT-NAME>R_BmsInfo</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/PortInterface/Service/BmsInfoSrv</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="b53289a9-27ce-435b-9301-fd52dcf3aeeb">
+                  <SHORT-NAME>R_LmpCtrl</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/PortInterface/Service/EevpControlSoaMIm</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+              </PORTS>
+            </ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE>
+          </ELEMENTS>
         </AR-PACKAGE>
       </AR-PACKAGES>
     </AR-PACKAGE>

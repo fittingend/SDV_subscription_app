@@ -36,7 +36,7 @@ namespace eevp
         {
             mLogger.LogInfo() << __func__;
 
-            ara::core::InstanceSpecifier specifier("ServiceCreator/AA/RPort_MsgInfoSrv");
+            ara::core::InstanceSpecifier specifier("ServiceCreator/AA/RPort_MsgInfo");
 
             auto callback = [&](auto container, auto findHandle)
             {
@@ -47,46 +47,46 @@ namespace eevp
 
             auto result = proxy::MsgInfoSrvProxy::StartFindService(callback, specifier);
 
-            // bms::output::OutputData data;
-            // data.InterfaceIDforDbg = 0; // 제외하고 기록할 예정이므로 일단 0으로 설정
-            // data.VehicleUniqueSnr = rand();
-            // data.ChargeStatus = rand() % 256;
-            // data.EMS_ConnectionStatus = rand() % 256;
-            // data.BattSOC = rand() % 65536;
-            // data.DTE = rand() % 65536;
-            // data.BatteryStatus = rand() % 65536;
-            // data.SOH = rand() % 65536;
-            // data.SOE = rand() % 65536;
-            // data.TargetSOC = rand() % 256;
-            // data.GetCount = rand();
-            // data.MissedCount = rand();
-            // data.ChargeResult = rand() % 65536;
-            // data.ChargedSOE = rand() % 65536;
-            // data.ChargedSOC = rand() % 65536;
-            // data.ChargeStopReason = rand();
+            bms::output::OutputData data;
+            data.InterfaceIDforDbg = 0; // 제외하고 기록할 예정이므로 일단 0으로 설정
+            data.VehicleUniqueSnr = rand();
+            data.ChargeStatus = rand() % 256;
+            data.EMS_ConnectionStatus = rand() % 256;
+            data.BattSOC = rand() % 65536;
+            data.DTE = rand() % 65536;
+            data.BatteryStatus = rand() % 65536;
+            data.SOH = rand() % 65536;
+            data.SOE = rand() % 65536;
+            data.TargetSOC = rand() % 256;
+            data.GetCount = rand();
+            data.MissedCount = rand();
+            data.ChargeResult = rand() % 65536;
+            data.ChargedSOE = rand() % 65536;
+            data.ChargedSOC = rand() % 65536;
+            data.ChargeStopReason = rand();
 
-            // // T_MSGINFO 구조체의 필드 채우기
-            // for (int i = 0; i < 4; ++i)
-            // {
-            //     data.Current.tRslt = rand() % 256;
-            //     data.Current.XaxisScale = rand() % 256;
-            //     data.Current.YaxisValidCnt = rand() % 256;
-            //     for (auto &val : data.Current.Ydata)
-            //         val = rand() % 256;
-            //     data.Current.RCValidCnt = rand() % 256;
-            //     for (auto &val : data.Current.RCdata)
-            //         val = rand() % 256;
-            //     data.Current.MAXdata[0] = rand() % 256;
-            //     data.Current.MAXdata[1] = rand() % 256;
-            //     data.Current.MINdata[0] = rand() % 256;
-            //     data.Current.MINdata[1] = rand() % 256;
+            // T_MSGINFO 구조체의 필드 채우기
+            for (int i = 0; i < 4; ++i)
+            {
+                data.Current.tRslt = rand() % 256;
+                data.Current.XaxisScale = rand() % 256;
+                data.Current.YaxisValidCnt = rand() % 256;
+                for (auto &val : data.Current.Ydata)
+                    val = rand() % 256;
+                data.Current.RCValidCnt = rand() % 256;
+                for (auto &val : data.Current.RCdata)
+                    val = rand() % 256;
+                data.Current.MAXdata[0] = rand() % 256;
+                data.Current.MAXdata[1] = rand() % 256;
+                data.Current.MINdata[0] = rand() % 256;
+                data.Current.MINdata[1] = rand() % 256;
 
-            //     // 동일하게 다른 T_MSGINFO 필드도 채우기
-            //     data.Voltage = data.Current;
-            //     data.SOC = data.Current;
-            //     data.Temp = data.Current;
-            // }
-            // listener->notifyMsgInfo(data);
+                // 동일하게 다른 T_MSGINFO 필드도 채우기
+                data.Voltage = data.Current;
+                data.SOC = data.Current;
+                data.Temp = data.Current;
+            }
+            listener->notifyMsgInfo(data);
 
             if (cvHandle.wait_for(lock, std::chrono::milliseconds(1000)) == std::cv_status::timeout)
             {

@@ -167,6 +167,19 @@ namespace eevp
             ServiceCreator *serviceCreator;
         };
 
+        // SESLServiceListener
+        class SESLServiceListener : public eevp::simulation::ISESLServiceListener
+        {
+        public:
+            SESLServiceListener(ServiceCreator *svc) : serviceCreator(svc) {}
+
+            void SESL_Receive(ara::SESL::Vehicle_Data &Receive_Argument) { return serviceCreator->SESL_Receive(Receive_Argument); }
+            void SESL_Send(const ara::SESL::Vehicle_Data &Send_Argument) { return serviceCreator->SESL_Send(Send_Argument); }
+
+        private:
+            ServiceCreator *serviceCreator;
+        };
+
         ServiceCreator::ServiceCreator() : mLogger(ara::log::CreateLogger("SVCC", "SVCC", ara::log::LogLevel::kInfo)),
                                            serviceManagementSkeletonImpl{nullptr}
         {
@@ -214,9 +227,10 @@ namespace eevp
             {
                 return false;
             }
-            std::this_thread::sleep_for(std::chrono::seconds(2));
+
             if (!startSocketClient())
             {
+
                 return false;
             }
 
@@ -411,12 +425,12 @@ namespace eevp
         ServiceCreator::notifyMsgInfo(const bms::output::OutputData &output)
         {
             mLogger.LogInfo() << __func__;
-            std::string filePath = "/home/popcornsar/src/eevp_main_machine/ap_service_creator/build/msg.bin";
-            std::string ftpUrlBin = "ftp://yourftpserver.com/path/to/upload/msg.bin";
-            std::string ftpUrlPre = "ftp://yourftpserver.com/path/to/upload/msg.pre";
+            std::string binFilePath = "/home/popcornsar/src/FTP/msg.bin";
+            std::string preFilePath = "/home/popcornsar/src/FTP/msg.pre";
+
             // FTP 전송용 파일 만들기
             // 1. "msg.bin" 파일을 생성하고 데이터 기록
-            std::ofstream binFile(filePath, std::ios::binary);
+            std::ofstream binFile(binFilePath, std::ios::binary);
             if (!binFile)
             {
                 mLogger.LogError() << "Failed to create msg.bin";
@@ -437,84 +451,11 @@ namespace eevp
             }
             binFile.close();
 
-            // // 2. FTP 서버에서 기존 "msg.pre" 파일을 삭제
-            // CURL *curl = curl_easy_init();
-            // if (curl)
-            // {
-            //     curl_easy_setopt(curl, CURLOPT_URL, ftpUrlPre.c_str());
-            //     curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, "DELE"); // FTP DELETE 명령 설정
+            // 2. "msg.pre" 삭제
+            std::remove(preFilePath.c_str());
 
-            //     CURLcode res = curl_easy_perform(curl);
-            //     if (res != CURLE_OK)
-            //     {
-            //         mLogger.LogWarn() << "Failed to delete msg.pre on FTP: " << curl_easy_strerror(res);
-            //     }
-            //     else
-            //     {
-            //         mLogger.LogInfo() << "Existing msg.pre file deleted from FTP.";
-            //     }
-            //     curl_easy_cleanup(curl);
-            // }
-
-            // // 3. "msg.bin" 파일을 FTP 서버로 업로드
-            // curl = curl_easy_init();
-            // if (curl)
-            // {
-            //     FILE *file = fopen(filePath.c_str(), "rb");
-            //     if (!file)
-            //     {
-            //         mLogger.LogError() << "Failed to open local file";
-            //         return;
-            //     }
-
-            //     curl_easy_setopt(curl, CURLOPT_URL, ftpUrlBin.c_str());
-            //     curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
-            //     curl_easy_setopt(curl, CURLOPT_READDATA, file);
-
-            //     CURLcode res = curl_easy_perform(curl);
-            //     if (res != CURLE_OK)
-            //     {
-            //         mLogger.LogError() << "FTP upload failed: " << curl_easy_strerror(res);
-            //         fclose(file);
-            //         curl_easy_cleanup(curl);
-            //         return;
-            //     }
-
-            //     mLogger.LogInfo() << "File uploaded successfully to FTP: msg.bin";
-            //     fclose(file);
-            //     curl_easy_cleanup(curl);
-            // }
-
-            // // 4. 업로드 완료 후 FTP 서버에서 "msg.bin" 파일을 "msg.pre"로 이름 변경
-            // curl = curl_easy_init();
-            // if (curl)
-            // {
-            //     std::string renameCommand = "RNFR msg.bin";
-            //     std::string renameToCommand = "RNTO msg.pre";
-
-            //     curl_easy_setopt(curl, CURLOPT_URL, ftpUrlBin.c_str());
-            //     curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, renameCommand.c_str());
-
-            //     CURLcode res = curl_easy_perform(curl);
-            //     if (res != CURLE_OK)
-            //     {
-            //         mLogger.LogError() << "Failed to rename msg.bin to msg.pre on FTP: " << curl_easy_strerror(res);
-            //     }
-            //     else
-            //     {
-            //         curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, renameToCommand.c_str());
-            //         res = curl_easy_perform(curl);
-            //         if (res != CURLE_OK)
-            //         {
-            //             mLogger.LogError() << "Failed to complete renaming to msg.pre: " << curl_easy_strerror(res);
-            //         }
-            //         else
-            //         {
-            //             mLogger.LogInfo() << "msg.bin successfully renamed to msg.pre on FTP.";
-            //         }
-            //     }
-            //     curl_easy_cleanup(curl);
-            // }
+            // 3. "msg.bin" -> "msg.pre"로 이름 변경
+            std::rename(binFilePath.c_str(), preFilePath.c_str());
 
             return;
         }
@@ -638,6 +579,25 @@ namespace eevp
         }
 
         // Lotte End
+
+        // SESL Start
+
+        void ServiceCreator::SESL_Receive(ara::SESL::Vehicle_Data &Receive_Argument)
+        {
+            // mLogger.LogInfo() << __func__;
+            Receive_Argument = this->vehicle_Data_receive;
+            return;
+        }
+
+        void ServiceCreator::SESL_Send(const ara::SESL::Vehicle_Data &Send_Argument)
+        {
+            // mLogger.LogInfo() << __func__;
+            this->vehicle_Data_send = Send_Argument;
+            return;
+        }
+
+        // SESL End
+
         bool
         ServiceCreator::setRunningState()
         {
@@ -664,6 +624,17 @@ namespace eevp
             this->moodSend = lmp::mode::SoaMImMoodeMode::kCARE_MOOD;
             this->ColorIndexSend = 0;
 
+            // Lotte
+            this->windowLocSend = 0;
+            this->transparenceSend = 0;
+
+            // SESL
+            this->vehicle_Data_send.Accel = false;
+            this->vehicle_Data_send.Brake = 0;
+            this->vehicle_Data_send.Light = 0;
+            this->vehicle_Data_send.Beep = false;
+            this->vehicle_Data_send.Beep_Large = false;
+
             return true;
         }
 
@@ -672,8 +643,8 @@ namespace eevp
             mLogger.LogInfo() << __func__;
 
             ara::core::InstanceSpecifier specifier_WiperWash("ServiceCreator/AA/PPort_BCM_WiperWash");
-            ara::core::InstanceSpecifier specifier_TMoodLamp("ServiceCreator/AA/PPort_LmpCtrl");
-            ara::core::InstanceSpecifier specifier_BmsInfo("ServiceCreator/AA/PPort_BmsInfoSrv");
+            ara::core::InstanceSpecifier specifier_TMoodLamp("ServiceCreator/AA/PPort_EevpControlSoaMlm");
+            ara::core::InstanceSpecifier specifier_BmsInfo("ServiceCreator/AA/PPort_BmsInfo");
             ara::core::InstanceSpecifier specifier_AccrPedal("ServiceCreator/AA/PPort_VCS_AccrPedal");
             ara::core::InstanceSpecifier specifier_EnvMonitor("ServiceCreator/AA/PPort_TMS_EnvMonitor");
             ara::core::InstanceSpecifier specifier_Gear("ServiceCreator/AA/PPort_VCS_Gear");
@@ -681,6 +652,7 @@ namespace eevp
             ara::core::InstanceSpecifier specifier_VehSpd("ServiceCreator/AA/PPort_VCS_VehSpd");
             ara::core::InstanceSpecifier specifier_SnsrUss("ServiceCreator/AA/PPort_Snsr_USS");
             ara::core::InstanceSpecifier specifier_Lotte("ServiceCreator/AA/PPort_LotteService");
+            ara::core::InstanceSpecifier specifier_SESL("ServiceCreator/AA/PPort_SESLService");
 
             wiperSkeletonImpl = std::make_shared<eevp::simulation::WiperSkeletonImpl>(specifier_WiperWash);
             auto wiperListener = std::make_shared<WiperListener>(this);
@@ -691,6 +663,11 @@ namespace eevp
             auto tMoodLampListener = std::make_shared<TMoodLampListener>(this);
             tEevpControlSoaMImSkeletonImpl->setEventListener(tMoodLampListener);
             tEevpControlSoaMImSkeletonImpl->OfferService();
+
+            seslServiceSkeletonImpl = std::make_shared<eevp::simulation::SESLServiceSkeletonImpl>(specifier_SESL);
+            auto seslListener = std::make_shared<SESLServiceListener>(this);
+            seslServiceSkeletonImpl->setEventListener(seslListener);
+            seslServiceSkeletonImpl->OfferService();
 
             bmsInfoSkeletonImpl = std::make_shared<eevp::simulation::BmsInfoSkeletonImpl>(specifier_BmsInfo);
             bmsInfoSkeletonImpl->OfferService();
@@ -729,7 +706,6 @@ namespace eevp
             auto lotteListener = std::make_shared<LotteListener>(this);
             lotteSkeletonImpl->setEventListener(lotteListener);
             lotteSkeletonImpl->OfferService();
-            mLogger.LogInfo() << __func__;
 
             return true;
         }
@@ -875,6 +851,7 @@ namespace eevp
                     instance->extractVehSpdData(recvData["VehSpd"]);
                     instance->extractSnsrUssData(recvData["SonarInfo"]);
                     instance->extractLotteData(recvData["Lotte"]);
+                    instance->extractSESLData(recvData["SESL"]);
 
                     // 받은 데이터 로그 출력 (디버깅용)
                     instance->getWiperRecv();
@@ -996,27 +973,18 @@ namespace eevp
 
         void ServiceCreator::extractLotteData(const json &lotteData)
         {
-            // dmsGzDtctn.headLocX = lotteData.value("headLocX", static_cast<std::uint8_t>(0));
-            // dmsGzDtctn.headLocY = lotteData.value("headLocY", static_cast<std::uint8_t>(0));
-            // dmsGzDtctn.headLocZ = lotteData.value("headLocZ", static_cast<std::uint8_t>(0));
-            // dmsGzDtctn.eyeLocRightX = lotteData.value("eyeLocRightX", static_cast<std::uint8_t>(0));
-            // dmsGzDtctn.eyeLocRightY = lotteData.value("eyeLocRightY", static_cast<std::uint8_t>(0));
-            // dmsGzDtctn.eyeLocRightZ = lotteData.value("eyeLocRightZ", static_cast<std::uint8_t>(0));
-            // dmsGzDtctn.eyeLocLeftX = lotteData.value("eyeLocLeftX", static_cast<std::uint8_t>(0));
-            // dmsGzDtctn.eyeLocLeftY = lotteData.value("eyeLocLeftY", static_cast<std::uint8_t>(0));
-            // dmsGzDtctn.eyeLocLeftZ = lotteData.value("eyeLocLeftZ", static_cast<std::uint8_t>(0));
-            // dmsGzDtctn.headDirPitch = lotteData.value("headDirPitch", static_cast<std::uint8_t>(0));
-            // dmsGzDtctn.headDirYaw = lotteData.value("headDirYaw", static_cast<std::uint8_t>(0));
-            // dmsGzDtctn.gazeDirPitch = lotteData.value("gazeDirPitch", static_cast<std::uint8_t>(0));
-            // dmsGzDtctn.gazeDirYaw = lotteData.value("gazeDirYaw", static_cast<std::uint8_t>(0));
-            // dmsGzDtctn.gazeZone = static_cast<lotte::type::GazaZone>(lotteData.value("gazeZone", 0));
-            // dmsGzDtctn.headZone = static_cast<lotte::type::HeadZone>(lotteData.value("headZone", 0));
-
-            // windowLoc = lotteData.value("windowLoc", static_cast<std::int32_t>(0));
-            // transparence = lotteData.value("transparence", static_cast<std::int32_t>(0));
             dmsStatus = lotteData.value("dmsStatus", false);
             smartFilmStatus = lotteData.value("smartFilmStatus", false);
         }
+
+        void ServiceCreator::extractSESLData(const json &seslData)
+        {
+            vehicle_Data_receive.Fwd_Distance = seslData.value("Fwd_Distance", static_cast<std::double_t>(0));
+            vehicle_Data_receive.Rear_Distance = seslData.value("Rear_Distance", static_cast<std::double_t>(0));
+
+        }
+
+
 
         // 데이터를 JSON으로 묶어서 반환
         json ServiceCreator::prepareData()
@@ -1038,6 +1006,13 @@ namespace eevp
             sendData["Lotte"] = {
                 {"windowLoc", this->windowLocSend},
                 {"transparence", this->transparenceSend}};
+
+            sendData["SESL"] = {
+                {"Accel", this->vehicle_Data_send.Accel},
+                {"Brake", this->vehicle_Data_send.Brake},
+                {"Light", this->vehicle_Data_send.Light},
+                {"Beep", this->vehicle_Data_send.Beep},
+                {"Beep_Large", this->vehicle_Data_send.Beep_Large}};
 
             return sendData;
         }

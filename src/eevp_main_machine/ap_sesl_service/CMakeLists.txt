@@ -26,7 +26,7 @@ MESSAGE(STATUS "PARA_INC_DIR : ${PARA_INC_DIR}")
 
 INCLUDE(${GEN_MACHINE_DIR}/cmake/ParaSdk.cmake)
 
-SET(PARA_APP_NAME ServiceCreator)
+SET(PARA_APP_NAME SESLService)
 SET(PARA_APP_VERSION 1.0.0)
 SET(PARA_APP_GEN_DIR "${GEN_MACHINE_DIR}/${PARA_APP_NAME}")
 SET(PARA_APP_GEN_INCLUDE_DIR "${PARA_APP_GEN_DIR}/include")
@@ -48,20 +48,8 @@ MESSAGE(STATUS "PARA_APP_GEN_INCLUDE_DIR : ${PARA_APP_GEN_INCLUDE_DIR}")
 
 SET(SRC
     src/main.cpp
-    src/ServiceCreator.cpp
-    src/ServiceManagementSkeletonImpl.cpp
-    src/WiperSkeletonImpl.cpp
-    src/TMoodLampSkeletonImpl.cpp
-    src/BmsInfoSkeletonImpl.cpp
-    src/MsgInfoProxyImpl.cpp
-    src/AccrPedalSkeletonImpl.cpp
-    src/EnvMonitorSkeletonImpl.cpp
-    src/GearSkeletonImpl.cpp
-    src/BrakePedalSkeletonImpl.cpp
-    src/VehSpdSkeletonImpl.cpp
-    src/SnsrUssSkeletonImpl.cpp
-    src/LotteSkeletonImpl.cpp
-    src/SESLServiceSkeletonImpl.cpp
+    src/swc_sesl.cpp
+    src/port/rport.cpp
     )
 
 ADD_EXECUTABLE(${PROJECT_NAME} ${SRC})

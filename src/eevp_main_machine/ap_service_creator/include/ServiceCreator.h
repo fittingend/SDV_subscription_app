@@ -32,6 +32,7 @@
 #include "skeleton/VehSpdSkeletonImpl.h"
 #include "skeleton/SnsrUssSkeletonImpl.h"
 #include "skeleton/LotteSkeletonImpl.h"
+#include "skeleton/SESLServiceSkeletonImpl.h"
 
 #define BUF_SIZE 1024
 using namespace ara::core;
@@ -142,6 +143,14 @@ namespace eevp
             bool dmsStatus = true;
             bool smartFilmStatus = true;
 
+            // ISESLServiceListener
+            void SESL_Receive(ara::SESL::Vehicle_Data &Receive_Argument);
+            void SESL_Send(const ara::SESL::Vehicle_Data &Send_Argument);
+
+            // SESLVar
+            ara::SESL::Vehicle_Data vehicle_Data_receive;
+            ara::SESL::Vehicle_Data vehicle_Data_send;
+
             // Thread
             void poolingFieldUpdate();
 
@@ -152,7 +161,7 @@ namespace eevp
             static void *socket_recv(void *inst);
             static void *socket_send(void *inst);
 
-            //
+            // json 데이터 추출
             void extractWiperData(const json &wiperData);
             void extractBatteryData(const json &bmsData);
             void extractAccrPedalData(const json &accrPedalData);
@@ -162,6 +171,7 @@ namespace eevp
             void extractVehSpdData(const json &vehSpdData);
             void extractSnsrUssData(const json &sonarData);
             void extractLotteData(const json &lotteData);
+            void extractSESLData(const json &seslData);
 
         private:
             static void SignalHandler(std::int32_t signal);
@@ -192,6 +202,7 @@ namespace eevp
             std::shared_ptr<eevp::simulation::VehSpdSkeletonImpl> vehSpdSkeletonImpl;
             std::shared_ptr<eevp::simulation::SnsrUssSkeletonImpl> snsrUssSkeletonImpl;
             std::shared_ptr<eevp::simulation::LotteSkeletonImpl> lotteSkeletonImpl;
+            std::shared_ptr<eevp::simulation::SESLServiceSkeletonImpl> seslServiceSkeletonImpl;
 
             void getWiperRecv();
             void getWiperSend();
@@ -206,8 +217,6 @@ namespace eevp
             // json 라이브러리
             json prepareData();
 
-            // 티스마트용 ftp server
-            bool uploadFileToFTP(const std::string &localPath, const std::string &remoteUrl);
         };
 
     } // namespace monitoring

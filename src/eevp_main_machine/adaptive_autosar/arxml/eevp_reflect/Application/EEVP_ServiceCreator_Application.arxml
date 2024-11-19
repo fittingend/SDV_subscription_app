@@ -41,7 +41,7 @@
               </PORT-PROTOTYPE-IREF>
               <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Provider/EEVP_ServiceCreator_Provider_BCM_WiperWash</SERVICE-INSTANCE-REF>
             </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
-            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="c6739601-7a4a-4700-9aec-ab2313a66966">
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="641c53ca-1867-4ea8-8c80-670fe0667a16">
               <SHORT-NAME>ServiceCreator_AA_PPort_BmsInfo</SHORT-NAME>
               <PORT-PROTOTYPE-IREF>
                 <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/Application/Executable/ServiceCreator/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
@@ -65,11 +65,11 @@
               </PORT-PROTOTYPE-IREF>
               <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Provider/EEVP_ServiceCreator_Provider_Ctrl_RearCurtain</SERVICE-INSTANCE-REF>
             </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
-            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="c0f8234a-e260-423f-b1f6-35fdd4ab357e">
-              <SHORT-NAME>ServiceCreator_AA_PPort_EevpControlSoaMlm</SHORT-NAME>
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="128c9129-5b2e-4e47-bed1-6b9a420aaec4">
+              <SHORT-NAME>ServiceCreator_AA_PPort_EevpControlSoaMIm</SHORT-NAME>
               <PORT-PROTOTYPE-IREF>
                 <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/Application/Executable/ServiceCreator/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
-                <TARGET-PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/Application/SwComponent/ServiceCreator/PPort_EevpControlSoaMlm</TARGET-PORT-PROTOTYPE-REF>
+                <TARGET-PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/Application/SwComponent/ServiceCreator/PPort_EevpControlSoaMIm</TARGET-PORT-PROTOTYPE-REF>
               </PORT-PROTOTYPE-IREF>
               <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Provider/EEVP_ServiceCreator_Provider_EevpControlSoaMIm</SERVICE-INSTANCE-REF>
             </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
@@ -241,7 +241,7 @@
               </PORT-PROTOTYPE-IREF>
               <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_ServiceCreator_Consumer_Ctrl_RearCurtain</SERVICE-INSTANCE-REF>
             </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
-            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="3f7840e0-dacf-4a0c-b9c1-9f2891b8479d">
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="892d1149-3645-4ade-8938-04f25f76114e">
               <SHORT-NAME>ServiceCreator_AA_RPort_MsgInfo</SHORT-NAME>
               <PORT-PROTOTYPE-IREF>
                 <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/Application/Executable/ServiceCreator/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
@@ -374,7 +374,7 @@
                   <SHORT-NAME>PPort_BCM_WiperWash</SHORT-NAME>
                   <PROVIDED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/BCM_WiperWash</PROVIDED-INTERFACE-TREF>
                 </P-PORT-PROTOTYPE>
-                <P-PORT-PROTOTYPE UUID="faffdffc-b460-4adc-85a0-33147f8311e3">
+                <P-PORT-PROTOTYPE UUID="a9ad3563-c13c-4041-a80f-037d2d8f0daa">
                   <SHORT-NAME>PPort_BmsInfo</SHORT-NAME>
                   <PROVIDED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/PortInterface/Service/BmsInfoSrv</PROVIDED-INTERFACE-TREF>
                 </P-PORT-PROTOTYPE>
@@ -386,8 +386,8 @@
                   <SHORT-NAME>PPort_Ctrl_RearCurtain</SHORT-NAME>
                   <PROVIDED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/Ctrl_RearCurtain</PROVIDED-INTERFACE-TREF>
                 </P-PORT-PROTOTYPE>
-                <P-PORT-PROTOTYPE UUID="9f862711-48fc-4ba8-a83b-9c9264856c1b">
-                  <SHORT-NAME>PPort_EevpControlSoaMlm</SHORT-NAME>
+                <P-PORT-PROTOTYPE UUID="2e6db676-6617-45d7-8651-20784b86e657">
+                  <SHORT-NAME>PPort_EevpControlSoaMIm</SHORT-NAME>
                   <PROVIDED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/PortInterface/Service/EevpControlSoaMIm</PROVIDED-INTERFACE-TREF>
                 </P-PORT-PROTOTYPE>
                 <P-PORT-PROTOTYPE UUID="fceb1291-bfd4-4044-b804-e027186f15a8">
@@ -474,7 +474,7 @@
                   <SHORT-NAME>RPort_Ctrl_RearCurtain</SHORT-NAME>
                   <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/Ctrl_RearCurtain</REQUIRED-INTERFACE-TREF>
                 </R-PORT-PROTOTYPE>
-                <R-PORT-PROTOTYPE UUID="31315bc6-5650-47ee-a5fd-f5998db943f1">
+                <R-PORT-PROTOTYPE UUID="83d7c246-c042-4b3b-9c6e-22ed743b7da7">
                   <SHORT-NAME>RPort_MsgInfo</SHORT-NAME>
                   <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/PortInterface/Service/MsgInfoSrv</REQUIRED-INTERFACE-TREF>
                 </R-PORT-PROTOTYPE>

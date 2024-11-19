@@ -872,14 +872,14 @@
               <TCP-PORT>50530</TCP-PORT>
               <UDP-PORT>50530</UDP-PORT>
             </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
-            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="e2eec1e8-4955-4d64-9c27-daee56bb588a">
-              <SHORT-NAME>EEVP_ServiceCreator_SomeipConsumers_MsgInfo</SHORT-NAME>
+            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="034c04b5-09fc-4d60-8ffe-96ecf670b7aa">
+              <SHORT-NAME>EEVP_ServiceCreator_SomeipConsumers_MsgInfoSrv</SHORT-NAME>
               <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
               <SERVICE-INSTANCE-REFS>
                 <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_ServiceCreator_Consumer_MsgInfoSrv</SERVICE-INSTANCE-REF>
               </SERVICE-INSTANCE-REFS>
-              <TCP-PORT>50112</TCP-PORT>
-              <UDP-PORT>50112</UDP-PORT>
+              <TCP-PORT>50113</TCP-PORT>
+              <UDP-PORT>50113</UDP-PORT>
             </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
             <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="ec150b6d-e83b-4333-82e2-9dafe1289a52">
               <SHORT-NAME>EEVP_ServiceCreator_SomeipConsumers_Snsr_FaceDetectModule</SHORT-NAME>
@@ -971,8 +971,8 @@
               <TCP-PORT>50077</TCP-PORT>
               <UDP-PORT>50077</UDP-PORT>
             </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
-            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="8cf3d95f-f161-467e-a16e-81f5bb0ae2cf">
-              <SHORT-NAME>EEVP_ServiceCreator_SomeipProviders_BmsInfo</SHORT-NAME>
+            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="ad0b16c9-deef-4315-b624-5d6dc40a0a1b">
+              <SHORT-NAME>EEVP_ServiceCreator_SomeipProviders_BmsInfoSrv</SHORT-NAME>
               <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
               <SERVICE-INSTANCE-REFS>
                 <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Provider/EEVP_ServiceCreator_Provider_BmsInfoSrv</SERVICE-INSTANCE-REF>
@@ -998,14 +998,14 @@
               <TCP-PORT>50380</TCP-PORT>
               <UDP-PORT>50380</UDP-PORT>
             </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
-            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="dc4a7b7e-5eef-426d-a4f2-2a3bd13048d7">
-              <SHORT-NAME>EEVP_ServiceCreator_SomeipProviders_EevpControlSoaMlm</SHORT-NAME>
+            <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="cd2739a5-cea9-418c-8476-f5a6f53709e4">
+              <SHORT-NAME>EEVP_ServiceCreator_SomeipProviders_EevpControlSoaMIm</SHORT-NAME>
               <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
               <SERVICE-INSTANCE-REFS>
                 <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Provider/EEVP_ServiceCreator_Provider_EevpControlSoaMIm</SERVICE-INSTANCE-REF>
               </SERVICE-INSTANCE-REFS>
-              <TCP-PORT>50113</TCP-PORT>
-              <UDP-PORT>50113</UDP-PORT>
+              <TCP-PORT>50112</TCP-PORT>
+              <UDP-PORT>50112</UDP-PORT>
             </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
             <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="971569e3-d66d-42a8-ac88-802c03aa589a">
               <SHORT-NAME>EEVP_ServiceCreator_SomeipProviders_LotteService</SHORT-NAME>
@@ -1342,7 +1342,7 @@
                   <SD-CLIENT-CONFIG-REF DEST="SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Client/DefaultSdClientConfig</SD-CLIENT-CONFIG-REF>
                   <VERSION-DRIVEN-FIND-BEHAVIOR>EXACT-OR-ANY-MINOR-VERSION</VERSION-DRIVEN-FIND-BEHAVIOR>
                 </REQUIRED-SOMEIP-SERVICE-INSTANCE>
-                <REQUIRED-SOMEIP-SERVICE-INSTANCE UUID="cea73409-f251-42a6-b468-eccdbd67de1e">
+                <REQUIRED-SOMEIP-SERVICE-INSTANCE UUID="65dbe2e4-431b-42d4-8e01-6c8a7524b743">
                   <SHORT-NAME>EEVP_ServiceCreator_Consumer_MsgInfoSrv</SHORT-NAME>
                   <ADMIN-DATA>
                     <SDGS>
@@ -1356,13 +1356,12 @@
                     <SOMEIP-REQUIRED-EVENT-GROUP>
                       <SHORT-NAME>Eventgroup_ems_MsgInfo</SHORT-NAME>
                       <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/System/Service/Deployment/MsgInfoSrv/Eventgroup_ems_MsgInfo</EVENT-GROUP-REF>
-                      <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/System/Service/TimingConfig/SdEventgroupConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
+                      <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
                     </SOMEIP-REQUIRED-EVENT-GROUP>
                   </REQUIRED-EVENT-GROUPS>
                   <REQUIRED-MINOR-VERSION>ANY</REQUIRED-MINOR-VERSION>
                   <REQUIRED-SERVICE-INSTANCE-ID>ANY</REQUIRED-SERVICE-INSTANCE-ID>
-                  <SD-CLIENT-CONFIG-REF DEST="SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG">/System/Service/TimingConfig/SdClientConfig</SD-CLIENT-CONFIG-REF>
-                  <VERSION-DRIVEN-FIND-BEHAVIOR>EXACT-OR-ANY-MINOR-VERSION</VERSION-DRIVEN-FIND-BEHAVIOR>
+                  <SD-CLIENT-CONFIG-REF DEST="SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Client/DefaultSdClientConfig</SD-CLIENT-CONFIG-REF>
                 </REQUIRED-SOMEIP-SERVICE-INSTANCE>
                 <REQUIRED-SOMEIP-SERVICE-INSTANCE UUID="7900a61c-028d-4849-aeed-200daa352dda">
                   <SHORT-NAME>EEVP_ServiceCreator_Consumer_Snsr_FaceDetectModule</SHORT-NAME>
@@ -1690,22 +1689,23 @@
                   <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/DefaultSdServerConfig</SD-SERVER-CONFIG-REF>
                   <SERVICE-INSTANCE-ID>9009</SERVICE-INSTANCE-ID>
                 </PROVIDED-SOMEIP-SERVICE-INSTANCE>
-                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="502e67de-268e-4ceb-b33d-4bcd6db47927">
+                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="528d7cb9-6b9e-4d9c-990f-894c6d73a3a7">
                   <SHORT-NAME>EEVP_ServiceCreator_Provider_BmsInfoSrv</SHORT-NAME>
                   <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/System/Service/Deployment/BmsInfoSrv</SERVICE-INTERFACE-DEPLOYMENT-REF>
                   <EVENT-PROPSS>
                     <SOMEIP-EVENT-PROPS>
+                      <COLLECTION-PROPS/>
                       <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/System/Service/Deployment/BmsInfoSrv/ems_BmsInfo</EVENT-REF>
                     </SOMEIP-EVENT-PROPS>
                   </EVENT-PROPSS>
                   <PROVIDED-EVENT-GROUPS>
-                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="e3e184c9-f102-43a6-83d8-419667fbb331">
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="1c24cbec-26a6-499e-9ab6-c5e3b04db599">
                       <SHORT-NAME>Eventgroup_ems_BmsInfo</SHORT-NAME>
                       <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/System/Service/Deployment/BmsInfoSrv/Eventgroup_ems_BmsInfo</EVENT-GROUP-REF>
                       <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
                     </SOMEIP-PROVIDED-EVENT-GROUP>
                   </PROVIDED-EVENT-GROUPS>
-                  <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/System/Service/TimingConfig/SdServerConfig</SD-SERVER-CONFIG-REF>
+                  <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/DefaultSdServerConfig</SD-SERVER-CONFIG-REF>
                   <SERVICE-INSTANCE-ID>11</SERVICE-INSTANCE-ID>
                 </PROVIDED-SOMEIP-SERVICE-INSTANCE>
                 <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="dce12be0-bed6-4297-895e-c18e776cfcf6">
@@ -1754,11 +1754,12 @@
                   <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/DefaultSdServerConfig</SD-SERVER-CONFIG-REF>
                   <SERVICE-INSTANCE-ID>9049</SERVICE-INSTANCE-ID>
                 </PROVIDED-SOMEIP-SERVICE-INSTANCE>
-                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="08299132-91ed-4920-9fd5-8fb32cae2728">
+                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="a84c6241-d680-46f6-9986-fdbb13723bd7">
                   <SHORT-NAME>EEVP_ServiceCreator_Provider_EevpControlSoaMIm</SHORT-NAME>
                   <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/System/Service/Deployment/EevpControlSoaMIm</SERVICE-INTERFACE-DEPLOYMENT-REF>
                   <METHOD-RESPONSE-PROPSS>
                     <SOMEIP-METHOD-PROPS>
+                      <COLLECTION-PROPS/>
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/EevpControlSoaMIm/RequestMImSetBrightness</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                     <SOMEIP-METHOD-PROPS>
@@ -1768,7 +1769,7 @@
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/EevpControlSoaMIm/RequestMImSetRGBColor</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
                   </METHOD-RESPONSE-PROPSS>
-                  <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/System/Service/TimingConfig/SdServerConfig</SD-SERVER-CONFIG-REF>
+                  <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/DefaultSdServerConfig</SD-SERVER-CONFIG-REF>
                   <SERVICE-INSTANCE-ID>13</SERVICE-INSTANCE-ID>
                 </PROVIDED-SOMEIP-SERVICE-INSTANCE>
                 <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="1844427b-0209-497d-abaf-8d6566bcef47">

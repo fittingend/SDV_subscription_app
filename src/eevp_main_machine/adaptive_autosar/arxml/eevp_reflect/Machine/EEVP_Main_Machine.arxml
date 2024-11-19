@@ -102,6 +102,16 @@
                     <LOG-TRACE-LOG-MODE>NETWORK</LOG-TRACE-LOG-MODE>
                   </LOG-TRACE-LOG-MODES>
                 </DLT-LOG-CHANNEL>
+                <DLT-LOG-CHANNEL UUID="9c7fdf5c-b1ae-4b98-a97c-1ee4b5a72cbe">
+                  <SHORT-NAME>BatteryMonitor</SHORT-NAME>
+                  <APPLICATION-ID>BATT</APPLICATION-ID>
+                  <CONTEXT-ID>BATT</CONTEXT-ID>
+                  <LOG-TRACE-DEFAULT-LOG-LEVEL>INFO</LOG-TRACE-DEFAULT-LOG-LEVEL>
+                  <LOG-TRACE-LOG-MODES>
+                    <LOG-TRACE-LOG-MODE>CONSOLE</LOG-TRACE-LOG-MODE>
+                    <LOG-TRACE-LOG-MODE>NETWORK</LOG-TRACE-LOG-MODE>
+                  </LOG-TRACE-LOG-MODES>
+                </DLT-LOG-CHANNEL>
                 <DLT-LOG-CHANNEL UUID="35b39464-f914-45ab-9086-d71f0b3f00ca">
                   <SHORT-NAME>CM</SHORT-NAME>
                   <APPLICATION-ID>CM</APPLICATION-ID>
@@ -110,15 +120,6 @@
                   <LOG-TRACE-LOG-MODES>
                     <LOG-TRACE-LOG-MODE>CONSOLE</LOG-TRACE-LOG-MODE>
                     <LOG-TRACE-LOG-MODE>NETWORK</LOG-TRACE-LOG-MODE>
-                  </LOG-TRACE-LOG-MODES>
-                </DLT-LOG-CHANNEL>
-                <DLT-LOG-CHANNEL UUID="8f9ed149-f4e7-46c5-bd4f-bbca45d83a44">
-                  <SHORT-NAME>DltLogChannel_BatteryMonitor</SHORT-NAME>
-                  <APPLICATION-ID>BatteryMonitor</APPLICATION-ID>
-                  <CONTEXT-ID>CtxBatteryMonitor</CONTEXT-ID>
-                  <LOG-TRACE-DEFAULT-LOG-LEVEL>VERBOSE</LOG-TRACE-DEFAULT-LOG-LEVEL>
-                  <LOG-TRACE-LOG-MODES>
-                    <LOG-TRACE-LOG-MODE>CONSOLE</LOG-TRACE-LOG-MODE>
                   </LOG-TRACE-LOG-MODES>
                 </DLT-LOG-CHANNEL>
                 <DLT-LOG-CHANNEL UUID="826acb70-f113-434c-8393-877bd9870d93">
@@ -511,7 +512,7 @@
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
                   <PROCESS-REF DEST="PROCESS">/Application/Process/AppIpsvTest</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>
-                <PROCESS-TO-MACHINE-MAPPING UUID="9d18fcb9-6904-482e-b2c6-8437a1b21054">
+                <PROCESS-TO-MACHINE-MAPPING UUID="8a4cecd1-11e1-47e9-b2f5-b4efec771175">
                   <SHORT-NAME>ProcessToMachineMapping_BatteryMonitor_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
                   <PROCESS-REF DEST="PROCESS">/AdaptiveApplication/Process/BatteryMonitor</PROCESS-REF>

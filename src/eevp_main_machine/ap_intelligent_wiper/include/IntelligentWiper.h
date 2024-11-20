@@ -59,7 +59,7 @@ namespace eevp
             bool checkDrivingIntention();
 
             /// @brief Check Stop Status
-            void checkStopStatus(bool &isParked, bool &isStopped);
+            void checkStopStatus(bool &isStopped);
 
             /// @brief Check if velocity is zero for a duration
             bool isVelocityZeroForDuration();

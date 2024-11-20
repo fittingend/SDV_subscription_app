@@ -25,13 +25,13 @@ namespace eevp
             listener = _listener;
         }
 
-        Future<skeleton::VCS_AccrPedalSkeleton::notifyStatusOutput>
-        AccrPedalSkeletonImpl::notifyStatus()
+        Future<skeleton::VCS_AccrPedalSkeleton::notifyAccrPedalOutput>
+        AccrPedalSkeletonImpl::notifyAccrPedal()
         {
             mLogger.LogInfo() << __func__;
 
-            skeleton::VCS_AccrPedalSkeleton::notifyStatusOutput response;
-            Promise<notifyStatusOutput> promise;
+            skeleton::VCS_AccrPedalSkeleton::notifyAccrPedalOutput response;
+            Promise<notifyAccrPedalOutput> promise;
 
             if (listener != nullptr)
             {

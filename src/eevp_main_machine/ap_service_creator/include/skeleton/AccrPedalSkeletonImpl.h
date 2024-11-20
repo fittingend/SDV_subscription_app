@@ -23,7 +23,7 @@ namespace eevp
 
             void setEventListener(std::shared_ptr<eevp::simulation::IAccrPedalListener> _listener);
 
-            Future<skeleton::VCS_AccrPedalSkeleton::notifyStatusOutput> notifyStatus();
+            Future<skeleton::VCS_AccrPedalSkeleton::notifyAccrPedalOutput> notifyAccrPedal();
 
         private:
             ara::log::Logger &mLogger;

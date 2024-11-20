@@ -8,7 +8,7 @@ namespace eevp
             ara::core::InstanceSpecifier instanceSpec,
             ara::com::MethodCallProcessingMode mode) : listener{nullptr},
                                                        VCS_VehSpdSkeleton(instanceSpec, mode),
-                                                       mLogger(ara::log::CreateLogger("VHSP", "VHSP", ara::log::LogLevel::kInfo))
+                                                       mLogger(ara::log::CreateLogger("VSPD", "VSPD", ara::log::LogLevel::kInfo))
 
         {
             mLogger.LogInfo() << __func__;
@@ -25,13 +25,13 @@ namespace eevp
             listener = _listener;
         }
 
-        Future<skeleton::VCS_VehSpdSkeleton::notifyStatusOutput>
-        VehSpdSkeletonImpl::notifyStatus()
+        Future<skeleton::VCS_VehSpdSkeleton::notifyVehSpdOutput>
+        VehSpdSkeletonImpl::notifyVehSpd()
         {
             mLogger.LogInfo() << __func__;
 
-            skeleton::VCS_VehSpdSkeleton::notifyStatusOutput response;
-            Promise<notifyStatusOutput> promise;
+            skeleton::VCS_VehSpdSkeleton::notifyVehSpdOutput response;
+            Promise<notifyVehSpdOutput> promise;
 
             if (listener != nullptr)
             {

@@ -89,14 +89,6 @@
               </PORT-PROTOTYPE-IREF>
               <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Provider/EEVP_ServiceCreator_Provider_SESL_ServiceInterface</SERVICE-INSTANCE-REF>
             </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
-            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="e8eea608-f31a-4ef5-a6b2-1281be4d32f3">
-              <SHORT-NAME>ServiceCreator_AA_PPort_ServiceManagement</SHORT-NAME>
-              <PORT-PROTOTYPE-IREF>
-                <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/Application/Executable/ServiceCreator/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
-                <TARGET-PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/Application/SwComponent/ServiceCreator/PPort_ServiceManagement</TARGET-PORT-PROTOTYPE-REF>
-              </PORT-PROTOTYPE-IREF>
-              <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Provider/EEVP_ServiceCreator_Provider_ServiceManagement</SERVICE-INSTANCE-REF>
-            </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
             <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="1b5d5c3c-df83-4d5b-8cef-c18e313170f6">
               <SHORT-NAME>ServiceCreator_AA_PPort_Snsr_FaceDetectModule</SHORT-NAME>
               <PORT-PROTOTYPE-IREF>
@@ -217,14 +209,6 @@
               </PORT-PROTOTYPE-IREF>
               <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_ServiceCreator_Consumer_BCM_Horn</SERVICE-INSTANCE-REF>
             </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
-            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="5f624e2e-2dae-4ed6-9383-f9045920d4e6">
-              <SHORT-NAME>ServiceCreator_AA_RPort_BCM_WiperWash</SHORT-NAME>
-              <PORT-PROTOTYPE-IREF>
-                <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/Application/Executable/ServiceCreator/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
-                <TARGET-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Application/SwComponent/ServiceCreator/RPort_BCM_WiperWash</TARGET-PORT-PROTOTYPE-REF>
-              </PORT-PROTOTYPE-IREF>
-              <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_ServiceCreator_Consumer_BCM_WiperWash</SERVICE-INSTANCE-REF>
-            </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
             <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="96dc897b-6a98-4a4a-b308-5e56d8814367">
               <SHORT-NAME>ServiceCreator_AA_RPort_Ctrl_MoodLamp</SHORT-NAME>
               <PORT-PROTOTYPE-IREF>
@@ -271,7 +255,7 @@
                 <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/Application/Executable/ServiceCreator/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
                 <TARGET-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Application/SwComponent/ServiceCreator/RPort_TMS_EnvMonitor</TARGET-PORT-PROTOTYPE-REF>
               </PORT-PROTOTYPE-IREF>
-              <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_ServiceCreator_Consumer_BCM_WiperWash</SERVICE-INSTANCE-REF>
+              <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_ServiceCreator_Consumer_TMS_EnvMonitor</SERVICE-INSTANCE-REF>
             </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
             <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="302e1493-94cd-4553-93fe-d60c946227e2">
               <SHORT-NAME>ServiceCreator_AA_RPort_TMS_Fragrance</SHORT-NAME>
@@ -398,10 +382,6 @@
                   <SHORT-NAME>PPort_SESLService</SHORT-NAME>
                   <PROVIDED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/System/Service/Instance/SESL_ServiceInterface</PROVIDED-INTERFACE-TREF>
                 </P-PORT-PROTOTYPE>
-                <P-PORT-PROTOTYPE UUID="9799348c-d23c-4b56-870b-3c4a3c0e223c">
-                  <SHORT-NAME>PPort_ServiceManagement</SHORT-NAME>
-                  <PROVIDED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/ServiceManagement</PROVIDED-INTERFACE-TREF>
-                </P-PORT-PROTOTYPE>
                 <P-PORT-PROTOTYPE UUID="8d458f7d-5fc5-4f3a-98bc-e82a2b82cac3">
                   <SHORT-NAME>PPort_Snsr_FaceDetectModule</SHORT-NAME>
                   <PROVIDED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/Snsr_FaceDetectModule</PROVIDED-INTERFACE-TREF>
@@ -461,10 +441,6 @@
                 <R-PORT-PROTOTYPE UUID="8a86ee0e-9d49-4a5b-b33c-12567a4250ab">
                   <SHORT-NAME>RPort_BCM_Horn</SHORT-NAME>
                   <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/BCM_Horn</REQUIRED-INTERFACE-TREF>
-                </R-PORT-PROTOTYPE>
-                <R-PORT-PROTOTYPE UUID="615cad44-871c-4f81-9595-30b6f2362e50">
-                  <SHORT-NAME>RPort_BCM_WiperWash</SHORT-NAME>
-                  <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/BCM_WiperWash</REQUIRED-INTERFACE-TREF>
                 </R-PORT-PROTOTYPE>
                 <R-PORT-PROTOTYPE UUID="39011871-5446-476e-868e-6c770c744164">
                   <SHORT-NAME>RPort_Ctrl_MoodLamp</SHORT-NAME>

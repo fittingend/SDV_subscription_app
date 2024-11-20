@@ -20,7 +20,6 @@
 
 #include <json.hpp>
 
-#include "skeleton/ServiceManagementSkeletonImpl.h"
 #include "skeleton/WiperSkeletonImpl.h"
 #include "skeleton/TMoodLampSkeletonImpl.h"
 #include "skeleton/BmsInfoSkeletonImpl.h"
@@ -59,18 +58,16 @@ namespace eevp
             void Terminate();
 
             // IWiperListener
-            bool isWiping();
-            std::uint16_t getWipingInterval();
-            eevp::simulation::BCM_WipingLevel getWipingLevel();
-            eevp::simulation::BCM_ReturnCode stopWiping();
-            eevp::simulation::BCM_ReturnCode startWiping();
-            eevp::simulation::BCM_ReturnCode setWipingLevelImme(const eevp::simulation::BCM_WipingLevel &wipingLevel);
-            eevp::simulation::BCM_ReturnCode setWipingInterval(const std::uint16_t &wipingInterval);
-            eevp::simulation::BCM_ReturnCode setWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel);
+            void stopWiping();
+            void startWiping();
+            void setWipingInterval(const std::uint16_t &wipingInterval);
+            void setWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel);
 
             // WiperVar
-            static eevp::service::type::wiperRecv wiperRecv;
-            static eevp::service::type::wiperSend wiperSend;
+            eevp::simulation::BCM_WipingLevel wipingLevelReceive;
+            std::uint16_t wipingIntervalReceive;
+            eevp::simulation::BCM_WipingLevel wipingLevelSend;
+            std::uint16_t wipingIntervalSend;
             static std::string wiperLevel[];
 
             // ITMoodLampListener
@@ -190,7 +187,6 @@ namespace eevp
             static std::atomic_bool mRunning;
             ara::log::Logger &mLogger;
 
-            std::shared_ptr<eevp::service::ServiceManagementSkeletonImpl> serviceManagementSkeletonImpl;
             std::shared_ptr<eevp::simulation::WiperSkeletonImpl> wiperSkeletonImpl;
             std::shared_ptr<eevp::simulation::TEevpControlSoaMImSkeletonImpl> tEevpControlSoaMImSkeletonImpl;
             std::shared_ptr<eevp::simulation::BmsInfoSkeletonImpl> bmsInfoSkeletonImpl;
@@ -206,8 +202,6 @@ namespace eevp
 
             void getWiperRecv();
             void getWiperSend();
-            void setWiperSend(std::uint16_t &wipingInterval);
-            void setWiperSend(const eevp::simulation::BCM_WipingLevel &wipingLevel);
 
             std::vector<std::string> parseData;
 

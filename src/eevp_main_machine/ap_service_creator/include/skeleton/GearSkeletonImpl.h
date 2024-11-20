@@ -23,7 +23,7 @@ namespace eevp
 
             void setEventListener(std::shared_ptr<eevp::simulation::IGearListener> _listener);
 
-            Future<skeleton::VCS_GearSkeleton::notifyStatusOutput> notifyStatus();
+            Future<skeleton::VCS_GearSkeleton::notifyGearOutput> notifyGear();
             Future<setTargetOutput> setTarget(const eevp::simulation::type::VCS_Gear& targetGear);
 
         private:

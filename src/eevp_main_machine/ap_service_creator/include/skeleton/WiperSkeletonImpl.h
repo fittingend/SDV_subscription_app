@@ -28,14 +28,7 @@ namespace eevp
 
             Future<startWipingOutput> startWiping();
 
-            Future<isWipingOutput> isWiping();
-
-            Future<getWipingLevelOutput> getWipingLevel();
-
-            Future<getWipingIntervalOutput> getWipingInterval();
-
             Future<setWipingLevelOutput> setWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel);
-            Future<setWipingLevelImmeOutput> setWipingLevelImme(const eevp::simulation::BCM_WipingLevel &wipingLevel);
             Future<setWipingIntervalOutput> setWipingInterval(const std::uint16_t &wipingInterval);
 
             Future<simulation::skeleton::fields::wiperLevel::FieldType> wiperLevelGetter();

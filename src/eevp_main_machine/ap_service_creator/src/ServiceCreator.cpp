@@ -6,32 +6,11 @@ namespace eevp
 {
     namespace simulation
     {
-        eevp::service::type::wiperRecv ServiceCreator::wiperRecv = {eevp::simulation::BCM_WipingLevel::STOP, 99};
-        eevp::service::type::wiperSend ServiceCreator::wiperSend = {eevp::simulation::BCM_WipingLevel::LOW, 1};
         pthread_t ServiceCreator::thread_socket_recv;
         pthread_t ServiceCreator::thread_socket_send;
         std::string ServiceCreator::wiperLevel[] = {"LOW", "MEDIUM", "HIGH", "STOP"};
 
         std::atomic_bool ServiceCreator::mRunning(false);
-
-        // Unused
-        class ServiceManagementListener : public eevp::service::IServiceManagementListener
-        {
-        public:
-            ServiceManagementListener(ServiceCreator *svc) : serviceCreator(svc) {}
-
-            bool isWiping() { return serviceCreator->isWiping(); }
-            std::uint16_t getWipingInterval() { return serviceCreator->getWipingInterval(); }
-            eevp::simulation::BCM_WipingLevel getWipingLevel() { return serviceCreator->getWipingLevel(); }
-            eevp::simulation::BCM_ReturnCode stopWiping() { return serviceCreator->stopWiping(); }
-            eevp::simulation::BCM_ReturnCode startWiping() { return serviceCreator->startWiping(); }
-            eevp::simulation::BCM_ReturnCode setWipingLevelImme(const eevp::simulation::BCM_WipingLevel &wipingLevel) { return serviceCreator->setWipingLevelImme(wipingLevel); }
-            eevp::simulation::BCM_ReturnCode setWipingInterval(const std::uint16_t &wipingInterval) { return serviceCreator->setWipingInterval(wipingInterval); }
-            eevp::simulation::BCM_ReturnCode setWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel) { return serviceCreator->setWipingLevel(wipingLevel); }
-
-        private:
-            ServiceCreator *serviceCreator;
-        };
 
         // WiperListener
         class WiperListener : public eevp::simulation::IWiperListener
@@ -39,14 +18,10 @@ namespace eevp
         public:
             WiperListener(ServiceCreator *svc) : serviceCreator(svc) {}
 
-            bool isWiping() { return serviceCreator->isWiping(); }
-            std::uint16_t getWipingInterval() { return serviceCreator->getWipingInterval(); }
-            eevp::simulation::BCM_WipingLevel getWipingLevel() { return serviceCreator->getWipingLevel(); }
-            eevp::simulation::BCM_ReturnCode stopWiping() { return serviceCreator->stopWiping(); }
-            eevp::simulation::BCM_ReturnCode startWiping() { return serviceCreator->startWiping(); }
-            eevp::simulation::BCM_ReturnCode setWipingLevelImme(const eevp::simulation::BCM_WipingLevel &wipingLevel) { return serviceCreator->setWipingLevelImme(wipingLevel); }
-            eevp::simulation::BCM_ReturnCode setWipingInterval(const std::uint16_t &wipingInterval) { return serviceCreator->setWipingInterval(wipingInterval); }
-            eevp::simulation::BCM_ReturnCode setWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel) { return serviceCreator->setWipingLevel(wipingLevel); }
+            void stopWiping() { return serviceCreator->stopWiping(); }
+            void startWiping() { return serviceCreator->startWiping(); }
+            void setWipingInterval(const std::uint16_t &wipingInterval) { return serviceCreator->setWipingInterval(wipingInterval); }
+            void setWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel) { return serviceCreator->setWipingLevel(wipingLevel); }
 
         private:
             ServiceCreator *serviceCreator;
@@ -180,8 +155,7 @@ namespace eevp
             ServiceCreator *serviceCreator;
         };
 
-        ServiceCreator::ServiceCreator() : mLogger(ara::log::CreateLogger("SVCC", "SVCC", ara::log::LogLevel::kInfo)),
-                                           serviceManagementSkeletonImpl{nullptr}
+        ServiceCreator::ServiceCreator() : mLogger(ara::log::CreateLogger("SVCC", "SVCC", ara::log::LogLevel::kInfo))
         {
             mLogger.LogInfo() << __func__;
             std::signal(SIGTERM, SignalHandler);
@@ -243,8 +217,8 @@ namespace eevp
             mLogger.LogInfo() << __func__;
             while (mRunning)
             {
-                std::this_thread::sleep_for(std::chrono::seconds(100));
-                mLogger.LogInfo() << "Service Creator running";
+                std::this_thread::sleep_for(std::chrono::seconds(1000));
+                mLogger.LogInfo() << "ServiceCreator is running";
             }
         }
 
@@ -266,80 +240,58 @@ namespace eevp
         }
 
         // Wiper Start
-        bool ServiceCreator::isWiping()
+
+        void ServiceCreator::stopWiping()
         {
-            mLogger.LogInfo() << __func__;
-            return true;
+            eevp::simulation::BCM_WipingLevel tempWipingLevel = eevp::simulation::BCM_WipingLevel::STOP;
+            wipingLevelSend = tempWipingLevel;
+            wipingIntervalSend = 0U;
+            wiperSkeletonImpl->updateWipingLevel(wipingLevelSend);
+            wiperSkeletonImpl->updateWipingInterval(wipingIntervalSend);
+            return;
         }
 
-        eevp::simulation::BCM_ReturnCode
-        ServiceCreator::stopWiping()
+        void ServiceCreator::startWiping()
         {
-            mLogger.LogInfo() << __func__;
-            return BCM_ReturnCode::SUCCESS;
+            eevp::simulation::BCM_WipingLevel tempWipingLevel = eevp::simulation::BCM_WipingLevel::LOW;
+            wipingLevelSend = tempWipingLevel;
+            wiperSkeletonImpl->updateWipingLevel(wipingLevelSend);
+            return;
         }
 
-        eevp::simulation::BCM_ReturnCode
-        ServiceCreator::startWiping()
-        {
-            mLogger.LogInfo() << __func__;
-            return BCM_ReturnCode::SUCCESS;
-        }
-
-        eevp::simulation::BCM_ReturnCode
-        ServiceCreator::setWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel)
+        void ServiceCreator::setWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel)
         {
             // mLogger.LogInfo() << __func__;
-            wiperSkeletonImpl->updateWipingLevel(wipingLevel);
-            return BCM_ReturnCode::SUCCESS;
+            wipingLevelSend = wipingLevel;
+            wiperSkeletonImpl->updateWipingLevel(wipingLevelSend);
+            return;
         }
 
-        eevp::simulation::BCM_ReturnCode
-        ServiceCreator::setWipingLevelImme(const eevp::simulation::BCM_WipingLevel &wipingLevel)
-        {
-            mLogger.LogInfo() << __func__;
-            wiperSkeletonImpl->updateWipingLevel(wipingLevel);
-            return BCM_ReturnCode::SUCCESS;
-        }
-
-        eevp::simulation::BCM_ReturnCode
+        void
         ServiceCreator::setWipingInterval(const std::uint16_t &wipingInterval)
         {
             // mLogger.LogInfo() << __func__;
-            wiperSkeletonImpl->updateWipingInterval(wipingInterval);
-            return BCM_ReturnCode::SUCCESS;
-        }
-
-        std::uint16_t
-        ServiceCreator::getWipingInterval()
-        {
-            mLogger.LogInfo() << __func__;
-            return 0;
-        }
-
-        eevp::simulation::BCM_WipingLevel
-        ServiceCreator::getWipingLevel()
-        {
-            mLogger.LogInfo() << __func__;
-            return wiperRecv.wipingLevel;
+            wipingIntervalSend = wipingInterval;
+            wiperSkeletonImpl->updateWipingInterval(wipingIntervalSend);
+            return;
         }
 
         void
         ServiceCreator::getWiperRecv()
         {
-            switch (ServiceCreator::wiperRecv.wipingLevel)
+            switch (wipingLevelReceive)
             {
             case BCM_WipingLevel::HIGH:
-                mLogger.LogInfo() << "wiperRecv: [HIGH, " << ServiceCreator::wiperRecv.wipingInterval << "]";
+                mLogger.LogInfo() << "wiperRecv: [HIGH, " << wipingIntervalReceive << "]";
                 break;
             case BCM_WipingLevel::LOW:
-                mLogger.LogInfo() << "wiperRecv: [LOW, " << ServiceCreator::wiperRecv.wipingInterval << "]";
+                mLogger.LogInfo() << "wiperRecv: [LOW, " << wipingIntervalReceive << "]";
                 break;
             case BCM_WipingLevel::MEDIUM:
-                mLogger.LogInfo() << "wiperRecv: [MEDIUM, " << ServiceCreator::wiperRecv.wipingInterval << "]";
+                mLogger.LogInfo() << "wiperRecv: [MEDIUM, " << wipingIntervalReceive << "]";
                 break;
             case BCM_WipingLevel::STOP:
-                mLogger.LogInfo() << "wiperRecv: [STOP, " << ServiceCreator::wiperRecv.wipingInterval << "]";
+                mLogger.LogInfo() << "wiperRecv: [STOP, " << wipingIntervalReceive << "]";
                 break;
             default:
                 break;
@@ -348,37 +300,24 @@ namespace eevp
         void
         ServiceCreator::getWiperSend()
         {
-            switch (ServiceCreator::wiperSend.wipingLevel)
+            switch (wipingLevelSend)
             {
             case BCM_WipingLevel::HIGH:
-                mLogger.LogInfo() << "wiperSend: [HIGH, " << ServiceCreator::wiperSend.wipingInterval << "]";
+                mLogger.LogInfo() << "wiperSend: [HIGH, " << wipingIntervalSend << "]";
                 break;
             case BCM_WipingLevel::LOW:
-                mLogger.LogInfo() << "wiperSend: [LOW, " << ServiceCreator::wiperSend.wipingInterval << "]";
+                mLogger.LogInfo() << "wiperSend: [LOW, " << wipingIntervalSend << "]";
                 break;
             case BCM_WipingLevel::MEDIUM:
-                mLogger.LogInfo() << "wiperSend: [MEDIUM, " << ServiceCreator::wiperSend.wipingInterval << "]";
+                mLogger.LogInfo() << "wiperSend: [MEDIUM, " << wipingIntervalSend << "]";
                 break;
             case BCM_WipingLevel::STOP:
-                mLogger.LogInfo() << "wiperSend: [STOP, " << ServiceCreator::wiperSend.wipingInterval << "]";
+                mLogger.LogInfo() << "wiperSend: [STOP, " << wipingIntervalSend << "]";
                 break;
             default:
                 break;
             }
         }
-
-        void
-        ServiceCreator::setWiperSend(std::uint16_t &wipingInterval)
-        {
-            ServiceCreator::wiperSend.wipingInterval = wipingInterval;
-        }
-
-        void
-        ServiceCreator::setWiperSend(const eevp::simulation::BCM_WipingLevel &wipingLevel)
-        {
-            ServiceCreator::wiperSend.wipingLevel = wipingLevel;
-        }
-
         // Wiper End
 
         // TMoodLamp Start
@@ -447,14 +386,16 @@ namespace eevp
             }
             else
             {
-                mLogger.LogInfo() << "파일에 데이터가 성공적으로 기록되었습니다";
+                mLogger.LogInfo() << "msg.bin 생성";
             }
             binFile.close();
 
             // 2. "msg.pre" 삭제
+            mLogger.LogInfo() << "msg.pre 삭제 시도";
             std::remove(preFilePath.c_str());
 
             // 3. "msg.bin" -> "msg.pre"로 이름 변경
+            mLogger.LogInfo() << "msg.bin -> msg.pre 확장자 변경";
             std::rename(binFilePath.c_str(), preFilePath.c_str());
 
             return;
@@ -619,6 +560,10 @@ namespace eevp
         {
             mLogger.LogInfo() << __func__;
 
+            // Wiper
+            this->wipingLevelSend = eevp::simulation::BCM_WipingLevel::STOP;
+            this->wipingIntervalSend = 0U;
+
             // TMoodLamp
             this->BrightnessSend = 0;
             this->moodSend = lmp::mode::SoaMImMoodeMode::kCARE_MOOD;
@@ -643,7 +588,7 @@ namespace eevp
             mLogger.LogInfo() << __func__;
 
             ara::core::InstanceSpecifier specifier_WiperWash("ServiceCreator/AA/PPort_BCM_WiperWash");
-            ara::core::InstanceSpecifier specifier_TMoodLamp("ServiceCreator/AA/PPort_EevpControlSoaMlm");
+            ara::core::InstanceSpecifier specifier_TMoodLamp("ServiceCreator/AA/PPort_EevpControlSoaMIm");
             ara::core::InstanceSpecifier specifier_BmsInfo("ServiceCreator/AA/PPort_BmsInfo");
             ara::core::InstanceSpecifier specifier_AccrPedal("ServiceCreator/AA/PPort_VCS_AccrPedal");
             ara::core::InstanceSpecifier specifier_EnvMonitor("ServiceCreator/AA/PPort_TMS_EnvMonitor");
@@ -858,8 +803,8 @@ namespace eevp
 
                     // 각 구독앱에 Update
                     // Wiper
-                    instance->setWipingLevel(instance->wiperRecv.wipingLevel);
-                    instance->setWipingInterval(instance->wiperRecv.wipingInterval);
+                    instance->setWipingLevel(instance->wipingLevelReceive);
+                    instance->setWipingInterval(instance->wipingIntervalReceive);
 
                     // BmsInfo
                     instance->notifyBmsInfo(instance->bmsInfo);
@@ -875,8 +820,8 @@ namespace eevp
         // Wiper 데이터 추출
         void ServiceCreator::extractWiperData(const json &wiperData)
         {
-            wiperRecv.wipingLevel = static_cast<eevp::simulation::BCM_WipingLevel>(wiperData.value("wipingLevel", 0));
-            wiperRecv.wipingInterval = wiperData.value("wipingInterval", 0);
+            wipingLevelReceive = static_cast<eevp::simulation::BCM_WipingLevel>(wiperData.value("wipingLevel", 0));
+            wipingIntervalReceive = wiperData.value("wipingInterval", 0);
         }
 
         // Battery 데이터 추출
@@ -981,10 +926,7 @@ namespace eevp
         {
             vehicle_Data_receive.Fwd_Distance = seslData.value("Fwd_Distance", static_cast<std::double_t>(0));
             vehicle_Data_receive.Rear_Distance = seslData.value("Rear_Distance", static_cast<std::double_t>(0));
-
         }
-
-
 
         // 데이터를 JSON으로 묶어서 반환
         json ServiceCreator::prepareData()
@@ -999,8 +941,8 @@ namespace eevp
 
             // Wiper 데이터
             sendData["Wiper"] = {
-                {"wipingLevel", this->wiperSend.wipingLevel},
-                {"wipingInterval", this->wiperSend.wipingInterval}};
+                {"wipingLevel", this->wipingLevelSend},
+                {"wipingInterval", this->wipingIntervalSend}};
 
             // Lotte 데이터
             sendData["Lotte"] = {

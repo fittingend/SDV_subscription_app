@@ -23,8 +23,8 @@ namespace eevp
 
             void setEventListener(std::shared_ptr<eevp::simulation::IBrakePedalListener> _listener);
 
-            Future<skeleton::VCS_BrakePedalSkeleton::notifyStatusOutput> notifyStatus();
-            Future<skeleton::VCS_BrakePedalSkeleton::notifySwitchOutput> notifySwitch();
+            Future<skeleton::VCS_BrakePedalSkeleton::notifyBrakeStatusOutput> notifyBrakeStatus();
+            Future<skeleton::VCS_BrakePedalSkeleton::notifyBrakeSwitchOutput> notifyBrakeSwitch();
 
 
         private:

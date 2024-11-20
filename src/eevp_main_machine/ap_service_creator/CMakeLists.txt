@@ -49,7 +49,6 @@ MESSAGE(STATUS "PARA_APP_GEN_INCLUDE_DIR : ${PARA_APP_GEN_INCLUDE_DIR}")
 SET(SRC
     src/main.cpp
     src/ServiceCreator.cpp
-    src/ServiceManagementSkeletonImpl.cpp
     src/WiperSkeletonImpl.cpp
     src/TMoodLampSkeletonImpl.cpp
     src/BmsInfoSkeletonImpl.cpp

@@ -25,13 +25,13 @@ namespace eevp
             listener = _listener;
         }
 
-        Future<skeleton::VCS_BrakePedalSkeleton::notifyStatusOutput>
-        BrakePedalSkeletonImpl::notifyStatus()
+        Future<skeleton::VCS_BrakePedalSkeleton::notifyBrakeStatusOutput>
+        BrakePedalSkeletonImpl::notifyBrakeStatus()
         {
             mLogger.LogInfo() << __func__;
 
-            skeleton::VCS_BrakePedalSkeleton::notifyStatusOutput response;
-            Promise<notifyStatusOutput> promise;
+            skeleton::VCS_BrakePedalSkeleton::notifyBrakeStatusOutput response;
+            Promise<notifyBrakeStatusOutput> promise;
 
             if (listener != nullptr)
             {
@@ -42,10 +42,21 @@ namespace eevp
             return promise.get_future();
         }
 
-        Future<skeleton::VCS_BrakePedalSkeleton::notifySwitchOutput>
-        BrakePedalSkeletonImpl::notifySwitch()
+        Future<skeleton::VCS_BrakePedalSkeleton::notifyBrakeSwitchOutput>
+        BrakePedalSkeletonImpl::notifyBrakeSwitch()
         {
             mLogger.LogInfo() << __func__;
+
+            skeleton::VCS_BrakePedalSkeleton::notifyBrakeSwitchOutput response;
+            Promise<notifyBrakeSwitchOutput> promise;
+
+            if (listener != nullptr)
+            {
+                listener->notifyBrakeSwitch(response.VCS_BrakeSwitch);
+            }
+
+            promise.set_value(response);
+            return promise.get_future();
         }
     }
 }

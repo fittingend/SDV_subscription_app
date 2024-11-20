@@ -23,7 +23,7 @@ namespace eevp
 
             void setEventListener(std::shared_ptr<eevp::simulation::IVehSpdListener> _listener);
 
-            Future<skeleton::VCS_VehSpdSkeleton::notifyStatusOutput> notifyStatus();
+            Future<skeleton::VCS_VehSpdSkeleton::notifyVehSpdOutput> notifyVehSpd();
 
 
         private:

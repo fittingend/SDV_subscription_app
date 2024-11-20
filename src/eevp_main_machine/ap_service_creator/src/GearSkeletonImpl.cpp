@@ -25,13 +25,13 @@ namespace eevp
             listener = _listener;
         }
 
-        Future<skeleton::VCS_GearSkeleton::notifyStatusOutput>
-        GearSkeletonImpl::notifyStatus()
+        Future<skeleton::VCS_GearSkeleton::notifyGearOutput>
+        GearSkeletonImpl::notifyGear()
         {
             mLogger.LogInfo() << __func__;
 
-            skeleton::VCS_GearSkeleton::notifyStatusOutput response;
-            Promise<notifyStatusOutput> promise;
+            skeleton::VCS_GearSkeleton::notifyGearOutput response;
+            Promise<notifyGearOutput> promise;
 
             if (listener != nullptr)
             {
@@ -46,6 +46,12 @@ namespace eevp
         GearSkeletonImpl::setTarget(const eevp::simulation::type::VCS_Gear &targetGear)
         {
             mLogger.LogInfo() << __func__;
+            skeleton::VCS_GearSkeleton::setTargetOutput response;
+            Promise<setTargetOutput> promise;
+            response.returnCode = true;
+
+            promise.set_value(response);
+            return promise.get_future();
         }
     }
 }

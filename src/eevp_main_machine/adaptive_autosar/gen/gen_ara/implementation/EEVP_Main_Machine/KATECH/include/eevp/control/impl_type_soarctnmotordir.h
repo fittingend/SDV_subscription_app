@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_soarctnmotordir.h
 /// IMPLEMENTATION DATA TYPE NAME     : SoaRctnMotorDir
-/// GENERATED DATE                    : 2024-09-02 16:05:54
+/// GENERATED DATE                    : 2024-11-05 15:24:02
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -30,9 +30,9 @@ namespace control
 {
 enum class SoaRctnMotorDir : std::uint8_t
 {
-    kSTOP = 1U,
-    kUP = 2U,
-    kDOWN = 3U
+    kSTOP = 0U,
+    kUP = 1U,
+    kDOWN = 2U
 };
 } /// namespace control
 } /// namespace eevp

@@ -19,7 +19,7 @@
         {
             "name" : "zone1DeviceNormal",
             "getter" : {
-                "method-id" : "803",
+                "method-id" : "2051",
                 "transport" : "udp",
                 "req-max-segment-len" : "0",
                 "req-separation-time" : "0.0",

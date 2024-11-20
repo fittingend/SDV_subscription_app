@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : otasubscription_skeleton.h
 /// SERVICE INTERFACE NAME            : OtaSubscription
-/// GENERATED DATE                    : 2024-08-14 14:33:41
+/// GENERATED DATE                    : 2024-11-05 15:23:51
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -88,6 +88,53 @@ private:
     const std::string kCallSign = {"notifyAppEvent"};
 };
 /// @uptrace{SWS_CM_00003}
+class notifyRollbackComplete
+{
+public:
+    /// @brief Type alias for type of event data
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using SampleType = bool;
+    /// @brief Constructor
+    explicit notifyRollbackComplete(para::com::SkeletonInterface* interface) : mInterface(interface)
+    {
+    }
+    /// @brief Destructor
+    virtual ~notifyRollbackComplete() = default;
+    /// @brief Delete copy constructor
+    notifyRollbackComplete(const notifyRollbackComplete& other) = delete;
+    /// @brief Delete copy assignment
+    notifyRollbackComplete& operator=(const notifyRollbackComplete& other) = delete;
+    /// @brief Move constructor
+    notifyRollbackComplete(notifyRollbackComplete&& other) noexcept : mInterface(other.mInterface)
+    {
+    }
+    /// @brief Move assignment
+    notifyRollbackComplete& operator=(notifyRollbackComplete&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        return *this;
+    }
+    /// @brief Send event with data to subscribing service consumers
+    /// @uptrace{SWS_CM_90437}
+    ara::core::Result<void> Send(const SampleType& data)
+    {
+        para::serializer::Serializer serializer{};
+        serializer.write(data);
+        auto payload = serializer.ensure();
+        return mInterface->SendEvent(kCallSign, payload);
+    }
+    /// @brief Returns unique pointer about SampleType
+    /// @uptrace{SWS_CM_90438}
+    ara::core::Result<ara::com::SampleAllocateePtr<SampleType>> Allocate()
+    {
+        return std::make_unique<SampleType>();
+    }
+    
+private:
+    para::com::SkeletonInterface* mInterface;
+    const std::string kCallSign = {"notifyRollbackComplete"};
+};
+/// @uptrace{SWS_CM_00003}
 class notifyUpdatableApp
 {
 public:
@@ -134,6 +181,53 @@ private:
     para::com::SkeletonInterface* mInterface;
     const std::string kCallSign = {"notifyUpdatableApp"};
 };
+/// @uptrace{SWS_CM_00003}
+class notifyUpdateComplete
+{
+public:
+    /// @brief Type alias for type of event data
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using SampleType = bool;
+    /// @brief Constructor
+    explicit notifyUpdateComplete(para::com::SkeletonInterface* interface) : mInterface(interface)
+    {
+    }
+    /// @brief Destructor
+    virtual ~notifyUpdateComplete() = default;
+    /// @brief Delete copy constructor
+    notifyUpdateComplete(const notifyUpdateComplete& other) = delete;
+    /// @brief Delete copy assignment
+    notifyUpdateComplete& operator=(const notifyUpdateComplete& other) = delete;
+    /// @brief Move constructor
+    notifyUpdateComplete(notifyUpdateComplete&& other) noexcept : mInterface(other.mInterface)
+    {
+    }
+    /// @brief Move assignment
+    notifyUpdateComplete& operator=(notifyUpdateComplete&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        return *this;
+    }
+    /// @brief Send event with data to subscribing service consumers
+    /// @uptrace{SWS_CM_90437}
+    ara::core::Result<void> Send(const SampleType& data)
+    {
+        para::serializer::Serializer serializer{};
+        serializer.write(data);
+        auto payload = serializer.ensure();
+        return mInterface->SendEvent(kCallSign, payload);
+    }
+    /// @brief Returns unique pointer about SampleType
+    /// @uptrace{SWS_CM_90438}
+    ara::core::Result<ara::com::SampleAllocateePtr<SampleType>> Allocate()
+    {
+        return std::make_unique<SampleType>();
+    }
+    
+private:
+    para::com::SkeletonInterface* mInterface;
+    const std::string kCallSign = {"notifyUpdateComplete"};
+};
 } /// namespace events
 /// @uptrace{SWS_CM_01031}
 namespace fields
@@ -147,6 +241,9 @@ public:
     struct requestAppInstallOutput
     {
         bool returnValue;
+    };
+    struct requestAppRollbackOutput
+    {
     };
     struct requestAppUpdateOutput
     {
@@ -162,10 +259,15 @@ public:
     OtaSubscriptionSkeleton(ara::core::InstanceSpecifier instanceSpec, ara::com::MethodCallProcessingMode mode = ara::com::MethodCallProcessingMode::kEvent)
         : mInterface(std::make_unique<para::com::SkeletonInterface>(instanceSpec, mode))
         , notifyAppEvent(mInterface.get())
+        , notifyRollbackComplete(mInterface.get())
         , notifyUpdatableApp(mInterface.get())
+        , notifyUpdateComplete(mInterface.get())
     {
         mInterface->SetMethodCallHandler(krequestAppInstallCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlerequestAppInstall(data, token);
+        });
+        mInterface->SetMethodCallHandler(krequestAppRollbackCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandlerequestAppRollback(data, token);
         });
         mInterface->SetMethodCallHandler(krequestAppUpdateCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlerequestAppUpdate(data, token);
@@ -190,10 +292,15 @@ public:
     OtaSubscriptionSkeleton(OtaSubscriptionSkeleton&& other) noexcept
         : mInterface(std::move(other.mInterface))
         , notifyAppEvent(std::move(other.notifyAppEvent))
+        , notifyRollbackComplete(std::move(other.notifyRollbackComplete))
         , notifyUpdatableApp(std::move(other.notifyUpdatableApp))
+        , notifyUpdateComplete(std::move(other.notifyUpdateComplete))
     {
         mInterface->SetMethodCallHandler(krequestAppInstallCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlerequestAppInstall(data, token);
+        });
+        mInterface->SetMethodCallHandler(krequestAppRollbackCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandlerequestAppRollback(data, token);
         });
         mInterface->SetMethodCallHandler(krequestAppUpdateCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlerequestAppUpdate(data, token);
@@ -212,9 +319,14 @@ public:
     {
         mInterface = std::move(other.mInterface);
         notifyAppEvent = std::move(other.notifyAppEvent);
+        notifyRollbackComplete = std::move(other.notifyRollbackComplete);
         notifyUpdatableApp = std::move(other.notifyUpdatableApp);
+        notifyUpdateComplete = std::move(other.notifyUpdateComplete);
         mInterface->SetMethodCallHandler(krequestAppInstallCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlerequestAppInstall(data, token);
+        });
+        mInterface->SetMethodCallHandler(krequestAppRollbackCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandlerequestAppRollback(data, token);
         });
         mInterface->SetMethodCallHandler(krequestAppUpdateCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlerequestAppUpdate(data, token);
@@ -270,11 +382,18 @@ private:
 public:
     /// @brief Event, notifyAppEvent
     events::notifyAppEvent notifyAppEvent;
+    /// @brief Event, notifyRollbackComplete
+    events::notifyRollbackComplete notifyRollbackComplete;
     /// @brief Event, notifyUpdatableApp
     events::notifyUpdatableApp notifyUpdatableApp;
+    /// @brief Event, notifyUpdateComplete
+    events::notifyUpdateComplete notifyUpdateComplete;
     /// @brief Method, requestAppInstall
     /// @uptrace{SWS_CM_00191}
     virtual ara::core::Future<requestAppInstallOutput> requestAppInstall(const eevp::type::String& appName) = 0;
+    /// @brief Method, requestAppRollback
+    /// @uptrace{SWS_CM_00191}
+    virtual ara::core::Future<requestAppRollbackOutput> requestAppRollback() = 0;
     /// @brief Method, requestAppUpdate
     /// @uptrace{SWS_CM_00191}
     virtual ara::core::Future<requestAppUpdateOutput> requestAppUpdate(const eevp::type::String& appName) = 0;
@@ -311,6 +430,28 @@ private:
             retResult = 1;
         }
         mInterface->ReturnMethod(krequestAppInstallCallSign, retResult, retData, token);
+    }
+    void HandlerequestAppRollback(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
+    {
+        std::uint8_t retResult{1};
+        std::vector<std::uint8_t> retData{};
+        auto future = requestAppRollback();
+        auto result = future.GetResult();
+        if (result.HasValue())
+        {
+            retResult = 0;
+        }
+        else
+        {
+            ara::core::ErrorDomain::IdType domainId = result.Error().Domain().Id();
+            ara::core::ErrorDomain::CodeType errorCode = result.Error().Value();
+            para::serializer::Serializer serializer{};
+            serializer.write(0, true, 0, domainId);
+            serializer.write(0, true, 0, errorCode);
+            retData = serializer.ensure();
+            retResult = 1;
+        }
+        mInterface->ReturnMethod(krequestAppRollbackCallSign, retResult, retData, token);
     }
     void HandlerequestAppUpdate(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
     {
@@ -369,6 +510,7 @@ private:
         mInterface->ReturnMethod(krequestVersionInfoCallSign, retResult, retData, token);
     }
     const std::string krequestAppInstallCallSign{"requestAppInstall"};
+    const std::string krequestAppRollbackCallSign{"requestAppRollback"};
     const std::string krequestAppUpdateCallSign{"requestAppUpdate"};
     const std::string krequestVersionInfoCallSign{"requestVersionInfo"};
 };

@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : soapower_skeleton.h
 /// SERVICE INTERFACE NAME            : SoaPower
-/// GENERATED DATE                    : 2024-08-14 14:33:44
+/// GENERATED DATE                    : 2024-11-05 15:23:54
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -300,7 +300,7 @@ private:
     std::unique_ptr<para::com::SkeletonInterface> mInterface;
     
 public:
-    /// @brief Field, soaPwrZone1Curr
+    /// @brief Field, soaPowerDeviceNormal
     fields::soaPowerDeviceNormal soaPowerDeviceNormal;
     /// @brief Field, soaPowerSwVersion
     fields::soaPowerSwVersion soaPowerSwVersion;

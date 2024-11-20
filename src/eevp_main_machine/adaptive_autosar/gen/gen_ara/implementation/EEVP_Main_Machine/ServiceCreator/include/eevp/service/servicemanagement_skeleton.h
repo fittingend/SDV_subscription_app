@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : servicemanagement_skeleton.h
 /// SERVICE INTERFACE NAME            : ServiceManagement
-/// GENERATED DATE                    : 2024-10-29 13:55:04
+/// GENERATED DATE                    : 2024-11-05 15:24:00
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -41,29 +41,29 @@ namespace events
 namespace fields
 {
 /// @uptrace{SWS_CM_00007}
-class wiperLevel
+class brakePedalRecv
 {
 public:
     /// @brief Type alias for type of field value
     /// @uptrace{SWS_CM_00162, SWS_CM_90437}
-    using FieldType = eevp::simulation::BCM_WipingLevel;
+    using FieldType = eevp::service::type::BrakePedalRecv;
     /// @brief Constructor
-    explicit wiperLevel(para::com::SkeletonInterface* interface) : mInterface(interface)
+    explicit brakePedalRecv(para::com::SkeletonInterface* interface) : mInterface(interface)
     {
     }
     /// @brief Destructor
-    virtual ~wiperLevel() = default;
+    virtual ~brakePedalRecv() = default;
     /// @brief Delete copy constructor
-    wiperLevel(const wiperLevel& other) = delete;
+    brakePedalRecv(const brakePedalRecv& other) = delete;
     /// @brief Delete copy assignment
-    wiperLevel& operator=(const wiperLevel& other) = delete;
+    brakePedalRecv& operator=(const brakePedalRecv& other) = delete;
     /// @brief Move constructor
-    wiperLevel(wiperLevel&& other) noexcept : mInterface(other.mInterface)
+    brakePedalRecv(brakePedalRecv&& other) noexcept : mInterface(other.mInterface)
     {
         RegisterGetHandler(std::move(other.mGetHandler));
     }
     /// @brief Move assignment
-    wiperLevel& operator=(wiperLevel&& other) noexcept
+    brakePedalRecv& operator=(brakePedalRecv&& other) noexcept
     {
         mInterface = other.mInterface;
         RegisterGetHandler(std::move(other.mGetHandler));
@@ -122,8 +122,93 @@ private:
     }
     para::com::SkeletonInterface* mInterface;
     std::function<ara::core::Future<FieldType>()> mGetHandler{nullptr};
-    const std::string kGetterCallSign = {"wiperLevelGetter"};
-    const std::string kNotifierCallSign = {"wiperLevelNotifier"};
+    const std::string kGetterCallSign = {"brakePedalRecvGetter"};
+    const std::string kNotifierCallSign = {"brakePedalRecvNotifier"};
+};
+/// @uptrace{SWS_CM_00007}
+class brakePedalSend
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = eevp::service::type::BrakePedalSend;
+    /// @brief Constructor
+    explicit brakePedalSend(para::com::SkeletonInterface* interface) : mInterface(interface)
+    {
+    }
+    /// @brief Destructor
+    virtual ~brakePedalSend() = default;
+    /// @brief Delete copy constructor
+    brakePedalSend(const brakePedalSend& other) = delete;
+    /// @brief Delete copy assignment
+    brakePedalSend& operator=(const brakePedalSend& other) = delete;
+    /// @brief Move constructor
+    brakePedalSend(brakePedalSend&& other) noexcept : mInterface(other.mInterface)
+    {
+        RegisterGetHandler(std::move(other.mGetHandler));
+    }
+    /// @brief Move assignment
+    brakePedalSend& operator=(brakePedalSend&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        RegisterGetHandler(std::move(other.mGetHandler));
+        return *this;
+    }
+    /// @brief Register callback for getter method
+    /// @uptrace{SWS_CM_00114}
+    ara::core::Result<void> RegisterGetHandler(std::function<ara::core::Future<FieldType>()> getHandler)
+    {
+        ara::core::Result<void> result{};
+        if (getHandler != nullptr)
+        {
+            mGetHandler = std::move(getHandler);
+            mInterface->SetMethodCallHandler(kGetterCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+                HandleGet(token);
+            });
+        }
+        return result;
+    }
+    /// @brief Send notification with value to subscribing service consumers
+    /// @uptrace{SWS_CM_90437}
+    ara::core::Result<void> Update(const FieldType& value)
+    {
+        para::serializer::Serializer serializer{};
+        serializer.write(value);
+        auto payload = serializer.ensure();
+        return mInterface->SendEvent(kNotifierCallSign, payload);
+    }
+    
+private:
+    void HandleGet(const para::com::MethodToken token)
+    {
+        std::uint8_t retResult{1};
+        std::vector<std::uint8_t> retData{};
+        auto future = mGetHandler();
+        auto result = future.GetResult();
+        if (result.HasValue())
+        {
+            FieldType value = result.Value();
+            para::serializer::Serializer serializer{};
+            serializer.write(value);
+            retData = serializer.ensure();
+            retResult = 0;
+        }
+        else
+        {
+            ara::core::ErrorDomain::IdType domainId = result.Error().Domain().Id();
+            ara::core::ErrorDomain::CodeType errorCode = result.Error().Value();
+            para::serializer::Serializer serializer{};
+            serializer.write(0, true, 0, domainId);
+            serializer.write(0, true, 0, errorCode);
+            retData = serializer.ensure();
+            retResult = 1;
+        }
+        mInterface->ReturnMethod(kGetterCallSign, retResult, retData, token);
+    }
+    para::com::SkeletonInterface* mInterface;
+    std::function<ara::core::Future<FieldType>()> mGetHandler{nullptr};
+    const std::string kGetterCallSign = {"brakePedalSendGetter"};
+    const std::string kNotifierCallSign = {"brakePedalSendNotifier"};
 };
 /// @uptrace{SWS_CM_00007}
 class wiperInterval
@@ -209,6 +294,91 @@ private:
     std::function<ara::core::Future<FieldType>()> mGetHandler{nullptr};
     const std::string kGetterCallSign = {"wiperIntervalGetter"};
     const std::string kNotifierCallSign = {"wiperIntervalNotifier"};
+};
+/// @uptrace{SWS_CM_00007}
+class wiperLevel
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = eevp::simulation::BCM_WipingLevel;
+    /// @brief Constructor
+    explicit wiperLevel(para::com::SkeletonInterface* interface) : mInterface(interface)
+    {
+    }
+    /// @brief Destructor
+    virtual ~wiperLevel() = default;
+    /// @brief Delete copy constructor
+    wiperLevel(const wiperLevel& other) = delete;
+    /// @brief Delete copy assignment
+    wiperLevel& operator=(const wiperLevel& other) = delete;
+    /// @brief Move constructor
+    wiperLevel(wiperLevel&& other) noexcept : mInterface(other.mInterface)
+    {
+        RegisterGetHandler(std::move(other.mGetHandler));
+    }
+    /// @brief Move assignment
+    wiperLevel& operator=(wiperLevel&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        RegisterGetHandler(std::move(other.mGetHandler));
+        return *this;
+    }
+    /// @brief Register callback for getter method
+    /// @uptrace{SWS_CM_00114}
+    ara::core::Result<void> RegisterGetHandler(std::function<ara::core::Future<FieldType>()> getHandler)
+    {
+        ara::core::Result<void> result{};
+        if (getHandler != nullptr)
+        {
+            mGetHandler = std::move(getHandler);
+            mInterface->SetMethodCallHandler(kGetterCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+                HandleGet(token);
+            });
+        }
+        return result;
+    }
+    /// @brief Send notification with value to subscribing service consumers
+    /// @uptrace{SWS_CM_90437}
+    ara::core::Result<void> Update(const FieldType& value)
+    {
+        para::serializer::Serializer serializer{};
+        serializer.write(value);
+        auto payload = serializer.ensure();
+        return mInterface->SendEvent(kNotifierCallSign, payload);
+    }
+    
+private:
+    void HandleGet(const para::com::MethodToken token)
+    {
+        std::uint8_t retResult{1};
+        std::vector<std::uint8_t> retData{};
+        auto future = mGetHandler();
+        auto result = future.GetResult();
+        if (result.HasValue())
+        {
+            FieldType value = result.Value();
+            para::serializer::Serializer serializer{};
+            serializer.write(value);
+            retData = serializer.ensure();
+            retResult = 0;
+        }
+        else
+        {
+            ara::core::ErrorDomain::IdType domainId = result.Error().Domain().Id();
+            ara::core::ErrorDomain::CodeType errorCode = result.Error().Value();
+            para::serializer::Serializer serializer{};
+            serializer.write(0, true, 0, domainId);
+            serializer.write(0, true, 0, errorCode);
+            retData = serializer.ensure();
+            retResult = 1;
+        }
+        mInterface->ReturnMethod(kGetterCallSign, retResult, retData, token);
+    }
+    para::com::SkeletonInterface* mInterface;
+    std::function<ara::core::Future<FieldType>()> mGetHandler{nullptr};
+    const std::string kGetterCallSign = {"wiperLevelGetter"};
+    const std::string kNotifierCallSign = {"wiperLevelNotifier"};
 };
 /// @uptrace{SWS_CM_00007}
 class wiperRecv
@@ -386,25 +556,21 @@ class ServiceManagementSkeleton
 {
 public:
     /// @uptrace{SWS_CM_00191}
-    struct stopWipingOutput
+    struct getWipingIntervalOutput
     {
-        eevp::simulation::BCM_ReturnCode bcm_returnCode;
-    };
-    struct startWipingOutput
-    {
-        eevp::simulation::BCM_ReturnCode bcm_returnCode;
-    };
-    struct isWipingOutput
-    {
-        bool status;
+        std::uint16_t wipingInterval;
     };
     struct getWipingLevelOutput
     {
         eevp::simulation::BCM_WipingLevel wipingLevel;
     };
-    struct getWipingIntervalOutput
+    struct isWipingOutput
     {
-        std::uint16_t wipingInterval;
+        bool status;
+    };
+    struct setWipingIntervalOutput
+    {
+        eevp::simulation::BCM_ReturnCode BCM_ReturnCode;
     };
     struct setWipingLevelOutput
     {
@@ -414,33 +580,36 @@ public:
     {
         eevp::simulation::BCM_ReturnCode BCM_ReturnCode;
     };
-    struct setWipingIntervalOutput
+    struct startWipingOutput
     {
-        eevp::simulation::BCM_ReturnCode BCM_ReturnCode;
+        eevp::simulation::BCM_ReturnCode bcm_returnCode;
+    };
+    struct stopWipingOutput
+    {
+        eevp::simulation::BCM_ReturnCode bcm_returnCode;
     };
     /// @brief Constructor
     /// @uptrace{SWS_CM_00002, SWS_CM_00152}
     ServiceManagementSkeleton(ara::core::InstanceSpecifier instanceSpec, ara::com::MethodCallProcessingMode mode = ara::com::MethodCallProcessingMode::kEvent)
         : mInterface(std::make_unique<para::com::SkeletonInterface>(instanceSpec, mode))
-        , wiperLevel(mInterface.get())
+        , brakePedalRecv(mInterface.get())
+        , brakePedalSend(mInterface.get())
         , wiperInterval(mInterface.get())
+        , wiperLevel(mInterface.get())
         , wiperRecv(mInterface.get())
         , wiperSend(mInterface.get())
     {
-        mInterface->SetMethodCallHandler(kstopWipingCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlestopWiping(data, token);
-        });
-        mInterface->SetMethodCallHandler(kstartWipingCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlestartWiping(data, token);
-        });
-        mInterface->SetMethodCallHandler(kisWipingCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandleisWiping(data, token);
+        mInterface->SetMethodCallHandler(kgetWipingIntervalCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandlegetWipingInterval(data, token);
         });
         mInterface->SetMethodCallHandler(kgetWipingLevelCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlegetWipingLevel(data, token);
         });
-        mInterface->SetMethodCallHandler(kgetWipingIntervalCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlegetWipingInterval(data, token);
+        mInterface->SetMethodCallHandler(kisWipingCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandleisWiping(data, token);
+        });
+        mInterface->SetMethodCallHandler(ksetWipingIntervalCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandlesetWipingInterval(data, token);
         });
         mInterface->SetMethodCallHandler(ksetWipingLevelCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlesetWipingLevel(data, token);
@@ -448,8 +617,11 @@ public:
         mInterface->SetMethodCallHandler(ksetWipingLevelImmeCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlesetWipingLevelImme(data, token);
         });
-        mInterface->SetMethodCallHandler(ksetWipingIntervalCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlesetWipingInterval(data, token);
+        mInterface->SetMethodCallHandler(kstartWipingCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandlestartWiping(data, token);
+        });
+        mInterface->SetMethodCallHandler(kstopWipingCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandlestopWiping(data, token);
         });
         mInterface->SetE2EErrorHandler([this](const ara::com::e2e::E2EErrorDomain& errorCode, ara::com::e2e::DataID dataID, ara::com::e2e::MessageCounter messageCounter) {
             E2EErrorHandler(errorCode, dataID, messageCounter);
@@ -467,25 +639,24 @@ public:
     /// @uptrace{SWS_CM_00135}
     ServiceManagementSkeleton(ServiceManagementSkeleton&& other) noexcept
         : mInterface(std::move(other.mInterface))
-        , wiperLevel(std::move(other.wiperLevel))
+        , brakePedalRecv(std::move(other.brakePedalRecv))
+        , brakePedalSend(std::move(other.brakePedalSend))
         , wiperInterval(std::move(other.wiperInterval))
+        , wiperLevel(std::move(other.wiperLevel))
         , wiperRecv(std::move(other.wiperRecv))
         , wiperSend(std::move(other.wiperSend))
     {
-        mInterface->SetMethodCallHandler(kstopWipingCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlestopWiping(data, token);
-        });
-        mInterface->SetMethodCallHandler(kstartWipingCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlestartWiping(data, token);
-        });
-        mInterface->SetMethodCallHandler(kisWipingCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandleisWiping(data, token);
+        mInterface->SetMethodCallHandler(kgetWipingIntervalCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandlegetWipingInterval(data, token);
         });
         mInterface->SetMethodCallHandler(kgetWipingLevelCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlegetWipingLevel(data, token);
         });
-        mInterface->SetMethodCallHandler(kgetWipingIntervalCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlegetWipingInterval(data, token);
+        mInterface->SetMethodCallHandler(kisWipingCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandleisWiping(data, token);
+        });
+        mInterface->SetMethodCallHandler(ksetWipingIntervalCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandlesetWipingInterval(data, token);
         });
         mInterface->SetMethodCallHandler(ksetWipingLevelCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlesetWipingLevel(data, token);
@@ -493,8 +664,11 @@ public:
         mInterface->SetMethodCallHandler(ksetWipingLevelImmeCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlesetWipingLevelImme(data, token);
         });
-        mInterface->SetMethodCallHandler(ksetWipingIntervalCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlesetWipingInterval(data, token);
+        mInterface->SetMethodCallHandler(kstartWipingCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandlestartWiping(data, token);
+        });
+        mInterface->SetMethodCallHandler(kstopWipingCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandlestopWiping(data, token);
         });
         mInterface->SetE2EErrorHandler([this](const ara::com::e2e::E2EErrorDomain& errorCode, ara::com::e2e::DataID dataID, ara::com::e2e::MessageCounter messageCounter) {
             E2EErrorHandler(errorCode, dataID, messageCounter);
@@ -506,24 +680,23 @@ public:
     ServiceManagementSkeleton& operator=(ServiceManagementSkeleton&& other) noexcept
     {
         mInterface = std::move(other.mInterface);
-        wiperLevel = std::move(other.wiperLevel);
+        brakePedalRecv = std::move(other.brakePedalRecv);
+        brakePedalSend = std::move(other.brakePedalSend);
         wiperInterval = std::move(other.wiperInterval);
+        wiperLevel = std::move(other.wiperLevel);
         wiperRecv = std::move(other.wiperRecv);
         wiperSend = std::move(other.wiperSend);
-        mInterface->SetMethodCallHandler(kstopWipingCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlestopWiping(data, token);
-        });
-        mInterface->SetMethodCallHandler(kstartWipingCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlestartWiping(data, token);
-        });
-        mInterface->SetMethodCallHandler(kisWipingCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandleisWiping(data, token);
+        mInterface->SetMethodCallHandler(kgetWipingIntervalCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandlegetWipingInterval(data, token);
         });
         mInterface->SetMethodCallHandler(kgetWipingLevelCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlegetWipingLevel(data, token);
         });
-        mInterface->SetMethodCallHandler(kgetWipingIntervalCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlegetWipingInterval(data, token);
+        mInterface->SetMethodCallHandler(kisWipingCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandleisWiping(data, token);
+        });
+        mInterface->SetMethodCallHandler(ksetWipingIntervalCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandlesetWipingInterval(data, token);
         });
         mInterface->SetMethodCallHandler(ksetWipingLevelCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlesetWipingLevel(data, token);
@@ -531,8 +704,11 @@ public:
         mInterface->SetMethodCallHandler(ksetWipingLevelImmeCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlesetWipingLevelImme(data, token);
         });
-        mInterface->SetMethodCallHandler(ksetWipingIntervalCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlesetWipingInterval(data, token);
+        mInterface->SetMethodCallHandler(kstartWipingCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandlestartWiping(data, token);
+        });
+        mInterface->SetMethodCallHandler(kstopWipingCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandlestopWiping(data, token);
         });
         mInterface->SetE2EErrorHandler([this](const ara::com::e2e::E2EErrorDomain& errorCode, ara::com::e2e::DataID dataID, ara::com::e2e::MessageCounter messageCounter) {
             E2EErrorHandler(errorCode, dataID, messageCounter);
@@ -580,51 +756,55 @@ private:
     std::unique_ptr<para::com::SkeletonInterface> mInterface;
     
 public:
-    /// @brief Field, wiperLevel
-    fields::wiperLevel wiperLevel;
+    /// @brief Field, brakePedalRecv
+    fields::brakePedalRecv brakePedalRecv;
+    /// @brief Field, brakePedalSend
+    fields::brakePedalSend brakePedalSend;
     /// @brief Field, wiperInterval
     fields::wiperInterval wiperInterval;
+    /// @brief Field, wiperLevel
+    fields::wiperLevel wiperLevel;
     /// @brief Field, wiperRecv
     fields::wiperRecv wiperRecv;
     /// @brief Field, wiperSend
     fields::wiperSend wiperSend;
-    /// @brief Method, stopWiping
-    /// @uptrace{SWS_CM_00191}
-    virtual ara::core::Future<stopWipingOutput> stopWiping() = 0;
-    /// @brief Method, startWiping
-    /// @uptrace{SWS_CM_00191}
-    virtual ara::core::Future<startWipingOutput> startWiping() = 0;
-    /// @brief Method, isWiping
-    /// @uptrace{SWS_CM_00191}
-    virtual ara::core::Future<isWipingOutput> isWiping() = 0;
-    /// @brief Method, getWipingLevel
-    /// @uptrace{SWS_CM_00191}
-    virtual ara::core::Future<getWipingLevelOutput> getWipingLevel() = 0;
     /// @brief Method, getWipingInterval
     /// @uptrace{SWS_CM_00191}
     virtual ara::core::Future<getWipingIntervalOutput> getWipingInterval() = 0;
+    /// @brief Method, getWipingLevel
+    /// @uptrace{SWS_CM_00191}
+    virtual ara::core::Future<getWipingLevelOutput> getWipingLevel() = 0;
+    /// @brief Method, isWiping
+    /// @uptrace{SWS_CM_00191}
+    virtual ara::core::Future<isWipingOutput> isWiping() = 0;
+    /// @brief Method, setWipingInterval
+    /// @uptrace{SWS_CM_00191}
+    virtual ara::core::Future<setWipingIntervalOutput> setWipingInterval(const std::uint16_t& wipingInterval) = 0;
     /// @brief Method, setWipingLevel
     /// @uptrace{SWS_CM_00191}
     virtual ara::core::Future<setWipingLevelOutput> setWipingLevel(const eevp::simulation::BCM_WipingLevel& wipingLevel) = 0;
     /// @brief Method, setWipingLevelImme
     /// @uptrace{SWS_CM_00191}
     virtual ara::core::Future<setWipingLevelImmeOutput> setWipingLevelImme(const eevp::simulation::BCM_WipingLevel& wipingLevel) = 0;
-    /// @brief Method, setWipingInterval
+    /// @brief Method, startWiping
     /// @uptrace{SWS_CM_00191}
-    virtual ara::core::Future<setWipingIntervalOutput> setWipingInterval(const std::uint16_t& wipingInterval) = 0;
+    virtual ara::core::Future<startWipingOutput> startWiping() = 0;
+    /// @brief Method, stopWiping
+    /// @uptrace{SWS_CM_00191}
+    virtual ara::core::Future<stopWipingOutput> stopWiping() = 0;
     
 private:
-    void HandlestopWiping(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
+    void HandlegetWipingInterval(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
     {
         std::uint8_t retResult{1};
         std::vector<std::uint8_t> retData{};
-        auto future = stopWiping();
+        auto future = getWipingInterval();
         auto result = future.GetResult();
         if (result.HasValue())
         {
-            stopWipingOutput output = result.Value();
+            getWipingIntervalOutput output = result.Value();
             para::serializer::Serializer serializer{};
-            serializer.write(output.bcm_returnCode);
+            serializer.write(output.wipingInterval);
             retData = serializer.ensure();
             retResult = 0;
         }
@@ -638,59 +818,7 @@ private:
             retData = serializer.ensure();
             retResult = 1;
         }
-        mInterface->ReturnMethod(kstopWipingCallSign, retResult, retData, token);
-    }
-    void HandlestartWiping(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
-    {
-        std::uint8_t retResult{1};
-        std::vector<std::uint8_t> retData{};
-        auto future = startWiping();
-        auto result = future.GetResult();
-        if (result.HasValue())
-        {
-            startWipingOutput output = result.Value();
-            para::serializer::Serializer serializer{};
-            serializer.write(output.bcm_returnCode);
-            retData = serializer.ensure();
-            retResult = 0;
-        }
-        else
-        {
-            ara::core::ErrorDomain::IdType domainId = result.Error().Domain().Id();
-            ara::core::ErrorDomain::CodeType errorCode = result.Error().Value();
-            para::serializer::Serializer serializer{};
-            serializer.write(0, true, 0, domainId);
-            serializer.write(0, true, 0, errorCode);
-            retData = serializer.ensure();
-            retResult = 1;
-        }
-        mInterface->ReturnMethod(kstartWipingCallSign, retResult, retData, token);
-    }
-    void HandleisWiping(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
-    {
-        std::uint8_t retResult{1};
-        std::vector<std::uint8_t> retData{};
-        auto future = isWiping();
-        auto result = future.GetResult();
-        if (result.HasValue())
-        {
-            isWipingOutput output = result.Value();
-            para::serializer::Serializer serializer{};
-            serializer.write(output.status);
-            retData = serializer.ensure();
-            retResult = 0;
-        }
-        else
-        {
-            ara::core::ErrorDomain::IdType domainId = result.Error().Domain().Id();
-            ara::core::ErrorDomain::CodeType errorCode = result.Error().Value();
-            para::serializer::Serializer serializer{};
-            serializer.write(0, true, 0, domainId);
-            serializer.write(0, true, 0, errorCode);
-            retData = serializer.ensure();
-            retResult = 1;
-        }
-        mInterface->ReturnMethod(kisWipingCallSign, retResult, retData, token);
+        mInterface->ReturnMethod(kgetWipingIntervalCallSign, retResult, retData, token);
     }
     void HandlegetWipingLevel(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
     {
@@ -718,17 +846,17 @@ private:
         }
         mInterface->ReturnMethod(kgetWipingLevelCallSign, retResult, retData, token);
     }
-    void HandlegetWipingInterval(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
+    void HandleisWiping(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
     {
         std::uint8_t retResult{1};
         std::vector<std::uint8_t> retData{};
-        auto future = getWipingInterval();
+        auto future = isWiping();
         auto result = future.GetResult();
         if (result.HasValue())
         {
-            getWipingIntervalOutput output = result.Value();
+            isWipingOutput output = result.Value();
             para::serializer::Serializer serializer{};
-            serializer.write(output.wipingInterval);
+            serializer.write(output.status);
             retData = serializer.ensure();
             retResult = 0;
         }
@@ -742,7 +870,36 @@ private:
             retData = serializer.ensure();
             retResult = 1;
         }
-        mInterface->ReturnMethod(kgetWipingIntervalCallSign, retResult, retData, token);
+        mInterface->ReturnMethod(kisWipingCallSign, retResult, retData, token);
+    }
+    void HandlesetWipingInterval(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
+    {
+        std::uint8_t retResult{1};
+        std::vector<std::uint8_t> retData{};
+        para::serializer::Deserializer deserializer{data};
+        std::uint16_t _wipingInterval_;
+        deserializer.read(_wipingInterval_);
+        auto future = setWipingInterval(_wipingInterval_);
+        auto result = future.GetResult();
+        if (result.HasValue())
+        {
+            setWipingIntervalOutput output = result.Value();
+            para::serializer::Serializer serializer{};
+            serializer.write(output.BCM_ReturnCode);
+            retData = serializer.ensure();
+            retResult = 0;
+        }
+        else
+        {
+            ara::core::ErrorDomain::IdType domainId = result.Error().Domain().Id();
+            ara::core::ErrorDomain::CodeType errorCode = result.Error().Value();
+            para::serializer::Serializer serializer{};
+            serializer.write(0, true, 0, domainId);
+            serializer.write(0, true, 0, errorCode);
+            retData = serializer.ensure();
+            retResult = 1;
+        }
+        mInterface->ReturnMethod(ksetWipingIntervalCallSign, retResult, retData, token);
     }
     void HandlesetWipingLevel(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
     {
@@ -802,20 +959,17 @@ private:
         }
         mInterface->ReturnMethod(ksetWipingLevelImmeCallSign, retResult, retData, token);
     }
-    void HandlesetWipingInterval(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
+    void HandlestartWiping(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
     {
         std::uint8_t retResult{1};
         std::vector<std::uint8_t> retData{};
-        para::serializer::Deserializer deserializer{data};
-        std::uint16_t _wipingInterval_;
-        deserializer.read(_wipingInterval_);
-        auto future = setWipingInterval(_wipingInterval_);
+        auto future = startWiping();
         auto result = future.GetResult();
         if (result.HasValue())
         {
-            setWipingIntervalOutput output = result.Value();
+            startWipingOutput output = result.Value();
             para::serializer::Serializer serializer{};
-            serializer.write(output.BCM_ReturnCode);
+            serializer.write(output.bcm_returnCode);
             retData = serializer.ensure();
             retResult = 0;
         }
@@ -829,16 +983,42 @@ private:
             retData = serializer.ensure();
             retResult = 1;
         }
-        mInterface->ReturnMethod(ksetWipingIntervalCallSign, retResult, retData, token);
+        mInterface->ReturnMethod(kstartWipingCallSign, retResult, retData, token);
     }
-    const std::string kstopWipingCallSign{"stopWiping"};
-    const std::string kstartWipingCallSign{"startWiping"};
-    const std::string kisWipingCallSign{"isWiping"};
-    const std::string kgetWipingLevelCallSign{"getWipingLevel"};
+    void HandlestopWiping(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
+    {
+        std::uint8_t retResult{1};
+        std::vector<std::uint8_t> retData{};
+        auto future = stopWiping();
+        auto result = future.GetResult();
+        if (result.HasValue())
+        {
+            stopWipingOutput output = result.Value();
+            para::serializer::Serializer serializer{};
+            serializer.write(output.bcm_returnCode);
+            retData = serializer.ensure();
+            retResult = 0;
+        }
+        else
+        {
+            ara::core::ErrorDomain::IdType domainId = result.Error().Domain().Id();
+            ara::core::ErrorDomain::CodeType errorCode = result.Error().Value();
+            para::serializer::Serializer serializer{};
+            serializer.write(0, true, 0, domainId);
+            serializer.write(0, true, 0, errorCode);
+            retData = serializer.ensure();
+            retResult = 1;
+        }
+        mInterface->ReturnMethod(kstopWipingCallSign, retResult, retData, token);
+    }
     const std::string kgetWipingIntervalCallSign{"getWipingInterval"};
+    const std::string kgetWipingLevelCallSign{"getWipingLevel"};
+    const std::string kisWipingCallSign{"isWiping"};
+    const std::string ksetWipingIntervalCallSign{"setWipingInterval"};
     const std::string ksetWipingLevelCallSign{"setWipingLevel"};
     const std::string ksetWipingLevelImmeCallSign{"setWipingLevelImme"};
-    const std::string ksetWipingIntervalCallSign{"setWipingInterval"};
+    const std::string kstartWipingCallSign{"startWiping"};
+    const std::string kstopWipingCallSign{"stopWiping"};
 };
 } /// namespace skeleton
 } /// namespace service

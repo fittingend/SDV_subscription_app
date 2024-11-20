@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_soamlmstatus.h
 /// IMPLEMENTATION DATA TYPE NAME     : SoaMlmStatus
-/// GENERATED DATE                    : 2024-08-20 08:50:37
+/// GENERATED DATE                    : 2024-11-05 15:24:03
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -25,7 +25,6 @@
 #include <cstdint>
 #include <ara/core/structure.h>
 #include "eevp/control/impl_type_soadeviceisnormal.h"
-#include "eevp/control/impl_type_soamlmmoodmode.h"
 /// @uptrace{SWS_CM_10375}
 namespace eevp
 {
@@ -34,10 +33,9 @@ namespace control
 struct SoaMlmStatus
 {
     std::uint8_t colorTableIndex;
-    eevp::control::SoaMlmMoodMode moodMode;
     std::uint16_t brightness;
     eevp::control::SoaDeviceIsNormal isNormal;
-    PARA_STRUCTURE(SoaMlmStatus, colorTableIndex, moodMode, brightness, isNormal);
+    PARA_STRUCTURE(SoaMlmStatus, colorTableIndex, brightness, isNormal);
 };
 } /// namespace control
 } /// namespace eevp

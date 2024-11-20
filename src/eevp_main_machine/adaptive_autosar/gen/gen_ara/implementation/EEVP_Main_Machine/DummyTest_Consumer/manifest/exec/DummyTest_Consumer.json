@@ -13,7 +13,7 @@
     	"priority" : "0",
     	"program-argument" : "",
     	"startup-timeout" : "0.0",
-    	"termination-timeout" : "0.0",
+    	"termination-timeout" : "2.0",
     	"termination-behavior" : "not-self-terminating",
     	"environment-variables" : [
     	]

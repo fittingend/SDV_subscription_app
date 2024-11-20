@@ -102,6 +102,16 @@
                     <LOG-TRACE-LOG-MODE>NETWORK</LOG-TRACE-LOG-MODE>
                   </LOG-TRACE-LOG-MODES>
                 </DLT-LOG-CHANNEL>
+                <DLT-LOG-CHANNEL UUID="9c7fdf5c-b1ae-4b98-a97c-1ee4b5a72cbe">
+                  <SHORT-NAME>BatteryMonitor</SHORT-NAME>
+                  <APPLICATION-ID>BATT</APPLICATION-ID>
+                  <CONTEXT-ID>BATT</CONTEXT-ID>
+                  <LOG-TRACE-DEFAULT-LOG-LEVEL>INFO</LOG-TRACE-DEFAULT-LOG-LEVEL>
+                  <LOG-TRACE-LOG-MODES>
+                    <LOG-TRACE-LOG-MODE>CONSOLE</LOG-TRACE-LOG-MODE>
+                    <LOG-TRACE-LOG-MODE>NETWORK</LOG-TRACE-LOG-MODE>
+                  </LOG-TRACE-LOG-MODES>
+                </DLT-LOG-CHANNEL>
                 <DLT-LOG-CHANNEL UUID="35b39464-f914-45ab-9086-d71f0b3f00ca">
                   <SHORT-NAME>CM</SHORT-NAME>
                   <APPLICATION-ID>CM</APPLICATION-ID>
@@ -182,6 +192,16 @@
                     <LOG-TRACE-LOG-MODE>NETWORK</LOG-TRACE-LOG-MODE>
                   </LOG-TRACE-LOG-MODES>
                 </DLT-LOG-CHANNEL>
+                <DLT-LOG-CHANNEL UUID="81e4faa5-03ad-4eda-b94a-808062bae397">
+                  <SHORT-NAME>LotteService</SHORT-NAME>
+                  <APPLICATION-ID>COSM</APPLICATION-ID>
+                  <CONTEXT-ID>COSM</CONTEXT-ID>
+                  <LOG-TRACE-DEFAULT-LOG-LEVEL>INFO</LOG-TRACE-DEFAULT-LOG-LEVEL>
+                  <LOG-TRACE-LOG-MODES>
+                    <LOG-TRACE-LOG-MODE>CONSOLE</LOG-TRACE-LOG-MODE>
+                    <LOG-TRACE-LOG-MODE>NETWORK</LOG-TRACE-LOG-MODE>
+                  </LOG-TRACE-LOG-MODES>
+                </DLT-LOG-CHANNEL>
                 <DLT-LOG-CHANNEL UUID="9546793c-89a5-4d20-b8ee-b4a71c2ffff6">
                   <SHORT-NAME>MonitoringManager</SHORT-NAME>
                   <APPLICATION-ID>MONM</APPLICATION-ID>
@@ -249,6 +269,16 @@
                   <SHORT-NAME>SC_PDW_REAR</SHORT-NAME>
                   <APPLICATION-ID>PDWR</APPLICATION-ID>
                   <CONTEXT-ID>PDWR</CONTEXT-ID>
+                  <LOG-TRACE-DEFAULT-LOG-LEVEL>INFO</LOG-TRACE-DEFAULT-LOG-LEVEL>
+                  <LOG-TRACE-LOG-MODES>
+                    <LOG-TRACE-LOG-MODE>CONSOLE</LOG-TRACE-LOG-MODE>
+                    <LOG-TRACE-LOG-MODE>NETWORK</LOG-TRACE-LOG-MODE>
+                  </LOG-TRACE-LOG-MODES>
+                </DLT-LOG-CHANNEL>
+                <DLT-LOG-CHANNEL UUID="bb25c30f-0ce8-4d5d-b94b-455becfc86aa">
+                  <SHORT-NAME>SESLService</SHORT-NAME>
+                  <APPLICATION-ID>SESL</APPLICATION-ID>
+                  <CONTEXT-ID>SESL</CONTEXT-ID>
                   <LOG-TRACE-DEFAULT-LOG-LEVEL>INFO</LOG-TRACE-DEFAULT-LOG-LEVEL>
                   <LOG-TRACE-LOG-MODES>
                     <LOG-TRACE-LOG-MODE>CONSOLE</LOG-TRACE-LOG-MODE>
@@ -335,10 +365,10 @@
                     <LOG-TRACE-LOG-MODE>NETWORK</LOG-TRACE-LOG-MODE>
                   </LOG-TRACE-LOG-MODES>
                 </DLT-LOG-CHANNEL>
-                <DLT-LOG-CHANNEL UUID="3c63129c-db5f-4c84-8a08-b99e8ee2ab1b">
+                <DLT-LOG-CHANNEL UUID="a629b6db-058c-4ae5-815a-f5cd981ed6f7">
                   <SHORT-NAME>ServiceCreator</SHORT-NAME>
-                  <APPLICATION-ID>SECR</APPLICATION-ID>
-                  <CONTEXT-ID>SECR</CONTEXT-ID>
+                  <APPLICATION-ID>SVCC</APPLICATION-ID>
+                  <CONTEXT-ID>SVCC</CONTEXT-ID>
                   <LOG-TRACE-DEFAULT-LOG-LEVEL>INFO</LOG-TRACE-DEFAULT-LOG-LEVEL>
                   <LOG-TRACE-LOG-MODES>
                     <LOG-TRACE-LOG-MODE>CONSOLE</LOG-TRACE-LOG-MODE>
@@ -482,6 +512,11 @@
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
                   <PROCESS-REF DEST="PROCESS">/Application/Process/AppIpsvTest</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>
+                <PROCESS-TO-MACHINE-MAPPING UUID="8a4cecd1-11e1-47e9-b2f5-b4efec771175">
+                  <SHORT-NAME>ProcessToMachineMapping_BatteryMonitor_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
+                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
+                  <PROCESS-REF DEST="PROCESS">/AdaptiveApplication/Process/BatteryMonitor</PROCESS-REF>
+                </PROCESS-TO-MACHINE-MAPPING>
                 <PROCESS-TO-MACHINE-MAPPING UUID="0d58e5eb-8c53-4736-952e-56a250a5998e">
                   <SHORT-NAME>ProcessToMachineMapping_CM_TO_EEVP_Machine_TO_UnknownModule</SHORT-NAME>
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
@@ -500,7 +535,7 @@
                   <PROCESS-REF DEST="PROCESS">/Application/Process/DummyTest_Provider</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>
                 <PROCESS-TO-MACHINE-MAPPING UUID="c06bf723-b7f8-4075-833a-a3f1fd865da3">
-                  <SHORT-NAME>ProcessToMachineMapping_EM_TO_EEVP_Machine_TO_UnknownModule</SHORT-NAME>
+                  <SHORT-NAME>ProcessToMachineMapping_EM_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
                   <PROCESS-REF DEST="PROCESS">/Application/Process/EM</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>
@@ -523,6 +558,11 @@
                   <SHORT-NAME>ProcessToMachineMapping_KATECH_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
                   <PROCESS-REF DEST="PROCESS">/Application/Process/KATECH</PROCESS-REF>
+                </PROCESS-TO-MACHINE-MAPPING>
+                <PROCESS-TO-MACHINE-MAPPING UUID="563aa3be-ba58-44a5-b531-ddcce29a612c">
+                  <SHORT-NAME>ProcessToMachineMapping_LotteService_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
+                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
+                  <PROCESS-REF DEST="PROCESS">/AdaptiveApplication/Process/LotteService</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>
                 <PROCESS-TO-MACHINE-MAPPING UUID="8c0bff41-9204-40ac-a709-c7c08e69fdfd">
                   <SHORT-NAME>ProcessToMachineMapping_MonitoringManager_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
@@ -558,6 +598,11 @@
                   <SHORT-NAME>ProcessToMachineMapping_SC_PDW_REAR_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
                   <PROCESS-REF DEST="PROCESS">/Application/Process/SC_PDW_REAR</PROCESS-REF>
+                </PROCESS-TO-MACHINE-MAPPING>
+                <PROCESS-TO-MACHINE-MAPPING UUID="db7ea7ef-e0c8-4f6d-960a-059b5c4a10d9">
+                  <SHORT-NAME>ProcessToMachineMapping_SESLService_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
+                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
+                  <PROCESS-REF DEST="PROCESS">/AdaptiveApplication/Process/SESLService</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>
                 <PROCESS-TO-MACHINE-MAPPING UUID="58eaf27b-88ce-44c1-8206-b20386e4517d">
                   <SHORT-NAME>ProcessToMachineMapping_SM_TO_EEVP_Machine_TO_UnknownModule</SHORT-NAME>
@@ -599,7 +644,7 @@
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
                   <PROCESS-REF DEST="PROCESS">/Application/Process/SOA_Wiper</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>
-                <PROCESS-TO-MACHINE-MAPPING UUID="a6b708b8-c5c9-4ca9-a61a-cb92afc535b1">
+                <PROCESS-TO-MACHINE-MAPPING UUID="fe0cb412-5b2a-4f34-9f0c-8151f095dc3a">
                   <SHORT-NAME>ProcessToMachineMapping_ServiceCreator_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
                   <PROCESS-REF DEST="PROCESS">/Application/Process/ServiceCreator</PROCESS-REF>
@@ -620,7 +665,7 @@
                   <PROCESS-REF DEST="PROCESS">/Application/Process/VDI</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>
                 <PROCESS-TO-MACHINE-MAPPING UUID="ebc41e70-9d2b-4076-8c3c-14baf639800c">
-                  <SHORT-NAME>ProcessToMachineMapping_VUCM_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
+                  <SHORT-NAME>ProcessToMachineMapping_VUCM_TO_EEVP_Machine_TO_UnknownModule</SHORT-NAME>
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
                   <PROCESS-REF DEST="PROCESS">/Application/Process/VUCM</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>

@@ -1,0 +1,841 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00049.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE UUID="d1196ba9-ae2a-4138-9c43-b99041f6deb1">
+      <SHORT-NAME>AdaptiveApplication</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE UUID="8f1d20ef-b65e-4c49-b6f9-6ecc3461939b">
+          <SHORT-NAME>DltConfig</SHORT-NAME>
+          <ELEMENTS>
+            <DLT-LOG-CHANNEL-TO-PROCESS-MAPPING UUID="257efb2b-fb66-4232-91b8-f5225df2f646">
+              <SHORT-NAME>DltLogChannelToProcessMapping_LotteService_TO_LotteService</SHORT-NAME>
+              <DLT-LOG-CHANNEL-REF DEST="DLT-LOG-CHANNEL">/Machine/EEVP_Main_Machine/LOG/LotteService</DLT-LOG-CHANNEL-REF>
+              <PROCESS-REF DEST="PROCESS">/AdaptiveApplication/Process/LotteService</PROCESS-REF>
+            </DLT-LOG-CHANNEL-TO-PROCESS-MAPPING>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="f4afdf4f-ca2c-4bcb-8541-d5674f0f87df">
+          <SHORT-NAME>Executable</SHORT-NAME>
+          <ELEMENTS>
+            <EXECUTABLE UUID="beca7f1d-bade-4e07-8381-166a2d140d17">
+              <SHORT-NAME>LotteService</SHORT-NAME>
+              <CATEGORY>APPLICATION_LEVEL</CATEGORY>
+              <LOGGING-BEHAVIOR>USES-LOGGING</LOGGING-BEHAVIOR>
+              <REPORTING-BEHAVIOR>REPORTS-EXECUTION-STATE</REPORTING-BEHAVIOR>
+              <ROOT-SW-COMPONENT-PROTOTYPE UUID="33be3000-8aa6-4f4b-8abd-ea4185da3e33">
+                <SHORT-NAME>AA</SHORT-NAME>
+                <APPLICATION-TYPE-TREF DEST="ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE">/AdaptiveApplication/SwComponent/LotteService</APPLICATION-TYPE-TREF>
+              </ROOT-SW-COMPONENT-PROTOTYPE>
+              <VERSION>1.0.0</VERSION>
+            </EXECUTABLE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="b56956c2-81a7-431f-bb30-70bac802beee">
+          <SHORT-NAME>Manifest</SHORT-NAME>
+          <ELEMENTS>
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="21cd7dee-3fdb-4978-8e10-479eb78f1c17">
+              <SHORT-NAME>LotteService_AA_RPort</SHORT-NAME>
+              <PORT-PROTOTYPE-IREF>
+                <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/AdaptiveApplication/Executable/LotteService/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
+                <TARGET-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/AdaptiveApplication/SwComponent/LotteService/RPort</TARGET-PORT-PROTOTYPE-REF>
+              </PORT-PROTOTYPE-IREF>
+              <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/System/Service/Instance/EEVP_Lotte_Consumer_LotteService</SERVICE-INSTANCE-REF>
+            </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="0404ca64-a99a-4e11-a2a4-a9d15176f0e6">
+          <SHORT-NAME>Process</SHORT-NAME>
+          <ELEMENTS>
+            <PROCESS UUID="5ba94579-8c60-4dec-b162-d8a613706ba4">
+              <SHORT-NAME>LotteService</SHORT-NAME>
+              <EXECUTABLE-REF DEST="EXECUTABLE">/AdaptiveApplication/Executable/LotteService</EXECUTABLE-REF>
+              <PROCESS-STATE-MACHINE UUID="78d3c026-e3be-4085-8d3b-b8c31fcd8131">
+                <SHORT-NAME>LotteService</SHORT-NAME>
+                <TYPE-TREF DEST="MODE-DECLARATION-GROUP">/StateMachine/ProcessState</TYPE-TREF>
+              </PROCESS-STATE-MACHINE>
+              <STATE-DEPENDENT-STARTUP-CONFIGS>
+                <STATE-DEPENDENT-STARTUP-CONFIG>
+                  <EXECUTION-DEPENDENCYS>
+                    <EXECUTION-DEPENDENCY>
+                      <PROCESS-STATE-IREF>
+                        <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Application/Process/CM/CM</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                        <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/StateMachine/ProcessState/Running</TARGET-MODE-DECLARATION-REF>
+                      </PROCESS-STATE-IREF>
+                    </EXECUTION-DEPENDENCY>
+                  </EXECUTION-DEPENDENCYS>
+                  <FUNCTION-GROUP-STATE-IREFS>
+                    <FUNCTION-GROUP-STATE-IREF>
+                      <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Machine/FunctionGroup/EEVP_Main_FunctionGroup/MachineFG</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                      <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/StateMachine/MachineState/Startup</TARGET-MODE-DECLARATION-REF>
+                    </FUNCTION-GROUP-STATE-IREF>
+                  </FUNCTION-GROUP-STATE-IREFS>
+                  <RESOURCE-GROUP-REF DEST="RESOURCE-GROUP">/Machine/EEVP_Main_Machine/POSIX/DefaultResourceGroup</RESOURCE-GROUP-REF>
+                  <STARTUP-CONFIG-REF DEST="STARTUP-CONFIG">/AdaptiveApplication/StartupConfig/EEVP_LotteService_StartupConfig/LotteService</STARTUP-CONFIG-REF>
+                </STATE-DEPENDENT-STARTUP-CONFIG>
+              </STATE-DEPENDENT-STARTUP-CONFIGS>
+            </PROCESS>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="4bc26694-68bc-4f83-9de5-2dc4c5be572c">
+          <SHORT-NAME>StartupConfig</SHORT-NAME>
+          <ELEMENTS>
+            <STARTUP-CONFIG-SET UUID="d5d16296-9e86-4ca4-9021-51850bc5cafe">
+              <SHORT-NAME>EEVP_LotteService_StartupConfig</SHORT-NAME>
+              <STARTUP-CONFIGS>
+                <STARTUP-CONFIG UUID="aac268fa-37d9-4be4-80f1-42515ae24a18">
+                  <SHORT-NAME>LotteService</SHORT-NAME>
+                  <SCHEDULING-POLICY>SCHED_OTHER</SCHEDULING-POLICY>
+                  <SCHEDULING-PRIORITY>0</SCHEDULING-PRIORITY>
+                  <TIMEOUT/>
+                </STARTUP-CONFIG>
+              </STARTUP-CONFIGS>
+            </STARTUP-CONFIG-SET>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE>
+          <SHORT-NAME>SwComponent</SHORT-NAME>
+          <ELEMENTS>
+            <ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE UUID="9bbfffa0-aa16-4802-acd7-d7575cfd3b31">
+              <SHORT-NAME>LotteService</SHORT-NAME>
+              <PORTS>
+                <R-PORT-PROTOTYPE UUID="5f148fff-017d-4a12-b426-b9cfefc60e06">
+                  <SHORT-NAME>RPort</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/PortInterface/Service/LotteService</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+              </PORTS>
+            </ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+    <AR-PACKAGE UUID="be74d606-97bc-43ce-bf48-397aaef63932">
+      <SHORT-NAME>DataType</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE UUID="e99578ab-ec7a-4eb4-9568-d38d6a897f95">
+          <SHORT-NAME>Implementation</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE UUID="9c59ecb6-ba15-4219-94dd-b646f82b4ad0">
+              <SHORT-NAME>CPP</SHORT-NAME>
+              <ELEMENTS>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="796a6c0a-3987-4795-a492-18ad00bb51eb">
+                  <SHORT-NAME>DmsGzDtctn</SHORT-NAME>
+                  <CATEGORY>STRUCTURE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                  <NAMESPACES>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>lotte</SHORT-NAME>
+                      <SYMBOL>lotte</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>type</SHORT-NAME>
+                      <SYMBOL>type</SYMBOL>
+                    </SYMBOL-PROPS>
+                  </NAMESPACES>
+                  <SUB-ELEMENTS>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="9d7b9b0e-8b98-41be-8578-eff91e458941">
+                      <SHORT-NAME>headLocX</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="b38368c7-8c59-4d9c-bb19-d92c69bb05e4">
+                      <SHORT-NAME>headLocY</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="68bd0054-f627-4530-8d2d-29d74af7939b">
+                      <SHORT-NAME>headLocZ</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="37e1efde-b53e-4e68-8fa5-52f7667c2e3b">
+                      <SHORT-NAME>eyeLocRightX</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="f4ea0314-cbd8-4565-a243-d03f2c0c853a">
+                      <SHORT-NAME>eyeLocRightY</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="53c21c36-be5a-4097-8c6e-4b1a97595a0f">
+                      <SHORT-NAME>eyeLocRightZ</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="166dcb3a-56d2-45f3-9e44-03d6a684d429">
+                      <SHORT-NAME>eyeLocLeftX</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="7521351f-c421-466d-97b0-03b1dbb12bc6">
+                      <SHORT-NAME>eyeLocLeftY</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="237a7740-464d-4dfb-88d1-f35d0c7bfda5">
+                      <SHORT-NAME>eyeLocLeftZ</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="1af7f80f-be2a-434b-9426-072ea89e9206">
+                      <SHORT-NAME>headDirPitch</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="e8c64e41-7bd7-4b9a-98d6-60fb348294d5">
+                      <SHORT-NAME>headDirYaw</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="43d35093-5e62-4875-b7e8-ca874ec7af71">
+                      <SHORT-NAME>gazeDirPitch</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="bb04a2fc-5b33-4199-bee1-5e646cf67ee6">
+                      <SHORT-NAME>gazeDirYaw</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="33020066-fe96-4e6a-a799-00c199184617">
+                      <SHORT-NAME>gazeZone</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/GazaZone</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="11bd37b8-3577-45ee-aa2a-46ab6881c668">
+                      <SHORT-NAME>headZone</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/HeadZone</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  </SUB-ELEMENTS>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="910fc816-f9de-40d1-9ca2-5e266b797034">
+                  <SHORT-NAME>GazaZone</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <COMPU-METHOD-REF DEST="COMPU-METHOD">/DataType/Semantics/CompuMethod/GazeZoneType</COMPU-METHOD-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                  <NAMESPACES>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>lotte</SHORT-NAME>
+                      <SYMBOL>lotte</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>type</SHORT-NAME>
+                      <SYMBOL>type</SYMBOL>
+                    </SYMBOL-PROPS>
+                  </NAMESPACES>
+                  <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="f8022014-3667-4029-be94-c92ac0103fe2">
+                  <SHORT-NAME>HeadZone</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <COMPU-METHOD-REF DEST="COMPU-METHOD">/DataType/Semantics/CompuMethod/HeadZoneType</COMPU-METHOD-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                  <NAMESPACES>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>lotte</SHORT-NAME>
+                      <SYMBOL>lotte</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>type</SHORT-NAME>
+                      <SYMBOL>type</SYMBOL>
+                    </SYMBOL-PROPS>
+                  </NAMESPACES>
+                  <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="e7c7b3d4-92a4-4427-affa-422bc87fec09">
+                  <SHORT-NAME>SideTransparency</SHORT-NAME>
+                  <CATEGORY>STRUCTURE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                  <NAMESPACES>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>lotte</SHORT-NAME>
+                      <SYMBOL>lotte</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>type</SHORT-NAME>
+                      <SYMBOL>type</SYMBOL>
+                    </SYMBOL-PROPS>
+                  </NAMESPACES>
+                  <SUB-ELEMENTS>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="25165707-d963-4282-87b8-70a66682408a">
+                      <SHORT-NAME>isChanged</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/bool</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="6e08040f-e7ef-48a4-9bfc-c2a35c2f19dc">
+                      <SHORT-NAME>zone</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="0646e457-3693-4ed6-adcb-2d4f89eb6a81">
+                      <SHORT-NAME>initTransparency</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="a8f4df76-5e20-458b-b3e5-4990a24eb1bf">
+                      <SHORT-NAME>currTransparency</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="bc841570-2f4b-4bd7-82af-1136abdbaba8">
+                      <SHORT-NAME>remainingTime</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint16_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  </SUB-ELEMENTS>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="f24dbe38-7d68-465e-9e60-9f948baf6eae">
+                  <SHORT-NAME>bool</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <TYPE-EMITTER>FundamentalType</TYPE-EMITTER>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="8f66e8c2-7c6d-4132-b09b-92ca6f7ba33f">
+                  <SHORT-NAME>double</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <TYPE-EMITTER>FundamentalType</TYPE-EMITTER>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="945277f2-32db-4c6a-aee1-07574a6cf724">
+                  <SHORT-NAME>float</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <TYPE-EMITTER>FundamentalType</TYPE-EMITTER>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="249c7cfe-9596-4766-91d3-b2032b3ba0f7">
+                  <SHORT-NAME>int16_t</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <HEADER-FILE>cstdint</HEADER-FILE>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="a9c8997d-705b-4b40-966e-ee28c43fd8be">
+                  <SHORT-NAME>int32_t</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <HEADER-FILE>cstdint</HEADER-FILE>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="d9375021-aae1-4034-bbe6-f9c9844a584b">
+                  <SHORT-NAME>int64_t</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <HEADER-FILE>cstdint</HEADER-FILE>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="7bedee25-a68f-4c12-b587-d962d2f4fcb6">
+                  <SHORT-NAME>int8_t</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <HEADER-FILE>cstdint</HEADER-FILE>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="3c4ce41e-ef92-4a66-8aec-7e3e0b2749d0">
+                  <SHORT-NAME>uint16_t</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <HEADER-FILE>cstdint</HEADER-FILE>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="c7a73f84-c31d-4d3a-9150-f87dfdc15909">
+                  <SHORT-NAME>uint32_t</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <HEADER-FILE>cstdint</HEADER-FILE>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="ae48b550-6458-4ee1-854e-6c4c7b934208">
+                  <SHORT-NAME>uint64_t</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <HEADER-FILE>cstdint</HEADER-FILE>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="7c5b3ddc-9d66-4b5d-b451-30f514902576">
+                  <SHORT-NAME>uint8_t</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <HEADER-FILE>cstdint</HEADER-FILE>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+              </ELEMENTS>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="670ec992-f4e0-490b-b9d2-b5ae5a6a003d">
+          <SHORT-NAME>Semantics</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE UUID="7e0d10e8-e8b3-4464-8f8f-2df2365d4f43">
+              <SHORT-NAME>CompuMethod</SHORT-NAME>
+              <ELEMENTS>
+                <COMPU-METHOD UUID="b80a2568-ad1a-45f8-8198-da4ab613eb9d">
+                  <SHORT-NAME>GazeZoneType</SHORT-NAME>
+                  <CATEGORY>TEXTTABLE</CATEGORY>
+                  <COMPU-INTERNAL-TO-PHYS>
+                    <COMPU-SCALES>
+                      <COMPU-SCALE>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x0</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x0</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>INFOTAINMENT</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x1</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x1</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>FRONT_WINDSHIELD</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x2</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x2</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>DRIVER_SIDE_MIRROR</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x3</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x3</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>PASSENGER_SIDE_MIRROR</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x4</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x4</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>BACK_MIRROR</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                    </COMPU-SCALES>
+                  </COMPU-INTERNAL-TO-PHYS>
+                </COMPU-METHOD>
+                <COMPU-METHOD UUID="79ebef53-fad3-4ed7-8d20-019f813223fc">
+                  <SHORT-NAME>HeadZoneType</SHORT-NAME>
+                  <CATEGORY>TEXTTABLE</CATEGORY>
+                  <COMPU-INTERNAL-TO-PHYS>
+                    <COMPU-SCALES>
+                      <COMPU-SCALE>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x0</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x0</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>INFOTAINMENT</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x1</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x1</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>FRONT_WINDSHIELD</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x2</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x2</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>DRIVER_SIDE_MIRROR</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x3</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x3</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>PASSENGER_SIDE_MIRROR</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x4</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x4</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>BACK_MIRROR</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                    </COMPU-SCALES>
+                  </COMPU-INTERNAL-TO-PHYS>
+                </COMPU-METHOD>
+                <COMPU-METHOD UUID="11db4bc0-854e-45cc-8061-38af785c274a">
+                  <SHORT-NAME>OnOffType</SHORT-NAME>
+                  <CATEGORY>TEXTTABLE</CATEGORY>
+                  <COMPU-INTERNAL-TO-PHYS>
+                    <COMPU-SCALES>
+                      <COMPU-SCALE>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x0</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x0</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>FALSE</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0x1</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0x1</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>TRUE</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                    </COMPU-SCALES>
+                  </COMPU-INTERNAL-TO-PHYS>
+                </COMPU-METHOD>
+              </ELEMENTS>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+    <AR-PACKAGE UUID="8c789052-fa47-4ddf-af01-b405405b91a5">
+      <SHORT-NAME>PortInterface</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE UUID="017257da-f5d8-437e-918c-77b4fd4171a8">
+          <SHORT-NAME>Service</SHORT-NAME>
+          <ELEMENTS>
+            <SERVICE-INTERFACE UUID="cf60396b-5734-4bf6-9d4a-e62b0fdb956b">
+              <SHORT-NAME>LotteService</SHORT-NAME>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>lotte</SHORT-NAME>
+                  <SYMBOL>lotte</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>service</SHORT-NAME>
+                  <SYMBOL>service</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <METHODS>
+                <CLIENT-SERVER-OPERATION UUID="f02a93e9-84f3-4d47-9e40-4214d3537fdc">
+                  <SHORT-NAME>DmsCurr</SHORT-NAME>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE UUID="c8825886-3b20-44e0-9d88-d9e20daf0814">
+                      <SHORT-NAME>result</SHORT-NAME>
+                      <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/DmsGzDtctn</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION UUID="62c57013-0a56-4f4d-b509-ebe17fa10741">
+                  <SHORT-NAME>DmsStatus</SHORT-NAME>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE UUID="453dd74b-f837-4b4f-83a9-832f9c25e178">
+                      <SHORT-NAME>result</SHORT-NAME>
+                      <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/bool</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION UUID="9162e1a1-0ef8-4813-96ae-e50e1de8aae6">
+                  <SHORT-NAME>SmartFilmControl</SHORT-NAME>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE UUID="f0645958-839a-45a3-8015-da0dd9b7f61f">
+                      <SHORT-NAME>windowLoc</SHORT-NAME>
+                      <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE UUID="070dc210-642a-49af-821f-9a7111fa8801">
+                      <SHORT-NAME>transparence</SHORT-NAME>
+                      <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE UUID="c186924a-f1c7-4e84-a557-3d79f9aaa574">
+                      <SHORT-NAME>result</SHORT-NAME>
+                      <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/bool</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION UUID="671ee7c1-33ca-46d1-8b8a-f0aa31acfbbe">
+                  <SHORT-NAME>SmartFilmCurr</SHORT-NAME>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE UUID="1e4d8744-79a9-47a4-acca-8023b0f227b2">
+                      <SHORT-NAME>result</SHORT-NAME>
+                      <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/SideTransparency</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                    <ARGUMENT-DATA-PROTOTYPE UUID="ce063a9b-54c0-4907-9df1-98a2576b56cd">
+                      <SHORT-NAME>windowLoc</SHORT-NAME>
+                      <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION UUID="d2338c90-9069-4a1e-b2a9-2de355e7be55">
+                  <SHORT-NAME>SmartFilmStatus</SHORT-NAME>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE UUID="e323b9d5-3b1b-4f0b-8a46-12906e6bc3a2">
+                      <SHORT-NAME>result</SHORT-NAME>
+                      <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/bool</TYPE-TREF>
+                      <DIRECTION>OUT</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+                </CLIENT-SERVER-OPERATION>
+              </METHODS>
+            </SERVICE-INTERFACE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+    <AR-PACKAGE UUID="784978a5-13dd-4000-beaa-97a47e7d58f2">
+      <SHORT-NAME>System</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE UUID="6fe29676-30a6-409e-85a1-61984dba329c">
+          <SHORT-NAME>Service</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE UUID="d335c907-7d2b-4537-92f0-370cd7ed2846">
+              <SHORT-NAME>Deployment</SHORT-NAME>
+              <ELEMENTS>
+                <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="f4a336c3-ba9d-42c0-956b-d35b51ba91b9">
+                  <SHORT-NAME>LotteService</SHORT-NAME>
+                  <METHOD-DEPLOYMENTS>
+                    <SOMEIP-METHOD-DEPLOYMENT UUID="f6854dd9-9084-4e68-9a10-83b4f5ef873e">
+                      <SHORT-NAME>DmsCurr</SHORT-NAME>
+                      <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/PortInterface/Service/LotteService/DmsCurr</METHOD-REF>
+                      <METHOD-ID>1</METHOD-ID>
+                      <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                    </SOMEIP-METHOD-DEPLOYMENT>
+                    <SOMEIP-METHOD-DEPLOYMENT UUID="1819683c-7fdc-4733-94c6-7b561262757f">
+                      <SHORT-NAME>DmsStatus</SHORT-NAME>
+                      <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/PortInterface/Service/LotteService/DmsStatus</METHOD-REF>
+                      <METHOD-ID>2</METHOD-ID>
+                      <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                    </SOMEIP-METHOD-DEPLOYMENT>
+                    <SOMEIP-METHOD-DEPLOYMENT UUID="6c913a59-42e6-40ba-9e90-112b1b201499">
+                      <SHORT-NAME>SmartFilmControl</SHORT-NAME>
+                      <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/PortInterface/Service/LotteService/SmartFilmControl</METHOD-REF>
+                      <METHOD-ID>3</METHOD-ID>
+                      <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                    </SOMEIP-METHOD-DEPLOYMENT>
+                    <SOMEIP-METHOD-DEPLOYMENT UUID="9e03c22d-10a0-4000-a931-7bac2331a0fa">
+                      <SHORT-NAME>SmartFilmCurr</SHORT-NAME>
+                      <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/PortInterface/Service/LotteService/SmartFilmCurr</METHOD-REF>
+                      <METHOD-ID>4</METHOD-ID>
+                      <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                    </SOMEIP-METHOD-DEPLOYMENT>
+                    <SOMEIP-METHOD-DEPLOYMENT UUID="0fc58310-e256-4471-b3e7-7d5163892f9f">
+                      <SHORT-NAME>SmartFilmStatus</SHORT-NAME>
+                      <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/PortInterface/Service/LotteService/SmartFilmStatus</METHOD-REF>
+                      <METHOD-ID>5</METHOD-ID>
+                      <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                    </SOMEIP-METHOD-DEPLOYMENT>
+                  </METHOD-DEPLOYMENTS>
+                  <SERVICE-INTERFACE-REF DEST="SERVICE-INTERFACE">/PortInterface/Service/LotteService</SERVICE-INTERFACE-REF>
+                  <SERVICE-INTERFACE-ID>41</SERVICE-INTERFACE-ID>
+                  <SERVICE-INTERFACE-VERSION>
+                    <MAJOR-VERSION>1</MAJOR-VERSION>
+                    <MINOR-VERSION>0</MINOR-VERSION>
+                  </SERVICE-INTERFACE-VERSION>
+                </SOMEIP-SERVICE-INTERFACE-DEPLOYMENT>
+              </ELEMENTS>
+            </AR-PACKAGE>
+            <AR-PACKAGE UUID="f75c178e-cbd9-49ee-8b28-f7eac9f9fc75">
+              <SHORT-NAME>Endpoint</SHORT-NAME>
+              <ELEMENTS>
+                <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="82113730-2427-4e00-83cb-a15df935f03c">
+                  <SHORT-NAME>EEVP_Lotte_SomeipConsumer_LotteService</SHORT-NAME>
+                  <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
+                  <SERVICE-INSTANCE-REFS>
+                    <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/System/Service/Instance/EEVP_Lotte_Consumer_LotteService</SERVICE-INSTANCE-REF>
+                  </SERVICE-INSTANCE-REFS>
+                  <TCP-PORT>50122</TCP-PORT>
+                  <UDP-PORT>50122</UDP-PORT>
+                </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+                <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="a008c411-54c8-48a0-98e9-def1e9447434">
+                  <SHORT-NAME>EEVP_Lotte_SomeipProvider_LotteService</SHORT-NAME>
+                  <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
+                  <SERVICE-INSTANCE-REFS>
+                    <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/System/Service/Instance/EEVP_Lotte_Provider_LotteService</SERVICE-INSTANCE-REF>
+                  </SERVICE-INSTANCE-REFS>
+                  <TCP-PORT>50123</TCP-PORT>
+                  <UDP-PORT>50123</UDP-PORT>
+                </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+              </ELEMENTS>
+            </AR-PACKAGE>
+            <AR-PACKAGE UUID="88a90eb0-5306-4dde-8919-58fcefcbb438">
+              <SHORT-NAME>Instance</SHORT-NAME>
+              <ELEMENTS>
+                <REQUIRED-SOMEIP-SERVICE-INSTANCE UUID="07e1622d-449e-48af-a83b-9c390ce43294">
+                  <SHORT-NAME>EEVP_Lotte_Consumer_LotteService</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="PARA-SOMEIP-CONFIGURATION">
+                        <SD GID="CLIENT-ID">65</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/System/Service/Deployment/LotteService</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                  <METHOD-REQUEST-PROPSS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/DmsCurr</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/DmsStatus</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/SmartFilmControl</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/SmartFilmCurr</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/SmartFilmStatus</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                  </METHOD-REQUEST-PROPSS>
+                  <REQUIRED-MINOR-VERSION>ANY</REQUIRED-MINOR-VERSION>
+                  <REQUIRED-SERVICE-INSTANCE-ID>ANY</REQUIRED-SERVICE-INSTANCE-ID>
+                  <SD-CLIENT-CONFIG-REF DEST="SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Client/DefaultClientConfig</SD-CLIENT-CONFIG-REF>
+                  <VERSION-DRIVEN-FIND-BEHAVIOR>EXACT-OR-ANY-MINOR-VERSION</VERSION-DRIVEN-FIND-BEHAVIOR>
+                </REQUIRED-SOMEIP-SERVICE-INSTANCE>
+                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="2d3afc44-8df1-4302-b94c-473a2a494e35">
+                  <SHORT-NAME>EEVP_Lotte_Provider_LotteService</SHORT-NAME>
+                  <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/System/Service/Deployment/LotteService</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                  <METHOD-RESPONSE-PROPSS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/DmsCurr</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/DmsStatus</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/SmartFilmControl</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/SmartFilmCurr</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/LotteService/SmartFilmStatus</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                  </METHOD-RESPONSE-PROPSS>
+                  <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/System/Service/TimingConfig/SdServerConfig</SD-SERVER-CONFIG-REF>
+                  <SERVICE-INSTANCE-ID>32</SERVICE-INSTANCE-ID>
+                </PROVIDED-SOMEIP-SERVICE-INSTANCE>
+              </ELEMENTS>
+            </AR-PACKAGE>
+            <AR-PACKAGE UUID="9079fb56-d33d-4a21-b8e1-c85b77a422cc">
+              <SHORT-NAME>TimingConfig</SHORT-NAME>
+              <ELEMENTS>
+                <SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG UUID="05729eca-67f5-4235-9b80-8a147b06a031">
+                  <SHORT-NAME>SdClientConfig</SHORT-NAME>
+                  <INITIAL-FIND-BEHAVIOR>
+                    <INITIAL-DELAY-MAX-VALUE>0.1</INITIAL-DELAY-MAX-VALUE>
+                    <INITIAL-DELAY-MIN-VALUE>0.01</INITIAL-DELAY-MIN-VALUE>
+                    <INITIAL-REPETITIONS-BASE-DELAY>0.2</INITIAL-REPETITIONS-BASE-DELAY>
+                    <INITIAL-REPETITIONS-MAX>3</INITIAL-REPETITIONS-MAX>
+                  </INITIAL-FIND-BEHAVIOR>
+                  <SERVICE-FIND-TIME-TO-LIVE>16777215</SERVICE-FIND-TIME-TO-LIVE>
+                </SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG>
+                <SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG UUID="ce71fb4e-6b41-48b9-8e0a-7d7d70dbf5a0">
+                  <SHORT-NAME>SdServerConfig</SHORT-NAME>
+                  <INITIAL-OFFER-BEHAVIOR>
+                    <INITIAL-DELAY-MAX-VALUE>0.1</INITIAL-DELAY-MAX-VALUE>
+                    <INITIAL-DELAY-MIN-VALUE>0.01</INITIAL-DELAY-MIN-VALUE>
+                    <INITIAL-REPETITIONS-BASE-DELAY>0.2</INITIAL-REPETITIONS-BASE-DELAY>
+                    <INITIAL-REPETITIONS-MAX>3</INITIAL-REPETITIONS-MAX>
+                  </INITIAL-OFFER-BEHAVIOR>
+                  <OFFER-CYCLIC-DELAY>1.0</OFFER-CYCLIC-DELAY>
+                  <REQUEST-RESPONSE-DELAY>
+                    <MAX-VALUE>0.0</MAX-VALUE>
+                    <MIN-VALUE>0.0</MIN-VALUE>
+                  </REQUEST-RESPONSE-DELAY>
+                  <SERVICE-OFFER-TIME-TO-LIVE>16777215</SERVICE-OFFER-TIME-TO-LIVE>
+                </SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG>
+              </ELEMENTS>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="6405c4cc-7f8d-4cdf-afeb-d7449f0c287d">
+          <SHORT-NAME>VehicleTopology</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE UUID="b0979641-c06c-4521-8784-8f1596415789">
+              <SHORT-NAME>Cluster</SHORT-NAME>
+              <ELEMENTS>
+                <ETHERNET-CLUSTER UUID="13454c64-90cc-47a4-9b62-859a04fb4532">
+                  <SHORT-NAME>EthernetCluster</SHORT-NAME>
+                  <ETHERNET-CLUSTER-VARIANTS>
+                    <ETHERNET-CLUSTER-CONDITIONAL>
+                      <PHYSICAL-CHANNELS>
+                        <ETHERNET-PHYSICAL-CHANNEL UUID="1321273f-cda5-4407-8066-117bc9a856a0">
+                          <SHORT-NAME>PhysicalChannel</SHORT-NAME>
+                          <CATEGORY>WIRED</CATEGORY>
+                          <COMM-CONNECTORS>
+                            <COMMUNICATION-CONNECTOR-REF-CONDITIONAL>
+                              <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/VehicleTopology/Ecu/Ecu/eth0</COMMUNICATION-CONNECTOR-REF>
+                            </COMMUNICATION-CONNECTOR-REF-CONDITIONAL>
+                          </COMM-CONNECTORS>
+                          <NETWORK-ENDPOINTS>
+                            <NETWORK-ENDPOINT UUID="2416e323-86bb-4382-a34a-5e7a75ed4ac9">
+                              <SHORT-NAME>EcuEndpoint</SHORT-NAME>
+                              <NETWORK-ENDPOINT-ADDRESSES>
+                                <IPV-4-CONFIGURATION>
+                                  <IPV-4-ADDRESS>10.0.2.15</IPV-4-ADDRESS>
+                                  <IPV-4-ADDRESS-SOURCE>FIXED</IPV-4-ADDRESS-SOURCE>
+                                </IPV-4-CONFIGURATION>
+                              </NETWORK-ENDPOINT-ADDRESSES>
+                            </NETWORK-ENDPOINT>
+                            <NETWORK-ENDPOINT UUID="501b453a-4e3b-4fd2-8e19-7e9cc56efab4">
+                              <SHORT-NAME>SdMulticast</SHORT-NAME>
+                              <NETWORK-ENDPOINT-ADDRESSES>
+                                <IPV-4-CONFIGURATION>
+                                  <IPV-4-ADDRESS>224.0.0.1</IPV-4-ADDRESS>
+                                  <IPV-4-ADDRESS-SOURCE>FIXED</IPV-4-ADDRESS-SOURCE>
+                                </IPV-4-CONFIGURATION>
+                              </NETWORK-ENDPOINT-ADDRESSES>
+                            </NETWORK-ENDPOINT>
+                          </NETWORK-ENDPOINTS>
+                        </ETHERNET-PHYSICAL-CHANNEL>
+                      </PHYSICAL-CHANNELS>
+                    </ETHERNET-CLUSTER-CONDITIONAL>
+                  </ETHERNET-CLUSTER-VARIANTS>
+                </ETHERNET-CLUSTER>
+              </ELEMENTS>
+            </AR-PACKAGE>
+            <AR-PACKAGE UUID="6986ee92-082c-4c0d-8d12-84f585cc6cf7">
+              <SHORT-NAME>Ecu</SHORT-NAME>
+              <ELEMENTS>
+                <MACHINE-DESIGN UUID="8fbbd28f-0f52-4ff6-8a0d-e765f5dea8ea">
+                  <SHORT-NAME>Ecu</SHORT-NAME>
+                  <COMMUNICATION-CONNECTORS>
+                    <USER-DEFINED-COMMUNICATION-CONNECTOR UUID="475db735-eb5b-4bf5-b646-580552d69638">
+                      <SHORT-NAME>IPC</SHORT-NAME>
+                    </USER-DEFINED-COMMUNICATION-CONNECTOR>
+                    <ETHERNET-COMMUNICATION-CONNECTOR UUID="86b8d7ba-75bd-4287-85db-2743db25327f">
+                      <SHORT-NAME>eth0</SHORT-NAME>
+                      <UNICAST-NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/System/VehicleTopology/Cluster/EthernetCluster/PhysicalChannel/EcuEndpoint</UNICAST-NETWORK-ENDPOINT-REF>
+                    </ETHERNET-COMMUNICATION-CONNECTOR>
+                  </COMMUNICATION-CONNECTORS>
+                  <SERVICE-DISCOVER-CONFIGS>
+                    <SOMEIP-SERVICE-DISCOVERY>
+                      <MULTICAST-SD-IP-ADDRESS-REF DEST="NETWORK-ENDPOINT">/System/VehicleTopology/Cluster/EthernetCluster/PhysicalChannel/SdMulticast</MULTICAST-SD-IP-ADDRESS-REF>
+                      <SOMEIP-SERVICE-DISCOVERY-PORT>30490</SOMEIP-SERVICE-DISCOVERY-PORT>
+                    </SOMEIP-SERVICE-DISCOVERY>
+                  </SERVICE-DISCOVER-CONFIGS>
+                </MACHINE-DESIGN>
+              </ELEMENTS>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

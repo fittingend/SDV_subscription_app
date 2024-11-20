@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : monitoringmanagement_common.h
 /// SERVICE INTERFACE NAME            : MonitoringManagement
-/// GENERATED DATE                    : 2024-08-27 13:02:45
+/// GENERATED DATE                    : 2024-11-05 15:23:50
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -47,16 +47,11 @@
 #include "eevp/control/impl_type_soaseattiltdirection.h"
 #include "eevp/control/impl_type_soawipermode.h"
 #include "eevp/control/impl_type_soawiperstatus.h"
-#include "eevp/monitoring/type/impl_type_controllerserviceerrorevent.h"
 #include "eevp/monitoring/type/impl_type_controllerserviceinfo.h"
-#include "eevp/monitoring/type/impl_type_controllerserviceinfomap.h"
-#include "eevp/monitoring/type/impl_type_controllerserviceinfospare.h"
-#include "eevp/monitoring/type/impl_type_controllerservicestatusmap.h"
-#include "eevp/monitoring/type/impl_type_controllerservicestatusspare.h"
-#include "eevp/monitoring/type/impl_type_stringarray.h"
-#include "eevp/monitoring/type/impl_type_timearray.h"
+#include "eevp/monitoring/type/impl_type_mbtempstatus.h"
 #include "eevp/monitoring/type/impl_type_updatableservicelist.h"
 #include "eevp/pdw/type/impl_type_distancelevel.h"
+#include "eevp/pdw/type/impl_type_ussstatus.h"
 #include "eevp/type/impl_type_string.h"
 /// @uptrace{SWS_CM_01005}
 namespace eevp

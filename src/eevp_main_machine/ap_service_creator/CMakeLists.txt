@@ -49,9 +49,18 @@ MESSAGE(STATUS "PARA_APP_GEN_INCLUDE_DIR : ${PARA_APP_GEN_INCLUDE_DIR}")
 SET(SRC
     src/main.cpp
     src/ServiceCreator.cpp
-    src/WiperProxyImpl.cpp
-    src/ServiceManagementSkeletonImpl.cpp
     src/WiperSkeletonImpl.cpp
+    src/TMoodLampSkeletonImpl.cpp
+    src/BmsInfoSkeletonImpl.cpp
+    src/MsgInfoProxyImpl.cpp
+    src/AccrPedalSkeletonImpl.cpp
+    src/EnvMonitorSkeletonImpl.cpp
+    src/GearSkeletonImpl.cpp
+    src/BrakePedalSkeletonImpl.cpp
+    src/VehSpdSkeletonImpl.cpp
+    src/SnsrUssSkeletonImpl.cpp
+    src/LotteSkeletonImpl.cpp
+    src/SESLServiceSkeletonImpl.cpp
     )
 
 ADD_EXECUTABLE(${PROJECT_NAME} ${SRC})

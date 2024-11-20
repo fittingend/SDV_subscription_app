@@ -1,0 +1,1355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00049.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE UUID="c1a54928-5d4e-4b5f-95f7-13550f2e3d50">
+      <SHORT-NAME>DataType</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE UUID="70ba56de-1ccb-42b5-9ce5-e13d6e0ecf7f">
+          <SHORT-NAME>Implementation</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE UUID="520593a7-97b1-48fe-9100-a46357e44b81">
+              <SHORT-NAME>CPP</SHORT-NAME>
+              <ELEMENTS>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="df1b12d6-861e-48b4-81db-c0bbeff89b86">
+                  <SHORT-NAME>AppVersion</SHORT-NAME>
+                  <CATEGORY>ARRAY</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                  <ARRAY-SIZE>6</ARRAY-SIZE>
+                  <NAMESPACES>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>data</SHORT-NAME>
+                      <SYMBOL>data</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>table</SHORT-NAME>
+                      <SYMBOL>table</SYMBOL>
+                    </SYMBOL-PROPS>
+                  </NAMESPACES>
+                  <TEMPLATE-ARGUMENTS>
+                    <CPP-TEMPLATE-ARGUMENT>
+                      <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TEMPLATE-TYPE-REF>
+                    </CPP-TEMPLATE-ARGUMENT>
+                  </TEMPLATE-ARGUMENTS>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="575341b7-1102-40d9-9e4b-577a799ccbd7">
+                  <SHORT-NAME>Color_Index</SHORT-NAME>
+                  <CATEGORY>ARRAY</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                  <ARRAY-SIZE>3</ARRAY-SIZE>
+                  <NAMESPACES>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>data</SHORT-NAME>
+                      <SYMBOL>data</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>table</SHORT-NAME>
+                      <SYMBOL>table</SYMBOL>
+                    </SYMBOL-PROPS>
+                  </NAMESPACES>
+                  <TEMPLATE-ARGUMENTS>
+                    <CPP-TEMPLATE-ARGUMENT>
+                      <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TEMPLATE-TYPE-REF>
+                    </CPP-TEMPLATE-ARGUMENT>
+                  </TEMPLATE-ARGUMENTS>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="7b2a9e3d-3b19-4221-a598-f1fd3820c2bd">
+                  <SHORT-NAME>Complete_Time</SHORT-NAME>
+                  <CATEGORY>ARRAY</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                  <ARRAY-SIZE>2</ARRAY-SIZE>
+                  <NAMESPACES>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>data</SHORT-NAME>
+                      <SYMBOL>data</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>table</SHORT-NAME>
+                      <SYMBOL>table</SYMBOL>
+                    </SYMBOL-PROPS>
+                  </NAMESPACES>
+                  <TEMPLATE-ARGUMENTS>
+                    <CPP-TEMPLATE-ARGUMENT>
+                      <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TEMPLATE-TYPE-REF>
+                    </CPP-TEMPLATE-ARGUMENT>
+                  </TEMPLATE-ARGUMENTS>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="ee0e39cc-8493-4d6e-b965-4395b159a0c3">
+                  <SHORT-NAME>Date</SHORT-NAME>
+                  <CATEGORY>ARRAY</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                  <ARRAY-SIZE>8</ARRAY-SIZE>
+                  <NAMESPACES>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>data</SHORT-NAME>
+                      <SYMBOL>data</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>table</SHORT-NAME>
+                      <SYMBOL>table</SYMBOL>
+                    </SYMBOL-PROPS>
+                  </NAMESPACES>
+                  <TEMPLATE-ARGUMENTS>
+                    <CPP-TEMPLATE-ARGUMENT>
+                      <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TEMPLATE-TYPE-REF>
+                    </CPP-TEMPLATE-ARGUMENT>
+                  </TEMPLATE-ARGUMENTS>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="4aaa49a4-3655-4895-845e-c23bfca5e141">
+                  <SHORT-NAME>Elapsed_Time</SHORT-NAME>
+                  <CATEGORY>ARRAY</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                  <ARRAY-SIZE>2</ARRAY-SIZE>
+                  <NAMESPACES>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>data</SHORT-NAME>
+                      <SYMBOL>data</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>table</SHORT-NAME>
+                      <SYMBOL>table</SYMBOL>
+                    </SYMBOL-PROPS>
+                  </NAMESPACES>
+                  <TEMPLATE-ARGUMENTS>
+                    <CPP-TEMPLATE-ARGUMENT>
+                      <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TEMPLATE-TYPE-REF>
+                    </CPP-TEMPLATE-ARGUMENT>
+                  </TEMPLATE-ARGUMENTS>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="c6041eee-0548-440a-a001-28597c158533">
+                  <SHORT-NAME>Finished_Time</SHORT-NAME>
+                  <CATEGORY>ARRAY</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                  <ARRAY-SIZE>7</ARRAY-SIZE>
+                  <NAMESPACES>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>data</SHORT-NAME>
+                      <SYMBOL>data</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>table</SHORT-NAME>
+                      <SYMBOL>table</SYMBOL>
+                    </SYMBOL-PROPS>
+                  </NAMESPACES>
+                  <TEMPLATE-ARGUMENTS>
+                    <CPP-TEMPLATE-ARGUMENT>
+                      <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TEMPLATE-TYPE-REF>
+                    </CPP-TEMPLATE-ARGUMENT>
+                  </TEMPLATE-ARGUMENTS>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="4056c5d1-6749-43e6-a781-19592438807c">
+                  <SHORT-NAME>InputData</SHORT-NAME>
+                  <CATEGORY>STRUCTURE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                  <NAMESPACES>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>bms</SHORT-NAME>
+                      <SYMBOL>bms</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>input</SHORT-NAME>
+                      <SYMBOL>input</SYMBOL>
+                    </SYMBOL-PROPS>
+                  </NAMESPACES>
+                  <SUB-ELEMENTS>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="161c2a60-e072-4f81-a7bc-d609d16757f9">
+                      <SHORT-NAME>InterfaceIDforDbg</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="64084940-e7f3-4db2-ab85-cdc6de3f2411">
+                      <SHORT-NAME>DataSerialNumber</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="1c01f8a2-5be3-4fce-8101-912706795025">
+                      <SHORT-NAME>VehicleUniqueSnr</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="51559055-3248-4539-88f8-a733d22e4f96">
+                      <SHORT-NAME>EMS_BatteryAvgTemperature</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="5831a4fe-24f4-4c55-90d2-87d3db2a2ef9">
+                      <SHORT-NAME>EMS_ChargerOutputVolt</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="56c3321c-8551-451a-9d75-ae56b57f938c">
+                      <SHORT-NAME>EMS_ChargerOutputCurr</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="88f9c0bf-1023-41ed-94e8-2847a478af69">
+                      <SHORT-NAME>EMS_ReturnCode</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="98fb23b3-1b97-4b6f-834b-ae81d27cf0e5">
+                      <SHORT-NAME>EMS_ConnectionStatus</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="472dbf9e-abcd-499a-a8b4-27449d8a0a44">
+                      <SHORT-NAME>EMS_TargetVolt</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="bfb461af-8c9b-4e29-9320-3191ca8be05d">
+                      <SHORT-NAME>EMS_TargetCurr</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="9065efb6-dc96-4cf5-a2a3-ba202fb8288f">
+                      <SHORT-NAME>EMS_RemainHour</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="34350e23-545b-44de-98ae-32a5803061e0">
+                      <SHORT-NAME>EMS_RemainMin</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="c52b9e59-fdcd-4bc2-b77b-447197a57180">
+                      <SHORT-NAME>EMS_HVBattSOC</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="bcaa582d-fab9-41bf-aff6-6d6db9e4d423">
+                      <SHORT-NAME>EMS_HVBattSOE</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="3a08b185-7dd3-479e-9deb-385fcbc4a3eb">
+                      <SHORT-NAME>EMS_HVBattSOH</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="7dc92a48-8c38-4310-898a-d6d610842132">
+                      <SHORT-NAME>EMS_BattVolt</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="07f86e54-6579-4107-8880-e5eb3c07d3c1">
+                      <SHORT-NAME>EMS_BattCurr</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="ed0ac6d8-9bff-41cc-bdde-310bdb7ddbbe">
+                      <SHORT-NAME>EMS_Obc_dcVolt</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="f399de48-8f57-4127-ae30-e2a138ae3bfb">
+                      <SHORT-NAME>EMS_Obc_dcCurr</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="15a95090-215e-4e1e-981a-686529a5d93a">
+                      <SHORT-NAME>EMS_Avn_ChargeCurrSetSts</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="33286d73-5757-4972-a60e-a31128f8004c">
+                      <SHORT-NAME>EMS_HVBatt_MainRlyCloseReq</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="1fb027eb-059a-487a-be8d-df2b5d504e7e">
+                      <SHORT-NAME>EMS_HVBatt_preChrgRlyStatus</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="015741ea-e342-4877-8ec3-566bf61d020e">
+                      <SHORT-NAME>EMS_HVBatt_posRlyStatus</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="668434d3-483f-42d4-845d-3f5ffc4224a7">
+                      <SHORT-NAME>EMS_HVBatt_negRlyStatus</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="e61f8aa5-0519-4018-af11-2623596bfafc">
+                      <SHORT-NAME>EMS_Avn_DcChargingTargetSetSts</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="3eed6257-33da-4238-ae3a-22a60be9910a">
+                      <SHORT-NAME>EMS_Avn_AcChargingTargetSetSts</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  </SUB-ELEMENTS>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="57621205-89a3-4629-819c-f3ec679704db">
+                  <SHORT-NAME>MaxData</SHORT-NAME>
+                  <CATEGORY>ARRAY</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                  <ARRAY-SIZE>2</ARRAY-SIZE>
+                  <NAMESPACES>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>data</SHORT-NAME>
+                      <SYMBOL>data</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>table</SHORT-NAME>
+                      <SYMBOL>table</SYMBOL>
+                    </SYMBOL-PROPS>
+                  </NAMESPACES>
+                  <TEMPLATE-ARGUMENTS>
+                    <CPP-TEMPLATE-ARGUMENT>
+                      <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TEMPLATE-TYPE-REF>
+                    </CPP-TEMPLATE-ARGUMENT>
+                  </TEMPLATE-ARGUMENTS>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="8656ef28-6d34-40cd-98af-cb5d4b07b494">
+                  <SHORT-NAME>MinData</SHORT-NAME>
+                  <CATEGORY>ARRAY</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                  <ARRAY-SIZE>2</ARRAY-SIZE>
+                  <NAMESPACES>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>data</SHORT-NAME>
+                      <SYMBOL>data</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>table</SHORT-NAME>
+                      <SYMBOL>table</SYMBOL>
+                    </SYMBOL-PROPS>
+                  </NAMESPACES>
+                  <TEMPLATE-ARGUMENTS>
+                    <CPP-TEMPLATE-ARGUMENT>
+                      <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TEMPLATE-TYPE-REF>
+                    </CPP-TEMPLATE-ARGUMENT>
+                  </TEMPLATE-ARGUMENTS>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="205c4964-7605-4c94-a37e-ea08cf436a10">
+                  <SHORT-NAME>OutputData</SHORT-NAME>
+                  <CATEGORY>STRUCTURE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                  <NAMESPACES>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>bms</SHORT-NAME>
+                      <SYMBOL>bms</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>output</SHORT-NAME>
+                      <SYMBOL>output</SYMBOL>
+                    </SYMBOL-PROPS>
+                  </NAMESPACES>
+                  <SUB-ELEMENTS>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="ef59fbc5-fa63-4e11-b532-30879b3ea246">
+                      <SHORT-NAME>InterfaceIDforDbg</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="51788755-2666-4a15-83ec-1da79d1ca4a4">
+                      <SHORT-NAME>VehicleUniqueSnr</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="0bca6104-71d6-49eb-8526-49a99faf8c76">
+                      <SHORT-NAME>AppVer</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/AppVersion</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="a42be30e-b54e-4134-853f-14656fb5b052">
+                      <SHORT-NAME>ChargeStatus</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="3e4ea912-3f43-4be8-9ef8-d53df751da9b">
+                      <SHORT-NAME>EMS_ConnectionStatus</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="53117cdf-eb84-445c-8f31-70ffcec2c39a">
+                      <SHORT-NAME>Date</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/Date</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="8e7f0f83-3dfd-4b64-8074-83c8f1b43df4">
+                      <SHORT-NAME>BattSOC</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint16_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="4d6e9f79-06ad-4cec-956d-1cf01c4ca378">
+                      <SHORT-NAME>DTE</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint16_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="3a0bc876-a4b5-428a-9332-279e57628580">
+                      <SHORT-NAME>BatteryStatus</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint16_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="73b3a6c1-6861-455b-a965-2166a02604b1">
+                      <SHORT-NAME>SOH</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint16_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="826b078e-88df-4470-833a-859480a233d3">
+                      <SHORT-NAME>SOE</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint16_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="7415fafe-6ab0-4be5-8ea4-8dbd9261fd1f">
+                      <SHORT-NAME>TargetSOC</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="05c6b20b-9216-41b2-9bf6-ae6277b89c57">
+                      <SHORT-NAME>CompleteTime</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/Complete_Time</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="4fd5c8f3-9005-4219-a509-117b72cb5816">
+                      <SHORT-NAME>FinishedTime</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/Finished_Time</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="4388a055-9709-4edb-ba76-3f75884d9254">
+                      <SHORT-NAME>GetCount</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="91de196b-bbcb-43ec-8a6c-620f9c039766">
+                      <SHORT-NAME>MissedCount</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="46ed616c-4c14-47aa-acfc-82c17c9657df">
+                      <SHORT-NAME>ChargeResult</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint16_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="edd0ddf0-a71e-4c98-9be0-4837e768c4e0">
+                      <SHORT-NAME>ChargedSOE</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint16_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="27124aa2-b5d7-4d49-bcb0-5ad1956db20a">
+                      <SHORT-NAME>ChargedSOC</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint16_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="0806ba0e-8c3a-4591-9ccf-6cd71005fe9f">
+                      <SHORT-NAME>Current</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/T_MSGINFO</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="513590d8-6cc9-4c1d-b647-b282b7e87326">
+                      <SHORT-NAME>Voltage</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/T_MSGINFO</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="61ee7447-1c60-4a65-b76e-ebcbfd1d9bcc">
+                      <SHORT-NAME>SOC</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/T_MSGINFO</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="cde153e1-02bf-4c6f-a3fe-2b50bbf2fa57">
+                      <SHORT-NAME>Temp</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/T_MSGINFO</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="71cebeea-b506-4fa9-9bf4-d5b0ae4bb7ed">
+                      <SHORT-NAME>ElapsedTime</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/Elapsed_Time</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="baa390c3-eb4a-4d69-b7f2-7f94f4e936b3">
+                      <SHORT-NAME>ChargeStopReason</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint32_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  </SUB-ELEMENTS>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="39c59ca7-714d-474e-8aab-563327f4c177">
+                  <SHORT-NAME>RCData</SHORT-NAME>
+                  <CATEGORY>ARRAY</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                  <ARRAY-SIZE>20</ARRAY-SIZE>
+                  <NAMESPACES>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>data</SHORT-NAME>
+                      <SYMBOL>data</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>table</SHORT-NAME>
+                      <SYMBOL>table</SYMBOL>
+                    </SYMBOL-PROPS>
+                  </NAMESPACES>
+                  <TEMPLATE-ARGUMENTS>
+                    <CPP-TEMPLATE-ARGUMENT>
+                      <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TEMPLATE-TYPE-REF>
+                    </CPP-TEMPLATE-ARGUMENT>
+                  </TEMPLATE-ARGUMENTS>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="d75d9b25-ffc3-4164-8f55-870a95d098ef">
+                  <SHORT-NAME>SoaMImMoodeMode</SHORT-NAME>
+                  <CATEGORY>TYPE_REFERENCE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL>
+                        <COMPU-METHOD-REF DEST="COMPU-METHOD">/DataType/Semantics/CompuMethod/LmpMood</COMPU-METHOD-REF>
+                      </SW-DATA-DEF-PROPS-CONDITIONAL>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                  <NAMESPACES>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>lmp</SHORT-NAME>
+                      <SYMBOL>lmp</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>mode</SHORT-NAME>
+                      <SYMBOL>mode</SYMBOL>
+                    </SYMBOL-PROPS>
+                  </NAMESPACES>
+                  <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="dc6ffa77-acd7-4de3-9228-79023a7095ed">
+                  <SHORT-NAME>T_MSGINFO</SHORT-NAME>
+                  <CATEGORY>STRUCTURE</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                  <NAMESPACES>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>msg</SHORT-NAME>
+                      <SYMBOL>msg</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>info</SHORT-NAME>
+                      <SYMBOL>info</SYMBOL>
+                    </SYMBOL-PROPS>
+                  </NAMESPACES>
+                  <SUB-ELEMENTS>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="b2469c89-e21f-4434-a541-7478cfa4abfa">
+                      <SHORT-NAME>tRslt</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="acce9562-9bbe-4a28-9d13-fecc46b58c71">
+                      <SHORT-NAME>XaxisScale</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="f9180717-9bb5-4989-a1ea-8f6f83347ad7">
+                      <SHORT-NAME>YaxisValidCnt</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="cc392355-f0d9-4ae2-9ce1-705e71fc201a">
+                      <SHORT-NAME>Ydata</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/Y_Data</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="25765fcb-f157-413e-9293-3fdd2133f68f">
+                      <SHORT-NAME>RCValidCnt</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="8e080729-5f9e-4210-b383-206fbc996017">
+                      <SHORT-NAME>RCdata</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/RCData</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="aa27837a-d26d-4028-8eee-2a87598b097e">
+                      <SHORT-NAME>MAXdata</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/MaxData</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                    <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="6ae57b21-f0c9-40d6-8fa7-2b744f885fb2">
+                      <SHORT-NAME>MINdata</SHORT-NAME>
+                      <TYPE-REFERENCE>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/MinData</TYPE-REFERENCE-REF>
+                      </TYPE-REFERENCE>
+                    </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                  </SUB-ELEMENTS>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="3b9ccbbc-07a7-4672-9d53-8cacda847136">
+                  <SHORT-NAME>Y_Data</SHORT-NAME>
+                  <CATEGORY>ARRAY</CATEGORY>
+                  <SW-DATA-DEF-PROPS>
+                    <SW-DATA-DEF-PROPS-VARIANTS>
+                      <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                    </SW-DATA-DEF-PROPS-VARIANTS>
+                  </SW-DATA-DEF-PROPS>
+                  <ARRAY-SIZE>100</ARRAY-SIZE>
+                  <NAMESPACES>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>data</SHORT-NAME>
+                      <SYMBOL>data</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>table</SHORT-NAME>
+                      <SYMBOL>table</SYMBOL>
+                    </SYMBOL-PROPS>
+                  </NAMESPACES>
+                  <TEMPLATE-ARGUMENTS>
+                    <CPP-TEMPLATE-ARGUMENT>
+                      <TEMPLATE-TYPE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TEMPLATE-TYPE-REF>
+                    </CPP-TEMPLATE-ARGUMENT>
+                  </TEMPLATE-ARGUMENTS>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="23105160-8f6c-491a-b4c9-d7b4cd96ea4e">
+                  <SHORT-NAME>bool</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <TYPE-EMITTER>FundamentalType</TYPE-EMITTER>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="30971149-4849-4566-877d-633bdeb6ba9d">
+                  <SHORT-NAME>double</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <TYPE-EMITTER>FundamentalType</TYPE-EMITTER>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="e97ed98a-4248-4dee-ba1d-8e495bfbfd9c">
+                  <SHORT-NAME>float</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <TYPE-EMITTER>FundamentalType</TYPE-EMITTER>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="bc1fda18-c55d-4436-8d87-0696ee4eca54">
+                  <SHORT-NAME>int16_t</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <HEADER-FILE>cstdint</HEADER-FILE>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="0b61e02c-4c3d-456f-877d-ba0b649a7838">
+                  <SHORT-NAME>int32_t</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <HEADER-FILE>cstdint</HEADER-FILE>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="4d518b1f-2ab4-42fe-854d-469c6c0908f1">
+                  <SHORT-NAME>int64_t</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <HEADER-FILE>cstdint</HEADER-FILE>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="f9014d63-0f8e-4d68-8541-1f63c7f114e8">
+                  <SHORT-NAME>int8_t</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <HEADER-FILE>cstdint</HEADER-FILE>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="9eeb33a8-99f1-4742-8a73-b418dccc8e50">
+                  <SHORT-NAME>uint16_t</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <HEADER-FILE>cstdint</HEADER-FILE>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="9477fd60-aa45-4b2a-816d-752683fad558">
+                  <SHORT-NAME>uint32_t</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <HEADER-FILE>cstdint</HEADER-FILE>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="2181c682-2e4c-4f71-b0be-d213e4733e3b">
+                  <SHORT-NAME>uint64_t</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <HEADER-FILE>cstdint</HEADER-FILE>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+                <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="b9891a41-c832-431d-a9b1-221d8075968d">
+                  <SHORT-NAME>uint8_t</SHORT-NAME>
+                  <CATEGORY>VALUE</CATEGORY>
+                  <HEADER-FILE>cstdint</HEADER-FILE>
+                </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+              </ELEMENTS>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="be7cb6d4-e0c5-4b39-ba3c-5929f2836c76">
+          <SHORT-NAME>Semantics</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE UUID="31b59b7e-55aa-4867-bb1b-a78501a53d34">
+              <SHORT-NAME>CompuMethod</SHORT-NAME>
+              <ELEMENTS>
+                <COMPU-METHOD UUID="3e3b13ee-47b0-4baa-8fd3-783da87f9def">
+                  <SHORT-NAME>LmpMood</SHORT-NAME>
+                  <CATEGORY>TEXTTABLE</CATEGORY>
+                  <COMPU-INTERNAL-TO-PHYS>
+                    <COMPU-SCALES>
+                      <COMPU-SCALE>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">0</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">0</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>kCARE_MOOD</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">1</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">1</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>kCOMPORT_MOOD</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">2</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">2</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>kDELIGHT_MOOD</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">3</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">3</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>kMOOD_THERAPY</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                      <COMPU-SCALE>
+                        <LOWER-LIMIT INTERVAL-TYPE="CLOSED">4</LOWER-LIMIT>
+                        <UPPER-LIMIT INTERVAL-TYPE="CLOSED">4</UPPER-LIMIT>
+                        <COMPU-CONST>
+                          <VT>kVITALITY_MOOD</VT>
+                        </COMPU-CONST>
+                      </COMPU-SCALE>
+                    </COMPU-SCALES>
+                  </COMPU-INTERNAL-TO-PHYS>
+                </COMPU-METHOD>
+              </ELEMENTS>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+    <AR-PACKAGE UUID="07a051a2-08f9-49e0-b3be-3ddce2a5c4a6">
+      <SHORT-NAME>PortInterface</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE UUID="52f4dc08-5a7d-4f20-800c-ab8ed833e605">
+          <SHORT-NAME>Service</SHORT-NAME>
+          <ELEMENTS>
+            <SERVICE-INTERFACE UUID="cfafe762-f870-4984-a32a-6549f57c7939">
+              <SHORT-NAME>BmsInfoSrv</SHORT-NAME>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>battery</SHORT-NAME>
+                  <SYMBOL>battery</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>bmsinfo</SHORT-NAME>
+                  <SYMBOL>bmsinfo</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <MAJOR-VERSION>1</MAJOR-VERSION>
+              <MINOR-VERSION>0</MINOR-VERSION>
+              <EVENTS>
+                <VARIABLE-DATA-PROTOTYPE UUID="23a73431-7e5f-49ee-abd2-92125793e3d5">
+                  <SHORT-NAME>ems_BmsInfo</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/InputData</TYPE-TREF>
+                </VARIABLE-DATA-PROTOTYPE>
+              </EVENTS>
+            </SERVICE-INTERFACE>
+            <SERVICE-INTERFACE UUID="9014a78e-9ff6-4e4e-8201-ac8d8be4664a">
+              <SHORT-NAME>EevpControlSoaMIm</SHORT-NAME>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>lmp</SHORT-NAME>
+                  <SYMBOL>lmp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>control</SHORT-NAME>
+                  <SYMBOL>control</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <MAJOR-VERSION>1</MAJOR-VERSION>
+              <MINOR-VERSION>0</MINOR-VERSION>
+              <METHODS>
+                <CLIENT-SERVER-OPERATION UUID="00720c07-05c3-43cb-9bd6-16e2058082aa">
+                  <SHORT-NAME>RequestMImSetBrightness</SHORT-NAME>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE UUID="ecb77d0f-bc74-4652-a45c-8e45b504de97">
+                      <SHORT-NAME>Brightness</SHORT-NAME>
+                      <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint16_t</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION UUID="dfb4c3d3-1f6d-457a-b949-019f4f616105">
+                  <SHORT-NAME>RequestMImSetMode</SHORT-NAME>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE UUID="ff050261-80bc-4aa3-b909-122bb1d4253f">
+                      <SHORT-NAME>mood</SHORT-NAME>
+                      <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/SoaMImMoodeMode</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+                </CLIENT-SERVER-OPERATION>
+                <CLIENT-SERVER-OPERATION UUID="9ed143f7-9fc5-40d6-999c-8c57adc06e90">
+                  <SHORT-NAME>RequestMImSetRGBColor</SHORT-NAME>
+                  <ARGUMENTS>
+                    <ARGUMENT-DATA-PROTOTYPE UUID="342e24d7-5c0b-45b9-99b8-831af77edeb4">
+                      <SHORT-NAME>ColorIndex</SHORT-NAME>
+                      <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/uint8_t</TYPE-TREF>
+                      <DIRECTION>IN</DIRECTION>
+                    </ARGUMENT-DATA-PROTOTYPE>
+                  </ARGUMENTS>
+                  <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+                </CLIENT-SERVER-OPERATION>
+              </METHODS>
+            </SERVICE-INTERFACE>
+            <SERVICE-INTERFACE UUID="bd1ec1f6-93b3-488f-9ffb-b305774c12df">
+              <SHORT-NAME>MsgInfoSrv</SHORT-NAME>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>batt</SHORT-NAME>
+                  <SYMBOL>batt</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>msginfo</SHORT-NAME>
+                  <SYMBOL>msginfo</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <MAJOR-VERSION>1</MAJOR-VERSION>
+              <MINOR-VERSION>0</MINOR-VERSION>
+              <EVENTS>
+                <VARIABLE-DATA-PROTOTYPE UUID="46923c6d-765a-4fc8-a78e-ecdea3079e6b">
+                  <SHORT-NAME>ems_MsgInfo</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/OutputData</TYPE-TREF>
+                </VARIABLE-DATA-PROTOTYPE>
+              </EVENTS>
+            </SERVICE-INTERFACE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+    <AR-PACKAGE UUID="f9408147-f03e-4325-b1d3-106fad829f96">
+      <SHORT-NAME>System</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE UUID="3fe2b17b-7ffd-4073-a287-dd69a4760ec8">
+          <SHORT-NAME>Service</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE UUID="8c9be196-6cb5-49ab-929a-72f2626c6cd6">
+              <SHORT-NAME>Deployment</SHORT-NAME>
+              <ELEMENTS>
+                <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="4a178468-5ba2-4b92-9a51-d8c33b697564">
+                  <SHORT-NAME>BmsInfoSrv</SHORT-NAME>
+                  <EVENT-DEPLOYMENTS>
+                    <SOMEIP-EVENT-DEPLOYMENT UUID="7d454b07-f119-43e8-b0b3-078ea46d5dcd">
+                      <SHORT-NAME>ems_BmsInfo</SHORT-NAME>
+                      <EVENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/PortInterface/Service/BmsInfoSrv/ems_BmsInfo</EVENT-REF>
+                      <EVENT-ID>1</EVENT-ID>
+                      <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                    </SOMEIP-EVENT-DEPLOYMENT>
+                  </EVENT-DEPLOYMENTS>
+                  <SERVICE-INTERFACE-REF DEST="SERVICE-INTERFACE">/PortInterface/Service/BmsInfoSrv</SERVICE-INTERFACE-REF>
+                  <EVENT-GROUPS>
+                    <SOMEIP-EVENT-GROUP UUID="bb3182ac-fa2b-4895-bab7-2f01b2ae629d">
+                      <SHORT-NAME>Eventgroup_ems_BmsInfo</SHORT-NAME>
+                      <EVENT-GROUP-ID>1</EVENT-GROUP-ID>
+                      <EVENT-REFS>
+                        <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/System/Service/Deployment/BmsInfoSrv/ems_BmsInfo</EVENT-REF>
+                      </EVENT-REFS>
+                    </SOMEIP-EVENT-GROUP>
+                  </EVENT-GROUPS>
+                  <SERVICE-INTERFACE-ID>11</SERVICE-INTERFACE-ID>
+                  <SERVICE-INTERFACE-VERSION>
+                    <MAJOR-VERSION>1</MAJOR-VERSION>
+                    <MINOR-VERSION>0</MINOR-VERSION>
+                  </SERVICE-INTERFACE-VERSION>
+                </SOMEIP-SERVICE-INTERFACE-DEPLOYMENT>
+                <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="58f0ef8c-7dc5-49a2-9aff-9ca5bcca2216">
+                  <SHORT-NAME>EevpControlSoaMIm</SHORT-NAME>
+                  <METHOD-DEPLOYMENTS>
+                    <SOMEIP-METHOD-DEPLOYMENT UUID="9205c2e9-a7f1-4f4c-a249-9e114fa2ce07">
+                      <SHORT-NAME>RequestMImSetBrightness</SHORT-NAME>
+                      <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/PortInterface/Service/EevpControlSoaMIm/RequestMImSetBrightness</METHOD-REF>
+                      <METHOD-ID>1</METHOD-ID>
+                      <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                    </SOMEIP-METHOD-DEPLOYMENT>
+                    <SOMEIP-METHOD-DEPLOYMENT UUID="d542d99e-4e31-40d1-ae4c-4ae860409ad8">
+                      <SHORT-NAME>RequestMImSetMode</SHORT-NAME>
+                      <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/PortInterface/Service/EevpControlSoaMIm/RequestMImSetMode</METHOD-REF>
+                      <METHOD-ID>2</METHOD-ID>
+                      <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                    </SOMEIP-METHOD-DEPLOYMENT>
+                    <SOMEIP-METHOD-DEPLOYMENT UUID="d1d00605-5ba9-48a3-af5c-d656aee8d09e">
+                      <SHORT-NAME>RequestMImSetRGBColor</SHORT-NAME>
+                      <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/PortInterface/Service/EevpControlSoaMIm/RequestMImSetRGBColor</METHOD-REF>
+                      <METHOD-ID>3</METHOD-ID>
+                      <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                    </SOMEIP-METHOD-DEPLOYMENT>
+                  </METHOD-DEPLOYMENTS>
+                  <SERVICE-INTERFACE-REF DEST="SERVICE-INTERFACE">/PortInterface/Service/EevpControlSoaMIm</SERVICE-INTERFACE-REF>
+                  <SERVICE-INTERFACE-ID>13</SERVICE-INTERFACE-ID>
+                  <SERVICE-INTERFACE-VERSION>
+                    <MAJOR-VERSION>1</MAJOR-VERSION>
+                    <MINOR-VERSION>0</MINOR-VERSION>
+                  </SERVICE-INTERFACE-VERSION>
+                </SOMEIP-SERVICE-INTERFACE-DEPLOYMENT>
+                <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="2f36cfd0-db1a-406f-bd31-8aeeb4598ecf">
+                  <SHORT-NAME>MsgInfoSrv</SHORT-NAME>
+                  <EVENT-DEPLOYMENTS>
+                    <SOMEIP-EVENT-DEPLOYMENT UUID="3db2f8e5-e608-49e1-8094-1a9eba604333">
+                      <SHORT-NAME>ems_MsgInfo</SHORT-NAME>
+                      <EVENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/PortInterface/Service/MsgInfoSrv/ems_MsgInfo</EVENT-REF>
+                      <EVENT-ID>1</EVENT-ID>
+                      <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                    </SOMEIP-EVENT-DEPLOYMENT>
+                  </EVENT-DEPLOYMENTS>
+                  <SERVICE-INTERFACE-REF DEST="SERVICE-INTERFACE">/PortInterface/Service/MsgInfoSrv</SERVICE-INTERFACE-REF>
+                  <EVENT-GROUPS>
+                    <SOMEIP-EVENT-GROUP UUID="e5992440-e15b-4137-8663-384c0b71ba3c">
+                      <SHORT-NAME>Eventgroup_ems_MsgInfo</SHORT-NAME>
+                      <EVENT-GROUP-ID>1</EVENT-GROUP-ID>
+                      <EVENT-REFS>
+                        <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/System/Service/Deployment/MsgInfoSrv/ems_MsgInfo</EVENT-REF>
+                      </EVENT-REFS>
+                    </SOMEIP-EVENT-GROUP>
+                  </EVENT-GROUPS>
+                  <SERVICE-INTERFACE-ID>12</SERVICE-INTERFACE-ID>
+                  <SERVICE-INTERFACE-VERSION>
+                    <MAJOR-VERSION>1</MAJOR-VERSION>
+                    <MINOR-VERSION>0</MINOR-VERSION>
+                  </SERVICE-INTERFACE-VERSION>
+                </SOMEIP-SERVICE-INTERFACE-DEPLOYMENT>
+              </ELEMENTS>
+            </AR-PACKAGE>
+            <AR-PACKAGE UUID="a857f733-8752-4450-bd02-25d46892e121">
+              <SHORT-NAME>Endpoint</SHORT-NAME>
+              <ELEMENTS>
+                <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="ebd44725-ddf4-444c-aaee-4b87b4c49c15">
+                  <SHORT-NAME>EEVP_BatteryMonitor_SomeipConsumers_BmsInfoSrv</SHORT-NAME>
+                  <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
+                  <SERVICE-INSTANCE-REFS>
+                    <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/System/Service/Instance/EEVP_BatteryMonitor_Consumer_BmsInfoSrv</SERVICE-INSTANCE-REF>
+                  </SERVICE-INSTANCE-REFS>
+                  <TCP-PORT>50114</TCP-PORT>
+                  <UDP-PORT>50114</UDP-PORT>
+                </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+                <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="365a621d-57d1-481a-9e16-a035ae2b9f97">
+                  <SHORT-NAME>EEVP_BatteryMonitor_SomeipConsumers_EevpControlSoaMIm</SHORT-NAME>
+                  <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
+                  <SERVICE-INSTANCE-REFS>
+                    <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/System/Service/Instance/EEVP_BatteryMonitor_Consumer_EevpControlSoaMIm</SERVICE-INSTANCE-REF>
+                  </SERVICE-INSTANCE-REFS>
+                  <TCP-PORT>50115</TCP-PORT>
+                  <UDP-PORT>50115</UDP-PORT>
+                </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+                <SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING UUID="2e31568c-bea8-4381-a2c9-b6d96cac580f">
+                  <SHORT-NAME>EEVP_BatteryMonitor_SomeipProviders_MsgInfoSrv</SHORT-NAME>
+                  <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/Ecu/EEVP_MAIN/eth0</COMMUNICATION-CONNECTOR-REF>
+                  <SERVICE-INSTANCE-REFS>
+                    <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/System/Service/Instance/EEVP_BatteryMonitor_Provider_MsgInfoSrv</SERVICE-INSTANCE-REF>
+                  </SERVICE-INSTANCE-REFS>
+                  <TCP-PORT>50116</TCP-PORT>
+                  <UDP-PORT>50116</UDP-PORT>
+                </SOMEIP-SERVICE-INSTANCE-TO-MACHINE-MAPPING>
+              </ELEMENTS>
+            </AR-PACKAGE>
+            <AR-PACKAGE UUID="b1e99896-c6df-4523-b843-3afaee8d67bf">
+              <SHORT-NAME>Instance</SHORT-NAME>
+              <ELEMENTS>
+                <REQUIRED-SOMEIP-SERVICE-INSTANCE UUID="9d388783-dd35-4592-84b2-ff284144513a">
+                  <SHORT-NAME>EEVP_BatteryMonitor_Consumer_BmsInfoSrv</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="PARA-SOMEIP-CONFIGURATION">
+                        <SD GID="CLIENT-ID">17</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/System/Service/Deployment/BmsInfoSrv</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                  <REQUIRED-EVENT-GROUPS>
+                    <SOMEIP-REQUIRED-EVENT-GROUP>
+                      <SHORT-NAME>Eventgroup_ems_BmsInfo</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/System/Service/Deployment/BmsInfoSrv/Eventgroup_ems_BmsInfo</EVENT-GROUP-REF>
+                      <SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF DEST="SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG">/ServiceInstance/SdTimingConfig/Subscription/DefaultSdSubscribeConfig</SD-CLIENT-EVENT-GROUP-TIMING-CONFIG-REF>
+                    </SOMEIP-REQUIRED-EVENT-GROUP>
+                  </REQUIRED-EVENT-GROUPS>
+                  <REQUIRED-MINOR-VERSION>ANY</REQUIRED-MINOR-VERSION>
+                  <REQUIRED-SERVICE-INSTANCE-ID>ANY</REQUIRED-SERVICE-INSTANCE-ID>
+                  <SD-CLIENT-CONFIG-REF DEST="SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Client/DefaultSdClientConfig</SD-CLIENT-CONFIG-REF>
+                </REQUIRED-SOMEIP-SERVICE-INSTANCE>
+                <REQUIRED-SOMEIP-SERVICE-INSTANCE UUID="8bde9122-d495-4f7b-b477-3b201e4a1b7d">
+                  <SHORT-NAME>EEVP_BatteryMonitor_Consumer_EevpControlSoaMIm</SHORT-NAME>
+                  <ADMIN-DATA>
+                    <SDGS>
+                      <SDG GID="PARA-SOMEIP-CONFIGURATION">
+                        <SD GID="CLIENT-ID">19</SD>
+                      </SDG>
+                    </SDGS>
+                  </ADMIN-DATA>
+                  <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/System/Service/Deployment/EevpControlSoaMIm</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                  <METHOD-REQUEST-PROPSS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/EevpControlSoaMIm/RequestMImSetBrightness</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/EevpControlSoaMIm/RequestMImSetMode</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/System/Service/Deployment/EevpControlSoaMIm/RequestMImSetRGBColor</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
+                  </METHOD-REQUEST-PROPSS>
+                  <REQUIRED-MINOR-VERSION>ANY</REQUIRED-MINOR-VERSION>
+                  <REQUIRED-SERVICE-INSTANCE-ID>ANY</REQUIRED-SERVICE-INSTANCE-ID>
+                  <SD-CLIENT-CONFIG-REF DEST="SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Client/DefaultSdClientConfig</SD-CLIENT-CONFIG-REF>
+                </REQUIRED-SOMEIP-SERVICE-INSTANCE>
+                <PROVIDED-SOMEIP-SERVICE-INSTANCE UUID="bd6fb498-3951-465b-a2d8-212cb194d8c8">
+                  <SHORT-NAME>EEVP_BatteryMonitor_Provider_MsgInfoSrv</SHORT-NAME>
+                  <SERVICE-INTERFACE-DEPLOYMENT-REF DEST="SOMEIP-SERVICE-INTERFACE-DEPLOYMENT">/System/Service/Deployment/MsgInfoSrv</SERVICE-INTERFACE-DEPLOYMENT-REF>
+                  <EVENT-PROPSS>
+                    <SOMEIP-EVENT-PROPS>
+                      <COLLECTION-PROPS/>
+                      <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/System/Service/Deployment/MsgInfoSrv/ems_MsgInfo</EVENT-REF>
+                    </SOMEIP-EVENT-PROPS>
+                  </EVENT-PROPSS>
+                  <PROVIDED-EVENT-GROUPS>
+                    <SOMEIP-PROVIDED-EVENT-GROUP UUID="7edcd9df-bd13-412b-b533-741d8b778d47">
+                      <SHORT-NAME>Eventgroup_ems_MsgInfo</SHORT-NAME>
+                      <EVENT-GROUP-REF DEST="SOMEIP-EVENT-GROUP">/System/Service/Deployment/MsgInfoSrv/Eventgroup_ems_MsgInfo</EVENT-GROUP-REF>
+                      <MULTICAST-THRESHOLD>0</MULTICAST-THRESHOLD>
+                    </SOMEIP-PROVIDED-EVENT-GROUP>
+                  </PROVIDED-EVENT-GROUPS>
+                  <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/DefaultSdServerConfig</SD-SERVER-CONFIG-REF>
+                  <SERVICE-INSTANCE-ID>12</SERVICE-INSTANCE-ID>
+                </PROVIDED-SOMEIP-SERVICE-INSTANCE>
+              </ELEMENTS>
+            </AR-PACKAGE>
+            <AR-PACKAGE UUID="ba49c196-6078-4e06-91bc-b68d17391700">
+              <SHORT-NAME>TimingConfig</SHORT-NAME>
+              <ELEMENTS>
+                <SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG UUID="6f16247f-baa7-4ee3-847b-70010de7f8d3">
+                  <SHORT-NAME>SdClientConfig</SHORT-NAME>
+                  <INITIAL-FIND-BEHAVIOR>
+                    <INITIAL-DELAY-MAX-VALUE>0.2</INITIAL-DELAY-MAX-VALUE>
+                    <INITIAL-DELAY-MIN-VALUE>0.1</INITIAL-DELAY-MIN-VALUE>
+                    <INITIAL-REPETITIONS-BASE-DELAY>0.1</INITIAL-REPETITIONS-BASE-DELAY>
+                    <INITIAL-REPETITIONS-MAX>4</INITIAL-REPETITIONS-MAX>
+                  </INITIAL-FIND-BEHAVIOR>
+                  <SERVICE-FIND-TIME-TO-LIVE>16777215</SERVICE-FIND-TIME-TO-LIVE>
+                </SOMEIP-SD-CLIENT-SERVICE-INSTANCE-CONFIG>
+                <SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG UUID="e8e613a4-7213-474a-9d14-f5120adc7489">
+                  <SHORT-NAME>SdEventgroupConfig</SHORT-NAME>
+                  <REQUEST-RESPONSE-DELAY>
+                    <MAX-VALUE>0.0</MAX-VALUE>
+                    <MIN-VALUE>0.0</MIN-VALUE>
+                  </REQUEST-RESPONSE-DELAY>
+                  <TIME-TO-LIVE>16777215</TIME-TO-LIVE>
+                </SOMEIP-SD-CLIENT-EVENT-GROUP-TIMING-CONFIG>
+                <SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG UUID="ec0a439d-0966-4b6b-b2e6-09196c3dee5e">
+                  <SHORT-NAME>SdServerConfig</SHORT-NAME>
+                  <INITIAL-OFFER-BEHAVIOR>
+                    <INITIAL-DELAY-MAX-VALUE>0.2</INITIAL-DELAY-MAX-VALUE>
+                    <INITIAL-DELAY-MIN-VALUE>0.1</INITIAL-DELAY-MIN-VALUE>
+                    <INITIAL-REPETITIONS-BASE-DELAY>0.1</INITIAL-REPETITIONS-BASE-DELAY>
+                    <INITIAL-REPETITIONS-MAX>3</INITIAL-REPETITIONS-MAX>
+                  </INITIAL-OFFER-BEHAVIOR>
+                  <OFFER-CYCLIC-DELAY>0.5</OFFER-CYCLIC-DELAY>
+                  <REQUEST-RESPONSE-DELAY>
+                    <MAX-VALUE>0.0</MAX-VALUE>
+                    <MIN-VALUE>0.0</MIN-VALUE>
+                  </REQUEST-RESPONSE-DELAY>
+                  <SERVICE-OFFER-TIME-TO-LIVE>16777215</SERVICE-OFFER-TIME-TO-LIVE>
+                </SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG>
+              </ELEMENTS>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="7d74a91c-e08b-4078-9b4b-7fcfa2ec2c4c">
+          <SHORT-NAME>VehicleTopology</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE UUID="6158a56d-cba5-4680-aa83-10c566889df3">
+              <SHORT-NAME>Cluster</SHORT-NAME>
+              <ELEMENTS>
+                <ETHERNET-CLUSTER UUID="9dcb6a3a-74a9-40b7-a508-8ce25b113c71">
+                  <SHORT-NAME>EthernetCluster</SHORT-NAME>
+                  <ETHERNET-CLUSTER-VARIANTS>
+                    <ETHERNET-CLUSTER-CONDITIONAL>
+                      <PHYSICAL-CHANNELS>
+                        <ETHERNET-PHYSICAL-CHANNEL UUID="361fa987-bd66-40cc-b3f6-89536f8335cc">
+                          <SHORT-NAME>PhysicalChannel</SHORT-NAME>
+                          <CATEGORY>WIRED</CATEGORY>
+                          <COMM-CONNECTORS>
+                            <COMMUNICATION-CONNECTOR-REF-CONDITIONAL>
+                              <COMMUNICATION-CONNECTOR-REF DEST="ETHERNET-COMMUNICATION-CONNECTOR">/System/VehicleTopology/Ecu/Ecu/eth0</COMMUNICATION-CONNECTOR-REF>
+                            </COMMUNICATION-CONNECTOR-REF-CONDITIONAL>
+                          </COMM-CONNECTORS>
+                          <NETWORK-ENDPOINTS>
+                            <NETWORK-ENDPOINT UUID="ee9739b7-ba9e-4854-9db8-206ff9b345ca">
+                              <SHORT-NAME>EcuEndpoint</SHORT-NAME>
+                              <NETWORK-ENDPOINT-ADDRESSES>
+                                <IPV-4-CONFIGURATION>
+                                  <IPV-4-ADDRESS>127.0.0.1</IPV-4-ADDRESS>
+                                </IPV-4-CONFIGURATION>
+                              </NETWORK-ENDPOINT-ADDRESSES>
+                            </NETWORK-ENDPOINT>
+                            <NETWORK-ENDPOINT UUID="5acc09ac-56e7-4acd-a1a3-458f82831c28">
+                              <SHORT-NAME>SdEndpoint</SHORT-NAME>
+                              <NETWORK-ENDPOINT-ADDRESSES>
+                                <IPV-4-CONFIGURATION>
+                                  <IPV-4-ADDRESS>224.0.0.1</IPV-4-ADDRESS>
+                                </IPV-4-CONFIGURATION>
+                              </NETWORK-ENDPOINT-ADDRESSES>
+                            </NETWORK-ENDPOINT>
+                          </NETWORK-ENDPOINTS>
+                        </ETHERNET-PHYSICAL-CHANNEL>
+                      </PHYSICAL-CHANNELS>
+                    </ETHERNET-CLUSTER-CONDITIONAL>
+                  </ETHERNET-CLUSTER-VARIANTS>
+                </ETHERNET-CLUSTER>
+              </ELEMENTS>
+            </AR-PACKAGE>
+            <AR-PACKAGE UUID="a0d766ff-d87e-40b9-bc75-4eaadbc09848">
+              <SHORT-NAME>Ecu</SHORT-NAME>
+              <ELEMENTS>
+                <MACHINE-DESIGN UUID="03aebd8e-9be5-43fa-88b5-97dda9346086">
+                  <SHORT-NAME>Ecu</SHORT-NAME>
+                  <COMMUNICATION-CONNECTORS>
+                    <USER-DEFINED-COMMUNICATION-CONNECTOR UUID="8590db53-b4b3-4c7b-ab7e-a56e176cbc7c">
+                      <SHORT-NAME>IPC</SHORT-NAME>
+                    </USER-DEFINED-COMMUNICATION-CONNECTOR>
+                    <ETHERNET-COMMUNICATION-CONNECTOR UUID="bdb29c8c-d80d-457a-bf80-711775037309">
+                      <SHORT-NAME>eth0</SHORT-NAME>
+                      <UNICAST-NETWORK-ENDPOINT-REF DEST="NETWORK-ENDPOINT">/System/VehicleTopology/Cluster/EthernetCluster/PhysicalChannel/EcuEndpoint</UNICAST-NETWORK-ENDPOINT-REF>
+                    </ETHERNET-COMMUNICATION-CONNECTOR>
+                  </COMMUNICATION-CONNECTORS>
+                  <SERVICE-DISCOVER-CONFIGS>
+                    <SOMEIP-SERVICE-DISCOVERY>
+                      <MULTICAST-SD-IP-ADDRESS-REF DEST="NETWORK-ENDPOINT">/System/VehicleTopology/Cluster/EthernetCluster/PhysicalChannel/SdEndpoint</MULTICAST-SD-IP-ADDRESS-REF>
+                      <SOMEIP-SERVICE-DISCOVERY-PORT>30490</SOMEIP-SERVICE-DISCOVERY-PORT>
+                    </SOMEIP-SERVICE-DISCOVERY>
+                  </SERVICE-DISCOVER-CONFIGS>
+                </MACHINE-DESIGN>
+              </ELEMENTS>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+    <AR-PACKAGE UUID="9f1289b9-0c46-4c2b-8a86-d257ab804a44">
+      <SHORT-NAME>AdaptiveApplication</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE UUID="3c15c9ba-9f9f-40a5-9a53-5e5589179af9">
+          <SHORT-NAME>DltConfig</SHORT-NAME>
+          <ELEMENTS>
+            <DLT-LOG-CHANNEL-TO-PROCESS-MAPPING UUID="1b2f304a-610e-436d-8507-b5c3078501f1">
+              <SHORT-NAME>DltLogChannelToProcessMapping_BatteryMonitor_TO_BatteryMonitor</SHORT-NAME>
+              <DLT-LOG-CHANNEL-REF DEST="DLT-LOG-CHANNEL">/Machine/EEVP_Main_Machine/LOG/BatteryMonitor</DLT-LOG-CHANNEL-REF>
+              <PROCESS-REF DEST="PROCESS">/AdaptiveApplication/Process/BatteryMonitor</PROCESS-REF>
+            </DLT-LOG-CHANNEL-TO-PROCESS-MAPPING>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="eba0f9bd-fe96-4c7a-956d-f47d717ba7bf">
+          <SHORT-NAME>Executable</SHORT-NAME>
+          <ELEMENTS>
+            <EXECUTABLE UUID="fa86d1b3-46cf-4bae-a984-b5c5feba5984">
+              <SHORT-NAME>BatteryMonitor</SHORT-NAME>
+              <CATEGORY>APPLICATION_LEVEL</CATEGORY>
+              <LOGGING-BEHAVIOR>USES-LOGGING</LOGGING-BEHAVIOR>
+              <REPORTING-BEHAVIOR>REPORTS-EXECUTION-STATE</REPORTING-BEHAVIOR>
+              <ROOT-SW-COMPONENT-PROTOTYPE UUID="23338670-cf5a-4c06-a94c-5e8aed1d52f4">
+                <SHORT-NAME>AA</SHORT-NAME>
+                <APPLICATION-TYPE-TREF DEST="ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE">/SwComponent/AdaptiveApplication/BatteryMonitor</APPLICATION-TYPE-TREF>
+              </ROOT-SW-COMPONENT-PROTOTYPE>
+              <VERSION>1.0.0</VERSION>
+            </EXECUTABLE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="a1dcd2fc-1c55-4200-bf13-f719fe61945a">
+          <SHORT-NAME>Manifest</SHORT-NAME>
+          <ELEMENTS>
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="0a217adc-3ece-4cb6-a4dd-91c6cbcd5d8a">
+              <SHORT-NAME>BatteryMonitor_AA_P_MsgInfo</SHORT-NAME>
+              <PORT-PROTOTYPE-IREF>
+                <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/AdaptiveApplication/Executable/BatteryMonitor/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
+                <TARGET-PORT-PROTOTYPE-REF DEST="P-PORT-PROTOTYPE">/SwComponent/AdaptiveApplication/BatteryMonitor/P_MsgInfo</TARGET-PORT-PROTOTYPE-REF>
+              </PORT-PROTOTYPE-IREF>
+              <SERVICE-INSTANCE-REF DEST="PROVIDED-SOMEIP-SERVICE-INSTANCE">/System/Service/Instance/EEVP_BatteryMonitor_Provider_MsgInfoSrv</SERVICE-INSTANCE-REF>
+            </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="b330fab7-b058-4c36-9368-9cdb6793c649">
+              <SHORT-NAME>BatteryMonitor_AA_R_BmsInfo</SHORT-NAME>
+              <PORT-PROTOTYPE-IREF>
+                <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/AdaptiveApplication/Executable/BatteryMonitor/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
+                <TARGET-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponent/AdaptiveApplication/BatteryMonitor/R_BmsInfo</TARGET-PORT-PROTOTYPE-REF>
+              </PORT-PROTOTYPE-IREF>
+              <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/System/Service/Instance/EEVP_BatteryMonitor_Consumer_BmsInfoSrv</SERVICE-INSTANCE-REF>
+            </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="3e2ea640-6a28-43be-a40d-e3db84ff42a1">
+              <SHORT-NAME>BatteryMonitor_AA_R_LmpCtrl</SHORT-NAME>
+              <PORT-PROTOTYPE-IREF>
+                <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/AdaptiveApplication/Executable/BatteryMonitor/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
+                <TARGET-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/SwComponent/AdaptiveApplication/BatteryMonitor/R_LmpCtrl</TARGET-PORT-PROTOTYPE-REF>
+              </PORT-PROTOTYPE-IREF>
+              <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/System/Service/Instance/EEVP_BatteryMonitor_Consumer_EevpControlSoaMIm</SERVICE-INSTANCE-REF>
+            </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="a640c79a-1b80-46b4-bce4-827f38598e5f">
+          <SHORT-NAME>Process</SHORT-NAME>
+          <ELEMENTS>
+            <PROCESS UUID="68a1b08e-0d35-4204-ab0a-70b352838652">
+              <SHORT-NAME>BatteryMonitor</SHORT-NAME>
+              <EXECUTABLE-REF DEST="EXECUTABLE">/AdaptiveApplication/Executable/BatteryMonitor</EXECUTABLE-REF>
+              <PROCESS-STATE-MACHINE UUID="ca7f04b7-9489-4e8e-abac-4aba3ed5cb66">
+                <SHORT-NAME>BatteryMonitor</SHORT-NAME>
+                <TYPE-TREF DEST="MODE-DECLARATION-GROUP">/StateMachine/ProcessState</TYPE-TREF>
+              </PROCESS-STATE-MACHINE>
+              <STATE-DEPENDENT-STARTUP-CONFIGS>
+                <STATE-DEPENDENT-STARTUP-CONFIG>
+                  <EXECUTION-DEPENDENCYS>
+                    <EXECUTION-DEPENDENCY>
+                      <PROCESS-STATE-IREF>
+                        <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Application/Process/CM/CM</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                        <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/StateMachine/ProcessState/Running</TARGET-MODE-DECLARATION-REF>
+                      </PROCESS-STATE-IREF>
+                    </EXECUTION-DEPENDENCY>
+                  </EXECUTION-DEPENDENCYS>
+                  <FUNCTION-GROUP-STATE-IREFS>
+                    <FUNCTION-GROUP-STATE-IREF>
+                      <CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF DEST="MODE-DECLARATION-GROUP-PROTOTYPE">/Machine/FunctionGroup/EEVP_Main_FunctionGroup/MachineFG</CONTEXT-MODE-DECLARATION-GROUP-PROTOTYPE-REF>
+                      <TARGET-MODE-DECLARATION-REF DEST="MODE-DECLARATION">/StateMachine/MachineState/Startup</TARGET-MODE-DECLARATION-REF>
+                    </FUNCTION-GROUP-STATE-IREF>
+                  </FUNCTION-GROUP-STATE-IREFS>
+                  <RESOURCE-GROUP-REF DEST="RESOURCE-GROUP">/Machine/EEVP_Main_Machine/POSIX/DefaultResourceGroup</RESOURCE-GROUP-REF>
+                  <STARTUP-CONFIG-REF DEST="STARTUP-CONFIG">/AdaptiveApplication/StartupConfig/EEVP_BatteryMonitor_StartupConfig/BatteryMonitor</STARTUP-CONFIG-REF>
+                </STATE-DEPENDENT-STARTUP-CONFIG>
+              </STATE-DEPENDENT-STARTUP-CONFIGS>
+            </PROCESS>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="f465abd0-375b-4915-9d6f-d1ba4c950672">
+          <SHORT-NAME>StartupConfig</SHORT-NAME>
+          <ELEMENTS>
+            <STARTUP-CONFIG-SET UUID="7c74bc47-a84f-438e-8a8d-48708b4a2bac">
+              <SHORT-NAME>EEVP_BatteryMonitor_StartupConfig</SHORT-NAME>
+              <STARTUP-CONFIGS>
+                <STARTUP-CONFIG UUID="eca7baf3-a164-434f-baf0-7e6228b1e7b7">
+                  <SHORT-NAME>BatteryMonitor</SHORT-NAME>
+                  <SCHEDULING-POLICY>SCHED_OTHER</SCHEDULING-POLICY>
+                  <SCHEDULING-PRIORITY>0</SCHEDULING-PRIORITY>
+                  <TIMEOUT/>
+                </STARTUP-CONFIG>
+              </STARTUP-CONFIGS>
+            </STARTUP-CONFIG-SET>
+          </ELEMENTS>
+        </AR-PACKAGE>
+        <AR-PACKAGE UUID="1ed109af-c674-4b16-bf4d-47162c45c720">
+          <SHORT-NAME>SwComponent</SHORT-NAME>
+          <ELEMENTS>
+            <ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE UUID="ebbab7bb-84a5-460d-85f3-291a67c1a418">
+              <SHORT-NAME>BatteryMonitor</SHORT-NAME>
+              <PORTS>
+                <P-PORT-PROTOTYPE UUID="2ffeb559-68b1-4a44-9727-6fad2f7892c2">
+                  <SHORT-NAME>P_MsgInfo</SHORT-NAME>
+                  <PROVIDED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/PortInterface/Service/MsgInfoSrv</PROVIDED-INTERFACE-TREF>
+                </P-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="6c46d3ed-424c-450d-98ff-037675982d2b">
+                  <SHORT-NAME>R_BmsInfo</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/PortInterface/Service/BmsInfoSrv</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="b53289a9-27ce-435b-9301-fd52dcf3aeeb">
+                  <SHORT-NAME>R_LmpCtrl</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/PortInterface/Service/EevpControlSoaMIm</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+              </PORTS>
+            </ADAPTIVE-APPLICATION-SW-COMPONENT-TYPE>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

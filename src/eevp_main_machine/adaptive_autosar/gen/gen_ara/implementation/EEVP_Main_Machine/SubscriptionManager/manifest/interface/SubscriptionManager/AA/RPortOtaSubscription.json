@@ -20,8 +20,22 @@
             "separation-time" : "0.0"
         },
         {
+            "name" : "notifyRollbackComplete",
+            "event-id" : "22",
+            "transport" : "udp",
+            "max-segment-len" : "0",
+            "separation-time" : "0.0"
+        },
+        {
             "name" : "notifyUpdatableApp",
             "event-id" : "12",
+            "transport" : "udp",
+            "max-segment-len" : "0",
+            "separation-time" : "0.0"
+        },
+        {
+            "name" : "notifyUpdateComplete",
+            "event-id" : "21",
             "transport" : "udp",
             "max-segment-len" : "0",
             "separation-time" : "0.0"
@@ -31,6 +45,15 @@
         {
             "name" : "requestAppInstall",
             "method-id" : "1",
+            "transport" : "udp",
+            "req-max-segment-len" : "0",
+            "req-separation-time" : "0.0",
+            "resp-max-segment-len" : "0",
+            "resp-separation-time" : "0.0"
+        },
+        {
+            "name" : "requestAppRollback",
+            "method-id" : "11",
             "transport" : "udp",
             "req-max-segment-len" : "0",
             "req-separation-time" : "0.0",

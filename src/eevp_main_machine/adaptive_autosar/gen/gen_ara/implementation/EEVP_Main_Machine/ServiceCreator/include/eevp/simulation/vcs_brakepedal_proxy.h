@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : vcs_brakepedal_proxy.h
 /// SERVICE INTERFACE NAME            : VCS_BrakePedal
-/// GENERATED DATE                    : 2024-10-29 13:55:04
+/// GENERATED DATE                    : 2024-11-05 15:24:01
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -40,173 +40,12 @@ namespace events
 namespace fields
 {
 /// @uptrace{SWS_CM_00008}
-class vcs_BrakeSwtich
-{
-public:
-    /// @brief Type alias for type of field value
-    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
-    using FieldType = eevp::simulation::VCS_BrakePosn;
-    /// @brief Constructor
-    explicit vcs_BrakeSwtich(para::com::ProxyInterface* interface) : mInterface(interface)
-    {
-        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-    }
-    /// @brief Destructor
-    virtual ~vcs_BrakeSwtich() = default;
-    /// @brief Delete copy constructor
-    vcs_BrakeSwtich(const vcs_BrakeSwtich& other) = delete;
-    /// @brief Delete copy assignment
-    vcs_BrakeSwtich& operator=(const vcs_BrakeSwtich& other) = delete;
-    /// @brief Move constructor
-    vcs_BrakeSwtich(vcs_BrakeSwtich&& other) noexcept : mInterface(other.mInterface)
-    {
-        mMaxSampleCount = other.mMaxSampleCount;
-        mEventReceiveHandler = other.mEventReceiveHandler;
-        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
-        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
-        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
-        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-    }
-    /// @brief Move assignment
-    vcs_BrakeSwtich& operator=(vcs_BrakeSwtich&& other) noexcept
-    {
-        mInterface = other.mInterface;
-        mMaxSampleCount = other.mMaxSampleCount;
-        mEventReceiveHandler = other.mEventReceiveHandler;
-        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
-        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
-        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
-        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-        return *this;
-    }
-    /// @brief Requests getter method to Communication Management
-    /// @uptrace{SWS_CM_00112}
-    ara::core::Future<FieldType> Get()
-    {
-        std::vector<std::uint8_t> data{};
-        auto* promise = new ara::core::Promise<FieldType>();
-        auto future = promise->get_future();
-        mInterface->CallMethod(kGetterCallSign, data, promise);
-        return future;
-    }
-    /// @brief Requests "Subscribe" message to Communication Management
-    /// @uptrace{SWS_CM_00141}
-    ara::core::Result<void> Subscribe(size_t maxSampleCount)
-    {
-        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
-        {
-            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
-            {
-                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
-            }
-        }
-        mMaxSampleCount = maxSampleCount;
-        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
-    }
-    /// @brief Requests "StopSubscribe" message to Communication Management
-    /// @uptrace{SWS_CM_00151}
-    void Unsubscribe()
-    {
-        mInterface->UnsubscribeEvent(kNotifierCallSign);
-    }
-    /// @brief Return state for current subscription
-    /// @uptrace{SWS_CM_00316}
-    ara::com::SubscriptionState GetSubscriptionState() const
-    {
-        return mInterface->GetSubscriptionState(kNotifierCallSign);
-    }
-    /// @brief Register callback to catch changes of subscription state
-    /// @uptrace{SWS_CM_00333}
-    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
-    {
-        mSubscriptionStateChangeHandler = std::move(handler);
-        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
-    }
-    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
-    /// @uptrace{SWS_CM_00334}
-    void UnsetSubscriptionStateChangeHandler()
-    {
-        mSubscriptionStateChangeHandler = nullptr;
-        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
-    }
-    /// @brief Get received notification value from cache
-    /// @uptrace{SWS_CM_00701}
-    template<typename F>
-    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
-    {
-        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
-        for (const auto& sample : samples)
-        {
-            para::serializer::Deserializer deserializer{sample};
-            FieldType value;
-            deserializer.read(value);
-            f(ara::com::make_sample_ptr<const FieldType>(value));
-        }
-        return samples.size();
-    }
-    /// @brief Register callback to catch that notification value is received
-    /// @uptrace{SWS_CM_00181}
-    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
-    {
-        mEventReceiveHandler = std::move(handler);
-        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
-    }
-    /// @brief Unset bound callback by SetReceiveHandler
-    /// @uptrace{SWS_CM_00183}
-    ara::core::Result<void> UnsetReceiveHandler()
-    {
-        mEventReceiveHandler = nullptr;
-        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
-    }
-    /// @brief Returns the count of free notification cache
-    /// @uptrace{SWS_CM_00705}
-    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
-    {
-        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
-        if (ret < 0)
-        {
-            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
-        }
-        return ret;
-    }
-    
-private:
-    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
-    {
-        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
-        if (result == 0)
-        {
-            para::serializer::Deserializer deserializer{data};
-            FieldType value;
-            deserializer.read(value);
-            promise->set_value(value);
-        }
-        else
-        {
-            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
-        }
-        delete promise;
-    }
-    size_t mMaxSampleCount{0};
-    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
-    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
-    para::com::ProxyInterface* mInterface;
-    const std::string kGetterCallSign = {"vcs_BrakeSwtichGetter"};
-    const std::string kNotifierCallSign = {"vcs_BrakeSwtichNotifier"};
-};
-/// @uptrace{SWS_CM_00008}
 class vcs_BrakePosn
 {
 public:
     /// @brief Type alias for type of field value
     /// @uptrace{SWS_CM_00162, SWS_CM_90437}
-    using FieldType = eevp::simulation::VCS_BrakeSwitch;
+    using FieldType = eevp::simulation::VCS_BrakePosn;
     /// @brief Constructor
     explicit vcs_BrakePosn(para::com::ProxyInterface* interface) : mInterface(interface)
     {
@@ -360,6 +199,167 @@ private:
     para::com::ProxyInterface* mInterface;
     const std::string kGetterCallSign = {"vcs_BrakePosnGetter"};
     const std::string kNotifierCallSign = {"vcs_BrakePosnNotifier"};
+};
+/// @uptrace{SWS_CM_00008}
+class vcs_BrakeSwitch
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = eevp::simulation::VCS_BrakeSwitch;
+    /// @brief Constructor
+    explicit vcs_BrakeSwitch(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~vcs_BrakeSwitch() = default;
+    /// @brief Delete copy constructor
+    vcs_BrakeSwitch(const vcs_BrakeSwitch& other) = delete;
+    /// @brief Delete copy assignment
+    vcs_BrakeSwitch& operator=(const vcs_BrakeSwitch& other) = delete;
+    /// @brief Move constructor
+    vcs_BrakeSwitch(vcs_BrakeSwitch&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    vcs_BrakeSwitch& operator=(vcs_BrakeSwitch&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"vcs_BrakeSwitchGetter"};
+    const std::string kNotifierCallSign = {"vcs_BrakeSwitchNotifier"};
 };
 } /// namespace fields
 /// @uptrace{SWS_CM_01015}
@@ -629,8 +629,8 @@ public:
     explicit VCS_BrakePedalProxy(HandleType& handle)
         : mHandle(handle)
         , mInterface(std::make_unique<para::com::ProxyInterface>(handle.GetInstanceSpecifier(), handle.GetServiceHandle()))
-        , vcs_BrakeSwtich(mInterface.get())
         , vcs_BrakePosn(mInterface.get())
+        , vcs_BrakeSwitch(mInterface.get())
         , nofitySwitch(mInterface.get())
         , notifyStatus(mInterface.get())
     {
@@ -649,8 +649,8 @@ public:
     VCS_BrakePedalProxy(VCS_BrakePedalProxy&& other) noexcept
         : mHandle(std::move(other.mHandle))
         , mInterface(std::move(other.mInterface))
-        , vcs_BrakeSwtich(std::move(other.vcs_BrakeSwtich))
         , vcs_BrakePosn(std::move(other.vcs_BrakePosn))
+        , vcs_BrakeSwitch(std::move(other.vcs_BrakeSwitch))
         , nofitySwitch(std::move(other.nofitySwitch))
         , notifyStatus(std::move(other.notifyStatus))
     {
@@ -664,8 +664,8 @@ public:
         mHandle = std::move(other.mHandle);
         mInterface = std::move(other.mInterface);
         mInterface->StopFindService();
-        vcs_BrakeSwtich = std::move(other.vcs_BrakeSwtich);
         vcs_BrakePosn = std::move(other.vcs_BrakePosn);
+        vcs_BrakeSwitch = std::move(other.vcs_BrakeSwitch);
         nofitySwitch = std::move(other.nofitySwitch);
         notifyStatus = std::move(other.notifyStatus);
         other.mInterface.reset();
@@ -689,10 +689,10 @@ private:
     std::unique_ptr<para::com::ProxyInterface> mInterface;
     
 public:
-    /// @brief - field, vcs_BrakeSwtich
-    fields::vcs_BrakeSwtich vcs_BrakeSwtich;
     /// @brief - field, vcs_BrakePosn
     fields::vcs_BrakePosn vcs_BrakePosn;
+    /// @brief - field, vcs_BrakeSwitch
+    fields::vcs_BrakeSwitch vcs_BrakeSwitch;
     /// @brief - method, nofitySwitch
     methods::nofitySwitch nofitySwitch;
     /// @brief - method, notifyStatus

@@ -12,9 +12,9 @@
     	"policy" : "other",
     	"priority" : "0",
     	"program-argument" : "",
-    	"startup-timeout" : "0.0",
-    	"termination-timeout" : "0.0",
-    	"termination-behavior" : "self-terminating",
+    	"startup-timeout" : "0.9",
+    	"termination-timeout" : "3.0",
+    	"termination-behavior" : "not-self-terminating",
     	"environment-variables" : [
     	]
     },

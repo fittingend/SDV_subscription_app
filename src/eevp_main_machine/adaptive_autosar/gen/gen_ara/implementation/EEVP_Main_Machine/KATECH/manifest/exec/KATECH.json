@@ -37,7 +37,8 @@
     "log-trace-configuration" : {
     	"default-log-level" : "info",
     	"log-modes" : [
-    	    "console"
+    	    "console",
+    	    "network"
     	],
     	"application-id" : "KATC",
     	"application-description" : "undefined",

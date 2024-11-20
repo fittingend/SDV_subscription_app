@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : servicemanagement_common.h
 /// SERVICE INTERFACE NAME            : ServiceManagement
-/// GENERATED DATE                    : 2024-10-29 13:55:04
+/// GENERATED DATE                    : 2024-11-05 15:24:00
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -30,6 +30,8 @@
 /// INCLUSION OF CPP IMPLEMENTATION DATA TYPE HEADER FILES
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @uptrace{SWS_CM_10372}
+#include "eevp/service/type/impl_type_brakepedalrecv.h"
+#include "eevp/service/type/impl_type_brakepedalsend.h"
 #include "eevp/service/type/impl_type_wiperrecv.h"
 #include "eevp/service/type/impl_type_wipersend.h"
 #include "eevp/simulation/impl_type_bcm_returncode.h"

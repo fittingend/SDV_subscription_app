@@ -41,6 +41,15 @@
                     "subscribe-retry-max" : "3",
                     "req-resp-delay-min" : "0.0",
                     "req-resp-delay-max" : "0.0"
+                },
+                {
+                    "eventgroup-id" : "23",
+                    "events" : ["13"],
+                    "subscribe-ttl" : "16777215",
+                    "subscribe-retry-delay" : "0.0",
+                    "subscribe-retry-max" : "3",
+                    "req-resp-delay-min" : "0.0",
+                    "req-resp-delay-max" : "0.0"
                 }
             ],
             "e2e-event-protection-props" : [

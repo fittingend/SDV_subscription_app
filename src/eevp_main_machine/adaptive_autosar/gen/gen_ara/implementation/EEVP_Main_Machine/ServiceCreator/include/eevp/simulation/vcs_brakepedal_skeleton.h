@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : vcs_brakepedal_skeleton.h
 /// SERVICE INTERFACE NAME            : VCS_BrakePedal
-/// GENERATED DATE                    : 2024-10-29 13:55:04
+/// GENERATED DATE                    : 2024-11-05 15:24:00
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -41,97 +41,12 @@ namespace events
 namespace fields
 {
 /// @uptrace{SWS_CM_00007}
-class vcs_BrakeSwtich
-{
-public:
-    /// @brief Type alias for type of field value
-    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
-    using FieldType = eevp::simulation::VCS_BrakePosn;
-    /// @brief Constructor
-    explicit vcs_BrakeSwtich(para::com::SkeletonInterface* interface) : mInterface(interface)
-    {
-    }
-    /// @brief Destructor
-    virtual ~vcs_BrakeSwtich() = default;
-    /// @brief Delete copy constructor
-    vcs_BrakeSwtich(const vcs_BrakeSwtich& other) = delete;
-    /// @brief Delete copy assignment
-    vcs_BrakeSwtich& operator=(const vcs_BrakeSwtich& other) = delete;
-    /// @brief Move constructor
-    vcs_BrakeSwtich(vcs_BrakeSwtich&& other) noexcept : mInterface(other.mInterface)
-    {
-        RegisterGetHandler(std::move(other.mGetHandler));
-    }
-    /// @brief Move assignment
-    vcs_BrakeSwtich& operator=(vcs_BrakeSwtich&& other) noexcept
-    {
-        mInterface = other.mInterface;
-        RegisterGetHandler(std::move(other.mGetHandler));
-        return *this;
-    }
-    /// @brief Register callback for getter method
-    /// @uptrace{SWS_CM_00114}
-    ara::core::Result<void> RegisterGetHandler(std::function<ara::core::Future<FieldType>()> getHandler)
-    {
-        ara::core::Result<void> result{};
-        if (getHandler != nullptr)
-        {
-            mGetHandler = std::move(getHandler);
-            mInterface->SetMethodCallHandler(kGetterCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-                HandleGet(token);
-            });
-        }
-        return result;
-    }
-    /// @brief Send notification with value to subscribing service consumers
-    /// @uptrace{SWS_CM_90437}
-    ara::core::Result<void> Update(const FieldType& value)
-    {
-        para::serializer::Serializer serializer{};
-        serializer.write(value);
-        auto payload = serializer.ensure();
-        return mInterface->SendEvent(kNotifierCallSign, payload);
-    }
-    
-private:
-    void HandleGet(const para::com::MethodToken token)
-    {
-        std::uint8_t retResult{1};
-        std::vector<std::uint8_t> retData{};
-        auto future = mGetHandler();
-        auto result = future.GetResult();
-        if (result.HasValue())
-        {
-            FieldType value = result.Value();
-            para::serializer::Serializer serializer{};
-            serializer.write(value);
-            retData = serializer.ensure();
-            retResult = 0;
-        }
-        else
-        {
-            ara::core::ErrorDomain::IdType domainId = result.Error().Domain().Id();
-            ara::core::ErrorDomain::CodeType errorCode = result.Error().Value();
-            para::serializer::Serializer serializer{};
-            serializer.write(0, true, 0, domainId);
-            serializer.write(0, true, 0, errorCode);
-            retData = serializer.ensure();
-            retResult = 1;
-        }
-        mInterface->ReturnMethod(kGetterCallSign, retResult, retData, token);
-    }
-    para::com::SkeletonInterface* mInterface;
-    std::function<ara::core::Future<FieldType>()> mGetHandler{nullptr};
-    const std::string kGetterCallSign = {"vcs_BrakeSwtichGetter"};
-    const std::string kNotifierCallSign = {"vcs_BrakeSwtichNotifier"};
-};
-/// @uptrace{SWS_CM_00007}
 class vcs_BrakePosn
 {
 public:
     /// @brief Type alias for type of field value
     /// @uptrace{SWS_CM_00162, SWS_CM_90437}
-    using FieldType = eevp::simulation::VCS_BrakeSwitch;
+    using FieldType = eevp::simulation::VCS_BrakePosn;
     /// @brief Constructor
     explicit vcs_BrakePosn(para::com::SkeletonInterface* interface) : mInterface(interface)
     {
@@ -210,6 +125,91 @@ private:
     const std::string kGetterCallSign = {"vcs_BrakePosnGetter"};
     const std::string kNotifierCallSign = {"vcs_BrakePosnNotifier"};
 };
+/// @uptrace{SWS_CM_00007}
+class vcs_BrakeSwitch
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = eevp::simulation::VCS_BrakeSwitch;
+    /// @brief Constructor
+    explicit vcs_BrakeSwitch(para::com::SkeletonInterface* interface) : mInterface(interface)
+    {
+    }
+    /// @brief Destructor
+    virtual ~vcs_BrakeSwitch() = default;
+    /// @brief Delete copy constructor
+    vcs_BrakeSwitch(const vcs_BrakeSwitch& other) = delete;
+    /// @brief Delete copy assignment
+    vcs_BrakeSwitch& operator=(const vcs_BrakeSwitch& other) = delete;
+    /// @brief Move constructor
+    vcs_BrakeSwitch(vcs_BrakeSwitch&& other) noexcept : mInterface(other.mInterface)
+    {
+        RegisterGetHandler(std::move(other.mGetHandler));
+    }
+    /// @brief Move assignment
+    vcs_BrakeSwitch& operator=(vcs_BrakeSwitch&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        RegisterGetHandler(std::move(other.mGetHandler));
+        return *this;
+    }
+    /// @brief Register callback for getter method
+    /// @uptrace{SWS_CM_00114}
+    ara::core::Result<void> RegisterGetHandler(std::function<ara::core::Future<FieldType>()> getHandler)
+    {
+        ara::core::Result<void> result{};
+        if (getHandler != nullptr)
+        {
+            mGetHandler = std::move(getHandler);
+            mInterface->SetMethodCallHandler(kGetterCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+                HandleGet(token);
+            });
+        }
+        return result;
+    }
+    /// @brief Send notification with value to subscribing service consumers
+    /// @uptrace{SWS_CM_90437}
+    ara::core::Result<void> Update(const FieldType& value)
+    {
+        para::serializer::Serializer serializer{};
+        serializer.write(value);
+        auto payload = serializer.ensure();
+        return mInterface->SendEvent(kNotifierCallSign, payload);
+    }
+    
+private:
+    void HandleGet(const para::com::MethodToken token)
+    {
+        std::uint8_t retResult{1};
+        std::vector<std::uint8_t> retData{};
+        auto future = mGetHandler();
+        auto result = future.GetResult();
+        if (result.HasValue())
+        {
+            FieldType value = result.Value();
+            para::serializer::Serializer serializer{};
+            serializer.write(value);
+            retData = serializer.ensure();
+            retResult = 0;
+        }
+        else
+        {
+            ara::core::ErrorDomain::IdType domainId = result.Error().Domain().Id();
+            ara::core::ErrorDomain::CodeType errorCode = result.Error().Value();
+            para::serializer::Serializer serializer{};
+            serializer.write(0, true, 0, domainId);
+            serializer.write(0, true, 0, errorCode);
+            retData = serializer.ensure();
+            retResult = 1;
+        }
+        mInterface->ReturnMethod(kGetterCallSign, retResult, retData, token);
+    }
+    para::com::SkeletonInterface* mInterface;
+    std::function<ara::core::Future<FieldType>()> mGetHandler{nullptr};
+    const std::string kGetterCallSign = {"vcs_BrakeSwitchGetter"};
+    const std::string kNotifierCallSign = {"vcs_BrakeSwitchNotifier"};
+};
 } /// namespace fields
 /// @uptrace{SWS_CM_00002}
 class VCS_BrakePedalSkeleton
@@ -228,8 +228,8 @@ public:
     /// @uptrace{SWS_CM_00002, SWS_CM_00152}
     VCS_BrakePedalSkeleton(ara::core::InstanceSpecifier instanceSpec, ara::com::MethodCallProcessingMode mode = ara::com::MethodCallProcessingMode::kEvent)
         : mInterface(std::make_unique<para::com::SkeletonInterface>(instanceSpec, mode))
-        , vcs_BrakeSwtich(mInterface.get())
         , vcs_BrakePosn(mInterface.get())
+        , vcs_BrakeSwitch(mInterface.get())
     {
         mInterface->SetMethodCallHandler(knofitySwitchCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlenofitySwitch(data, token);
@@ -253,8 +253,8 @@ public:
     /// @uptrace{SWS_CM_00135}
     VCS_BrakePedalSkeleton(VCS_BrakePedalSkeleton&& other) noexcept
         : mInterface(std::move(other.mInterface))
-        , vcs_BrakeSwtich(std::move(other.vcs_BrakeSwtich))
         , vcs_BrakePosn(std::move(other.vcs_BrakePosn))
+        , vcs_BrakeSwitch(std::move(other.vcs_BrakeSwitch))
     {
         mInterface->SetMethodCallHandler(knofitySwitchCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlenofitySwitch(data, token);
@@ -272,8 +272,8 @@ public:
     VCS_BrakePedalSkeleton& operator=(VCS_BrakePedalSkeleton&& other) noexcept
     {
         mInterface = std::move(other.mInterface);
-        vcs_BrakeSwtich = std::move(other.vcs_BrakeSwtich);
         vcs_BrakePosn = std::move(other.vcs_BrakePosn);
+        vcs_BrakeSwitch = std::move(other.vcs_BrakeSwitch);
         mInterface->SetMethodCallHandler(knofitySwitchCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlenofitySwitch(data, token);
         });
@@ -326,10 +326,10 @@ private:
     std::unique_ptr<para::com::SkeletonInterface> mInterface;
     
 public:
-    /// @brief Field, vcs_BrakeSwtich
-    fields::vcs_BrakeSwtich vcs_BrakeSwtich;
     /// @brief Field, vcs_BrakePosn
     fields::vcs_BrakePosn vcs_BrakePosn;
+    /// @brief Field, vcs_BrakeSwitch
+    fields::vcs_BrakeSwitch vcs_BrakeSwitch;
     /// @brief Method, nofitySwitch
     /// @uptrace{SWS_CM_00191}
     virtual ara::core::Future<nofitySwitchOutput> nofitySwitch() = 0;

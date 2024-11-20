@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : servicemanagement_proxy.h
 /// SERVICE INTERFACE NAME            : ServiceManagement
-/// GENERATED DATE                    : 2024-10-29 13:55:04
+/// GENERATED DATE                    : 2024-11-05 15:24:00
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -40,27 +40,27 @@ namespace events
 namespace fields
 {
 /// @uptrace{SWS_CM_00008}
-class wiperLevel
+class brakePedalRecv
 {
 public:
     /// @brief Type alias for type of field value
     /// @uptrace{SWS_CM_00162, SWS_CM_90437}
-    using FieldType = eevp::simulation::BCM_WipingLevel;
+    using FieldType = eevp::service::type::BrakePedalRecv;
     /// @brief Constructor
-    explicit wiperLevel(para::com::ProxyInterface* interface) : mInterface(interface)
+    explicit brakePedalRecv(para::com::ProxyInterface* interface) : mInterface(interface)
     {
         mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
             HandleMethodReturn(result, data, userData);
         });
     }
     /// @brief Destructor
-    virtual ~wiperLevel() = default;
+    virtual ~brakePedalRecv() = default;
     /// @brief Delete copy constructor
-    wiperLevel(const wiperLevel& other) = delete;
+    brakePedalRecv(const brakePedalRecv& other) = delete;
     /// @brief Delete copy assignment
-    wiperLevel& operator=(const wiperLevel& other) = delete;
+    brakePedalRecv& operator=(const brakePedalRecv& other) = delete;
     /// @brief Move constructor
-    wiperLevel(wiperLevel&& other) noexcept : mInterface(other.mInterface)
+    brakePedalRecv(brakePedalRecv&& other) noexcept : mInterface(other.mInterface)
     {
         mMaxSampleCount = other.mMaxSampleCount;
         mEventReceiveHandler = other.mEventReceiveHandler;
@@ -72,7 +72,7 @@ public:
         });
     }
     /// @brief Move assignment
-    wiperLevel& operator=(wiperLevel&& other) noexcept
+    brakePedalRecv& operator=(brakePedalRecv&& other) noexcept
     {
         mInterface = other.mInterface;
         mMaxSampleCount = other.mMaxSampleCount;
@@ -197,8 +197,169 @@ private:
     ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
     ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
     para::com::ProxyInterface* mInterface;
-    const std::string kGetterCallSign = {"wiperLevelGetter"};
-    const std::string kNotifierCallSign = {"wiperLevelNotifier"};
+    const std::string kGetterCallSign = {"brakePedalRecvGetter"};
+    const std::string kNotifierCallSign = {"brakePedalRecvNotifier"};
+};
+/// @uptrace{SWS_CM_00008}
+class brakePedalSend
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = eevp::service::type::BrakePedalSend;
+    /// @brief Constructor
+    explicit brakePedalSend(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~brakePedalSend() = default;
+    /// @brief Delete copy constructor
+    brakePedalSend(const brakePedalSend& other) = delete;
+    /// @brief Delete copy assignment
+    brakePedalSend& operator=(const brakePedalSend& other) = delete;
+    /// @brief Move constructor
+    brakePedalSend(brakePedalSend&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    brakePedalSend& operator=(brakePedalSend&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"brakePedalSendGetter"};
+    const std::string kNotifierCallSign = {"brakePedalSendNotifier"};
 };
 /// @uptrace{SWS_CM_00008}
 class wiperInterval
@@ -360,6 +521,167 @@ private:
     para::com::ProxyInterface* mInterface;
     const std::string kGetterCallSign = {"wiperIntervalGetter"};
     const std::string kNotifierCallSign = {"wiperIntervalNotifier"};
+};
+/// @uptrace{SWS_CM_00008}
+class wiperLevel
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = eevp::simulation::BCM_WipingLevel;
+    /// @brief Constructor
+    explicit wiperLevel(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~wiperLevel() = default;
+    /// @brief Delete copy constructor
+    wiperLevel(const wiperLevel& other) = delete;
+    /// @brief Delete copy assignment
+    wiperLevel& operator=(const wiperLevel& other) = delete;
+    /// @brief Move constructor
+    wiperLevel(wiperLevel&& other) noexcept : mInterface(other.mInterface)
+    {
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    wiperLevel& operator=(wiperLevel&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mMaxSampleCount = other.mMaxSampleCount;
+        mEventReceiveHandler = other.mEventReceiveHandler;
+        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
+        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Requests getter method to Communication Management
+    /// @uptrace{SWS_CM_00112}
+    ara::core::Future<FieldType> Get()
+    {
+        std::vector<std::uint8_t> data{};
+        auto* promise = new ara::core::Promise<FieldType>();
+        auto future = promise->get_future();
+        mInterface->CallMethod(kGetterCallSign, data, promise);
+        return future;
+    }
+    /// @brief Requests "Subscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00141}
+    ara::core::Result<void> Subscribe(size_t maxSampleCount)
+    {
+        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
+        {
+            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
+            {
+                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
+            }
+        }
+        mMaxSampleCount = maxSampleCount;
+        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
+    }
+    /// @brief Requests "StopSubscribe" message to Communication Management
+    /// @uptrace{SWS_CM_00151}
+    void Unsubscribe()
+    {
+        mInterface->UnsubscribeEvent(kNotifierCallSign);
+    }
+    /// @brief Return state for current subscription
+    /// @uptrace{SWS_CM_00316}
+    ara::com::SubscriptionState GetSubscriptionState() const
+    {
+        return mInterface->GetSubscriptionState(kNotifierCallSign);
+    }
+    /// @brief Register callback to catch changes of subscription state
+    /// @uptrace{SWS_CM_00333}
+    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
+    {
+        mSubscriptionStateChangeHandler = std::move(handler);
+        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
+    }
+    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
+    /// @uptrace{SWS_CM_00334}
+    void UnsetSubscriptionStateChangeHandler()
+    {
+        mSubscriptionStateChangeHandler = nullptr;
+        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
+    }
+    /// @brief Get received notification value from cache
+    /// @uptrace{SWS_CM_00701}
+    template<typename F>
+    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
+    {
+        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
+        for (const auto& sample : samples)
+        {
+            para::serializer::Deserializer deserializer{sample};
+            FieldType value;
+            deserializer.read(value);
+            f(ara::com::make_sample_ptr<const FieldType>(value));
+        }
+        return samples.size();
+    }
+    /// @brief Register callback to catch that notification value is received
+    /// @uptrace{SWS_CM_00181}
+    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
+    {
+        mEventReceiveHandler = std::move(handler);
+        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
+    }
+    /// @brief Unset bound callback by SetReceiveHandler
+    /// @uptrace{SWS_CM_00183}
+    ara::core::Result<void> UnsetReceiveHandler()
+    {
+        mEventReceiveHandler = nullptr;
+        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
+    }
+    /// @brief Returns the count of free notification cache
+    /// @uptrace{SWS_CM_00705}
+    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
+    {
+        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
+        if (ret < 0)
+        {
+            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
+        }
+        return ret;
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            FieldType value;
+            deserializer.read(value);
+            promise->set_value(value);
+        }
+        else
+        {
+            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
+        }
+        delete promise;
+    }
+    size_t mMaxSampleCount{0};
+    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
+    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
+    para::com::ProxyInterface* mInterface;
+    const std::string kGetterCallSign = {"wiperLevelGetter"};
+    const std::string kNotifierCallSign = {"wiperLevelNotifier"};
 };
 /// @uptrace{SWS_CM_00008}
 class wiperRecv
@@ -688,36 +1010,36 @@ private:
 namespace methods
 {
 /// @uptrace{SWS_CM_00006}
-class stopWiping
+class getWipingInterval
 {
 public:
     /// @brief Container for OUT arguments
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::BCM_ReturnCode bcm_returnCode;
+        std::uint16_t wipingInterval;
     };
     /// @brief Constructor
-    explicit stopWiping(para::com::ProxyInterface* interface) : mInterface(interface)
+    explicit getWipingInterval(para::com::ProxyInterface* interface) : mInterface(interface)
     {
         mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
             HandleMethodReturn(result, data, userData);
         });
     }
     /// @brief Destructor
-    virtual ~stopWiping() = default;
+    virtual ~getWipingInterval() = default;
     /// @brief
-    stopWiping(const stopWiping& other) = delete;
-    stopWiping& operator=(const stopWiping& other) = delete;
+    getWipingInterval(const getWipingInterval& other) = delete;
+    getWipingInterval& operator=(const getWipingInterval& other) = delete;
     /// @brief Move constructor
-    stopWiping(stopWiping&& other) noexcept : mInterface(other.mInterface)
+    getWipingInterval(getWipingInterval&& other) noexcept : mInterface(other.mInterface)
     {
         mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
             HandleMethodReturn(result, data, userData);
         });
     }
     /// @brief Move assignment
-    stopWiping& operator=(stopWiping&& other) noexcept
+    getWipingInterval& operator=(getWipingInterval&& other) noexcept
     {
         mInterface = other.mInterface;
         mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
@@ -748,12 +1070,12 @@ public:
 private:
     static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
     {
-        auto* promise = static_cast<ara::core::Promise<stopWiping::Output>*>(userData);
+        auto* promise = static_cast<ara::core::Promise<getWipingInterval::Output>*>(userData);
         if (result == 0)
         {
             para::serializer::Deserializer deserializer{data};
-            stopWiping::Output output;
-            deserializer.read(output.bcm_returnCode);
+            getWipingInterval::Output output;
+            deserializer.read(output.wipingInterval);
             promise->set_value(output);
         }
         else
@@ -772,190 +1094,10 @@ private:
                 }
             }
         }
-        delete static_cast<ara::core::Promise<stopWiping::Output>*>(userData);
+        delete static_cast<ara::core::Promise<getWipingInterval::Output>*>(userData);
     }
     para::com::ProxyInterface* mInterface;
-    const std::string kCallSign{"stopWiping"};
-};
-/// @uptrace{SWS_CM_00006}
-class startWiping
-{
-public:
-    /// @brief Container for OUT arguments
-    /// @uptrace{SWS_CM_00196}
-    struct Output
-    {
-        eevp::simulation::BCM_ReturnCode bcm_returnCode;
-    };
-    /// @brief Constructor
-    explicit startWiping(para::com::ProxyInterface* interface) : mInterface(interface)
-    {
-        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-    }
-    /// @brief Destructor
-    virtual ~startWiping() = default;
-    /// @brief
-    startWiping(const startWiping& other) = delete;
-    startWiping& operator=(const startWiping& other) = delete;
-    /// @brief Move constructor
-    startWiping(startWiping&& other) noexcept : mInterface(other.mInterface)
-    {
-        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-    }
-    /// @brief Move assignment
-    startWiping& operator=(startWiping&& other) noexcept
-    {
-        mInterface = other.mInterface;
-        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-        return *this;
-    }
-    /// @brief Function call operator
-    /// @uptrace{SWS_CM_00196}
-    ara::core::Future<Output> operator()()
-    {
-        para::serializer::Serializer __serializer__{};
-        auto __data__ = __serializer__.ensure();
-        auto* __promise__ = new ara::core::Promise<Output>();
-        auto __future__ = __promise__->get_future();
-        mInterface->CallMethod(kCallSign, __data__, __promise__);
-        return __future__;
-    }
-    /// @brief This method provides access to the global SMState of the this Method class,
-    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
-    /// @uptrace{SWS_CM_90483}
-    /// @uptrace{SWS_CM_90484}
-    ara::com::e2e::SMState GetSMState() const noexcept
-    {
-        return mInterface->GetE2EStateMachineState(kCallSign);
-    }
-    
-private:
-    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
-    {
-        auto* promise = static_cast<ara::core::Promise<startWiping::Output>*>(userData);
-        if (result == 0)
-        {
-            para::serializer::Deserializer deserializer{data};
-            startWiping::Output output;
-            deserializer.read(output.bcm_returnCode);
-            promise->set_value(output);
-        }
-        else
-        {
-            para::serializer::Deserializer deserializer{data};
-            ara::core::ErrorDomain::IdType domainId{};
-            ara::core::ErrorDomain::CodeType errorCode{};
-            deserializer.read(0, true, 0, domainId);
-            deserializer.read(0, true, 0, errorCode);
-            switch (domainId)
-            {
-                default:
-                {
-                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
-                    break;
-                }
-            }
-        }
-        delete static_cast<ara::core::Promise<startWiping::Output>*>(userData);
-    }
-    para::com::ProxyInterface* mInterface;
-    const std::string kCallSign{"startWiping"};
-};
-/// @uptrace{SWS_CM_00006}
-class isWiping
-{
-public:
-    /// @brief Container for OUT arguments
-    /// @uptrace{SWS_CM_00196}
-    struct Output
-    {
-        bool status;
-    };
-    /// @brief Constructor
-    explicit isWiping(para::com::ProxyInterface* interface) : mInterface(interface)
-    {
-        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-    }
-    /// @brief Destructor
-    virtual ~isWiping() = default;
-    /// @brief
-    isWiping(const isWiping& other) = delete;
-    isWiping& operator=(const isWiping& other) = delete;
-    /// @brief Move constructor
-    isWiping(isWiping&& other) noexcept : mInterface(other.mInterface)
-    {
-        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-    }
-    /// @brief Move assignment
-    isWiping& operator=(isWiping&& other) noexcept
-    {
-        mInterface = other.mInterface;
-        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-        return *this;
-    }
-    /// @brief Function call operator
-    /// @uptrace{SWS_CM_00196}
-    ara::core::Future<Output> operator()()
-    {
-        para::serializer::Serializer __serializer__{};
-        auto __data__ = __serializer__.ensure();
-        auto* __promise__ = new ara::core::Promise<Output>();
-        auto __future__ = __promise__->get_future();
-        mInterface->CallMethod(kCallSign, __data__, __promise__);
-        return __future__;
-    }
-    /// @brief This method provides access to the global SMState of the this Method class,
-    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
-    /// @uptrace{SWS_CM_90483}
-    /// @uptrace{SWS_CM_90484}
-    ara::com::e2e::SMState GetSMState() const noexcept
-    {
-        return mInterface->GetE2EStateMachineState(kCallSign);
-    }
-    
-private:
-    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
-    {
-        auto* promise = static_cast<ara::core::Promise<isWiping::Output>*>(userData);
-        if (result == 0)
-        {
-            para::serializer::Deserializer deserializer{data};
-            isWiping::Output output;
-            deserializer.read(output.status);
-            promise->set_value(output);
-        }
-        else
-        {
-            para::serializer::Deserializer deserializer{data};
-            ara::core::ErrorDomain::IdType domainId{};
-            ara::core::ErrorDomain::CodeType errorCode{};
-            deserializer.read(0, true, 0, domainId);
-            deserializer.read(0, true, 0, errorCode);
-            switch (domainId)
-            {
-                default:
-                {
-                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
-                    break;
-                }
-            }
-        }
-        delete static_cast<ara::core::Promise<isWiping::Output>*>(userData);
-    }
-    para::com::ProxyInterface* mInterface;
-    const std::string kCallSign{"isWiping"};
+    const std::string kCallSign{"getWipingInterval"};
 };
 /// @uptrace{SWS_CM_00006}
 class getWipingLevel
@@ -1048,36 +1190,36 @@ private:
     const std::string kCallSign{"getWipingLevel"};
 };
 /// @uptrace{SWS_CM_00006}
-class getWipingInterval
+class isWiping
 {
 public:
     /// @brief Container for OUT arguments
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        std::uint16_t wipingInterval;
+        bool status;
     };
     /// @brief Constructor
-    explicit getWipingInterval(para::com::ProxyInterface* interface) : mInterface(interface)
+    explicit isWiping(para::com::ProxyInterface* interface) : mInterface(interface)
     {
         mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
             HandleMethodReturn(result, data, userData);
         });
     }
     /// @brief Destructor
-    virtual ~getWipingInterval() = default;
+    virtual ~isWiping() = default;
     /// @brief
-    getWipingInterval(const getWipingInterval& other) = delete;
-    getWipingInterval& operator=(const getWipingInterval& other) = delete;
+    isWiping(const isWiping& other) = delete;
+    isWiping& operator=(const isWiping& other) = delete;
     /// @brief Move constructor
-    getWipingInterval(getWipingInterval&& other) noexcept : mInterface(other.mInterface)
+    isWiping(isWiping&& other) noexcept : mInterface(other.mInterface)
     {
         mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
             HandleMethodReturn(result, data, userData);
         });
     }
     /// @brief Move assignment
-    getWipingInterval& operator=(getWipingInterval&& other) noexcept
+    isWiping& operator=(isWiping&& other) noexcept
     {
         mInterface = other.mInterface;
         mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
@@ -1108,12 +1250,12 @@ public:
 private:
     static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
     {
-        auto* promise = static_cast<ara::core::Promise<getWipingInterval::Output>*>(userData);
+        auto* promise = static_cast<ara::core::Promise<isWiping::Output>*>(userData);
         if (result == 0)
         {
             para::serializer::Deserializer deserializer{data};
-            getWipingInterval::Output output;
-            deserializer.read(output.wipingInterval);
+            isWiping::Output output;
+            deserializer.read(output.status);
             promise->set_value(output);
         }
         else
@@ -1132,10 +1274,101 @@ private:
                 }
             }
         }
-        delete static_cast<ara::core::Promise<getWipingInterval::Output>*>(userData);
+        delete static_cast<ara::core::Promise<isWiping::Output>*>(userData);
     }
     para::com::ProxyInterface* mInterface;
-    const std::string kCallSign{"getWipingInterval"};
+    const std::string kCallSign{"isWiping"};
+};
+/// @uptrace{SWS_CM_00006}
+class setWipingInterval
+{
+public:
+    /// @brief Container for OUT arguments
+    /// @uptrace{SWS_CM_00196}
+    struct Output
+    {
+        eevp::simulation::BCM_ReturnCode BCM_ReturnCode;
+    };
+    /// @brief Constructor
+    explicit setWipingInterval(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~setWipingInterval() = default;
+    /// @brief
+    setWipingInterval(const setWipingInterval& other) = delete;
+    setWipingInterval& operator=(const setWipingInterval& other) = delete;
+    /// @brief Move constructor
+    setWipingInterval(setWipingInterval&& other) noexcept : mInterface(other.mInterface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    setWipingInterval& operator=(setWipingInterval&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Function call operator
+    /// @uptrace{SWS_CM_00196}
+    ara::core::Future<Output> operator()(const std::uint16_t& wipingInterval)
+    {
+        para::serializer::Serializer __serializer__{};
+        __serializer__.write(wipingInterval);
+        auto __data__ = __serializer__.ensure();
+        auto* __promise__ = new ara::core::Promise<Output>();
+        auto __future__ = __promise__->get_future();
+        mInterface->CallMethod(kCallSign, __data__, __promise__);
+        return __future__;
+    }
+    /// @brief This method provides access to the global SMState of the this Method class,
+    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
+    /// @uptrace{SWS_CM_90483}
+    /// @uptrace{SWS_CM_90484}
+    ara::com::e2e::SMState GetSMState() const noexcept
+    {
+        return mInterface->GetE2EStateMachineState(kCallSign);
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<setWipingInterval::Output>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            setWipingInterval::Output output;
+            deserializer.read(output.BCM_ReturnCode);
+            promise->set_value(output);
+        }
+        else
+        {
+            para::serializer::Deserializer deserializer{data};
+            ara::core::ErrorDomain::IdType domainId{};
+            ara::core::ErrorDomain::CodeType errorCode{};
+            deserializer.read(0, true, 0, domainId);
+            deserializer.read(0, true, 0, errorCode);
+            switch (domainId)
+            {
+                default:
+                {
+                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
+                    break;
+                }
+            }
+        }
+        delete static_cast<ara::core::Promise<setWipingInterval::Output>*>(userData);
+    }
+    para::com::ProxyInterface* mInterface;
+    const std::string kCallSign{"setWipingInterval"};
 };
 /// @uptrace{SWS_CM_00006}
 class setWipingLevel
@@ -1320,36 +1553,36 @@ private:
     const std::string kCallSign{"setWipingLevelImme"};
 };
 /// @uptrace{SWS_CM_00006}
-class setWipingInterval
+class startWiping
 {
 public:
     /// @brief Container for OUT arguments
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::BCM_ReturnCode BCM_ReturnCode;
+        eevp::simulation::BCM_ReturnCode bcm_returnCode;
     };
     /// @brief Constructor
-    explicit setWipingInterval(para::com::ProxyInterface* interface) : mInterface(interface)
+    explicit startWiping(para::com::ProxyInterface* interface) : mInterface(interface)
     {
         mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
             HandleMethodReturn(result, data, userData);
         });
     }
     /// @brief Destructor
-    virtual ~setWipingInterval() = default;
+    virtual ~startWiping() = default;
     /// @brief
-    setWipingInterval(const setWipingInterval& other) = delete;
-    setWipingInterval& operator=(const setWipingInterval& other) = delete;
+    startWiping(const startWiping& other) = delete;
+    startWiping& operator=(const startWiping& other) = delete;
     /// @brief Move constructor
-    setWipingInterval(setWipingInterval&& other) noexcept : mInterface(other.mInterface)
+    startWiping(startWiping&& other) noexcept : mInterface(other.mInterface)
     {
         mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
             HandleMethodReturn(result, data, userData);
         });
     }
     /// @brief Move assignment
-    setWipingInterval& operator=(setWipingInterval&& other) noexcept
+    startWiping& operator=(startWiping&& other) noexcept
     {
         mInterface = other.mInterface;
         mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
@@ -1359,10 +1592,9 @@ public:
     }
     /// @brief Function call operator
     /// @uptrace{SWS_CM_00196}
-    ara::core::Future<Output> operator()(const std::uint16_t& wipingInterval)
+    ara::core::Future<Output> operator()()
     {
         para::serializer::Serializer __serializer__{};
-        __serializer__.write(wipingInterval);
         auto __data__ = __serializer__.ensure();
         auto* __promise__ = new ara::core::Promise<Output>();
         auto __future__ = __promise__->get_future();
@@ -1381,12 +1613,12 @@ public:
 private:
     static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
     {
-        auto* promise = static_cast<ara::core::Promise<setWipingInterval::Output>*>(userData);
+        auto* promise = static_cast<ara::core::Promise<startWiping::Output>*>(userData);
         if (result == 0)
         {
             para::serializer::Deserializer deserializer{data};
-            setWipingInterval::Output output;
-            deserializer.read(output.BCM_ReturnCode);
+            startWiping::Output output;
+            deserializer.read(output.bcm_returnCode);
             promise->set_value(output);
         }
         else
@@ -1405,10 +1637,100 @@ private:
                 }
             }
         }
-        delete static_cast<ara::core::Promise<setWipingInterval::Output>*>(userData);
+        delete static_cast<ara::core::Promise<startWiping::Output>*>(userData);
     }
     para::com::ProxyInterface* mInterface;
-    const std::string kCallSign{"setWipingInterval"};
+    const std::string kCallSign{"startWiping"};
+};
+/// @uptrace{SWS_CM_00006}
+class stopWiping
+{
+public:
+    /// @brief Container for OUT arguments
+    /// @uptrace{SWS_CM_00196}
+    struct Output
+    {
+        eevp::simulation::BCM_ReturnCode bcm_returnCode;
+    };
+    /// @brief Constructor
+    explicit stopWiping(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~stopWiping() = default;
+    /// @brief
+    stopWiping(const stopWiping& other) = delete;
+    stopWiping& operator=(const stopWiping& other) = delete;
+    /// @brief Move constructor
+    stopWiping(stopWiping&& other) noexcept : mInterface(other.mInterface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    stopWiping& operator=(stopWiping&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Function call operator
+    /// @uptrace{SWS_CM_00196}
+    ara::core::Future<Output> operator()()
+    {
+        para::serializer::Serializer __serializer__{};
+        auto __data__ = __serializer__.ensure();
+        auto* __promise__ = new ara::core::Promise<Output>();
+        auto __future__ = __promise__->get_future();
+        mInterface->CallMethod(kCallSign, __data__, __promise__);
+        return __future__;
+    }
+    /// @brief This method provides access to the global SMState of the this Method class,
+    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
+    /// @uptrace{SWS_CM_90483}
+    /// @uptrace{SWS_CM_90484}
+    ara::com::e2e::SMState GetSMState() const noexcept
+    {
+        return mInterface->GetE2EStateMachineState(kCallSign);
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<stopWiping::Output>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            stopWiping::Output output;
+            deserializer.read(output.bcm_returnCode);
+            promise->set_value(output);
+        }
+        else
+        {
+            para::serializer::Deserializer deserializer{data};
+            ara::core::ErrorDomain::IdType domainId{};
+            ara::core::ErrorDomain::CodeType errorCode{};
+            deserializer.read(0, true, 0, domainId);
+            deserializer.read(0, true, 0, errorCode);
+            switch (domainId)
+            {
+                default:
+                {
+                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
+                    break;
+                }
+            }
+        }
+        delete static_cast<ara::core::Promise<stopWiping::Output>*>(userData);
+    }
+    para::com::ProxyInterface* mInterface;
+    const std::string kCallSign{"stopWiping"};
 };
 } /// namespace methods
 /// @uptrace{SWS_CM_00004}
@@ -1494,18 +1816,20 @@ public:
     explicit ServiceManagementProxy(HandleType& handle)
         : mHandle(handle)
         , mInterface(std::make_unique<para::com::ProxyInterface>(handle.GetInstanceSpecifier(), handle.GetServiceHandle()))
-        , wiperLevel(mInterface.get())
+        , brakePedalRecv(mInterface.get())
+        , brakePedalSend(mInterface.get())
         , wiperInterval(mInterface.get())
+        , wiperLevel(mInterface.get())
         , wiperRecv(mInterface.get())
         , wiperSend(mInterface.get())
-        , stopWiping(mInterface.get())
-        , startWiping(mInterface.get())
-        , isWiping(mInterface.get())
-        , getWipingLevel(mInterface.get())
         , getWipingInterval(mInterface.get())
+        , getWipingLevel(mInterface.get())
+        , isWiping(mInterface.get())
+        , setWipingInterval(mInterface.get())
         , setWipingLevel(mInterface.get())
         , setWipingLevelImme(mInterface.get())
-        , setWipingInterval(mInterface.get())
+        , startWiping(mInterface.get())
+        , stopWiping(mInterface.get())
     {
     }
     /// @brief Destructor
@@ -1522,18 +1846,20 @@ public:
     ServiceManagementProxy(ServiceManagementProxy&& other) noexcept
         : mHandle(std::move(other.mHandle))
         , mInterface(std::move(other.mInterface))
-        , wiperLevel(std::move(other.wiperLevel))
+        , brakePedalRecv(std::move(other.brakePedalRecv))
+        , brakePedalSend(std::move(other.brakePedalSend))
         , wiperInterval(std::move(other.wiperInterval))
+        , wiperLevel(std::move(other.wiperLevel))
         , wiperRecv(std::move(other.wiperRecv))
         , wiperSend(std::move(other.wiperSend))
-        , stopWiping(std::move(other.stopWiping))
-        , startWiping(std::move(other.startWiping))
-        , isWiping(std::move(other.isWiping))
-        , getWipingLevel(std::move(other.getWipingLevel))
         , getWipingInterval(std::move(other.getWipingInterval))
+        , getWipingLevel(std::move(other.getWipingLevel))
+        , isWiping(std::move(other.isWiping))
+        , setWipingInterval(std::move(other.setWipingInterval))
         , setWipingLevel(std::move(other.setWipingLevel))
         , setWipingLevelImme(std::move(other.setWipingLevelImme))
-        , setWipingInterval(std::move(other.setWipingInterval))
+        , startWiping(std::move(other.startWiping))
+        , stopWiping(std::move(other.stopWiping))
     {
         mInterface->StopFindService();
         other.mInterface.reset();
@@ -1545,18 +1871,20 @@ public:
         mHandle = std::move(other.mHandle);
         mInterface = std::move(other.mInterface);
         mInterface->StopFindService();
-        wiperLevel = std::move(other.wiperLevel);
+        brakePedalRecv = std::move(other.brakePedalRecv);
+        brakePedalSend = std::move(other.brakePedalSend);
         wiperInterval = std::move(other.wiperInterval);
+        wiperLevel = std::move(other.wiperLevel);
         wiperRecv = std::move(other.wiperRecv);
         wiperSend = std::move(other.wiperSend);
-        stopWiping = std::move(other.stopWiping);
-        startWiping = std::move(other.startWiping);
-        isWiping = std::move(other.isWiping);
-        getWipingLevel = std::move(other.getWipingLevel);
         getWipingInterval = std::move(other.getWipingInterval);
+        getWipingLevel = std::move(other.getWipingLevel);
+        isWiping = std::move(other.isWiping);
+        setWipingInterval = std::move(other.setWipingInterval);
         setWipingLevel = std::move(other.setWipingLevel);
         setWipingLevelImme = std::move(other.setWipingLevelImme);
-        setWipingInterval = std::move(other.setWipingInterval);
+        startWiping = std::move(other.startWiping);
+        stopWiping = std::move(other.stopWiping);
         other.mInterface.reset();
         return *this;
     }
@@ -1578,30 +1906,34 @@ private:
     std::unique_ptr<para::com::ProxyInterface> mInterface;
     
 public:
-    /// @brief - field, wiperLevel
-    fields::wiperLevel wiperLevel;
+    /// @brief - field, brakePedalRecv
+    fields::brakePedalRecv brakePedalRecv;
+    /// @brief - field, brakePedalSend
+    fields::brakePedalSend brakePedalSend;
     /// @brief - field, wiperInterval
     fields::wiperInterval wiperInterval;
+    /// @brief - field, wiperLevel
+    fields::wiperLevel wiperLevel;
     /// @brief - field, wiperRecv
     fields::wiperRecv wiperRecv;
     /// @brief - field, wiperSend
     fields::wiperSend wiperSend;
-    /// @brief - method, stopWiping
-    methods::stopWiping stopWiping;
-    /// @brief - method, startWiping
-    methods::startWiping startWiping;
-    /// @brief - method, isWiping
-    methods::isWiping isWiping;
-    /// @brief - method, getWipingLevel
-    methods::getWipingLevel getWipingLevel;
     /// @brief - method, getWipingInterval
     methods::getWipingInterval getWipingInterval;
+    /// @brief - method, getWipingLevel
+    methods::getWipingLevel getWipingLevel;
+    /// @brief - method, isWiping
+    methods::isWiping isWiping;
+    /// @brief - method, setWipingInterval
+    methods::setWipingInterval setWipingInterval;
     /// @brief - method, setWipingLevel
     methods::setWipingLevel setWipingLevel;
     /// @brief - method, setWipingLevelImme
     methods::setWipingLevelImme setWipingLevelImme;
-    /// @brief - method, setWipingInterval
-    methods::setWipingInterval setWipingInterval;
+    /// @brief - method, startWiping
+    methods::startWiping startWiping;
+    /// @brief - method, stopWiping
+    methods::stopWiping stopWiping;
 };
 } /// namespace proxy
 } /// namespace service

@@ -25,6 +25,13 @@
             "transport" : "udp",
             "max-segment-len" : "0",
             "separation-time" : "0.0"
+        },
+        {
+            "name" : "resetUcmCompleted",
+            "event-id" : "13",
+            "transport" : "udp",
+            "max-segment-len" : "0",
+            "separation-time" : "0.0"
         }
     ],
     "methods" : [

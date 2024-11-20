@@ -25,6 +25,10 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
               </NAMESPACES>
               <TEMPLATE-ARGUMENTS>
                 <CPP-TEMPLATE-ARGUMENT>
@@ -76,6 +80,80 @@
               </NAMESPACES>
               <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
             </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="934f2447-9172-4585-abcf-dfd2948d088f">
+              <SHORT-NAME>BrakePedalRecv</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>service</SHORT-NAME>
+                  <SYMBOL>service</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <SUB-ELEMENTS>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="b3fd6b42-f55a-4fa0-9752-ffc4fc28f835">
+                  <SHORT-NAME>brakePosn</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/VCS_BrakePosn</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="9ee9f738-b622-4758-af25-0c5d9338a74e">
+                  <SHORT-NAME>brakeSwitch</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/VCS_BrakeSwitch</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
+            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="49729d49-fc52-4b5d-a6f9-69cb2c19ad3f">
+              <SHORT-NAME>BrakePedalSend</SHORT-NAME>
+              <CATEGORY>STRUCTURE</CATEGORY>
+              <SW-DATA-DEF-PROPS>
+                <SW-DATA-DEF-PROPS-VARIANTS>
+                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
+                </SW-DATA-DEF-PROPS-VARIANTS>
+              </SW-DATA-DEF-PROPS>
+              <NAMESPACES>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>eevp</SHORT-NAME>
+                  <SYMBOL>eevp</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>service</SHORT-NAME>
+                  <SYMBOL>service</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
+              </NAMESPACES>
+              <SUB-ELEMENTS>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="56f6f8e1-2f19-45ff-97bf-85559ff73689">
+                  <SHORT-NAME>brakePosn</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/VCS_BrakePosn</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="be77db68-5f82-4a55-95fe-0e3981bfdca3">
+                  <SHORT-NAME>brakeSwitch</SHORT-NAME>
+                  <TYPE-REFERENCE>
+                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/VCS_BrakeSwitch</TYPE-REFERENCE-REF>
+                  </TYPE-REFERENCE>
+                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
+              </SUB-ELEMENTS>
+            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
             <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="358e13aa-86b7-418a-be74-ec50e90e1080">
               <SHORT-NAME>Brightness</SHORT-NAME>
               <CATEGORY>TYPE_REFERENCE</CATEGORY>
@@ -94,6 +172,10 @@
                 <SYMBOL-PROPS>
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
                 </SYMBOL-PROPS>
               </NAMESPACES>
               <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
@@ -117,6 +199,10 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
               </NAMESPACES>
               <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
             </STD-CPP-IMPLEMENTATION-DATA-TYPE>
@@ -137,6 +223,10 @@
                 <SYMBOL-PROPS>
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
                 </SYMBOL-PROPS>
               </NAMESPACES>
               <TEMPLATE-ARGUMENTS>
@@ -164,6 +254,10 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
               </NAMESPACES>
               <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
             </STD-CPP-IMPLEMENTATION-DATA-TYPE>
@@ -186,6 +280,10 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
               </NAMESPACES>
               <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
             </STD-CPP-IMPLEMENTATION-DATA-TYPE>
@@ -206,6 +304,10 @@
                 <SYMBOL-PROPS>
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
                 </SYMBOL-PROPS>
               </NAMESPACES>
               <TEMPLATE-ARGUMENTS>
@@ -233,27 +335,9 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
-              </NAMESPACES>
-              <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
-            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
-            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="9be67f2f-143e-4c1e-8e16-a4b076de3253">
-              <SHORT-NAME>DmsStatus</SHORT-NAME>
-              <CATEGORY>TYPE_REFERENCE</CATEGORY>
-              <SW-DATA-DEF-PROPS>
-                <SW-DATA-DEF-PROPS-VARIANTS>
-                  <SW-DATA-DEF-PROPS-CONDITIONAL>
-                    <COMPU-METHOD-REF DEST="COMPU-METHOD">/DataType/Semantics/DmsStatus</COMPU-METHOD-REF>
-                  </SW-DATA-DEF-PROPS-CONDITIONAL>
-                </SW-DATA-DEF-PROPS-VARIANTS>
-              </SW-DATA-DEF-PROPS>
-              <NAMESPACES>
                 <SYMBOL-PROPS>
-                  <SHORT-NAME>eevp</SHORT-NAME>
-                  <SYMBOL>eevp</SYMBOL>
-                </SYMBOL-PROPS>
-                <SYMBOL-PROPS>
-                  <SHORT-NAME>simulation</SHORT-NAME>
-                  <SYMBOL>simulation</SYMBOL>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
                 </SYMBOL-PROPS>
               </NAMESPACES>
               <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
@@ -275,6 +359,10 @@
                 <SYMBOL-PROPS>
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
                 </SYMBOL-PROPS>
               </NAMESPACES>
               <TEMPLATE-ARGUMENTS>
@@ -302,6 +390,10 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
               </NAMESPACES>
               <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
             </STD-CPP-IMPLEMENTATION-DATA-TYPE>
@@ -324,6 +416,10 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
               </NAMESPACES>
               <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
             </STD-CPP-IMPLEMENTATION-DATA-TYPE>
@@ -344,6 +440,10 @@
                 <SYMBOL-PROPS>
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
                 </SYMBOL-PROPS>
               </NAMESPACES>
               <TEMPLATE-ARGUMENTS>
@@ -371,6 +471,10 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
               </NAMESPACES>
               <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
             </STD-CPP-IMPLEMENTATION-DATA-TYPE>
@@ -393,6 +497,10 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
               </NAMESPACES>
               <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
             </STD-CPP-IMPLEMENTATION-DATA-TYPE>
@@ -413,6 +521,10 @@
                 <SYMBOL-PROPS>
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
                 </SYMBOL-PROPS>
               </NAMESPACES>
               <TEMPLATE-ARGUMENTS>
@@ -439,6 +551,10 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
               </NAMESPACES>
               <TEMPLATE-ARGUMENTS>
                 <CPP-TEMPLATE-ARGUMENT>
@@ -463,6 +579,10 @@
                 <SYMBOL-PROPS>
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
                 </SYMBOL-PROPS>
               </NAMESPACES>
               <TEMPLATE-ARGUMENTS>
@@ -489,6 +609,10 @@
                 <SYMBOL-PROPS>
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
                 </SYMBOL-PROPS>
               </NAMESPACES>
               <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
@@ -551,6 +675,10 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
               </NAMESPACES>
               <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
             </STD-CPP-IMPLEMENTATION-DATA-TYPE>
@@ -573,6 +701,10 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
               </NAMESPACES>
               <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
             </STD-CPP-IMPLEMENTATION-DATA-TYPE>
@@ -593,6 +725,10 @@
                 <SYMBOL-PROPS>
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
                 </SYMBOL-PROPS>
               </NAMESPACES>
               <TEMPLATE-ARGUMENTS>
@@ -617,6 +753,10 @@
                 <SYMBOL-PROPS>
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
                 </SYMBOL-PROPS>
               </NAMESPACES>
               <SUB-ELEMENTS>
@@ -652,6 +792,10 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
               </NAMESPACES>
               <TEMPLATE-ARGUMENTS>
                 <CPP-TEMPLATE-ARGUMENT>
@@ -675,6 +819,10 @@
                 <SYMBOL-PROPS>
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
                 </SYMBOL-PROPS>
               </NAMESPACES>
               <SUB-ELEMENTS>
@@ -710,6 +858,10 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
               </NAMESPACES>
               <TEMPLATE-ARGUMENTS>
                 <CPP-TEMPLATE-ARGUMENT>
@@ -733,6 +885,10 @@
                 <SYMBOL-PROPS>
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
                 </SYMBOL-PROPS>
               </NAMESPACES>
               <SUB-ELEMENTS>
@@ -812,6 +968,10 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
               </NAMESPACES>
               <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
             </STD-CPP-IMPLEMENTATION-DATA-TYPE>
@@ -856,77 +1016,12 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
               </NAMESPACES>
               <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
-            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
-            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="eb43a113-812f-4d76-ba23-1b99d4c84923">
-              <SHORT-NAME>T_MSGINFO</SHORT-NAME>
-              <CATEGORY>STRUCTURE</CATEGORY>
-              <SW-DATA-DEF-PROPS>
-                <SW-DATA-DEF-PROPS-VARIANTS>
-                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
-                </SW-DATA-DEF-PROPS-VARIANTS>
-              </SW-DATA-DEF-PROPS>
-              <NAMESPACES>
-                <SYMBOL-PROPS>
-                  <SHORT-NAME>eevp</SHORT-NAME>
-                  <SYMBOL>eevp</SYMBOL>
-                </SYMBOL-PROPS>
-                <SYMBOL-PROPS>
-                  <SHORT-NAME>simulation</SHORT-NAME>
-                  <SYMBOL>simulation</SYMBOL>
-                </SYMBOL-PROPS>
-              </NAMESPACES>
-              <SUB-ELEMENTS>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="c32c4fac-f110-4386-847f-52c63fc1d80f">
-                  <SHORT-NAME>tRslt</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="2c68a704-e947-4801-8bce-e4d95c3b7c4b">
-                  <SHORT-NAME>XaxisScale</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="128e145f-9ab9-460b-a768-aff3a93c8890">
-                  <SHORT-NAME>YaxisValidCnt</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="5e9f211e-f724-4b5b-99e2-5f06d2ff43d9">
-                  <SHORT-NAME>Ydata</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/Ydata</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="c0301469-4d64-491c-9a26-1821e4a47147">
-                  <SHORT-NAME>RCValidCnt</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="c3ad2db7-8936-4658-8428-4d4cbb8d019f">
-                  <SHORT-NAME>RCdata</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/RCdata</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="0ed73c5f-1550-4979-9ae1-e80bc69becf7">
-                  <SHORT-NAME>MAXdata</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/MAXdata</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="2c183508-38c0-499a-baf1-23a8aff19d5e">
-                  <SHORT-NAME>MINdata</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/MINdata</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-              </SUB-ELEMENTS>
             </STD-CPP-IMPLEMENTATION-DATA-TYPE>
             <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="e26dd071-4285-43f7-9dbe-e33e398228ec">
               <SHORT-NAME>USSSonarInfo</SHORT-NAME>
@@ -944,6 +1039,10 @@
                 <SYMBOL-PROPS>
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
                 </SYMBOL-PROPS>
               </NAMESPACES>
               <SUB-ELEMENTS>
@@ -1014,6 +1113,10 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
               </NAMESPACES>
               <SUB-ELEMENTS>
                 <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="9202abd5-2da0-4a7c-88fc-644e31e986eb">
@@ -1046,6 +1149,10 @@
                 <SYMBOL-PROPS>
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
                 </SYMBOL-PROPS>
               </NAMESPACES>
               <SUB-ELEMENTS>
@@ -1104,6 +1211,10 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
               </NAMESPACES>
               <SUB-ELEMENTS>
                 <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="2ec7bec3-0cf3-4c08-a17e-ef93dff29058">
@@ -1161,6 +1272,10 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
               </NAMESPACES>
               <SUB-ELEMENTS>
                 <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="54876d16-8175-4775-ab08-7d40efbfade6">
@@ -1193,6 +1308,10 @@
                 <SYMBOL-PROPS>
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
                 </SYMBOL-PROPS>
               </NAMESPACES>
               <SUB-ELEMENTS>
@@ -1227,6 +1346,10 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
               </NAMESPACES>
               <SUB-ELEMENTS>
                 <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="4798a747-f36e-4025-81f4-0c43fa5e0ee4">
@@ -1259,6 +1382,10 @@
                 <SYMBOL-PROPS>
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
                 </SYMBOL-PROPS>
               </NAMESPACES>
               <SUB-ELEMENTS>
@@ -1293,6 +1420,10 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
               </NAMESPACES>
               <SUB-ELEMENTS>
                 <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="ba4acaa8-a849-4751-b509-da93f720d85f">
@@ -1326,6 +1457,10 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
               </NAMESPACES>
               <SUB-ELEMENTS>
                 <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="7afefd1b-a0bc-4038-acbf-bc573c98d018">
@@ -1358,6 +1493,10 @@
                 <SYMBOL-PROPS>
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
                 </SYMBOL-PROPS>
               </NAMESPACES>
               <SUB-ELEMENTS>
@@ -1411,6 +1550,10 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
               </NAMESPACES>
               <TEMPLATE-ARGUMENTS>
                 <CPP-TEMPLATE-ARGUMENT>
@@ -1436,6 +1579,10 @@
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
                 </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
+                </SYMBOL-PROPS>
               </NAMESPACES>
               <TEMPLATE-ARGUMENTS>
                 <CPP-TEMPLATE-ARGUMENT>
@@ -1460,6 +1607,10 @@
                 <SYMBOL-PROPS>
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
                 </SYMBOL-PROPS>
               </NAMESPACES>
               <TEMPLATE-ARGUMENTS>
@@ -1514,354 +1665,6 @@
                 </SYMBOL-PROPS>
               </NAMESPACES>
             </STD-CPP-IMPLEMENTATION-DATA-TYPE>
-            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="d0de2c2b-9d38-445c-b223-77f4aa286834">
-              <SHORT-NAME>ems_BmsInfo</SHORT-NAME>
-              <CATEGORY>STRUCTURE</CATEGORY>
-              <SW-DATA-DEF-PROPS>
-                <SW-DATA-DEF-PROPS-VARIANTS>
-                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
-                </SW-DATA-DEF-PROPS-VARIANTS>
-              </SW-DATA-DEF-PROPS>
-              <NAMESPACES>
-                <SYMBOL-PROPS>
-                  <SHORT-NAME>eevp</SHORT-NAME>
-                  <SYMBOL>eevp</SYMBOL>
-                </SYMBOL-PROPS>
-                <SYMBOL-PROPS>
-                  <SHORT-NAME>simulation</SHORT-NAME>
-                  <SYMBOL>simulation</SYMBOL>
-                </SYMBOL-PROPS>
-              </NAMESPACES>
-              <SUB-ELEMENTS>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="0362e680-088c-407f-abdb-5b826bf1fcc5">
-                  <SHORT-NAME>InterfaceIDforDbg</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="ef7b3978-c291-452e-b802-7872cc3edf19">
-                  <SHORT-NAME>DataSerialNumber</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="57d01988-4256-4ce4-9945-261e5f492198">
-                  <SHORT-NAME>VehicleuniqueSnr</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="e56dea40-b29a-4f4e-b418-8cabd9dd1c4d">
-                  <SHORT-NAME>EMS_BatteryAvgTemperature</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="ab6ff4c2-a58f-4734-8110-a2b3e736d918">
-                  <SHORT-NAME>EMS_ChargerOutputVolt</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="d2b8bd0f-e732-41b1-9c8e-fb7b1812be29">
-                  <SHORT-NAME>EMS_ChargerOutputCurr</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="6f655943-eff2-4855-84d8-bb2e46102c2e">
-                  <SHORT-NAME>EMS_ReturnCode</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="80a3caad-50cf-494f-8051-8327d67c2fc5">
-                  <SHORT-NAME>EMS_ConnectionStatus</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="99b341d9-8e48-4e4a-bed6-1352fd765006">
-                  <SHORT-NAME>EMS_TargetVolt</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="2605c601-677b-450b-8227-c792873b9882">
-                  <SHORT-NAME>EMS_TargetCurr</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="778bc648-9689-46d6-a699-038a42bdedaa">
-                  <SHORT-NAME>EMS_RemainHour</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="757d5866-0dab-4379-8be7-af673baac5db">
-                  <SHORT-NAME>EMS_RemainMin</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="80836f2a-e14e-4c65-837b-d1a34c316c00">
-                  <SHORT-NAME>EMS_HVBattSOC</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="29ecb157-cecf-4f0c-933f-a8d8bdfe3092">
-                  <SHORT-NAME>EMS_HVBattSOE</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="3f72b5b0-38f3-419d-a555-e93dc9ec961a">
-                  <SHORT-NAME>EMS_HVBattSOH</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="59b99a10-7907-4bb1-82cb-8d6981a9adc4">
-                  <SHORT-NAME>EMS_BattVolt</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="05498202-f877-4e83-a6d5-376da9bbe168">
-                  <SHORT-NAME>EMS_BattCurr</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="194c27a0-6b52-43b1-ae6b-a0e2125479bd">
-                  <SHORT-NAME>EMS_Obc_dcVolt</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="08d48af4-9164-4f5c-b572-2c4478c0440f">
-                  <SHORT-NAME>EMS_Obc_dcCurr</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="30d661b3-f635-4444-a0ab-468fedb719f0">
-                  <SHORT-NAME>EMS_Anv_ChargeCurrSetSts</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="52c56f4c-e6f9-4a19-a4ec-ae2c5725c795">
-                  <SHORT-NAME>EMS_HvBatt_MainRlyCloseReq</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="c42a80a5-4033-4ee4-87e2-abc6c19eaea6">
-                  <SHORT-NAME>EMS_HvBatt_preChrgRlyStatus</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="6f127ac1-577b-4d2c-b64e-eb651adbdfcd">
-                  <SHORT-NAME>EMS_HvBatt_posRlyStatus</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="273485ba-5272-4dd2-8383-bda9ba34c135">
-                  <SHORT-NAME>EMS_HvBatt_negRlyStatus</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="33786a65-713f-4fc5-bf03-47bb024d63ff">
-                  <SHORT-NAME>EMS_Avn_DcChargingTartgetSetSts</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="cc4297de-d023-4995-bee1-97acbb41fc9f">
-                  <SHORT-NAME>EMS_Avn_AcChargingTartgetSetSts</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-              </SUB-ELEMENTS>
-            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
-            <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="6a5b40cb-becc-4a5a-a4a7-5a055cebff92">
-              <SHORT-NAME>ems_MsgInfo</SHORT-NAME>
-              <CATEGORY>STRUCTURE</CATEGORY>
-              <SW-DATA-DEF-PROPS>
-                <SW-DATA-DEF-PROPS-VARIANTS>
-                  <SW-DATA-DEF-PROPS-CONDITIONAL/>
-                </SW-DATA-DEF-PROPS-VARIANTS>
-              </SW-DATA-DEF-PROPS>
-              <NAMESPACES>
-                <SYMBOL-PROPS>
-                  <SHORT-NAME>eevp</SHORT-NAME>
-                  <SYMBOL>eevp</SYMBOL>
-                </SYMBOL-PROPS>
-                <SYMBOL-PROPS>
-                  <SHORT-NAME>simulation</SHORT-NAME>
-                  <SYMBOL>simulation</SYMBOL>
-                </SYMBOL-PROPS>
-              </NAMESPACES>
-              <SUB-ELEMENTS>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="71018f2f-c452-45c0-bf36-a5d1edf288a8">
-                  <SHORT-NAME>InterfaceIDforDbg</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="0bb41325-f3ea-4a32-a46b-e45c003fc439">
-                  <SHORT-NAME>VehicleUniqueSnr</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="dc34f606-cb4c-44ae-91f6-3d460f72dab8">
-                  <SHORT-NAME>AppVer</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/AppVer</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="59514fac-bcd6-4c21-85c4-72ca882fa31c">
-                  <SHORT-NAME>ChargeStatus</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="22acbdab-fc76-49cb-a1b5-c627cfbdf46f">
-                  <SHORT-NAME>EMS_ConnectionStatus</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="71ddab58-3bf1-49cf-8c6b-2942e1c9eb12">
-                  <SHORT-NAME>Date</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/Date</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="9f54c7fc-2d45-4ea9-97db-693299f83d72">
-                  <SHORT-NAME>BattSOC</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="dd337bc0-f220-4de6-8566-f01ef3176802">
-                  <SHORT-NAME>DTE</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="7b6ad03e-ecf7-47af-8705-2da165b1026c">
-                  <SHORT-NAME>BatteryStatus</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="069eb60c-47f3-4ef6-8160-737c567a8fc8">
-                  <SHORT-NAME>SOH</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="dbb6b862-d73d-4b8f-b8c8-298a13ac8461">
-                  <SHORT-NAME>SOE</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="741b4e94-8ade-4d2a-a0f1-dfc5c6ed8d1c">
-                  <SHORT-NAME>TargetSOC</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint8_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="ecd29fbb-21ff-4473-9fde-0fbb5480eac6">
-                  <SHORT-NAME>CompleteTime</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/CompleteTime</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="6d917483-c0b2-44b2-b8b2-5197bcce0ec6">
-                  <SHORT-NAME>FinishedTime</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/FinishedTime</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="3f85374d-dc2e-43d8-867f-652d7290d0ad">
-                  <SHORT-NAME>GetCount</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="9675bb17-b40f-415c-b320-7ca0656dc7fa">
-                  <SHORT-NAME>MissedCount</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="b7d6f12a-6007-463b-b528-849f559ca821">
-                  <SHORT-NAME>ChargeResult</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="28767599-20ff-4691-b2aa-d688e83e85b4">
-                  <SHORT-NAME>ChargedSOE</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="f23c6abd-d7e8-4834-a909-82e1286e92f8">
-                  <SHORT-NAME>ChargedSOC</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint16_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="2369bbe4-0402-4b66-b7a0-ac3984d27d50">
-                  <SHORT-NAME>Current</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/T_MSGINFO</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="fb5b9276-c5b9-4b04-bf60-2fe70875672c">
-                  <SHORT-NAME>Voltage</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/T_MSGINFO</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="3d20b1fa-60a7-43a4-998b-1884b737bd56">
-                  <SHORT-NAME>SOC</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/T_MSGINFO</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="2d3dcabe-1ccc-4183-a7b4-a5d66301c57b">
-                  <SHORT-NAME>Temp</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/T_MSGINFO</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="f9b4f509-c398-46b9-b71e-b7fe1e10f401">
-                  <SHORT-NAME>ElapsedTime</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/CppImplementationType/ElapsedTime</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-                <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="f9ee0a59-5804-44eb-9ddc-07c4bd52570c">
-                  <SHORT-NAME>ChargeStopReason</SHORT-NAME>
-                  <TYPE-REFERENCE>
-                    <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/uint32_t</TYPE-REFERENCE-REF>
-                  </TYPE-REFERENCE>
-                </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
-              </SUB-ELEMENTS>
-            </STD-CPP-IMPLEMENTATION-DATA-TYPE>
             <STD-CPP-IMPLEMENTATION-DATA-TYPE UUID="7971157e-1595-412b-b00d-959b8f800d8b">
               <SHORT-NAME>lampStatus</SHORT-NAME>
               <CATEGORY>ARRAY</CATEGORY>
@@ -1879,6 +1682,10 @@
                 <SYMBOL-PROPS>
                   <SHORT-NAME>simulation</SHORT-NAME>
                   <SYMBOL>simulation</SYMBOL>
+                </SYMBOL-PROPS>
+                <SYMBOL-PROPS>
+                  <SHORT-NAME>type</SHORT-NAME>
+                  <SYMBOL>type</SYMBOL>
                 </SYMBOL-PROPS>
               </NAMESPACES>
               <TEMPLATE-ARGUMENTS>

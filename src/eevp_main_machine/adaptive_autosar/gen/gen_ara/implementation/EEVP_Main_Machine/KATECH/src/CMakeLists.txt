@@ -10,10 +10,14 @@ add_executable(${PARA_APP_NAME})
 # Please modify the section below to suit your configuration.
 # ============================================================================
 Para_Target(${PARA_APP_NAME}
-            PARA_LIBS_PRIVATE core exec com
+            PARA_LIBS_PRIVATE core log exec com
             PARA_GEN_DIR ${PARA_APP_GEN_DIR}
             OUTPUT_NAME ${PARA_APP_NAME}
 )
+# ============================================================================
+target_include_directories(${PARA_APP_NAME}
+                           PRIVATE
+                           ${CMAKE_CURRENT_SOURCE_DIR}/include)
 # ============================================================================
 target_sources(${PARA_APP_NAME}
                PRIVATE

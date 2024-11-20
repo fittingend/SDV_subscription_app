@@ -15,6 +15,24 @@
     ],
     "methods" : [
         {
+            "name" : "getWipingInterval",
+            "method-id" : "8",
+            "transport" : "udp",
+            "req-max-segment-len" : "0",
+            "req-separation-time" : "0.0",
+            "resp-max-segment-len" : "0",
+            "resp-separation-time" : "0.0"
+        },
+        {
+            "name" : "getWipingLevel",
+            "method-id" : "7",
+            "transport" : "udp",
+            "req-max-segment-len" : "0",
+            "req-separation-time" : "0.0",
+            "resp-max-segment-len" : "0",
+            "resp-separation-time" : "0.0"
+        },
+        {
             "name" : "isWiping",
             "method-id" : "1",
             "transport" : "udp",
@@ -24,17 +42,8 @@
             "resp-separation-time" : "0.0"
         },
         {
-            "name" : "stopWiping",
-            "method-id" : "2",
-            "transport" : "udp",
-            "req-max-segment-len" : "0",
-            "req-separation-time" : "0.0",
-            "resp-max-segment-len" : "0",
-            "resp-separation-time" : "0.0"
-        },
-        {
-            "name" : "startWiping",
-            "method-id" : "3",
+            "name" : "setWipingInterval",
+            "method-id" : "6",
             "transport" : "udp",
             "req-max-segment-len" : "0",
             "req-separation-time" : "0.0",
@@ -60,8 +69,8 @@
             "resp-separation-time" : "0.0"
         },
         {
-            "name" : "setWipingInterval",
-            "method-id" : "6",
+            "name" : "startWiping",
+            "method-id" : "3",
             "transport" : "udp",
             "req-max-segment-len" : "0",
             "req-separation-time" : "0.0",
@@ -69,17 +78,8 @@
             "resp-separation-time" : "0.0"
         },
         {
-            "name" : "getWipingLevel",
-            "method-id" : "7",
-            "transport" : "udp",
-            "req-max-segment-len" : "0",
-            "req-separation-time" : "0.0",
-            "resp-max-segment-len" : "0",
-            "resp-separation-time" : "0.0"
-        },
-        {
-            "name" : "getWipingInterval",
-            "method-id" : "8",
+            "name" : "stopWiping",
+            "method-id" : "2",
             "transport" : "udp",
             "req-max-segment-len" : "0",
             "req-separation-time" : "0.0",
@@ -89,10 +89,10 @@
     ],
     "fields" : [
         {
-            "name" : "wiperLevel",
+            "name" : "brakePedalRecv",
             "getter" : {
-                "method-id" : "11",
-                "transport" : "udp",
+                "method-id" : "0",
+                "transport" : "undefined",
                 "req-max-segment-len" : "0",
                 "req-separation-time" : "0.0",
                 "resp-max-segment-len" : "0",
@@ -107,8 +107,33 @@
                 "resp-separation-time" : "0.0"
             },
             "notifier" : {
-                "event-id" : "12",
-                "transport" : "udp",
+                "event-id" : "0",
+                "transport" : "undefined",
+                "max-segment-len" : "0",
+                "separation-time" : "0.0"
+            }
+        },
+        {
+            "name" : "brakePedalSend",
+            "getter" : {
+                "method-id" : "0",
+                "transport" : "undefined",
+                "req-max-segment-len" : "0",
+                "req-separation-time" : "0.0",
+                "resp-max-segment-len" : "0",
+                "resp-separation-time" : "0.0"
+            },
+            "setter" : {
+                "method-id" : "0",
+                "transport" : "undefined",
+                "req-max-segment-len" : "0",
+                "req-separation-time" : "0.0",
+                "resp-max-segment-len" : "0",
+                "resp-separation-time" : "0.0"
+            },
+            "notifier" : {
+                "event-id" : "0",
+                "transport" : "undefined",
                 "max-segment-len" : "0",
                 "separation-time" : "0.0"
             }
@@ -133,6 +158,31 @@
             },
             "notifier" : {
                 "event-id" : "14",
+                "transport" : "udp",
+                "max-segment-len" : "0",
+                "separation-time" : "0.0"
+            }
+        },
+        {
+            "name" : "wiperLevel",
+            "getter" : {
+                "method-id" : "11",
+                "transport" : "udp",
+                "req-max-segment-len" : "0",
+                "req-separation-time" : "0.0",
+                "resp-max-segment-len" : "0",
+                "resp-separation-time" : "0.0"
+            },
+            "setter" : {
+                "method-id" : "0",
+                "transport" : "undefined",
+                "req-max-segment-len" : "0",
+                "req-separation-time" : "0.0",
+                "resp-max-segment-len" : "0",
+                "resp-separation-time" : "0.0"
+            },
+            "notifier" : {
+                "event-id" : "12",
                 "transport" : "udp",
                 "max-segment-len" : "0",
                 "separation-time" : "0.0"

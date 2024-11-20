@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : monitoringmanagement_skeleton.h
 /// SERVICE INTERFACE NAME            : MonitoringManagement
-/// GENERATED DATE                    : 2024-08-27 13:02:34
+/// GENERATED DATE                    : 2024-11-05 15:24:02
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -39,28 +39,28 @@ class MonitoringManagementSkeleton;
 namespace events
 {
 /// @uptrace{SWS_CM_00003}
-class DistanceLevel
+class DistanceLevelFront
 {
 public:
     /// @brief Type alias for type of event data
     /// @uptrace{SWS_CM_00162, SWS_CM_90437}
     using SampleType = eevp::pdw::type::DistanceLevel;
     /// @brief Constructor
-    explicit DistanceLevel(para::com::SkeletonInterface* interface) : mInterface(interface)
+    explicit DistanceLevelFront(para::com::SkeletonInterface* interface) : mInterface(interface)
     {
     }
     /// @brief Destructor
-    virtual ~DistanceLevel() = default;
+    virtual ~DistanceLevelFront() = default;
     /// @brief Delete copy constructor
-    DistanceLevel(const DistanceLevel& other) = delete;
+    DistanceLevelFront(const DistanceLevelFront& other) = delete;
     /// @brief Delete copy assignment
-    DistanceLevel& operator=(const DistanceLevel& other) = delete;
+    DistanceLevelFront& operator=(const DistanceLevelFront& other) = delete;
     /// @brief Move constructor
-    DistanceLevel(DistanceLevel&& other) noexcept : mInterface(other.mInterface)
+    DistanceLevelFront(DistanceLevelFront&& other) noexcept : mInterface(other.mInterface)
     {
     }
     /// @brief Move assignment
-    DistanceLevel& operator=(DistanceLevel&& other) noexcept
+    DistanceLevelFront& operator=(DistanceLevelFront&& other) noexcept
     {
         mInterface = other.mInterface;
         return *this;
@@ -83,31 +83,31 @@ public:
     
 private:
     para::com::SkeletonInterface* mInterface;
-    const std::string kCallSign = {"DistanceLevel"};
+    const std::string kCallSign = {"DistanceLevelFront"};
 };
 /// @uptrace{SWS_CM_00003}
-class eventServiceError
+class DistanceLevelRear
 {
 public:
     /// @brief Type alias for type of event data
     /// @uptrace{SWS_CM_00162, SWS_CM_90437}
-    using SampleType = eevp::monitoring::type::ControllerServiceErrorEvent;
+    using SampleType = eevp::pdw::type::DistanceLevel;
     /// @brief Constructor
-    explicit eventServiceError(para::com::SkeletonInterface* interface) : mInterface(interface)
+    explicit DistanceLevelRear(para::com::SkeletonInterface* interface) : mInterface(interface)
     {
     }
     /// @brief Destructor
-    virtual ~eventServiceError() = default;
+    virtual ~DistanceLevelRear() = default;
     /// @brief Delete copy constructor
-    eventServiceError(const eventServiceError& other) = delete;
+    DistanceLevelRear(const DistanceLevelRear& other) = delete;
     /// @brief Delete copy assignment
-    eventServiceError& operator=(const eventServiceError& other) = delete;
+    DistanceLevelRear& operator=(const DistanceLevelRear& other) = delete;
     /// @brief Move constructor
-    eventServiceError(eventServiceError&& other) noexcept : mInterface(other.mInterface)
+    DistanceLevelRear(DistanceLevelRear&& other) noexcept : mInterface(other.mInterface)
     {
     }
     /// @brief Move assignment
-    eventServiceError& operator=(eventServiceError&& other) noexcept
+    DistanceLevelRear& operator=(DistanceLevelRear&& other) noexcept
     {
         mInterface = other.mInterface;
         return *this;
@@ -130,7 +130,54 @@ public:
     
 private:
     para::com::SkeletonInterface* mInterface;
-    const std::string kCallSign = {"eventServiceError"};
+    const std::string kCallSign = {"DistanceLevelRear"};
+};
+/// @uptrace{SWS_CM_00003}
+class MbTempStatus
+{
+public:
+    /// @brief Type alias for type of event data
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using SampleType = eevp::monitoring::type::MbTempStatus;
+    /// @brief Constructor
+    explicit MbTempStatus(para::com::SkeletonInterface* interface) : mInterface(interface)
+    {
+    }
+    /// @brief Destructor
+    virtual ~MbTempStatus() = default;
+    /// @brief Delete copy constructor
+    MbTempStatus(const MbTempStatus& other) = delete;
+    /// @brief Delete copy assignment
+    MbTempStatus& operator=(const MbTempStatus& other) = delete;
+    /// @brief Move constructor
+    MbTempStatus(MbTempStatus&& other) noexcept : mInterface(other.mInterface)
+    {
+    }
+    /// @brief Move assignment
+    MbTempStatus& operator=(MbTempStatus&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        return *this;
+    }
+    /// @brief Send event with data to subscribing service consumers
+    /// @uptrace{SWS_CM_90437}
+    ara::core::Result<void> Send(const SampleType& data)
+    {
+        para::serializer::Serializer serializer{};
+        serializer.write(data);
+        auto payload = serializer.ensure();
+        return mInterface->SendEvent(kCallSign, payload);
+    }
+    /// @brief Returns unique pointer about SampleType
+    /// @uptrace{SWS_CM_90438}
+    ara::core::Result<ara::com::SampleAllocateePtr<SampleType>> Allocate()
+    {
+        return std::make_unique<SampleType>();
+    }
+    
+private:
+    para::com::SkeletonInterface* mInterface;
+    const std::string kCallSign = {"MbTempStatus"};
 };
 /// @uptrace{SWS_CM_00003}
 class eventServiceInfo
@@ -138,7 +185,7 @@ class eventServiceInfo
 public:
     /// @brief Type alias for type of event data
     /// @uptrace{SWS_CM_00162, SWS_CM_90437}
-    using SampleType = eevp::monitoring::type::ControllerServiceInfoMap;
+    using SampleType = eevp::monitoring::type::ControllerServiceInfo;
     /// @brief Constructor
     explicit eventServiceInfo(para::com::SkeletonInterface* interface) : mInterface(interface)
     {
@@ -178,147 +225,6 @@ public:
 private:
     para::com::SkeletonInterface* mInterface;
     const std::string kCallSign = {"eventServiceInfo"};
-};
-/// @uptrace{SWS_CM_00003}
-class eventServiceInfoSpare
-{
-public:
-    /// @brief Type alias for type of event data
-    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
-    using SampleType = eevp::monitoring::type::ControllerServiceInfoSpare;
-    /// @brief Constructor
-    explicit eventServiceInfoSpare(para::com::SkeletonInterface* interface) : mInterface(interface)
-    {
-    }
-    /// @brief Destructor
-    virtual ~eventServiceInfoSpare() = default;
-    /// @brief Delete copy constructor
-    eventServiceInfoSpare(const eventServiceInfoSpare& other) = delete;
-    /// @brief Delete copy assignment
-    eventServiceInfoSpare& operator=(const eventServiceInfoSpare& other) = delete;
-    /// @brief Move constructor
-    eventServiceInfoSpare(eventServiceInfoSpare&& other) noexcept : mInterface(other.mInterface)
-    {
-    }
-    /// @brief Move assignment
-    eventServiceInfoSpare& operator=(eventServiceInfoSpare&& other) noexcept
-    {
-        mInterface = other.mInterface;
-        return *this;
-    }
-    /// @brief Send event with data to subscribing service consumers
-    /// @uptrace{SWS_CM_90437}
-    ara::core::Result<void> Send(const SampleType& data)
-    {
-        para::serializer::Serializer serializer{};
-        serializer.write(data);
-        auto payload = serializer.ensure();
-        return mInterface->SendEvent(kCallSign, payload);
-    }
-    /// @brief Returns unique pointer about SampleType
-    /// @uptrace{SWS_CM_90438}
-    ara::core::Result<ara::com::SampleAllocateePtr<SampleType>> Allocate()
-    {
-        return std::make_unique<SampleType>();
-    }
-    
-private:
-    para::com::SkeletonInterface* mInterface;
-    const std::string kCallSign = {"eventServiceInfoSpare"};
-};
-/// @uptrace{SWS_CM_00003}
-class eventServiceStatus
-{
-public:
-    /// @brief Type alias for type of event data
-    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
-    using SampleType = eevp::monitoring::type::ControllerServiceStatusMap;
-    /// @brief Constructor
-    explicit eventServiceStatus(para::com::SkeletonInterface* interface) : mInterface(interface)
-    {
-    }
-    /// @brief Destructor
-    virtual ~eventServiceStatus() = default;
-    /// @brief Delete copy constructor
-    eventServiceStatus(const eventServiceStatus& other) = delete;
-    /// @brief Delete copy assignment
-    eventServiceStatus& operator=(const eventServiceStatus& other) = delete;
-    /// @brief Move constructor
-    eventServiceStatus(eventServiceStatus&& other) noexcept : mInterface(other.mInterface)
-    {
-    }
-    /// @brief Move assignment
-    eventServiceStatus& operator=(eventServiceStatus&& other) noexcept
-    {
-        mInterface = other.mInterface;
-        return *this;
-    }
-    /// @brief Send event with data to subscribing service consumers
-    /// @uptrace{SWS_CM_90437}
-    ara::core::Result<void> Send(const SampleType& data)
-    {
-        para::serializer::Serializer serializer{};
-        serializer.write(data);
-        auto payload = serializer.ensure();
-        return mInterface->SendEvent(kCallSign, payload);
-    }
-    /// @brief Returns unique pointer about SampleType
-    /// @uptrace{SWS_CM_90438}
-    ara::core::Result<ara::com::SampleAllocateePtr<SampleType>> Allocate()
-    {
-        return std::make_unique<SampleType>();
-    }
-    
-private:
-    para::com::SkeletonInterface* mInterface;
-    const std::string kCallSign = {"eventServiceStatus"};
-};
-/// @uptrace{SWS_CM_00003}
-class eventServiceStatusSpare
-{
-public:
-    /// @brief Type alias for type of event data
-    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
-    using SampleType = eevp::monitoring::type::ControllerServiceStatusSpare;
-    /// @brief Constructor
-    explicit eventServiceStatusSpare(para::com::SkeletonInterface* interface) : mInterface(interface)
-    {
-    }
-    /// @brief Destructor
-    virtual ~eventServiceStatusSpare() = default;
-    /// @brief Delete copy constructor
-    eventServiceStatusSpare(const eventServiceStatusSpare& other) = delete;
-    /// @brief Delete copy assignment
-    eventServiceStatusSpare& operator=(const eventServiceStatusSpare& other) = delete;
-    /// @brief Move constructor
-    eventServiceStatusSpare(eventServiceStatusSpare&& other) noexcept : mInterface(other.mInterface)
-    {
-    }
-    /// @brief Move assignment
-    eventServiceStatusSpare& operator=(eventServiceStatusSpare&& other) noexcept
-    {
-        mInterface = other.mInterface;
-        return *this;
-    }
-    /// @brief Send event with data to subscribing service consumers
-    /// @uptrace{SWS_CM_90437}
-    ara::core::Result<void> Send(const SampleType& data)
-    {
-        para::serializer::Serializer serializer{};
-        serializer.write(data);
-        auto payload = serializer.ensure();
-        return mInterface->SendEvent(kCallSign, payload);
-    }
-    /// @brief Returns unique pointer about SampleType
-    /// @uptrace{SWS_CM_90438}
-    ara::core::Result<ara::com::SampleAllocateePtr<SampleType>> Allocate()
-    {
-        return std::make_unique<SampleType>();
-    }
-    
-private:
-    para::com::SkeletonInterface* mInterface;
-    const std::string kCallSign = {"eventServiceStatusSpare"};
 };
 /// @uptrace{SWS_CM_00003}
 class eventUpdatableService
@@ -367,34 +273,81 @@ private:
     para::com::SkeletonInterface* mInterface;
     const std::string kCallSign = {"eventUpdatableService"};
 };
+/// @uptrace{SWS_CM_00003}
+class resetUcmCompleted
+{
+public:
+    /// @brief Type alias for type of event data
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using SampleType = bool;
+    /// @brief Constructor
+    explicit resetUcmCompleted(para::com::SkeletonInterface* interface) : mInterface(interface)
+    {
+    }
+    /// @brief Destructor
+    virtual ~resetUcmCompleted() = default;
+    /// @brief Delete copy constructor
+    resetUcmCompleted(const resetUcmCompleted& other) = delete;
+    /// @brief Delete copy assignment
+    resetUcmCompleted& operator=(const resetUcmCompleted& other) = delete;
+    /// @brief Move constructor
+    resetUcmCompleted(resetUcmCompleted&& other) noexcept : mInterface(other.mInterface)
+    {
+    }
+    /// @brief Move assignment
+    resetUcmCompleted& operator=(resetUcmCompleted&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        return *this;
+    }
+    /// @brief Send event with data to subscribing service consumers
+    /// @uptrace{SWS_CM_90437}
+    ara::core::Result<void> Send(const SampleType& data)
+    {
+        para::serializer::Serializer serializer{};
+        serializer.write(data);
+        auto payload = serializer.ensure();
+        return mInterface->SendEvent(kCallSign, payload);
+    }
+    /// @brief Returns unique pointer about SampleType
+    /// @uptrace{SWS_CM_90438}
+    ara::core::Result<ara::com::SampleAllocateePtr<SampleType>> Allocate()
+    {
+        return std::make_unique<SampleType>();
+    }
+    
+private:
+    para::com::SkeletonInterface* mInterface;
+    const std::string kCallSign = {"resetUcmCompleted"};
+};
 } /// namespace events
 /// @uptrace{SWS_CM_01031}
 namespace fields
 {
 /// @uptrace{SWS_CM_00007}
-class mbTemp
+class UssStatusFront
 {
 public:
     /// @brief Type alias for type of field value
     /// @uptrace{SWS_CM_00162, SWS_CM_90437}
-    using FieldType = eevp::type::String;
+    using FieldType = eevp::pdw::type::UssStatus;
     /// @brief Constructor
-    explicit mbTemp(para::com::SkeletonInterface* interface) : mInterface(interface)
+    explicit UssStatusFront(para::com::SkeletonInterface* interface) : mInterface(interface)
     {
     }
     /// @brief Destructor
-    virtual ~mbTemp() = default;
+    virtual ~UssStatusFront() = default;
     /// @brief Delete copy constructor
-    mbTemp(const mbTemp& other) = delete;
+    UssStatusFront(const UssStatusFront& other) = delete;
     /// @brief Delete copy assignment
-    mbTemp& operator=(const mbTemp& other) = delete;
+    UssStatusFront& operator=(const UssStatusFront& other) = delete;
     /// @brief Move constructor
-    mbTemp(mbTemp&& other) noexcept : mInterface(other.mInterface)
+    UssStatusFront(UssStatusFront&& other) noexcept : mInterface(other.mInterface)
     {
         RegisterGetHandler(std::move(other.mGetHandler));
     }
     /// @brief Move assignment
-    mbTemp& operator=(mbTemp&& other) noexcept
+    UssStatusFront& operator=(UssStatusFront&& other) noexcept
     {
         mInterface = other.mInterface;
         RegisterGetHandler(std::move(other.mGetHandler));
@@ -453,8 +406,93 @@ private:
     }
     para::com::SkeletonInterface* mInterface;
     std::function<ara::core::Future<FieldType>()> mGetHandler{nullptr};
-    const std::string kGetterCallSign = {"mbTempGetter"};
-    const std::string kNotifierCallSign = {"mbTempNotifier"};
+    const std::string kGetterCallSign = {"UssStatusFrontGetter"};
+    const std::string kNotifierCallSign = {"UssStatusFrontNotifier"};
+};
+/// @uptrace{SWS_CM_00007}
+class UssStatusRear
+{
+public:
+    /// @brief Type alias for type of field value
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using FieldType = eevp::pdw::type::UssStatus;
+    /// @brief Constructor
+    explicit UssStatusRear(para::com::SkeletonInterface* interface) : mInterface(interface)
+    {
+    }
+    /// @brief Destructor
+    virtual ~UssStatusRear() = default;
+    /// @brief Delete copy constructor
+    UssStatusRear(const UssStatusRear& other) = delete;
+    /// @brief Delete copy assignment
+    UssStatusRear& operator=(const UssStatusRear& other) = delete;
+    /// @brief Move constructor
+    UssStatusRear(UssStatusRear&& other) noexcept : mInterface(other.mInterface)
+    {
+        RegisterGetHandler(std::move(other.mGetHandler));
+    }
+    /// @brief Move assignment
+    UssStatusRear& operator=(UssStatusRear&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        RegisterGetHandler(std::move(other.mGetHandler));
+        return *this;
+    }
+    /// @brief Register callback for getter method
+    /// @uptrace{SWS_CM_00114}
+    ara::core::Result<void> RegisterGetHandler(std::function<ara::core::Future<FieldType>()> getHandler)
+    {
+        ara::core::Result<void> result{};
+        if (getHandler != nullptr)
+        {
+            mGetHandler = std::move(getHandler);
+            mInterface->SetMethodCallHandler(kGetterCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+                HandleGet(token);
+            });
+        }
+        return result;
+    }
+    /// @brief Send notification with value to subscribing service consumers
+    /// @uptrace{SWS_CM_90437}
+    ara::core::Result<void> Update(const FieldType& value)
+    {
+        para::serializer::Serializer serializer{};
+        serializer.write(value);
+        auto payload = serializer.ensure();
+        return mInterface->SendEvent(kNotifierCallSign, payload);
+    }
+    
+private:
+    void HandleGet(const para::com::MethodToken token)
+    {
+        std::uint8_t retResult{1};
+        std::vector<std::uint8_t> retData{};
+        auto future = mGetHandler();
+        auto result = future.GetResult();
+        if (result.HasValue())
+        {
+            FieldType value = result.Value();
+            para::serializer::Serializer serializer{};
+            serializer.write(value);
+            retData = serializer.ensure();
+            retResult = 0;
+        }
+        else
+        {
+            ara::core::ErrorDomain::IdType domainId = result.Error().Domain().Id();
+            ara::core::ErrorDomain::CodeType errorCode = result.Error().Value();
+            para::serializer::Serializer serializer{};
+            serializer.write(0, true, 0, domainId);
+            serializer.write(0, true, 0, errorCode);
+            retData = serializer.ensure();
+            retResult = 1;
+        }
+        mInterface->ReturnMethod(kGetterCallSign, retResult, retData, token);
+    }
+    para::com::SkeletonInterface* mInterface;
+    std::function<ara::core::Future<FieldType>()> mGetHandler{nullptr};
+    const std::string kGetterCallSign = {"UssStatusRearGetter"};
+    const std::string kNotifierCallSign = {"UssStatusRearNotifier"};
 };
 /// @uptrace{SWS_CM_00007}
 class soaDrvSeatDeviceNormal
@@ -2215,57 +2253,21 @@ public:
         eevp::monitoring::type::ControllerServiceInfo controllerServiceInfo;
         bool returnValue;
     };
-    struct requestControllerServiceInfoAllOutput
-    {
-        eevp::monitoring::type::ControllerServiceInfoMap controllerServiceInfoMap;
-        bool returnValue;
-    };
-    struct requestControllerServiceInfoAllSpareOutput
-    {
-        eevp::monitoring::type::StringArray serviceName;
-        eevp::monitoring::type::StringArray version;
-        eevp::monitoring::type::TimeArray lastUpdateTime;
-    };
-    struct requestControllerServiceStatusOutput
-    {
-        eevp::type::String controllerServiceStatus;
-        bool returnValue;
-    };
-    struct requestControllerServiceStatusAllOutput
-    {
-        eevp::monitoring::type::ControllerServiceStatusMap controllerServiceStatusMap;
-        bool returnValue;
-    };
-    struct requestControllerServiceStatusAllSpareOutput
-    {
-        eevp::monitoring::type::StringArray serviceName;
-        eevp::monitoring::type::StringArray serviceStatus;
-        eevp::monitoring::type::StringArray serviceEnable;
-        eevp::monitoring::type::StringArray serviceControl;
-    };
     struct resetUcmTestOutput
     {
-    };
-    struct setControlControllerServiceOutput
-    {
-        bool returnValue;
-    };
-    struct setEnableControllerServiceOutput
-    {
-        bool returnValue;
     };
     /// @brief Constructor
     /// @uptrace{SWS_CM_00002, SWS_CM_00152}
     MonitoringManagementSkeleton(ara::core::InstanceSpecifier instanceSpec, ara::com::MethodCallProcessingMode mode = ara::com::MethodCallProcessingMode::kEvent)
         : mInterface(std::make_unique<para::com::SkeletonInterface>(instanceSpec, mode))
-        , DistanceLevel(mInterface.get())
-        , eventServiceError(mInterface.get())
+        , DistanceLevelFront(mInterface.get())
+        , DistanceLevelRear(mInterface.get())
+        , MbTempStatus(mInterface.get())
         , eventServiceInfo(mInterface.get())
-        , eventServiceInfoSpare(mInterface.get())
-        , eventServiceStatus(mInterface.get())
-        , eventServiceStatusSpare(mInterface.get())
         , eventUpdatableService(mInterface.get())
-        , mbTemp(mInterface.get())
+        , resetUcmCompleted(mInterface.get())
+        , UssStatusFront(mInterface.get())
+        , UssStatusRear(mInterface.get())
         , soaDrvSeatDeviceNormal(mInterface.get())
         , soaDrvSeatMotorDirection(mInterface.get())
         , soaDrvSeatMotorPosition(mInterface.get())
@@ -2335,29 +2337,8 @@ public:
         mInterface->SetMethodCallHandler(krequestControllerServiceInfoCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlerequestControllerServiceInfo(data, token);
         });
-        mInterface->SetMethodCallHandler(krequestControllerServiceInfoAllCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlerequestControllerServiceInfoAll(data, token);
-        });
-        mInterface->SetMethodCallHandler(krequestControllerServiceInfoAllSpareCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlerequestControllerServiceInfoAllSpare(data, token);
-        });
-        mInterface->SetMethodCallHandler(krequestControllerServiceStatusCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlerequestControllerServiceStatus(data, token);
-        });
-        mInterface->SetMethodCallHandler(krequestControllerServiceStatusAllCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlerequestControllerServiceStatusAll(data, token);
-        });
-        mInterface->SetMethodCallHandler(krequestControllerServiceStatusAllSpareCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlerequestControllerServiceStatusAllSpare(data, token);
-        });
         mInterface->SetMethodCallHandler(kresetUcmTestCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandleresetUcmTest(data, token);
-        });
-        mInterface->SetMethodCallHandler(ksetControlControllerServiceCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlesetControlControllerService(data, token);
-        });
-        mInterface->SetMethodCallHandler(ksetEnableControllerServiceCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlesetEnableControllerService(data, token);
         });
         mInterface->SetE2EErrorHandler([this](const ara::com::e2e::E2EErrorDomain& errorCode, ara::com::e2e::DataID dataID, ara::com::e2e::MessageCounter messageCounter) {
             E2EErrorHandler(errorCode, dataID, messageCounter);
@@ -2375,14 +2356,14 @@ public:
     /// @uptrace{SWS_CM_00135}
     MonitoringManagementSkeleton(MonitoringManagementSkeleton&& other) noexcept
         : mInterface(std::move(other.mInterface))
-        , DistanceLevel(std::move(other.DistanceLevel))
-        , eventServiceError(std::move(other.eventServiceError))
+        , DistanceLevelFront(std::move(other.DistanceLevelFront))
+        , DistanceLevelRear(std::move(other.DistanceLevelRear))
+        , MbTempStatus(std::move(other.MbTempStatus))
         , eventServiceInfo(std::move(other.eventServiceInfo))
-        , eventServiceInfoSpare(std::move(other.eventServiceInfoSpare))
-        , eventServiceStatus(std::move(other.eventServiceStatus))
-        , eventServiceStatusSpare(std::move(other.eventServiceStatusSpare))
         , eventUpdatableService(std::move(other.eventUpdatableService))
-        , mbTemp(std::move(other.mbTemp))
+        , resetUcmCompleted(std::move(other.resetUcmCompleted))
+        , UssStatusFront(std::move(other.UssStatusFront))
+        , UssStatusRear(std::move(other.UssStatusRear))
         , soaDrvSeatDeviceNormal(std::move(other.soaDrvSeatDeviceNormal))
         , soaDrvSeatMotorDirection(std::move(other.soaDrvSeatMotorDirection))
         , soaDrvSeatMotorPosition(std::move(other.soaDrvSeatMotorPosition))
@@ -2452,29 +2433,8 @@ public:
         mInterface->SetMethodCallHandler(krequestControllerServiceInfoCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlerequestControllerServiceInfo(data, token);
         });
-        mInterface->SetMethodCallHandler(krequestControllerServiceInfoAllCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlerequestControllerServiceInfoAll(data, token);
-        });
-        mInterface->SetMethodCallHandler(krequestControllerServiceInfoAllSpareCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlerequestControllerServiceInfoAllSpare(data, token);
-        });
-        mInterface->SetMethodCallHandler(krequestControllerServiceStatusCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlerequestControllerServiceStatus(data, token);
-        });
-        mInterface->SetMethodCallHandler(krequestControllerServiceStatusAllCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlerequestControllerServiceStatusAll(data, token);
-        });
-        mInterface->SetMethodCallHandler(krequestControllerServiceStatusAllSpareCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlerequestControllerServiceStatusAllSpare(data, token);
-        });
         mInterface->SetMethodCallHandler(kresetUcmTestCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandleresetUcmTest(data, token);
-        });
-        mInterface->SetMethodCallHandler(ksetControlControllerServiceCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlesetControlControllerService(data, token);
-        });
-        mInterface->SetMethodCallHandler(ksetEnableControllerServiceCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlesetEnableControllerService(data, token);
         });
         mInterface->SetE2EErrorHandler([this](const ara::com::e2e::E2EErrorDomain& errorCode, ara::com::e2e::DataID dataID, ara::com::e2e::MessageCounter messageCounter) {
             E2EErrorHandler(errorCode, dataID, messageCounter);
@@ -2486,14 +2446,14 @@ public:
     MonitoringManagementSkeleton& operator=(MonitoringManagementSkeleton&& other) noexcept
     {
         mInterface = std::move(other.mInterface);
-        DistanceLevel = std::move(other.DistanceLevel);
-        eventServiceError = std::move(other.eventServiceError);
+        DistanceLevelFront = std::move(other.DistanceLevelFront);
+        DistanceLevelRear = std::move(other.DistanceLevelRear);
+        MbTempStatus = std::move(other.MbTempStatus);
         eventServiceInfo = std::move(other.eventServiceInfo);
-        eventServiceInfoSpare = std::move(other.eventServiceInfoSpare);
-        eventServiceStatus = std::move(other.eventServiceStatus);
-        eventServiceStatusSpare = std::move(other.eventServiceStatusSpare);
         eventUpdatableService = std::move(other.eventUpdatableService);
-        mbTemp = std::move(other.mbTemp);
+        resetUcmCompleted = std::move(other.resetUcmCompleted);
+        UssStatusFront = std::move(other.UssStatusFront);
+        UssStatusRear = std::move(other.UssStatusRear);
         soaDrvSeatDeviceNormal = std::move(other.soaDrvSeatDeviceNormal);
         soaDrvSeatMotorDirection = std::move(other.soaDrvSeatMotorDirection);
         soaDrvSeatMotorPosition = std::move(other.soaDrvSeatMotorPosition);
@@ -2562,29 +2522,8 @@ public:
         mInterface->SetMethodCallHandler(krequestControllerServiceInfoCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlerequestControllerServiceInfo(data, token);
         });
-        mInterface->SetMethodCallHandler(krequestControllerServiceInfoAllCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlerequestControllerServiceInfoAll(data, token);
-        });
-        mInterface->SetMethodCallHandler(krequestControllerServiceInfoAllSpareCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlerequestControllerServiceInfoAllSpare(data, token);
-        });
-        mInterface->SetMethodCallHandler(krequestControllerServiceStatusCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlerequestControllerServiceStatus(data, token);
-        });
-        mInterface->SetMethodCallHandler(krequestControllerServiceStatusAllCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlerequestControllerServiceStatusAll(data, token);
-        });
-        mInterface->SetMethodCallHandler(krequestControllerServiceStatusAllSpareCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlerequestControllerServiceStatusAllSpare(data, token);
-        });
         mInterface->SetMethodCallHandler(kresetUcmTestCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandleresetUcmTest(data, token);
-        });
-        mInterface->SetMethodCallHandler(ksetControlControllerServiceCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlesetControlControllerService(data, token);
-        });
-        mInterface->SetMethodCallHandler(ksetEnableControllerServiceCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlesetEnableControllerService(data, token);
         });
         mInterface->SetE2EErrorHandler([this](const ara::com::e2e::E2EErrorDomain& errorCode, ara::com::e2e::DataID dataID, ara::com::e2e::MessageCounter messageCounter) {
             E2EErrorHandler(errorCode, dataID, messageCounter);
@@ -2632,22 +2571,22 @@ private:
     std::unique_ptr<para::com::SkeletonInterface> mInterface;
     
 public:
-    /// @brief Event, DistanceLevel
-    events::DistanceLevel DistanceLevel;
-    /// @brief Event, eventServiceError
-    events::eventServiceError eventServiceError;
+    /// @brief Event, DistanceLevelFront
+    events::DistanceLevelFront DistanceLevelFront;
+    /// @brief Event, DistanceLevelRear
+    events::DistanceLevelRear DistanceLevelRear;
+    /// @brief Event, MbTempStatus
+    events::MbTempStatus MbTempStatus;
     /// @brief Event, eventServiceInfo
     events::eventServiceInfo eventServiceInfo;
-    /// @brief Event, eventServiceInfoSpare
-    events::eventServiceInfoSpare eventServiceInfoSpare;
-    /// @brief Event, eventServiceStatus
-    events::eventServiceStatus eventServiceStatus;
-    /// @brief Event, eventServiceStatusSpare
-    events::eventServiceStatusSpare eventServiceStatusSpare;
     /// @brief Event, eventUpdatableService
     events::eventUpdatableService eventUpdatableService;
-    /// @brief Field, mbTemp
-    fields::mbTemp mbTemp;
+    /// @brief Event, resetUcmCompleted
+    events::resetUcmCompleted resetUcmCompleted;
+    /// @brief Field, UssStatusFront
+    fields::UssStatusFront UssStatusFront;
+    /// @brief Field, UssStatusRear
+    fields::UssStatusRear UssStatusRear;
     /// @brief Field, soaDrvSeatDeviceNormal
     fields::soaDrvSeatDeviceNormal soaDrvSeatDeviceNormal;
     /// @brief Field, soaDrvSeatMotorDirection
@@ -2736,30 +2675,9 @@ public:
     /// @brief Method, requestControllerServiceInfo
     /// @uptrace{SWS_CM_00191}
     virtual ara::core::Future<requestControllerServiceInfoOutput> requestControllerServiceInfo(const eevp::type::String& controllerServiceName) = 0;
-    /// @brief Method, requestControllerServiceInfoAll
-    /// @uptrace{SWS_CM_00191}
-    virtual ara::core::Future<requestControllerServiceInfoAllOutput> requestControllerServiceInfoAll() = 0;
-    /// @brief Method, requestControllerServiceInfoAllSpare
-    /// @uptrace{SWS_CM_00191}
-    virtual ara::core::Future<requestControllerServiceInfoAllSpareOutput> requestControllerServiceInfoAllSpare() = 0;
-    /// @brief Method, requestControllerServiceStatus
-    /// @uptrace{SWS_CM_00191}
-    virtual ara::core::Future<requestControllerServiceStatusOutput> requestControllerServiceStatus(const eevp::type::String& controllerServiceName) = 0;
-    /// @brief Method, requestControllerServiceStatusAll
-    /// @uptrace{SWS_CM_00191}
-    virtual ara::core::Future<requestControllerServiceStatusAllOutput> requestControllerServiceStatusAll() = 0;
-    /// @brief Method, requestControllerServiceStatusAllSpare
-    /// @uptrace{SWS_CM_00191}
-    virtual ara::core::Future<requestControllerServiceStatusAllSpareOutput> requestControllerServiceStatusAllSpare() = 0;
     /// @brief Method, resetUcmTest
     /// @uptrace{SWS_CM_00191}
     virtual ara::core::Future<resetUcmTestOutput> resetUcmTest() = 0;
-    /// @brief Method, setControlControllerService
-    /// @uptrace{SWS_CM_00191}
-    virtual ara::core::Future<setControlControllerServiceOutput> setControlControllerService(const eevp::type::String& serviceName, const eevp::type::String& serviceControl) = 0;
-    /// @brief Method, setEnableControllerService
-    /// @uptrace{SWS_CM_00191}
-    virtual ara::core::Future<setEnableControllerServiceOutput> setEnableControllerService(const eevp::type::String& controllerServiceName, const eevp::type::String& enable) = 0;
     
 private:
     void HandleRequestMlmSetRgbColor(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
@@ -3170,147 +3088,6 @@ private:
         }
         mInterface->ReturnMethod(krequestControllerServiceInfoCallSign, retResult, retData, token);
     }
-    void HandlerequestControllerServiceInfoAll(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
-    {
-        std::uint8_t retResult{1};
-        std::vector<std::uint8_t> retData{};
-        auto future = requestControllerServiceInfoAll();
-        auto result = future.GetResult();
-        if (result.HasValue())
-        {
-            requestControllerServiceInfoAllOutput output = result.Value();
-            para::serializer::Serializer serializer{};
-            serializer.write(output.controllerServiceInfoMap);
-            serializer.write(output.returnValue);
-            retData = serializer.ensure();
-            retResult = 0;
-        }
-        else
-        {
-            ara::core::ErrorDomain::IdType domainId = result.Error().Domain().Id();
-            ara::core::ErrorDomain::CodeType errorCode = result.Error().Value();
-            para::serializer::Serializer serializer{};
-            serializer.write(0, true, 0, domainId);
-            serializer.write(0, true, 0, errorCode);
-            retData = serializer.ensure();
-            retResult = 1;
-        }
-        mInterface->ReturnMethod(krequestControllerServiceInfoAllCallSign, retResult, retData, token);
-    }
-    void HandlerequestControllerServiceInfoAllSpare(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
-    {
-        std::uint8_t retResult{1};
-        std::vector<std::uint8_t> retData{};
-        auto future = requestControllerServiceInfoAllSpare();
-        auto result = future.GetResult();
-        if (result.HasValue())
-        {
-            requestControllerServiceInfoAllSpareOutput output = result.Value();
-            para::serializer::Serializer serializer{};
-            serializer.write(output.serviceName);
-            serializer.write(output.version);
-            serializer.write(output.lastUpdateTime);
-            retData = serializer.ensure();
-            retResult = 0;
-        }
-        else
-        {
-            ara::core::ErrorDomain::IdType domainId = result.Error().Domain().Id();
-            ara::core::ErrorDomain::CodeType errorCode = result.Error().Value();
-            para::serializer::Serializer serializer{};
-            serializer.write(0, true, 0, domainId);
-            serializer.write(0, true, 0, errorCode);
-            retData = serializer.ensure();
-            retResult = 1;
-        }
-        mInterface->ReturnMethod(krequestControllerServiceInfoAllSpareCallSign, retResult, retData, token);
-    }
-    void HandlerequestControllerServiceStatus(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
-    {
-        std::uint8_t retResult{1};
-        std::vector<std::uint8_t> retData{};
-        para::serializer::Deserializer deserializer{data};
-        eevp::type::String _controllerServiceName_;
-        deserializer.read(_controllerServiceName_);
-        auto future = requestControllerServiceStatus(_controllerServiceName_);
-        auto result = future.GetResult();
-        if (result.HasValue())
-        {
-            requestControllerServiceStatusOutput output = result.Value();
-            para::serializer::Serializer serializer{};
-            serializer.write(output.controllerServiceStatus);
-            serializer.write(output.returnValue);
-            retData = serializer.ensure();
-            retResult = 0;
-        }
-        else
-        {
-            ara::core::ErrorDomain::IdType domainId = result.Error().Domain().Id();
-            ara::core::ErrorDomain::CodeType errorCode = result.Error().Value();
-            para::serializer::Serializer serializer{};
-            serializer.write(0, true, 0, domainId);
-            serializer.write(0, true, 0, errorCode);
-            retData = serializer.ensure();
-            retResult = 1;
-        }
-        mInterface->ReturnMethod(krequestControllerServiceStatusCallSign, retResult, retData, token);
-    }
-    void HandlerequestControllerServiceStatusAll(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
-    {
-        std::uint8_t retResult{1};
-        std::vector<std::uint8_t> retData{};
-        auto future = requestControllerServiceStatusAll();
-        auto result = future.GetResult();
-        if (result.HasValue())
-        {
-            requestControllerServiceStatusAllOutput output = result.Value();
-            para::serializer::Serializer serializer{};
-            serializer.write(output.controllerServiceStatusMap);
-            serializer.write(output.returnValue);
-            retData = serializer.ensure();
-            retResult = 0;
-        }
-        else
-        {
-            ara::core::ErrorDomain::IdType domainId = result.Error().Domain().Id();
-            ara::core::ErrorDomain::CodeType errorCode = result.Error().Value();
-            para::serializer::Serializer serializer{};
-            serializer.write(0, true, 0, domainId);
-            serializer.write(0, true, 0, errorCode);
-            retData = serializer.ensure();
-            retResult = 1;
-        }
-        mInterface->ReturnMethod(krequestControllerServiceStatusAllCallSign, retResult, retData, token);
-    }
-    void HandlerequestControllerServiceStatusAllSpare(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
-    {
-        std::uint8_t retResult{1};
-        std::vector<std::uint8_t> retData{};
-        auto future = requestControllerServiceStatusAllSpare();
-        auto result = future.GetResult();
-        if (result.HasValue())
-        {
-            requestControllerServiceStatusAllSpareOutput output = result.Value();
-            para::serializer::Serializer serializer{};
-            serializer.write(output.serviceName);
-            serializer.write(output.serviceStatus);
-            serializer.write(output.serviceEnable);
-            serializer.write(output.serviceControl);
-            retData = serializer.ensure();
-            retResult = 0;
-        }
-        else
-        {
-            ara::core::ErrorDomain::IdType domainId = result.Error().Domain().Id();
-            ara::core::ErrorDomain::CodeType errorCode = result.Error().Value();
-            para::serializer::Serializer serializer{};
-            serializer.write(0, true, 0, domainId);
-            serializer.write(0, true, 0, errorCode);
-            retData = serializer.ensure();
-            retResult = 1;
-        }
-        mInterface->ReturnMethod(krequestControllerServiceStatusAllSpareCallSign, retResult, retData, token);
-    }
     void HandleresetUcmTest(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
     {
         std::uint8_t retResult{1};
@@ -3333,68 +3110,6 @@ private:
         }
         mInterface->ReturnMethod(kresetUcmTestCallSign, retResult, retData, token);
     }
-    void HandlesetControlControllerService(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
-    {
-        std::uint8_t retResult{1};
-        std::vector<std::uint8_t> retData{};
-        para::serializer::Deserializer deserializer{data};
-        eevp::type::String _serviceName_;
-        eevp::type::String _serviceControl_;
-        deserializer.read(_serviceName_);
-        deserializer.read(_serviceControl_);
-        auto future = setControlControllerService(_serviceName_, _serviceControl_);
-        auto result = future.GetResult();
-        if (result.HasValue())
-        {
-            setControlControllerServiceOutput output = result.Value();
-            para::serializer::Serializer serializer{};
-            serializer.write(output.returnValue);
-            retData = serializer.ensure();
-            retResult = 0;
-        }
-        else
-        {
-            ara::core::ErrorDomain::IdType domainId = result.Error().Domain().Id();
-            ara::core::ErrorDomain::CodeType errorCode = result.Error().Value();
-            para::serializer::Serializer serializer{};
-            serializer.write(0, true, 0, domainId);
-            serializer.write(0, true, 0, errorCode);
-            retData = serializer.ensure();
-            retResult = 1;
-        }
-        mInterface->ReturnMethod(ksetControlControllerServiceCallSign, retResult, retData, token);
-    }
-    void HandlesetEnableControllerService(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
-    {
-        std::uint8_t retResult{1};
-        std::vector<std::uint8_t> retData{};
-        para::serializer::Deserializer deserializer{data};
-        eevp::type::String _controllerServiceName_;
-        eevp::type::String _enable_;
-        deserializer.read(_controllerServiceName_);
-        deserializer.read(_enable_);
-        auto future = setEnableControllerService(_controllerServiceName_, _enable_);
-        auto result = future.GetResult();
-        if (result.HasValue())
-        {
-            setEnableControllerServiceOutput output = result.Value();
-            para::serializer::Serializer serializer{};
-            serializer.write(output.returnValue);
-            retData = serializer.ensure();
-            retResult = 0;
-        }
-        else
-        {
-            ara::core::ErrorDomain::IdType domainId = result.Error().Domain().Id();
-            ara::core::ErrorDomain::CodeType errorCode = result.Error().Value();
-            para::serializer::Serializer serializer{};
-            serializer.write(0, true, 0, domainId);
-            serializer.write(0, true, 0, errorCode);
-            retData = serializer.ensure();
-            retResult = 1;
-        }
-        mInterface->ReturnMethod(ksetEnableControllerServiceCallSign, retResult, retData, token);
-    }
     const std::string kRequestMlmSetRgbColorCallSign{"RequestMlmSetRgbColor"};
     const std::string kRequestMoveDrvSeatHeightCallSign{"RequestMoveDrvSeatHeight"};
     const std::string kRequestMoveDrvSeatReclineCallSign{"RequestMoveDrvSeatRecline"};
@@ -3411,14 +3126,7 @@ private:
     const std::string krequestAppInstallCallSign{"requestAppInstall"};
     const std::string krequestAppUpdateCallSign{"requestAppUpdate"};
     const std::string krequestControllerServiceInfoCallSign{"requestControllerServiceInfo"};
-    const std::string krequestControllerServiceInfoAllCallSign{"requestControllerServiceInfoAll"};
-    const std::string krequestControllerServiceInfoAllSpareCallSign{"requestControllerServiceInfoAllSpare"};
-    const std::string krequestControllerServiceStatusCallSign{"requestControllerServiceStatus"};
-    const std::string krequestControllerServiceStatusAllCallSign{"requestControllerServiceStatusAll"};
-    const std::string krequestControllerServiceStatusAllSpareCallSign{"requestControllerServiceStatusAllSpare"};
     const std::string kresetUcmTestCallSign{"resetUcmTest"};
-    const std::string ksetControlControllerServiceCallSign{"setControlControllerService"};
-    const std::string ksetEnableControllerServiceCallSign{"setEnableControllerService"};
 };
 } /// namespace skeleton
 } /// namespace service

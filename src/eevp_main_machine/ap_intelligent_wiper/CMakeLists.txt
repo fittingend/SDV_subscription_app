@@ -49,7 +49,11 @@ MESSAGE(STATUS "PARA_APP_GEN_INCLUDE_DIR : ${PARA_APP_GEN_INCLUDE_DIR}")
 SET(SRC
     src/main.cpp
     src/IntelligentWiper.cpp
-    src/WiperProxyImpl.cpp)
+    src/WiperProxyImpl.cpp
+    src/AccrPedalProxyImpl.cpp
+    src/BrakePedalProxyImpl.cpp
+    src/GearProxyImpl.cpp
+    src/VehSpdProxyImpl.cpp)
 
 ADD_EXECUTABLE(${PROJECT_NAME} ${SRC})
 

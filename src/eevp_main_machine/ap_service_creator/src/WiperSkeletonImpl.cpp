@@ -1,4 +1,4 @@
-#include "WiperSkeletonImpl.h"
+#include "skeleton/WiperSkeletonImpl.h"
 #include "ServiceCreator.h"
 
 using namespace ara::core;
@@ -28,12 +28,14 @@ namespace eevp
             updateWiperLevelContext();
             wiperLevel.RegisterGetHandler(wiperLevel_get_handler);
             wiperInterval.RegisterGetHandler(wiperInterval_get_handler);
+
         }
 
         bool WiperSkeletonImpl::updateWiperLevelContext()
         {
-            eevp::simulation::BCM_WipingLevel wipingLevel = eevp::simulation::BCM_WipingLevel::MEDIUM;
+            eevp::simulation::BCM_WipingLevel wipingLevel = eevp::simulation::BCM_WipingLevel::STOP;
             this->mWiperLevel = wipingLevel;
+            this->mWiperInterval = 0U;
             return true;
         }
 
@@ -48,59 +50,54 @@ namespace eevp
             listener = _listener;
         }
 
-        Future<skeleton::BCM_WiperWashSkeleton::isWipingOutput> WiperSkeletonImpl::isWiping()
-        {
-            mLogger.LogInfo() << __func__;
-            ara::core::Promise<skeleton::BCM_WiperWashSkeleton::isWipingOutput> promise;
-            updateWipingLevel(ServiceCreator::wiperRecv.wipingLevel);
-            return promise.get_future();
-        }
-
-        Future<skeleton::BCM_WiperWashSkeleton::getWipingLevelOutput> WiperSkeletonImpl::getWipingLevel()
-        {
-            mLogger.LogInfo() << __func__;
-            ara::core::Promise<skeleton::BCM_WiperWashSkeleton::getWipingLevelOutput> promise;
-            updateWipingLevel(ServiceCreator::wiperRecv.wipingLevel);
-            return promise.get_future();
-        }
-
-        Future<skeleton::BCM_WiperWashSkeleton::getWipingIntervalOutput> WiperSkeletonImpl::getWipingInterval()
-        {
-            mLogger.LogInfo() << __func__;
-            ara::core::Promise<skeleton::BCM_WiperWashSkeleton::getWipingIntervalOutput> promise;
-            updateWipingInterval(ServiceCreator::wiperRecv.wipingInterval);
-            return promise.get_future();
-        }
-
-        // proxy 에서만 사용
+        // proxy 에서 호출
         Future<skeleton::BCM_WiperWashSkeleton::stopWipingOutput> WiperSkeletonImpl::stopWiping()
         {
             mLogger.LogInfo() << __func__;
+            ara::core::Promise<skeleton::BCM_WiperWashSkeleton::stopWipingOutput> promise;
+            listener->stopWiping();
+            BCM_WiperWashSkeleton::stopWipingOutput output;
+            output.returnCode = eevp::simulation::BCM_ReturnCode::SUCCESS;
+            promise.set_value(output);
+            return promise.get_future();
         }
 
         Future<skeleton::BCM_WiperWashSkeleton::startWipingOutput> WiperSkeletonImpl::startWiping()
         {
+            ara::core::Promise<skeleton::BCM_WiperWashSkeleton::startWipingOutput> promise;
             mLogger.LogInfo() << __func__;
-        }
-        Future<skeleton::BCM_WiperWashSkeleton::setWipingLevelOutput> WiperSkeletonImpl::setWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel)
-        {
-            mLogger.LogInfo() << __func__;
+            BCM_WiperWashSkeleton::startWipingOutput output;
+            output.returnCode = eevp::simulation::BCM_ReturnCode::SUCCESS;
+            promise.set_value(output);
+            return promise.get_future();
         }
 
-        Future<skeleton::BCM_WiperWashSkeleton::setWipingLevelImmeOutput> WiperSkeletonImpl::setWipingLevelImme(const eevp::simulation::BCM_WipingLevel &wipingLevel)
+        Future<skeleton::BCM_WiperWashSkeleton::setWipingLevelOutput> WiperSkeletonImpl::setWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
+            ara::core::Promise<skeleton::BCM_WiperWashSkeleton::setWipingLevelOutput> promise;
+            listener->setWipingLevel(wipingLevel);
+            BCM_WiperWashSkeleton::setWipingLevelOutput output;
+            output.BCM_ReturnCode = eevp::simulation::BCM_ReturnCode::SUCCESS;
+            promise.set_value(output);
+            return promise.get_future();
         }
 
         Future<skeleton::BCM_WiperWashSkeleton::setWipingIntervalOutput> WiperSkeletonImpl::setWipingInterval(const std::uint16_t &wipingInterval)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
+            ara::core::Promise<skeleton::BCM_WiperWashSkeleton::setWipingIntervalOutput> promise;
+            listener->setWipingInterval(wipingInterval);
+            BCM_WiperWashSkeleton::setWipingIntervalOutput output;
+            output.BCM_ReturnCode = eevp::simulation::BCM_ReturnCode::SUCCESS;
+            promise.set_value(output);
+            return promise.get_future();
         }
 
         Future<simulation::skeleton::fields::wiperInterval::FieldType>
         WiperSkeletonImpl::wiperIntervalGetter()
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             ara::core::Promise<simulation::skeleton::fields::wiperInterval::FieldType> promise;
             promise.set_value(this->mWiperInterval);
             return promise.get_future();
@@ -125,7 +122,7 @@ namespace eevp
         Future<simulation::skeleton::fields::wiperLevel::FieldType>
         WiperSkeletonImpl::wiperLevelGetter()
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             ara::core::Promise<simulation::skeleton::fields::wiperLevel::FieldType> promise;
             promise.set_value(this->mWiperLevel);
             return promise.get_future();

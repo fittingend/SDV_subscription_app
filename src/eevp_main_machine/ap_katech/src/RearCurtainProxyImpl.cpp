@@ -139,6 +139,7 @@ RearCurtainProxyImpl::FindServiceCallback(
     mFindHandle = std::make_shared<ara::com::FindServiceHandle>(findHandle);
     mProxy = std::make_shared<proxy::SoaRcurtainProxy>(container.at(0));
     cvHandle.notify_one();
+        mLogger.LogInfo() << __func__ << "SUCCESS";
 }
 
 } /// namespace rearcurtain

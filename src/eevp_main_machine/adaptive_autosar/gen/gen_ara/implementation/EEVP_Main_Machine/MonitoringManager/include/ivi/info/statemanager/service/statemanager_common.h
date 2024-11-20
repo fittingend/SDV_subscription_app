@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : statemanager_common.h
 /// SERVICE INTERFACE NAME            : StateManager
-/// GENERATED DATE                    : 2024-08-14 14:33:40
+/// GENERATED DATE                    : 2024-11-05 15:23:50
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -30,7 +30,7 @@
 /// INCLUSION OF CPP IMPLEMENTATION DATA TYPE HEADER FILES
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// @uptrace{SWS_CM_10372}
-#include "ivi/info/statemanager/type/impl_type_state.h"
+#include "ivi/info/statemanager/type/impl_type_ivistate.h"
 /// @uptrace{SWS_CM_01005}
 namespace ivi
 {

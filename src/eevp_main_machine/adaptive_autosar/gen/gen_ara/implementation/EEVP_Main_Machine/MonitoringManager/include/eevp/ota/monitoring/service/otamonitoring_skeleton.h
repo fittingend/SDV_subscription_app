@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : otamonitoring_skeleton.h
 /// SERVICE INTERFACE NAME            : OtaMonitoring
-/// GENERATED DATE                    : 2024-08-14 14:33:40
+/// GENERATED DATE                    : 2024-11-05 15:23:49
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -134,6 +134,53 @@ private:
     para::com::SkeletonInterface* mInterface;
     const std::string kCallSign = {"notifyUpdatableService"};
 };
+/// @uptrace{SWS_CM_00003}
+class resetUcmCompleted
+{
+public:
+    /// @brief Type alias for type of event data
+    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
+    using SampleType = bool;
+    /// @brief Constructor
+    explicit resetUcmCompleted(para::com::SkeletonInterface* interface) : mInterface(interface)
+    {
+    }
+    /// @brief Destructor
+    virtual ~resetUcmCompleted() = default;
+    /// @brief Delete copy constructor
+    resetUcmCompleted(const resetUcmCompleted& other) = delete;
+    /// @brief Delete copy assignment
+    resetUcmCompleted& operator=(const resetUcmCompleted& other) = delete;
+    /// @brief Move constructor
+    resetUcmCompleted(resetUcmCompleted&& other) noexcept : mInterface(other.mInterface)
+    {
+    }
+    /// @brief Move assignment
+    resetUcmCompleted& operator=(resetUcmCompleted&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        return *this;
+    }
+    /// @brief Send event with data to subscribing service consumers
+    /// @uptrace{SWS_CM_90437}
+    ara::core::Result<void> Send(const SampleType& data)
+    {
+        para::serializer::Serializer serializer{};
+        serializer.write(data);
+        auto payload = serializer.ensure();
+        return mInterface->SendEvent(kCallSign, payload);
+    }
+    /// @brief Returns unique pointer about SampleType
+    /// @uptrace{SWS_CM_90438}
+    ara::core::Result<ara::com::SampleAllocateePtr<SampleType>> Allocate()
+    {
+        return std::make_unique<SampleType>();
+    }
+    
+private:
+    para::com::SkeletonInterface* mInterface;
+    const std::string kCallSign = {"resetUcmCompleted"};
+};
 } /// namespace events
 /// @uptrace{SWS_CM_01031}
 namespace fields
@@ -166,6 +213,7 @@ public:
         : mInterface(std::make_unique<para::com::SkeletonInterface>(instanceSpec, mode))
         , notifyServiceEvent(mInterface.get())
         , notifyUpdatableService(mInterface.get())
+        , resetUcmCompleted(mInterface.get())
     {
         mInterface->SetMethodCallHandler(krequestServiceInstallCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlerequestServiceInstall(data, token);
@@ -197,6 +245,7 @@ public:
         : mInterface(std::move(other.mInterface))
         , notifyServiceEvent(std::move(other.notifyServiceEvent))
         , notifyUpdatableService(std::move(other.notifyUpdatableService))
+        , resetUcmCompleted(std::move(other.resetUcmCompleted))
     {
         mInterface->SetMethodCallHandler(krequestServiceInstallCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlerequestServiceInstall(data, token);
@@ -222,6 +271,7 @@ public:
         mInterface = std::move(other.mInterface);
         notifyServiceEvent = std::move(other.notifyServiceEvent);
         notifyUpdatableService = std::move(other.notifyUpdatableService);
+        resetUcmCompleted = std::move(other.resetUcmCompleted);
         mInterface->SetMethodCallHandler(krequestServiceInstallCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlerequestServiceInstall(data, token);
         });
@@ -284,6 +334,8 @@ public:
     events::notifyServiceEvent notifyServiceEvent;
     /// @brief Event, notifyUpdatableService
     events::notifyUpdatableService notifyUpdatableService;
+    /// @brief Event, resetUcmCompleted
+    events::resetUcmCompleted resetUcmCompleted;
     /// @brief Method, requestServiceInstall
     /// @uptrace{SWS_CM_00191}
     virtual ara::core::Future<requestServiceInstallOutput> requestServiceInstall(const eevp::type::String& serviceName) = 0;

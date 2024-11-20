@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_soamlmmoodmode.h
 /// IMPLEMENTATION DATA TYPE NAME     : SoaMlmMoodMode
-/// GENERATED DATE                    : 2024-08-14 14:33:40
+/// GENERATED DATE                    : 2024-11-05 15:23:51
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -30,11 +30,11 @@ namespace control
 {
 enum class SoaMlmMoodMode : std::uint8_t
 {
-    kCARE_MOOD = 1U,
-    kCOMPORT_MOOD = 2U,
-    kDELIGHT_MOOD = 3U,
-    kMOOD_THERAPHY = 4U,
-    kVITALITY_MOOD = 5U
+    kCARE_MOOD = 0U,
+    kCOMPORT_MOOD = 1U,
+    kDELIGHT_MOOD = 2U,
+    kMOOD_THERAPHY = 3U,
+    kVITALITY_MOOD = 4U
 };
 } /// namespace control
 } /// namespace eevp

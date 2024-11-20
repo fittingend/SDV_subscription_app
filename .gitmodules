@@ -1,0 +1,6 @@
+[submodule "src/eevp_main_machine/ap_soa_moodlamp"]
+	url = https://bitbucket.mobis.co.kr/scm/eevp_mb/ap_soa_moodlamp.git
+[submodule "src/eevp_main_machine/ap_soa_power"]
+	url = https://bitbucket.mobis.co.kr/scm/eevp_mb/ap_soa_power.git
+[submodule "src/eevp_main_machine/ap_soa_wiper"]
+	url = https://bitbucket.mobis.co.kr/scm/eevp_mb/ap_soa_wiper.git

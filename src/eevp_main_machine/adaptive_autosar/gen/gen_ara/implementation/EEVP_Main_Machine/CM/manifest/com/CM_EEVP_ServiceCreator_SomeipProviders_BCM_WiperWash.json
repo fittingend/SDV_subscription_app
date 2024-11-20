@@ -5,12 +5,12 @@
     "service-protocol" : "someip",
     "connector" : "eth0",
     "unicast-address" : "10.100.0.40",
-    "tcp-port" : "50093",
-    "udp-port" : "50093",
+    "tcp-port" : "50077",
+    "udp-port" : "50077",
     "skeletons" : [
         {
-            "service-id" : "9000",
-            "instance-id" : "9000",
+            "service-id" : "5005",
+            "instance-id" : "9009",
             "major-version" : "1",
             "minor-version" : "0",
             "sd-server-timing" : {
@@ -24,6 +24,24 @@
                 "req-resp-delay-max" : "0.0"
             },
             "eventgroups" : [
+                {
+                    "eventgroup-id" : "8561",
+                    "events" : ["11003"],
+                    "threshold" : "0",
+                    "multicast-address" : "undefined",
+                    "multicast-udp-port" : "0",
+                    "req-resp-delay-min" : "0.0",
+                    "req-resp-delay-max" : "0.0"
+                },
+                {
+                    "eventgroup-id" : "8562",
+                    "events" : ["11004"],
+                    "threshold" : "0",
+                    "multicast-address" : "undefined",
+                    "multicast-udp-port" : "0",
+                    "req-resp-delay-min" : "0.0",
+                    "req-resp-delay-max" : "0.0"
+                }
             ],
             "e2e-event-protection-props" : [
             ],

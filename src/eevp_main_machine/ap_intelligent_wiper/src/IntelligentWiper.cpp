@@ -246,13 +246,13 @@ namespace eevp
 
         void IntelligentWiper::execServiceLogic()
         {
-            bool isIntentToDrive, isParked, isStopped;
+            bool isIntentToDrive, isStopped;
 
             // 주행 의도 판단 알고리즘
             isIntentToDrive = checkDrivingIntention();
 
             // 주정차 상태 판단 알고리즘
-            checkStopStatus(isParked, isStopped);
+            checkStopStatus(isStopped);
 
             if (isIntentToDrive == false && isStopped == true || isParked == true)
             {
@@ -342,20 +342,20 @@ namespace eevp
             return true;
         }
 
-        void IntelligentWiper::checkStopStatus(bool &isParked, bool &isStopped)
+        void IntelligentWiper::checkStopStatus(bool &isStopped)
         {
-            // getGearValue(gearValue);
-            // getVehVelocity(vehVelocity);
+            getGearValue(gearValue);
+            getVehVelocity(vehVelocity);
 
-            // if (gearValue == P)// == P
-            // {
-            //     isParked = true;
-            //     //주차상태 TRUE
-            // }
-            // else if (vehVelocity < 1) // 속도가 1km/h 이내면 0 으로 가정
-            // {
-            //     isStopped = isVelocityZeroForDuration();
-            // }
+            if (gearValue == P)// == P
+            {
+                isStopped = true;
+                //주차상태 TRUE
+            }
+            else if (vehVelocity < 1) // 속도가 1km/h 이내면 0 으로 가정
+            {
+                isStopped = isVelocityZeroForDuration();
+            }
         }
         bool IntelligentWiper::isVelocityZeroForDuration()
         {

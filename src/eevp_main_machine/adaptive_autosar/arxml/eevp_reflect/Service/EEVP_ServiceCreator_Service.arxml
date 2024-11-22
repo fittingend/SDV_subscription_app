@@ -274,6 +274,12 @@
             <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT UUID="92bec137-686e-4b70-b6e7-f29f9295b859">
               <SHORT-NAME>Snsr_USS</SHORT-NAME>
               <METHOD-DEPLOYMENTS>
+                <SOMEIP-METHOD-DEPLOYMENT UUID="c1bac6a2-1a02-4fc4-abd8-89db5658722e">
+                  <SHORT-NAME>isDetect</SHORT-NAME>
+                  <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/Snsr_USS/isDetect</METHOD-REF>
+                  <METHOD-ID>3</METHOD-ID>
+                  <TRANSPORT-PROTOCOL>UDP</TRANSPORT-PROTOCOL>
+                </SOMEIP-METHOD-DEPLOYMENT>
                 <SOMEIP-METHOD-DEPLOYMENT UUID="5cf97e3a-2e6c-481e-87a5-d043fb354d41">
                   <SHORT-NAME>ntfFltSt</SHORT-NAME>
                   <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/ServiceInterface/Snsr_USS/ntfFltSt</METHOD-REF>
@@ -1583,6 +1589,9 @@
                     <SOMEIP-METHOD-PROPS>
                       <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/Snsr_USS/ntfFltSt</METHOD-REF>
                     </SOMEIP-METHOD-PROPS>
+                    <SOMEIP-METHOD-PROPS>
+                      <METHOD-REF DEST="SOMEIP-METHOD-DEPLOYMENT">/ServiceDeployment/Someip/Snsr_USS/isDetect</METHOD-REF>
+                    </SOMEIP-METHOD-PROPS>
                   </METHOD-RESPONSE-PROPSS>
                   <SD-SERVER-CONFIG-REF DEST="SOMEIP-SD-SERVER-SERVICE-INSTANCE-CONFIG">/ServiceInstance/SdTimingConfig/Server/DefaultSdServerConfig</SD-SERVER-CONFIG-REF>
                   <SERVICE-INSTANCE-ID>9034</SERVICE-INSTANCE-ID>
@@ -2214,6 +2223,17 @@
           <MAJOR-VERSION>1</MAJOR-VERSION>
           <MINOR-VERSION>0</MINOR-VERSION>
           <METHODS>
+            <CLIENT-SERVER-OPERATION UUID="2ef2c5d3-4419-4e1c-b36e-5f0bf815deef">
+              <SHORT-NAME>isDetect</SHORT-NAME>
+              <ARGUMENTS>
+                <ARGUMENT-DATA-PROTOTYPE UUID="85f51513-c8ff-42a4-93ef-fb38d872ea25">
+                  <SHORT-NAME>detect</SHORT-NAME>
+                  <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/bool</TYPE-TREF>
+                  <DIRECTION>OUT</DIRECTION>
+                </ARGUMENT-DATA-PROTOTYPE>
+              </ARGUMENTS>
+              <FIRE-AND-FORGET>false</FIRE-AND-FORGET>
+            </CLIENT-SERVER-OPERATION>
             <CLIENT-SERVER-OPERATION UUID="bbe65e21-af12-4e6c-85fb-9bd52ebf6f36">
               <SHORT-NAME>ntfFltSt</SHORT-NAME>
               <ARGUMENTS>

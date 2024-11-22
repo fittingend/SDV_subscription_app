@@ -19,7 +19,7 @@ namespace eevp
 
         void BmsInfoSkeletonImpl::sendEventBmsInfo(bms::input::InputData &info)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             ems_BmsInfo.Send(info);
         }
 

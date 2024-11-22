@@ -121,6 +121,7 @@ namespace eevp
             SnsrUssListener(ServiceCreator *svc) : serviceCreator(svc) {}
 
             void ntfSonarInfo(eevp::simulation::type::USSSonarInfo &ussSonarInfo) { return serviceCreator->ntfSonarInfo(ussSonarInfo); }
+            bool isDetect() { return serviceCreator->isDetect(); }
 
         private:
             ServiceCreator *serviceCreator;
@@ -159,12 +160,10 @@ namespace eevp
         {
             mLogger.LogInfo() << __func__;
             std::signal(SIGTERM, SignalHandler);
-            this->uThreadRunning = false;
         }
 
         ServiceCreator::~ServiceCreator()
         {
-            this->uThreadRunning = false;
         }
 
         void
@@ -179,8 +178,6 @@ namespace eevp
         {
             mLogger.LogInfo() << __func__;
             mRunning = true;
-            this->uThreadRunning = true;
-            this->updateThread = new std::thread(std::bind(&ServiceCreator::poolingFieldUpdate, this));
 
             if (!setRunningState())
             {
@@ -229,16 +226,6 @@ namespace eevp
             mRunning = false;
         }
 
-        void ServiceCreator::poolingFieldUpdate()
-        {
-            mLogger.LogInfo() << __func__;
-            if (this->uThreadRunning)
-            {
-                int dummy_msg;
-            }
-            return;
-        }
-
         // Wiper Start
 
         void ServiceCreator::stopWiping()
@@ -246,6 +233,8 @@ namespace eevp
             eevp::simulation::BCM_WipingLevel tempWipingLevel = eevp::simulation::BCM_WipingLevel::STOP;
             wipingLevelSend = tempWipingLevel;
             wipingIntervalSend = 0U;
+            requestwipinglevel = true;
+            requestwipinginterval = true;
             wiperSkeletonImpl->updateWipingLevel(wipingLevelSend);
             wiperSkeletonImpl->updateWipingInterval(wipingIntervalSend);
             return;
@@ -255,14 +244,16 @@ namespace eevp
         {
             eevp::simulation::BCM_WipingLevel tempWipingLevel = eevp::simulation::BCM_WipingLevel::LOW;
             wipingLevelSend = tempWipingLevel;
+            requestwipinglevel = true;
             wiperSkeletonImpl->updateWipingLevel(wipingLevelSend);
             return;
         }
 
         void ServiceCreator::setWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel)
         {
-            // mLogger.LogInfo() << __func__;
+            mLogger.LogInfo() << __func__;
             wipingLevelSend = wipingLevel;
+            requestwipinglevel = true;
             wiperSkeletonImpl->updateWipingLevel(wipingLevelSend);
             return;
         }
@@ -270,8 +261,9 @@ namespace eevp
         void
         ServiceCreator::setWipingInterval(const std::uint16_t &wipingInterval)
         {
-            // mLogger.LogInfo() << __func__;
+            mLogger.LogInfo() << __func__;
             wipingIntervalSend = wipingInterval;
+            requestwipinglevel = true;
             wiperSkeletonImpl->updateWipingInterval(wipingIntervalSend);
             return;
         }
@@ -325,21 +317,21 @@ namespace eevp
         void
         ServiceCreator::RequestMImSetBrightness(const std::uint16_t &Brightness)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__ << Brightness;
             this->BrightnessSend = Brightness;
             return;
         }
         void
         ServiceCreator::RequestMImSetMode(const lmp::mode::SoaMImMoodeMode &mood)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             this->moodSend = mood;
             return;
         }
         void
         ServiceCreator::RequestMImSetRGBColor(const std::uint8_t &ColorIndex)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__ << ColorIndex;
             this->ColorIndexSend = ColorIndex;
             return;
         }
@@ -351,7 +343,7 @@ namespace eevp
         void
         ServiceCreator::notifyBmsInfo(bms::input::InputData &info)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             bmsInfoSkeletonImpl->sendEventBmsInfo(info);
             return;
         }
@@ -363,7 +355,7 @@ namespace eevp
         void
         ServiceCreator::notifyMsgInfo(const bms::output::OutputData &output)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             std::string binFilePath = "/home/popcornsar/src/FTP/msg.bin";
             std::string preFilePath = "/home/popcornsar/src/FTP/msg.pre";
 
@@ -386,16 +378,16 @@ namespace eevp
             }
             else
             {
-                mLogger.LogInfo() << "msg.bin 생성";
+                // mLogger.LogInfo() << "msg.bin 생성";
             }
             binFile.close();
 
             // 2. "msg.pre" 삭제
-            mLogger.LogInfo() << "msg.pre 삭제 시도";
+            // mLogger.LogInfo() << "msg.pre 삭제 시도";
             std::remove(preFilePath.c_str());
 
             // 3. "msg.bin" -> "msg.pre"로 이름 변경
-            mLogger.LogInfo() << "msg.bin -> msg.pre 확장자 변경";
+            // mLogger.LogInfo() << "msg.bin -> msg.pre 확장자 변경";
             std::rename(binFilePath.c_str(), preFilePath.c_str());
 
             return;
@@ -408,7 +400,7 @@ namespace eevp
         void
         ServiceCreator::notifyAccrPedal(eevp::simulation::type::VCS_AccrPedal &accrPedal)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             accrPedal = this->accrPedal;
             return;
         }
@@ -432,7 +424,7 @@ namespace eevp
         void
         ServiceCreator::notifyGear(eevp::simulation::type::VCS_Gear &gear)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             gear = this->gear;
             return;
         }
@@ -444,7 +436,7 @@ namespace eevp
         void
         ServiceCreator::notifyPosn(eevp::simulation::type::VCS_BrakePosn &brakePosn)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             brakePosn = this->brakePosn;
             return;
         }
@@ -452,7 +444,7 @@ namespace eevp
         void
         ServiceCreator::notifyBrakeSwitch(eevp::simulation::type::VCS_BrakeSwitch &brakeSwitch)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             brakeSwitch = this->brakeSwitch;
             return;
         }
@@ -464,7 +456,7 @@ namespace eevp
         void
         ServiceCreator::notifyVehSpd(eevp::simulation::type::VCS_VehSpd &vehSpd)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             vehSpd = this->vehSpd;
             return;
         }
@@ -473,12 +465,17 @@ namespace eevp
 
         // SnsrUss Start
 
-        void
-        ServiceCreator::ntfSonarInfo(eevp::simulation::type::USSSonarInfo &ussSonarInfo)
+        void ServiceCreator::ntfSonarInfo(eevp::simulation::type::USSSonarInfo &ussSonarInfo)
         {
             mLogger.LogInfo() << __func__;
             ussSonarInfo = this->ussSonarInfo;
             return;
+        }
+
+        bool ServiceCreator::isDetect()
+        {
+            // mLogger.LogInfo() << __func__;
+            return detect;
         }
 
         // SnsrUss End
@@ -563,6 +560,19 @@ namespace eevp
             // Wiper
             this->wipingLevelSend = eevp::simulation::BCM_WipingLevel::STOP;
             this->wipingIntervalSend = 0U;
+
+            // AccrPedal
+            this->accrPedal.valid = true;
+
+            // BrakePedal
+            this->brakePosn.stroke = 19U;
+            this->brakeSwitch.switchStatus = static_cast<eevp::simulation::type::SwitchStatus>(1U);
+
+            // Gear
+            this->gear.GearStatus = static_cast<eevp::simulation::type::GearStatus>(2U);
+
+            // VehSpd
+            this->vehSpd.absoluteValue = 15U;
 
             // TMoodLamp
             this->BrightnessSend = 0;
@@ -703,10 +713,8 @@ namespace eevp
 
             // memset(&serv_adr, 0, sizeof(serv_adr));
             serv_adr.sin_family = AF_INET;
-            serv_adr.sin_addr.s_addr = inet_addr("192.168.100.242");
-            // serv_adr.sin_addr.s_addr = inet_addr("169.254.195.237");
-            serv_adr.sin_port = htons(5000);
-            // serv_adr.sin_port = htons(3363);
+            serv_adr.sin_addr.s_addr = inet_addr(SOCKET_IP);
+            serv_adr.sin_port = htons(SOCKET_PORT);
 
             // 클라이언트가 서버와의 연결을 위해 연결요청을 한다.
             if (connect(sock, (struct sockaddr *)&serv_adr, sizeof(serv_adr)) == -1)
@@ -719,7 +727,7 @@ namespace eevp
                 json data = instance->prepareData();
                 sendMessage_s = data.dump();
                 strcpy(sendMessage, sendMessage_s.c_str());
-                str_len = write(sock, sendMessage, BUF_SIZE - 1);
+                str_len = write(sock, sendMessage, strlen(sendMessage));
                 if (str_len == -1)
                 {
                     instance->mLogger.LogInfo() << "send_Connect is broken";
@@ -727,7 +735,7 @@ namespace eevp
                 }
                 sendMessage[str_len] = 0;
                 instance->mLogger.LogInfo() << "Send to Server: " << sendMessage;
-                std::this_thread::sleep_for(std::chrono::seconds(2));
+                std::this_thread::sleep_for(std::chrono::milliseconds(200));
             }
 
             // 서버 소켓과 연결 후 송신해야 하는 이벤트 발생 시 데이터 송신
@@ -757,11 +765,9 @@ namespace eevp
 
             // memset(&serv_adr, 0, sizeof(serv_adr));
             serv_adr.sin_family = AF_INET;
-            serv_adr.sin_addr.s_addr = inet_addr("192.168.100.242");
-            // serv_adr.sin_addr.s_addr = inet_addr("169.254.195.237");
-            serv_adr.sin_port = htons(5000);
-            // serv_adr.sin_port = htons(3363);
-
+            serv_adr.sin_addr.s_addr = inet_addr(SOCKET_IP);
+            serv_adr.sin_port = htons(SOCKET_PORT);
+            int a = 0;
             // 클라이언트가 서버와의 연결을 위해 연결요청을 한다.
             if (connect(sock, (struct sockaddr *)&serv_adr, sizeof(serv_adr)) == -1)
                 instance->mLogger.LogInfo() << "recv_connect() error!";
@@ -779,12 +785,12 @@ namespace eevp
                 }
                 recvMessage[str_len] = 0;
                 // instance->mLogger.LogInfo() << "Message from server: " << recvMessage;
-
+                a++;
                 try
                 {
                     // JSON 객체로 변환
                     json recvData = json::parse(recvMessage);
-                    instance->mLogger.LogInfo() << "데이터 추출";
+                    instance->mLogger.LogInfo() << a << "번째 데이터 추출";
 
                     // JSON 객체에서 데이터 추출
                     instance->extractWiperData(recvData["Wiper"]);
@@ -799,12 +805,12 @@ namespace eevp
                     instance->extractSESLData(recvData["SESL"]);
 
                     // 받은 데이터 로그 출력 (디버깅용)
-                    instance->getWiperRecv();
+                    // instance->getWiperRecv();
 
                     // 각 구독앱에 Update
                     // Wiper
-                    instance->setWipingLevel(instance->wipingLevelReceive);
-                    instance->setWipingInterval(instance->wipingIntervalReceive);
+                    instance->wiperSkeletonImpl->updateWipingLevel(instance->wipingLevelReceive);
+                    instance->wiperSkeletonImpl->updateWipingInterval(instance->wipingIntervalReceive);
 
                     // BmsInfo
                     instance->notifyBmsInfo(instance->bmsInfo);
@@ -813,6 +819,7 @@ namespace eevp
                 {
                     instance->mLogger.LogInfo() << "JSON parse error: " << e.what();
                 }
+                // instance->mLogger.LogInfo() << "데이터 추출 완료";
             }
             return nullptr;
         }
@@ -822,6 +829,10 @@ namespace eevp
         {
             wipingLevelReceive = static_cast<eevp::simulation::BCM_WipingLevel>(wiperData.value("wipingLevel", 0));
             wipingIntervalReceive = wiperData.value("wipingInterval", 0);
+            if (!requestwipinglevel)
+                wipingLevelSend = wipingLevelReceive;
+            if (!requestwipinginterval)
+                wipingIntervalSend = wipingIntervalReceive;
         }
 
         // Battery 데이터 추출
@@ -869,8 +880,8 @@ namespace eevp
         // EnvMonitor 데이터 추출
         void ServiceCreator::extractEnvMonitorData(const json &envMonitorData)
         {
-            envZoneHumidityAry[0].humidity = envMonitorData["EnvMonitor"].value("interiorhumidity", 0);
-            envZoneHumidityAry[1].humidity = envMonitorData["EnvMonitor"].value("exteriorhumidity", 0);
+            envZoneHumidityAry[0].humidity = envMonitorData.value("interiorhumidity", 0);
+            envZoneHumidityAry[1].humidity = envMonitorData.value("exteriorhumidity", 0);
         }
 
         // Gear 데이터 추출
@@ -932,6 +943,10 @@ namespace eevp
         json ServiceCreator::prepareData()
         {
             json sendData;
+
+            // 데이터 송신 시 잠금해제
+            requestwipinginterval = false;
+            requestwipinglevel = false;
 
             // MoodLamp 데이터
             sendData["MoodLamp"] = {

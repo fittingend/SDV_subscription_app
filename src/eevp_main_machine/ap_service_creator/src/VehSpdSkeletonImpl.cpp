@@ -28,7 +28,7 @@ namespace eevp
         Future<skeleton::VCS_VehSpdSkeleton::notifyVehSpdOutput>
         VehSpdSkeletonImpl::notifyVehSpd()
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
 
             skeleton::VCS_VehSpdSkeleton::notifyVehSpdOutput response;
             Promise<notifyVehSpdOutput> promise;

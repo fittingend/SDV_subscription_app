@@ -13,6 +13,7 @@ namespace eevp
             virtual ~ISnsrUssListener() {};
 
             virtual void ntfSonarInfo(eevp::simulation::type::USSSonarInfo &ussSonarInfo) = 0;
+            virtual bool isDetect() = 0;
         };
     } /// namespace control
 } /// namespace eevp

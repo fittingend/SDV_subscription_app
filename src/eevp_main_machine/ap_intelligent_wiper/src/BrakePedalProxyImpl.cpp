@@ -59,7 +59,7 @@ namespace eevp
         eevp::simulation::type::VCS_BrakePosn
         BrakePedalProxyImpl::get_BrakePosn()
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             auto future = mProxy->notifyBrakeStatus();
             auto status = future.wait_for(std::chrono::milliseconds(10));
             if (status == future_status::ready)
@@ -69,6 +69,7 @@ namespace eevp
                 {
                     auto value = result.Value();
                     this->vcs_BrakePosn = value.VCS_BrakePosn;
+                    // mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(this->vcs_BrakePosn.stroke) << ")";
                     return this->vcs_BrakePosn;
                 }
                 else
@@ -86,7 +87,7 @@ namespace eevp
         eevp::simulation::type::VCS_BrakeSwitch
         BrakePedalProxyImpl::get_BrakeSwitch()
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             auto future = mProxy->notifyBrakeSwitch();
             auto status = future.wait_for(std::chrono::milliseconds(10));
             if (status == future_status::ready)
@@ -96,6 +97,7 @@ namespace eevp
                 {
                     auto value = result.Value();
                     this->vcs_BrakeSwitch = value.VCS_BrakeSwitch;
+                    // mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(this->vcs_BrakeSwitch.switchValid) << ")";
                     return this->vcs_BrakeSwitch;
                 }
                 else

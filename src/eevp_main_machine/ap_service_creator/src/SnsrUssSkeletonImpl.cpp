@@ -45,7 +45,28 @@ namespace eevp
         Future<skeleton::Snsr_USSSkeleton::ntfFltStOutput>
         SnsrUssSkeletonImpl::ntfFltSt()
         {
+            skeleton::Snsr_USSSkeleton::ntfFltStOutput response;
+            Promise<ntfFltStOutput> promise;
             mLogger.LogInfo() << __func__;
+            promise.set_value(response);
+            return promise.get_future();
+        }
+
+        Future<skeleton::Snsr_USSSkeleton::isDetectOutput>
+        SnsrUssSkeletonImpl::isDetect()
+        {
+            // mLogger.LogInfo() << __func__;
+
+            skeleton::Snsr_USSSkeleton::isDetectOutput response;
+            Promise<isDetectOutput> promise;
+
+            if (listener != nullptr)
+            {
+                response.detect = listener->isDetect();
+            }
+
+            promise.set_value(response);
+            return promise.get_future();
         }
 
     }

@@ -41,6 +41,14 @@
               </PORT-PROTOTYPE-IREF>
               <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_IntelligentWiper_Consumer_BCM_WiperWash</SERVICE-INSTANCE-REF>
             </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
+            <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="3e821085-f5d6-4ead-bfa7-c454cf672460">
+              <SHORT-NAME>IntelligentWiper_AA_RPort_Snsr_USS</SHORT-NAME>
+              <PORT-PROTOTYPE-IREF>
+                <CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF DEST="ROOT-SW-COMPONENT-PROTOTYPE">/Application/Executable/IntelligentWiper/AA</CONTEXT-ROOT-SW-COMPONENT-PROTOTYPE-REF>
+                <TARGET-PORT-PROTOTYPE-REF DEST="R-PORT-PROTOTYPE">/Application/SwComponent/IntelligentWiper/RPort_Snsr_USS</TARGET-PORT-PROTOTYPE-REF>
+              </PORT-PROTOTYPE-IREF>
+              <SERVICE-INSTANCE-REF DEST="REQUIRED-SOMEIP-SERVICE-INSTANCE">/ServiceInstance/Someip/Consumer/EEVP_IntelligentWiper_Consumer_Snsr_USS</SERVICE-INSTANCE-REF>
+            </SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING>
             <SERVICE-INSTANCE-TO-PORT-PROTOTYPE-MAPPING UUID="a03300c4-11a8-4e21-a820-a0fa14085ee5">
               <SHORT-NAME>IntelligentWiper_AA_RPort_VCS_AccrPedal</SHORT-NAME>
               <PORT-PROTOTYPE-IREF>
@@ -133,6 +141,10 @@
                 <R-PORT-PROTOTYPE UUID="0fb82d2e-8b86-48ea-9753-9d476fc98c80">
                   <SHORT-NAME>RPort_BCM_WiperWash</SHORT-NAME>
                   <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/BCM_WiperWash</REQUIRED-INTERFACE-TREF>
+                </R-PORT-PROTOTYPE>
+                <R-PORT-PROTOTYPE UUID="e831d5ec-632e-4a4f-8bea-ff9ed46e9b09">
+                  <SHORT-NAME>RPort_Snsr_USS</SHORT-NAME>
+                  <REQUIRED-INTERFACE-TREF DEST="SERVICE-INTERFACE">/ServiceInterface/Snsr_USS</REQUIRED-INTERFACE-TREF>
                 </R-PORT-PROTOTYPE>
                 <R-PORT-PROTOTYPE UUID="2357c232-949e-4389-a7f5-4dac95928256">
                   <SHORT-NAME>RPort_VCS_AccrPedal</SHORT-NAME>

@@ -3,7 +3,15 @@
 
 #include <csignal>
 #include <thread>
-#include <atomic>
+#include <ctime>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <queue>
+#include <mutex>
+#include <condition_variable>
+#include <fstream>
+#include <iostream>
 #include <ara/log/logger.h>
 
 #include "proxy/WiperProxyImpl.h"
@@ -11,6 +19,7 @@
 #include "proxy/BrakePedalProxyImpl.h"
 #include "proxy/GearProxyImpl.h"
 #include "proxy/VehSpdProxyImpl.h"
+#include "proxy/SnsrUssProxyImpl.h"
 
 namespace eevp
 {
@@ -32,9 +41,6 @@ namespace eevp
             /// @brief Terminate S/W Component
             void Terminate();
 
-            /// @brief notify when user changes wiper values
-            // void notify_wipingLevel(eevp::simulation::BCM_WipingLevel &wipinglevel);
-            void get_wipingLevel(eevp::simulation::BCM_WipingLevel &wipinglevel);
             void execServiceLogic();
 
         private:
@@ -55,17 +61,74 @@ namespace eevp
 
             bool startVehSpdProxy();
 
-            /// @brief Check Driving Intention
-            bool checkDrivingIntention();
+            bool startSnsrUSSProxy();
 
-            /// @brief Check Stop Status
-            void checkStopStatus(bool &isStopped);
+            // Wiper
+            void get_wipingLevel();
+            void get_wipingInterval();
+            void set_wipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel);
+            void set_wipingInterval(const std::uint16_t &wipingInterval);
+            void startWiping();
+            void stopWiping();
+
+            // WiperVar
+            eevp::simulation::BCM_WipingLevel wipinglevel;
+            std::uint16_t wipinginterval;
+
+            // AccrPedal
+            void get_accrPedal();
+
+            // AccrPedalVar
+            eevp::simulation::type::VCS_AccrPedal accrpedal;
+
+            // BrakePedal
+            void get_BrakePosn();
+            void get_BrakeSwitch();
+
+            // BrakePedalVar
+            eevp::simulation::type::VCS_BrakePosn brakeposn;
+            eevp::simulation::type::VCS_BrakeSwitch brakeswitch;
+
+            // Gear
+            void get_Gear();
+            void set_Gear(const eevp::simulation::type::VCS_Gear &vcs_gear);
+
+            // GearVar
+            eevp::simulation::type::VCS_Gear gear;
+
+            // VehSpd
+            void get_VehSpd();
+
+            // VehSpdVar
+            eevp::simulation::type::VCS_VehSpd vehspd;
+
+            // Sonar
+            void get_Sonar();
+            void isDetect();
+
+            // SonarVar
+            eevp::simulation::type::USSSonarInfo sonarinfo;
+            bool sonarDetect = false;
+
+            // Logic
+            bool startLogicThread();
+            static pthread_t thread_checkdriving;
+            static pthread_t thread_checkstop;
+            static pthread_t thread_checkparking;
+            static pthread_t thread_getvalue;
+            static void *checkDrivingIntention(void *inst);
+            static void *checkStopStatus(void *inst);
+            static void *checkParkingIntention(void *inst);
+            static void *startGetValue(void *inst);
+
+            // LogicVar
+            bool isIntentToDrive = false;
+            bool isStopped = true;
+            bool isParking = true;
+            bool isgearP = false;
 
             /// @brief Check if velocity is zero for a duration
             bool isVelocityZeroForDuration();
-
-            /// @brief Check Parking Intention
-            void checkParkingIntention();
 
             /// @brief Dynamic Wiper Adjustment based on velocity
             void DynamicWiperAdjustment(double new_wiperSpeed, double new_wiperInterval);
@@ -96,12 +159,11 @@ namespace eevp
             /// @brief Logger
             ara::log::Logger &mLogger;
 
-            /// WiperVar
-            eevp::simulation::BCM_WipingLevel wipingLevel;
-            std::uint16_t wipingInterval;
-
-            /// AccrPedalVar
-            eevp::simulation::VCS_AccrPedal vcs_AccrPedal;
+            // mutex and condition_variable
+            std::mutex mtx;
+            std::condition_variable cvdriving;
+            std::condition_variable cvstop;
+            std::condition_variable cvparking;
 
             /// @brief Proxy Implementation
             std::shared_ptr<eevp::simulation::WiperProxyImpl> wiperProxyImpl;
@@ -109,6 +171,7 @@ namespace eevp
             std::shared_ptr<eevp::simulation::GearProxyImpl> gearProxyImpl;
             std::shared_ptr<eevp::simulation::VehSpdProxyImpl> vehSpdProxyImpl;
             std::shared_ptr<eevp::simulation::AccrPedalProxyImpl> accrPedalProxyImpl;
+            std::shared_ptr<eevp::simulation::SnsrUssProxyImpl> snsrUssProxyImpl;
         };
 
     } // namespace simulation

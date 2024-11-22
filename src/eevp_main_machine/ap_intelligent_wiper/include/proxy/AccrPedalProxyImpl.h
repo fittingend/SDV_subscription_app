@@ -45,7 +45,7 @@ namespace eevp
             std::condition_variable cvHandle;
 
             eevp::simulation::type::VCS_AccrPedal vcs_accrPedal;
-        }; // namespace wiper
+        };
     } // namespace simulation
 } // namespace eevp
 

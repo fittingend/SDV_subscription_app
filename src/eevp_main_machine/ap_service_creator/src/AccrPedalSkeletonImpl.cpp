@@ -28,7 +28,7 @@ namespace eevp
         Future<skeleton::VCS_AccrPedalSkeleton::notifyAccrPedalOutput>
         AccrPedalSkeletonImpl::notifyAccrPedal()
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
 
             skeleton::VCS_AccrPedalSkeleton::notifyAccrPedalOutput response;
             Promise<notifyAccrPedalOutput> promise;

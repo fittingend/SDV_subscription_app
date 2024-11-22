@@ -56,13 +56,13 @@ namespace eevp
             return true;
         }
 
-        bool
-        WiperProxyImpl::get_wipingLevel(eevp::simulation::BCM_WipingLevel &wipinglevel)
+        eevp::simulation::BCM_WipingLevel
+        WiperProxyImpl::get_wipingLevel()
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             if (mProxy == nullptr)
             {
-                return false;
+                return this->mWipingLevel;
             }
             auto future = mProxy->wiperLevel.Get();
             auto status = future.wait_for(std::chrono::milliseconds(10));
@@ -71,8 +71,9 @@ namespace eevp
                 auto result = future.GetResult();
                 if (result.HasValue())
                 {
-                    wipinglevel = static_cast<eevp::simulation::BCM_WipingLevel>(result.Value());
-                    return true;
+                    this->mWipingLevel = static_cast<eevp::simulation::BCM_WipingLevel>(result.Value());
+                    mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(this->mWipingLevel) << ")";
+                    return this->mWipingLevel;
                 }
                 else
                 {
@@ -84,12 +85,44 @@ namespace eevp
                 mLogger.LogError() << "Timeout to call BCM_WipingLevel's Getter";
             }
 
-            return false;
+            return this->mWipingLevel;
+        }
+
+        std::uint16_t
+        WiperProxyImpl::get_wipingInterval()
+        {
+            // mLogger.LogInfo() << __func__;
+            if (mProxy == nullptr)
+            {
+                return this->mWipingInterval;
+            }
+            auto future = mProxy->wiperInterval.Get();
+            auto status = future.wait_for(std::chrono::milliseconds(10));
+            if (status == future_status::ready)
+            {
+                auto result = future.GetResult();
+                if (result.HasValue())
+                {
+                    mWipingInterval = static_cast<std::uint16_t>(result.Value());
+                    mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(this->mWipingInterval) << ")";
+                    return this->mWipingInterval;
+                }
+                else
+                {
+                    mLogger.LogError() << __func__ << ": Return error with " << result.Error().Message();
+                }
+            }
+            else
+            {
+                mLogger.LogError() << "Timeout to call BCM_WipingInterval's Getter";
+            }
+
+            return this->mWipingInterval;
         }
 
         eevp::simulation::BCM_ReturnCode WiperProxyImpl::startWiping()
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             if (mProxy == nullptr)
             {
                 return eevp::simulation::BCM_ReturnCode::FAIL_OTHERS;
@@ -112,7 +145,7 @@ namespace eevp
             }
             else
             {
-                mLogger.LogError() << "Timeout to call RequestRearCurtainOperation";
+                mLogger.LogError() << "Timeout to call startWiping";
             }
 
             return eevp::simulation::BCM_ReturnCode::FAIL_TIMEOUT;
@@ -120,25 +153,17 @@ namespace eevp
 
         eevp::simulation::BCM_ReturnCode WiperProxyImpl::stopWiping()
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
 
-            return eevp::simulation::BCM_ReturnCode::SUCCESS;
-        }
-
-        /*
-        eevp::simulation::BCM_ReturnCode WiperProxyImpl::getWipingInterval()
-        {
-            mLogger.LogInfo() << __func__;
-            std::this_thread::sleep_for(std::chrono::seconds(1));
-            std::uint16_t wipingInterval;
-            auto future = mProxy->wiperInterval.Get();
+            auto future = mProxy->stopWiping();
             auto status = future.wait_for(std::chrono::milliseconds(10));
             if (status == future_status::ready)
             {
                 auto result = future.GetResult();
                 if (result.HasValue())
                 {
-                    wipingInterval = static_cast<std::uint16_t>(result.Value());
+                    auto value = result.Value();
+                    return eevp::simulation::BCM_ReturnCode::SUCCESS;
                 }
                 else
                 {
@@ -147,58 +172,67 @@ namespace eevp
             }
             else
             {
-                mLogger.LogError() << "Timeout to call soaWiperStatus's Getter";
+                mLogger.LogError() << "Timeout to call stopWiping";
             }
-            ServiceCreator::wiperSend.wipingInterval = wipingInterval;
-            mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(wipingInterval) << ")";
 
-            return BCM_ReturnCode::SUCCESS;
-        }
-
-        eevp::simulation::BCM_WipingLevel WiperProxyImpl::getWipingLevel()
-        {
-            mLogger.LogInfo() << __func__;
-            std::this_thread::sleep_for(std::chrono::seconds(1));
-            eevp::simulation::BCM_WipingLevel wipingLevel;
-            auto future = mProxy->wiperLevel.Get();
-            auto status = future.wait_for(std::chrono::milliseconds(10));
-            if (status == future_status::ready)
-            {
-                auto result = future.GetResult();
-                if (result.HasValue())
-                {
-                    wipingLevel = static_cast<eevp::simulation::BCM_WipingLevel>(result.Value());
-                }
-                else
-                {
-                    mLogger.LogError() << __func__ << ": Return error with " << result.Error().Message();
-                }
-            }
-            else
-            {
-                mLogger.LogError() << "Timeout to call soaWiperStatus's Getter";
-            }
-            ServiceCreator::wiperSend.wipingLevel = wipingLevel;
-            mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(wipingLevel) << ")";
-
-            return wipingLevel;
+            return eevp::simulation::BCM_ReturnCode::FAIL_TIMEOUT;
         }
 
         eevp::simulation::BCM_ReturnCode
         WiperProxyImpl::setWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel)
         {
-            mLogger.LogInfo() << __func__;
-
-            if (mProxy == nullptr)
-            {
-                mLogger.LogInfo() << "setWipingLevel: mProxy is nullptr";
-                return BCM_ReturnCode::SUCCESS;
-            }
+            // mLogger.LogInfo() << __func__;
 
             auto future = mProxy->setWipingLevel(wipingLevel);
-            return BCM_ReturnCode::SUCCESS;
+            auto status = future.wait_for(std::chrono::milliseconds(10));
+            if (status == future_status::ready)
+            {
+                auto result = future.GetResult();
+                if (result.HasValue())
+                {
+                    auto value = result.Value();
+                    return eevp::simulation::BCM_ReturnCode::SUCCESS;
+                }
+                else
+                {
+                    mLogger.LogError() << __func__ << ": Return error with " << result.Error().Message();
+                }
+            }
+            else
+            {
+                mLogger.LogError() << "Timeout to call setwipingLevel";
+            }
+
+            return eevp::simulation::BCM_ReturnCode::FAIL_TIMEOUT;
         }
-        */
+
+        eevp::simulation::BCM_ReturnCode
+        WiperProxyImpl::setWipingInterval(const std::uint16_t &wipingInterval)
+        {
+            // mLogger.LogInfo() << __func__;
+
+            auto future = mProxy->setWipingInterval(wipingInterval);
+            auto status = future.wait_for(std::chrono::milliseconds(10));
+            if (status == future_status::ready)
+            {
+                auto result = future.GetResult();
+                if (result.HasValue())
+                {
+                    auto value = result.Value();
+                    return eevp::simulation::BCM_ReturnCode::SUCCESS;
+                }
+                else
+                {
+                    mLogger.LogError() << __func__ << ": Return error with " << result.Error().Message();
+                }
+            }
+            else
+            {
+                mLogger.LogError() << "Timeout to call setwipingInterval";
+            }
+
+            return eevp::simulation::BCM_ReturnCode::FAIL_TIMEOUT;
+        }
 
         void
         WiperProxyImpl::FindServiceCallback(

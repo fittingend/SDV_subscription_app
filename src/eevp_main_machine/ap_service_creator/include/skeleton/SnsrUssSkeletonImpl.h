@@ -25,6 +25,7 @@ namespace eevp
 
             Future<skeleton::Snsr_USSSkeleton::ntfSonarInfoOutput> ntfSonarInfo();
             Future<skeleton::Snsr_USSSkeleton::ntfFltStOutput> ntfFltSt();
+            Future<skeleton::Snsr_USSSkeleton::isDetectOutput> isDetect();
 
         private:
             ara::log::Logger &mLogger;

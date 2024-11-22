@@ -212,7 +212,7 @@ void batterymonitor::R_BmsInfoems_BmsInfoReceive(ara::com::SamplePtr< battery::
 // Model step function
 void batterymonitor::BatteryMonitor_triggered_sys()
 {
-  mLogger.LogInfo() << __func__;
+  // mLogger.LogInfo() << __func__;
   std::array<uint8_t, 20> rtb_RCData_l;
   std::array<uint8_t, 100> rtb_Ydata_cq;
   std::shared_ptr<ara::core::Result<size_t>> resultPtr;
@@ -4034,7 +4034,7 @@ void batterymonitor::BatteryMonitor_triggered_sys()
         expl_temp.VehicleUniqueSnr =
           batterymonitor_B.RxTriggered.VehicleUniqueSnr;
         expl_temp.InterfaceIDforDbg = 12U;
-        mLogger.LogInfo() << "MsgInfo 전송";
+        // mLogger.LogInfo() << "MsgInfo 전송";
         P_MsgInfo->ems_MsgInfo.Send(expl_temp);
 
         // Update for UnitDelay: '<S4>/Unit Delay1'

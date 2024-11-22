@@ -8,10 +8,10 @@ namespace eevp
     {
 
         AccrPedalProxyImpl::AccrPedalProxyImpl() : mProxy{nullptr},
-                                           mFindHandle{nullptr},
-                                           mHandle{},
-                                           cvHandle{},
-                                           mLogger(ara::log::CreateLogger("ACCR", "ACCR", ara::log::LogLevel::kInfo))
+                                                   mFindHandle{nullptr},
+                                                   mHandle{},
+                                                   cvHandle{},
+                                                   mLogger(ara::log::CreateLogger("ACCR", "ACCR", ara::log::LogLevel::kInfo))
         {
             mLogger.LogInfo() << __func__;
         }
@@ -59,7 +59,6 @@ namespace eevp
         eevp::simulation::type::VCS_AccrPedal
         AccrPedalProxyImpl::get_accrPedal()
         {
-            mLogger.LogInfo() << __func__;
             auto future = mProxy->notifyAccrPedal();
             auto status = future.wait_for(std::chrono::milliseconds(10));
             if (status == future_status::ready)
@@ -69,6 +68,7 @@ namespace eevp
                 {
                     auto value = result.Value();
                     this->vcs_accrPedal = value.VCS_AccrPedal;
+                    // mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(this->vcs_accrPedal.valid) << ")";
                     return this->vcs_accrPedal;
                 }
                 else

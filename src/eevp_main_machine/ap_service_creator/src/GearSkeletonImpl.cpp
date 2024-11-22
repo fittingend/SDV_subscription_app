@@ -28,7 +28,7 @@ namespace eevp
         Future<skeleton::VCS_GearSkeleton::notifyGearOutput>
         GearSkeletonImpl::notifyGear()
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
 
             skeleton::VCS_GearSkeleton::notifyGearOutput response;
             Promise<notifyGearOutput> promise;

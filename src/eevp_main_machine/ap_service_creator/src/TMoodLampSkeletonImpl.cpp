@@ -27,7 +27,7 @@ namespace eevp
         Future<skeleton::EevpControlSoaMImSkeleton::RequestMImSetBrightnessOutput>
         TEevpControlSoaMImSkeletonImpl::RequestMImSetBrightness(const std::uint16_t &Brightness)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
 
             EevpControlSoaMImSkeleton::RequestMImSetBrightnessOutput response;
             Promise<RequestMImSetBrightnessOutput> promise;
@@ -45,7 +45,7 @@ namespace eevp
         TEevpControlSoaMImSkeletonImpl::RequestMImSetMode(const lmp::mode::SoaMImMoodeMode &mood)
 
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
 
             EevpControlSoaMImSkeleton::RequestMImSetModeOutput response;
             Promise<RequestMImSetModeOutput> promise;
@@ -63,7 +63,7 @@ namespace eevp
         TEevpControlSoaMImSkeletonImpl::RequestMImSetRGBColor(const std::uint8_t &ColorIndex)
         {
             {
-                mLogger.LogInfo() << __func__;
+                // mLogger.LogInfo() << __func__;
 
                 EevpControlSoaMImSkeleton::RequestMImSetRGBColorOutput response;
                 Promise<RequestMImSetRGBColorOutput> promise;

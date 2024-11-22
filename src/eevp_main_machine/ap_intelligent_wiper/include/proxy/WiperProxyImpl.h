@@ -22,7 +22,6 @@ namespace eevp
         class WiperProxyImpl
         {
         public:
-
             WiperProxyImpl();
             ~WiperProxyImpl();
 
@@ -30,15 +29,14 @@ namespace eevp
             bool init();
 
             // field getter
-            bool get_wipingLevel(eevp::simulation::BCM_WipingLevel &wipinglevel);
+            eevp::simulation::BCM_WipingLevel get_wipingLevel();
+            std::uint16_t get_wipingInterval();
 
             eevp::simulation::BCM_ReturnCode stopWiping();
             eevp::simulation::BCM_ReturnCode startWiping();
 
-            // eevp::simulation::BCM_ReturnCode setWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel);
-            // eevp::simulation::BCM_ReturnCode setWipingLevelImme(const eevp::simulation::BCM_WipingLevel &wipingLevel);
-
-            // eevp::simulation::BCM_ReturnCode setWipingIneterval(std::uint16_t &wipingInterval);
+            eevp::simulation::BCM_ReturnCode setWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel);
+            eevp::simulation::BCM_ReturnCode setWipingInterval(const std::uint16_t &wipingInterval);
 
         private:
             void FindServiceCallback(
@@ -66,7 +64,7 @@ namespace eevp
 
             simulation::proxy::fields::wiperLevel::FieldType mWipingLevel;
             simulation::proxy::fields::wiperInterval::FieldType mWipingInterval;
-        }; // namespace wiper
+        };
     } // namespace simulation
 } // namespace eevp
 

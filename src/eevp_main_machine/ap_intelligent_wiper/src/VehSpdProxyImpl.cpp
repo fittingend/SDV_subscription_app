@@ -59,7 +59,7 @@ namespace eevp
         eevp::simulation::type::VCS_VehSpd
         VehSpdProxyImpl::get_VehSpd()
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             auto future = mProxy->notifyVehSpd();
             auto status = future.wait_for(std::chrono::milliseconds(10));
             if (status == future_status::ready)
@@ -69,6 +69,7 @@ namespace eevp
                 {
                     auto value = result.Value();
                     this->vcs_VehSpd = value.VCS_VehSpd;
+                    // mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(this->vcs_VehSpd.absoluteValue) << ")";
                     return this->vcs_VehSpd;
                 }
                 else

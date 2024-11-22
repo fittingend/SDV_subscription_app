@@ -1,4 +1,4 @@
-#include "proxy/GearProxyImpl.h"
+#include "proxy/SnsrUssProxyImpl.h"
 using namespace eevp::simulation;
 using namespace ara::core;
 
@@ -7,16 +7,16 @@ namespace eevp
     namespace simulation
     {
 
-        GearProxyImpl::GearProxyImpl() : mProxy{nullptr},
-                                         mFindHandle{nullptr},
-                                         mHandle{},
-                                         cvHandle{},
-                                         mLogger(ara::log::CreateLogger("GEAR", "GEAR", ara::log::LogLevel::kInfo))
+        SnsrUssProxyImpl::SnsrUssProxyImpl() : mProxy{nullptr},
+                                               mFindHandle{nullptr},
+                                               mHandle{},
+                                               cvHandle{},
+                                               mLogger(ara::log::CreateLogger("SNSR", "SNSR", ara::log::LogLevel::kInfo))
         {
             mLogger.LogInfo() << __func__;
         }
 
-        GearProxyImpl::~GearProxyImpl()
+        SnsrUssProxyImpl::~SnsrUssProxyImpl()
         {
             if (mProxy)
             {
@@ -26,22 +26,22 @@ namespace eevp
         }
 
         void
-        GearProxyImpl::setEventListener(std::shared_ptr<IGearListener> _listener)
+        SnsrUssProxyImpl::setEventListener(std::shared_ptr<ISnsrUssListener> _listener)
         {
             listener = _listener;
         }
 
-        bool GearProxyImpl::init()
+        bool SnsrUssProxyImpl::init()
         {
             mLogger.LogInfo() << __func__;
-            ara::core::InstanceSpecifier specifier("IntelligentWiper/AA/RPort_VCS_Gear");
+            ara::core::InstanceSpecifier specifier("IntelligentWiper/AA/RPort_Snsr_USS");
             auto callback = [&](auto container, auto findHandle)
             {
                 FindServiceCallback(container, findHandle);
             };
 
             std::unique_lock<std::mutex> lock(mHandle);
-            auto result = proxy::VCS_GearProxy::StartFindService(callback, specifier);
+            auto result = proxy::Snsr_USSProxy::StartFindService(callback, specifier);
             if (cvHandle.wait_for(lock, std::chrono::milliseconds(1000)) == std::cv_status::timeout)
             {
                 mLogger.LogInfo() << "cvHandle is empty";
@@ -49,18 +49,18 @@ namespace eevp
             }
             if (!result.HasValue())
             {
-                mLogger.LogInfo() << "Gear StartFindService() Failed";
+                mLogger.LogInfo() << "SnsrUss StartFindService() Failed";
                 return false;
             }
 
             return true;
         }
 
-        eevp::simulation::type::VCS_Gear
-        GearProxyImpl::get_Gear()
+        eevp::simulation::type::USSSonarInfo
+        SnsrUssProxyImpl::get_Sonar()
         {
             // mLogger.LogInfo() << __func__;
-            auto future = mProxy->notifyGear();
+            auto future = mProxy->ntfSonarInfo();
             auto status = future.wait_for(std::chrono::milliseconds(10));
             if (status == future_status::ready)
             {
@@ -68,9 +68,8 @@ namespace eevp
                 if (result.HasValue())
                 {
                     auto value = result.Value();
-                    this->vcs_Gear = value.VCS_Gear;
-                    // mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(this->vcs_Gear.GearStatus) << ")";
-                    return this->vcs_Gear;
+                    this->sonarInfo = value.UssSonarinfo;
+                    return this->sonarInfo;
                 }
                 else
                 {
@@ -79,16 +78,15 @@ namespace eevp
             }
             else
             {
-                mLogger.LogError() << "Timeout to call notifyGear";
+                mLogger.LogError() << "Timeout to call ntfSonarInfo";
             }
-            return this->vcs_Gear;
+            return this->sonarInfo;
         }
 
-        void GearProxyImpl::set_Gear(const eevp::simulation::type::VCS_Gear &vcs_gear)
+        bool SnsrUssProxyImpl::isDetect()
         {
             // mLogger.LogInfo() << __func__;
-            this->vcs_Gear = vcs_gear;
-            auto future = mProxy->setTarget(this->vcs_Gear);
+            auto future = mProxy->isDetect();
             auto status = future.wait_for(std::chrono::milliseconds(10));
             if (status == future_status::ready)
             {
@@ -96,8 +94,7 @@ namespace eevp
                 if (result.HasValue())
                 {
                     auto value = result.Value();
-                    // mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(this->vcs_Gear.GearStatus) << ")";
-                    return;
+                    return value.detect;
                 }
                 else
                 {
@@ -106,14 +103,14 @@ namespace eevp
             }
             else
             {
-                mLogger.LogError() << "Timeout to call setTarget";
+                mLogger.LogError() << "Timeout to call ntfSonarInfo";
             }
-            return;
+            return false;
         }
 
         void
-        GearProxyImpl::FindServiceCallback(
-            ara::com::ServiceHandleContainer<eevp::simulation::proxy::VCS_GearProxy::HandleType> container,
+        SnsrUssProxyImpl::FindServiceCallback(
+            ara::com::ServiceHandleContainer<eevp::simulation::proxy::Snsr_USSProxy::HandleType> container,
             ara::com::FindServiceHandle findHandle)
         {
             mLogger.LogInfo() << __func__;
@@ -121,22 +118,22 @@ namespace eevp
 
             if (mProxy != nullptr)
             {
-                mLogger.LogInfo() << "GearProxy isn't empty, unsubscribe";
+                mLogger.LogInfo() << "SnsrUSSProxy isn't empty, unsubscribe";
                 mFindHandle = nullptr;
                 mProxy = nullptr;
             }
 
             if (container.empty())
             {
-                mLogger.LogInfo() << "GearProxyContainer is empty";
+                mLogger.LogInfo() << "SnsrUSSProxyContainer is empty";
                 mProxy = nullptr;
                 return;
             }
 
-            mLogger.LogInfo() << "Find GearProxyContainer, subscribeGearService";
+            mLogger.LogInfo() << "Find SnsrUSSProxyContainer, subscribeSnsrUSSService";
 
             mFindHandle = std::make_shared<ara::com::FindServiceHandle>(findHandle);
-            mProxy = std::make_shared<proxy::VCS_GearProxy>(container.at(0));
+            mProxy = std::make_shared<proxy::Snsr_USSProxy>(container.at(0));
 
             cvHandle.notify_one();
             return;

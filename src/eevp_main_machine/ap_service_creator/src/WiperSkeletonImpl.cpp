@@ -28,7 +28,6 @@ namespace eevp
             updateWiperLevelContext();
             wiperLevel.RegisterGetHandler(wiperLevel_get_handler);
             wiperInterval.RegisterGetHandler(wiperInterval_get_handler);
-
         }
 
         bool WiperSkeletonImpl::updateWiperLevelContext()
@@ -53,7 +52,7 @@ namespace eevp
         // proxy 에서 호출
         Future<skeleton::BCM_WiperWashSkeleton::stopWipingOutput> WiperSkeletonImpl::stopWiping()
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             ara::core::Promise<skeleton::BCM_WiperWashSkeleton::stopWipingOutput> promise;
             listener->stopWiping();
             BCM_WiperWashSkeleton::stopWipingOutput output;
@@ -64,8 +63,9 @@ namespace eevp
 
         Future<skeleton::BCM_WiperWashSkeleton::startWipingOutput> WiperSkeletonImpl::startWiping()
         {
+            // mLogger.LogInfo() << __func__;
             ara::core::Promise<skeleton::BCM_WiperWashSkeleton::startWipingOutput> promise;
-            mLogger.LogInfo() << __func__;
+            listener->startWiping();
             BCM_WiperWashSkeleton::startWipingOutput output;
             output.returnCode = eevp::simulation::BCM_ReturnCode::SUCCESS;
             promise.set_value(output);
@@ -99,6 +99,7 @@ namespace eevp
         {
             // mLogger.LogInfo() << __func__;
             ara::core::Promise<simulation::skeleton::fields::wiperInterval::FieldType> promise;
+            // mLogger.LogInfo() << __func__ << "(" << static_cast<uint16_t>(this->mWiperInterval) << ")";
             promise.set_value(this->mWiperInterval);
             return promise.get_future();
         }
@@ -106,7 +107,7 @@ namespace eevp
         void
         WiperSkeletonImpl::updateWipingInterval(const std::uint16_t &wipingInterval)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             if (this->mWiperInterval != wipingInterval)
             {
                 this->mWiperInterval = wipingInterval;
@@ -115,7 +116,7 @@ namespace eevp
                 {
                     mLogger.LogError() << "Update failed: " << updateResult.Error().Message();
                 }
-                mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(wipingInterval) << ")";
+                // mLogger.LogInfo() << __func__ << "(" << static_cast<uint16_t>(wipingInterval) << ")";
             }
         }
 
@@ -124,6 +125,7 @@ namespace eevp
         {
             // mLogger.LogInfo() << __func__;
             ara::core::Promise<simulation::skeleton::fields::wiperLevel::FieldType> promise;
+            // mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(this->mWiperLevel) << ")";
             promise.set_value(this->mWiperLevel);
             return promise.get_future();
         }
@@ -131,7 +133,7 @@ namespace eevp
         void
         WiperSkeletonImpl::updateWipingLevel(const eevp::simulation::BCM_WipingLevel &wipingLevel)
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
             if (this->mWiperLevel != wipingLevel)
             {
                 this->mWiperLevel = wipingLevel;
@@ -140,7 +142,7 @@ namespace eevp
                 {
                     mLogger.LogError() << "Update failed: " << updateResult.Error().Message();
                 }
-                mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(wipingLevel) << ")";
+                // mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(wipingLevel) << ")";
             }
         }
     }

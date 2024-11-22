@@ -53,7 +53,8 @@ SET(SRC
     src/AccrPedalProxyImpl.cpp
     src/BrakePedalProxyImpl.cpp
     src/GearProxyImpl.cpp
-    src/VehSpdProxyImpl.cpp)
+    src/VehSpdProxyImpl.cpp
+    src/SnsrUssProxyImpl.cpp)
 
 ADD_EXECUTABLE(${PROJECT_NAME} ${SRC})
 

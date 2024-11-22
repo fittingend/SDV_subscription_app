@@ -45,7 +45,7 @@ namespace eevp
             std::condition_variable cvHandle;
 
             eevp::simulation::type::VCS_VehSpd vcs_VehSpd;
-        }; // namespace wiper
+        };
     } // namespace simulation
 } // namespace eevp
 

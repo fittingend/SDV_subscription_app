@@ -28,7 +28,7 @@ namespace eevp
         Future<skeleton::VCS_BrakePedalSkeleton::notifyBrakeStatusOutput>
         BrakePedalSkeletonImpl::notifyBrakeStatus()
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
 
             skeleton::VCS_BrakePedalSkeleton::notifyBrakeStatusOutput response;
             Promise<notifyBrakeStatusOutput> promise;
@@ -45,7 +45,7 @@ namespace eevp
         Future<skeleton::VCS_BrakePedalSkeleton::notifyBrakeSwitchOutput>
         BrakePedalSkeletonImpl::notifyBrakeSwitch()
         {
-            mLogger.LogInfo() << __func__;
+            // mLogger.LogInfo() << __func__;
 
             skeleton::VCS_BrakePedalSkeleton::notifyBrakeSwitchOutput response;
             Promise<notifyBrakeSwitchOutput> promise;

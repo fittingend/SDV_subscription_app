@@ -125,7 +125,7 @@ void R_LmpCtrl::MethodRequestCyclic()
             if(StartFlag_Prev == 0 && vStartFlag == 1)
             {
                 auto requestBrightness = m_interface->RequestMImSetBrightness(0x09);
-                
+                m_logger.LogInfo() <<"request brightness 9";
                 lmp::mode::SoaMImMoodeMode type =  lmp::mode::SoaMImMoodeMode::kVITALITY_MOOD;
                 auto requestMood = m_interface->RequestMImSetMode(type);
             
@@ -136,7 +136,7 @@ void R_LmpCtrl::MethodRequestCyclic()
             if(FinishFlag_Prev == 0 && vFinishFlag == 1)
             {
                 auto requestBrightness = m_interface->RequestMImSetBrightness(0x00);
-                
+                m_logger.LogInfo() <<"request brightness 0";
                 lmp::mode::SoaMImMoodeMode type =  lmp::mode::SoaMImMoodeMode::kCOMPORT_MOOD;
                 auto requestMood = m_interface->RequestMImSetMode(type);
             

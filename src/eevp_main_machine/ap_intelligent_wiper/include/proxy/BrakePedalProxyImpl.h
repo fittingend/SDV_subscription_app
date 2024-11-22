@@ -50,7 +50,7 @@ namespace eevp
             eevp::simulation::type::VCS_BrakePosn vcs_BrakePosn;
             eevp::simulation::type::VCS_BrakeSwitch vcs_BrakeSwitch;
 
-        }; // namespace wiper
+        };
     } // namespace simulation
 } // namespace eevp
 

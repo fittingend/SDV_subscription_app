@@ -33,7 +33,10 @@
 #include "skeleton/LotteSkeletonImpl.h"
 #include "skeleton/SESLServiceSkeletonImpl.h"
 
-#define BUF_SIZE 1024
+#define BUF_SIZE 4096
+#define SOCKET_IP "192.168.100.242" // 개인 테스트: 192.168.100.242, PXI 테스트: 169.254.195.237
+#define SOCKET_PORT 5000            // 개인 테스트: 5000, PXI 테스트: 3363
+
 using namespace ara::core;
 using json = nlohmann::json;
 using namespace bms::output;
@@ -123,9 +126,11 @@ namespace eevp
 
             // ISnsrUssListener
             void ntfSonarInfo(eevp::simulation::type::USSSonarInfo &ussSonarInfo);
+            bool isDetect();
 
             // SnsrUssVar
             eevp::simulation::type::USSSonarInfo ussSonarInfo;
+            bool detect = false;
 
             // ILotteListener
             void NotifyDmsCurr(lotte::type::DmsGzDtctn &dmsGzDtctn);
@@ -149,12 +154,8 @@ namespace eevp
             ara::SESL::Vehicle_Data vehicle_Data_send;
 
             // Thread
-            void poolingFieldUpdate();
-
             static pthread_t thread_socket_recv;
             static pthread_t thread_socket_send;
-            std::thread *updateThread;
-            std::atomic<bool> uThreadRunning;
             static void *socket_recv(void *inst);
             static void *socket_send(void *inst);
 
@@ -169,6 +170,10 @@ namespace eevp
             void extractSnsrUssData(const json &sonarData);
             void extractLotteData(const json &lotteData);
             void extractSESLData(const json &seslData);
+
+            // 구독앱에서 데이터 Request 여부
+            bool requestwipinglevel = false;
+            bool requestwipinginterval = false;
 
         private:
             static void SignalHandler(std::int32_t signal);
@@ -210,7 +215,6 @@ namespace eevp
 
             // json 라이브러리
             json prepareData();
-
         };
 
     } // namespace monitoring

@@ -32,8 +32,7 @@ namespace eevp
             eevp::simulation::type::VCS_Gear get_Gear();
 
             // setter method
-            void set_Gear();
-            
+            void set_Gear(const eevp::simulation::type::VCS_Gear &vcs_gear);
 
         private:
             void FindServiceCallback(
@@ -49,7 +48,7 @@ namespace eevp
             std::condition_variable cvHandle;
 
             eevp::simulation::type::VCS_Gear vcs_Gear;
-        }; // namespace wiper
+        };
     } // namespace simulation
 } // namespace eevp
 

@@ -734,7 +734,7 @@ namespace eevp
                     break;
                 }
                 sendMessage[str_len] = 0;
-                instance->mLogger.LogInfo() << "Send to Server: " << sendMessage;
+                // instance->mLogger.LogInfo() << "Send to Server: " << sendMessage;
                 std::this_thread::sleep_for(std::chrono::milliseconds(200));
             }
 

@@ -116,7 +116,7 @@ namespace eevp
                 {
                     mLogger.LogError() << "Update failed: " << updateResult.Error().Message();
                 }
-                // mLogger.LogInfo() << __func__ << "(" << static_cast<uint16_t>(wipingInterval) << ")";
+                // mLogger.LogInfo() << __func__ << "(" << static_cast<uint16_t>(this->mWiperInterval) << ")";
             }
         }
 

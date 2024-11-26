@@ -72,7 +72,7 @@ namespace eevp
                 if (result.HasValue())
                 {
                     this->mWipingLevel = static_cast<eevp::simulation::BCM_WipingLevel>(result.Value());
-                    mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(this->mWipingLevel) << ")";
+                    // mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(this->mWipingLevel) << ")";
                     return this->mWipingLevel;
                 }
                 else
@@ -104,7 +104,7 @@ namespace eevp
                 if (result.HasValue())
                 {
                     mWipingInterval = static_cast<std::uint16_t>(result.Value());
-                    mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(this->mWipingInterval) << ")";
+                    // mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(this->mWipingInterval) << ")";
                     return this->mWipingInterval;
                 }
                 else
@@ -360,7 +360,7 @@ namespace eevp
                                              {
             this->mWipingLevel = static_cast<eevp::simulation::BCM_WipingLevel>(*msg);
                     if (listener != nullptr) {
-                        // mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(wipingLevel) << ")";
+                        // mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(this->mWipingLevel) << ")";
                     } });
         }
 
@@ -369,7 +369,6 @@ namespace eevp
         {
             // mLogger.LogInfo() << __func__;
 
-            std::uint16_t wipingInterval;
             if (mProxy == nullptr)
             {
                 return;
@@ -384,7 +383,7 @@ namespace eevp
                                                 {
                 this->mWipingInterval = static_cast<std::uint16_t>(*msg);
                     if (listener != nullptr) {
-                        // mLogger.LogInfo() << __func__ << "(" << static_cast<uint8_t>(wipingInterval) << ")";
+                        // mLogger.LogInfo() << "cbWiperInterval" << "(" << static_cast<uint8_t>(this->mWipingInterval) << ")";
                     } });
         }
 

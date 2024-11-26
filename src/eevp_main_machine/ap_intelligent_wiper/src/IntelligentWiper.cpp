@@ -11,6 +11,7 @@ namespace eevp
         pthread_t IntelligentWiper::thread_checkstop;
         pthread_t IntelligentWiper::thread_checkparking;
         pthread_t IntelligentWiper::thread_getvalue;
+        pthread_t IntelligentWiper::thread_commandwiping;
 
         std::atomic_bool IntelligentWiper::mRunning(false);
 
@@ -157,6 +158,8 @@ namespace eevp
             mLogger.LogInfo() << __func__;
             while (mRunning)
             {
+                std::this_thread::sleep_for(std::chrono::seconds(100));
+                mLogger.LogInfo() << __func__;
             }
         }
 
@@ -211,6 +214,13 @@ namespace eevp
                 mLogger.LogInfo() << "checkstop 스레드 생성 실패";
                 return false;
             }
+
+            if (pthread_create(&thread_checkstop, nullptr, IntelligentWiper::commandWiping, this) != 0)
+            {
+                mLogger.LogInfo() << "commandwiping 스레드 생성 실패";
+                return false;
+            }
+
             return true;
         }
 
@@ -249,8 +259,12 @@ namespace eevp
         void IntelligentWiper::startWiping()
         {
             std::unique_lock<std::mutex> lock(mtx);
-            wipinglevel = BCM_WipingLevel::LOW;
-            wiperProxyImpl->startWiping();
+            if (!isWiping)
+            {
+                wipinglevel = BCM_WipingLevel::LOW;
+                wiperProxyImpl->startWiping();
+                isWiping = true;
+            }
             return;
         }
 
@@ -258,9 +272,13 @@ namespace eevp
         {
 
             std::unique_lock<std::mutex> lock(mtx);
-            wipinglevel = BCM_WipingLevel::STOP;
-            wipinginterval = 0U;
-            wiperProxyImpl->stopWiping();
+            if (isWiping)
+            {
+                wipinglevel = BCM_WipingLevel::STOP;
+                wipinginterval = 0U;
+                wiperProxyImpl->stopWiping();
+                isWiping = false;
+            }
             return;
         }
 
@@ -403,6 +421,8 @@ namespace eevp
         void *IntelligentWiper::startGetValue(void *inst)
         {
             IntelligentWiper *instance = static_cast<IntelligentWiper *>(inst);
+            instance->mLogger.LogInfo() << __func__;
+
             while (true)
             {
                 instance->get_Gear();
@@ -419,6 +439,8 @@ namespace eevp
         void *IntelligentWiper::checkDrivingIntention(void *inst)
         {
             IntelligentWiper *instance = static_cast<IntelligentWiper *>(inst);
+            instance->mLogger.LogInfo() << __func__;
+
             while (mRunning)
             {
                 std::unique_lock<std::mutex> lock(instance->mtx);
@@ -434,6 +456,8 @@ namespace eevp
         void *IntelligentWiper::checkStopStatus(void *inst)
         {
             IntelligentWiper *instance = static_cast<IntelligentWiper *>(inst);
+            instance->mLogger.LogInfo() << __func__;
+
             while (mRunning)
             {
                 if (instance->gear.GearStatus == type::GearStatus::P)
@@ -471,89 +495,81 @@ namespace eevp
         void *IntelligentWiper::checkParkingIntention(void *inst)
         {
             IntelligentWiper *instance = static_cast<IntelligentWiper *>(inst);
+            instance->mLogger.LogInfo() << __func__;
+
             while (mRunning)
             {
                 std::unique_lock<std::mutex> lock(instance->mtx);
-                instance->isParking = (instance->sonarDetect && (instance->gear.GearStatus == type::GearStatus::P));
+                instance->isParking = (instance->sonarDetect && (instance->gear.GearStatus == type::GearStatus::R));
 
                 instance->cvparking.wait(lock, [instance]
-                                         { return instance->isParking != (instance->sonarDetect && (instance->gear.GearStatus == type::GearStatus::P)); });
+                                         { return instance->isParking != (instance->sonarDetect && (instance->gear.GearStatus == type::GearStatus::R)); });
             }
             return nullptr;
         }
 
-        void IntelligentWiper::notifyMFSWiperSpeedInterval(const double &wiperSpeed, const double &wiperInterval)
+        void *IntelligentWiper::commandWiping(void *inst)
         {
-            DynamicWiperAdjustment(wiperSpeed, wiperInterval);
-        }
+            IntelligentWiper *instance = static_cast<IntelligentWiper *>(inst);
+            instance->mLogger.LogInfo() << __func__;
 
-        // 차속 연동 와이퍼 제어 알고리즘
-        // 운전자의 multifunction 스위치로 와이퍼가 수동 조작되었을때 호출되는 알고리즘
-        void IntelligentWiper::DynamicWiperAdjustment(double new_wiperSpeed, double new_wiperInterval)
-        {
-            double vehVelocity;
-            // getVehVelocity(vehVelocity);
-            double refVehVelocity = vehVelocity;
-            double refWiperSpeed = new_wiperSpeed;
-            double refWiperInterval = new_wiperInterval;
-            const int divider = 5;
-
-            while (1)
+            while (mRunning)
             {
-                // getVehVelocity(vehVelocity);
+                std::unique_lock<std::mutex> lock(instance->mtx);
+                instance->shouldStartWiping = (!instance->isIntentToDrive && instance->isStopped) || !instance->isParking;
 
-                double diff = vehVelocity - refVehVelocity;
-                double diffDivided = diff / divider;
-                int output_1;
-                if (diffDivided < 0)
-                {
-                    output_1 = -1;
-                }
-                else if (diffDivided == 0)
-                {
-                    output_1 = 0;
-                }
-                else if (diffDivided > 0)
-                {
-                    output_1 = 1;
-                }
-                double output_2 = std::floor(fabs(diffDivided)) * 0.1;
-                double output_3 = output_1 * output_2 + 1;
-                // setWiperSpeed(std::round(output_3 * refWiperSpeed));
-                // setWiperInterval(std::round(output_3 *refWiperInterval));
-
-                std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(100)));
-            }
-        }
-
-        bool IntelligentWiper::isVelocityZeroForDuration()
-        {
-
-            const double duration = 3.0;      // seconds
-            const double checkInterval = 0.5; // seconds between checks
-            double timeZero = 0.0;
-
-            while (timeZero < duration)
-            {
-                double vehVelocity;
-                // getVehVelocity(vehVelocity);
-
-                if (vehVelocity != 0)
-                {
-                    // If velocity is not zero, exit immediately
-                    return false;
-                }
+                if (instance->shouldStartWiping)
+                    instance->startWiping();
                 else
-                {
-                    // Accumulate time with velocity at zero
-                    timeZero += checkInterval;
-                }
+                    instance->stopWiping();
 
-                std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(checkInterval * 1000)));
+                std::this_thread::sleep_for(std::chrono::milliseconds(100));
             }
-
-            return true; // `vehVelocity` was 0 for the full 3 seconds
+            return nullptr;
         }
 
+        // 사용자가 수동 조작 시 호출
+        void IntelligentWiper::DynamicWiperAdjustment()
+        {
+            BCM_WipingLevel ref_wipingLevel = wipinglevel;
+            std::uint16_t ref_wipingInterval = wipinginterval;
+            type::VCS_VehSpd ref_vehspd = vehspd;
+            std::uint16_t threshold;
+            while (mRunning)
+            {
+                std::unique_lock<std::mutex> lock(mtx);
+                std::double_t diff = vehspd.absoluteValue - ref_vehspd.absoluteValue; // 기준 속도가 80이하 일때는 20km/h마다, 80이상 일때는 25km/h마다 와이퍼 속도변경
+                std::double_t diffDivided = diff / 5;
+
+                if (ref_vehspd.absoluteValue < 80)
+                    threshold = 20;
+                else
+                    threshold = 25;
+
+                // set_wipingLevel threshold에 따라 diff에 맞춰 wipinglevel 조절
+                if (std::fabs(diff) >= threshold) // threshold 이상 변화 시
+                {
+                    if (diff > 0 && wipinglevel < BCM_WipingLevel::HIGH)
+                    {
+                        wipinglevel = static_cast<BCM_WipingLevel>(static_cast<int>(wipinglevel) + 1); // 단계 증가
+                    }
+                    else if (diff < 0 && wipinglevel > BCM_WipingLevel::LOW)
+                    {
+                        wipinglevel = static_cast<BCM_WipingLevel>(static_cast<int>(wipinglevel) - 1); // 단계 감소
+                    }
+
+                    // 기준 속도 업데이트
+                    ref_vehspd = vehspd;
+                }
+                set_wipingLevel(wipinglevel);
+
+                std::int8_t output_1;
+                output_1 = (diffDivided > 0) ? 1 : ((diffDivided == 0) ? 0 : -1);
+                std::double_t output_2 = std::floor(std::fabs(diffDivided)) * 0.1;
+                std::double_t output_3 = output_1 * output_2 + 1;
+                set_wipingInterval(std::round(ref_wipingInterval / output_3));
+                std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            }
+        }
     } // namespace simulation
 } // namespace eevp

@@ -116,42 +116,26 @@ namespace eevp
             static pthread_t thread_checkstop;
             static pthread_t thread_checkparking;
             static pthread_t thread_getvalue;
+            static pthread_t thread_commandwiping;
             static void *checkDrivingIntention(void *inst);
             static void *checkStopStatus(void *inst);
             static void *checkParkingIntention(void *inst);
             static void *startGetValue(void *inst);
+            static void *commandWiping(void *inst);
 
             // LogicVar
             bool isIntentToDrive = false;
             bool isStopped = true;
             bool isParking = true;
-            bool isgearP = false;
+            bool isWiping = false;
+            bool shouldStartWiping = false;
 
             /// @brief Check if velocity is zero for a duration
             bool isVelocityZeroForDuration();
 
             /// @brief Dynamic Wiper Adjustment based on velocity
-            void DynamicWiperAdjustment(double new_wiperSpeed, double new_wiperInterval);
-
-            /// @brief Retrieve gear value
-            void getGearValue(std::uint8_t &gearValue);
-
-            /// @brief Retrieve sonar value
-            void getSonarValue(double &sonarValue);
-
-            /// @brief Retrieve vehicle velocity
-            void getVehVelocity(double &vehVelocity);
-
-            /// @brief Retrieve brake pedal value
-            void getBrakePedalValue(double &brakeValue);
-
-            /// @brief Set wiper speed
-            void setWiperSpeed(double wiperSpeed);
-
-            /// @brief Set wiper interval
-            void setWiperInterval(double wiperInterval);
-
-            void notifyMFSWiperSpeedInterval(const double &wiperSpeed, const double &wiperInterval);
+            void DynamicWiperAdjustment();
+            
 
             /// @brief Flag of Running
             static std::atomic_bool mRunning;

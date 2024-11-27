@@ -34,8 +34,10 @@
 #include "skeleton/SESLServiceSkeletonImpl.h"
 
 #define BUF_SIZE 4096
-#define SOCKET_IP "192.168.100.242" // 개인 테스트: 192.168.100.242, PXI 테스트: 169.254.195.237
-#define SOCKET_PORT 5000            // 개인 테스트: 5000, PXI 테스트: 3363
+#define SOCKET_IP "192.168.100.242" // 개인 테스트: 192.168.100.242, PXI 테스트: 169.254.195.237, 공학대 aws서버: 54.249.132.65
+#define SOCKET_PORT 5000            // 개인 테스트: 5000, PXI 테스트: 3363, 공학대 aws서버: 8282
+#define KM_IP "54.249.132.65"
+#define KM_PORT 8282
 
 using namespace ara::core;
 using json = nlohmann::json;
@@ -153,11 +155,32 @@ namespace eevp
             ara::SESL::Vehicle_Data vehicle_Data_receive;
             ara::SESL::Vehicle_Data vehicle_Data_send;
 
+            // KMVar
+            struct MoodLamp
+            {
+                bool isOn;
+                std::uint8_t brightness;
+                std::uint16_t color;
+            };
+
+            std::uint8_t cyclingMode;
+
+            struct SmartFilm
+            {
+                bool isOn;
+                std::uint8_t transparentRatio;
+            };
+
+            SmartFilm sf[10];
+            MoodLamp ml[15];
+
             // Thread
             static pthread_t thread_socket_recv;
             static pthread_t thread_socket_send;
+            static pthread_t thread_socket_km;
             static void *socket_recv(void *inst);
             static void *socket_send(void *inst);
+            static void *socket_km(void *inst);
 
             // json 데이터 추출
             void extractWiperData(const json &wiperData);
@@ -170,6 +193,9 @@ namespace eevp
             void extractSnsrUssData(const json &sonarData);
             void extractLotteData(const json &lotteData);
             void extractSESLData(const json &seslData);
+            void extractCyclingmode(const json &cyclingData);
+            void extractSmartFilm(const json &sfData);
+            void extractMoodLamp(const json &mlData);
 
             // 구독앱에서 데이터 Request 여부
             bool requestwipinglevel = false;

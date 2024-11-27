@@ -8,6 +8,7 @@ namespace eevp
     {
         pthread_t ServiceCreator::thread_socket_recv;
         pthread_t ServiceCreator::thread_socket_send;
+        pthread_t ServiceCreator::thread_socket_km;
         std::string ServiceCreator::wiperLevel[] = {"LOW", "MEDIUM", "HIGH", "STOP"};
 
         std::atomic_bool ServiceCreator::mRunning(false);
@@ -679,17 +680,116 @@ namespace eevp
         bool ServiceCreator::startSocketClient()
         {
             mLogger.LogInfo() << __func__;
+            if (pthread_create(&thread_socket_km, nullptr, ServiceCreator::socket_km, this) != 0)
+            {
+                mLogger.LogInfo() << "KM 스레드 생성 실패";
+                return false;
+            }
             if (pthread_create(&thread_socket_recv, nullptr, ServiceCreator::socket_recv, this) != 0)
             {
-                mLogger.LogInfo() << "소켓 스레드 생성 실패";
+                mLogger.LogInfo() << "Recv 스레드 생성 실패";
                 return false;
             }
             if (pthread_create(&thread_socket_send, nullptr, ServiceCreator::socket_send, this) != 0)
             {
-                mLogger.LogInfo() << "소켓 스레드 생성 실패";
+                mLogger.LogInfo() << "Send 스레드 생성 실패";
                 return false;
             }
             return true;
+        }
+
+        void *ServiceCreator::socket_km(void *inst)
+        {
+            ServiceCreator *instance = static_cast<ServiceCreator *>(inst);
+            instance->mLogger.LogInfo() << __func__;
+
+            ///////////////////// 값을 소켓으로 받아서 recv데이터로 대입 /////////////////////
+
+            int sock;
+            char recvMessage[BUF_SIZE];
+            std::string recvMessage_s;
+            int str_len;
+            struct sockaddr_in serv_adr;
+
+            sock = socket(AF_INET, SOCK_STREAM, 0);
+
+            if (sock == -1)
+            {
+                instance->mLogger.LogInfo() << "km_socket() error";
+                return nullptr;
+            }
+
+            // memset(&serv_adr, 0, sizeof(serv_adr));
+            serv_adr.sin_family = AF_INET;
+            serv_adr.sin_addr.s_addr = inet_addr(KM_IP);
+            serv_adr.sin_port = htons(KM_PORT);
+            // 클라이언트가 서버와의 연결을 위해 연결요청을 한다.
+            if (connect(sock, (struct sockaddr *)&serv_adr, sizeof(serv_adr)) == -1)
+                instance->mLogger.LogInfo() << "km_socket() error!";
+            else
+                instance->mLogger.LogInfo() << "Connected...........";
+
+            while (mRunning)
+            {
+                str_len = read(sock, recvMessage, BUF_SIZE);
+                if (str_len == -1)
+                {
+                    instance->mLogger.LogInfo() << "km_socket is broken";
+                    break;
+                }
+                recvMessage[str_len] = 0;
+                // instance->mLogger.LogInfo() << "Message from km: " << recvMessage;
+
+                try
+                {
+                    json recvData = json::parse(recvMessage);
+
+                    if (recvData.contains("CyclingMode"))
+                        instance->extractCyclingmode(recvData["CyclingMode"]);
+                    if (recvData.contains("SmartFilm"))
+                        instance->extractSmartFilm(recvData["SmartFilm"]);
+                    if (recvData.contains("MoodLamp"))
+                        instance->extractMoodLamp(recvData["MoodLamp"]);
+                }
+                catch (const json::parse_error &e)
+                {
+                    instance->mLogger.LogInfo() << "JSON parse error: " << e.what();
+                }
+                // instance->mLogger.LogInfo() << "데이터 추출 완료";
+            }
+            return nullptr;
+        }
+
+        void ServiceCreator::extractCyclingmode(const json &cyclingData)
+        {
+            cyclingMode = cyclingData.value("mode", static_cast<std::uint8_t>(2));
+            return;
+        }
+
+        void ServiceCreator::extractSmartFilm(const json &sfData)
+        {
+            int index = 0;
+            for (const auto &item : sfData)
+            {
+                if (index >= 10)
+                    break;
+                sf[index].isOn = item.value("isOn", false);
+                sf[index].transparentRatio = item.value("transparentRatio", 0);
+            }
+        }
+
+        void ServiceCreator::extractMoodLamp(const json &mlData)
+        {
+            int index = 0;
+            for (const auto &item : mlData)
+            {
+                if (index >= 15)
+                    break;
+                ml[index].isOn = item["isOn"];
+                ml[index].isOn = item.value("isOn", false);
+                ml[index].brightness = item.value("brightness", 0);
+                ml[index].color = item.value("color", 0x000000);
+            }
         }
 
         void *ServiceCreator::socket_send(void *inst)
@@ -793,16 +893,35 @@ namespace eevp
                     instance->mLogger.LogInfo() << a << "번째 데이터 추출";
 
                     // JSON 객체에서 데이터 추출
-                    instance->extractWiperData(recvData["Wiper"]);
-                    instance->extractBatteryData(recvData["Battery"]);
-                    instance->extractAccrPedalData(recvData["AccrPedal"]);
-                    instance->extractEnvMonitorData(recvData["EnvMonitor"]);
-                    instance->extractGearData(recvData["Gear"]);
-                    instance->extractBrakePedalData(recvData["BrakePedal"]);
-                    instance->extractVehSpdData(recvData["VehSpd"]);
-                    instance->extractSnsrUssData(recvData["SonarInfo"]);
-                    instance->extractLotteData(recvData["Lotte"]);
-                    instance->extractSESLData(recvData["SESL"]);
+                    if (recvData.contains("Wiper"))
+                        instance->extractWiperData(recvData["Wiper"]);
+
+                    if (recvData.contains("Battery"))
+                        instance->extractBatteryData(recvData["Battery"]);
+
+                    if (recvData.contains("AccrPedal"))
+                        instance->extractAccrPedalData(recvData["AccrPedal"]);
+
+                    if (recvData.contains("EnvMonitor"))
+                        instance->extractEnvMonitorData(recvData["EnvMonitor"]);
+
+                    if (recvData.contains("Gear"))
+                        instance->extractGearData(recvData["Gear"]);
+
+                    if (recvData.contains("BrakePedal"))
+                        instance->extractBrakePedalData(recvData["BrakePedal"]);
+
+                    if (recvData.contains("VehSpd"))
+                        instance->extractVehSpdData(recvData["VehSpd"]);
+
+                    if (recvData.contains("SonarInfo"))
+                        instance->extractSnsrUssData(recvData["SonarInfo"]);
+
+                    if (recvData.contains("Lotte"))
+                        instance->extractLotteData(recvData["Lotte"]);
+
+                    if (recvData.contains("SESL"))
+                        instance->extractSESLData(recvData["SESL"]);
 
                     // 받은 데이터 로그 출력 (디버깅용)
                     // instance->getWiperRecv();

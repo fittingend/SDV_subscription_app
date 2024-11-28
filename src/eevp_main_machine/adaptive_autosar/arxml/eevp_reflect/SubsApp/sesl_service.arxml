@@ -129,43 +129,43 @@
                     <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="107dc93f-fc02-42a3-9c39-48b7c1742839">
                       <SHORT-NAME>Fwd_Distance</SHORT-NAME>
                       <TYPE-REFERENCE>
-                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/UnsetARElements/double</TYPE-REFERENCE-REF>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/double</TYPE-REFERENCE-REF>
                       </TYPE-REFERENCE>
                     </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
                     <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="5fc9ea14-5a76-435b-ba2c-e6c164c3c464">
                       <SHORT-NAME>Rear_Distance</SHORT-NAME>
                       <TYPE-REFERENCE>
-                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/UnsetARElements/double</TYPE-REFERENCE-REF>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/double</TYPE-REFERENCE-REF>
                       </TYPE-REFERENCE>
                     </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
                     <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="a26db500-8eb0-4de4-9890-2cd9edb1ed5e">
                       <SHORT-NAME>Accel</SHORT-NAME>
                       <TYPE-REFERENCE>
-                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/UnsetARElements/bool</TYPE-REFERENCE-REF>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-REFERENCE-REF>
                       </TYPE-REFERENCE>
                     </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
                     <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="938e2e51-b756-4e81-b193-5abe962faa70">
                       <SHORT-NAME>Brake</SHORT-NAME>
                       <TYPE-REFERENCE>
-                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/UnsetARElements/double</TYPE-REFERENCE-REF>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/double</TYPE-REFERENCE-REF>
                       </TYPE-REFERENCE>
                     </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
                     <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="917ded66-0cbb-4252-b3cb-c1849a9152d4">
                       <SHORT-NAME>Beep</SHORT-NAME>
                       <TYPE-REFERENCE>
-                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/UnsetARElements/bool</TYPE-REFERENCE-REF>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-REFERENCE-REF>
                       </TYPE-REFERENCE>
                     </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
                     <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="4965d328-dba2-4edb-ac40-032ac9e68ef1">
                       <SHORT-NAME>Beep_Large</SHORT-NAME>
                       <TYPE-REFERENCE>
-                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/UnsetARElements/bool</TYPE-REFERENCE-REF>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/bool</TYPE-REFERENCE-REF>
                       </TYPE-REFERENCE>
                     </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
                     <CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT UUID="232881d4-6a42-4507-8baa-35a7fe1abbb3">
                       <SHORT-NAME>Light</SHORT-NAME>
                       <TYPE-REFERENCE>
-                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/UnsetARElements/double</TYPE-REFERENCE-REF>
+                        <TYPE-REFERENCE-REF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/BaseType/double</TYPE-REFERENCE-REF>
                       </TYPE-REFERENCE>
                     </CPP-IMPLEMENTATION-DATA-TYPE-ELEMENT>
                   </SUB-ELEMENTS>
@@ -296,7 +296,7 @@
                       <ARGUMENTS>
                         <ARGUMENT-DATA-PROTOTYPE UUID="36f2dfff-0865-4d54-95ec-2de9eb910664">
                           <SHORT-NAME>Receive_Argument</SHORT-NAME>
-                          <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/UnsetARElements/Vehicle_Data</TYPE-TREF>
+                          <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/DataType/Implementation/CPP/Vehicle_Data</TYPE-TREF>
                           <DIRECTION>OUT</DIRECTION>
                         </ARGUMENT-DATA-PROTOTYPE>
                       </ARGUMENTS>

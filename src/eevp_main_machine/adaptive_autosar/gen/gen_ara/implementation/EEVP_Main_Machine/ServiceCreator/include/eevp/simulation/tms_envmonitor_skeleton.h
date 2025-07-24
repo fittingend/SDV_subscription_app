@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : tms_envmonitor_skeleton.h
 /// SERVICE INTERFACE NAME            : TMS_EnvMonitor
-/// GENERATED DATE                    : 2024-11-05 15:23:59
+/// GENERATED DATE                    : 2025-01-02 14:49:22
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -60,15 +60,15 @@ public:
     };
     struct notifyHumidityOutput
     {
-        eevp::simulation::TMS_EnvZoneHumidityAry TMS_EnvZoneHumidityAry;
+        eevp::simulation::type::TMS_EnvZoneHumidityAry TMS_EnvZoneHumidityAry;
     };
     struct notifyLightIntensityOutput
     {
-        eevp::simulation::TMS_EnvZoneLightIntensityAry TMS_EnvZoneLightIntensityAry;
+        eevp::simulation::type::TMS_EnvZoneLightIntensityAry TMS_EnvZoneLightIntensityAry;
     };
     struct notifyTempOutput
     {
-        eevp::simulation::TMS_EnvZoneTempAry TMS_EnvZoneTempAry;
+        eevp::simulation::type::TMS_EnvZoneTempAry TMS_EnvZoneTempAry;
     };
     /// @brief Constructor
     /// @uptrace{SWS_CM_00002, SWS_CM_00152}
@@ -204,13 +204,13 @@ private:
 public:
     /// @brief Method, getHumidity
     /// @uptrace{SWS_CM_00191}
-    virtual ara::core::Future<getHumidityOutput> getHumidity(const eevp::simulation::TMS_EnvZone& zoneId) = 0;
+    virtual ara::core::Future<getHumidityOutput> getHumidity(const eevp::simulation::type::TMS_EnvZone& zoneId) = 0;
     /// @brief Method, getLightIntensity
     /// @uptrace{SWS_CM_00191}
-    virtual ara::core::Future<getLightIntensityOutput> getLightIntensity(const eevp::simulation::TMS_EnvZone& zoneId) = 0;
+    virtual ara::core::Future<getLightIntensityOutput> getLightIntensity(const eevp::simulation::type::TMS_EnvZone& zoneId) = 0;
     /// @brief Method, getTemp
     /// @uptrace{SWS_CM_00191}
-    virtual ara::core::Future<getTempOutput> getTemp(const eevp::simulation::TMS_EnvZone& zoneId) = 0;
+    virtual ara::core::Future<getTempOutput> getTemp(const eevp::simulation::type::TMS_EnvZone& zoneId) = 0;
     /// @brief Method, notifyHumidity
     /// @uptrace{SWS_CM_00191}
     virtual ara::core::Future<notifyHumidityOutput> notifyHumidity() = 0;
@@ -227,7 +227,7 @@ private:
         std::uint8_t retResult{1};
         std::vector<std::uint8_t> retData{};
         para::serializer::Deserializer deserializer{data};
-        eevp::simulation::TMS_EnvZone _zoneId_;
+        eevp::simulation::type::TMS_EnvZone _zoneId_;
         deserializer.read(_zoneId_);
         auto future = getHumidity(_zoneId_);
         auto result = future.GetResult();
@@ -256,7 +256,7 @@ private:
         std::uint8_t retResult{1};
         std::vector<std::uint8_t> retData{};
         para::serializer::Deserializer deserializer{data};
-        eevp::simulation::TMS_EnvZone _zoneId_;
+        eevp::simulation::type::TMS_EnvZone _zoneId_;
         deserializer.read(_zoneId_);
         auto future = getLightIntensity(_zoneId_);
         auto result = future.GetResult();
@@ -285,7 +285,7 @@ private:
         std::uint8_t retResult{1};
         std::vector<std::uint8_t> retData{};
         para::serializer::Deserializer deserializer{data};
-        eevp::simulation::TMS_EnvZone _zoneId_;
+        eevp::simulation::type::TMS_EnvZone _zoneId_;
         deserializer.read(_zoneId_);
         auto future = getTemp(_zoneId_);
         auto result = future.GetResult();

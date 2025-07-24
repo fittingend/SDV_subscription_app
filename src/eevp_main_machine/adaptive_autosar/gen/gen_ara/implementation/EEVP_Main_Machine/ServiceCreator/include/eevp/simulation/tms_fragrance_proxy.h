@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : tms_fragrance_proxy.h
 /// SERVICE INTERFACE NAME            : TMS_Fragrance
-/// GENERATED DATE                    : 2024-11-05 15:23:59
+/// GENERATED DATE                    : 2025-01-02 14:49:22
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -141,7 +141,7 @@ public:
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::TMS_FragranceType TMS_FragranceType;
+        eevp::simulation::type::TMS_FragranceType TMS_FragranceType;
     };
     /// @brief Constructor
     explicit getType(para::com::ProxyInterface* interface) : mInterface(interface)
@@ -321,7 +321,7 @@ public:
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::TMS_ReturnCode TMS_ReturnCode;
+        eevp::simulation::type::TMS_ReturnCode TMS_ReturnCode;
     };
     /// @brief Constructor
     explicit setConcentration(para::com::ProxyInterface* interface) : mInterface(interface)
@@ -412,7 +412,7 @@ public:
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::TMS_ReturnCode TMS_ReturnCode;
+        eevp::simulation::type::TMS_ReturnCode TMS_ReturnCode;
     };
     /// @brief Constructor
     explicit setType(para::com::ProxyInterface* interface) : mInterface(interface)
@@ -444,7 +444,7 @@ public:
     }
     /// @brief Function call operator
     /// @uptrace{SWS_CM_00196}
-    ara::core::Future<Output> operator()(const eevp::simulation::TMS_FragranceType& type)
+    ara::core::Future<Output> operator()(const eevp::simulation::type::TMS_FragranceType& type)
     {
         para::serializer::Serializer __serializer__{};
         __serializer__.write(type);
@@ -503,7 +503,7 @@ public:
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::TMS_ReturnCode TMS_ReturnCode;
+        eevp::simulation::type::TMS_ReturnCode TMS_ReturnCode;
     };
     /// @brief Constructor
     explicit turnOff(para::com::ProxyInterface* interface) : mInterface(interface)
@@ -593,7 +593,7 @@ public:
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::TMS_ReturnCode TMS_ReturnCode;
+        eevp::simulation::type::TMS_ReturnCode TMS_ReturnCode;
     };
     /// @brief Constructor
     explicit turnOn(para::com::ProxyInterface* interface) : mInterface(interface)

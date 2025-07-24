@@ -6,34 +6,16 @@
     "instance-specifier" : "IntelligentWiper/AA/RPort_BCM_WiperWash",
     "service-protocol" : "someip",
     "service-name" : "BCM_WiperWash",
-    "service-id" : "9005",
+    "service-id" : "5005",
     "instance-id" : "ANY",
     "major-version" : "1",
     "minor-version" : "ANY",
-    "client-id" : "851",
+    "client-id" : "897",
     "events" : [
     ],
     "methods" : [
         {
-            "name" : "getWipingInterval",
-            "method-id" : "8",
-            "transport" : "udp",
-            "req-max-segment-len" : "0",
-            "req-separation-time" : "0.0",
-            "resp-max-segment-len" : "0",
-            "resp-separation-time" : "0.0"
-        },
-        {
-            "name" : "getWipingLevel",
-            "method-id" : "7",
-            "transport" : "udp",
-            "req-max-segment-len" : "0",
-            "req-separation-time" : "0.0",
-            "resp-max-segment-len" : "0",
-            "resp-separation-time" : "0.0"
-        },
-        {
-            "name" : "isWiping",
+            "name" : "setWipingInterval",
             "method-id" : "1",
             "transport" : "udp",
             "req-max-segment-len" : "0",
@@ -42,7 +24,7 @@
             "resp-separation-time" : "0.0"
         },
         {
-            "name" : "setWipingInterval",
+            "name" : "setWipingLevel",
             "method-id" : "2",
             "transport" : "udp",
             "req-max-segment-len" : "0",
@@ -51,7 +33,7 @@
             "resp-separation-time" : "0.0"
         },
         {
-            "name" : "setWipingLevel",
+            "name" : "startWiping",
             "method-id" : "3",
             "transport" : "udp",
             "req-max-segment-len" : "0",
@@ -60,26 +42,8 @@
             "resp-separation-time" : "0.0"
         },
         {
-            "name" : "setWipingLevelImme",
-            "method-id" : "4",
-            "transport" : "udp",
-            "req-max-segment-len" : "0",
-            "req-separation-time" : "0.0",
-            "resp-max-segment-len" : "0",
-            "resp-separation-time" : "0.0"
-        },
-        {
-            "name" : "startWiping",
-            "method-id" : "5",
-            "transport" : "udp",
-            "req-max-segment-len" : "0",
-            "req-separation-time" : "0.0",
-            "resp-max-segment-len" : "0",
-            "resp-separation-time" : "0.0"
-        },
-        {
             "name" : "stopWiping",
-            "method-id" : "6",
+            "method-id" : "4",
             "transport" : "udp",
             "req-max-segment-len" : "0",
             "req-separation-time" : "0.0",
@@ -91,7 +55,7 @@
         {
             "name" : "wiperInterval",
             "getter" : {
-                "method-id" : "13",
+                "method-id" : "5",
                 "transport" : "udp",
                 "req-max-segment-len" : "0",
                 "req-separation-time" : "0.0",
@@ -107,7 +71,7 @@
                 "resp-separation-time" : "0.0"
             },
             "notifier" : {
-                "event-id" : "14",
+                "event-id" : "6",
                 "transport" : "udp",
                 "max-segment-len" : "0",
                 "separation-time" : "0.0"
@@ -116,7 +80,7 @@
         {
             "name" : "wiperLevel",
             "getter" : {
-                "method-id" : "11",
+                "method-id" : "7",
                 "transport" : "udp",
                 "req-max-segment-len" : "0",
                 "req-separation-time" : "0.0",
@@ -132,7 +96,7 @@
                 "resp-separation-time" : "0.0"
             },
             "notifier" : {
-                "event-id" : "12",
+                "event-id" : "8",
                 "transport" : "udp",
                 "max-segment-len" : "0",
                 "separation-time" : "0.0"

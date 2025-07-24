@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : vcs_vehspd_proxy.h
 /// SERVICE INTERFACE NAME            : VCS_VehSpd
-/// GENERATED DATE                    : 2024-11-05 15:24:00
+/// GENERATED DATE                    : 2025-01-02 14:49:22
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -39,202 +39,41 @@ namespace events
 /// @uptrace{SWS_CM_01031}
 namespace fields
 {
-/// @uptrace{SWS_CM_00008}
-class vcs_VehSpd
-{
-public:
-    /// @brief Type alias for type of field value
-    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
-    using FieldType = eevp::simulation::VCS_VehSpd;
-    /// @brief Constructor
-    explicit vcs_VehSpd(para::com::ProxyInterface* interface) : mInterface(interface)
-    {
-        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-    }
-    /// @brief Destructor
-    virtual ~vcs_VehSpd() = default;
-    /// @brief Delete copy constructor
-    vcs_VehSpd(const vcs_VehSpd& other) = delete;
-    /// @brief Delete copy assignment
-    vcs_VehSpd& operator=(const vcs_VehSpd& other) = delete;
-    /// @brief Move constructor
-    vcs_VehSpd(vcs_VehSpd&& other) noexcept : mInterface(other.mInterface)
-    {
-        mMaxSampleCount = other.mMaxSampleCount;
-        mEventReceiveHandler = other.mEventReceiveHandler;
-        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
-        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
-        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
-        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-    }
-    /// @brief Move assignment
-    vcs_VehSpd& operator=(vcs_VehSpd&& other) noexcept
-    {
-        mInterface = other.mInterface;
-        mMaxSampleCount = other.mMaxSampleCount;
-        mEventReceiveHandler = other.mEventReceiveHandler;
-        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
-        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
-        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
-        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-        return *this;
-    }
-    /// @brief Requests getter method to Communication Management
-    /// @uptrace{SWS_CM_00112}
-    ara::core::Future<FieldType> Get()
-    {
-        std::vector<std::uint8_t> data{};
-        auto* promise = new ara::core::Promise<FieldType>();
-        auto future = promise->get_future();
-        mInterface->CallMethod(kGetterCallSign, data, promise);
-        return future;
-    }
-    /// @brief Requests "Subscribe" message to Communication Management
-    /// @uptrace{SWS_CM_00141}
-    ara::core::Result<void> Subscribe(size_t maxSampleCount)
-    {
-        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
-        {
-            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
-            {
-                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
-            }
-        }
-        mMaxSampleCount = maxSampleCount;
-        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
-    }
-    /// @brief Requests "StopSubscribe" message to Communication Management
-    /// @uptrace{SWS_CM_00151}
-    void Unsubscribe()
-    {
-        mInterface->UnsubscribeEvent(kNotifierCallSign);
-    }
-    /// @brief Return state for current subscription
-    /// @uptrace{SWS_CM_00316}
-    ara::com::SubscriptionState GetSubscriptionState() const
-    {
-        return mInterface->GetSubscriptionState(kNotifierCallSign);
-    }
-    /// @brief Register callback to catch changes of subscription state
-    /// @uptrace{SWS_CM_00333}
-    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
-    {
-        mSubscriptionStateChangeHandler = std::move(handler);
-        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
-    }
-    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
-    /// @uptrace{SWS_CM_00334}
-    void UnsetSubscriptionStateChangeHandler()
-    {
-        mSubscriptionStateChangeHandler = nullptr;
-        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
-    }
-    /// @brief Get received notification value from cache
-    /// @uptrace{SWS_CM_00701}
-    template<typename F>
-    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
-    {
-        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
-        for (const auto& sample : samples)
-        {
-            para::serializer::Deserializer deserializer{sample};
-            FieldType value;
-            deserializer.read(value);
-            f(ara::com::make_sample_ptr<const FieldType>(value));
-        }
-        return samples.size();
-    }
-    /// @brief Register callback to catch that notification value is received
-    /// @uptrace{SWS_CM_00181}
-    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
-    {
-        mEventReceiveHandler = std::move(handler);
-        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
-    }
-    /// @brief Unset bound callback by SetReceiveHandler
-    /// @uptrace{SWS_CM_00183}
-    ara::core::Result<void> UnsetReceiveHandler()
-    {
-        mEventReceiveHandler = nullptr;
-        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
-    }
-    /// @brief Returns the count of free notification cache
-    /// @uptrace{SWS_CM_00705}
-    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
-    {
-        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
-        if (ret < 0)
-        {
-            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
-        }
-        return ret;
-    }
-    
-private:
-    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
-    {
-        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
-        if (result == 0)
-        {
-            para::serializer::Deserializer deserializer{data};
-            FieldType value;
-            deserializer.read(value);
-            promise->set_value(value);
-        }
-        else
-        {
-            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
-        }
-        delete promise;
-    }
-    size_t mMaxSampleCount{0};
-    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
-    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
-    para::com::ProxyInterface* mInterface;
-    const std::string kGetterCallSign = {"vcs_VehSpdGetter"};
-    const std::string kNotifierCallSign = {"vcs_VehSpdNotifier"};
-};
 } /// namespace fields
 /// @uptrace{SWS_CM_01015}
 namespace methods
 {
 /// @uptrace{SWS_CM_00006}
-class notifyStatus
+class notifyVehSpd
 {
 public:
     /// @brief Container for OUT arguments
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::VCS_VehSpd VCS_VehSpd;
+        eevp::simulation::type::VCS_VehSpd VCS_VehSpd;
     };
     /// @brief Constructor
-    explicit notifyStatus(para::com::ProxyInterface* interface) : mInterface(interface)
+    explicit notifyVehSpd(para::com::ProxyInterface* interface) : mInterface(interface)
     {
         mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
             HandleMethodReturn(result, data, userData);
         });
     }
     /// @brief Destructor
-    virtual ~notifyStatus() = default;
+    virtual ~notifyVehSpd() = default;
     /// @brief
-    notifyStatus(const notifyStatus& other) = delete;
-    notifyStatus& operator=(const notifyStatus& other) = delete;
+    notifyVehSpd(const notifyVehSpd& other) = delete;
+    notifyVehSpd& operator=(const notifyVehSpd& other) = delete;
     /// @brief Move constructor
-    notifyStatus(notifyStatus&& other) noexcept : mInterface(other.mInterface)
+    notifyVehSpd(notifyVehSpd&& other) noexcept : mInterface(other.mInterface)
     {
         mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
             HandleMethodReturn(result, data, userData);
         });
     }
     /// @brief Move assignment
-    notifyStatus& operator=(notifyStatus&& other) noexcept
+    notifyVehSpd& operator=(notifyVehSpd&& other) noexcept
     {
         mInterface = other.mInterface;
         mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
@@ -265,11 +104,11 @@ public:
 private:
     static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
     {
-        auto* promise = static_cast<ara::core::Promise<notifyStatus::Output>*>(userData);
+        auto* promise = static_cast<ara::core::Promise<notifyVehSpd::Output>*>(userData);
         if (result == 0)
         {
             para::serializer::Deserializer deserializer{data};
-            notifyStatus::Output output;
+            notifyVehSpd::Output output;
             deserializer.read(output.VCS_VehSpd);
             promise->set_value(output);
         }
@@ -289,10 +128,10 @@ private:
                 }
             }
         }
-        delete static_cast<ara::core::Promise<notifyStatus::Output>*>(userData);
+        delete static_cast<ara::core::Promise<notifyVehSpd::Output>*>(userData);
     }
     para::com::ProxyInterface* mInterface;
-    const std::string kCallSign{"notifyStatus"};
+    const std::string kCallSign{"notifyVehSpd"};
 };
 } /// namespace methods
 /// @uptrace{SWS_CM_00004}
@@ -378,8 +217,7 @@ public:
     explicit VCS_VehSpdProxy(HandleType& handle)
         : mHandle(handle)
         , mInterface(std::make_unique<para::com::ProxyInterface>(handle.GetInstanceSpecifier(), handle.GetServiceHandle()))
-        , vcs_VehSpd(mInterface.get())
-        , notifyStatus(mInterface.get())
+        , notifyVehSpd(mInterface.get())
     {
     }
     /// @brief Destructor
@@ -396,8 +234,7 @@ public:
     VCS_VehSpdProxy(VCS_VehSpdProxy&& other) noexcept
         : mHandle(std::move(other.mHandle))
         , mInterface(std::move(other.mInterface))
-        , vcs_VehSpd(std::move(other.vcs_VehSpd))
-        , notifyStatus(std::move(other.notifyStatus))
+        , notifyVehSpd(std::move(other.notifyVehSpd))
     {
         mInterface->StopFindService();
         other.mInterface.reset();
@@ -409,8 +246,7 @@ public:
         mHandle = std::move(other.mHandle);
         mInterface = std::move(other.mInterface);
         mInterface->StopFindService();
-        vcs_VehSpd = std::move(other.vcs_VehSpd);
-        notifyStatus = std::move(other.notifyStatus);
+        notifyVehSpd = std::move(other.notifyVehSpd);
         other.mInterface.reset();
         return *this;
     }
@@ -432,10 +268,8 @@ private:
     std::unique_ptr<para::com::ProxyInterface> mInterface;
     
 public:
-    /// @brief - field, vcs_VehSpd
-    fields::vcs_VehSpd vcs_VehSpd;
-    /// @brief - method, notifyStatus
-    methods::notifyStatus notifyStatus;
+    /// @brief - method, notifyVehSpd
+    methods::notifyVehSpd notifyVehSpd;
 };
 } /// namespace proxy
 } /// namespace simulation

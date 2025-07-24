@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : tms_fragrance_skeleton.h
 /// SERVICE INTERFACE NAME            : TMS_Fragrance
-/// GENERATED DATE                    : 2024-11-05 15:23:58
+/// GENERATED DATE                    : 2025-01-02 14:49:22
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -52,7 +52,7 @@ public:
     };
     struct getTypeOutput
     {
-        eevp::simulation::TMS_FragranceType TMS_FragranceType;
+        eevp::simulation::type::TMS_FragranceType TMS_FragranceType;
     };
     struct isRunningOutput
     {
@@ -60,19 +60,19 @@ public:
     };
     struct setConcentrationOutput
     {
-        eevp::simulation::TMS_ReturnCode TMS_ReturnCode;
+        eevp::simulation::type::TMS_ReturnCode TMS_ReturnCode;
     };
     struct setTypeOutput
     {
-        eevp::simulation::TMS_ReturnCode TMS_ReturnCode;
+        eevp::simulation::type::TMS_ReturnCode TMS_ReturnCode;
     };
     struct turnOffOutput
     {
-        eevp::simulation::TMS_ReturnCode TMS_ReturnCode;
+        eevp::simulation::type::TMS_ReturnCode TMS_ReturnCode;
     };
     struct turnOnOutput
     {
-        eevp::simulation::TMS_ReturnCode TMS_ReturnCode;
+        eevp::simulation::type::TMS_ReturnCode TMS_ReturnCode;
     };
     /// @brief Constructor
     /// @uptrace{SWS_CM_00002, SWS_CM_00152}
@@ -229,7 +229,7 @@ public:
     virtual ara::core::Future<setConcentrationOutput> setConcentration(const std::uint16_t& concentration) = 0;
     /// @brief Method, setType
     /// @uptrace{SWS_CM_00191}
-    virtual ara::core::Future<setTypeOutput> setType(const eevp::simulation::TMS_FragranceType& type) = 0;
+    virtual ara::core::Future<setTypeOutput> setType(const eevp::simulation::type::TMS_FragranceType& type) = 0;
     /// @brief Method, turnOff
     /// @uptrace{SWS_CM_00191}
     virtual ara::core::Future<turnOffOutput> turnOff() = 0;
@@ -350,7 +350,7 @@ private:
         std::uint8_t retResult{1};
         std::vector<std::uint8_t> retData{};
         para::serializer::Deserializer deserializer{data};
-        eevp::simulation::TMS_FragranceType _type_;
+        eevp::simulation::type::TMS_FragranceType _type_;
         deserializer.read(_type_);
         auto future = setType(_type_);
         auto result = future.GetResult();

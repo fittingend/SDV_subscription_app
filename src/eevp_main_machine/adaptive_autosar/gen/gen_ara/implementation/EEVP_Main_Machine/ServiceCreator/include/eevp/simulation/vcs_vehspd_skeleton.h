@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : vcs_vehspd_skeleton.h
 /// SERVICE INTERFACE NAME            : VCS_VehSpd
-/// GENERATED DATE                    : 2024-11-05 15:24:00
+/// GENERATED DATE                    : 2025-01-02 14:49:22
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -40,109 +40,23 @@ namespace events
 /// @uptrace{SWS_CM_01031}
 namespace fields
 {
-/// @uptrace{SWS_CM_00007}
-class vcs_VehSpd
-{
-public:
-    /// @brief Type alias for type of field value
-    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
-    using FieldType = eevp::simulation::VCS_VehSpd;
-    /// @brief Constructor
-    explicit vcs_VehSpd(para::com::SkeletonInterface* interface) : mInterface(interface)
-    {
-    }
-    /// @brief Destructor
-    virtual ~vcs_VehSpd() = default;
-    /// @brief Delete copy constructor
-    vcs_VehSpd(const vcs_VehSpd& other) = delete;
-    /// @brief Delete copy assignment
-    vcs_VehSpd& operator=(const vcs_VehSpd& other) = delete;
-    /// @brief Move constructor
-    vcs_VehSpd(vcs_VehSpd&& other) noexcept : mInterface(other.mInterface)
-    {
-        RegisterGetHandler(std::move(other.mGetHandler));
-    }
-    /// @brief Move assignment
-    vcs_VehSpd& operator=(vcs_VehSpd&& other) noexcept
-    {
-        mInterface = other.mInterface;
-        RegisterGetHandler(std::move(other.mGetHandler));
-        return *this;
-    }
-    /// @brief Register callback for getter method
-    /// @uptrace{SWS_CM_00114}
-    ara::core::Result<void> RegisterGetHandler(std::function<ara::core::Future<FieldType>()> getHandler)
-    {
-        ara::core::Result<void> result{};
-        if (getHandler != nullptr)
-        {
-            mGetHandler = std::move(getHandler);
-            mInterface->SetMethodCallHandler(kGetterCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-                HandleGet(token);
-            });
-        }
-        return result;
-    }
-    /// @brief Send notification with value to subscribing service consumers
-    /// @uptrace{SWS_CM_90437}
-    ara::core::Result<void> Update(const FieldType& value)
-    {
-        para::serializer::Serializer serializer{};
-        serializer.write(value);
-        auto payload = serializer.ensure();
-        return mInterface->SendEvent(kNotifierCallSign, payload);
-    }
-    
-private:
-    void HandleGet(const para::com::MethodToken token)
-    {
-        std::uint8_t retResult{1};
-        std::vector<std::uint8_t> retData{};
-        auto future = mGetHandler();
-        auto result = future.GetResult();
-        if (result.HasValue())
-        {
-            FieldType value = result.Value();
-            para::serializer::Serializer serializer{};
-            serializer.write(value);
-            retData = serializer.ensure();
-            retResult = 0;
-        }
-        else
-        {
-            ara::core::ErrorDomain::IdType domainId = result.Error().Domain().Id();
-            ara::core::ErrorDomain::CodeType errorCode = result.Error().Value();
-            para::serializer::Serializer serializer{};
-            serializer.write(0, true, 0, domainId);
-            serializer.write(0, true, 0, errorCode);
-            retData = serializer.ensure();
-            retResult = 1;
-        }
-        mInterface->ReturnMethod(kGetterCallSign, retResult, retData, token);
-    }
-    para::com::SkeletonInterface* mInterface;
-    std::function<ara::core::Future<FieldType>()> mGetHandler{nullptr};
-    const std::string kGetterCallSign = {"vcs_VehSpdGetter"};
-    const std::string kNotifierCallSign = {"vcs_VehSpdNotifier"};
-};
 } /// namespace fields
 /// @uptrace{SWS_CM_00002}
 class VCS_VehSpdSkeleton
 {
 public:
     /// @uptrace{SWS_CM_00191}
-    struct notifyStatusOutput
+    struct notifyVehSpdOutput
     {
-        eevp::simulation::VCS_VehSpd VCS_VehSpd;
+        eevp::simulation::type::VCS_VehSpd VCS_VehSpd;
     };
     /// @brief Constructor
     /// @uptrace{SWS_CM_00002, SWS_CM_00152}
     VCS_VehSpdSkeleton(ara::core::InstanceSpecifier instanceSpec, ara::com::MethodCallProcessingMode mode = ara::com::MethodCallProcessingMode::kEvent)
         : mInterface(std::make_unique<para::com::SkeletonInterface>(instanceSpec, mode))
-        , vcs_VehSpd(mInterface.get())
     {
-        mInterface->SetMethodCallHandler(knotifyStatusCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlenotifyStatus(data, token);
+        mInterface->SetMethodCallHandler(knotifyVehSpdCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandlenotifyVehSpd(data, token);
         });
         mInterface->SetE2EErrorHandler([this](const ara::com::e2e::E2EErrorDomain& errorCode, ara::com::e2e::DataID dataID, ara::com::e2e::MessageCounter messageCounter) {
             E2EErrorHandler(errorCode, dataID, messageCounter);
@@ -160,10 +74,9 @@ public:
     /// @uptrace{SWS_CM_00135}
     VCS_VehSpdSkeleton(VCS_VehSpdSkeleton&& other) noexcept
         : mInterface(std::move(other.mInterface))
-        , vcs_VehSpd(std::move(other.vcs_VehSpd))
     {
-        mInterface->SetMethodCallHandler(knotifyStatusCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlenotifyStatus(data, token);
+        mInterface->SetMethodCallHandler(knotifyVehSpdCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandlenotifyVehSpd(data, token);
         });
         mInterface->SetE2EErrorHandler([this](const ara::com::e2e::E2EErrorDomain& errorCode, ara::com::e2e::DataID dataID, ara::com::e2e::MessageCounter messageCounter) {
             E2EErrorHandler(errorCode, dataID, messageCounter);
@@ -175,9 +88,8 @@ public:
     VCS_VehSpdSkeleton& operator=(VCS_VehSpdSkeleton&& other) noexcept
     {
         mInterface = std::move(other.mInterface);
-        vcs_VehSpd = std::move(other.vcs_VehSpd);
-        mInterface->SetMethodCallHandler(knotifyStatusCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
-            HandlenotifyStatus(data, token);
+        mInterface->SetMethodCallHandler(knotifyVehSpdCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandlenotifyVehSpd(data, token);
         });
         mInterface->SetE2EErrorHandler([this](const ara::com::e2e::E2EErrorDomain& errorCode, ara::com::e2e::DataID dataID, ara::com::e2e::MessageCounter messageCounter) {
             E2EErrorHandler(errorCode, dataID, messageCounter);
@@ -225,22 +137,20 @@ private:
     std::unique_ptr<para::com::SkeletonInterface> mInterface;
     
 public:
-    /// @brief Field, vcs_VehSpd
-    fields::vcs_VehSpd vcs_VehSpd;
-    /// @brief Method, notifyStatus
+    /// @brief Method, notifyVehSpd
     /// @uptrace{SWS_CM_00191}
-    virtual ara::core::Future<notifyStatusOutput> notifyStatus() = 0;
+    virtual ara::core::Future<notifyVehSpdOutput> notifyVehSpd() = 0;
     
 private:
-    void HandlenotifyStatus(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
+    void HandlenotifyVehSpd(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
     {
         std::uint8_t retResult{1};
         std::vector<std::uint8_t> retData{};
-        auto future = notifyStatus();
+        auto future = notifyVehSpd();
         auto result = future.GetResult();
         if (result.HasValue())
         {
-            notifyStatusOutput output = result.Value();
+            notifyVehSpdOutput output = result.Value();
             para::serializer::Serializer serializer{};
             serializer.write(output.VCS_VehSpd);
             retData = serializer.ensure();
@@ -256,9 +166,9 @@ private:
             retData = serializer.ensure();
             retResult = 1;
         }
-        mInterface->ReturnMethod(knotifyStatusCallSign, retResult, retData, token);
+        mInterface->ReturnMethod(knotifyVehSpdCallSign, retResult, retData, token);
     }
-    const std::string knotifyStatusCallSign{"notifyStatus"};
+    const std::string knotifyVehSpdCallSign{"notifyVehSpd"};
 };
 } /// namespace skeleton
 } /// namespace simulation

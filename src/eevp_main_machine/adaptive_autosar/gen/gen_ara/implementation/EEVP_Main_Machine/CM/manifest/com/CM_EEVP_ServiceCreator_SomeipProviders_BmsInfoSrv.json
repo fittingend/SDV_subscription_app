@@ -5,12 +5,12 @@
     "service-protocol" : "someip",
     "connector" : "eth0",
     "unicast-address" : "10.100.0.40",
-    "tcp-port" : "50110",
-    "udp-port" : "50110",
+    "tcp-port" : "50111",
+    "udp-port" : "50111",
     "skeletons" : [
         {
-            "service-id" : "9020",
-            "instance-id" : "9020",
+            "service-id" : "11",
+            "instance-id" : "11",
             "major-version" : "1",
             "minor-version" : "0",
             "sd-server-timing" : {

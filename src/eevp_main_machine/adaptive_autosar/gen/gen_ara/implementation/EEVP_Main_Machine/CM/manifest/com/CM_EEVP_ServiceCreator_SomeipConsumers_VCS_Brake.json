@@ -15,7 +15,7 @@
             "instance-id" : "ANY",
             "major-version" : "1",
             "minor-version" : "ANY",
-            "client-id" : "871",
+            "client-id" : "866",
             "sd-client-timing" : {
                 "initial-delay-min" : "0.01",
                 "initial-delay-max" : "0.1",

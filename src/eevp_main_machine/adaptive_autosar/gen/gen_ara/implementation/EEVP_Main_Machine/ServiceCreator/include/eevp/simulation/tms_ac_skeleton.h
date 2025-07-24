@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : tms_ac_skeleton.h
 /// SERVICE INTERFACE NAME            : TMS_AC
-/// GENERATED DATE                    : 2024-11-05 15:23:59
+/// GENERATED DATE                    : 2025-01-02 14:49:22
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -60,15 +60,15 @@ public:
     };
     struct setTargetTempOutput
     {
-        eevp::simulation::TMS_ReturnCode TMS_ReturnCode;
+        eevp::simulation::type::TMS_ReturnCode TMS_ReturnCode;
     };
     struct turnOffOutput
     {
-        eevp::simulation::TMS_ReturnCode TMS_ReturnCode;
+        eevp::simulation::type::TMS_ReturnCode TMS_ReturnCode;
     };
     struct turnOnOutput
     {
-        eevp::simulation::TMS_ReturnCode TMS_ReturnCode;
+        eevp::simulation::type::TMS_ReturnCode TMS_ReturnCode;
     };
     /// @brief Constructor
     /// @uptrace{SWS_CM_00002, SWS_CM_00152}

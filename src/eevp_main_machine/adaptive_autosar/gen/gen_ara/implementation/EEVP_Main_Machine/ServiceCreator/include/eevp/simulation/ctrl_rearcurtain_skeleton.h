@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : ctrl_rearcurtain_skeleton.h
 /// SERVICE INTERFACE NAME            : Ctrl_RearCurtain
-/// GENERATED DATE                    : 2024-11-05 15:23:59
+/// GENERATED DATE                    : 2025-01-02 14:49:22
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -52,7 +52,7 @@ public:
     };
     struct setOpeningRateOutput
     {
-        eevp::simulation::Ctrl_ReturnCode Ctrl_ReturnCode;
+        eevp::simulation::type::Ctrl_ReturnCode Ctrl_ReturnCode;
     };
     /// @brief Constructor
     /// @uptrace{SWS_CM_00002, SWS_CM_00152}

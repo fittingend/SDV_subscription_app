@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : bcm_wiperwash_common.h
 /// SERVICE INTERFACE NAME            : BCM_WiperWash
-/// GENERATED DATE                    : 2024-11-05 15:24:02
+/// GENERATED DATE                    : 2025-01-02 14:49:21
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

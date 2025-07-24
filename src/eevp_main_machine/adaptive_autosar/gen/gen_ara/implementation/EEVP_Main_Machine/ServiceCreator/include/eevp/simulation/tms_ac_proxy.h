@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : tms_ac_proxy.h
 /// SERVICE INTERFACE NAME            : TMS_AC
-/// GENERATED DATE                    : 2024-11-05 15:23:59
+/// GENERATED DATE                    : 2025-01-02 14:49:22
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -323,7 +323,7 @@ public:
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::TMS_ReturnCode TMS_ReturnCode;
+        eevp::simulation::type::TMS_ReturnCode TMS_ReturnCode;
     };
     /// @brief Constructor
     explicit setTargetTemp(para::com::ProxyInterface* interface) : mInterface(interface)
@@ -415,7 +415,7 @@ public:
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::TMS_ReturnCode TMS_ReturnCode;
+        eevp::simulation::type::TMS_ReturnCode TMS_ReturnCode;
     };
     /// @brief Constructor
     explicit turnOff(para::com::ProxyInterface* interface) : mInterface(interface)
@@ -505,7 +505,7 @@ public:
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::TMS_ReturnCode TMS_ReturnCode;
+        eevp::simulation::type::TMS_ReturnCode TMS_ReturnCode;
     };
     /// @brief Constructor
     explicit turnOn(para::com::ProxyInterface* interface) : mInterface(interface)

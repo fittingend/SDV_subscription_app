@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : ctrl_moodlamp_skeleton.h
 /// SERVICE INTERFACE NAME            : Ctrl_MoodLamp
-/// GENERATED DATE                    : 2024-11-05 15:24:00
+/// GENERATED DATE                    : 2025-01-02 14:49:22
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -48,35 +48,35 @@ public:
     /// @uptrace{SWS_CM_00191}
     struct getBrightnessOutput
     {
-        eevp::simulation::brightness brightness;
+        eevp::simulation::type::brightness brightness;
     };
     struct getColorOutput
     {
-        eevp::simulation::color color;
+        eevp::simulation::type::color color;
     };
     struct getPowerStatusOutput
     {
-        eevp::simulation::lampStatus lampStatus;
+        eevp::simulation::type::lampStatus lampStatus;
     };
     struct setBrightnessOutput
     {
-        eevp::simulation::Ctrl_ReturnCode Ctrl_ReturnCode;
+        eevp::simulation::type::Ctrl_ReturnCode Ctrl_ReturnCode;
     };
     struct setColorOutput
     {
-        eevp::simulation::Ctrl_ReturnCode Ctrl_ReturnCode;
+        eevp::simulation::type::Ctrl_ReturnCode Ctrl_ReturnCode;
     };
     struct setPowerStatusOutput
     {
-        eevp::simulation::Ctrl_ReturnCode Ctrl_ReturnCode;
+        eevp::simulation::type::Ctrl_ReturnCode Ctrl_ReturnCode;
     };
     struct turnOffOutput
     {
-        eevp::simulation::Ctrl_ReturnCode Ctrl_ReturnCode;
+        eevp::simulation::type::Ctrl_ReturnCode Ctrl_ReturnCode;
     };
     struct turnOnOutput
     {
-        eevp::simulation::Ctrl_ReturnCode Ctrl_ReturnCode;
+        eevp::simulation::type::Ctrl_ReturnCode Ctrl_ReturnCode;
     };
     /// @brief Constructor
     /// @uptrace{SWS_CM_00002, SWS_CM_00152}
@@ -239,13 +239,13 @@ public:
     virtual ara::core::Future<getPowerStatusOutput> getPowerStatus() = 0;
     /// @brief Method, setBrightness
     /// @uptrace{SWS_CM_00191}
-    virtual ara::core::Future<setBrightnessOutput> setBrightness(const eevp::simulation::brightness& brightness) = 0;
+    virtual ara::core::Future<setBrightnessOutput> setBrightness(const eevp::simulation::type::brightness& brightness) = 0;
     /// @brief Method, setColor
     /// @uptrace{SWS_CM_00191}
-    virtual ara::core::Future<setColorOutput> setColor(const eevp::simulation::color& color) = 0;
+    virtual ara::core::Future<setColorOutput> setColor(const eevp::simulation::type::color& color) = 0;
     /// @brief Method, setPowerStatus
     /// @uptrace{SWS_CM_00191}
-    virtual ara::core::Future<setPowerStatusOutput> setPowerStatus(const eevp::simulation::lampStatus& lampStatus) = 0;
+    virtual ara::core::Future<setPowerStatusOutput> setPowerStatus(const eevp::simulation::type::lampStatus& lampStatus) = 0;
     /// @brief Method, turnOff
     /// @uptrace{SWS_CM_00191}
     virtual ara::core::Future<turnOffOutput> turnOff() = 0;
@@ -337,7 +337,7 @@ private:
         std::uint8_t retResult{1};
         std::vector<std::uint8_t> retData{};
         para::serializer::Deserializer deserializer{data};
-        eevp::simulation::brightness _brightness_;
+        eevp::simulation::type::brightness _brightness_;
         deserializer.read(_brightness_);
         auto future = setBrightness(_brightness_);
         auto result = future.GetResult();
@@ -366,7 +366,7 @@ private:
         std::uint8_t retResult{1};
         std::vector<std::uint8_t> retData{};
         para::serializer::Deserializer deserializer{data};
-        eevp::simulation::color _color_;
+        eevp::simulation::type::color _color_;
         deserializer.read(_color_);
         auto future = setColor(_color_);
         auto result = future.GetResult();
@@ -395,7 +395,7 @@ private:
         std::uint8_t retResult{1};
         std::vector<std::uint8_t> retData{};
         para::serializer::Deserializer deserializer{data};
-        eevp::simulation::lampStatus _lampStatus_;
+        eevp::simulation::type::lampStatus _lampStatus_;
         deserializer.read(_lampStatus_);
         auto future = setPowerStatus(_lampStatus_);
         auto result = future.GetResult();

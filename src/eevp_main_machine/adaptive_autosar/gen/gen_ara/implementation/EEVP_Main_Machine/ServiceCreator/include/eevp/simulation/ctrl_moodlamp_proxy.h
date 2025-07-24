@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : ctrl_moodlamp_proxy.h
 /// SERVICE INTERFACE NAME            : Ctrl_MoodLamp
-/// GENERATED DATE                    : 2024-11-05 15:24:00
+/// GENERATED DATE                    : 2025-01-02 14:49:22
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -51,7 +51,7 @@ public:
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::brightness brightness;
+        eevp::simulation::type::brightness brightness;
     };
     /// @brief Constructor
     explicit getBrightness(para::com::ProxyInterface* interface) : mInterface(interface)
@@ -141,7 +141,7 @@ public:
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::color color;
+        eevp::simulation::type::color color;
     };
     /// @brief Constructor
     explicit getColor(para::com::ProxyInterface* interface) : mInterface(interface)
@@ -231,7 +231,7 @@ public:
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::lampStatus lampStatus;
+        eevp::simulation::type::lampStatus lampStatus;
     };
     /// @brief Constructor
     explicit getPowerStatus(para::com::ProxyInterface* interface) : mInterface(interface)
@@ -321,7 +321,7 @@ public:
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::Ctrl_ReturnCode Ctrl_ReturnCode;
+        eevp::simulation::type::Ctrl_ReturnCode Ctrl_ReturnCode;
     };
     /// @brief Constructor
     explicit setBrightness(para::com::ProxyInterface* interface) : mInterface(interface)
@@ -353,7 +353,7 @@ public:
     }
     /// @brief Function call operator
     /// @uptrace{SWS_CM_00196}
-    ara::core::Future<Output> operator()(const eevp::simulation::brightness& brightness)
+    ara::core::Future<Output> operator()(const eevp::simulation::type::brightness& brightness)
     {
         para::serializer::Serializer __serializer__{};
         __serializer__.write(brightness);
@@ -412,7 +412,7 @@ public:
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::Ctrl_ReturnCode Ctrl_ReturnCode;
+        eevp::simulation::type::Ctrl_ReturnCode Ctrl_ReturnCode;
     };
     /// @brief Constructor
     explicit setColor(para::com::ProxyInterface* interface) : mInterface(interface)
@@ -444,7 +444,7 @@ public:
     }
     /// @brief Function call operator
     /// @uptrace{SWS_CM_00196}
-    ara::core::Future<Output> operator()(const eevp::simulation::color& color)
+    ara::core::Future<Output> operator()(const eevp::simulation::type::color& color)
     {
         para::serializer::Serializer __serializer__{};
         __serializer__.write(color);
@@ -503,7 +503,7 @@ public:
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::Ctrl_ReturnCode Ctrl_ReturnCode;
+        eevp::simulation::type::Ctrl_ReturnCode Ctrl_ReturnCode;
     };
     /// @brief Constructor
     explicit setPowerStatus(para::com::ProxyInterface* interface) : mInterface(interface)
@@ -535,7 +535,7 @@ public:
     }
     /// @brief Function call operator
     /// @uptrace{SWS_CM_00196}
-    ara::core::Future<Output> operator()(const eevp::simulation::lampStatus& lampStatus)
+    ara::core::Future<Output> operator()(const eevp::simulation::type::lampStatus& lampStatus)
     {
         para::serializer::Serializer __serializer__{};
         __serializer__.write(lampStatus);
@@ -594,7 +594,7 @@ public:
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::Ctrl_ReturnCode Ctrl_ReturnCode;
+        eevp::simulation::type::Ctrl_ReturnCode Ctrl_ReturnCode;
     };
     /// @brief Constructor
     explicit turnOff(para::com::ProxyInterface* interface) : mInterface(interface)
@@ -684,7 +684,7 @@ public:
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::Ctrl_ReturnCode Ctrl_ReturnCode;
+        eevp::simulation::type::Ctrl_ReturnCode Ctrl_ReturnCode;
     };
     /// @brief Constructor
     explicit turnOn(para::com::ProxyInterface* interface) : mInterface(interface)

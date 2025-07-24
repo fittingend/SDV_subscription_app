@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : bcm_wiperwash_proxy.h
 /// SERVICE INTERFACE NAME            : BCM_WiperWash
-/// GENERATED DATE                    : 2024-11-05 15:24:00
+/// GENERATED DATE                    : 2025-01-02 14:49:23
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -366,276 +366,6 @@ private:
 namespace methods
 {
 /// @uptrace{SWS_CM_00006}
-class getWipingInterval
-{
-public:
-    /// @brief Container for OUT arguments
-    /// @uptrace{SWS_CM_00196}
-    struct Output
-    {
-        std::uint16_t wipingInterval;
-    };
-    /// @brief Constructor
-    explicit getWipingInterval(para::com::ProxyInterface* interface) : mInterface(interface)
-    {
-        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-    }
-    /// @brief Destructor
-    virtual ~getWipingInterval() = default;
-    /// @brief
-    getWipingInterval(const getWipingInterval& other) = delete;
-    getWipingInterval& operator=(const getWipingInterval& other) = delete;
-    /// @brief Move constructor
-    getWipingInterval(getWipingInterval&& other) noexcept : mInterface(other.mInterface)
-    {
-        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-    }
-    /// @brief Move assignment
-    getWipingInterval& operator=(getWipingInterval&& other) noexcept
-    {
-        mInterface = other.mInterface;
-        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-        return *this;
-    }
-    /// @brief Function call operator
-    /// @uptrace{SWS_CM_00196}
-    ara::core::Future<Output> operator()()
-    {
-        para::serializer::Serializer __serializer__{};
-        auto __data__ = __serializer__.ensure();
-        auto* __promise__ = new ara::core::Promise<Output>();
-        auto __future__ = __promise__->get_future();
-        mInterface->CallMethod(kCallSign, __data__, __promise__);
-        return __future__;
-    }
-    /// @brief This method provides access to the global SMState of the this Method class,
-    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
-    /// @uptrace{SWS_CM_90483}
-    /// @uptrace{SWS_CM_90484}
-    ara::com::e2e::SMState GetSMState() const noexcept
-    {
-        return mInterface->GetE2EStateMachineState(kCallSign);
-    }
-    
-private:
-    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
-    {
-        auto* promise = static_cast<ara::core::Promise<getWipingInterval::Output>*>(userData);
-        if (result == 0)
-        {
-            para::serializer::Deserializer deserializer{data};
-            getWipingInterval::Output output;
-            deserializer.read(output.wipingInterval);
-            promise->set_value(output);
-        }
-        else
-        {
-            para::serializer::Deserializer deserializer{data};
-            ara::core::ErrorDomain::IdType domainId{};
-            ara::core::ErrorDomain::CodeType errorCode{};
-            deserializer.read(0, true, 0, domainId);
-            deserializer.read(0, true, 0, errorCode);
-            switch (domainId)
-            {
-                default:
-                {
-                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
-                    break;
-                }
-            }
-        }
-        delete static_cast<ara::core::Promise<getWipingInterval::Output>*>(userData);
-    }
-    para::com::ProxyInterface* mInterface;
-    const std::string kCallSign{"getWipingInterval"};
-};
-/// @uptrace{SWS_CM_00006}
-class getWipingLevel
-{
-public:
-    /// @brief Container for OUT arguments
-    /// @uptrace{SWS_CM_00196}
-    struct Output
-    {
-        eevp::simulation::BCM_WipingLevel wipingLevel;
-    };
-    /// @brief Constructor
-    explicit getWipingLevel(para::com::ProxyInterface* interface) : mInterface(interface)
-    {
-        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-    }
-    /// @brief Destructor
-    virtual ~getWipingLevel() = default;
-    /// @brief
-    getWipingLevel(const getWipingLevel& other) = delete;
-    getWipingLevel& operator=(const getWipingLevel& other) = delete;
-    /// @brief Move constructor
-    getWipingLevel(getWipingLevel&& other) noexcept : mInterface(other.mInterface)
-    {
-        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-    }
-    /// @brief Move assignment
-    getWipingLevel& operator=(getWipingLevel&& other) noexcept
-    {
-        mInterface = other.mInterface;
-        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-        return *this;
-    }
-    /// @brief Function call operator
-    /// @uptrace{SWS_CM_00196}
-    ara::core::Future<Output> operator()()
-    {
-        para::serializer::Serializer __serializer__{};
-        auto __data__ = __serializer__.ensure();
-        auto* __promise__ = new ara::core::Promise<Output>();
-        auto __future__ = __promise__->get_future();
-        mInterface->CallMethod(kCallSign, __data__, __promise__);
-        return __future__;
-    }
-    /// @brief This method provides access to the global SMState of the this Method class,
-    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
-    /// @uptrace{SWS_CM_90483}
-    /// @uptrace{SWS_CM_90484}
-    ara::com::e2e::SMState GetSMState() const noexcept
-    {
-        return mInterface->GetE2EStateMachineState(kCallSign);
-    }
-    
-private:
-    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
-    {
-        auto* promise = static_cast<ara::core::Promise<getWipingLevel::Output>*>(userData);
-        if (result == 0)
-        {
-            para::serializer::Deserializer deserializer{data};
-            getWipingLevel::Output output;
-            deserializer.read(output.wipingLevel);
-            promise->set_value(output);
-        }
-        else
-        {
-            para::serializer::Deserializer deserializer{data};
-            ara::core::ErrorDomain::IdType domainId{};
-            ara::core::ErrorDomain::CodeType errorCode{};
-            deserializer.read(0, true, 0, domainId);
-            deserializer.read(0, true, 0, errorCode);
-            switch (domainId)
-            {
-                default:
-                {
-                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
-                    break;
-                }
-            }
-        }
-        delete static_cast<ara::core::Promise<getWipingLevel::Output>*>(userData);
-    }
-    para::com::ProxyInterface* mInterface;
-    const std::string kCallSign{"getWipingLevel"};
-};
-/// @uptrace{SWS_CM_00006}
-class isWiping
-{
-public:
-    /// @brief Container for OUT arguments
-    /// @uptrace{SWS_CM_00196}
-    struct Output
-    {
-        bool status;
-    };
-    /// @brief Constructor
-    explicit isWiping(para::com::ProxyInterface* interface) : mInterface(interface)
-    {
-        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-    }
-    /// @brief Destructor
-    virtual ~isWiping() = default;
-    /// @brief
-    isWiping(const isWiping& other) = delete;
-    isWiping& operator=(const isWiping& other) = delete;
-    /// @brief Move constructor
-    isWiping(isWiping&& other) noexcept : mInterface(other.mInterface)
-    {
-        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-    }
-    /// @brief Move assignment
-    isWiping& operator=(isWiping&& other) noexcept
-    {
-        mInterface = other.mInterface;
-        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-        return *this;
-    }
-    /// @brief Function call operator
-    /// @uptrace{SWS_CM_00196}
-    ara::core::Future<Output> operator()()
-    {
-        para::serializer::Serializer __serializer__{};
-        auto __data__ = __serializer__.ensure();
-        auto* __promise__ = new ara::core::Promise<Output>();
-        auto __future__ = __promise__->get_future();
-        mInterface->CallMethod(kCallSign, __data__, __promise__);
-        return __future__;
-    }
-    /// @brief This method provides access to the global SMState of the this Method class,
-    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
-    /// @uptrace{SWS_CM_90483}
-    /// @uptrace{SWS_CM_90484}
-    ara::com::e2e::SMState GetSMState() const noexcept
-    {
-        return mInterface->GetE2EStateMachineState(kCallSign);
-    }
-    
-private:
-    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
-    {
-        auto* promise = static_cast<ara::core::Promise<isWiping::Output>*>(userData);
-        if (result == 0)
-        {
-            para::serializer::Deserializer deserializer{data};
-            isWiping::Output output;
-            deserializer.read(output.status);
-            promise->set_value(output);
-        }
-        else
-        {
-            para::serializer::Deserializer deserializer{data};
-            ara::core::ErrorDomain::IdType domainId{};
-            ara::core::ErrorDomain::CodeType errorCode{};
-            deserializer.read(0, true, 0, domainId);
-            deserializer.read(0, true, 0, errorCode);
-            switch (domainId)
-            {
-                default:
-                {
-                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
-                    break;
-                }
-            }
-        }
-        delete static_cast<ara::core::Promise<isWiping::Output>*>(userData);
-    }
-    para::com::ProxyInterface* mInterface;
-    const std::string kCallSign{"isWiping"};
-};
-/// @uptrace{SWS_CM_00006}
 class setWipingInterval
 {
 public:
@@ -816,97 +546,6 @@ private:
     }
     para::com::ProxyInterface* mInterface;
     const std::string kCallSign{"setWipingLevel"};
-};
-/// @uptrace{SWS_CM_00006}
-class setWipingLevelImme
-{
-public:
-    /// @brief Container for OUT arguments
-    /// @uptrace{SWS_CM_00196}
-    struct Output
-    {
-        eevp::simulation::BCM_ReturnCode BCM_ReturnCode;
-    };
-    /// @brief Constructor
-    explicit setWipingLevelImme(para::com::ProxyInterface* interface) : mInterface(interface)
-    {
-        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-    }
-    /// @brief Destructor
-    virtual ~setWipingLevelImme() = default;
-    /// @brief
-    setWipingLevelImme(const setWipingLevelImme& other) = delete;
-    setWipingLevelImme& operator=(const setWipingLevelImme& other) = delete;
-    /// @brief Move constructor
-    setWipingLevelImme(setWipingLevelImme&& other) noexcept : mInterface(other.mInterface)
-    {
-        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-    }
-    /// @brief Move assignment
-    setWipingLevelImme& operator=(setWipingLevelImme&& other) noexcept
-    {
-        mInterface = other.mInterface;
-        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-        return *this;
-    }
-    /// @brief Function call operator
-    /// @uptrace{SWS_CM_00196}
-    ara::core::Future<Output> operator()(const eevp::simulation::BCM_WipingLevel& wipingLevel)
-    {
-        para::serializer::Serializer __serializer__{};
-        __serializer__.write(wipingLevel);
-        auto __data__ = __serializer__.ensure();
-        auto* __promise__ = new ara::core::Promise<Output>();
-        auto __future__ = __promise__->get_future();
-        mInterface->CallMethod(kCallSign, __data__, __promise__);
-        return __future__;
-    }
-    /// @brief This method provides access to the global SMState of the this Method class,
-    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
-    /// @uptrace{SWS_CM_90483}
-    /// @uptrace{SWS_CM_90484}
-    ara::com::e2e::SMState GetSMState() const noexcept
-    {
-        return mInterface->GetE2EStateMachineState(kCallSign);
-    }
-    
-private:
-    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
-    {
-        auto* promise = static_cast<ara::core::Promise<setWipingLevelImme::Output>*>(userData);
-        if (result == 0)
-        {
-            para::serializer::Deserializer deserializer{data};
-            setWipingLevelImme::Output output;
-            deserializer.read(output.BCM_ReturnCode);
-            promise->set_value(output);
-        }
-        else
-        {
-            para::serializer::Deserializer deserializer{data};
-            ara::core::ErrorDomain::IdType domainId{};
-            ara::core::ErrorDomain::CodeType errorCode{};
-            deserializer.read(0, true, 0, domainId);
-            deserializer.read(0, true, 0, errorCode);
-            switch (domainId)
-            {
-                default:
-                {
-                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
-                    break;
-                }
-            }
-        }
-        delete static_cast<ara::core::Promise<setWipingLevelImme::Output>*>(userData);
-    }
-    para::com::ProxyInterface* mInterface;
-    const std::string kCallSign{"setWipingLevelImme"};
 };
 /// @uptrace{SWS_CM_00006}
 class startWiping
@@ -1174,12 +813,8 @@ public:
         , mInterface(std::make_unique<para::com::ProxyInterface>(handle.GetInstanceSpecifier(), handle.GetServiceHandle()))
         , wiperInterval(mInterface.get())
         , wiperLevel(mInterface.get())
-        , getWipingInterval(mInterface.get())
-        , getWipingLevel(mInterface.get())
-        , isWiping(mInterface.get())
         , setWipingInterval(mInterface.get())
         , setWipingLevel(mInterface.get())
-        , setWipingLevelImme(mInterface.get())
         , startWiping(mInterface.get())
         , stopWiping(mInterface.get())
     {
@@ -1200,12 +835,8 @@ public:
         , mInterface(std::move(other.mInterface))
         , wiperInterval(std::move(other.wiperInterval))
         , wiperLevel(std::move(other.wiperLevel))
-        , getWipingInterval(std::move(other.getWipingInterval))
-        , getWipingLevel(std::move(other.getWipingLevel))
-        , isWiping(std::move(other.isWiping))
         , setWipingInterval(std::move(other.setWipingInterval))
         , setWipingLevel(std::move(other.setWipingLevel))
-        , setWipingLevelImme(std::move(other.setWipingLevelImme))
         , startWiping(std::move(other.startWiping))
         , stopWiping(std::move(other.stopWiping))
     {
@@ -1221,12 +852,8 @@ public:
         mInterface->StopFindService();
         wiperInterval = std::move(other.wiperInterval);
         wiperLevel = std::move(other.wiperLevel);
-        getWipingInterval = std::move(other.getWipingInterval);
-        getWipingLevel = std::move(other.getWipingLevel);
-        isWiping = std::move(other.isWiping);
         setWipingInterval = std::move(other.setWipingInterval);
         setWipingLevel = std::move(other.setWipingLevel);
-        setWipingLevelImme = std::move(other.setWipingLevelImme);
         startWiping = std::move(other.startWiping);
         stopWiping = std::move(other.stopWiping);
         other.mInterface.reset();
@@ -1254,18 +881,10 @@ public:
     fields::wiperInterval wiperInterval;
     /// @brief - field, wiperLevel
     fields::wiperLevel wiperLevel;
-    /// @brief - method, getWipingInterval
-    methods::getWipingInterval getWipingInterval;
-    /// @brief - method, getWipingLevel
-    methods::getWipingLevel getWipingLevel;
-    /// @brief - method, isWiping
-    methods::isWiping isWiping;
     /// @brief - method, setWipingInterval
     methods::setWipingInterval setWipingInterval;
     /// @brief - method, setWipingLevel
     methods::setWipingLevel setWipingLevel;
-    /// @brief - method, setWipingLevelImme
-    methods::setWipingLevelImme setWipingLevelImme;
     /// @brief - method, startWiping
     methods::startWiping startWiping;
     /// @brief - method, stopWiping

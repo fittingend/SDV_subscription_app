@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : vcs_brake_proxy.h
 /// SERVICE INTERFACE NAME            : VCS_Brake
-/// GENERATED DATE                    : 2024-11-05 15:23:59
+/// GENERATED DATE                    : 2025-01-02 14:49:22
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -51,7 +51,7 @@ public:
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::VCS_MCPrs VCS_MCPrs;
+        eevp::simulation::type::VCS_MCPrs VCS_MCPrs;
     };
     /// @brief Constructor
     explicit notifyMCPrs(para::com::ProxyInterface* interface) : mInterface(interface)
@@ -141,7 +141,7 @@ public:
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::VCS_TqCtrl VCS_TqCtrl;
+        eevp::simulation::type::VCS_TqCtrl VCS_TqCtrl;
     };
     /// @brief Constructor
     explicit notifyTq(para::com::ProxyInterface* interface) : mInterface(interface)
@@ -262,7 +262,7 @@ public:
     }
     /// @brief Function call operator
     /// @uptrace{SWS_CM_00196}
-    ara::core::Future<Output> operator()(const eevp::simulation::VCS_Acceleration& ax)
+    ara::core::Future<Output> operator()(const eevp::simulation::type::VCS_Acceleration& ax)
     {
         para::serializer::Serializer __serializer__{};
         __serializer__.write(ax);
@@ -351,7 +351,7 @@ public:
     }
     /// @brief Function call operator
     /// @uptrace{SWS_CM_00196}
-    ara::core::Future<Output> operator()(const eevp::simulation::VCS_LgtBrkFTotal& lgtBrkFTotal)
+    ara::core::Future<Output> operator()(const eevp::simulation::type::VCS_LgtBrkFTotal& lgtBrkFTotal)
     {
         para::serializer::Serializer __serializer__{};
         __serializer__.write(lgtBrkFTotal);

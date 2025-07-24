@@ -15,7 +15,7 @@
     ],
     "methods" : [
         {
-            "name" : "notifyStatus",
+            "name" : "notifyVehSpd",
             "method-id" : "1",
             "transport" : "udp",
             "req-max-segment-len" : "0",
@@ -25,30 +25,5 @@
         }
     ],
     "fields" : [
-        {
-            "name" : "vcs_VehSpd",
-            "getter" : {
-                "method-id" : "11",
-                "transport" : "udp",
-                "req-max-segment-len" : "0",
-                "req-separation-time" : "0.0",
-                "resp-max-segment-len" : "0",
-                "resp-separation-time" : "0.0"
-            },
-            "setter" : {
-                "method-id" : "0",
-                "transport" : "undefined",
-                "req-max-segment-len" : "0",
-                "req-separation-time" : "0.0",
-                "resp-max-segment-len" : "0",
-                "resp-separation-time" : "0.0"
-            },
-            "notifier" : {
-                "event-id" : "12",
-                "transport" : "udp",
-                "max-segment-len" : "0",
-                "separation-time" : "0.0"
-            }
-        }
     ]
 }

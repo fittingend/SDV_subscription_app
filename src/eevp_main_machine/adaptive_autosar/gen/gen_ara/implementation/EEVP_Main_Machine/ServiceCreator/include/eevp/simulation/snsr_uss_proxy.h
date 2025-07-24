@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : snsr_uss_proxy.h
 /// SERVICE INTERFACE NAME            : Snsr_USS
-/// GENERATED DATE                    : 2024-11-05 15:23:59
+/// GENERATED DATE                    : 2025-01-02 14:49:22
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -43,6 +43,96 @@ namespace fields
 /// @uptrace{SWS_CM_01015}
 namespace methods
 {
+/// @uptrace{SWS_CM_00006}
+class isDetect
+{
+public:
+    /// @brief Container for OUT arguments
+    /// @uptrace{SWS_CM_00196}
+    struct Output
+    {
+        bool detect;
+    };
+    /// @brief Constructor
+    explicit isDetect(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~isDetect() = default;
+    /// @brief
+    isDetect(const isDetect& other) = delete;
+    isDetect& operator=(const isDetect& other) = delete;
+    /// @brief Move constructor
+    isDetect(isDetect&& other) noexcept : mInterface(other.mInterface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    isDetect& operator=(isDetect&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Function call operator
+    /// @uptrace{SWS_CM_00196}
+    ara::core::Future<Output> operator()()
+    {
+        para::serializer::Serializer __serializer__{};
+        auto __data__ = __serializer__.ensure();
+        auto* __promise__ = new ara::core::Promise<Output>();
+        auto __future__ = __promise__->get_future();
+        mInterface->CallMethod(kCallSign, __data__, __promise__);
+        return __future__;
+    }
+    /// @brief This method provides access to the global SMState of the this Method class,
+    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
+    /// @uptrace{SWS_CM_90483}
+    /// @uptrace{SWS_CM_90484}
+    ara::com::e2e::SMState GetSMState() const noexcept
+    {
+        return mInterface->GetE2EStateMachineState(kCallSign);
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<isDetect::Output>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            isDetect::Output output;
+            deserializer.read(output.detect);
+            promise->set_value(output);
+        }
+        else
+        {
+            para::serializer::Deserializer deserializer{data};
+            ara::core::ErrorDomain::IdType domainId{};
+            ara::core::ErrorDomain::CodeType errorCode{};
+            deserializer.read(0, true, 0, domainId);
+            deserializer.read(0, true, 0, errorCode);
+            switch (domainId)
+            {
+                default:
+                {
+                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
+                    break;
+                }
+            }
+        }
+        delete static_cast<ara::core::Promise<isDetect::Output>*>(userData);
+    }
+    para::com::ProxyInterface* mInterface;
+    const std::string kCallSign{"isDetect"};
+};
 /// @uptrace{SWS_CM_00006}
 class ntfFltSt
 {
@@ -141,7 +231,7 @@ public:
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::USSSonarInfo UssSonarinfo;
+        eevp::simulation::type::USSSonarInfo UssSonarinfo;
     };
     /// @brief Constructor
     explicit ntfSonarInfo(para::com::ProxyInterface* interface) : mInterface(interface)
@@ -307,6 +397,7 @@ public:
     explicit Snsr_USSProxy(HandleType& handle)
         : mHandle(handle)
         , mInterface(std::make_unique<para::com::ProxyInterface>(handle.GetInstanceSpecifier(), handle.GetServiceHandle()))
+        , isDetect(mInterface.get())
         , ntfFltSt(mInterface.get())
         , ntfSonarInfo(mInterface.get())
     {
@@ -325,6 +416,7 @@ public:
     Snsr_USSProxy(Snsr_USSProxy&& other) noexcept
         : mHandle(std::move(other.mHandle))
         , mInterface(std::move(other.mInterface))
+        , isDetect(std::move(other.isDetect))
         , ntfFltSt(std::move(other.ntfFltSt))
         , ntfSonarInfo(std::move(other.ntfSonarInfo))
     {
@@ -338,6 +430,7 @@ public:
         mHandle = std::move(other.mHandle);
         mInterface = std::move(other.mInterface);
         mInterface->StopFindService();
+        isDetect = std::move(other.isDetect);
         ntfFltSt = std::move(other.ntfFltSt);
         ntfSonarInfo = std::move(other.ntfSonarInfo);
         other.mInterface.reset();
@@ -361,6 +454,8 @@ private:
     std::unique_ptr<para::com::ProxyInterface> mInterface;
     
 public:
+    /// @brief - method, isDetect
+    methods::isDetect isDetect;
     /// @brief - method, ntfFltSt
     methods::ntfFltSt ntfFltSt;
     /// @brief - method, ntfSonarInfo

@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : vcs_brakepedal_proxy.h
 /// SERVICE INTERFACE NAME            : VCS_BrakePedal
-/// GENERATED DATE                    : 2024-11-05 15:24:01
+/// GENERATED DATE                    : 2025-01-02 14:49:22
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -39,363 +39,41 @@ namespace events
 /// @uptrace{SWS_CM_01031}
 namespace fields
 {
-/// @uptrace{SWS_CM_00008}
-class vcs_BrakePosn
-{
-public:
-    /// @brief Type alias for type of field value
-    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
-    using FieldType = eevp::simulation::VCS_BrakePosn;
-    /// @brief Constructor
-    explicit vcs_BrakePosn(para::com::ProxyInterface* interface) : mInterface(interface)
-    {
-        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-    }
-    /// @brief Destructor
-    virtual ~vcs_BrakePosn() = default;
-    /// @brief Delete copy constructor
-    vcs_BrakePosn(const vcs_BrakePosn& other) = delete;
-    /// @brief Delete copy assignment
-    vcs_BrakePosn& operator=(const vcs_BrakePosn& other) = delete;
-    /// @brief Move constructor
-    vcs_BrakePosn(vcs_BrakePosn&& other) noexcept : mInterface(other.mInterface)
-    {
-        mMaxSampleCount = other.mMaxSampleCount;
-        mEventReceiveHandler = other.mEventReceiveHandler;
-        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
-        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
-        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
-        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-    }
-    /// @brief Move assignment
-    vcs_BrakePosn& operator=(vcs_BrakePosn&& other) noexcept
-    {
-        mInterface = other.mInterface;
-        mMaxSampleCount = other.mMaxSampleCount;
-        mEventReceiveHandler = other.mEventReceiveHandler;
-        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
-        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
-        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
-        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-        return *this;
-    }
-    /// @brief Requests getter method to Communication Management
-    /// @uptrace{SWS_CM_00112}
-    ara::core::Future<FieldType> Get()
-    {
-        std::vector<std::uint8_t> data{};
-        auto* promise = new ara::core::Promise<FieldType>();
-        auto future = promise->get_future();
-        mInterface->CallMethod(kGetterCallSign, data, promise);
-        return future;
-    }
-    /// @brief Requests "Subscribe" message to Communication Management
-    /// @uptrace{SWS_CM_00141}
-    ara::core::Result<void> Subscribe(size_t maxSampleCount)
-    {
-        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
-        {
-            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
-            {
-                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
-            }
-        }
-        mMaxSampleCount = maxSampleCount;
-        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
-    }
-    /// @brief Requests "StopSubscribe" message to Communication Management
-    /// @uptrace{SWS_CM_00151}
-    void Unsubscribe()
-    {
-        mInterface->UnsubscribeEvent(kNotifierCallSign);
-    }
-    /// @brief Return state for current subscription
-    /// @uptrace{SWS_CM_00316}
-    ara::com::SubscriptionState GetSubscriptionState() const
-    {
-        return mInterface->GetSubscriptionState(kNotifierCallSign);
-    }
-    /// @brief Register callback to catch changes of subscription state
-    /// @uptrace{SWS_CM_00333}
-    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
-    {
-        mSubscriptionStateChangeHandler = std::move(handler);
-        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
-    }
-    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
-    /// @uptrace{SWS_CM_00334}
-    void UnsetSubscriptionStateChangeHandler()
-    {
-        mSubscriptionStateChangeHandler = nullptr;
-        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
-    }
-    /// @brief Get received notification value from cache
-    /// @uptrace{SWS_CM_00701}
-    template<typename F>
-    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
-    {
-        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
-        for (const auto& sample : samples)
-        {
-            para::serializer::Deserializer deserializer{sample};
-            FieldType value;
-            deserializer.read(value);
-            f(ara::com::make_sample_ptr<const FieldType>(value));
-        }
-        return samples.size();
-    }
-    /// @brief Register callback to catch that notification value is received
-    /// @uptrace{SWS_CM_00181}
-    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
-    {
-        mEventReceiveHandler = std::move(handler);
-        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
-    }
-    /// @brief Unset bound callback by SetReceiveHandler
-    /// @uptrace{SWS_CM_00183}
-    ara::core::Result<void> UnsetReceiveHandler()
-    {
-        mEventReceiveHandler = nullptr;
-        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
-    }
-    /// @brief Returns the count of free notification cache
-    /// @uptrace{SWS_CM_00705}
-    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
-    {
-        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
-        if (ret < 0)
-        {
-            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
-        }
-        return ret;
-    }
-    
-private:
-    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
-    {
-        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
-        if (result == 0)
-        {
-            para::serializer::Deserializer deserializer{data};
-            FieldType value;
-            deserializer.read(value);
-            promise->set_value(value);
-        }
-        else
-        {
-            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
-        }
-        delete promise;
-    }
-    size_t mMaxSampleCount{0};
-    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
-    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
-    para::com::ProxyInterface* mInterface;
-    const std::string kGetterCallSign = {"vcs_BrakePosnGetter"};
-    const std::string kNotifierCallSign = {"vcs_BrakePosnNotifier"};
-};
-/// @uptrace{SWS_CM_00008}
-class vcs_BrakeSwitch
-{
-public:
-    /// @brief Type alias for type of field value
-    /// @uptrace{SWS_CM_00162, SWS_CM_90437}
-    using FieldType = eevp::simulation::VCS_BrakeSwitch;
-    /// @brief Constructor
-    explicit vcs_BrakeSwitch(para::com::ProxyInterface* interface) : mInterface(interface)
-    {
-        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-    }
-    /// @brief Destructor
-    virtual ~vcs_BrakeSwitch() = default;
-    /// @brief Delete copy constructor
-    vcs_BrakeSwitch(const vcs_BrakeSwitch& other) = delete;
-    /// @brief Delete copy assignment
-    vcs_BrakeSwitch& operator=(const vcs_BrakeSwitch& other) = delete;
-    /// @brief Move constructor
-    vcs_BrakeSwitch(vcs_BrakeSwitch&& other) noexcept : mInterface(other.mInterface)
-    {
-        mMaxSampleCount = other.mMaxSampleCount;
-        mEventReceiveHandler = other.mEventReceiveHandler;
-        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
-        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
-        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
-        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-    }
-    /// @brief Move assignment
-    vcs_BrakeSwitch& operator=(vcs_BrakeSwitch&& other) noexcept
-    {
-        mInterface = other.mInterface;
-        mMaxSampleCount = other.mMaxSampleCount;
-        mEventReceiveHandler = other.mEventReceiveHandler;
-        mSubscriptionStateChangeHandler = other.mSubscriptionStateChangeHandler;
-        mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
-        mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
-        mInterface->SetMethodReturnHandler(kGetterCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-        return *this;
-    }
-    /// @brief Requests getter method to Communication Management
-    /// @uptrace{SWS_CM_00112}
-    ara::core::Future<FieldType> Get()
-    {
-        std::vector<std::uint8_t> data{};
-        auto* promise = new ara::core::Promise<FieldType>();
-        auto future = promise->get_future();
-        mInterface->CallMethod(kGetterCallSign, data, promise);
-        return future;
-    }
-    /// @brief Requests "Subscribe" message to Communication Management
-    /// @uptrace{SWS_CM_00141}
-    ara::core::Result<void> Subscribe(size_t maxSampleCount)
-    {
-        if (mInterface->GetSubscriptionState(kNotifierCallSign) == ara::com::SubscriptionState::kSubscribed)
-        {
-            if ((maxSampleCount != 0) && (maxSampleCount != mMaxSampleCount))
-            {
-                return ara::core::Result<void>(ara::com::ComErrc::kMaxSampleCountNotRealizable);
-            }
-        }
-        mMaxSampleCount = maxSampleCount;
-        return mInterface->SubscribeEvent(kNotifierCallSign, mMaxSampleCount);
-    }
-    /// @brief Requests "StopSubscribe" message to Communication Management
-    /// @uptrace{SWS_CM_00151}
-    void Unsubscribe()
-    {
-        mInterface->UnsubscribeEvent(kNotifierCallSign);
-    }
-    /// @brief Return state for current subscription
-    /// @uptrace{SWS_CM_00316}
-    ara::com::SubscriptionState GetSubscriptionState() const
-    {
-        return mInterface->GetSubscriptionState(kNotifierCallSign);
-    }
-    /// @brief Register callback to catch changes of subscription state
-    /// @uptrace{SWS_CM_00333}
-    ara::core::Result<void> SetSubscriptionStateChangeHandler(ara::com::SubscriptionStateChangeHandler handler)
-    {
-        mSubscriptionStateChangeHandler = std::move(handler);
-        return mInterface->SetSubscriptionStateChangeHandler(kNotifierCallSign, mSubscriptionStateChangeHandler);
-    }
-    /// @brief Unset bound callback by SetSubscriptionStateChangeHandler
-    /// @uptrace{SWS_CM_00334}
-    void UnsetSubscriptionStateChangeHandler()
-    {
-        mSubscriptionStateChangeHandler = nullptr;
-        mInterface->UnsetSubscriptionStateChangeHandler(kNotifierCallSign);
-    }
-    /// @brief Get received notification value from cache
-    /// @uptrace{SWS_CM_00701}
-    template<typename F>
-    ara::core::Result<size_t> GetNewSamples(F&& f, size_t maxNumberOfSamples = std::numeric_limits<size_t>::max())
-    {
-        auto samples = mInterface->GetNewSamples(kNotifierCallSign, maxNumberOfSamples);
-        for (const auto& sample : samples)
-        {
-            para::serializer::Deserializer deserializer{sample};
-            FieldType value;
-            deserializer.read(value);
-            f(ara::com::make_sample_ptr<const FieldType>(value));
-        }
-        return samples.size();
-    }
-    /// @brief Register callback to catch that notification value is received
-    /// @uptrace{SWS_CM_00181}
-    ara::core::Result<void> SetReceiveHandler(ara::com::EventReceiveHandler handler)
-    {
-        mEventReceiveHandler = std::move(handler);
-        return mInterface->SetEventReceiveHandler(kNotifierCallSign, mEventReceiveHandler);
-    }
-    /// @brief Unset bound callback by SetReceiveHandler
-    /// @uptrace{SWS_CM_00183}
-    ara::core::Result<void> UnsetReceiveHandler()
-    {
-        mEventReceiveHandler = nullptr;
-        return mInterface->UnsetEventReceiveHandler(kNotifierCallSign);
-    }
-    /// @brief Returns the count of free notification cache
-    /// @uptrace{SWS_CM_00705}
-    ara::core::Result<size_t> GetFreeSampleCount() const noexcept
-    {
-        auto ret = mInterface->GetFreeSampleCount(kNotifierCallSign);
-        if (ret < 0)
-        {
-            return ara::core::Result<size_t>(ara::core::CoreErrc::kInvalidArgument);
-        }
-        return ret;
-    }
-    
-private:
-    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
-    {
-        auto* promise = static_cast<ara::core::Promise<FieldType>*>(userData);
-        if (result == 0)
-        {
-            para::serializer::Deserializer deserializer{data};
-            FieldType value;
-            deserializer.read(value);
-            promise->set_value(value);
-        }
-        else
-        {
-            promise->SetError(ara::core::CoreErrc::kInvalidArgument);
-        }
-        delete promise;
-    }
-    size_t mMaxSampleCount{0};
-    ara::com::EventReceiveHandler mEventReceiveHandler{nullptr};
-    ara::com::SubscriptionStateChangeHandler mSubscriptionStateChangeHandler{nullptr};
-    para::com::ProxyInterface* mInterface;
-    const std::string kGetterCallSign = {"vcs_BrakeSwitchGetter"};
-    const std::string kNotifierCallSign = {"vcs_BrakeSwitchNotifier"};
-};
 } /// namespace fields
 /// @uptrace{SWS_CM_01015}
 namespace methods
 {
 /// @uptrace{SWS_CM_00006}
-class nofitySwitch
+class notifyBrakeStatus
 {
 public:
     /// @brief Container for OUT arguments
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::VCS_BrakeSwitch VCS_BrakeSwitch;
+        eevp::simulation::type::VCS_BrakePosn VCS_BrakePosn;
     };
     /// @brief Constructor
-    explicit nofitySwitch(para::com::ProxyInterface* interface) : mInterface(interface)
+    explicit notifyBrakeStatus(para::com::ProxyInterface* interface) : mInterface(interface)
     {
         mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
             HandleMethodReturn(result, data, userData);
         });
     }
     /// @brief Destructor
-    virtual ~nofitySwitch() = default;
+    virtual ~notifyBrakeStatus() = default;
     /// @brief
-    nofitySwitch(const nofitySwitch& other) = delete;
-    nofitySwitch& operator=(const nofitySwitch& other) = delete;
+    notifyBrakeStatus(const notifyBrakeStatus& other) = delete;
+    notifyBrakeStatus& operator=(const notifyBrakeStatus& other) = delete;
     /// @brief Move constructor
-    nofitySwitch(nofitySwitch&& other) noexcept : mInterface(other.mInterface)
+    notifyBrakeStatus(notifyBrakeStatus&& other) noexcept : mInterface(other.mInterface)
     {
         mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
             HandleMethodReturn(result, data, userData);
         });
     }
     /// @brief Move assignment
-    nofitySwitch& operator=(nofitySwitch&& other) noexcept
+    notifyBrakeStatus& operator=(notifyBrakeStatus&& other) noexcept
     {
         mInterface = other.mInterface;
         mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
@@ -426,101 +104,11 @@ public:
 private:
     static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
     {
-        auto* promise = static_cast<ara::core::Promise<nofitySwitch::Output>*>(userData);
+        auto* promise = static_cast<ara::core::Promise<notifyBrakeStatus::Output>*>(userData);
         if (result == 0)
         {
             para::serializer::Deserializer deserializer{data};
-            nofitySwitch::Output output;
-            deserializer.read(output.VCS_BrakeSwitch);
-            promise->set_value(output);
-        }
-        else
-        {
-            para::serializer::Deserializer deserializer{data};
-            ara::core::ErrorDomain::IdType domainId{};
-            ara::core::ErrorDomain::CodeType errorCode{};
-            deserializer.read(0, true, 0, domainId);
-            deserializer.read(0, true, 0, errorCode);
-            switch (domainId)
-            {
-                default:
-                {
-                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
-                    break;
-                }
-            }
-        }
-        delete static_cast<ara::core::Promise<nofitySwitch::Output>*>(userData);
-    }
-    para::com::ProxyInterface* mInterface;
-    const std::string kCallSign{"nofitySwitch"};
-};
-/// @uptrace{SWS_CM_00006}
-class notifyStatus
-{
-public:
-    /// @brief Container for OUT arguments
-    /// @uptrace{SWS_CM_00196}
-    struct Output
-    {
-        eevp::simulation::VCS_BrakePosn VCS_BrakePosn;
-    };
-    /// @brief Constructor
-    explicit notifyStatus(para::com::ProxyInterface* interface) : mInterface(interface)
-    {
-        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-    }
-    /// @brief Destructor
-    virtual ~notifyStatus() = default;
-    /// @brief
-    notifyStatus(const notifyStatus& other) = delete;
-    notifyStatus& operator=(const notifyStatus& other) = delete;
-    /// @brief Move constructor
-    notifyStatus(notifyStatus&& other) noexcept : mInterface(other.mInterface)
-    {
-        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-    }
-    /// @brief Move assignment
-    notifyStatus& operator=(notifyStatus&& other) noexcept
-    {
-        mInterface = other.mInterface;
-        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
-            HandleMethodReturn(result, data, userData);
-        });
-        return *this;
-    }
-    /// @brief Function call operator
-    /// @uptrace{SWS_CM_00196}
-    ara::core::Future<Output> operator()()
-    {
-        para::serializer::Serializer __serializer__{};
-        auto __data__ = __serializer__.ensure();
-        auto* __promise__ = new ara::core::Promise<Output>();
-        auto __future__ = __promise__->get_future();
-        mInterface->CallMethod(kCallSign, __data__, __promise__);
-        return __future__;
-    }
-    /// @brief This method provides access to the global SMState of the this Method class,
-    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
-    /// @uptrace{SWS_CM_90483}
-    /// @uptrace{SWS_CM_90484}
-    ara::com::e2e::SMState GetSMState() const noexcept
-    {
-        return mInterface->GetE2EStateMachineState(kCallSign);
-    }
-    
-private:
-    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
-    {
-        auto* promise = static_cast<ara::core::Promise<notifyStatus::Output>*>(userData);
-        if (result == 0)
-        {
-            para::serializer::Deserializer deserializer{data};
-            notifyStatus::Output output;
+            notifyBrakeStatus::Output output;
             deserializer.read(output.VCS_BrakePosn);
             promise->set_value(output);
         }
@@ -540,10 +128,100 @@ private:
                 }
             }
         }
-        delete static_cast<ara::core::Promise<notifyStatus::Output>*>(userData);
+        delete static_cast<ara::core::Promise<notifyBrakeStatus::Output>*>(userData);
     }
     para::com::ProxyInterface* mInterface;
-    const std::string kCallSign{"notifyStatus"};
+    const std::string kCallSign{"notifyBrakeStatus"};
+};
+/// @uptrace{SWS_CM_00006}
+class notifyBrakeSwitch
+{
+public:
+    /// @brief Container for OUT arguments
+    /// @uptrace{SWS_CM_00196}
+    struct Output
+    {
+        eevp::simulation::type::VCS_BrakeSwitch VCS_BrakeSwitch;
+    };
+    /// @brief Constructor
+    explicit notifyBrakeSwitch(para::com::ProxyInterface* interface) : mInterface(interface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Destructor
+    virtual ~notifyBrakeSwitch() = default;
+    /// @brief
+    notifyBrakeSwitch(const notifyBrakeSwitch& other) = delete;
+    notifyBrakeSwitch& operator=(const notifyBrakeSwitch& other) = delete;
+    /// @brief Move constructor
+    notifyBrakeSwitch(notifyBrakeSwitch&& other) noexcept : mInterface(other.mInterface)
+    {
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+    }
+    /// @brief Move assignment
+    notifyBrakeSwitch& operator=(notifyBrakeSwitch&& other) noexcept
+    {
+        mInterface = other.mInterface;
+        mInterface->SetMethodReturnHandler(kCallSign, [](std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData) {
+            HandleMethodReturn(result, data, userData);
+        });
+        return *this;
+    }
+    /// @brief Function call operator
+    /// @uptrace{SWS_CM_00196}
+    ara::core::Future<Output> operator()()
+    {
+        para::serializer::Serializer __serializer__{};
+        auto __data__ = __serializer__.ensure();
+        auto* __promise__ = new ara::core::Promise<Output>();
+        auto __future__ = __promise__->get_future();
+        mInterface->CallMethod(kCallSign, __data__, __promise__);
+        return __future__;
+    }
+    /// @brief This method provides access to the global SMState of the this Method class,
+    ///        which was determined by the last run of E2E_check function invoked during the last reception of the method response.
+    /// @uptrace{SWS_CM_90483}
+    /// @uptrace{SWS_CM_90484}
+    ara::com::e2e::SMState GetSMState() const noexcept
+    {
+        return mInterface->GetE2EStateMachineState(kCallSign);
+    }
+    
+private:
+    static void HandleMethodReturn(std::uint8_t result, const std::vector<std::uint8_t>& data, void* userData)
+    {
+        auto* promise = static_cast<ara::core::Promise<notifyBrakeSwitch::Output>*>(userData);
+        if (result == 0)
+        {
+            para::serializer::Deserializer deserializer{data};
+            notifyBrakeSwitch::Output output;
+            deserializer.read(output.VCS_BrakeSwitch);
+            promise->set_value(output);
+        }
+        else
+        {
+            para::serializer::Deserializer deserializer{data};
+            ara::core::ErrorDomain::IdType domainId{};
+            ara::core::ErrorDomain::CodeType errorCode{};
+            deserializer.read(0, true, 0, domainId);
+            deserializer.read(0, true, 0, errorCode);
+            switch (domainId)
+            {
+                default:
+                {
+                    promise->SetError(ara::com::ComErrc::kUnsetFailure);
+                    break;
+                }
+            }
+        }
+        delete static_cast<ara::core::Promise<notifyBrakeSwitch::Output>*>(userData);
+    }
+    para::com::ProxyInterface* mInterface;
+    const std::string kCallSign{"notifyBrakeSwitch"};
 };
 } /// namespace methods
 /// @uptrace{SWS_CM_00004}
@@ -629,10 +307,8 @@ public:
     explicit VCS_BrakePedalProxy(HandleType& handle)
         : mHandle(handle)
         , mInterface(std::make_unique<para::com::ProxyInterface>(handle.GetInstanceSpecifier(), handle.GetServiceHandle()))
-        , vcs_BrakePosn(mInterface.get())
-        , vcs_BrakeSwitch(mInterface.get())
-        , nofitySwitch(mInterface.get())
-        , notifyStatus(mInterface.get())
+        , notifyBrakeStatus(mInterface.get())
+        , notifyBrakeSwitch(mInterface.get())
     {
     }
     /// @brief Destructor
@@ -649,10 +325,8 @@ public:
     VCS_BrakePedalProxy(VCS_BrakePedalProxy&& other) noexcept
         : mHandle(std::move(other.mHandle))
         , mInterface(std::move(other.mInterface))
-        , vcs_BrakePosn(std::move(other.vcs_BrakePosn))
-        , vcs_BrakeSwitch(std::move(other.vcs_BrakeSwitch))
-        , nofitySwitch(std::move(other.nofitySwitch))
-        , notifyStatus(std::move(other.notifyStatus))
+        , notifyBrakeStatus(std::move(other.notifyBrakeStatus))
+        , notifyBrakeSwitch(std::move(other.notifyBrakeSwitch))
     {
         mInterface->StopFindService();
         other.mInterface.reset();
@@ -664,10 +338,8 @@ public:
         mHandle = std::move(other.mHandle);
         mInterface = std::move(other.mInterface);
         mInterface->StopFindService();
-        vcs_BrakePosn = std::move(other.vcs_BrakePosn);
-        vcs_BrakeSwitch = std::move(other.vcs_BrakeSwitch);
-        nofitySwitch = std::move(other.nofitySwitch);
-        notifyStatus = std::move(other.notifyStatus);
+        notifyBrakeStatus = std::move(other.notifyBrakeStatus);
+        notifyBrakeSwitch = std::move(other.notifyBrakeSwitch);
         other.mInterface.reset();
         return *this;
     }
@@ -689,14 +361,10 @@ private:
     std::unique_ptr<para::com::ProxyInterface> mInterface;
     
 public:
-    /// @brief - field, vcs_BrakePosn
-    fields::vcs_BrakePosn vcs_BrakePosn;
-    /// @brief - field, vcs_BrakeSwitch
-    fields::vcs_BrakeSwitch vcs_BrakeSwitch;
-    /// @brief - method, nofitySwitch
-    methods::nofitySwitch nofitySwitch;
-    /// @brief - method, notifyStatus
-    methods::notifyStatus notifyStatus;
+    /// @brief - method, notifyBrakeStatus
+    methods::notifyBrakeStatus notifyBrakeStatus;
+    /// @brief - method, notifyBrakeSwitch
+    methods::notifyBrakeSwitch notifyBrakeSwitch;
 };
 } /// namespace proxy
 } /// namespace simulation

@@ -507,11 +507,6 @@
             <PROCESS-TO-MACHINE-MAPPING-SET UUID="532a2345-cad7-4377-bc6c-5582ae60dfd1">
               <SHORT-NAME>EEVP_Main_ProcessToMachineMapping</SHORT-NAME>
               <PROCESS-TO-MACHINE-MAPPINGS>
-                <PROCESS-TO-MACHINE-MAPPING UUID="60d6c077-e96c-453c-b074-620ce022acd2">
-                  <SHORT-NAME>ProcessToMachineMapping_AppIpsvTest_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
-                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
-                  <PROCESS-REF DEST="PROCESS">/Application/Process/AppIpsvTest</PROCESS-REF>
-                </PROCESS-TO-MACHINE-MAPPING>
                 <PROCESS-TO-MACHINE-MAPPING UUID="8a4cecd1-11e1-47e9-b2f5-b4efec771175">
                   <SHORT-NAME>ProcessToMachineMapping_BatteryMonitor_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
@@ -522,18 +517,6 @@
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
                   <PROCESS-REF DEST="PROCESS">/Application/Process/CM</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>
-                <PROCESS-TO-MACHINE-MAPPING UUID="c395a555-a969-4224-ae7f-d28a15b3e21d">
-                  <SHORT-NAME>ProcessToMachineMapping_DummyTest_Consumer_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
-                  <DESIGN-REF DEST="PROCESS-DESIGN-TO-MACHINE-DESIGN-MAPPING">/Machine/ProcessToMachine/ProcessDesignToMachineDesignMappingSet/ProcessDesignToMachineDesignMapping_TestDummy_Consumer_TO_EEVP_MAIN</DESIGN-REF>
-                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
-                  <PROCESS-REF DEST="PROCESS">/Application/Process/DummyTest_Consumer</PROCESS-REF>
-                </PROCESS-TO-MACHINE-MAPPING>
-                <PROCESS-TO-MACHINE-MAPPING UUID="c5d50a57-fb7c-4d4d-a744-b943f804a44e">
-                  <SHORT-NAME>ProcessToMachineMapping_DummyTest_Provider_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
-                  <DESIGN-REF DEST="PROCESS-DESIGN-TO-MACHINE-DESIGN-MAPPING">/Machine/ProcessToMachine/ProcessDesignToMachineDesignMappingSet/ProcessDesignToMachineDesignMapping_TestDummy_Provider_TO_EEVP_MAIN</DESIGN-REF>
-                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
-                  <PROCESS-REF DEST="PROCESS">/Application/Process/DummyTest_Provider</PROCESS-REF>
-                </PROCESS-TO-MACHINE-MAPPING>
                 <PROCESS-TO-MACHINE-MAPPING UUID="c06bf723-b7f8-4075-833a-a3f1fd865da3">
                   <SHORT-NAME>ProcessToMachineMapping_EM_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
@@ -543,11 +526,6 @@
                   <SHORT-NAME>ProcessToMachineMapping_IPCHandler_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
                   <PROCESS-REF DEST="PROCESS">/Application/Process/IPCHandler</PROCESS-REF>
-                </PROCESS-TO-MACHINE-MAPPING>
-                <PROCESS-TO-MACHINE-MAPPING UUID="9f25247b-4a97-4297-998b-84407c424587">
-                  <SHORT-NAME>ProcessToMachineMapping_InfoHealthTest_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
-                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
-                  <PROCESS-REF DEST="PROCESS">/Application/Process/InfoHealthTest</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>
                 <PROCESS-TO-MACHINE-MAPPING UUID="38542cc8-3389-43f8-8768-07d1af3e251b">
                   <SHORT-NAME>ProcessToMachineMapping_IntelligentWiper_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
@@ -564,98 +542,23 @@
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
                   <PROCESS-REF DEST="PROCESS">/AdaptiveApplication/Process/LotteService</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>
-                <PROCESS-TO-MACHINE-MAPPING UUID="8c0bff41-9204-40ac-a709-c7c08e69fdfd">
-                  <SHORT-NAME>ProcessToMachineMapping_MonitoringManager_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
-                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
-                  <PROCESS-REF DEST="PROCESS">/Application/Process/MonitoringManager</PROCESS-REF>
-                </PROCESS-TO-MACHINE-MAPPING>
-                <PROCESS-TO-MACHINE-MAPPING UUID="6a5d01a7-df97-4c58-8a37-1e49506c375c">
-                  <SHORT-NAME>ProcessToMachineMapping_OTAClient_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
-                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
-                  <PROCESS-REF DEST="PROCESS">/Application/Process/OTAClient</PROCESS-REF>
-                </PROCESS-TO-MACHINE-MAPPING>
-                <PROCESS-TO-MACHINE-MAPPING UUID="082ade89-2da9-43a0-8e01-70231b782140">
-                  <SHORT-NAME>ProcessToMachineMapping_OTATestP_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
-                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
-                  <PROCESS-REF DEST="PROCESS">/Application/Process/OTATestP</PROCESS-REF>
-                </PROCESS-TO-MACHINE-MAPPING>
-                <PROCESS-TO-MACHINE-MAPPING UUID="5f71bd8b-edc7-4efe-bbb1-d9e3d834e2e4">
-                  <SHORT-NAME>ProcessToMachineMapping_OTATestR_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
-                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
-                  <PROCESS-REF DEST="PROCESS">/Application/Process/OTATestR</PROCESS-REF>
-                </PROCESS-TO-MACHINE-MAPPING>
-                <PROCESS-TO-MACHINE-MAPPING UUID="8345b4e2-e5c4-4744-9313-e3255fd52f7c">
-                  <SHORT-NAME>ProcessToMachineMapping_PHM_TO_EEVP_Machine_TO_UnknownModule</SHORT-NAME>
-                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
-                  <PROCESS-REF DEST="PROCESS">/Application/Process/PHM</PROCESS-REF>
-                </PROCESS-TO-MACHINE-MAPPING>
-                <PROCESS-TO-MACHINE-MAPPING UUID="2e9d6c4e-d454-40be-b302-286e5ef25b4e">
-                  <SHORT-NAME>ProcessToMachineMapping_SC_PDW_FRONT_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
-                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
-                  <PROCESS-REF DEST="PROCESS">/Application/Process/SC_PDW_FRONT</PROCESS-REF>
-                </PROCESS-TO-MACHINE-MAPPING>
-                <PROCESS-TO-MACHINE-MAPPING UUID="29ecd981-5e32-4c5d-af89-9037828fb6f1">
-                  <SHORT-NAME>ProcessToMachineMapping_SC_PDW_REAR_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
-                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
-                  <PROCESS-REF DEST="PROCESS">/Application/Process/SC_PDW_REAR</PROCESS-REF>
-                </PROCESS-TO-MACHINE-MAPPING>
                 <PROCESS-TO-MACHINE-MAPPING UUID="db7ea7ef-e0c8-4f6d-960a-059b5c4a10d9">
                   <SHORT-NAME>ProcessToMachineMapping_SESLService_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
                   <PROCESS-REF DEST="PROCESS">/AdaptiveApplication/Process/SESLService</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>
                 <PROCESS-TO-MACHINE-MAPPING UUID="58eaf27b-88ce-44c1-8206-b20386e4517d">
-                  <SHORT-NAME>ProcessToMachineMapping_SM_TO_EEVP_Machine_TO_UnknownModule</SHORT-NAME>
+                  <SHORT-NAME>ProcessToMachineMapping_SM_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
                   <PROCESS-REF DEST="PROCESS">/Application/Process/SM</PROCESS-REF>
-                </PROCESS-TO-MACHINE-MAPPING>
-                <PROCESS-TO-MACHINE-MAPPING UUID="8ecf7688-a497-4b23-9067-202af65c548b">
-                  <SHORT-NAME>ProcessToMachineMapping_SOA_Debugger_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
-                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
-                  <PROCESS-REF DEST="PROCESS">/Application/Process/SOA_Debugger</PROCESS-REF>
-                </PROCESS-TO-MACHINE-MAPPING>
-                <PROCESS-TO-MACHINE-MAPPING UUID="23dc74bd-1031-4e15-bf76-3d813521a4a2">
-                  <SHORT-NAME>ProcessToMachineMapping_SOA_DriverSeat_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
-                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
-                  <PROCESS-REF DEST="PROCESS">/Application/Process/SOA_DriverSeat</PROCESS-REF>
-                </PROCESS-TO-MACHINE-MAPPING>
-                <PROCESS-TO-MACHINE-MAPPING UUID="8871908a-e3b4-4c9a-80a6-705cec93fec3">
-                  <SHORT-NAME>ProcessToMachineMapping_SOA_MoodLamp_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
-                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
-                  <PROCESS-REF DEST="PROCESS">/Application/Process/SOA_MoodLamp</PROCESS-REF>
-                </PROCESS-TO-MACHINE-MAPPING>
-                <PROCESS-TO-MACHINE-MAPPING UUID="a3386200-68b9-40f5-88fb-c63309a58647">
-                  <SHORT-NAME>ProcessToMachineMapping_SOA_Power_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
-                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
-                  <PROCESS-REF DEST="PROCESS">/Application/Process/SOA_Power</PROCESS-REF>
-                </PROCESS-TO-MACHINE-MAPPING>
-                <PROCESS-TO-MACHINE-MAPPING UUID="ef412e3b-9a8f-44f9-bd70-8b70483c29c2">
-                  <SHORT-NAME>ProcessToMachineMapping_SOA_ROA_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
-                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
-                  <PROCESS-REF DEST="PROCESS">/Application/Process/SOA_ROA</PROCESS-REF>
-                </PROCESS-TO-MACHINE-MAPPING>
-                <PROCESS-TO-MACHINE-MAPPING UUID="41e85978-9fd1-4aea-bd68-6ade60fdc41f">
-                  <SHORT-NAME>ProcessToMachineMapping_SOA_RearCurtain_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
-                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
-                  <PROCESS-REF DEST="PROCESS">/Application/Process/SOA_RearCurtain</PROCESS-REF>
-                </PROCESS-TO-MACHINE-MAPPING>
-                <PROCESS-TO-MACHINE-MAPPING UUID="b40c9ac8-2687-49f7-9d65-8858045383ad">
-                  <SHORT-NAME>ProcessToMachineMapping_SOA_Wiper_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
-                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
-                  <PROCESS-REF DEST="PROCESS">/Application/Process/SOA_Wiper</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>
                 <PROCESS-TO-MACHINE-MAPPING UUID="fe0cb412-5b2a-4f34-9f0c-8151f095dc3a">
                   <SHORT-NAME>ProcessToMachineMapping_ServiceCreator_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
                   <PROCESS-REF DEST="PROCESS">/Application/Process/ServiceCreator</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>
-                <PROCESS-TO-MACHINE-MAPPING UUID="e6028cee-902f-42b0-a691-a7009e57b5e2">
-                  <SHORT-NAME>ProcessToMachineMapping_SubscriptionManager_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
-                  <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
-                  <PROCESS-REF DEST="PROCESS">/Application/Process/SubscriptionManager</PROCESS-REF>
-                </PROCESS-TO-MACHINE-MAPPING>
-                <PROCESS-TO-MACHINE-MAPPING UUID="8432088f-2596-4b74-b38f-ebd1705c4b88">
-                  <SHORT-NAME>ProcessToMachineMapping_UCM_TO_EEVP_Machine_TO_UnknownModule</SHORT-NAME>
+                <PROCESS-TO-MACHINE-MAPPING UUID="2e133e7b-ddba-4d2c-800d-ec8b9366836b">
+                  <SHORT-NAME>ProcessToMachineMapping_UCM_TO_EEVP_Main_Machine_TO_UnknownModule</SHORT-NAME>
                   <MACHINE-REF DEST="MACHINE">/Machine/EEVP_Main_Machine</MACHINE-REF>
                   <PROCESS-REF DEST="PROCESS">/Application/Process/UCM</PROCESS-REF>
                 </PROCESS-TO-MACHINE-MAPPING>
@@ -673,23 +576,6 @@
             </PROCESS-TO-MACHINE-MAPPING-SET>
             <PROCESS-DESIGN-TO-MACHINE-DESIGN-MAPPING-SET UUID="f0f40258-f94d-4262-931e-21dff5dafaa9">
               <SHORT-NAME>ProcessDesignToMachineDesignMappingSet</SHORT-NAME>
-              <PROCESS-DESIGN-TO-MACHINE-DESIGN-MAPPINGS>
-                <PROCESS-DESIGN-TO-MACHINE-DESIGN-MAPPING UUID="ea198664-144c-4947-a189-07d80737cb00">
-                  <SHORT-NAME>ProcessDesignToMachineDesignMapping_AppIpsvTest_Consumer_TO_EEVP_MAIN</SHORT-NAME>
-                  <MACHINE-DESIGN-REF DEST="MACHINE-DESIGN">/System/Ecu/EEVP_MAIN</MACHINE-DESIGN-REF>
-                  <PROCESS-DESIGN-REF DEST="PROCESS-DESIGN">/Application/Process/AppIpsvTest_Consumer</PROCESS-DESIGN-REF>
-                </PROCESS-DESIGN-TO-MACHINE-DESIGN-MAPPING>
-                <PROCESS-DESIGN-TO-MACHINE-DESIGN-MAPPING UUID="ac0107ad-727c-40b6-80b1-30312138ad25">
-                  <SHORT-NAME>ProcessDesignToMachineDesignMapping_TestDummy_Consumer_TO_EEVP_MAIN</SHORT-NAME>
-                  <MACHINE-DESIGN-REF DEST="MACHINE-DESIGN">/System/Ecu/EEVP_MAIN</MACHINE-DESIGN-REF>
-                  <PROCESS-DESIGN-REF DEST="PROCESS-DESIGN">/Application/Process/TestDummy_Consumer</PROCESS-DESIGN-REF>
-                </PROCESS-DESIGN-TO-MACHINE-DESIGN-MAPPING>
-                <PROCESS-DESIGN-TO-MACHINE-DESIGN-MAPPING UUID="dbf6daa3-c548-4d1e-b607-0ead13fd9692">
-                  <SHORT-NAME>ProcessDesignToMachineDesignMapping_TestDummy_Provider_TO_EEVP_MAIN</SHORT-NAME>
-                  <MACHINE-DESIGN-REF DEST="MACHINE-DESIGN">/System/Ecu/EEVP_MAIN</MACHINE-DESIGN-REF>
-                  <PROCESS-DESIGN-REF DEST="PROCESS-DESIGN">/Application/Process/TestDummy_Provider</PROCESS-DESIGN-REF>
-                </PROCESS-DESIGN-TO-MACHINE-DESIGN-MAPPING>
-              </PROCESS-DESIGN-TO-MACHINE-DESIGN-MAPPINGS>
             </PROCESS-DESIGN-TO-MACHINE-DESIGN-MAPPING-SET>
           </ELEMENTS>
         </AR-PACKAGE>

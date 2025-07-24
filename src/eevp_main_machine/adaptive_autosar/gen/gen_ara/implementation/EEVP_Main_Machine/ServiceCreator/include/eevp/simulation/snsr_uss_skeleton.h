@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : snsr_uss_skeleton.h
 /// SERVICE INTERFACE NAME            : Snsr_USS
-/// GENERATED DATE                    : 2024-11-05 15:23:59
+/// GENERATED DATE                    : 2025-01-02 14:49:22
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -46,19 +46,26 @@ class Snsr_USSSkeleton
 {
 public:
     /// @uptrace{SWS_CM_00191}
+    struct isDetectOutput
+    {
+        bool detect;
+    };
     struct ntfFltStOutput
     {
         std::uint8_t ntfFltSt;
     };
     struct ntfSonarInfoOutput
     {
-        eevp::simulation::USSSonarInfo UssSonarinfo;
+        eevp::simulation::type::USSSonarInfo UssSonarinfo;
     };
     /// @brief Constructor
     /// @uptrace{SWS_CM_00002, SWS_CM_00152}
     Snsr_USSSkeleton(ara::core::InstanceSpecifier instanceSpec, ara::com::MethodCallProcessingMode mode = ara::com::MethodCallProcessingMode::kEvent)
         : mInterface(std::make_unique<para::com::SkeletonInterface>(instanceSpec, mode))
     {
+        mInterface->SetMethodCallHandler(kisDetectCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandleisDetect(data, token);
+        });
         mInterface->SetMethodCallHandler(kntfFltStCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlentfFltSt(data, token);
         });
@@ -82,6 +89,9 @@ public:
     Snsr_USSSkeleton(Snsr_USSSkeleton&& other) noexcept
         : mInterface(std::move(other.mInterface))
     {
+        mInterface->SetMethodCallHandler(kisDetectCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandleisDetect(data, token);
+        });
         mInterface->SetMethodCallHandler(kntfFltStCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlentfFltSt(data, token);
         });
@@ -98,6 +108,9 @@ public:
     Snsr_USSSkeleton& operator=(Snsr_USSSkeleton&& other) noexcept
     {
         mInterface = std::move(other.mInterface);
+        mInterface->SetMethodCallHandler(kisDetectCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
+            HandleisDetect(data, token);
+        });
         mInterface->SetMethodCallHandler(kntfFltStCallSign, [this](const std::vector<std::uint8_t>& data, const para::com::MethodToken token) {
             HandlentfFltSt(data, token);
         });
@@ -150,6 +163,9 @@ private:
     std::unique_ptr<para::com::SkeletonInterface> mInterface;
     
 public:
+    /// @brief Method, isDetect
+    /// @uptrace{SWS_CM_00191}
+    virtual ara::core::Future<isDetectOutput> isDetect() = 0;
     /// @brief Method, ntfFltSt
     /// @uptrace{SWS_CM_00191}
     virtual ara::core::Future<ntfFltStOutput> ntfFltSt() = 0;
@@ -158,6 +174,32 @@ public:
     virtual ara::core::Future<ntfSonarInfoOutput> ntfSonarInfo() = 0;
     
 private:
+    void HandleisDetect(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
+    {
+        std::uint8_t retResult{1};
+        std::vector<std::uint8_t> retData{};
+        auto future = isDetect();
+        auto result = future.GetResult();
+        if (result.HasValue())
+        {
+            isDetectOutput output = result.Value();
+            para::serializer::Serializer serializer{};
+            serializer.write(output.detect);
+            retData = serializer.ensure();
+            retResult = 0;
+        }
+        else
+        {
+            ara::core::ErrorDomain::IdType domainId = result.Error().Domain().Id();
+            ara::core::ErrorDomain::CodeType errorCode = result.Error().Value();
+            para::serializer::Serializer serializer{};
+            serializer.write(0, true, 0, domainId);
+            serializer.write(0, true, 0, errorCode);
+            retData = serializer.ensure();
+            retResult = 1;
+        }
+        mInterface->ReturnMethod(kisDetectCallSign, retResult, retData, token);
+    }
     void HandlentfFltSt(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
     {
         std::uint8_t retResult{1};
@@ -210,6 +252,7 @@ private:
         }
         mInterface->ReturnMethod(kntfSonarInfoCallSign, retResult, retData, token);
     }
+    const std::string kisDetectCallSign{"isDetect"};
     const std::string kntfFltStCallSign{"ntfFltSt"};
     const std::string kntfSonarInfoCallSign{"ntfSonarInfo"};
 };

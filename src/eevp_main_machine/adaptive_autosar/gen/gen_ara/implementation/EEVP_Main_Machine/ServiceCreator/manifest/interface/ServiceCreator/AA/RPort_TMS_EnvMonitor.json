@@ -5,18 +5,18 @@
     "port-type" : "rport",
     "instance-specifier" : "ServiceCreator/AA/RPort_TMS_EnvMonitor",
     "service-protocol" : "someip",
-    "service-name" : "BCM_WiperWash",
-    "service-id" : "5005",
+    "service-name" : "TMS_EnvMonitor",
+    "service-id" : "9046",
     "instance-id" : "ANY",
     "major-version" : "1",
     "minor-version" : "ANY",
-    "client-id" : "868",
+    "client-id" : "856",
     "events" : [
     ],
     "methods" : [
         {
-            "name" : "getWipingInterval",
-            "method-id" : "11001",
+            "name" : "getHumidity",
+            "method-id" : "4",
             "transport" : "udp",
             "req-max-segment-len" : "0",
             "req-separation-time" : "0.0",
@@ -24,8 +24,8 @@
             "resp-separation-time" : "0.0"
         },
         {
-            "name" : "getWipingLevel",
-            "method-id" : "11002",
+            "name" : "getLightIntensity",
+            "method-id" : "5",
             "transport" : "udp",
             "req-max-segment-len" : "0",
             "req-separation-time" : "0.0",
@@ -33,8 +33,8 @@
             "resp-separation-time" : "0.0"
         },
         {
-            "name" : "isWiping",
-            "method-id" : "11003",
+            "name" : "getTemp",
+            "method-id" : "2",
             "transport" : "udp",
             "req-max-segment-len" : "0",
             "req-separation-time" : "0.0",
@@ -42,8 +42,8 @@
             "resp-separation-time" : "0.0"
         },
         {
-            "name" : "setWipingInterval",
-            "method-id" : "11004",
+            "name" : "notifyHumidity",
+            "method-id" : "1",
             "transport" : "udp",
             "req-max-segment-len" : "0",
             "req-separation-time" : "0.0",
@@ -51,8 +51,8 @@
             "resp-separation-time" : "0.0"
         },
         {
-            "name" : "setWipingLevel",
-            "method-id" : "11005",
+            "name" : "notifyLightIntensity",
+            "method-id" : "6",
             "transport" : "udp",
             "req-max-segment-len" : "0",
             "req-separation-time" : "0.0",
@@ -60,26 +60,8 @@
             "resp-separation-time" : "0.0"
         },
         {
-            "name" : "setWipingLevelImme",
-            "method-id" : "11006",
-            "transport" : "udp",
-            "req-max-segment-len" : "0",
-            "req-separation-time" : "0.0",
-            "resp-max-segment-len" : "0",
-            "resp-separation-time" : "0.0"
-        },
-        {
-            "name" : "startWiping",
-            "method-id" : "11007",
-            "transport" : "udp",
-            "req-max-segment-len" : "0",
-            "req-separation-time" : "0.0",
-            "resp-max-segment-len" : "0",
-            "resp-separation-time" : "0.0"
-        },
-        {
-            "name" : "stopWiping",
-            "method-id" : "11008",
+            "name" : "notifyTemp",
+            "method-id" : "3",
             "transport" : "udp",
             "req-max-segment-len" : "0",
             "req-separation-time" : "0.0",
@@ -88,55 +70,5 @@
         }
     ],
     "fields" : [
-        {
-            "name" : "wiperInterval",
-            "getter" : {
-                "method-id" : "1",
-                "transport" : "udp",
-                "req-max-segment-len" : "0",
-                "req-separation-time" : "0.0",
-                "resp-max-segment-len" : "0",
-                "resp-separation-time" : "0.0"
-            },
-            "setter" : {
-                "method-id" : "0",
-                "transport" : "undefined",
-                "req-max-segment-len" : "0",
-                "req-separation-time" : "0.0",
-                "resp-max-segment-len" : "0",
-                "resp-separation-time" : "0.0"
-            },
-            "notifier" : {
-                "event-id" : "11003",
-                "transport" : "udp",
-                "max-segment-len" : "0",
-                "separation-time" : "0.0"
-            }
-        },
-        {
-            "name" : "wiperLevel",
-            "getter" : {
-                "method-id" : "2",
-                "transport" : "udp",
-                "req-max-segment-len" : "0",
-                "req-separation-time" : "0.0",
-                "resp-max-segment-len" : "0",
-                "resp-separation-time" : "0.0"
-            },
-            "setter" : {
-                "method-id" : "0",
-                "transport" : "undefined",
-                "req-max-segment-len" : "0",
-                "req-separation-time" : "0.0",
-                "resp-max-segment-len" : "0",
-                "resp-separation-time" : "0.0"
-            },
-            "notifier" : {
-                "event-id" : "11004",
-                "transport" : "udp",
-                "max-segment-len" : "0",
-                "separation-time" : "0.0"
-            }
-        }
     ]
 }

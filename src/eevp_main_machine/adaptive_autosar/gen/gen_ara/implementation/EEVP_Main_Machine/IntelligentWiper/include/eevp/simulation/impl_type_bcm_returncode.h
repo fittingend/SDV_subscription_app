@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_bcm_returncode.h
 /// IMPLEMENTATION DATA TYPE NAME     : BCM_ReturnCode
-/// GENERATED DATE                    : 2024-10-29 18:31:49
+/// GENERATED DATE                    : 2025-01-02 14:49:21
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

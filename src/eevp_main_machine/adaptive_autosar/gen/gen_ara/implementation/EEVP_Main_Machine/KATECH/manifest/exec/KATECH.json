@@ -35,14 +35,12 @@
         }
     ],
     "log-trace-configuration" : {
-    	"default-log-level" : "info",
+    	"default-log-level" : "none",
     	"log-modes" : [
-    	    "console",
-    	    "network"
     	],
-    	"application-id" : "KATC",
+    	"application-id" : "undefined",
     	"application-description" : "undefined",
-    	"context-id" : "KATC",
+    	"context-id" : "undefined",
     	"file-path" : "undefined"
     },
     "core-affinity" : [

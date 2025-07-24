@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : vcs_brake_skeleton.h
 /// SERVICE INTERFACE NAME            : VCS_Brake
-/// GENERATED DATE                    : 2024-11-05 15:23:59
+/// GENERATED DATE                    : 2025-01-02 14:49:22
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -48,11 +48,11 @@ public:
     /// @uptrace{SWS_CM_00191}
     struct notifyMCPrsOutput
     {
-        eevp::simulation::VCS_MCPrs VCS_MCPrs;
+        eevp::simulation::type::VCS_MCPrs VCS_MCPrs;
     };
     struct notifyTqOutput
     {
-        eevp::simulation::VCS_TqCtrl VCS_TqCtrl;
+        eevp::simulation::type::VCS_TqCtrl VCS_TqCtrl;
     };
     struct setTargetAxOutput
     {
@@ -182,10 +182,10 @@ public:
     virtual ara::core::Future<notifyTqOutput> notifyTq() = 0;
     /// @brief Method, setTargetAx
     /// @uptrace{SWS_CM_00191}
-    virtual ara::core::Future<setTargetAxOutput> setTargetAx(const eevp::simulation::VCS_Acceleration& ax) = 0;
+    virtual ara::core::Future<setTargetAxOutput> setTargetAx(const eevp::simulation::type::VCS_Acceleration& ax) = 0;
     /// @brief Method, setTotalForce
     /// @uptrace{SWS_CM_00191}
-    virtual ara::core::Future<setTotalForceOutput> setTotalForce(const eevp::simulation::VCS_LgtBrkFTotal& lgtBrkFTotal) = 0;
+    virtual ara::core::Future<setTotalForceOutput> setTotalForce(const eevp::simulation::type::VCS_LgtBrkFTotal& lgtBrkFTotal) = 0;
     
 private:
     void HandlenotifyMCPrs(const std::vector<std::uint8_t>& data, const para::com::MethodToken token)
@@ -245,7 +245,7 @@ private:
         std::uint8_t retResult{1};
         std::vector<std::uint8_t> retData{};
         para::serializer::Deserializer deserializer{data};
-        eevp::simulation::VCS_Acceleration _ax_;
+        eevp::simulation::type::VCS_Acceleration _ax_;
         deserializer.read(_ax_);
         auto future = setTargetAx(_ax_);
         auto result = future.GetResult();
@@ -270,7 +270,7 @@ private:
         std::uint8_t retResult{1};
         std::vector<std::uint8_t> retData{};
         para::serializer::Deserializer deserializer{data};
-        eevp::simulation::VCS_LgtBrkFTotal _lgtBrkFTotal_;
+        eevp::simulation::type::VCS_LgtBrkFTotal _lgtBrkFTotal_;
         deserializer.read(_lgtBrkFTotal_);
         auto future = setTotalForce(_lgtBrkFTotal_);
         auto result = future.GetResult();

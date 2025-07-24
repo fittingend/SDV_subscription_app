@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : vcs_epb_proxy.h
 /// SERVICE INTERFACE NAME            : VCS_EPB
-/// GENERATED DATE                    : 2024-11-05 15:24:01
+/// GENERATED DATE                    : 2025-01-02 14:49:22
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -51,7 +51,7 @@ public:
     /// @uptrace{SWS_CM_00196}
     struct Output
     {
-        eevp::simulation::VCS_Slope VCS_Slope;
+        eevp::simulation::type::VCS_Slope VCS_Slope;
     };
     /// @brief Constructor
     explicit notifystaticSlope(para::com::ProxyInterface* interface) : mInterface(interface)

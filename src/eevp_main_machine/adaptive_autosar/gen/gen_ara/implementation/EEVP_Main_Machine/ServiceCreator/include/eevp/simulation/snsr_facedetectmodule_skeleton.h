@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : snsr_facedetectmodule_skeleton.h
 /// SERVICE INTERFACE NAME            : Snsr_FaceDetectModule
-/// GENERATED DATE                    : 2024-11-05 15:23:59
+/// GENERATED DATE                    : 2025-01-02 14:49:22
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
@@ -48,7 +48,7 @@ public:
     /// @uptrace{SWS_CM_00191}
     struct getEmotionOutput
     {
-        eevp::simulation::FDM_EmotionType FDM_EmotionType;
+        eevp::simulation::type::FDM_EmotionType FDM_EmotionType;
     };
     struct isRunningOutput
     {
@@ -56,11 +56,11 @@ public:
     };
     struct turnOffOutput
     {
-        eevp::simulation::FDM_ReturnCode FDM_ReturnCode;
+        eevp::simulation::type::FDM_ReturnCode FDM_ReturnCode;
     };
     struct turnOnOutput
     {
-        eevp::simulation::FDM_ReturnCode FDM_ReturnCode;
+        eevp::simulation::type::FDM_ReturnCode FDM_ReturnCode;
     };
     /// @brief Constructor
     /// @uptrace{SWS_CM_00002, SWS_CM_00152}

@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_bcm_wipinglevel.h
 /// IMPLEMENTATION DATA TYPE NAME     : BCM_WipingLevel
-/// GENERATED DATE                    : 2024-11-05 15:24:02
+/// GENERATED DATE                    : 2025-01-02 14:49:21
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

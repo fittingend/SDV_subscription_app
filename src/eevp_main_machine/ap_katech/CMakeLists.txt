@@ -46,12 +46,15 @@ INCLUDE_DIRECTORIES(${PARA_INC_DIR})
 
 MESSAGE(STATUS "PARA_APP_GEN_INCLUDE_DIR : ${PARA_APP_GEN_INCLUDE_DIR}")
 
+#SET(PARA_APP_GEN_SRC_DIR "${PARA_APP_GEN_DIR}/src")
+
 SET(SRC
     src/main.cpp
     src/katech.cpp
     src/RoaProxyImpl.cpp
     src/RearCurtainProxyImpl.cpp
-    src/WiperProxyImpl.cpp)
+    src/SubscriptionManagementProxyImpl.cpp
+)
 
 ADD_EXECUTABLE(${PROJECT_NAME} ${SRC})
 

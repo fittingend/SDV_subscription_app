@@ -17,7 +17,7 @@
             "minor-version" : "ANY",
             "client-id" : "850",
             "sd-client-timing" : {
-                "initial-delay-min" : "0.1",
+                "initial-delay-min" : "0.01",
                 "initial-delay-max" : "0.1",
                 "repetition-base" : "0.1",
                 "repetition-max" : "3",

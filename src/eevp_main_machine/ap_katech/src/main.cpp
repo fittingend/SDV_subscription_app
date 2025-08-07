@@ -6,10 +6,10 @@ int main(void) {
         return EXIT_FAILURE;
     }
 
-    eevp::control::KATECH eevp_subs_app;
-    if (eevp_subs_app.Start()) {
-        eevp_subs_app.Run();
-        eevp_subs_app.Terminate();
+    eevp::control::KATECH app;
+    if (app.Start()) {
+        app.Run();
+        app.Terminate();
     }
 
     if (!ara::core::Deinitialize()) {

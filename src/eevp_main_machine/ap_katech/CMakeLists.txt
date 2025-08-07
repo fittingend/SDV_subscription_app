@@ -51,7 +51,8 @@ SET(SRC
     src/katech.cpp
     src/RoaProxyImpl.cpp
     src/RearCurtainProxyImpl.cpp
-    src/WiperProxyImpl.cpp)
+    src/SubscriptionManagementProxyImpl.cpp
+)
 
 ADD_EXECUTABLE(${PROJECT_NAME} ${SRC})
 

@@ -173,17 +173,17 @@ void AAEventHandler::Run()
         return;
     }
 
-    // Run initial transition
-    if (!state_manager::StateManager::getInstance().Initialize()) {
-        logger().LogError() << "Failed to initialize Startup state";
-        return;
-    }
-
     EventReceived eventReceived;
     // intialize services
     if (!InitializeServices(eventReceived)) {
         logger().LogError() << "Failed to intialize services";
         ReleaseServices();
+        return;
+    }
+
+    // Run initial transition
+    if (!state_manager::StateManager::getInstance().Initialize()) {
+        logger().LogError() << "Failed to initialize Startup state";
         return;
     }
 

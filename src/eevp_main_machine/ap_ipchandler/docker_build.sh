@@ -5,28 +5,31 @@ GEN_URL="ssh://git@bitbucket.mobis.co.kr:7999/eevp_mb/adaptive_autosar.git"
 BUILD_DIR="build"
 THIS_DIR=$(dirname "$(readlink -f "${0}")")
 THIS_CMD=$(basename "$(readlink -f "${0}")")
-PARA_SDK="/home/popcornsar/work/para-sdk"
 CLEAN=false
 BUILD_PARA_ROOT=false
 STAND_ALONE=false
 ENABLE_TEST=OFF
 ENABLE_IPC_SHM=OFF
 IP_ADDRESS=""
-SDK_PATH="/opt/distro-mobis-eevpmb/4.0.12"
-BUILD_WITH_SDK=false
 PARA_CORE="/tmp/para-root"
 PARA_CONF="${PARA_CORE}/etc"
 PARA_DATA="${PARA_CORE}/var"
 PARA_APPL="${PARA_CORE}/opt"
+BUILD_WITH_REAL_TARGET=false
+# get PARA_SDK from environment variable
+PARA_SDK="${PARA_SDK:-/home/popcornsar/work/para-sdk}"
 
 function help() {
     echo "${THIS_CMD} [options]"
-    echo "  --use-sdk [path]: sdk build(might be /opt/distro-mobis-eevpmb/4.0.12)"
     echo "  -t|--test : enable gtest"
     echo "  -c|--cean : clean install/build"
     echo "  -p|--para-root : build PARA_ROOT"
+    echo "  -r|--real-target: build with real target"
     echo "  --stand-alone : only run EM and IPCHnalder"
     echo "  --ip-address [IP]: ip-address"
+    echo "  PARA_SDK environment variable for SDK (examples)"
+    echo "    for arm : export PARA_SDK=\"/opt/distro-mobis-eevpmb/4.0.12/sysroots/cortexa53-crypto-poky-linux/usr\""
+    echo "    for x86 : export PARA_SDK=\"/home/popcornsar/work/para-sdk\" (default)"
 }
 
 function build_para_root() {
@@ -114,10 +117,8 @@ while [ ${#} -gt 0 ]; do
         -p | --para-root)
             BUILD_PARA_ROOT=true
             ;;
-        --use-sdk)
-            BUILD_WITH_SDK=true
-            shift
-            SDK_PATH="${1}"
+        -r | --real-target)
+            BUILD_WITH_REAL_TARGET=true
             ;;
         --ip-address)
             shift
@@ -131,12 +132,7 @@ while [ ${#} -gt 0 ]; do
     shift
 done
 
-if ${BUILD_WITH_SDK}; then
-    if [ ! -d "${SDK_PATH}" ]; then
-        echo "Invalid SDK Path : ${SDK_PATH}"
-        exit
-    fi
-    PARA_SDK="${SDK_PATH}/sysroots/cortexa53-crypto-poky-linux/usr"
+if ${BUILD_WITH_REAL_TARGET}; then
     ENABLE_IPC_SHM=ON
 fi
 
@@ -172,7 +168,7 @@ if ! make --directory="${THIS_DIR}/${BUILD_DIR}" -j32 install; then
     exit
 fi
 
-if ${BUILD_PARA_ROOT} && ! ${BUILD_WITH_SDK}; then
+if ${BUILD_PARA_ROOT}; then
     if mkdir -p "${PARA_CORE}"; then
         build_para_root "${PARA_CORE}" "${PARA_CONF}" "${PARA_DATA}" "${PARA_APPL}" \
                         "${STAND_ALONE}" "${IP_ADDRESS}"

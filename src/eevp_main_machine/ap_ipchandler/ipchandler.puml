@@ -11,7 +11,7 @@ class IPCRoutingIPCSkeleton {
     +UpdateCpInfo(const CpInfo& cpInfo) : void
     +ApInfo GetApInfo() : void
     +CpInfo GetCpInfo() : void
-}
+};
 
 struct TimeoutEventInfo
 {
@@ -118,8 +118,6 @@ ipc_int -> EventHandler : SendEvent
 EventHandler -> EventHandler : IPCIntf::getInstance().PopCpInfo
 EventHandler -> skeleton : UpdateCpInfo
 skeleton -> skeleton : Save cpInfo
-skeleton -> client : SystemControlRequest.Send()
-skeleton -> client : PeriodicSystemInfo.Send()
 client -> skeleton : GetOneTimeSystemInfo()
 skeleton -> client : Response to GetOneTimeSystemInfo()
 @enduml

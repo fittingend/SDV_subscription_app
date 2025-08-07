@@ -19,11 +19,11 @@ enum TimeoutEvent : std::uint8_t
     kPeriodicTimer1Secs = 0,  // For future
 };
 
-class EventNotifer
+class EventNotifier
 {
     public:
-        EventNotifer() = default;
-        ~EventNotifer() = default;
+        EventNotifier() = default;
+        ~EventNotifier() = default;
 
         virtual void EventArrived(aa_event::Event eventKind) = 0;
 };
@@ -35,12 +35,12 @@ class EventRegister
             eventNotifier_{nullptr} {};
         ~EventRegister() = default;
 
-        void RegisterEventHandler(EventNotifer &ev) {
+        void RegisterEventHandler(EventNotifier &ev) {
             eventNotifier_ = &ev;
         }
 
     protected:
-        EventNotifer* eventNotifier_;
+        EventNotifier* eventNotifier_;
 
         void SendEvent(aa_event::Event eventKind) {
             if (eventNotifier_ != nullptr) {

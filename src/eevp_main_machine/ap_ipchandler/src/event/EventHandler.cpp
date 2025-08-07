@@ -30,7 +30,7 @@ static void SignalFunction(int signum) {
     }
 }
 
-class EventReceived : public aa_event::EventNotifer {
+class EventReceived : public aa_event::EventNotifier {
     public:
         EventReceived() = default;
         ~EventReceived() = default;

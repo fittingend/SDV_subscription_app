@@ -1,5 +1,6 @@
 /* Copyright 2024 Hyundai Mobis Co., Ltd. All rights reserved */
 
+#include <thread>
 #include <ara/core/vector.h>
 #include <ara/core/string.h>
 
@@ -12,14 +13,25 @@ using namespace ara::exec;
 namespace state_manager
 {
 
+constexpr std::int32_t kSetStateRetryCount = 20;
+constexpr std::int32_t kSetStateWaitTime = 100;  // milliseconds
+
 static void UndefinedStateCallback(FunctionGroup &fg)
 {
-    logger().LogError() << "Called UndefeindStateCallback : " << fg.GetName();
+    logger().LogError() << "Called UndefinedStateCallback : " << fg.GetName();
+}
+
+static void ProcessStateCallback(ProcessStateClient::ProcessInformation& processInformation)
+{
+    logger().LogError() << "Called ProcessStateCallback: "
+                        << processInformation.name.data() << ", "
+                        << processInformation.functionGroup.data();
 }
 
 StateManager::StateManager()
     : lock_{},
       stateClient_{std::make_unique<StateClient>(UndefinedStateCallback)},
+      processStateClient_{std::make_unique<ProcessStateClient>(ProcessStateCallback)},
       mode_{Mode::kNone}
 {
 }
@@ -41,18 +53,14 @@ bool StateManager::Initialize()
         return false;
     }
 
-    std::vector<String> initialFGs{kFGSC, kFGSS};
+    std::vector<String> initialFGs{kFGSC,
+                                   kSFG01, kSFG02, kSFG03, kSFG04, kSFG05, kSFG06, kSFG07, kSFG08, kSFG09, kSFG10,
+                                   kSFG11, kSFG12, kSFG13, kSFG14, kSFG15, kSFG16, kSFG17, kSFG18, kSFG19, kSFG20};
     for (const auto& it : initialFGs) {
         if (!ChangeState(it, kOn)) {
             return false;
         }
     }
-
-#if defined ENABLE_OTA_TEST
-    if (!ChangeState("OTATestFG", kOn)) {
-        return false;
-    }
-#endif
 
     return true;
 }
@@ -76,14 +84,31 @@ bool StateManager::ChangeState(const ara::core::String &group, const ara::core::
     FunctionGroupState fgs(std::move(fgsToken));
 
     try {
-        auto future = stateClient_->SetState(fgs);
-        auto fResult = future.GetResult();
-        if (!fResult) {
-            logger().LogError() << "Failed to change FG(" << group << "," << stateStr << ")";
-            // let's do return true even though Functiongroup change has failed
-            // until eevp has a scenario for it.
-            return true;
+        auto retry_count = 0;
+        for (; retry_count < kSetStateRetryCount; retry_count++) {
+            auto future = stateClient_->SetState(fgs);
+            // FIXME : wait_for is not working properly
+            // future.wait_for(std::chrono::milliseconds(kSetStateWaitTime));
+            std::this_thread::sleep_for(std::chrono::milliseconds(kSetStateWaitTime));
+            auto fResult = future.GetResult();
+            if (fResult.HasValue()) {
+                logger().LogInfo() << "Changed FG(" << group << "," << state << ")";
+                break;
+            } else if (fResult.Error() == ExecErrc::kInTransitionToSameState) {
+                logger().LogDebug() << "Retry to change FG(" << group << "," << state << ")";
+            } else {
+                logger().LogError() << "Skip to change FG(" << group << "," << state << ")";
+                break;
+            }
         }
+
+        if (retry_count == kSetStateRetryCount) {
+            logger().LogError() << "Failed to change FG(" << group << "," << state << ")" << " with retry count";
+        }
+
+        // let's do return true always even though Functiongroup change has failed
+        // until eevp has a scenario for it.
+        return true;
     } catch (std::exception &e) {
         logger().LogError() << "Failed to change FG(" << group << "," << state << ") with " << e.what();
         return false;

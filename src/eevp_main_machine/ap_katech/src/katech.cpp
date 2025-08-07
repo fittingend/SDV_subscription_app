@@ -81,11 +81,12 @@ bool KATECH::Start() {
     mRunning = true;
 
     if (!setRunningState()) return false;
-    if (!startSubscriptionManagementProxy()) return false;
     if (!startRoaProxy()) return false;
     if (!startRearCurtainProxy()) return false;
+    std::this_thread::sleep_for(std::chrono::seconds(5));
+    if (!startSubscriptionManagementProxy()) return false;
 
-    getSubscriptionInfo();  // 최초 구독 정보 조회
+    getSubscriptionInfo();  // 최초 구독 정보 조회하고 구독상태 상관없이 run 으로 무조건 진입 
 
     return true;
 }
@@ -93,13 +94,20 @@ bool KATECH::Start() {
 void KATECH::Run() {
     mLogger.LogInfo() << __func__;
 
-    while (true) {
+    while (mRunning) {
         std::unique_lock<std::mutex> lock(mSubscriptionMutex);
-        mSubscriptionCv.wait(lock, [&]() { return mSubscription; });
+        
+        // 타임아웃 5초마다 깨어나서 상태 확인
+        if (!mSubscriptionCv.wait_for(lock, std::chrono::seconds(5),
+            [&]() { return mSubscription || !mRunning; })) {
+            mLogger.LogInfo() << "Still unsubscribed... waiting.";
+            continue;
+        }
+        if (!mRunning) break; // 종료 신호 받으면 나감
 
         mLogger.LogInfo() << "App is subscribed. Starting main logic.";
 
-        while (mSubscription) {
+        while (mSubscription && mRunning) {
             // 실제 동작 수행
             eevp::control::SoaRoaDetectState soaRoaDetectState;
             std::uint8_t soaRoaDetectCount;

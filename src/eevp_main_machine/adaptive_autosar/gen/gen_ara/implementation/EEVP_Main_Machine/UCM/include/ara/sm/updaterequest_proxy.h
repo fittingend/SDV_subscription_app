@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : updaterequest_proxy.h
 /// SERVICE INTERFACE NAME            : UpdateRequest
-/// GENERATED DATE                    : 2025-01-02 14:49:24
+/// GENERATED DATE                    : 2025-08-11 10:46:35
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

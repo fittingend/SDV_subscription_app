@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_string.h
 /// IMPLEMENTATION DATA TYPE NAME     : String
-/// GENERATED DATE                    : 2025-07-18 17:10:21
+/// GENERATED DATE                    : 2025-08-11 10:46:22
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

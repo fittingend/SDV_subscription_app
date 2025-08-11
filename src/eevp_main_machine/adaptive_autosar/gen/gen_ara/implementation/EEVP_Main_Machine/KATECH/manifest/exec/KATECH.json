@@ -24,23 +24,25 @@
     },
     "state-dependencies" : [
         {
-            "function-group" : "MachineFG",
-            "state" : "Startup"
+            "function-group" : "SFG01",
+            "state" : "On"
+        },
+        {
+            "function-group" : "SFG01",
+            "state" : "Verify"
         }
     ],
     "execution-dependencies" : [
-        {
-            "dependent-process" : "CM",
-            "state" : "Running"
-        }
     ],
     "log-trace-configuration" : {
-    	"default-log-level" : "none",
+    	"default-log-level" : "info",
     	"log-modes" : [
+    	    "console",
+    	    "network"
     	],
-    	"application-id" : "undefined",
+    	"application-id" : "KATC",
     	"application-description" : "undefined",
-    	"context-id" : "undefined",
+    	"context-id" : "KATC",
     	"file-path" : "undefined"
     },
     "core-affinity" : [

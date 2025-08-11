@@ -35,10 +35,10 @@ add_compile_definitions(my_target PRIVATE APP_NAME=\"${PARA_APP_NAME}\")
 
 Para_App()
 # ============================================================================
-
+ 
 project(${PARA_APP_NAME}
-        VERSION ${PARA_APP_VERSION}
-        LANGUAGES CXX)
+		VERSION ${PARA_APP_VERSION}
+		LANGUAGES CXX)
 
 INCLUDE_DIRECTORIES("./include")
 INCLUDE_DIRECTORIES(${PARA_APP_GEN_INCLUDE_DIR})
@@ -47,19 +47,14 @@ INCLUDE_DIRECTORIES(${PARA_INC_DIR})
 MESSAGE(STATUS "PARA_APP_GEN_INCLUDE_DIR : ${PARA_APP_GEN_INCLUDE_DIR}")
 
 SET(SRC
-    src/main.cpp
-    src/IntelligentWiper.cpp
-    src/WiperProxyImpl.cpp
-    src/AccrPedalProxyImpl.cpp
-    src/BrakePedalProxyImpl.cpp
-    src/GearProxyImpl.cpp
-    src/VehSpdProxyImpl.cpp
-    src/SnsrUssProxyImpl.cpp)
+	src/intelligentwiper/aa/port/rportwiper.cpp
+	src/intelligentwiper/aa/intelligentwiper.cpp
+	src/main.cpp)
 
 ADD_EXECUTABLE(${PROJECT_NAME} ${SRC})
 
 Para_Target(${PARA_APP_NAME}
-    PARA_LIBS_PRIVATE core log exec com
-    PARA_GEN_DIR ${PARA_APP_GEN_DIR}
-    OUTPUT_NAME ${PARA_APP_NAME}
+	PARA_LIBS_PRIVATE core log exec com
+	PARA_GEN_DIR ${PARA_APP_GEN_DIR}
+	OUTPUT_NAME ${PARA_APP_NAME}
 )

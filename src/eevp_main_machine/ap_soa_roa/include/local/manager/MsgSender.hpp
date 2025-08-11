@@ -9,7 +9,7 @@ class MsgSender
 private:
 
 public:
-    virtual void SendMessage(std::string Message) {}
+	virtual void SendMessage(std::string Message) {}
 };
 
 #endif

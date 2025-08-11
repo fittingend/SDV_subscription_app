@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : updaterequest_skeleton.h
 /// SERVICE INTERFACE NAME            : UpdateRequest
-/// GENERATED DATE                    : 2025-01-02 14:49:21
+/// GENERATED DATE                    : 2025-08-11 10:46:28
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

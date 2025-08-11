@@ -5,25 +5,26 @@ GEN_URL="ssh://git@bitbucket.mobis.co.kr:7999/eevp_mb/adaptive_autosar.git"
 BUILD_DIR="build"
 THIS_DIR=$(dirname "$(readlink -f "${0}")")
 THIS_CMD=$(basename "$(readlink -f "${0}")")
-PARA_SDK="/home/popcornsar/work/para-sdk"
 CLEAN=false
 BUILD_PARA_ROOT=false
 ENABLE_TEST=OFF
 IP_ADDRESS=""
-SDK_PATH="/opt/distro-mobis-eevpmb/4.0.12"
-BUILD_WITH_SDK=false
 PARA_CORE="/tmp/para-root"
 PARA_CONF="${PARA_CORE}/etc"
 PARA_DATA="${PARA_CORE}/var"
 PARA_APPL="${PARA_CORE}/opt"
+# get PARA_SDK from environment variable
+PARA_SDK="${PARA_SDK:-/home/popcornsar/work/para-sdk}"
 
 function help() {
     echo "${THIS_CMD} [options]"
-    echo "  --use-sdk [path]: sdk build(might be /opt/distro-mobis-eevpmb/4.0.12)"
     echo "  -t|--test : enable gtest"
     echo "  -c|--cean : clean install/build"
     echo "  -p|--para-root : build PARA_ROOT"
     echo "  --ip-address [IP]: ip-address"
+    echo "  PARA_SDK environment variable for SDK (examples)"
+    echo "    for arm : export PARA_SDK=\"/opt/distro-mobis-eevpmb/4.0.12/sysroots/cortexa53-crypto-poky-linux/usr\""
+    echo "    for x86 : export PARA_SDK=\"/home/popcornsar/work/para-sdk\" (default)"
 }
 
 function build_para_root() {
@@ -58,15 +59,12 @@ function build_para_root() {
     done
 
     for fc in "UCM" "VUCM"; do
-        if [ ${fc} == "UCM" ]; then
-            mkdir -p "${para_appl}"/${fc}/etc
-        fi
         cp "${PARA_SDK}"/opt/${fc}/bin/${fc} "${para_core}"/bin/${fc}
 
         cp -r "${GEN_BASE}"/"${fc}"/manifest/exec/* "${para_conf}"/exec/
         cp -r "${GEN_BASE}"/"${fc}"/manifest/interface/* "${para_conf}"/interface/
         if [ ${fc} == "UCM" ]; then
-            cp -r "${GEN_BASE}"/"${fc}"/manifest/ucm "${para_appl}"/${fc}/etc/
+            cp -r "${GEN_BASE}"/"${fc}"/manifest/ucm "${para_conf}"/
         fi
     done
 
@@ -98,18 +96,13 @@ while [ ${#} -gt 0 ]; do
 
     case "${1}" in
         -t | --test)
-            ENABLE_TEST=OK
+            ENABLE_TEST=ON
             ;;
         -c | --clean)
             CLEAN=true
             ;;
         -p | --para-root)
             BUILD_PARA_ROOT=true
-            ;;
-        --use-sdk)
-            BUILD_WITH_SDK=true
-            shift
-            SDK_PATH="${1}"
             ;;
         --ip-address)
             shift
@@ -122,14 +115,6 @@ while [ ${#} -gt 0 ]; do
 
     shift
 done
-
-if ${BUILD_WITH_SDK}; then
-    if [ ! -d "${SDK_PATH}" ]; then
-        echo "Invalid SDK Path : ${SDK_PATH}"
-        exit
-    fi
-    PARA_SDK="${SDK_PATH}/sysroots/cortexa53-crypto-poky-linux/usr"
-fi
 
 if [ ! -d "${THIS_DIR:?}/${GEN_DIR}" ]; then
     echo "You need to clone ${GEN_URL} outside of docker because of id"
@@ -162,13 +147,13 @@ if ! make --directory="${THIS_DIR}/${BUILD_DIR}" -j32 install; then
     exit
 fi
 
-if ${BUILD_PARA_ROOT} && ! ${BUILD_WITH_SDK}; then
+if ${BUILD_PARA_ROOT}; then
     if mkdir -p "${PARA_CORE}"; then
         build_para_root "${PARA_CORE}" "${PARA_CONF}" "${PARA_DATA}" "${PARA_APPL}" \
                         "${IP_ADDRESS}"
     fi
 
-    echo "======== Check the environment variables before run VDI ========"
+    echo "======== Check the environment variables before run SM ========"
     echo "export PARA_CORE=${PARA_CORE}"
     echo "export PARA_CONF=${PARA_CORE}/etc"
     echo "export PARA_DATA=${PARA_CORE}/var"

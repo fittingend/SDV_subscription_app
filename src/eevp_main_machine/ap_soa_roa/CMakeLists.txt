@@ -10,7 +10,7 @@ SET(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 OPTION(BUILD_IN_DOCKER "Build in docker environment" OFF)
 IF(BUILD_IN_DOCKER)
-    ADD_DEFINITIONS(-DBUILD_IN_DOCKER)
+	ADD_DEFINITIONS(-DBUILD_IN_DOCKER)
 ENDIF()
 
 MESSAGE(STATUS "BUILD_IN_DOCKER : ${BUILD_IN_DOCKER}")
@@ -30,15 +30,16 @@ SET(PARA_APP_NAME SOA_ROA)
 SET(PARA_APP_VERSION 1.0.0)
 SET(PARA_APP_GEN_DIR "${GEN_MACHINE_DIR}/${PARA_APP_NAME}")
 SET(PARA_APP_GEN_INCLUDE_DIR "${PARA_APP_GEN_DIR}/include")
+SET(PARA_APP_TELNET_CMD_PORT 31465)
 
-add_compile_definitions(my_target PRIVATE APP_NAME=\"${PARA_APP_NAME}\")
+add_compile_definitions(my_target PRIVATE APP_NAME=\"${PARA_APP_NAME}\" TELNET_CMD_PORT=${PARA_APP_TELNET_CMD_PORT})
 
 Para_App()
 # ============================================================================
 
 project(${PARA_APP_NAME}
-        VERSION ${PARA_APP_VERSION}
-        LANGUAGES CXX)
+		VERSION ${PARA_APP_VERSION}
+		LANGUAGES CXX)
 
 INCLUDE_DIRECTORIES("./include/local")
 INCLUDE_DIRECTORIES("./include/local/debug")
@@ -51,26 +52,33 @@ INCLUDE_DIRECTORIES(${PARA_INC_DIR})
 MESSAGE(STATUS "PARA_APP_GEN_INCLUDE_DIR : ${PARA_APP_GEN_INCLUDE_DIR}")
 
 SET(SRC
-    src/soa/api/PaconSetting.cpp
-    src/soa/api/SoaRoaSkeletonImpl.cpp
-    src/soa/api/Zone2RoaProxyImpl.cpp
-    src/soa/api/Api_SoaRoa.cpp
-    src/soa/api/Api_Zone2Roa.cpp
-    src/soa/debug/CmdLists_Context.cpp
-    src/soa/debug/CmdLists_ZoneApi.cpp
-    src/soa/debug/CmdMgr.cpp
-    src/soa/debug/Debug_DataType2String.cpp
-    src/soa/debug/Log.cpp
-    src/soa/debug/TelnetServer.cpp
-    src/soa/devices/DevicesInit.cpp
-    src/soa/manager/ManagerBase.cpp
-    src/soa/manager/VehicleContext.cpp
-    src/main.cpp)
+	src/soa/api/PaconSetting.cpp
+	src/soa/api/SoaRoaConverter.cpp
+	src/soa/api/SoaRoaSkeletonImpl.cpp
+	src/soa/api/Zone2RoaConverter.cpp
+	src/soa/api/Zone2RoaProxyImpl.cpp
+	src/soa/api/Api_SoaRoa.cpp
+	src/soa/api/Api_Zone2Roa.cpp
+	src/soa/debug/CmdLists_Context.cpp
+	src/soa/debug/CmdLists_ZoneApi.cpp
+	src/soa/debug/CmdMgr.cpp
+	src/soa/debug/Debug_DataType2String.cpp
+	src/soa/debug/Log.cpp
+	src/soa/debug/TelnetServer.cpp
+	src/soa/manager/ManagerBase.cpp
+	src/soa/manager/RoaManager.cpp
+	src/soa/manager/MulticastServerManager.cpp
+	src/soa/manager/MulticastClientManager.cpp
+	src/soa/manager/VehicleContext.cpp
+	src/soa/manager/SimpleTimerItem.cpp
+	src/soa/manager/SimpleTimer.cpp
+	src/soa/manager/Sleeper.cpp
+	src/main.cpp)
 
 ADD_EXECUTABLE(${PROJECT_NAME} ${SRC})
 
 Para_Target(${PARA_APP_NAME}
-    PARA_LIBS_PRIVATE core log exec com
-    PARA_GEN_DIR ${PARA_APP_GEN_DIR}
-    OUTPUT_NAME ${PARA_APP_NAME}
+	PARA_LIBS_PRIVATE core log exec com
+	PARA_GEN_DIR ${PARA_APP_GEN_DIR}
+	OUTPUT_NAME ${PARA_APP_NAME}
 )

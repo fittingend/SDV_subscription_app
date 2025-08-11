@@ -6,9 +6,9 @@
 extern void SOA_ROA_Init();
 extern void SOA_ROA_Term();
 extern void SOA_ROA_SetMode(RoaMode_e mode);
-extern void SOA_ROA_ResetSensor();
-extern void SOA_ROA_StartSensor();
-extern void SOA_ROA_StopSensor();
+extern void SOA_ROA_Reset();
+extern void SOA_ROA_Start();
+extern void SOA_ROA_Stop();
 extern void SOA_ROA_UpdateDeviceNormal();
 extern void SOA_ROA_UpdateRunningState();
 extern void SOA_ROA_UpdateRoaMode();

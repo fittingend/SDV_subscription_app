@@ -1,68 +1,73 @@
 #include <Common.h>
 #include <thread>
-#include <atomic>
 #include <csignal>
 
 #include <ManagerBase.hpp>
-#include <MessageQueue.hpp>
+#include <RoaManager.hpp>
+#include <SimpleTimer.hpp>
+#include <Sleeper.hpp>
 #include <VehicleContext.hpp>
-#include <PaconSetting.hpp>
 #include <TelnetServer.hpp>
+#include <CmdLists.hpp>
+#include <PaconSetting.hpp>
+#include <Log.hpp>
 
 using namespace std;
 
-extern void DevicesInit(void);
-
-static std::atomic<bool> s_running;
-static MessageQueue<int> s_queueForStopping;
+static Sleeper s_sleeper;
 
 static void stopApp(void)
 {
-    s_running = false;
-    s_queueForStopping.Push(0);
+	s_sleeper.WakeUp();
+}
+
+static void initServices(void)
+{
+	(void)util::timer::SimpleTimer::GetInstance();
+	(void)RoaManager::GetInstance();
+}
+
+static void termServices(void)
+{
+	(void)util::timer::SimpleTimer::DestoryInstance();
+	(void)RoaManager::RemoveInstance();
 }
 
 static void signalHandler(std::int32_t signal)
 {
-    stopApp();
+	stopApp();
 }
 
 int main(int argc, char *argv[])
 {
-    s_running = true;
+	std::signal(SIGINT, signalHandler);
+	std::signal(SIGTERM, signalHandler);
 
-    std::signal(SIGINT, signalHandler);
-    std::signal(SIGTERM, signalHandler);
+	VehicleContext *context = VehicleContext::GetInstance();
 
-    VehicleContext *context = VehicleContext::GetInstance();
+	initServices();
 
-    if (!PaconSetting::GetInstance()->StartPacon())
-    {
-        (void)PaconSetting::RemoveInstance();
-        return 1;
-    }
-
-    // TODO: your code here
-
-    DevicesInit();
+	if (!PaconSetting::GetInstance()->StartPacon())
+	{
+		(void)PaconSetting::RemoveInstance();
+		return 1;
+	}
 
 #if defined(DEBUG_TELNET)
-    TelnetServer *telnetServer = TelnetServer::GetInstance();
-    telnetServer->Start();
+	TelnetServer *telnetServer = TelnetServer::GetInstance();
+	telnetServer->Start();
+	RegisterEcuApi();
+	RegisterCmdContext();
 #endif
 
-    while (s_running)
-    {
-        (void)s_queueForStopping.Pop();
-    }
-
-    ManagerBase::StopAllManagers();
+	s_sleeper.Sleep();
 
 #if defined(DEBUG_TELNET)
-    telnetServer->Stop();
-    TelnetServer::DestroyInstance();
+	telnetServer->Stop();
+	TelnetServer::DestroyInstance();
 #endif
 
-    (void)PaconSetting::RemoveInstance();
-    return 0;
+	(void)PaconSetting::RemoveInstance();
+	termServices();
+	return 0;
 }

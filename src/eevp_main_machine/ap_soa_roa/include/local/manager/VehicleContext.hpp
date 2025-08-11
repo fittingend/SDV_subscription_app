@@ -10,26 +10,26 @@
 class VehicleContext
 {
 private:
-    static VehicleContext *mInst;
+	static VehicleContext *mInst;
 
-    VehicleContext();
-    ~VehicleContext();
+	VehicleContext();
+	~VehicleContext();
 
 public:
-    std::atomic<DeviceNormal_e> mIsNormal;
-    std::atomic<RoaRunningState_e> mRunningState;
-    std::atomic<RoaMode_e> mRoaMode;
-    std::atomic<int> mDetectCount;
-    std::atomic<RoaSensorError_e> mSensorError;
+	std::atomic<DeviceNormal_e> mIsNormal;
+	std::atomic<RoaRunningState_e> mRunningState;
+	std::atomic<RoaMode_e> mRoaMode;
+	std::atomic<int> mDetectCount;
+	std::atomic<RoaSensorError_e> mSensorError;
 
-    //
-    // Methods
-    //
-    static VehicleContext *GetInstance();
+	//
+	// Methods
+	//
+	static VehicleContext *GetInstance();
 
-    int Load(void);
-    int Save(void);
-    std::string DebugInfo(void);
+	int Load(void);
+	int Save(void);
+	std::string DebugInfo(void);
 
 };
 

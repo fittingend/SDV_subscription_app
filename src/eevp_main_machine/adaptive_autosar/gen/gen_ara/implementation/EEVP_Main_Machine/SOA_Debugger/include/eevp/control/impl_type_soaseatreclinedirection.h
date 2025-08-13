@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_soaseatreclinedirection.h
 /// IMPLEMENTATION DATA TYPE NAME     : SoaSeatReclineDirection
-/// GENERATED DATE                    : 2025-08-11 10:46:31
+/// GENERATED DATE                    : 2025-08-13 12:07:49
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

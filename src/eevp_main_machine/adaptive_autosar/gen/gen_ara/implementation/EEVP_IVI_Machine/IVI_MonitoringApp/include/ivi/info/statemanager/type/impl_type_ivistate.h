@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_ivistate.h
 /// IMPLEMENTATION DATA TYPE NAME     : IviState
-/// GENERATED DATE                    : 2025-08-11 10:46:19
+/// GENERATED DATE                    : 2025-08-13 12:07:57
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

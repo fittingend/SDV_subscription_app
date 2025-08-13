@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_swclusterinfo.h
 /// IMPLEMENTATION DATA TYPE NAME     : swClusterInfo
-/// GENERATED DATE                    : 2025-08-11 10:46:35
+/// GENERATED DATE                    : 2025-08-13 12:07:53
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

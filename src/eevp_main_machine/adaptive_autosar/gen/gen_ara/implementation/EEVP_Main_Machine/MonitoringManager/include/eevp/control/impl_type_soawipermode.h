@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_soawipermode.h
 /// IMPLEMENTATION DATA TYPE NAME     : SoaWiperMode
-/// GENERATED DATE                    : 2025-08-11 10:46:25
+/// GENERATED DATE                    : 2025-08-13 12:07:46
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

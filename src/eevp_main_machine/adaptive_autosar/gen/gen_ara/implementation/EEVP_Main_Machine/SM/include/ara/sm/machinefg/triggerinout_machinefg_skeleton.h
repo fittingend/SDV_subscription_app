@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : triggerinout_machinefg_skeleton.h
 /// SERVICE INTERFACE NAME            : TriggerInOut_MachineFG
-/// GENERATED DATE                    : 2025-08-11 10:46:28
+/// GENERATED DATE                    : 2025-08-13 12:07:48
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

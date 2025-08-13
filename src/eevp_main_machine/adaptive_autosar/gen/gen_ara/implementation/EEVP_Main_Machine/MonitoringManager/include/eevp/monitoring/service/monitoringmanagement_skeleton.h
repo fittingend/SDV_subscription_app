@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : monitoringmanagement_skeleton.h
 /// SERVICE INTERFACE NAME            : MonitoringManagement
-/// GENERATED DATE                    : 2025-08-11 10:46:24
+/// GENERATED DATE                    : 2025-08-13 12:07:44
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

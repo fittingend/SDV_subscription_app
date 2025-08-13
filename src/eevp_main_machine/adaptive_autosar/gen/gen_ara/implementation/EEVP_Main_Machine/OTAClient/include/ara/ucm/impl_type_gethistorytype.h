@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : impl_type_gethistorytype.h
 /// IMPLEMENTATION DATA TYPE NAME     : GetHistoryType
-/// GENERATED DATE                    : 2025-08-11 10:46:27
+/// GENERATED DATE                    : 2025-08-13 12:07:47
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

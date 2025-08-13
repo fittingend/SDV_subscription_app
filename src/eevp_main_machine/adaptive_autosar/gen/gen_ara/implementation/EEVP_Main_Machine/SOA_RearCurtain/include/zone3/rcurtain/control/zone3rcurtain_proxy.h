@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : zone3rcurtain_proxy.h
 /// SERVICE INTERFACE NAME            : Zone3Rcurtain
-/// GENERATED DATE                    : 2025-08-11 10:46:33
+/// GENERATED DATE                    : 2025-08-13 12:07:51
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   

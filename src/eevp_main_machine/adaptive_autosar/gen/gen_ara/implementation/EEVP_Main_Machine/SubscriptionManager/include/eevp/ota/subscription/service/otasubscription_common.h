@@ -10,7 +10,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 /// GENERATED FILE NAME               : otasubscription_common.h
 /// SERVICE INTERFACE NAME            : OtaSubscription
-/// GENERATED DATE                    : 2025-08-11 10:46:35
+/// GENERATED DATE                    : 2025-08-13 12:07:52
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///                                                                                                        
 /// CAUTION!! AUTOMATICALLY GENERATED FILE - DO NOT EDIT                                                   
